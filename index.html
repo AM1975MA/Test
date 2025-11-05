@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <!-- Carica Tailwind CSS per uno stile moderno -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Rimossi tutti gli stili della sidebar */
+    
+    /* Stile per i nuovi link cliccabili */
+    .ticket-link {
+      @apply text-indigo-600 font-medium hover:text-indigo-800 hover:underline cursor-pointer flex items-center;
+    }
+    /* Stili per la pagina di dettaglio */
+    #detail-descrizione {
+      @apply bg-gray-50 p-4 rounded-md border border-gray-200 whitespace-pre-line max-h-60 overflow-y-auto;
+    }
+    
+    /* MODIFICA: Aggiunto stile per scrollbar sottili */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      @apply bg-gray-300 rounded-full;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      @apply bg-gray-400;
+    }
+    ::-webkit-scrollbar-track {
+      @apply bg-gray-100 rounded-full;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- ===================================== -->
+  <!-- VECCHIA TOP BAR (ORA UNICA NAVIGAZIONE) -->
+  <!-- ===================================== -->
+  <nav class="bg-indigo-700 text-white p-4 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold">Portale Assistenza</h1>
+      <!-- NUOVO: Pulsante RMA Manager -->
+      <button id="nav-rma" class="text-sm font-medium rounded-md px-3 py-1 hover:bg-indigo-600 transition-colors">
+        RMA Manager
+      </button>
+    </div>
+  </nav>
+
+  <!-- Contenitore Principale delle Pagine -->
+  <div class="container mx-auto p-4 md:p-8">
+
+    <!-- ===================================== -->
+    <!-- PAGINA 1: TICKETING (La nuova "Home") -->
+    <!-- ===================================== -->
+    <div id="page-ticketing">
+      
+      <!-- MODIFICA: Titolo aggiornato -->
+      <header class="mb-8 flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-800">Tickets and Bugs manager</h1>
+          <p class="text-gray-600">Visualizza e gestisci tutti i ticket di supporto e i bug.</p>
+        </div>
+        <button id="add-new-ticket-button" class="inline-flex items-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <!-- MODIFICA: Icona cambiata da "+" a "document-plus" -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 mr-2 -ml-1">
+            <path fill-rule="evenodd" d="M1.5 3A1.5 1.5 0 0 1 3 1.5h8.528a1.5 1.5 0 0 1 1.06.44l3.972 3.972a1.5 1.5 0 0 1 .44 1.06V17a1.5 1.5 0 0 1-1.5 1.5H3A1.5 1.5 0 0 1 1.5 17V3Zm10.5 4.5a1.5 1.5 0 0 0-1.5-1.5H3v11A1.5 1.5 0 0 0 4.5 18h11a1.5 1.5 0 0 0 1.5-1.5V7.5h-4.5Z" clip-rule="evenodd" />
+            <path fill-rule="evenodd" d="M10 10.5a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+          </svg>
+          Apri Nuovo Ticket
+        </button>
+      </header>
+
+      <!-- Elenco Ticket Esistenti -->
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <!-- MODIFICA: Rimosso titolo "Elenco Unificato" -->
+        
+        <!-- Filtri Globali -->
+        <div class="bg-gray-50 p-4 rounded-lg mb-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div>
+            <label for="main-filter-prodotto" class="block text-sm font-medium text-gray-700">Prodotto/Servizio</label>
+            <select id="main-filter-prodotto" name="main-filter-prodotto" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <option value="">Tutti</option>
+              <!-- Opzioni aggiunte da JS -->
+            </select>
+          </div>
+          <div>
+            <label for="main-filter-categoria" class="block text-sm font-medium text-gray-700">Categoria Ticket</label>
+            <select id="main-filter-categoria" name="main-filter-categoria" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <option value="">Tutte</option>
+              <!-- Opzioni aggiunte da JS -->
+            </select>
+          </div>
+          <div>
+            <label for="main-filter-stato" class="block text-sm font-medium text-gray-700">Stato</label>
+            <!-- MODIFICA: Aggiornati gli stati del filtro -->
+            <select id="main-filter-stato" name="main-filter-stato" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <option value="">Tutti</option>
+              <option value="Nuovo">Nuovo</option>
+              <option value="In Lavorazione">In Lavorazione</option>
+              <option value="Chiuso">Chiuso</option>
+            </select>
+          </div>
+          <div>
+            <label for="main-filter-assegnato" class="block text-sm font-medium text-gray-700">Assegnato A</label>
+            <select id="main-filter-assegnato" name="main-filter-assegnato" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              <option value="">Tutti</option>
+              <!-- Opzioni aggiunte da JS -->
+            </select>
+          </div>
+        </div>
+
+        <!-- MODIFICA: Pulsante "Aggiorna Elenco" rimosso -->
+        
+        <!-- Spinner di caricamento -->
+        <div id="loading-spinner" class="flex justify-center p-4">
+            <svg class="animate-spin h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </div>
+        
+        <div class="overflow-x-auto">
+          <table id="tickets-table" class="min-w-full divide-y divide-gray-200 hidden">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stato</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priorità</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Oggetto</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assegnato A</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Azione</th>
+              </tr>
+            </thead>
+            <tbody id="tickets-tbody" class="bg-white divide-y divide-gray-200">
+              <!-- Righe inserite da JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div> <!-- Fine #page-ticketing -->
+
+    <!-- ===================================== -->
+    <!-- PAGINA 2: RMA                         -->
+    <!-- ===================================== -->
+    <div id="page-rma" class="hidden">
+      <header class="mb-8 flex justify-between items-center">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-800">RMA Manager</h2>
+          <p class="text-lg text-gray-600">Gestione dei processi di reso attivi.</p>
+        </div>
+         <div class="flex space-x-2">
+           <!-- MODIFICA: Aggiunto pulsante per lo storico -->
+           <button id="nav-rma-history" class="py-2 px-4 border border-indigo-600 rounded-md text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50">
+             Vedi Storico RMA
+           </button>
+           <button id="back-to-ticketing-from-rma" class="py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+              &larr; Torna ai Ticket
+            </button>
+         </div>
+      </header>
+
+      <!-- MODIFICA: Dashboard Kanban a 3 colonne -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Colonna 1: Nuove Richieste (Step 1-3) -->
+        <div class="bg-gray-50 rounded-lg shadow-sm">
+          <h3 class="text-lg font-semibold text-gray-700 p-4 border-b border-gray-200">
+            Nuove Richieste
+          </h3>
+          <div id="rma-col-nuovo" class="p-4 space-y-4 min-h-[200px]">
+            <!-- Card RMA da JS -->
+          </div>
+        </div>
+
+        <!-- Colonna 2: In Attesa di Rientro (Step 4) -->
+        <div class="bg-gray-50 rounded-lg shadow-sm">
+          <h3 class="text-lg font-semibold text-gray-700 p-4 border-b border-gray-200">
+            In Attesa di Rientro
+          </h3>
+          <div id="rma-col-attesa" class="p-4 space-y-4 min-h-[200px]">
+            <!-- Card RMA da JS -->
+          </div>
+        </div>
+
+        <!-- Colonna 3: In Lavorazione (Step 5-6) -->
+        <div class="bg-gray-50 rounded-lg shadow-sm">
+          <h3 class="text-lg font-semibold text-gray-700 p-4 border-b border-gray-200">
+            In Lavorazione
+          </h3>
+          <div id="rma-col-lavorazione" class="p-4 space-y-4 min-h-[200px]">
+            <!-- Card RMA da JS -->
+          </div>
+        </div>
+        
+        <!-- MODIFICA: Colonna 4 (Chiuso / Spedito) rimossa dalla dashboard -->
+        
+      </div>
+      <!-- Fine Dashboard Kanban -->
+
+    </div> <!-- Fine #page-rma -->
+    
+    <!-- ===================================== -->
+    <!-- PAGINA 3: APRI NUOVO TICKET (Modal-like)-->
+    <!-- ===================================== -->
+    <div id="page-new-ticket" class="hidden">
+      <header class="mb-8 flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-800">Apri un Nuovo Ticket</h1>
+          <p class="text-gray-600">Compila i campi per registrare un nuovo ticket.</p>
+        </div>
+        <button id="back-to-ticketing" class="py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+          &larr; Torna all'Elenco
+        </button>
+      </header>
+      
+      <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+        
+        <form id="ticket-form" class="space-y-4">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="Tipo_Ticket" class="block text-sm font-medium text-gray-700">Tipo Ticket</label>
+              <select id="Tipo_Ticket" name="Tipo_Ticket" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+                <option value="Supporto Cliente" selected>Supporto Cliente</option>
+                <option value="Bug Interno">Bug Interno (da team)</option>
+              </select>
+            </div>
+            <div>
+              <label for="Prodotto" class="block text-sm font-medium text-gray-700">Prodotto/Servizio</label>
+              <input type="text" id="Prodotto" name="Prodotto" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            </div>
+          </div>
+          
+          <!-- Categorie Bug (appare solo per 'Bug Interno') -->
+          <fieldset id="bug-categorie-new-ticket" class="hidden space-y-2 pt-4 border-t border-gray-200">
+            <legend class="text-sm font-medium text-gray-600">Categoria Bug (seleziona uno o più)</legend>
+            <div class="flex items-center">
+              <input id="new-bug-cat-hw" name="bug_categoria_new" type="checkbox" value="Bug - Hardware" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+              <label for="new-bug-cat-hw" class="ml-3 block text-sm text-gray-900">Hardware</label>
+            </div>
+            <div class="flex items-center">
+              <input id="new-bug-cat-fw" name="bug_categoria_new" type="checkbox" value="Bug - Firmware" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+              <label for="new-bug-cat-fw" class="ml-3 block text-sm text-gray-900">Firmware</label>
+            </div>
+            <div class="flex items-center">
+              <input id="new-bug-cat-prod" name="bug_categoria_new" type="checkbox" value="Bug - Produzione" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+              <label for="new-bug-cat-prod" class="ml-3 block text-sm text-gray-900">Produzione</label>
+            </div>
+          </fieldset>
+
+          <div>
+            <label for="Oggetto" class="block text-sm font-medium text-gray-700">Oggetto</label>
+            <input type="text" id="Oggetto" name="Oggetto" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+          </div>
+          
+          <div>
+            <label for="Descrizione" class="block text-sm font-medium text-gray-700">Descrizione Dettagliata</label>
+            <textarea id="Descrizione" name="Descrizione" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+          </div>
+
+          <!-- Dati Cliente (appare solo per 'Supporto Cliente') -->
+          <fieldset id="dati-cliente" class="space-y-4 pt-4 border-t border-gray-200">
+            <legend class="text-sm font-medium text-gray-600">Dati Cliente</legend>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="Nome_Cliente" class="block text-sm font-medium text-gray-700">Nome Cliente</label>
+                <input type="text" id="Nome_Cliente" name="Nome_Cliente" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+              <div>
+                <label for="Email_Cliente" class="block text-sm font-medium text-gray-700">Email Cliente</label>
+                <input type="email" id="Email_Cliente" name="Email_Cliente" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="Priorità" class="block text-sm font-medium text-gray-700">Priorità</label>
+              <select id="Priorità" name="Priorità" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <option value="Bassa">Bassa</option>
+                <option value="Media">Media</option>
+                <option value="Alta">Alta</option>
+              </select>
+            </div>
+             <div>
+              <label for="Assegnato_A" class="block text-sm font-medium text-gray-700">Assegna A (Email, usa virgola per multipli)</label>
+              <input type="text" id="Assegnato_A" name="Assegnato_A" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="email1@dom.com, email2@dom.com">
+            </div>
+          </div>
+
+          <div class="text-right space-x-3">
+            <button type="button" id="cancel-new-ticket" class="py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Annulla
+            </button>
+            <button type="submit" id="submit-button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
+              Invia Ticket
+            </button>
+          </div>
+        </form>
+      </div>
+    </div> <!-- Fine #page-new-ticket -->
+
+    <!-- ===================================== -->
+    <!-- PAGINA 4: DETTAGLIO TICKET (Modal-like) -->
+    <!-- ===================================== -->
+    <div id="page-ticket-detail" class="hidden">
+      <header class="mb-8 flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-800">Dettaglio Ticket</h1>
+          <p id="detail-id-display" class="text-gray-600">ID: TICKET-XXX</p>
+        </div>
+        <div class="flex space-x-2">
+            <button id="detail-toggle-status-button" class="py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white disabled:opacity-50" disabled>
+              ...
+            </button>
+            <button id="back-from-detail" class="py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+              &larr; Torna all'Elenco
+            </button>
+        </div>
+      </header>
+
+      <!-- Dettagli Statici -->
+      <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700">Riepilogo</h2>
+        <dl class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-6">
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Oggetto</dt>
+            <dd id="detail-oggetto" class="mt-1 text-sm text-gray-900 font-medium">...</dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Stato</dt>
+            <dd id="detail-stato-display" class="mt-1 text-sm text-gray-900">...</dd>
+          </div>
+          
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Priorità</TBD></dt>
+            <dd class="mt-1 text-sm text-gray-900">
+              <select id="detail-priorita-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <option value="Bassa">Bassa</option>
+                <option value="Media">Media</option>
+                <option value="Alta">Alta</option>
+              </select>
+            </dd>
+          </div>
+          
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Prodotto/Servizio</dt>
+            <dd id="detail-prodotto" class="mt-1 text-sm text-gray-900">...</dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Tipo Ticket</dt>
+            <dd id="detail-tipo" class="mt-1 text-sm text-gray-900">...</dd>
+          </div>
+          
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Assegnato A (usa virgola per multipli)</dt>
+            <dd class="mt-1 text-sm text-gray-900">
+              <input type="text" id="detail-assegnato-input" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="email1@dom.com, email2@dom.com">
+            </dd>
+          </div>
+          
+          <!-- Dati Cliente (opzionali) -->
+          <div id="detail-cliente-blocco" class="hidden sm:col-span-3">
+             <dt class="text-sm font-medium text-gray-500 border-b border-gray-200 pb-2 mb-2">Dati Cliente</dt>
+             <dd class="mt-1 text-sm text-gray-900">
+                <span id="detail-cliente-nome"></span> (<span id="detail-cliente-email"></span>)
+             </dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Cronologia e Aggiornamento -->
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700">Cronologia e Azioni</h2>
+        
+        <label for="detail-descrizione" class="block text-sm font-medium text-gray-700">Cronologia Completa</label>
+        <div id="detail-descrizione" class="mt-1 mb-6">
+          <!-- Contenuto inserito da JS -->
+        </div>
+
+        <!-- Form per aggiornare -->
+        <form id="update-ticket-form" class="space-y-4">
+          <input type="hidden" id="detail-ticket-id">
+          <input type="hidden" id="detail-original-desc">
+
+          <div>
+            <label for="detail-azioni" class="block text-sm font-medium text-gray-700">Aggiungi Azioni Intraprese</label>
+            <textarea id="detail-azioni" name="detail-azioni" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Inserisci qui le note di aggiornamento..." required></textarea>
+          </div>
+          
+          <div class="text-right space-x-3">
+            <button type="button" id="detail-convert-bug-button" class="py-2 px-4 border border-indigo-600 rounded-md text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50" disabled>
+              Converti in Bug
+            </button>
+            
+            <!-- NUOVO: Pulsante per avviare un RMA -->
+            <button type="button" id="detail-start-rma-button" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+              Avvia Pratica RMA
+            </button>
+            
+            <button type="submit" id="update-ticket-button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
+              Aggiorna Ticket
+            </button>
+          </div>
+        </form>
+      </div>
+    </div> <!-- Fine #page-ticket-detail -->
+
+
+    <!-- ===================================== -->
+    <!-- NUOVA PAGINA: DETTAGLIO RMA           -->
+    <!-- ===================================== -->
+    <div id="page-rma-detail" class="hidden">
+      <header class="mb-8 flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-800">Dettaglio RMA</h1>
+          <p id="detail-rma-id-display" class="text-gray-600">ID: RMA-XXX (Associato a TICKET-XXX)</p>
+        </div>
+        <button id="back-from-rma-detail" class="py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+          &larr; Torna alla Dashboard RMA
+        </button>
+      </header>
+
+      <!-- Stepper 8 Fasi -->
+      <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-700">Stato Processo</h2>
+        <nav aria-label="Progress">
+          <!-- MODIFICA: Stepper completamente riscritto con 'grid' per risolvere bug di layout -->
+          <ol id="rma-stepper" role="list" class="grid grid-cols-4 md:grid-cols-8 gap-y-12 gap-x-4">
+            <!-- Gli step verranno generati da JS -->
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Riepilogo RMA e Dati Garanzia -->
+      <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700">Riepilogo e Garanzia</h2>
+        <!-- MODIFICA: Aumentato gap-x e aggiunto min-w-0 per prevenire sovrapposizioni -->
+        <dl class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-6">
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Cliente</dt>
+            <dd id="detail-rma-cliente" class="mt-1 text-sm text-gray-900 font-medium min-w-0">...</dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Prodotto</dt>
+            <dd id="detail-rma-prodotto" class="mt-1 text-sm text-gray-900 min-w-0">...</dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Oggetto Segnalazione</dt>
+            <dd id="detail-rma-oggetto" class="mt-1 text-sm text-gray-900 min-w-0">...</dd>
+          </div>
+          
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Numero Seriale (SN)</dt>
+            <dd class="mt-1 text-sm text-gray-900 min-w-0">
+              <input type="text" id="detail-rma-sn" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm" placeholder="Inserire SN...">
+            </dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Numero Ordine/Fattura</dt>
+            <dd class="mt-1 text-sm text-gray-900 min-w-0">
+              <input type="text" id="detail-rma-ordine" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm" placeholder="Inserire Ordine...">
+            </dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Data Acquisto</dt>
+            <dd class="mt-1 text-sm text-gray-900 min-w-0">
+              <!-- MODIFICA: Rimossa la classe "w-full" che causava il bug di allineamento -->
+              <input type="date" id="detail-rma-data-acquisto" class="mt-1 block rounded-md border-gray-300 shadow-sm sm:text-sm">
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Gestione Documenti (Upload + Elenco) -->
+      <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700">Gestione Documenti (Foto, PDF, Log)</h2>
+        <!-- MODIFICA: Aumentato gap-x -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          <!-- Elenco File -->
+          <div>
+            <h3 class="text-lg font-medium text-gray-800 mb-2">File Allegati</h3>
+            <ul id="detail-rma-file-list" class="divide-y divide-gray-200 border border-gray-200 rounded-md max-h-48 overflow-y-auto">
+              <!-- Elenco file da JS -->
+            </ul>
+          </div>
+          <!-- Form Upload (solo UI) -->
+          <div>
+            <h3 class="text-lg font-medium text-gray-800 mb-2">Carica Nuovi File</h3>
+            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+              <div class="space-y-1 text-center">
+                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <div class="flex text-sm text-gray-600">
+                  <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none">
+                    <span>Seleziona un file</span>
+                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                  </label>
+                  <p class="pl-1">o trascinalo qui</p>
+                </div>
+                <p class="text-xs text-gray-500">PNG, JPG, PDF, LOG fino a 10MB (Simulato)</p>
+              </div>
+            </div>
+            <button type="button" id="detail-rma-upload-btn" class="mt-3 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+              Carica File
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cronologia e Azioni RMA -->
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700">Cronologia e Azioni RMA</h2>
+        
+        <label for="detail-rma-log" class="block text-sm font-medium text-gray-700">Log Completo (Report, Note, Diagnostica)</label>
+        <div id="detail-rma-log" class="mt-1 mb-6 bg-gray-50 p-4 rounded-md border border-gray-200 whitespace-pre-line max-h-60 overflow-y-auto">
+          <!-- Contenuto inserito da JS -->
+        </div>
+
+        <!-- Form per aggiornare -->
+        <form id="update-rma-form" class="space-y-4">
+          <input type="hidden" id="detail-rma-id">
+          
+          <div>
+            <label for="detail-rma-azioni" class="block text-sm font-medium text-gray-700">Aggiungi Note / Report Tecnico</label>
+            <!-- MODIFICA: Rimosso 'required' per rendere le note opzionali -->
+            <textarea id="detail-rma-azioni" name="detail-rma-azioni" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Inserisci qui le note di aggiornamento... (opzionale)"></textarea>
+          </div>
+          
+          <div class="text-right space-x-3">
+            <!-- MODIFICA: Aggiunto nuovo pulsante "Torna a Step Precedente" -->
+            <button type="button" id="detail-rma-prev-step-btn" class="py-2 px-4 border border-gray-400 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+              &larr; Torna a Step Precedente
+            </button>
+            <button type="button" id="detail-rma-reject-btn" class="py-2 px-4 border border-red-600 rounded-md text-sm font-medium text-red-600 bg-white hover:bg-red-50">
+              Rifiuta RMA
+            </button>
+            <button type="submit" id="detail-rma-update-btn" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+              Aggiungi Nota e Avanza Step
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div> <!-- Fine #page-rma-detail -->
+
+
+    <!-- ===================================== -->
+    <!-- NUOVA PAGINA: STORICO RMA CHIUSI      -->
+    <!-- ===================================== -->
+    <div id="page-rma-history" class="hidden">
+      <header class="mb-8 flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-800">Storico RMA Chiusi</h1>
+          <p class="text-gray-600">Elenco di tutte le pratiche RMA concluse.</p>
+        </div>
+        <button id="back-from-rma-history" class="py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+          &larr; Torna alla Dashboard RMA
+        </button>
+      </header>
+
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <!-- Filtri per lo storico RMA -->
+        <div class="bg-gray-50 p-4 rounded-lg mb-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div>
+            <label for="rma-filter-prodotto" class="block text-sm font-medium text-gray-700">Prodotto/Servizio</label>
+            <select id="rma-filter-prodotto" name="rma-filter-prodotto" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm">
+              <option value="">Tutti</option>
+            </select>
+          </div>
+          <div>
+            <label for="rma-filter-cliente" class="block text-sm font-medium text-gray-700">Cliente</label>
+            <select id="rma-filter-cliente" name="rma-filter-cliente" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm">
+              <option value="">Tutti</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+             <!-- Spazio vuoto per allineamento -->
+          </div>
+        </div>
+        
+        <!-- Tabella Storico RMA -->
+        <div class="overflow-x-auto">
+          <table id="rma-history-table" class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">RMA ID</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ticket ID</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cliente</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prodotto</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Oggetto</th>
+              </tr>
+            </thead>
+            <tbody id="rma-history-tbody" class="bg-white divide-y divide-gray-200">
+              <!-- Righe inserite da JS -->
+            </tbody>
+          </table>
+          <p id="rma-history-empty" class="hidden text-center text-gray-500 p-4">Nessun RMA chiuso trovato.</p>
+        </div>
+      </div>
+    </div> <!-- Fine #page-rma-history -->
+
+
+  </div> <!-- Fine .container -->
+
+  <!-- ===================================== -->
+  <!-- MODAL: Converti in Bug (Immutato)     -->
+  <!-- ===================================== -->
+  <div id="convert-bug-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Converti in Bug</h2>
+      <p class="text-sm text-gray-600 mb-4">Seleziona una o più categorie per il nuovo bug. Il ticket di supporto verrà convertito.</p>
+      
+      <fieldset class="space-y-2" id="convert-bug-categories">
+        <div class="flex items-center">
+          <input id="convert-cat-hw" name="convert_categoria" type="checkbox" value="Bug - Hardware" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+          <label for="convert-cat-hw" class="ml-3 block text-sm text-gray-900">Hardware</label>
+        </div>
+        <div class="flex items-center">
+          <input id="convert-cat-fw" name="convert_categoria" type="checkbox" value="Bug - Firmware" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+          <label for="convert-cat-fw" class="ml-3 block text-sm text-gray-900">Firmware</label>
+        </div>
+        <div class="flex items-center">
+          <input id="convert-cat-prod" name="convert_categoria" type="checkbox" value="Bug - Produzione" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+          <label for="convert-cat-prod" class="ml-3 block text-sm text-gray-900">Produzione</label>
+        </div>
+      </fieldset>
+      
+      <div id="convert-bug-error" class="hidden text-red-600 text-sm mt-4">Devi selezionare almeno una categoria.</div>
+      
+      <div class="mt-6 flex justify-end space-x-3">
+        <button type="button" id="cancel-convert-bug" class="py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+          Annulla
+        </button>
+        <button type="button" id="confirm-convert-bug" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+          Conferma Conversione
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================== -->
+  <!-- NUOVO MODAL: Conferma Eliminazione    -->
+  <!-- ===================================== -->
+  <div id="delete-ticket-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Conferma Eliminazione</h2>
+      <p class="text-sm text-gray-600 mb-4">Sei sicuro di voler eliminare questo ticket? <strong class="text-red-600">L'azione è irreversibile.</strong> Verranno eliminati anche eventuali RMA associati.</p>
+      <p id="delete-ticket-id-display" class="text-sm text-gray-800 font-medium mb-4"></p>
+      
+      <div class="mt-6 flex justify-end space-x-3">
+        <button type="button" id="cancel-delete-ticket" class="py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+          Annulla
+        </button>
+        <button type="button" id="confirm-delete-ticket" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+          Elimina Definitivamente
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================== -->
+  <!-- TOAST: Notifiche Globali (Immutato)   -->
+  <!-- ===================================== -->
+  <div id="toast-notification" class="hidden fixed top-6 right-6 z-50 p-4 rounded-md shadow-lg max-w-sm text-white">
+    <!-- Contenuto del Toast -->
+  </div>
+
+  <!-- MODIFICA: Aggiunto il tag <script> di apertura mancante -->
+  <script>
+    // --- DATI MOCK (ANTEPRIMA) ---
+    const MOCK_DATA = [
+      {ID_Ticket: 'TICKET-001', Data_Apertura: '2025-11-04', Stato: 'Nuovo', Priorità: 'Alta', Oggetto: 'Non si accende', Descrizione: 'Il prodotto A non si accende.\n\n--- Modifica del 2025-11-04 ---\nProvato reset, non funziona.', Tipo_Ticket: 'Supporto Cliente', Prodotto: 'Prodotto A', Nome_Cliente: 'Cliente Prova', Email_Cliente: 'cliente@prova.com', Assegnato_A: 'mario.rossi@dom.com, team.dev@dom.com' },
+      {ID_Ticket: 'TICKET-002', Data_Apertura: '2025-11-03', Stato: 'In Lavorazione', Priorità: 'Media', Oggetto: 'Errore allineamento', Descrizione: 'Descrizione del bug...', Tipo_Ticket: 'Bug - Firmware, Bug - Hardware', Prodotto: 'Prodotto B', Nome_Cliente: '', Email_Cliente: '', Assegnato_A: 'team.hw@dom.com' },
+      {ID_Ticket: 'TICKET-003', Data_Apertura: '2025-11-02', Stato: 'Chiuso', Priorità: 'Bassa', Oggetto: 'Colore sbagliato', Descrizione: 'Il colore è blu invece di verde.', Tipo_Ticket: 'Supporto Cliente', Prodotto: 'Prodotto A', Nome_Cliente: 'Altro Cliente', Email_Cliente: 'altro@cliente.com', Assegnato_A: 'mario.rossi@dom.com' },
+    ];
+    
+    // NUOVO: Database finto per gli RMA (con più dettagli)
+    let MOCK_RMA_DATA = [ // MODIFICA: Reso 'let' per permettere l'eliminazione
+        { 
+          rmaId: 'RMA-001', 
+          ticketId: 'TICKET-001', 
+          prodotto: 'Prodotto A', 
+          cliente: 'Cliente Prova', 
+          rmaStato: 'Nuovo', // Colonna Kanban
+          rmaStep: 3, // Step del processo (1-8)
+          oggetto: 'Non si accende',
+          // Nuovi campi per il dettaglio
+          serialNumber: 'SN-12345-A',
+          dataAcquisto: '2025-09-01',
+          numeroOrdine: 'ORD-987',
+          logRMA: 'Step 1: Pratica aperta dal ticket TICKET-001.\nStep 2: Troubleshooting remoto fallito.\nStep 3: In attesa verifica garanzia.',
+          documenti: [
+            { nome: 'foto_difetto.jpg', url: '#' },
+            { nome: 'fattura.pdf', url: '#' }
+          ]
+        },
+        // NUOVO: Dati di test per lo storico
+        { 
+          rmaId: 'RMA-000', 
+          ticketId: 'TICKET-003', 
+          prodotto: 'Prodotto A', 
+          cliente: 'Altro Cliente', 
+          rmaStato: 'Chiuso', // Colonna Kanban
+          rmaStep: 8, // Step del processo (1-8)
+          oggetto: 'Colore sbagliato',
+          serialNumber: 'SN-99999-B',
+          dataAcquisto: '2025-01-01',
+          numeroOrdine: 'ORD-001',
+          logRMA: 'Step 1: ... \nStep 8: Chiuso e rimborsato.',
+          documenti: []
+        }
+    ];
+
+    let allTicketsCache = []; // Cache unica per tutti i ticket
+    let toastTimer; 
+    let rmaOriginPage = 'page-rma'; // MODIFICA: Variabile per tracciare da dove si apre il dettaglio RMA
+
+    // MODIFICA: Definizioni globali per gli step RMA (Spostate qui per essere accessibili da più funzioni)
+    const rmaSteps = {
+      1: "Step 1: Apertura",
+      2: "Step 2: Troubleshooting",
+      3: "Step 3: Verifica Garanzia",
+      4: "Step 4: Emesso RMA",
+      5: "Step 5: Ricevuto",
+      6: "Step 6: Analisi Tecnica",
+      7: "Step 7: Rimessa al Cliente",
+      8: "Step 8: Chiuso"
+    };
+    
+    const rmaStepColors = {
+      1: "bg-blue-100 text-blue-800",
+      2: "bg-blue-100 text-blue-800",
+      3: "bg-blue-100 text-blue-800",
+      4: "bg-purple-100 text-purple-800",
+      5: "bg-yellow-100 text-yellow-800",
+      6: "bg-yellow-100 text-yellow-800",
+      7: "bg-green-100 text-green-800",
+      8: "bg-green-100 text-green-800"
+    };
+
+    // --- Notifiche Toast (Immutato) ---
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toast-notification');
+      if (!toast) return;
+      if (toastTimer) clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.className = 'fixed top-6 right-6 z-50 p-4 rounded-md shadow-lg max-w-sm text-white'; // Resetta
+      toast.classList.add(isError ? 'bg-red-500' : 'bg-green-500');
+      toast.classList.remove('hidden');
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+
+
+    // --- Funzioni di Gestione Ticket (Semplificate) ---
+
+    function toggleTicketStatus(ticketId) {
+      console.log("Toggling status for:", ticketId);
+      const ticketToUpdate = MOCK_DATA.find(ticket => ticket.ID_Ticket === ticketId);
+      if (ticketToUpdate) {
+        // MODIFICA: Logica aggiornata per i nuovi stati
+        if (ticketToUpdate.Stato === 'Chiuso') {
+            ticketToUpdate.Stato = 'Nuovo';
+        } else {
+            ticketToUpdate.Stato = 'Chiuso';
+        }
+        showToast(`Stato aggiornato a: ${ticketToUpdate.Stato}`);
+        // Aggiorna solo la tabella principale
+        renderTickets(allTicketsCache); 
+      }
+    }
+    
+    // NUOVA FUNZIONE: Elimina un ticket
+    function deleteTicket(ticketId) {
+      console.log("Deleting ticket:", ticketId);
+      
+      const index = MOCK_DATA.findIndex(ticket => ticket.ID_Ticket === ticketId);
+      if (index > -1) {
+        MOCK_DATA.splice(index, 1);
+        allTicketsCache = MOCK_DATA; // Aggiorna la cache
+        
+        // Controlla se l'eliminazione ha rimosso un RMA associato (per coerenza)
+        MOCK_RMA_DATA = MOCK_RMA_DATA.filter(rma => rma.ticketId !== ticketId);
+
+        showToast(`Ticket ${ticketId} eliminato con successo.`);
+        renderTickets(allTicketsCache); // Ricarica la tabella
+        populateTicketFilters(allTicketsCache); // Ricarica i filtri
+        document.getElementById('delete-ticket-modal').classList.add('hidden');
+      } else {
+        showToast(`Errore: Impossibile trovare ticket ${ticketId}.`, true);
+      }
+    }
+
+    function updateTicketField(ticketId, field, value) {
+        console.log(`Updating ${ticketId}: ${field} = ${value}`);
+        const ticket = MOCK_DATA.find(t => t.ID_Ticket === ticketId);
+        if (ticket) {
+            ticket[field] = value;
+            allTicketsCache = MOCK_DATA;
+            // Ricarica filtri E tabella
+            populateTicketFilters(allTicketsCache); 
+            renderTickets(allTicketsCache);
+            showToast(`${field} aggiornata con successo!`);
+        }
+    }
+
+
+    function handleSubmitResponse(response, form, submitButton) {
+      if (response.success) {
+        showToast(response.message);
+        
+        // Resetta i checkbox dei bug
+        document.querySelectorAll('input[name="bug_categoria_new"]').forEach(cb => cb.checked = false);
+        document.getElementById('bug-categorie-new-ticket').classList.add('hidden');
+        
+        setTimeout(() => {
+            // Riporta alla pagina elenco ticket
+            document.getElementById('back-to-ticketing').click(); 
+        }, 2000);
+        
+      } else {
+        showToast(response.message, true); // true = è un errore
+      }
+      
+      submitButton.disabled = false;
+      submitButton.textContent = 'Invia Ticket';
+    }
+
+
+    // --- Logica di Fetch e Render (Ora Unificata) ---
+
+    function populateTicketFilters(tickets) {
+      const prodottoFilter = document.getElementById('main-filter-prodotto');
+      const categoriaFilter = document.getElementById('main-filter-categoria');
+      const assegnatoFilter = document.getElementById('main-filter-assegnato');
+
+      // Salva i valori correnti
+      const currentProdotto = prodottoFilter.value;
+      const currentCategoria = categoriaFilter.value;
+      const currentAssegnato = assegnatoFilter.value;
+
+      const prodotti = [...new Set(tickets.map(t => t.Prodotto).filter(Boolean))];
+      
+      const allCategorie = tickets
+          .map(t => t.Tipo_Ticket)
+          .filter(Boolean)
+          .flatMap(t => t.split(','))
+          .map(t => t.trim())
+          .filter(Boolean);
+      const categorie = [...new Set(allCategorie)];
+      
+      const allAssegnati = tickets
+          .map(t => t.Assegnato_A) 
+          .filter(Boolean)
+          .flatMap(a => a.split(',')) 
+          .map(a => a.trim())
+          .filter(Boolean);
+      const assegnati = [...new Set(allAssegnati)]; 
+
+      prodottoFilter.innerHTML = '<option value="">Tutti</option>';
+      prodotti.sort().forEach(p => {
+        prodottoFilter.innerHTML += `<option value="${p}">${p}</option>`;
+      });
+
+      categoriaFilter.innerHTML = '<option value="">Tutte</option>';
+      categorie.sort().forEach(c => {
+        categoriaFilter.innerHTML += `<option value="${c}">${c}</option>`;
+      });
+
+      assegnatoFilter.innerHTML = '<option value="">Tutti</option>';
+      assegnati.sort().forEach(a => {
+        assegnatoFilter.innerHTML += `<option value="${a}">${a}</option>`;
+      });
+      
+      // Ripristina i valori
+      prodottoFilter.value = currentProdotto;
+      categoriaFilter.value = currentCategoria;
+      assegnatoFilter.value = currentAssegnato;
+    }
+
+    function renderTickets(ticketsToFilter) {
+      const prodotto = document.getElementById('main-filter-prodotto').value;
+      const categoria = document.getElementById('main-filter-categoria').value;
+      const stato = document.getElementById('main-filter-stato').value;
+      const assegnato = document.getElementById('main-filter-assegnato').value;
+      
+      const tbody = document.getElementById('tickets-tbody');
+      tbody.innerHTML = ''; 
+
+      const filteredTickets = ticketsToFilter.filter(ticket => {
+        // MODIFICA: Semplificata la logica del filtro stato per corrispondere ai nuovi valori
+        const matchStato = !stato || ticket.Stato === stato;
+
+        const matchProdotto = !prodotto || ticket.Prodotto === prodotto;
+        const matchCategoria = !categoria || (ticket.Tipo_Ticket && ticket.Tipo_Ticket.split(',').map(t => t.trim()).includes(categoria));
+        const matchAssegnato = !assegnato || (ticket.Assegnato_A && ticket.Assegnato_A.split(',').map(a => a.trim()).includes(assegnato));
+
+        return matchStato && matchProdotto && matchCategoria && matchAssegnato;
+      });
+      
+      const sortedTickets = filteredTickets.sort((a, b) => new Date(b.Data_Apertura) - new Date(a.Data_Apertura));
+
+      if (sortedTickets.length === 0) {
+         document.getElementById('loading-spinner').innerHTML = 'Nessun ticket trovato con i filtri selezionati.';
+         document.getElementById('loading-spinner').classList.remove('hidden', 'flex');
+         document.getElementById('tickets-table').classList.add('hidden');
+         return;
+      }
+        
+      sortedTickets.forEach(ticket => {
+        // MODIFICA: Logica del pulsante toggle aggiornata per i nuovi stati
+        const isRisolto = ticket.Stato === 'Chiuso';
+        const toggleBtnText = isRisolto ? 'Riapri' : 'Chiudi'; // Testo cambiato
+        const toggleBtnColor = isRisolto ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-green-500 hover:bg-green-600';
+        
+        const assegnati = ticket.Assegnato_A || '';
+        const displayAssegnati = assegnati.length > 25 ? assegnati.substring(0, 25) + '...' : assegnati;
+        
+        const row = `
+          <tr>
+            <!-- MODIFICA: Cella ID resa cliccabile -->
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <span class="ticket-link" data-id="${ticket.ID_Ticket}" title="Apri dettagli ${ticket.ID_Ticket || ''}">
+                <!-- MODIFICA: Aggiunto 'flex-shrink-0' per un allineamento perfetto -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5 text-indigo-600 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                  <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.022 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                </svg>
+                ${ticket.ID_Ticket || ''}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ticket.Data_Apertura || ''}</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(ticket.Stato)}">
+                ${ticket.Stato || ''}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ticket.Priorità || ''}</td>
+            <!-- MODIFICA: Oggetto non più cliccabile -->
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 truncate" title="${ticket.Oggetto || ''}">
+              ${ticket.Oggetto || ''}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ticket.Tipo_Ticket || ''}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" title="${assegnati}">${displayAssegnati}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <!-- MODIFICA: Aggiunto flex per allineare i pulsanti -->
+              <div class="flex items-center space-x-2">
+                <button 
+                  data-id="${ticket.ID_Ticket}" 
+                  class="toggle-status-btn text-xs text-white font-semibold py-1 px-2 rounded-md ${toggleBtnColor} transition-colors">
+                  ${toggleBtnText}
+                </button>
+                
+                <!-- NUOVO: Pulsante Elimina -->
+                <button 
+                  data-id="${ticket.ID_Ticket}" 
+                  data-oggetto="${ticket.Oggetto || ''}"
+                  class="delete-ticket-btn text-gray-400 hover:text-red-600 p-1 rounded-md transition-colors" 
+                  title="Elimina ticket">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+        
+        tbody.innerHTML += row;
+      });
+      
+      document.getElementById('loading-spinner').classList.add('hidden');
+      document.getElementById('tickets-table').classList.remove('hidden');
+    }
+
+    function fetchTickets() {
+      // Imposta lo spinner
+      document.getElementById('loading-spinner').innerHTML = `<svg class="animate-spin h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>`;
+      document.getElementById('loading-spinner').classList.remove('hidden');
+      document.getElementById('loading-spinner').classList.add('flex', 'justify-center');
+      document.getElementById('tickets-table').classList.add('hidden');
+      
+      // Simula chiamata API
+      setTimeout(() => {
+        allTicketsCache = MOCK_DATA; // Usa i dati finti
+        populateTicketFilters(allTicketsCache);
+        renderTickets(allTicketsCache);
+      }, 500);
+    }
+    
+    function getStatusColor(status) {
+      if (status === 'Nuovo') return 'bg-blue-100 text-blue-800';
+      if (status === 'Chiuso') return 'bg-green-100 text-green-800';
+      if (status === 'In Lavorazione') return 'bg-yellow-100 text-yellow-800';
+      return 'bg-gray-100 text-gray-800';
+    }
+    
+    function loadInitialTickets() {
+      // Abilita i pulsanti
+      document.getElementById('submit-button').disabled = false;
+      document.getElementById('update-ticket-button').disabled = false; 
+      document.getElementById('detail-toggle-status-button').disabled = false;
+      document.getElementById('detail-convert-bug-button').disabled = false;
+      document.getElementById('detail-start-rma-button').disabled = false; // NUOVO: Abilita pulsante RMA
+
+      // Carica i ticket finti
+      fetchTickets();
+    }
+    
+    // --- NUOVA FUNZIONE: Render della Dashboard RMA ---
+    function renderRmaBoard() {
+      const colNuovo = document.getElementById('rma-col-nuovo');
+      const colAttesa = document.getElementById('rma-col-attesa');
+      const colLavorazione = document.getElementById('rma-col-lavorazione');
+      // MODIFICA: Riferimento a colChiuso rimosso per fixare il bug
+      
+      colNuovo.innerHTML = '';
+      colAttesa.innerHTML = '';
+      colLavorazione.innerHTML = '';
+      // MODIFICA: Riferimento a colChiuso rimosso per fixare il bug
+      
+      let activeRmaCount = 0; // Contatore per RMA attivi
+
+      /* MODIFICA: rimosse definizioni step (ora globali) */
+
+      // MODIFICA: Aggiunto .filter() per escludere gli RMA chiusi dalla board
+      MOCK_RMA_DATA.filter(rma => rma.rmaStato !== 'Chiuso').forEach(rma => {
+        activeRmaCount++;
+        const cardHtml = `
+          <div class="rma-card-link bg-white p-4 rounded-lg shadow-md border border-gray-200 cursor-pointer hover:shadow-lg transition-shadow" data-rmaid="${rma.rmaId}">
+            <span class="text-sm font-medium text-indigo-600">${rma.rmaId} (${rma.ticketId})</span>
+            <p class="text-sm font-semibold text-gray-800 mt-1">${rma.prodotto} - ${rma.oggetto}</p>
+            <p class="text-xs text-gray-500 mt-2">Cliente: ${rma.cliente}</p>
+            <div class="mt-3">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${rmaStepColors[rma.rmaStep] || 'bg-gray-100 text-gray-800'}">
+                ${rmaSteps[rma.rmaStep] || 'Sconosciuto'}
+              </span>
+            </div>
+          </div>
+        `;
+        
+        // Assegna alla colonna
+        if (rma.rmaStato === 'Nuovo') colNuovo.innerHTML += cardHtml;
+        else if (rma.rmaStato === 'Attesa') colAttesa.innerHTML += cardHtml;
+        else if (rma.rmaStato === 'Lavorazione') colLavorazione.innerHTML += cardHtml;
+        // La colonna 'Chiuso' non verrà mai popolata grazie al filtro
+      });
+
+      // Gestisci UI per board vuota
+      if (activeRmaCount === 0) {
+          colNuovo.innerHTML = '<p class="text-sm text-gray-500 p-2">Nessun RMA attivo.</p>';
+      }
+    }
+
+    // --- AVVIO APPLICAZIONE ---
+    
+    window.onload = function() {
+      
+      // Seleziona le pagine
+      // MODIFICA: Aggiunto selettore per la nuova pagina
+      const allPages = document.querySelectorAll('.container > div[id^="page-"]');
+      
+      // Seleziona i pulsanti di navigazione
+      const navRmaButton = document.getElementById('nav-rma');
+      const navRmaHistoryButton = document.getElementById('nav-rma-history'); // NUOVO
+      const backFromRmaHistoryButton = document.getElementById('back-from-rma-history'); // NUOVO
+      const addNewTicketButton = document.getElementById('add-new-ticket-button');
+      const backToTicketingButtons = document.querySelectorAll('#back-to-ticketing, #cancel-new-ticket, #back-to-ticketing-from-rma');
+      const backFromDetailButton = document.getElementById('back-from-detail');
+
+      // Funzione per mostrare le pagine
+      function showPage(pageId) {
+        allPages.forEach(page => {
+          if (page.id === pageId) {
+            page.classList.remove('hidden');
+          } else {
+            page.classList.add('hidden');
+          }
+        });
+        window.scrollTo(0, 0); // Scrolla in cima
+      }
+      
+      // Funzione per mostrare i Dettagli
+      function showTicketDetail(ticketId) {
+        console.log(`Loading detail for ${ticketId}`);
+        
+        const ticket = MOCK_DATA.find(t => t.ID_Ticket === ticketId);
+        if (!ticket) {
+          showToast('Errore: ticket non trovato.', true);
+          return;
+        }
+        
+        // Popola campi
+        document.getElementById('detail-id-display').textContent = `ID: ${ticket.ID_Ticket}`;
+        document.getElementById('detail-oggetto').textContent = ticket.Oggetto;
+        document.getElementById('detail-stato-display').innerHTML = `<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(ticket.Stato)}">${ticket.Stato}</span>`;
+        document.getElementById('detail-prodotto').textContent = ticket.Prodotto;
+        document.getElementById('detail-tipo').textContent = ticket.Tipo_Ticket;
+        document.getElementById('detail-priorita-select').value = ticket.Priorità;
+        document.getElementById('detail-assegnato-input').value = ticket.Assegnato_A || '';
+        
+        // Dati Cliente
+        const clienteBlocco = document.getElementById('detail-cliente-blocco');
+        if (ticket.Tipo_Ticket === 'Supporto Cliente' && ticket.Nome_Cliente) {
+          document.getElementById('detail-cliente-nome').textContent = ticket.Nome_Cliente;
+          document.getElementById('detail-cliente-email').textContent = ticket.Email_Cliente;
+          clienteBlocco.classList.remove('hidden');
+        } else {
+          clienteBlocco.classList.add('hidden');
+        }
+
+        // Descrizione
+        const descDiv = document.getElementById('detail-descrizione');
+        // MODIFICA: Aggiunto controllo per 'Descrizione' null o undefined
+        const sanitizedDesc = (ticket.Descrizione || '').replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        descDiv.innerHTML = sanitizedDesc.replace(/\n/g, '<br>');
+        
+        // Prepara Form Aggiornamento
+        document.getElementById('update-ticket-form').reset();
+        document.getElementById('detail-ticket-id').value = ticket.ID_Ticket;
+        document.getElementById('detail-original-desc').value = ticket.Descrizione || ''; 
+        
+        // Pulsante Chiudi/Riapri
+        const toggleBtn = document.getElementById('detail-toggle-status-button');
+        toggleBtn.dataset.id = ticket.ID_Ticket; 
+        if (ticket.Stato === 'Chiuso') {
+          toggleBtn.textContent = 'Riapri Ticket';
+          toggleBtn.className = 'py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 disabled:opacity-50';
+        } else {
+          toggleBtn.textContent = 'Chiudi Ticket';
+          toggleBtn.className = 'py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 disabled:opacity-50';
+        }
+        
+        // Pulsante Converti in Bug
+        const convertBtn = document.getElementById('detail-convert-bug-button');
+        convertBtn.dataset.id = ticket.ID_Ticket;
+        if (ticket.Tipo_Ticket && ticket.Tipo_Ticket.includes('Bug -')) {
+          convertBtn.classList.add('hidden'); 
+        } else {
+          convertBtn.classList.remove('hidden');
+        }
+        
+        // NUOVO: Pulsante Avvia RMA
+        const rmaBtn = document.getElementById('detail-start-rma-button');
+        rmaBtn.dataset.id = ticket.ID_Ticket;
+        const rmaEsistente = MOCK_RMA_DATA.find(rma => rma.ticketId === ticket.ID_Ticket);
+        
+        // MODIFICA: Logica di replace() resa più robusta per evitare errori
+        if (rmaEsistente) {
+          rmaBtn.disabled = true;
+          rmaBtn.textContent = 'RMA Già Aperto';
+          rmaBtn.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+          rmaBtn.classList.add('bg-gray-400', 'hover:bg-gray-400');
+        } else {
+          rmaBtn.disabled = false;
+          rmaBtn.textContent = 'Avvia Pratica RMA';
+          rmaBtn.classList.remove('bg-gray-400', 'hover:bg-gray-400');
+          rmaBtn.classList.add('bg-orange-500', 'hover:bg-orange-600');
+        }
+        
+        showPage('page-ticket-detail');
+      }
+
+      // --- NUOVA FUNZIONE: Render dello Stepper RMA ---
+      // MODIFICA: Spostata all'interno di window.onload
+      function renderRmaStepper(currentStep) {
+        const stepperContainer = document.getElementById('rma-stepper');
+        stepperContainer.innerHTML = '';
+        const steps = [
+          "Apertura", "Troubleshoot", "Verifica", "Emissione", 
+          "Ricezione", "Analisi", "Rimessa", "Chiusura"
+        ];
+        
+        steps.forEach((step, index) => {
+          const stepNum = index + 1;
+          let stepHtml;
+          
+          // MODIFICA: Logica HTML dello stepper completamente riscritta
+          if (stepNum < currentStep) {
+            // Completato
+            stepHtml = `
+              <li class="relative text-center">
+                <div class="absolute left-1/2 top-4 -translate-y-1/2 -translate-x-1/2 h-0.5 w-full bg-indigo-600" aria-hidden="true"></div>
+                <span class="relative flex h-8 w-8 mx-auto items-center justify-center rounded-full bg-indigo-600 text-white">
+                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>
+                </span>
+                <span class="block mt-2 text-xs font-medium text-indigo-600">${step}</span>
+              </li>
+            `;
+          } else if (stepNum === currentStep) {
+            // Corrente
+            stepHtml = `
+              <li class="relative text-center">
+                <div class="absolute left-1/2 top-4 -translate-y-1/2 -translate-x-1/2 h-0.5 w-full bg-gray-200" aria-hidden="true"></div>
+                <span class="relative flex h-8 w-8 mx-auto items-center justify-center rounded-full border-2 border-indigo-600 bg-white text-indigo-600">
+                  <span class="h-2.5 w-2.5 rounded-full bg-indigo-600"></span>
+                </span>
+                <span class="block mt-2 text-xs font-semibold text-indigo-600">${step}</span>
+              </li>
+            `;
+          } else {
+            // Futuro
+            stepHtml = `
+              <li class="relative text-center">
+                <div class="absolute left-1/2 top-4 -translate-y-1/2 -translate-x-1/2 h-0.5 w-full bg-gray-200" aria-hidden="true"></div>
+                <span class="relative flex h-8 w-8 mx-auto items-center justify-center rounded-full border-2 border-gray-300 bg-white"></span>
+                <span class="block mt-2 text-xs font-medium text-gray-500">${step}</span>
+              </li>
+            `;
+          }
+          stepperContainer.innerHTML += stepHtml;
+        });
+      }
+
+      // --- NUOVA FUNZIONE: Mostra Dettaglio RMA ---
+      // MODIFICA: Spostata all'interno di window.onload
+      // MODIFICA: Aggiunto parametro 'origin'
+      function showRmaDetail(rmaId, origin = 'page-rma') { 
+        console.log(`Loading detail for RMA ${rmaId} from ${origin}`);
+        
+        rmaOriginPage = origin; // Salva da dove siamo venuti
+        
+        const rma = MOCK_RMA_DATA.find(r => r.rmaId === rmaId);
+        if (!rma) {
+          showToast('Errore: RMA non trovato.', true);
+          return;
+        }
+
+        // --- 1. Popola Header e Form ---
+        document.getElementById('detail-rma-id-display').textContent = `ID: ${rma.rmaId} (Associato a ${rma.ticketId})`;
+        document.getElementById('detail-rma-id').value = rma.rmaId;
+        document.getElementById('update-rma-form').reset(); // Pulisce il campo "Azioni"
+
+        // --- 2. Render Stepper ---
+        renderRmaStepper(rma.rmaStep);
+
+        // --- 3. Popola Riepilogo ---
+        document.getElementById('detail-rma-cliente').textContent = rma.cliente;
+        document.getElementById('detail-rma-prodotto').textContent = rma.prodotto;
+        document.getElementById('detail-rma-oggetto').textContent = rma.oggetto;
+        document.getElementById('detail-rma-sn').value = rma.serialNumber || '';
+        document.getElementById('detail-rma-ordine').value = rma.numeroOrdine || '';
+        document.getElementById('detail-rma-data-acquisto').value = rma.dataAcquisto || '';
+
+        // --- 4. Popola Elenco File ---
+        const fileList = document.getElementById('detail-rma-file-list');
+        fileList.innerHTML = '';
+        if (rma.documenti && rma.documenti.length > 0) {
+          rma.documenti.forEach(doc => {
+            fileList.innerHTML += `
+              <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                <div class="w-0 flex-1 flex items-center">
+                  <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M15.172 7.172a4 4 0 015.656 0L20 8.343a4 4 0 010 5.656l-1.172 1.172a4 4 0 01-5.656 0L12 14a4 4 0 010-5.656l1.172-1.172z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M8 12a4 4 0 01-5.656 0L1.172 10.828a4 4 0 010-5.656l1.172-1.172a4 4 0 015.656 0L9.172 5.172a4 4 0 010 5.656l-1.172 1.172z" clip-rule="evenodd" /></svg>
+                  <span class="ml-2 flex-1 w-0 truncate">${doc.nome}</span>
+                </div>
+                <div class="ml-4 flex-shrink-0">
+                  <a href="${doc.url}" target="_blank" class="font-medium text-indigo-600 hover:text-indigo-500">Apri</a>
+                </div>
+              </li>
+            `;
+          });
+        } else {
+          fileList.innerHTML = '<li class="pl-3 pr-4 py-3 text-sm text-gray-500">Nessun file allegato.</li>';
+        }
+
+        // --- 5. Popola Log Cronologia ---
+        const logDiv = document.getElementById('detail-rma-log');
+        const sanitizedLog = (rma.logRMA || 'Nessuna nota inserita.').replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        logDiv.innerHTML = sanitizedLog.replace(/\n/g, '<br>');
+
+        // --- 6. Mostra Pagina ---
+        showPage('page-rma-detail');
+
+        // --- 7. (MODIFICA) Gestisci stato pulsanti Avanza/Indietro ---
+        const updateBtn = document.getElementById('detail-rma-update-btn');
+        const prevBtn = document.getElementById('detail-rma-prev-step-btn');
+
+        // Gestisci pulsante AVANTI
+        if (rma.rmaStep === 8) {
+          updateBtn.disabled = true;
+          updateBtn.textContent = 'Processo Concluso';
+          updateBtn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+          updateBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+        } else {
+          updateBtn.disabled = false;
+          updateBtn.textContent = 'Aggiungi Nota e Avanza Step';
+          // Assicurati che i colori siano corretti se si torna indietro da step 8
+          updateBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+          updateBtn.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+        }
+        
+        // Gestisci pulsante INDIETRO
+        if (rma.rmaStep === 1) {
+          prevBtn.disabled = true;
+          prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+          prevBtn.disabled = false;
+          prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      }
+
+      // --- NUOVA FUNZIONE: Popola filtri Storico RMA ---
+      function populateRmaHistoryFilters(closedRmas) {
+        const prodottoFilter = document.getElementById('rma-filter-prodotto');
+        const clienteFilter = document.getElementById('rma-filter-cliente');
+
+        const prodotti = [...new Set(closedRmas.map(r => r.prodotto).filter(Boolean))];
+        const clienti = [...new Set(closedRmas.map(r => r.cliente).filter(Boolean))];
+
+        prodottoFilter.innerHTML = '<option value="">Tutti</option>';
+        prodotti.sort().forEach(p => {
+          prodottoFilter.innerHTML += `<option value="${p}">${p}</option>`;
+        });
+
+        clienteFilter.innerHTML = '<option value="">Tutti</option>';
+        clienti.sort().forEach(c => {
+          clienteFilter.innerHTML += `<option value="${c}">${c}</option>`;
+        });
+      }
+
+      // --- NUOVA FUNZIONE: Render Tabella Storico RMA ---
+      function renderRmaHistory() {
+        const prodotto = document.getElementById('rma-filter-prodotto').value;
+        const cliente = document.getElementById('rma-filter-cliente').value;
+        const tbody = document.getElementById('rma-history-tbody');
+        const emptyMsg = document.getElementById('rma-history-empty');
+        tbody.innerHTML = '';
+        
+        const closedRmas = MOCK_RMA_DATA.filter(rma => rma.rmaStato === 'Chiuso');
+        
+        // Popola i filtri prima di filtrare
+        populateRmaHistoryFilters(closedRmas);
+        
+        const filteredRmas = closedRmas.filter(rma => {
+          const matchProdotto = !prodotto || rma.prodotto === prodotto;
+          const matchCliente = !cliente || rma.cliente === cliente;
+          return matchProdotto && matchCliente;
+        });
+
+        if (filteredRmas.length === 0) {
+          emptyMsg.classList.remove('hidden');
+          tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">Nessun RMA chiuso trovato.</td></tr>';
+        } else {
+          emptyMsg.classList.add('hidden');
+          filteredRmas.forEach(rma => {
+            const row = `
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <span class="rma-card-link text-indigo-600 hover:text-indigo-800 cursor-pointer" data-rmaid="${rma.rmaId}">
+                    ${rma.rmaId}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${rma.ticketId}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${rma.cliente}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${rma.prodotto}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 truncate" title="${rma.oggetto}">${rma.oggetto}</td>
+              </tr>
+            `;
+            tbody.innerHTML += row;
+          });
+        }
+      }
+
+      // MODIFICA: Aggiunta nuova funzione per tornare allo step precedente
+      function revertRmaStep(rmaId) {
+        const rmaToUpdate = MOCK_RMA_DATA.find(r => r.rmaId === rmaId);
+        if (!rmaToUpdate) {
+          showToast('Errore: RMA non trovato.', true);
+          return;
+        }
+        
+        if (rmaToUpdate.rmaStep === 1) {
+          showToast('Impossibile tornare indietro, sei già allo step 1.', true);
+          return;
+        }
+        
+        rmaToUpdate.rmaStep--; // Torna allo step precedente
+        
+        // Logga l'azione
+        const today = new Date().toISOString().split('T')[0];
+        const logEntry = `\n\n--- Azione Manuale del ${today} ---\nProcesso riportato allo Step ${rmaToUpdate.rmaStep}: "${rmaSteps[rmaToUpdate.rmaStep]}"`;
+        rmaToUpdate.logRMA += logEntry;
+        
+        // Aggiorna lo stato Kanban (logica semplificata)
+        if (rmaToUpdate.rmaStep <= 3) rmaToUpdate.rmaStato = 'Nuovo';
+        else if (rmaToUpdate.rmaStep === 4) rmaToUpdate.rmaStato = 'Attesa';
+        else if (rmaToUpdate.rmaStep >= 5 && rmaToUpdate.rmaStep <= 6) rmaToUpdate.rmaStato = 'Lavorazione';
+        else if (rmaToUpdate.rmaStep >= 7) rmaToUpdate.rmaStato = 'Chiuso'; // Ritorna a 'Chiuso' se si arretra da 8 a 7
+        
+        showToast(`Processo RMA tornato allo Step ${rmaToUpdate.rmaStep}.`);
+        
+        // Ricarica la pagina di dettaglio
+        showRmaDetail(rmaId, rmaOriginPage);
+      }
+
+      // -- Setup Listener Navigazione --
+      
+      navRmaButton.addEventListener('click', () => {
+        renderRmaBoard(); // NUOVO: Aggiorna la board prima di mostrarla
+        showPage('page-rma');
+      });
+      
+      // NUOVO: Listener per lo storico RMA
+      navRmaHistoryButton.addEventListener('click', () => {
+        renderRmaHistory(); // Popola la tabella
+        showPage('page-rma-history');
+      });
+      
+      backFromRmaHistoryButton.addEventListener('click', () => {
+        showPage('page-rma'); // Torna alla dashboard
+      });
+
+      addNewTicketButton.addEventListener('click', () => showPage('page-new-ticket'));
+      backFromDetailButton.addEventListener('click', () => showPage('page-ticketing'));
+      
+      backToTicketingButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            document.getElementById('ticket-form').reset();
+            document.getElementById('Tipo_Ticket').value = "Supporto Cliente";
+            document.getElementById('dati-cliente').classList.remove('hidden');
+            document.getElementById('bug-categorie-new-ticket').classList.add('hidden');
+            showPage('page-ticketing');
+        });
+      });
+      
+      // NUOVO: Pulsante Indietro da Dettaglio RMA
+      document.getElementById('back-from-rma-detail').addEventListener('click', () => {
+          renderRmaBoard(); // Aggiorna la dashboard
+          // MODIFICA: Torna alla pagina di origine (dashboard o storico)
+          if (rmaOriginPage === 'page-rma-history') {
+            renderRmaHistory();
+          }
+          showPage(rmaOriginPage); 
+      });
+
+      // -- Setup Listener Form (Nuovo Ticket) --
+      document.getElementById('Tipo_Ticket').addEventListener('change', function() {
+        const datiCliente = document.getElementById('dati-cliente');
+        const bugCategorie = document.getElementById('bug-categorie-new-ticket');
+        if (this.value === 'Supporto Cliente') {
+          datiCliente.classList.remove('hidden');
+          bugCategorie.classList.add('hidden');
+        } else if (this.value === 'Bug Interno') {
+          datiCliente.classList.add('hidden');
+          bugCategorie.classList.remove('hidden');
+        }
+      });
+
+      document.getElementById('ticket-form').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        const submitButton = document.getElementById('submit-button');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Invio in corso...';
+        
+        const formData = new FormData(this);
+        const ticketData = {};
+        formData.forEach((value, key) => {
+             if (key !== 'bug_categoria_new') ticketData[key] = value;
+        });
+        
+        if (ticketData.Tipo_Ticket === 'Bug Interno') {
+            const bugCategories = Array.from(document.querySelectorAll('input[name="bug_categoria_new"]:checked'))
+                                     .map(cb => cb.value);
+            if (bugCategories.length === 0) {
+                handleSubmitResponse({ success: false, message: 'Seleziona almeno una categoria per il bug.' }, this, submitButton);
+                return;
+            }
+            ticketData.Tipo_Ticket = bugCategories.join(', ');
+        }
+        
+        // --- Simula invio ---
+        console.log("Simulazione invio ticket:", ticketData);
+        const newId = 'TICKET-' + (Math.floor(Math.random() * 900) + 100);
+        const newData = {
+          ...ticketData,
+          ID_Ticket: newId,
+          Data_Apertura: new Date().toISOString().split('T')[0],
+          Stato: 'Nuovo'
+        };
+        MOCK_DATA.unshift(newData); 
+        
+        handleSubmitResponse({ success: true, message: 'Ticket inviato (ANTEPRIMA)' }, this, submitButton);
+        fetchTickets(); // Aggiorna la tabella
+      });
+
+      // -- Setup Listener Form (Aggiorna Dettaglio) --
+      
+      // ****** INIZIO BLOCCO CORRETTO ******
+      document.getElementById('update-ticket-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const submitButton = document.getElementById('update-ticket-button');
+          submitButton.disabled = true;
+          submitButton.textContent = 'Aggiornamento...';
+          
+          const ticketId = document.getElementById('detail-ticket-id').value;
+          const newActions = document.getElementById('detail-azioni').value;
+          
+          if (!newActions.trim()) {
+              showToast('Il campo "Azioni" non può essere vuoto.', true);
+              submitButton.disabled = false;
+              submitButton.textContent = 'Aggiorna Ticket';
+              return;
+          }
+
+          // --- Logica Mock ---
+          const ticketToUpdate = MOCK_DATA.find(t => t.ID_Ticket === ticketId);
+          if (ticketToUpdate) {
+              const today = new Date().toISOString().split('T')[0];
+              const logEntry = `\n\n--- Modifica del ${today} ---\n${newActions}`;
+              
+              ticketToUpdate.Descrizione += logEntry;
+              
+              // MODIFICA: Imposta lo stato a 'In Lavorazione' se non è chiuso
+              if (ticketToUpdate.Stato !== 'Chiuso') {
+                  ticketToUpdate.Stato = 'In Lavorazione';
+              }
+              
+              showToast('Ticket aggiornato con successo!');
+              fetchTickets(); // Aggiorna i dati globali
+              showTicketDetail(ticketId); // Ricarica la pagina di dettaglio
+          } else {
+              showToast('Errore: Ticket non trovato.', true);
+          }
+
+          submitButton.disabled = false;
+          submitButton.textContent = 'Aggiorna Ticket';
+      }); 
+      // ****** FINE BLOCCO CORRETTO ******
+
+      document.getElementById('update-rma-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const rmaId = document.getElementById('detail-rma-id').value;
+          const newActions = document.getElementById('detail-rma-azioni').value;
+          
+          // MODIFICA: Rimossa la validazione sul campo 'newActions'
+          if (!rmaId) {
+              showToast('Errore: ID RMA non trovato.', true);
+              return;
+          }
+          
+          // --- Logica Mock ---
+          const rmaToUpdate = MOCK_RMA_DATA.find(r => r.rmaId === rmaId);
+          if (rmaToUpdate) {
+              
+              // MODIFICA: Aggiungi il log SOLO SE l'utente ha scritto qualcosa
+              if (newActions.trim()) {
+                const today = new Date().toISOString().split('T')[0];
+                const logEntry = `\n\n--- Modifica del ${today} ---\n${newActions}`;
+                rmaToUpdate.logRMA += logEntry;
+              } else if (rmaToUpdate.rmaStep < 8) { // Non loggare "avanzamento" se è già chiuso
+                // Aggiunge comunque un log di avanzamento
+                const today = new Date().toISOString().split('T')[0];
+                const logEntry = `\n\n--- Modifica del ${today} ---\nAvanzamento step senza note.`;
+                rmaToUpdate.logRMA += logEntry;
+              }
+              
+              // Avanza lo step (fino a max 8)
+              if (rmaToUpdate.rmaStep < 8) {
+                  rmaToUpdate.rmaStep++;
+              }
+              
+              // Aggiorna lo stato Kanban (logica semplificata)
+              if (rmaToUpdate.rmaStep === 4) rmaToUpdate.rmaStato = 'Attesa';
+              else if (rmaToUpdate.rmaStep >= 5 && rmaToUpdate.rmaStep <= 6) rmaToUpdate.rmaStato = 'Lavorazione';
+              else if (rmaToUpdate.rmaStep >= 7) rmaToUpdate.rmaStato = 'Chiuso'; // Step 7 e 8 sono 'Chiuso'
+              
+              showToast('RMA aggiornato e avanzato allo step successivo!');
+              
+              // Ricarica la pagina di dettaglio
+              showRmaDetail(rmaId, rmaOriginPage);
+          }
+      });
+      
+      // MODIFICA: Aggiunto listener per il nuovo pulsante "Step Precedente"
+      document.getElementById('detail-rma-prev-step-btn').addEventListener('click', function() {
+          const rmaId = document.getElementById('detail-rma-id').value;
+          if (rmaId) revertRmaStep(rmaId);
+      });
+
+      // -- Listener Pulsanti Pagina Dettaglio --
+      
+      // 1. Pulsante Chiudi/Riapri Ticket
+      document.getElementById('detail-toggle-status-button').addEventListener('click', function(e) {
+          const ticketId = e.target.dataset.id;
+          if (!ticketId) return;
+          
+          toggleTicketStatus(ticketId); 
+          
+          const ticket = MOCK_DATA.find(t => t.ID_Ticket === ticketId);
+          const toggleBtn = e.target;
+          
+          document.getElementById('detail-stato-display').innerHTML = `<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(ticket.Stato)}">${ticket.Stato}</span>`;
+          
+          if (ticket.Stato === 'Chiuso') {
+            toggleBtn.textContent = 'Riapri Ticket';
+            toggleBtn.className = 'py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 disabled:opacity-50';
+          } else {
+            toggleBtn.textContent = 'Chiudi Ticket';
+            toggleBtn.className = 'py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 disabled:opacity-50';
+          }
+      });
+      
+      // 2. Pulsante Converti in Bug (Apre Modal)
+      document.getElementById('detail-convert-bug-button').addEventListener('click', function(e) {
+          const ticketId = e.target.dataset.id;
+          if (!ticketId) return;
+          
+          document.querySelectorAll('input[name="convert_categoria"]').forEach(cb => cb.checked = false);
+          document.getElementById('convert-bug-error').classList.add('hidden');
+          document.getElementById('confirm-convert-bug').dataset.id = ticketId; 
+          document.getElementById('convert-bug-modal').classList.remove('hidden');
+      });
+      
+      // 3. NUOVO: Pulsante Avvia Pratica RMA
+      document.getElementById('detail-start-rma-button').addEventListener('click', function(e) {
+          const ticketId = e.target.dataset.id;
+          if (!ticketId) return;
+          
+          const ticket = MOCK_DATA.find(t => t.ID_Ticket === ticketId);
+          if (!ticket) return;
+
+          // Controlla di nuovo se esiste già (sicurezza)
+          const rmaEsistente = MOCK_RMA_DATA.find(rma => rma.ticketId === ticket.ID_Ticket);
+          if (rmaEsistente) {
+            showToast('RMA già esistente per questo ticket.', true);
+            return;
+          }
+          
+          // --- Logica Mock Creazione RMA ---
+          const newRmaId = 'RMA-' + (Math.floor(Math.random() * 90) + 10);
+          const newRma = {
+            rmaId: newRmaId,
+            ticketId: ticket.ID_Ticket,
+            prodotto: ticket.Prodotto,
+            cliente: ticket.Nome_Cliente || 'N/D',
+            rmaStato: 'Nuovo', // Stato per la colonna Kanban
+            rmaStep: 1, // Step 1 del tuo flusso
+            oggetto: ticket.Oggetto,
+            // Dati nuovi che dovrebbero essere chiesti
+            serialNumber: '',
+            dataAcquisto: '',
+            numeroOrdine: '',
+            logRMA: `Step 1: Pratica aperta dal ticket ${ticket.ID_Ticket}.`,
+            documenti: []
+          };
+          
+          MOCK_RMA_DATA.unshift(newRma); // Aggiunge il nuovo RMA
+          showToast(`RMA ${newRmaId} creato con successo!`);
+          
+          // Disabilita il pulsante
+          e.target.disabled = true;
+          e.target.textContent = 'RMA Già Aperto';
+          e.target.classList.replace('bg-orange-500', 'bg-gray-400');
+          e.target.classList.replace('hover:bg-orange-600', 'hover:bg-gray-400');
+
+          // Porta alla dashboard RMA
+          setTimeout(() => {
+            renderRmaBoard();
+            showPage('page-rma');
+          }, 1500);
+      });
+
+      // -- Listener Modal Conversione --
+      
+      // 3. Annulla Modal
+      document.getElementById('cancel-convert-bug').addEventListener('click', function() {
+          document.getElementById('convert-bug-modal').classList.add('hidden');
+      });
+
+      // 4. Conferma Conversione
+      document.getElementById('confirm-convert-bug').addEventListener('click', function(e) {
+          const ticketId = e.target.dataset.id;
+          if (!ticketId) return;
+
+          const bugCategories = Array.from(document.querySelectorAll('input[name="convert_categoria"]:checked'))
+                                   .map(cb => cb.value);
+          
+          if (bugCategories.length === 0) {
+              document.getElementById('convert-bug-error').classList.remove('hidden');
+              return;
+          }
+          
+          const newTipoTicket = bugCategories.join(', ');
+          
+          // --- Logica Mock ---
+          const ticketToUpdate = MOCK_DATA.find(t => t.ID_Ticket === ticketId);
+          if (ticketToUpdate) {
+              ticketToUpdate.Tipo_Ticket = newTipoTicket; 
+              
+              fetchTickets(); // Ricarica tutto
+              
+              // Aggiorna la UI della pagina dettaglio
+              document.getElementById('detail-tipo').textContent = ticketToUpdate.Tipo_Ticket;
+              document.getElementById('detail-convert-bug-button').classList.add('hidden');
+              document.getElementById('convert-bug-modal').classList.add('hidden');
+
+              showToast('Ticket convertito in Bug con successo!');
+          }
+      });
+      
+      // NUOVO: Listener per Modal Eliminazione
+      document.getElementById('cancel-delete-ticket').addEventListener('click', function() {
+          document.getElementById('delete-ticket-modal').classList.add('hidden');
+      });
+
+      document.getElementById('confirm-delete-ticket').addEventListener('click', function(e) {
+          const ticketId = e.target.dataset.id;
+          if (ticketId) deleteTicket(ticketId);
+      });
+      
+      // -- Listener Salvataggio Automatico Dettaglio --
+      
+      // 5. Salva Priorità
+      document.getElementById('detail-priorita-select').addEventListener('change', function(e) {
+          const ticketId = document.getElementById('detail-ticket-id').value;
+          const newPriority = e.target.value;
+          updateTicketField(ticketId, 'Priorità', newPriority);
+      });
+      
+      // 6. Salva Assegnati
+      document.getElementById('detail-assegnato-input').addEventListener('change', function(e) {
+          const ticketId = document.getElementById('detail-ticket-id').value;
+          const newAssegnati = e.target.value.trim();
+          updateTicketField(ticketId, 'Assegnato_A', newAssegnati);
+      });
+
+
+      // -- Listener Filtri e Azioni Tabella --
+      
+      // Filtri tabella principale
+      document.getElementById('main-filter-prodotto').addEventListener('change', () => renderTickets(allTicketsCache));
+      document.getElementById('main-filter-categoria').addEventListener('change', () => renderTickets(allTicketsCache));
+      document.getElementById('main-filter-stato').addEventListener('change', () => renderTickets(allTicketsCache));
+      document.getElementById('main-filter-assegnato').addEventListener('change', () => renderTickets(allTicketsCache));
+
+      // Listener per Click (Event Delegation)
+      document.getElementById('tickets-tbody').addEventListener('click', function(e) {
+        // Caso 1: Click sul pulsante Toggle
+        const toggleButton = e.target.closest('.toggle-status-btn');
+        if (toggleButton) {
+          e.preventDefault();
+          const ticketId = toggleButton.dataset.id;
+          if (ticketId) toggleTicketStatus(ticketId);
+          return;
+        }
+        
+        // Caso 2: Click sul link ID/Occhio
+        const link = e.target.closest('.ticket-link');
+        if (link) {
+          e.preventDefault();
+          const ticketId = link.dataset.id;
+          if (ticketId) showTicketDetail(ticketId); 
+          return;
+        }
+
+        // NUOVO: Caso 3: Click sul pulsante Elimina
+        const deleteButton = e.target.closest('.delete-ticket-btn');
+        if (deleteButton) {
+          e.preventDefault();
+          const ticketId = deleteButton.dataset.id;
+          const ticketOggetto = deleteButton.dataset.oggetto;
+          if (ticketId) {
+            // Popola il modal
+            document.getElementById('delete-ticket-id-display').textContent = `ID: ${ticketId} (${ticketOggetto})`;
+            document.getElementById('confirm-delete-ticket').dataset.id = ticketId;
+            document.getElementById('delete-ticket-modal').classList.remove('hidden');
+          }
+          return;
+        }
+      });
+      
+      // NUOVO: Listener per Click (Event Delegation) su Card RMA
+      document.getElementById('page-rma').addEventListener('click', function(e) {
+          const rmaCard = e.target.closest('.rma-card-link');
+          if (rmaCard) {
+            e.preventDefault();
+            const rmaId = rmaCard.dataset.rmaid;
+            if (rmaId) showRmaDetail(rmaId, 'page-rma'); // MODIFICA: Specifica origine
+          }
+      });
+      
+      // NUOVO: Listener per Click (Event Delegation) su Tabella Storico RMA
+      document.getElementById('rma-history-tbody').addEventListener('click', function(e) {
+          const rmaLink = e.target.closest('.rma-card-link');
+          if (rmaLink) {
+            e.preventDefault();
+            const rmaId = rmaLink.dataset.rmaid;
+            if (rmaId) showRmaDetail(rmaId, 'page-rma-history'); // MODIFKA: Specifica origine
+          }
+      });
+      
+      // NUOVO: Listener per Filtri Storico RMA
+      document.getElementById('rma-filter-prodotto').addEventListener('change', renderRmaHistory);
+      document.getElementById('rma-filter-cliente').addEventListener('change', renderRmaHistory);
+
+      // Avvia il caricamento iniziale
+      loadInitialTickets();
+      
+      // Mostra la pagina TICKETING all'avvio
+      showPage('page-ticketing');
+    };
+    
+  </script>
+  <!-- MODIFICA: Aggiunti i tag di chiusura mancanti -->
+</body>
+</html>
