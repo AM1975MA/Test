@@ -27,3 +27,4 @@ jobs:
             titanium_global150_live_output/
             titanium_global150_live_output.zip
           if-no-files-found: warn
+# retrigger after base workflow authorization
