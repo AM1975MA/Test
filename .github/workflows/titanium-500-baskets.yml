@@ -1,0 +1,32 @@
+name: Titanium 500 Baskets
+
+on:
+  push:
+    branches:
+      - titanium-global95-test-20260802
+  workflow_dispatch:
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pandas matplotlib yfinance pyarrow
+      - name: Run 500-basket test
+        run: python titanium_500_baskets.py
+      - name: Archive output
+        run: zip -r TITANIUM_500_BASKETS_RESULTS.zip titanium_500_baskets_output
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_500_BASKETS_RESULTS
+          path: |
+            TITANIUM_500_BASKETS_RESULTS.zip
+            titanium_500_baskets_output/
+          retention-days: 7
