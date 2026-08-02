@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  cagr-exact-fast:
+  cagr-primary-only:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 45
     permissions:
       actions: read
       contents: read
@@ -30,21 +30,21 @@ jobs:
           mkdir prior
           unzip -q prior_artifact.zip -d prior
           test -f prior/titanium_retrained_output/OOS_TICKER_SCORES.parquet
-      - name: Reconstruct and verify exact CAGR simulator
+      - name: Reconstruct and verify primary CAGR simulator
         run: |
-          cat gzpayload/recompute_cagr_monthly_fast.b64 | base64 -d | gzip -dc > recompute_cagr_monthly_fast.py
-          echo 'af49ce9219ea1aaf74264d4111537053b9b7c3a55bab1c09ff854e4b4d3d878a  recompute_cagr_monthly_fast.py' | sha256sum -c -
-          python -m py_compile recompute_cagr_monthly_fast.py
-      - name: Compute exact CAGR distribution and Global150
-        run: python recompute_cagr_monthly_fast.py
+          cat gzpayload/recompute_cagr_primary_only.b64 | base64 -d | gzip -dc > recompute_cagr_primary_only.py
+          echo 'efa2ea1ab74a964e4c548b7836e5f444f6fd26351584f5c46372643a9a398090  recompute_cagr_primary_only.py' | sha256sum -c -
+          python -m py_compile recompute_cagr_primary_only.py
+      - name: Compute requested CAGR distribution and Global150
+        run: python recompute_cagr_primary_only.py
       - name: Archive output
         if: always()
-        run: zip -r TITANIUM_CAGR_EXACT_FAST.zip titanium_cagr_monthly_corrected || true
+        run: zip -r TITANIUM_CAGR_PRIMARY_ONLY.zip titanium_cagr_monthly_corrected || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: TITANIUM_CAGR_EXACT_FAST
+          name: TITANIUM_CAGR_PRIMARY_ONLY
           path: |
-            TITANIUM_CAGR_EXACT_FAST.zip
+            TITANIUM_CAGR_PRIMARY_ONLY.zip
             titanium_cagr_monthly_corrected/
           retention-days: 7
