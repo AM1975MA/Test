@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - titanium-global95-test-20260802
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
