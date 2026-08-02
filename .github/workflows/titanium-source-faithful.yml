@@ -6,33 +6,45 @@ on:
   workflow_dispatch:
 
 jobs:
-  full:
+  corrected-paths:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 180
+    permissions:
+      actions: read
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install frozen-compatible dependencies
+      - name: Install path-analysis dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 'yfinance>=0.2.65' 'pyarrow>=18.0.0' matplotlib
-      - name: Reconstruct and verify runner
+          pip install numpy==2.3.5 pandas==2.2.3 pyarrow matplotlib
+      - name: Download executed OOS model output
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          cat gzpayload/gz_*.b64 | base64 -d | gzip -dc > titanium_retrained_current_data_audit.py
-          echo '76b5da95c865a069d967189d61b1c8df3338eacc5a0e8941e8ee7025c42caf60  titanium_retrained_current_data_audit.py' | sha256sum -c -
-          python -m py_compile titanium_retrained_current_data_audit.py
-      - name: Run full 500-basket audit
-        run: python titanium_retrained_current_data_audit.py --output titanium_retrained_output
-      - name: Archive full output
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/AM1975MA/Test/actions/artifacts/8839840705/zip -o prior_artifact.zip
+          mkdir prior
+          unzip -q prior_artifact.zip -d prior
+          test -f prior/titanium_retrained_output/OOS_TICKER_SCORES.parquet
+      - name: Reconstruct and verify corrected simulator
+        run: |
+          cat gzpayload/recompute_corrected.b64 | base64 -d | gzip -dc > recompute_titanium_paths_corrected.py
+          echo '2ec4385cbd75bd283eebabd7d37dd6da41e5fdbb9b6d338a32ba8a158068804b  recompute_titanium_paths_corrected.py' | sha256sum -c -
+          python -m py_compile recompute_titanium_paths_corrected.py
+      - name: Recompute all 500 basket and Global150 paths
+        run: python recompute_titanium_paths_corrected.py
+      - name: Archive corrected output
         if: always()
-        run: zip -r TITANIUM_SOURCE_FAITHFUL_FULL.zip titanium_retrained_output || true
+        run: zip -r TITANIUM_CORRECTED_PATHS.zip titanium_corrected_paths || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: TITANIUM_SOURCE_FAITHFUL_FULL
+          name: TITANIUM_CORRECTED_PATHS
           path: |
-            TITANIUM_SOURCE_FAITHFUL_FULL.zip
-            titanium_retrained_output/
+            TITANIUM_CORRECTED_PATHS.zip
+            titanium_corrected_paths/
           retention-days: 7
