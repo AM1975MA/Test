@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  corrected-paths:
+  corrected-fast:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 90
     permissions:
       actions: read
       contents: read
@@ -30,21 +30,21 @@ jobs:
           mkdir prior
           unzip -q prior_artifact.zip -d prior
           test -f prior/titanium_retrained_output/OOS_TICKER_SCORES.parquet
-      - name: Reconstruct and verify corrected simulator
+      - name: Reconstruct and verify vectorized corrected simulator
         run: |
-          cat gzpayload/recompute_corrected.b64 | base64 -d | gzip -dc > recompute_titanium_paths_corrected.py
-          echo '2ec4385cbd75bd283eebabd7d37dd6da41e5fdbb9b6d338a32ba8a158068804b  recompute_titanium_paths_corrected.py' | sha256sum -c -
-          python -m py_compile recompute_titanium_paths_corrected.py
+          cat gzpayload/recompute_fast.b64 | base64 -d | gzip -dc > recompute_titanium_paths_fast.py
+          echo '263e5d19da4525bff41b05f7c7f128e8ccedf11760a7f558eed55307924387bd  recompute_titanium_paths_fast.py' | sha256sum -c -
+          python -m py_compile recompute_titanium_paths_fast.py
       - name: Recompute all 500 basket and Global150 paths
-        run: python recompute_titanium_paths_corrected.py
+        run: python recompute_titanium_paths_fast.py
       - name: Archive corrected output
         if: always()
-        run: zip -r TITANIUM_CORRECTED_PATHS.zip titanium_corrected_paths || true
+        run: zip -r TITANIUM_CORRECTED_FAST.zip titanium_corrected_fast || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: TITANIUM_CORRECTED_PATHS
+          name: TITANIUM_CORRECTED_FAST
           path: |
-            TITANIUM_CORRECTED_PATHS.zip
-            titanium_corrected_paths/
+            TITANIUM_CORRECTED_FAST.zip
+            titanium_corrected_fast/
           retention-days: 7
