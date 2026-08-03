@@ -1,4 +1,4 @@
-name: Titanium Source-Faithful Audit
+name: Titanium Forensic Source Export
 
 on:
   pull_request:
@@ -6,45 +6,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  cagr-primary-only:
+  export-source:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
-    permissions:
-      actions: read
-      contents: read
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install dependencies
+      - name: Reconstruct exact executed runner
         run: |
-          python -m pip install --upgrade pip
-          pip install numpy==2.3.5 pandas==2.2.3 pyarrow matplotlib
-      - name: Download executed OOS model output
-        env:
-          GH_TOKEN: ${{ github.token }}
+          cat gzpayload/gz_*.b64 | base64 -d | gzip -dc > titanium_retrained_current_data_audit.py
+          echo '76b5da95c865a069d967189d61b1c8df3338eacc5a0e8941e8ee7025c42caf60  titanium_retrained_current_data_audit.py' | sha256sum -c -
+          python -m py_compile titanium_retrained_current_data_audit.py
+      - name: Export forensic source
         run: |
-          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/AM1975MA/Test/actions/artifacts/8839840705/zip -o prior_artifact.zip
-          mkdir prior
-          unzip -q prior_artifact.zip -d prior
-          test -f prior/titanium_retrained_output/OOS_TICKER_SCORES.parquet
-      - name: Reconstruct and verify primary CAGR simulator
-        run: |
-          cat gzpayload/recompute_cagr_primary_only.b64 | base64 -d | gzip -dc > recompute_cagr_primary_only.py
-          echo 'efa2ea1ab74a964e4c548b7836e5f444f6fd26351584f5c46372643a9a398090  recompute_cagr_primary_only.py' | sha256sum -c -
-          python -m py_compile recompute_cagr_primary_only.py
-      - name: Compute requested CAGR distribution and Global150
-        run: python recompute_cagr_primary_only.py
-      - name: Archive output
-        if: always()
-        run: zip -r TITANIUM_CAGR_PRIMARY_ONLY.zip titanium_cagr_monthly_corrected || true
+          mkdir forensic_source
+          cp titanium_retrained_current_data_audit.py forensic_source/
+          cp .github/workflows/titanium-source-faithful.yml forensic_source/
+          sha256sum forensic_source/* > forensic_source/SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: TITANIUM_CAGR_PRIMARY_ONLY
-          path: |
-            TITANIUM_CAGR_PRIMARY_ONLY.zip
-            titanium_cagr_monthly_corrected/
+          name: TITANIUM_FORENSIC_EXECUTED_SOURCE
+          path: forensic_source/
           retention-days: 7
