@@ -1,14 +1,12 @@
 name: Titanium Reconstruction V2
-
 on:
   pull_request:
     branches: [main]
   workflow_dispatch:
-
 jobs:
-  smoke:
+  full:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 360
     permissions:
       actions: read
       contents: read
@@ -17,7 +15,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install frozen-compatible dependencies
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
@@ -25,33 +23,27 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/AM1975MA/Test/actions/artifacts/8839840705/zip -o prior_artifact.zip
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/8839840705/zip -o prior_artifact.zip
           mkdir prior
           unzip -q prior_artifact.zip -d prior
           test -f prior/titanium_retrained_output/OPEN.parquet
-      - name: Reconstruct and verify sources
+      - name: Reconstruct verified sources
         run: |
           cat gzpayload/gz_*.b64 | base64 -d | gzip -dc > titanium_retrained_current_data_audit.py
           echo '76b5da95c865a069d967189d61b1c8df3338eacc5a0e8941e8ee7025c42caf60  titanium_retrained_current_data_audit.py' | sha256sum -c -
           cat reconstruction/rv2_*.b64 | base64 -d | gzip -dc > titanium_reconstruction_v2.py
           echo '50cffff1cbadc5e1d3b37b91fff16fd421fdcd8bc1db97fe54b95f4629250c2d  titanium_reconstruction_v2.py' | sha256sum -c -
           python -m py_compile titanium_retrained_current_data_audit.py titanium_reconstruction_v2.py
-      - name: Run deterministic smoke
-        run: |
-          python titanium_reconstruction_v2.py \
-            --base-module titanium_retrained_current_data_audit.py \
-            --data-dir prior/titanium_retrained_output \
-            --output TITANIUM_RECONSTRUCTION_V2_SMOKE \
-            --fast
-      - name: Archive smoke output
+      - name: Run full audit
+        run: python titanium_reconstruction_v2.py --base-module titanium_retrained_current_data_audit.py --data-dir prior/titanium_retrained_output --output TITANIUM_RECONSTRUCTION_V2_FULL
+      - name: Archive output
         if: always()
-        run: zip -r TITANIUM_RECONSTRUCTION_V2_SMOKE.zip TITANIUM_RECONSTRUCTION_V2_SMOKE || true
+        run: zip -r TITANIUM_RECONSTRUCTION_V2_FULL.zip TITANIUM_RECONSTRUCTION_V2_FULL || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: TITANIUM_RECONSTRUCTION_V2_SMOKE
+          name: TITANIUM_RECONSTRUCTION_V2_FULL
           path: |
-            TITANIUM_RECONSTRUCTION_V2_SMOKE.zip
-            TITANIUM_RECONSTRUCTION_V2_SMOKE/
+            TITANIUM_RECONSTRUCTION_V2_FULL.zip
+            TITANIUM_RECONSTRUCTION_V2_FULL/
           retention-days: 7
