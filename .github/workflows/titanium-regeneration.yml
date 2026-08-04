@@ -29,7 +29,8 @@ jobs:
           for f in rv5_03a.b64 rv5_03b.b64 rv5_03c.b64 rv5_03d.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-reconstruction-v5-20260803/reconstruction/$f" -o "upstream/reconstruction/$f"; done
           cat upstream/reconstruction/rv5_00.b64 upstream/reconstruction/rv5_01.b64 upstream/reconstruction/rv5_02.b64 upstream/reconstruction/rv5_03a.b64 upstream/reconstruction/rv5_03b.b64 upstream/reconstruction/rv5_03c.b64 upstream/reconstruction/rv5_03d.b64 upstream/reconstruction/rv5_04.b64 | base64 -d | gzip -dc > upstream/titanium_reconstruction_v5.py
           echo 'ba99f9ce08d96e6b56567d44bf18b5caa7a76ccf13a7d44546e6d1416d79d65a  upstream/titanium_reconstruction_v5.py' | sha256sum -c -
-          python -m py_compile upstream/*.py regeneration/run_downvol_variant.py
+          sed -i 's/@njit(cache=True)/@njit(cache=False)/g; s/@njit(parallel=True,cache=True)/@njit(parallel=True,cache=False)/g' upstream/titanium_reconstruction_v5.py
+          python -m py_compile upstream/*.py regeneration/run_downvol_variant.py regeneration/regenerate_live_package.py
       - name: Download OHLCV artifact
         env:
           GH_TOKEN: ${{ github.token }}
@@ -41,6 +42,7 @@ jobs:
         run: |
           set -e
           for mode in original zero_std downside_rms negative_std_full; do
+            rm -rf __pycache__ upstream/__pycache__ regeneration/__pycache__
             python regeneration/run_downvol_variant.py --v5 upstream/titanium_reconstruction_v5.py --base upstream/titanium_retrained_current_data_audit.py --data-dir prior/titanium_retrained_output --output "SENS_${mode}" --mode "$mode" --fast
           done
       - name: Summarize
@@ -51,18 +53,12 @@ jobs:
           rows=[]
           for p in sorted(Path('.').glob('SENS_*')):
               mode=p.name.replace('SENS_','')
-              b=pd.read_csv(p/'BASKET_RESULTS.csv')
-              g=pd.read_csv(p/'GLOBAL_SCORECARD.csv')
-              gates=json.loads((p/'PARITY_GATES.json').read_text())
-              fa=pd.read_csv(p/'FEATURE_PARITY_AUDIT.csv')
-              down=fa[fa.feature.str.contains('downvol',case=False,na=False)]
+              b=pd.read_csv(p/'BASKET_RESULTS.csv');g=pd.read_csv(p/'GLOBAL_SCORECARD.csv');gates=json.loads((p/'PARITY_GATES.json').read_text());fa=pd.read_csv(p/'FEATURE_PARITY_AUDIT.csv');down=fa[fa.feature.str.contains('downvol',case=False,na=False)]
               for s in ['BASE','DIRECT','ROUTER']:
-                  q=b[b.strategy==s]
-                  rows.append({'mode':mode,'scope':'500_mean','strategy':s,'cagr':q.cagr.mean(),'median_cagr':q.cagr.median(),'maxdd':q.maxdd.mean(),'sharpe':q.sharpe.mean(),'macro_bonus_months':gates.get('macro_bonus_months'),'known_signal':gates.get('known_signal_matches_frozen'),'downvol_missing_mean':down.missing_rate.mean()})
+                  q=b[b.strategy==s];rows.append({'mode':mode,'scope':'500_mean','strategy':s,'cagr':q.cagr.mean(),'median_cagr':q.cagr.median(),'maxdd':q.maxdd.mean(),'sharpe':q.sharpe.mean(),'macro_bonus_months':gates.get('macro_bonus_months'),'known_signal':gates.get('known_signal_matches_frozen'),'downvol_missing_mean':down.missing_rate.mean()})
               for r in g.to_dict('records'):
                   rows.append({'mode':mode,'scope':'global','strategy':r['strategy'],'cagr':r['cagr'],'median_cagr':r['cagr'],'maxdd':r['maxdd'],'sharpe':r['sharpe'],'macro_bonus_months':gates.get('macro_bonus_months'),'known_signal':gates.get('known_signal_matches_frozen'),'downvol_missing_mean':down.missing_rate.mean()})
-          pd.DataFrame(rows).to_csv('DOWNVOL_SENSITIVITY_SUMMARY.csv',index=False)
-          print(pd.DataFrame(rows).to_string(index=False))
+          pd.DataFrame(rows).to_csv('DOWNVOL_SENSITIVITY_SUMMARY.csv',index=False);print(pd.DataFrame(rows).to_string(index=False))
           PY
       - name: Archive
         run: zip -r TITANIUM_DOWNVOL_SENSITIVITY.zip SENS_* DOWNVOL_SENSITIVITY_SUMMARY.csv upstream/*.py regeneration/run_downvol_variant.py
