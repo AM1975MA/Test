@@ -1,15 +1,26 @@
-name: Titanium Downvol Sensitivity
+name: Titanium Final Regeneration
+
 on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+
 jobs:
-  sensitivity:
+  full-regeneration:
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [zero_std, downside_rms, negative_std_full]
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 360
     permissions:
       actions: read
       contents: read
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -19,7 +30,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
-      - name: Reconstruct exact source files
+      - name: Reconstruct and verify research sources
         run: |
           mkdir -p upstream/gzpayload upstream/reconstruction
           for f in gz_00.b64 gz_01.b64 gz_02.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-source-faithful-20260803/gzpayload/$f" -o "upstream/gzpayload/$f"; done
@@ -30,40 +41,43 @@ jobs:
           cat upstream/reconstruction/rv5_00.b64 upstream/reconstruction/rv5_01.b64 upstream/reconstruction/rv5_02.b64 upstream/reconstruction/rv5_03a.b64 upstream/reconstruction/rv5_03b.b64 upstream/reconstruction/rv5_03c.b64 upstream/reconstruction/rv5_03d.b64 upstream/reconstruction/rv5_04.b64 | base64 -d | gzip -dc > upstream/titanium_reconstruction_v5.py
           echo 'ba99f9ce08d96e6b56567d44bf18b5caa7a76ccf13a7d44546e6d1416d79d65a  upstream/titanium_reconstruction_v5.py' | sha256sum -c -
           sed -i 's/@njit(cache=True)/@njit(cache=False)/g; s/@njit(parallel=True,cache=True)/@njit(parallel=True,cache=False)/g' upstream/titanium_reconstruction_v5.py
-          python -m py_compile upstream/*.py regeneration/run_downvol_variant.py regeneration/regenerate_live_package.py
-      - name: Download OHLCV artifact
+          # The exact source uses 75% valid observations in downside-volatility windows.
+          sed -i 's/min_periods=h/min_periods=max(10,int(h*0.75))/g' regeneration/regenerate_live_package.py
+          python -m py_compile upstream/*.py regeneration/*.py
+      - name: Download verified ticker OHLCV matrices
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/8839840705/zip -o prior.zip
           mkdir prior && unzip -q prior.zip -d prior
-          test -f prior/titanium_retrained_output/OPEN.parquet
-      - name: Run four fast variants
+          for f in OPEN HIGH LOW CLOSE VOLUME; do test -s "prior/titanium_retrained_output/${f}.parquet"; done
+          sha256sum prior/titanium_retrained_output/*.parquet > INPUT_PARQUET_SHA256.txt
+      - name: Full 360-tree walk-forward and package generation
         run: |
-          set -e
-          for mode in original zero_std downside_rms negative_std_full; do
-            rm -rf __pycache__ upstream/__pycache__ regeneration/__pycache__
-            python regeneration/run_downvol_variant.py --v5 upstream/titanium_reconstruction_v5.py --base upstream/titanium_retrained_current_data_audit.py --data-dir prior/titanium_retrained_output --output "SENS_${mode}" --mode "$mode" --fast
-          done
-      - name: Summarize
+          mkdir -p "outputs/${{ matrix.mode }}"
+          python regeneration/regenerate_live_package.py \
+            --base-module upstream/titanium_retrained_current_data_audit.py \
+            --v5-module upstream/titanium_reconstruction_v5.py \
+            --data-dir prior/titanium_retrained_output \
+            --output-parent "outputs/${{ matrix.mode }}" \
+            --downvol-mode "${{ matrix.mode }}" \
+            --n-estimators 360 \
+            --n-baskets 500
+      - name: Development-holdout validation and final archive
         run: |
-          python - <<'PY'
-          import json, pandas as pd
-          from pathlib import Path
-          rows=[]
-          for p in sorted(Path('.').glob('SENS_*')):
-              mode=p.name.replace('SENS_','')
-              b=pd.read_csv(p/'BASKET_RESULTS.csv');g=pd.read_csv(p/'GLOBAL_SCORECARD.csv');gates=json.loads((p/'PARITY_GATES.json').read_text());fa=pd.read_csv(p/'FEATURE_PARITY_AUDIT.csv');down=fa[fa.feature.str.contains('downvol',case=False,na=False)]
-              for s in ['BASE','DIRECT','ROUTER']:
-                  q=b[b.strategy==s];rows.append({'mode':mode,'scope':'500_mean','strategy':s,'cagr':q.cagr.mean(),'median_cagr':q.cagr.median(),'maxdd':q.maxdd.mean(),'sharpe':q.sharpe.mean(),'macro_bonus_months':gates.get('macro_bonus_months'),'known_signal':gates.get('known_signal_matches_frozen'),'downvol_missing_mean':down.missing_rate.mean()})
-              for r in g.to_dict('records'):
-                  rows.append({'mode':mode,'scope':'global','strategy':r['strategy'],'cagr':r['cagr'],'median_cagr':r['cagr'],'maxdd':r['maxdd'],'sharpe':r['sharpe'],'macro_bonus_months':gates.get('macro_bonus_months'),'known_signal':gates.get('known_signal_matches_frozen'),'downvol_missing_mean':down.missing_rate.mean()})
-          pd.DataFrame(rows).to_csv('DOWNVOL_SENSITIVITY_SUMMARY.csv',index=False);print(pd.DataFrame(rows).to_string(index=False))
-          PY
-      - name: Archive
-        run: zip -r TITANIUM_DOWNVOL_SENSITIVITY.zip SENS_* DOWNVOL_SENSITIVITY_SUMMARY.csv upstream/*.py regeneration/run_downvol_variant.py
+          python regeneration/postprocess_validation.py \
+            --package-dir "outputs/${{ matrix.mode }}/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE" \
+            --mode "${{ matrix.mode }}" \
+            --zip-parent "outputs/${{ matrix.mode }}"
+          cp INPUT_PARQUET_SHA256.txt "outputs/${{ matrix.mode }}/"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: TITANIUM_DOWNVOL_SENSITIVITY
-          path: TITANIUM_DOWNVOL_SENSITIVITY.zip
+          name: TITANIUM_FINAL_${{ matrix.mode }}
+          path: |
+            outputs/${{ matrix.mode }}/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
+            outputs/${{ matrix.mode }}/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.sha256
+            outputs/${{ matrix.mode }}/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/backtest/
+            outputs/${{ matrix.mode }}/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/manifest/
+            outputs/${{ matrix.mode }}/INPUT_PARQUET_SHA256.txt
           retention-days: 7
