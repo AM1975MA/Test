@@ -27,14 +27,18 @@ def main():
     def patched_loader(path):
         base=original_loader(path)
         if args.mode=='zero_std':
+            # Exact frozen feature definition: positive returns are zeroed and
+            # each window accepts 75% valid observations.
             def rolling_downvol(ret,h):
-                neg=ret.clip(upper=0.0)
-                return neg.rolling(h,min_periods=h).std(ddof=0)*np.sqrt(252)
+                neg=ret.where(ret < 0.0, 0.0)
+                minp=max(10,int(h*0.75))
+                return neg.rolling(h,min_periods=minp).std(ddof=0)*np.sqrt(252)
             base.rolling_downvol=rolling_downvol
         elif args.mode=='downside_rms':
             def rolling_downvol(ret,h):
-                neg=ret.clip(upper=0.0)
-                return np.sqrt(neg.pow(2).rolling(h,min_periods=h).mean())*np.sqrt(252)
+                neg=ret.where(ret < 0.0, 0.0)
+                minp=max(10,int(h*0.75))
+                return np.sqrt(neg.pow(2).rolling(h,min_periods=minp).mean())*np.sqrt(252)
             base.rolling_downvol=rolling_downvol
         elif args.mode=='negative_std_full':
             def rolling_downvol(ret,h):
