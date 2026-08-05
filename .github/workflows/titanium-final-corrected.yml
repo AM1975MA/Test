@@ -1,0 +1,112 @@
+name: Titanium Final Corrected Package
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  full-corrected-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      actions: read
+      contents: read
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+      - name: Reconstruct and verify source engines
+        run: |
+          mkdir -p upstream/gzpayload upstream/reconstruction
+          for f in gz_00.b64 gz_01.b64 gz_02.b64; do
+            curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-source-faithful-20260803/gzpayload/$f" -o "upstream/gzpayload/$f"
+          done
+          cat upstream/gzpayload/gz_*.b64 | base64 -d | gzip -dc > upstream/titanium_retrained_current_data_audit.py
+          echo '76b5da95c865a069d967189d61b1c8df3338eacc5a0e8941e8ee7025c42caf60  upstream/titanium_retrained_current_data_audit.py' | sha256sum -c -
+          for f in rv5_00.b64 rv5_01.b64 rv5_02.b64 rv5_04.b64; do
+            curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-reconstruction-v5-20260803/reconstruction/$f" -o "upstream/reconstruction/$f"
+          done
+          for f in rv5_03a.b64 rv5_03b.b64 rv5_03c.b64 rv5_03d.b64; do
+            curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-reconstruction-v5-20260803/reconstruction/$f" -o "upstream/reconstruction/$f"
+          done
+          cat upstream/reconstruction/rv5_00.b64 upstream/reconstruction/rv5_01.b64 upstream/reconstruction/rv5_02.b64 upstream/reconstruction/rv5_03a.b64 upstream/reconstruction/rv5_03b.b64 upstream/reconstruction/rv5_03c.b64 upstream/reconstruction/rv5_03d.b64 upstream/reconstruction/rv5_04.b64 | base64 -d | gzip -dc > upstream/titanium_reconstruction_v5.py
+          echo 'ba99f9ce08d96e6b56567d44bf18b5caa7a76ccf13a7d44546e6d1416d79d65a  upstream/titanium_reconstruction_v5.py' | sha256sum -c -
+          sed -i 's/@njit(cache=True)/@njit(cache=False)/g; s/@njit(parallel=True,cache=True)/@njit(parallel=True,cache=False)/g' upstream/titanium_reconstruction_v5.py
+          python -m py_compile upstream/*.py regeneration/regenerate_live_package.py regeneration/regenerate_live_package_v2.py regeneration/regenerate_live_package_v3.py
+      - name: Download ticker OHLCV matrices
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/AM1975MA/Test/actions/artifacts/8839840705/zip -o prior.zip
+          mkdir prior
+          unzip -q prior.zip -d prior
+          for f in OPEN HIGH LOW CLOSE VOLUME; do test -s "prior/titanium_retrained_output/${f}.parquet"; done
+          sha256sum prior/titanium_retrained_output/{OPEN,HIGH,LOW,CLOSE,VOLUME}.parquet > INPUT_OHLCV_SHA256.txt
+      - name: Regenerate complete corrected package
+        run: |
+          rm -rf __pycache__ upstream/__pycache__ regeneration/__pycache__
+          python regeneration/regenerate_live_package_v3.py \
+            --v2-wrapper regeneration/regenerate_live_package_v2.py \
+            --generator regeneration/regenerate_live_package.py \
+            --base-module upstream/titanium_retrained_current_data_audit.py \
+            --v5-module upstream/titanium_reconstruction_v5.py \
+            --data-dir prior/titanium_retrained_output \
+            --output-parent . \
+            --n-estimators 360 \
+            --n-baskets 500 | tee FINAL_CORRECTED_RUN_LOG.txt
+      - name: Independent validation
+        run: |
+          set -euo pipefail
+          test -f METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
+          test -f METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
+          sha256sum -c METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
+          unzip -t METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip >/dev/null
+          ROOT=METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          grep -q 'min_periods=max(10' "$ROOT/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE.py"
+          grep -q 'min_periods=max(10' "$ROOT/source/regenerate_live_package.py"
+          python - <<'PY'
+          from pathlib import Path
+          import csv, hashlib, json, math
+          root=Path('METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE')
+          manifest=json.loads((root/'manifest/PACKAGE_MANIFEST.json').read_text())
+          report=json.loads((root/'manifest/VALIDATION_REPORT.json').read_text())
+          assert report['status']=='PASS', report
+          assert report['formula_embedded_in_source'] is True
+          assert report['formula_embedded_in_live_runner'] is True
+          for row in manifest['files']:
+              p=root/row['path']; assert p.exists(), row['path']
+              assert hashlib.sha256(p.read_bytes()).hexdigest()==row['sha256'], row['path']
+          with (root/'backtest/BASKET_RESULTS_500.csv').open(newline='') as f: rows=list(csv.DictReader(f))
+          counts={s:len({int(r['basket']) for r in rows if r['strategy']==s}) for s in ['BASE','DIRECT','ROUTER']}
+          assert counts=={'BASE':500,'DIRECT':500,'ROUTER':500}, counts
+          for r in rows:
+              assert all(math.isfinite(float(r[c])) for c in ['cagr','maxdd','sharpe','final_equity'])
+          assert (root/'data/DAILY_OHLCV_ACTIONS_150ETF.parquet').exists()
+          print(json.dumps({'validation':report,'counts':counts,'files':len(manifest['files'])},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_FINAL_CORRECTED
+          path: |
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
+            FINAL_CORRECTED_RUN_LOG.txt
+            INPUT_OHLCV_SHA256.txt
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/backtest/SCORECARD_SUMMARY.json
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/backtest/BASKET_RESULTS_500.csv
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/backtest/GLOBAL_SCORECARD.csv
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/backtest/CAGR_DISTRIBUTION_500.png
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/manifest/VALIDATION_REPORT.json
+          retention-days: 7
