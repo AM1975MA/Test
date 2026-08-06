@@ -10,6 +10,11 @@ jobs:
     permissions:
       actions: read
       contents: read
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -38,24 +43,28 @@ jobs:
           curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/8839840705/zip -o prior.zip
           mkdir prior && unzip -q prior.zip -d prior
           for f in OPEN HIGH LOW CLOSE VOLUME; do test -f "prior/titanium_retrained_output/${f}.parquet"; done
-      - name: Regenerate complete package
+      - name: Regenerate canonical complete package
+        env:
+          NUMBA_CACHE_DIR: /tmp/numba-cache
         run: |
+          rm -rf __pycache__ upstream/__pycache__ regeneration/__pycache__ /tmp/numba-cache
           python regeneration/regenerate_live_package.py \
             --base-module upstream/titanium_retrained_current_data_audit.py \
             --v5-module upstream/titanium_reconstruction_v5.py \
             --data-dir prior/titanium_retrained_output \
             --output-parent . \
-            --downvol-mode zero_std \
+            --downvol-mode downside_rms \
             --n-estimators 360 \
             --n-baskets 500 | tee FULL_PACKAGE_RUN_LOG.txt
+          grep -q '"downvol_mode": "downside_rms"' FULL_PACKAGE_RUN_LOG.txt
           test -f METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
           sha256sum METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip > METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_CANONICAL
           path: |
             METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
             METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
             FULL_PACKAGE_RUN_LOG.txt
-          retention-days: 7
+          retention-days: 14
