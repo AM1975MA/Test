@@ -2,6 +2,9 @@ name: Titanium Canonical One-Shot
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened]
   workflow_dispatch:
 jobs:
   build:
