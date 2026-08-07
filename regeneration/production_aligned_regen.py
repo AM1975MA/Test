@@ -1,3 +1,4 @@
 #!/usr/bin/env python3
 FULL_SOURCE_COMMIT='28430c0c3487eb7973dc5c6f0d0a569a90d8224c'
 FULL_SOURCE_SHA256='86ac6b7d01ae81ccb931c605b0f8abb71758ce414344facae16df999e32fc572'
+# workflow executes this immutable source; no branch-local logic.
