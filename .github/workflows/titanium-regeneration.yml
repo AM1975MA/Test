@@ -37,7 +37,24 @@ jobs:
           echo 'ba99f9ce08d96e6b56567d44bf18b5caa7a76ccf13a7d44546e6d1416d79d65a  upstream/titanium_reconstruction_v5.py' | sha256sum -c -
           sed -i 's/@njit(cache=True)/@njit(cache=False)/g; s/@njit(parallel=True,cache=True)/@njit(parallel=True,cache=False)/g' upstream/titanium_reconstruction_v5.py
           curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/28430c0c3487eb7973dc5c6f0d0a569a90d8224c/regeneration/production_aligned_regen.py" -o production_aligned_regen.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('production_aligned_regen.py')
+          s=p.read_text()
+          old="""    mats={k:pd.read_parquet(out/f'{k.upper()}.parquet') for k in ['Open','High','Low','Close','Volume']};longs=[]
+    for k,x in mats.items(): longs.append(x.stack(dropna=False).rename(k.lower()).reset_index().rename(columns={'level_0':'date','level_1':'ticker'}))
+    daily=longs[0]
+    for x in longs[1:]:daily=daily.merge(x,on=['date','ticker'],how='outer')
+"""
+          new="""    mats={k:pd.read_parquet(out/f'{k.upper()}.parquet') for k in ['Open','High','Low','Close','Volume']}
+    daily=pd.concat({k.lower():x.stack(dropna=False) for k,x in mats.items()},axis=1).reset_index()
+    daily.columns=['date','ticker']+list(daily.columns[2:])
+"""
+          if old not in s: raise SystemExit('packager patch target not found')
+          p.write_text(s.replace(old,new))
+          PY
           python -m py_compile upstream/*.py production_aligned_regen.py
+          sha256sum production_aligned_regen.py
       - name: Download ticker OHLCV matrices
         env:
           GH_TOKEN: ${{ github.token }}
@@ -61,6 +78,8 @@ jobs:
           test -f METEOR_TITANIUM_V2_OPPORTUNITY_V3_REGENERATED/TITANIUM_CONCENTRATION_FRONTIER_PATHS.npz
           test -f METEOR_TITANIUM_V2_OPPORTUNITY_V3_REGENERATED/NPORT_TITANIUM_PANEL.parquet
           test -f METEOR_TITANIUM_V2_OPPORTUNITY_V3_REGENERATED/SUPER_GOLD_OOS_SCORE_PANEL.parquet
+          test -f METEOR_TITANIUM_V2_OPPORTUNITY_V3_REGENERATED/DAILY_OHLCV_ACTIONS_150ETF.parquet
+          test -d METEOR_TITANIUM_V2_OPPORTUNITY_V3_REGENERATED/MODELS
           sha256sum METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip > METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.sha256
           cat METEOR_TITANIUM_V2_OPPORTUNITY_V3_REGENERATED/REPORT.md
           cat METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.sha256
