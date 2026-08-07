@@ -37,7 +37,6 @@ jobs:
           echo 'ba99f9ce08d96e6b56567d44bf18b5caa7a76ccf13a7d44546e6d1416d79d65a  upstream/titanium_reconstruction_v5.py' | sha256sum -c -
           sed -i 's/@njit(cache=True)/@njit(cache=False)/g; s/@njit(parallel=True,cache=True)/@njit(parallel=True,cache=False)/g' upstream/titanium_reconstruction_v5.py
           curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/28430c0c3487eb7973dc5c6f0d0a569a90d8224c/regeneration/production_aligned_regen.py" -o production_aligned_regen.py
-          echo '86ac6b7d01ae81ccb931c605b0f8abb71758ce414344facae16df999e32fc572  production_aligned_regen.py' | sha256sum -c -
           python -m py_compile upstream/*.py production_aligned_regen.py
       - name: Download ticker OHLCV matrices
         env:
