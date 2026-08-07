@@ -25,12 +25,14 @@ jobs:
           curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9007704034/zip -o canonical_outer.zip
           mkdir outer && unzip -q canonical_outer.zip -d outer
           mkdir canon && unzip -q outer/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d canon
+          PKG=canon/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
           mkdir -p prices/titanium_retrained_output
-          cp canon/data/{OPEN,HIGH,LOW,CLOSE,VOLUME}.parquet prices/titanium_retrained_output/
+          cp ${PKG}/data/{OPEN,HIGH,LOW,CLOSE,VOLUME}.parquet prices/titanium_retrained_output/
           python regeneration/repair_vug_pin_temp.py
       - name: Run canonical 150 smoke
         run: |
-          python canon/source/regenerate_live_package.py --base-module canon/source/titanium_retrained_current_data_audit.py --v5-module canon/source/titanium_reconstruction_v6.py --data-dir prices/titanium_retrained_output --output-parent . --downvol-mode downside_rms --n-estimators 60 --n-baskets 20 | tee REPAIR150_LOG.txt
+          PKG=canon/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          python ${PKG}/source/regenerate_live_package.py --base-module ${PKG}/source/titanium_retrained_current_data_audit.py --v5-module ${PKG}/source/titanium_reconstruction_v6.py --data-dir prices/titanium_retrained_output --output-parent . --downvol-mode downside_rms --n-estimators 60 --n-baskets 20 | tee REPAIR150_LOG.txt
           cp METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/backtest/SCORECARD_SUMMARY.json REPAIR150_SUMMARY.json
       - uses: actions/upload-artifact@v4
         with:
