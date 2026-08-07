@@ -2,6 +2,8 @@ name: Titanium V7 Parity Smoke TEMP
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
   smoke:
     runs-on: ubuntu-latest
