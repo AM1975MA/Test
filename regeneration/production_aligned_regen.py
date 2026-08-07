@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
 # Runner materialized at commit 28430c0c3487eb7973dc5c6f0d0a569a90d8224c and SHA-verified by workflow.
-# This branch copy is intentionally a pointer; workflow downloads the immutable full source.
+# The branch copy is only a provenance pointer; the workflow executes the immutable full source.
 FULL_SOURCE_COMMIT = '28430c0c3487eb7973dc5c6f0d0a569a90d8224c'
 FULL_SOURCE_SHA256 = '86ac6b7d01ae81ccb931c605b0f8abb71758ce414344facae16df999e32fc572'
