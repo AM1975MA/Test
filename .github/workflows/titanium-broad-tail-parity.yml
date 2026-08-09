@@ -22,7 +22,7 @@ jobs:
       - name: Get exact Compact parity module
         run: |
           curl -fsSL https://raw.githubusercontent.com/AM1975MA/Test/titanium-base-parity-probe-20260810/forensics/base_parity_probe.py -o forensics/base_parity_probe_upstream.py
-          python -m py_compile forensics/base_parity_probe_upstream.py forensics/broad_tail_parity_probe.py forensics/broad_tail_rankensemble_probe.py
+          python -m py_compile forensics/base_parity_probe_upstream.py forensics/broad_tail_parity_probe.py forensics/broad_tail_rankensemble_v2.py
       - name: Download canonical Aug6 package
         env:
           GH_TOKEN: ${{ github.token }}
@@ -34,9 +34,9 @@ jobs:
           mkdir package && unzip -q "$inner" -d package
           pkg=$(find package -type d -name METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE -print -quit)
           echo "PKG=$pkg" >> "$GITHUB_ENV"
-      - name: Run exact broad TailMix Base probe with rank-ensemble
+      - name: Run exact broad TailMix Base probe with production rank-ensemble
         run: |
-          python forensics/broad_tail_rankensemble_probe.py --package "$PKG" --prior-probe forensics/base_parity_probe_upstream.py --output BROAD_TAIL_PARITY --trees 360
+          python forensics/broad_tail_rankensemble_v2.py --package "$PKG" --prior-probe forensics/base_parity_probe_upstream.py --output BROAD_TAIL_PARITY --trees 360
       - name: Archive
         if: always()
         run: zip -r TITANIUM_BROAD_TAIL_PARITY.zip BROAD_TAIL_PARITY || true
