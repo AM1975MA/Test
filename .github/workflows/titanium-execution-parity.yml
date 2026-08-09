@@ -1,0 +1,42 @@
+name: Titanium Execution Parity Probe
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  execution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+      - name: Download canonical package and exact score artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9007704034/zip -o canonical.zip
+          mkdir outer && unzip -q canonical.zip -d outer
+          inner=$(find outer -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' -print -quit)
+          mkdir package && unzip -q "$inner" -d package
+          pkg=$(find package -type d -name METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE -print -quit)
+          echo "PKG=$pkg" >> "$GITHUB_ENV"
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9045805791/zip -o scores_outer.zip
+          mkdir scores_outer && unzip -q scores_outer.zip -d scores_outer
+          scores_inner=$(find scores_outer -name 'TITANIUM_BROAD_TAIL_PARITY.zip' -print -quit)
+          mkdir scores && unzip -q "$scores_inner" -d scores
+          scorefile=$(find scores -name 'OOS_TICKER_SCORES.parquet' -print -quit)
+          test -n "$scorefile"
+          echo "SCORES=$scorefile" >> "$GITHUB_ENV"
+      - run: python forensics/execution_parity_probe.py --package "$PKG" --scores "$SCORES" --output EXECUTION_PARITY
+      - run: zip -r TITANIUM_EXECUTION_PARITY.zip EXECUTION_PARITY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_EXECUTION_PARITY
+          path: TITANIUM_EXECUTION_PARITY.zip
+          retention-days: 7
