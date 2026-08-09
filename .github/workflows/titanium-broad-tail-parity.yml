@@ -1,0 +1,48 @@
+name: Titanium Broad Tail Parity Probe
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  broad-tail:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen-compatible dependencies
+        run: |
+          pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+      - name: Get exact Compact parity module
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/AM1975MA/Test/titanium-base-parity-probe-20260810/forensics/base_parity_probe.py -o forensics/base_parity_probe_upstream.py
+          python -m py_compile forensics/base_parity_probe_upstream.py forensics/broad_tail_parity_probe.py forensics/broad_tail_rankensemble_v2.py
+      - name: Download canonical Aug6 package
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9007704034/zip -o canonical.zip
+          mkdir outer && unzip -q canonical.zip -d outer
+          inner=$(find outer -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' -print -quit)
+          mkdir package && unzip -q "$inner" -d package
+          pkg=$(find package -type d -name METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE -print -quit)
+          echo "PKG=$pkg" >> "$GITHUB_ENV"
+      - name: Run exact broad TailMix Base probe with production rank-ensemble
+        run: |
+          python forensics/broad_tail_rankensemble_v2.py --package "$PKG" --prior-probe forensics/base_parity_probe_upstream.py --output BROAD_TAIL_PARITY --trees 360
+      - name: Archive
+        if: always()
+        run: zip -r TITANIUM_BROAD_TAIL_PARITY.zip BROAD_TAIL_PARITY || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TITANIUM_BROAD_TAIL_PARITY
+          path: TITANIUM_BROAD_TAIL_PARITY.zip
+          retention-days: 7
