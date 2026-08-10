@@ -1,11 +1,11 @@
-name: Titanium Parity Isolated
+name: Titanium Full Production Parity
 on:
   pull_request:
   workflow_dispatch:
 jobs:
-  checkpoint:
+  full:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 360
     permissions:
       actions: read
       contents: read
@@ -14,11 +14,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install
+      - name: Install frozen dependencies
         run: |
           python -m pip install --upgrade pip
           pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
-      - name: Get canonical package
+      - name: Get canonical ticker-data package
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -26,23 +26,52 @@ jobs:
           mkdir a && unzip -q a.zip -d a
           INNER=$(find a -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' | head -1); test -n "$INNER"
           mkdir canonical && unzip -q "$INNER" -d canonical
-      - name: Patch exact production semantics
+      - name: Patch exact production feature label and Tail semantics
         run: |
           ROOT=$(find canonical -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE' | head -1); test -n "$ROOT"
           python regeneration/production_feature_parity_patch.py --base "$ROOT/source/titanium_retrained_current_data_audit.py" --v6 "$ROOT/source/titanium_reconstruction_v6.py"
           python regeneration/tail_feature_parity_patch.py --v6 "$ROOT/source/titanium_reconstruction_v6.py"
           python regeneration/tail_feature_parity_fix.py --v6 "$ROOT/source/titanium_reconstruction_v6.py"
           python -m py_compile "$ROOT/source/titanium_retrained_current_data_audit.py" "$ROOT/source/titanium_reconstruction_v6.py"
-      - name: Exact 2026 checkpoint
+      - name: Run full 2017-2026 500-basket and unrestricted audit
         run: |
           ROOT=$(find canonical -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE' | head -1)
-          python regeneration/checkpoint_2026_production_parity.py --base "$ROOT/source/titanium_retrained_current_data_audit.py" --v6 "$ROOT/source/titanium_reconstruction_v6.py" --data-dir "$ROOT/data" --output OUT
-      - name: Archive
+          python "$ROOT/source/titanium_reconstruction_v6.py" --base-module "$ROOT/source/titanium_retrained_current_data_audit.py" --data-dir "$ROOT/data" --output TITANIUM_FULL_PRODUCTION_PARITY
+      - name: Hard parity summary
         if: always()
-        run: zip -r TITANIUM_PARITY_ISOLATED.zip OUT || true
+        run: |
+          python - <<'PY'
+          import json, pandas as pd
+          from pathlib import Path
+          p=Path('TITANIUM_FULL_PRODUCTION_PARITY')
+          if not (p/'BASKET_RESULTS.csv').exists():
+              print('No full scorecard produced'); raise SystemExit(0)
+          r=pd.read_csv(p/'BASKET_RESULTS.csv'); g=pd.read_csv(p/'GLOBAL_SCORECARD.csv')
+          rows=[]
+          for s in ['BASE','DIRECT','ROUTER']:
+              q=r[r.strategy==s]
+              rows.append({'strategy':s,'mean_cagr':q.cagr.mean(),'median_cagr':q.cagr.median(),'mean_maxdd':q.maxdd.mean(),'median_maxdd':q.maxdd.median(),'mean_sharpe':q.sharpe.mean()})
+          print(pd.DataFrame(rows).to_string(index=False))
+          print('\nGLOBAL')
+          print(g.to_string(index=False))
+          frozen=0.21654064
+          base=float(r[r.strategy=='BASE'].cagr.mean())
+          print(f'BASE delta vs frozen = {(base-frozen)*100:+.4f} pp')
+          print('\nGATES')
+          if (p/'PARITY_GATES.json').exists(): print((p/'PARITY_GATES.json').read_text())
+          PY
+      - name: Archive full parity output and patched sources
+        if: always()
+        run: |
+          ROOT=$(find canonical -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE' | head -1)
+          mkdir -p TITANIUM_FULL_PRODUCTION_PARITY/PATCHED_SOURCE
+          cp "$ROOT/source/titanium_retrained_current_data_audit.py" TITANIUM_FULL_PRODUCTION_PARITY/PATCHED_SOURCE/
+          cp "$ROOT/source/titanium_reconstruction_v6.py" TITANIUM_FULL_PRODUCTION_PARITY/PATCHED_SOURCE/
+          cp regeneration/*.py TITANIUM_FULL_PRODUCTION_PARITY/PATCHED_SOURCE/ || true
+          zip -r TITANIUM_FULL_PRODUCTION_PARITY.zip TITANIUM_FULL_PRODUCTION_PARITY || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: TITANIUM_PARITY_ISOLATED
-          path: TITANIUM_PARITY_ISOLATED.zip
+          name: TITANIUM_FULL_PRODUCTION_PARITY
+          path: TITANIUM_FULL_PRODUCTION_PARITY.zip
           retention-days: 7
