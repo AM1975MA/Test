@@ -26,10 +26,11 @@ jobs:
           mkdir a && unzip -q a.zip -d a
           INNER=$(find a -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' | head -1); test -n "$INNER"
           mkdir canonical && unzip -q "$INNER" -d canonical
-      - name: Patch production semantics
+      - name: Patch exact production semantics
         run: |
           ROOT=$(find canonical -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE' | head -1); test -n "$ROOT"
           python regeneration/production_feature_parity_patch.py --base "$ROOT/source/titanium_retrained_current_data_audit.py" --v6 "$ROOT/source/titanium_reconstruction_v6.py"
+          python regeneration/tail_feature_parity_patch.py --v6 "$ROOT/source/titanium_reconstruction_v6.py"
           python -m py_compile "$ROOT/source/titanium_retrained_current_data_audit.py" "$ROOT/source/titanium_reconstruction_v6.py"
       - name: Exact 2026 checkpoint
         run: |
