@@ -1,7 +1,6 @@
 name: Titanium Parity Isolated
 on:
   pull_request:
-    branches: [main]
   workflow_dispatch:
 jobs:
   checkpoint:
