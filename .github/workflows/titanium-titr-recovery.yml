@@ -1,0 +1,84 @@
+name: Titanium TIT_R Recovery Audit
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install readers
+        run: pip install -q pandas==2.2.3 pyarrow==25.0.0 numpy==2.3.5
+      - name: Download canonical artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          for spec in 'aug6:9007704034' 'immutable:9053946155'; do
+            name=${spec%%:*}; id=${spec##*:}
+            curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/AM1975MA/Test/actions/artifacts/${id}/zip" -o "${name}.zip"
+            mkdir -p "$name" && unzip -q "${name}.zip" -d "$name"
+          done
+      - name: Compare TIT_R panels
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd, numpy as np, json, hashlib
+
+          roots={
+            'aug6': Path('aug6'),
+            'immutable': Path('immutable'),
+          }
+          rows=[]; panels={}
+          for name,root in roots.items():
+            files=list(root.rglob('NPORT_TITANIUM_PANEL.parquet'))
+            if not files:
+              print(name,'NO NPORT panel'); continue
+            pth=files[0]
+            p=pd.read_parquet(pth)
+            print('\n',name,pth,p.shape)
+            print('columns',list(p.columns))
+            p['signal_date']=pd.to_datetime(p['signal_date'])
+            p['ticker']=p['ticker'].astype(str).str.upper()
+            panels[name]=p
+            for d in ['2026-06-30','2026-07-31']:
+              q=p[p.signal_date.eq(pd.Timestamp(d))].dropna(subset=['TIT_R']).sort_values(['TIT_R','ticker'],ascending=[False,True])
+              print(name,d,'top10',q[['ticker','TIT_R']].head(10).to_dict('records'))
+            rows.append({'name':name,'rows':len(p),'months':p.signal_date.nunique(),'tickers':p.ticker.nunique(),
+                         'first':str(p.signal_date.min().date()),'last':str(p.signal_date.max().date()),
+                         'tit_min':float(p.TIT_R.min()),'tit_max':float(p.TIT_R.max()),'tit_mean':float(p.TIT_R.mean()),
+                         'sha256':hashlib.sha256(pth.read_bytes()).hexdigest()})
+          if len(panels)==2:
+            a=panels['aug6'][['signal_date','ticker','TIT_R']].rename(columns={'TIT_R':'a'})
+            b=panels['immutable'][['signal_date','ticker','TIT_R']].rename(columns={'TIT_R':'b'})
+            m=a.merge(b,on=['signal_date','ticker'],how='outer',indicator=True)
+            z=m.dropna(subset=['a','b'])
+            print('\nCOMMON',len(z),'coverage',len(z)/max(len(m),1))
+            print('TIT_R pearson',z.a.corr(z.b),'spearman',z.a.corr(z.b,method='spearman'))
+            print('mean abs diff',float((z.a-z.b).abs().mean()),'max',float((z.a-z.b).abs().max()))
+            # monthly top1 agreement
+            ta=a.sort_values(['signal_date','a','ticker'],ascending=[True,False,True]).groupby('signal_date').first().reset_index()[['signal_date','ticker']].rename(columns={'ticker':'top_a'})
+            tb=b.sort_values(['signal_date','b','ticker'],ascending=[True,False,True]).groupby('signal_date').first().reset_index()[['signal_date','ticker']].rename(columns={'ticker':'top_b'})
+            tt=ta.merge(tb,on='signal_date')
+            print('monthly global top1 agreement',float((tt.top_a==tt.top_b).mean()),'n',len(tt))
+            tt.to_csv('TOP1_COMPARISON.csv',index=False)
+          pd.DataFrame(rows).to_csv('PANEL_SUMMARY.csv',index=False)
+          PY
+      - name: Archive audit
+        run: zip -q TITANIUM_TITR_RECOVERY_AUDIT.zip PANEL_SUMMARY.csv TOP1_COMPARISON.csv || zip -q TITANIUM_TITR_RECOVERY_AUDIT.zip PANEL_SUMMARY.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_TITR_RECOVERY_AUDIT
+          path: TITANIUM_TITR_RECOVERY_AUDIT.zip
+          retention-days: 7
