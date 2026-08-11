@@ -1,0 +1,66 @@
+name: Titanium Frozen Protocol V8 Rerun
+on:
+  push:
+    branches: [titanium-frozen-protocol-v8-rerun-20260811]
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions: {actions: read, contents: read}
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      NUMBA_DISABLE_CACHING: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+      - name: Download recovered V8 protocol source
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9052642368/zip -o proto_outer.zip
+          mkdir po && unzip -q proto_outer.zip -d po
+          INNER=$(find po -name 'TITANIUM_FROZEN_PROTOCOL_V8.zip' | head -1); test -n "$INNER"
+          mkdir protocol && unzip -q "$INNER" -d protocol
+          python -m py_compile protocol/regeneration/run_frozen_protocol_v8.py protocol/upstream/titanium_reconstruction_v5.py protocol/upstream/titanium_retrained_current_data_audit.py
+      - name: Download canonical ticker OHLCV
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9007704034/zip -o canonical_outer.zip
+          mkdir co && unzip -q canonical_outer.zip -d co
+          PKG=$(find co -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' | head -1); test -n "$PKG"
+          mkdir cpkg && unzip -q "$PKG" -d cpkg
+          DATA=$(find cpkg -type d -path '*/data' | head -1); test -n "$DATA"
+          echo "DATA=$DATA" >> "$GITHUB_ENV"
+      - name: Run recovered frozen protocol V8 full 500 baskets
+        run: |
+          python protocol/regeneration/run_frozen_protocol_v8.py --v5 protocol/upstream/titanium_reconstruction_v5.py --base protocol/upstream/titanium_retrained_current_data_audit.py --data-dir "$DATA" --output V8_FULL
+      - name: Compute frozen-period parity
+        run: |
+          python - <<'PY'
+          import numpy as np,pandas as pd,json
+          from pathlib import Path
+          root=Path('V8_FULL');z=np.load(root/'TITANIUM_CONCENTRATION_FRONTIER_PATHS.npz');d=pd.to_datetime(z['dates'])
+          ref={'D1':.15022713687299,'D2':.2264479079604543,'DEV':.1861726630584223,'FULL':.2165406437471759}; per={'D1':('2017-01-01','2019-12-31'),'D2':('2020-01-01','2022-12-31'),'DEV':('2017-01-01','2022-12-31'),'FULL':('2017-01-01','2026-12-31')};out={};err=0
+          for n,(s,e) in per.items():
+            q=(d>=s)&(d<=e);dd=d[q];y=(dd[-1]-dd[0]).days/365.25
+            for st in ['BASE','ROUTER']:
+              x=z[st][:,q];c=(x[:,-1]/x[:,0])**(1/y)-1;out.setdefault(n,{})[st.lower()]=float(c.mean());out[n][st.lower()+'_median']=float(np.median(c))
+            out[n]['ref_base']=ref[n];out[n]['base_err_pp']=(out[n]['base']-ref[n])*100
+            if n in ('D1','D2','DEV'):err+=(out[n]['base']-ref[n])**2
+          out['rmse_D1_D2_DEV_pp']=(err/3)**.5*100
+          kp=root/'KNOWN_SIGNAL_CHECK.json';out['known_signal']=json.loads(kp.read_text()) if kp.exists() else None
+          (root/'V8_PARITY_SUMMARY.json').write_text(json.dumps(out,indent=2));print(json.dumps(out,indent=2))
+          PY
+      - name: Archive
+        if: always()
+        run: zip -r TITANIUM_FROZEN_PROTOCOL_V8_RERUN.zip V8_FULL protocol/regeneration/run_frozen_protocol_v8.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TITANIUM_FROZEN_PROTOCOL_V8_RERUN
+          path: TITANIUM_FROZEN_PROTOCOL_V8_RERUN.zip
+          retention-days: 14
