@@ -1,0 +1,64 @@
+name: Titanium Archaeology Summary
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download all prior archaeology artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p arch_download
+          curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            'https://api.github.com/repos/AM1975MA/Test/actions/runs/31360990762/artifacts?per_page=100' -o artifacts.json
+          python - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          arts=json.load(open('artifacts.json'))['artifacts']
+          for a in arts:
+              if not a['name'].startswith('ARCH_'): continue
+              out=f"arch_download/{a['name']}.zip"
+              subprocess.run(['curl','-fsSL','-H',f"Authorization: Bearer {os.environ['GH_TOKEN']}",'-H','Accept: application/vnd.github+json',a['archive_download_url'],'-o',out],check=True)
+          print('downloaded',len(list(Path('arch_download').glob('*.zip'))))
+          PY
+      - name: Aggregate archaeology results
+        run: |
+          python - <<'PY'
+          import csv, json, zipfile
+          from pathlib import Path
+          rows=[]
+          for z in sorted(Path('arch_download').glob('ARCH_*.zip')):
+              with zipfile.ZipFile(z) as q:
+                  cand=[n for n in q.namelist() if n.endswith('RESULT.json')]
+                  if not cand: continue
+                  r=json.loads(q.read(cand[0]))
+                  r['D1_err']=r['D1']-0.15023
+                  r['D2_err']=r['D2']-0.22645
+                  r['DEV_err']=r['DEV']-0.18617
+                  r['HOLD_err']=r['HOLD']-0.27605
+                  r['FULL_err']=r['FULL']-0.21654064
+                  r['dev_abs_mean']=(abs(r['D1_err'])+abs(r['D2_err'])+abs(r['DEV_err']))/3
+                  rows.append(r)
+          cols=['tag','trees','depth','lr','mcw','lam','alpha','subsample','colsample','D1','D2','DEV','HOLD','FULL','dev_abs_mean','HOLD_err','FULL_err']
+          rows_dev=sorted(rows,key=lambda r:(r['dev_abs_mean'],abs(r['FULL_err'])))
+          with open('ARCHAEOLOGY_SUMMARY.csv','w',newline='') as f:
+              w=csv.DictWriter(f,fieldnames=list(rows_dev[0].keys()));w.writeheader();w.writerows(rows_dev)
+          def line(r): return ' '.join(f"{c}={r[c]:.6f}" if isinstance(r[c],float) else f"{c}={r[c]}" for c in cols)
+          print('\n=== SORTED BY DEVELOPMENT RECONSTRUCTION ERROR ===')
+          for r in rows_dev: print(line(r))
+          print('\n=== BEST FULL CAGR ===')
+          for r in sorted(rows,key=lambda r:r['FULL'],reverse=True)[:10]: print(line(r))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_ARCHAEOLOGY_SUMMARY
+          path: ARCHAEOLOGY_SUMMARY.csv
+          retention-days: 7
