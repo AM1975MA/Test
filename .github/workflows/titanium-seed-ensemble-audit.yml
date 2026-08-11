@@ -1,0 +1,61 @@
+name: Titanium Compact Seed Ensemble Audit
+on:
+  pull_request:
+    branches: [titanium-target-audit-base-20260811]
+  workflow_dispatch:
+
+jobs:
+  ensemble-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      actions: read
+      contents: read
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow numba
+      - name: Download monthly trained-model artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9113321430/zip -o monthly_artifact.zip
+          mkdir monthly_artifact && unzip -q monthly_artifact.zip -d monthly_artifact
+          INNER=$(find monthly_artifact -name 'TITANIUM_TARGET_monthly.zip' | head -1); test -n "$INNER"
+          mkdir monthly && unzip -q "$INNER" -d monthly
+          ROOT=$(find monthly -type d -name 'TARGET_monthly' | head -1); test -n "$ROOT"
+          echo "MONTHLY_ROOT=$ROOT" >> "$GITHUB_ENV"
+      - name: Download canonical source artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9007704034/zip -o canonical_artifact.zip
+          mkdir canonical_artifact && unzip -q canonical_artifact.zip -d canonical_artifact
+          INNER=$(find canonical_artifact -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' | head -1); test -n "$INNER"
+          mkdir canonical && unzip -q "$INNER" -d canonical
+          CROOT=$(find canonical -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE' | head -1); test -n "$CROOT"
+          echo "CANONICAL_ROOT=$CROOT" >> "$GITHUB_ENV"
+      - name: Run seed-ensemble forensic audit
+        run: |
+          python forensics/seed_ensemble_audit.py \
+            --trained "$MONTHLY_ROOT" \
+            --base-module "$CANONICAL_ROOT/source/titanium_retrained_current_data_audit.py" \
+            --v5-module "$CANONICAL_ROOT/source/titanium_reconstruction_v6.py" \
+            --output SEED_ENSEMBLE_AUDIT
+      - name: Archive
+        run: zip -r TITANIUM_SEED_ENSEMBLE_AUDIT.zip SEED_ENSEMBLE_AUDIT
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_SEED_ENSEMBLE_AUDIT
+          path: TITANIUM_SEED_ENSEMBLE_AUDIT.zip
+          retention-days: 7
