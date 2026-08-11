@@ -54,16 +54,23 @@ def best(t,start,end,min_rows=5):
 vug=best('VUG','2005-01-01','2026-08-12',252)
 if len(vug)<252: raise RuntimeError(f'VUG insufficient rows {len(vug)}')
 
-# Same Invesco India ETF: PIN ticker through 2026-02-20, IMVP effective 2026-02-23.
-pin_old=best('PIN','2005-01-01','2026-02-21',252)
-if len(pin_old)<252:
-    pin_old=stooq_pin()
-    print('PIN old history using Stooq fallback',len(pin_old))
-if len(pin_old)<252: raise RuntimeError(f'PIN pre-rename insufficient rows {len(pin_old)}')
-imvp=best('IMVP','2026-02-23','2026-08-12',5)
-if len(imvp)<5: raise RuntimeError(f'IMVP successor insufficient rows {len(imvp)}')
-pin=pd.concat([pin_old,imvp]).sort_index(); pin=pin[~pin.index.duplicated(keep='last')]
-print('PIN/IMVP continuity:',pin_old.index.min(),pin_old.index.max(),len(pin_old),'->',imvp.index.min(),imvp.index.max(),len(imvp),'combined',len(pin))
+# PIN was renamed IMVP on 2026-02-23. Prefer the successor ticker's complete
+# backfilled economic history; it is the same fund and avoids a false break.
+imvp_full=best('IMVP','2005-01-01','2026-08-12',252)
+if len(imvp_full)>=252:
+    pin=imvp_full.copy()
+    print('PIN reconstructed from full IMVP backfilled history:',pin.index.min(),pin.index.max(),len(pin))
+else:
+    print('IMVP full history unavailable, falling back to pre/post stitching; rows',len(imvp_full))
+    pin_old=best('PIN','2005-01-01','2026-02-21',252)
+    if len(pin_old)<252:
+        pin_old=stooq_pin()
+        print('PIN old history using Stooq fallback',len(pin_old))
+    if len(pin_old)<252: raise RuntimeError(f'PIN pre-rename insufficient rows {len(pin_old)}')
+    imvp=best('IMVP','2026-02-23','2026-08-12',5)
+    if len(imvp)<5: raise RuntimeError(f'IMVP successor insufficient rows {len(imvp)}')
+    pin=pd.concat([pin_old,imvp]).sort_index(); pin=pin[~pin.index.duplicated(keep='last')]
+    print('PIN/IMVP stitched continuity:',pin_old.index.min(),pin_old.index.max(),len(pin_old),'->',imvp.index.min(),imvp.index.max(),len(imvp),'combined',len(pin))
 
 for ticker,raw in [('VUG',vug),('PIN',pin)]:
     for f in FIELDS:
