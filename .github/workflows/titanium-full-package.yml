@@ -1,5 +1,7 @@
 name: Titanium Exact V23 Live Package
 on:
+  push:
+    branches: [titanium-exact-v23-membership-20260811]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -88,7 +90,6 @@ jobs:
           p=Path('upstream/titanium_retrained_current_data_audit.py')
           spec=importlib.util.spec_from_file_location('fresh_dl',p)
           m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
-          # Download through the same adjusted-OHLC routine used by the audited runner.
           m.END_DOWNLOAD='2026-08-12'
           m.download_ohlcv(Path('prior/titanium_retrained_output'))
           PY
@@ -103,9 +104,8 @@ jobs:
           mats={f:pd.read_parquet(root/f'{f}.parquet') for f in ['OPEN','HIGH','LOW','CLOSE','VOLUME']}
           cols=[set(x.columns.astype(str).str.upper()) for x in mats.values()]
           common=set.intersection(*cols); union=set.union(*cols)
-          expected=set(__import__('importlib').util.module_from_spec(__import__('importlib').util.spec_from_file_location('x','upstream/titanium_retrained_current_data_audit.py')).__dict__.keys()) if False else None
           if len(common)!=150 or len(union)!=150:
-              raise RuntimeError(f'OHLCV universe mismatch: common={len(common)} union={len(union)} missing_by_field={{k:len(union-set(v.columns.astype(str).str.upper())) for k,v in mats.items()}}')
+              raise RuntimeError(f'OHLCV universe mismatch: common={len(common)} union={len(union)}')
           shapes={k:list(v.shape) for k,v in mats.items()}
           nonnull={k:int(v.notna().sum().sum()) for k,v in mats.items()}
           info={'common_tickers':len(common),'union_tickers':len(union),'shapes':shapes,'nonnull_cells':nonnull,'first_date':str(min(v.index.min() for v in mats.values())),'last_date':str(max(v.index.max() for v in mats.values()))}
