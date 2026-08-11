@@ -19,14 +19,10 @@ def basket_cagr(arr,dates,start,end):
 
 def encode_relevance(df,mode):
     p=pd.to_numeric(df['target_rank_21'],errors='coerce').clip(0,1)
-    if mode=='pct100':
-        return p
-    if mode=='quintile0':
-        rel=(np.ceil(p*5)-1).clip(0,4); return rel/100.0
-    if mode=='quintile1':
-        rel=np.ceil(p*5).clip(1,5); return rel/100.0
-    if mode=='decile0':
-        rel=(np.ceil(p*10)-1).clip(0,9); return rel/100.0
+    if mode=='pct100': return p
+    if mode=='quintile0': return (np.ceil(p*5)-1).clip(0,4)/100.0
+    if mode=='quintile1': return np.ceil(p*5).clip(1,5)/100.0
+    if mode=='decile0': return (np.ceil(p*10)-1).clip(0,9)/100.0
     if mode=='top5custom':
         pos=df.groupby('signal_date')['target_rank_21'].rank(ascending=False,method='min')
         rel=np.select([pos.eq(1),pos.eq(2),pos.eq(3),pos.isin([4,5])],[5,3,2,1],default=0).astype(float)
@@ -36,18 +32,20 @@ def encode_relevance(df,mode):
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--runner',required=True); ap.add_argument('--base-module',required=True); ap.add_argument('--v5-module',required=True); ap.add_argument('--data-dir',required=True); ap.add_argument('--relevance',required=True,choices=['pct100','quintile0','quintile1','decile0','top5custom']); ap.add_argument('--output',required=True); a=ap.parse_args()
-    runner=load(Path(a.runner)); orig_labels=runner.add_labels; orig_fit=runner.source_faithful_fit
+    runner=load(Path(a.runner)); orig_labels=runner.add_labels; orig_fit=runner.fit_predict
     def labels21(panel,O,signal_dates):
         out=orig_labels(panel,O,signal_dates)
         out['target_rank_pct']=encode_relevance(out,a.relevance)
         out['target_top25']=(pd.to_numeric(out['target_rank_21'],errors='coerce')>=.75).astype('Int64')
         return out
-    def fit21(v6,base,compact,tail,macro,macro_feats,years,n_estimators=360):
+    def fit21(compact,tail,macro,macro_feats,opp,base,years,n_estimators,models_dir):
         c=compact.copy()
         if 'exit_date_21' not in c.columns: raise RuntimeError('exit_date_21 missing: cannot certify D21 maturity')
         c['exit_date']=c['exit_date_21']
-        return orig_fit(v6,base,c,tail,macro,macro_feats,years,n_estimators=n_estimators)
-    runner.add_labels=labels21; runner.source_faithful_fit=fit21
+        return orig_fit(c,tail,macro,macro_feats,opp,base,years,n_estimators,models_dir)
+    def forensic_package(out,*_args,**_kwargs):
+        p=Path(out)/'_FORENSIC_PLACEHOLDER.zip'; p.write_bytes(b'forensic-only'); return p
+    runner.add_labels=labels21; runner.fit_predict=fit21; runner.package=forensic_package
     sys.argv=[str(a.runner),'--base-module',a.base_module,'--v5-module',a.v5_module,'--data-dir',a.data_dir,'--output',a.output,'--n-estimators','360','--n-baskets','500']
     runner.main()
     out=Path(a.output); z=np.load(out/'TITANIUM_CONCENTRATION_FRONTIER_PATHS.npz'); dates=z['dates']; base=z['BASE']; router=z['ROUTER']
