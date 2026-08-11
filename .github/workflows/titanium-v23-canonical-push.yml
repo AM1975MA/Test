@@ -1,0 +1,41 @@
+name: Titanium V23 Canonical Membership Audit
+on:
+  push:
+    branches:
+      - titanium-exact-v23-membership-20260811
+jobs:
+  exact-v23:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      actions: read
+      contents: read
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      NUMBA_DISABLE_CACHING: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen dependencies
+        run: pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba requests
+      - name: Run exact V23 membership audit on canonical OHLCV
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash regeneration/run_exact_v23_membership_from_canonical.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TITANIUM_EXACT_V23_CANONICAL_MEMBERSHIP
+          path: |
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
+            V23_BASKET_MEMBERSHIP_SHA256.txt
+            INPUT_CANONICAL_OHLCV_SHA256.txt
+            EXACT_V23_CANONICAL_VALIDATION.json
+            EXACT_V23_CANONICAL_RUN_LOG.txt
+          retention-days: 14
