@@ -9,34 +9,41 @@ ROOT=Path('prices/titanium_retrained_output')
 FIELDS=['Open','High','Low','Close','Volume']
 
 def direct(t,start,end):
-    p1=int(pd.Timestamp(start,tz='UTC').timestamp()); p2=int(pd.Timestamp(end,tz='UTC').timestamp())
-    url=f'https://query1.finance.yahoo.com/v8/finance/chart/{t}?period1={p1}&period2={p2}&interval=1d&events=div%2Csplits&includeAdjustedClose=true'
-    r=requests.get(url,headers={'User-Agent':'Mozilla/5.0'},timeout=60); r.raise_for_status()
-    res=r.json().get('chart',{}).get('result') or []
-    if not res: return pd.DataFrame()
-    z=res[0]; q=z['indicators']['quote'][0]; adj=(z['indicators'].get('adjclose') or [{}])[0].get('adjclose',q.get('close'))
-    idx=pd.to_datetime(z['timestamp'],unit='s',utc=True).tz_convert(None)
-    raw=pd.DataFrame({'Open':q.get('open'),'High':q.get('high'),'Low':q.get('low'),'Close':q.get('close'),'Volume':q.get('volume'),'Adj Close':adj},index=idx)
-    fac=raw['Adj Close']/raw['Close'].replace(0,np.nan)
-    for f in ['Open','High','Low','Close']: raw[f]=raw[f]*fac
-    return raw[FIELDS].dropna(how='all')
+    try:
+        p1=int(pd.Timestamp(start,tz='UTC').timestamp()); p2=int(pd.Timestamp(end,tz='UTC').timestamp())
+        url=f'https://query1.finance.yahoo.com/v8/finance/chart/{t}?period1={p1}&period2={p2}&interval=1d&events=div%2Csplits&includeAdjustedClose=true'
+        r=requests.get(url,headers={'User-Agent':'Mozilla/5.0'},timeout=60); r.raise_for_status()
+        res=r.json().get('chart',{}).get('result') or []
+        if not res: return pd.DataFrame()
+        z=res[0]; q=z['indicators']['quote'][0]; adj=(z['indicators'].get('adjclose') or [{}])[0].get('adjclose',q.get('close'))
+        idx=pd.to_datetime(z['timestamp'],unit='s',utc=True).tz_convert(None)
+        raw=pd.DataFrame({'Open':q.get('open'),'High':q.get('high'),'Low':q.get('low'),'Close':q.get('close'),'Volume':q.get('volume'),'Adj Close':adj},index=idx)
+        fac=raw['Adj Close']/raw['Close'].replace(0,np.nan)
+        for f in ['Open','High','Low','Close']: raw[f]=raw[f]*fac
+        return raw[FIELDS].dropna(how='all')
+    except Exception as e:
+        print(t,'Yahoo direct failed',repr(e)); return pd.DataFrame()
 
 def yfdl(t,start,end):
     try:
         x=yf.download(t,start=start,end=end,auto_adjust=True,actions=False,repair=True,progress=False,threads=False,multi_level_index=False,timeout=60)
         if isinstance(x.columns,pd.MultiIndex): x.columns=x.columns.get_level_values(0)
+        if x.empty: return pd.DataFrame()
         x.index=pd.to_datetime(x.index).tz_localize(None)
         return x[FIELDS].apply(pd.to_numeric,errors='coerce').dropna(how='all')
     except Exception as e:
         print(t,'yf failed',repr(e)); return pd.DataFrame()
 
 def stooq_pin():
-    url='https://stooq.com/q/d/l/?s=pin.us&i=d&d1=20050101&d2=20260220'
-    r=requests.get(url,headers={'User-Agent':'Mozilla/5.0'},timeout=60); r.raise_for_status()
-    x=pd.read_csv(io.StringIO(r.text));
-    if 'Date' not in x or len(x)<252: return pd.DataFrame()
-    x['Date']=pd.to_datetime(x['Date']); x=x.set_index('Date').rename(columns=str.title)
-    return x[FIELDS].apply(pd.to_numeric,errors='coerce').dropna(how='all')
+    try:
+        url='https://stooq.com/q/d/l/?s=pin.us&i=d&d1=20050101&d2=20260220'
+        r=requests.get(url,headers={'User-Agent':'Mozilla/5.0'},timeout=60); r.raise_for_status()
+        x=pd.read_csv(io.StringIO(r.text))
+        if 'Date' not in x or len(x)<252: return pd.DataFrame()
+        x['Date']=pd.to_datetime(x['Date']); x=x.set_index('Date').rename(columns=str.title)
+        return x[FIELDS].apply(pd.to_numeric,errors='coerce').dropna(how='all')
+    except Exception as e:
+        print('PIN Stooq failed',repr(e)); return pd.DataFrame()
 
 def best(t,start,end,min_rows=5):
     x=direct(t,start,end)
@@ -44,11 +51,10 @@ def best(t,start,end,min_rows=5):
     x=yfdl(t,start,end)
     return x
 
-# VUG: current ticker, standard adjusted history.
 vug=best('VUG','2005-01-01','2026-08-12',252)
 if len(vug)<252: raise RuntimeError(f'VUG insufficient rows {len(vug)}')
 
-# PIN became IMVP effective 2026-02-23. Build one continuous economic series.
+# Same Invesco India ETF: PIN ticker through 2026-02-20, IMVP effective 2026-02-23.
 pin_old=best('PIN','2005-01-01','2026-02-21',252)
 if len(pin_old)<252:
     pin_old=stooq_pin()
