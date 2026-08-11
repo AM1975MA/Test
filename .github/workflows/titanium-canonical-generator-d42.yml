@@ -1,0 +1,78 @@
+name: Titanium Canonical Generator D42
+on:
+  push:
+    branches: [titanium-canonical-generator-d42-20260811]
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions: {actions: read, contents: read}
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      NUMBA_DISABLE_CACHING: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+      - name: Download canonical package
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9007704034/zip -o outer.zip
+          mkdir outer && unzip -q outer.zip -d outer
+          INNER=$(find outer -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' | head -1); test -n "$INNER"
+          mkdir canonical && unzip -q "$INNER" -d canonical
+          ROOT=$(find canonical -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE' | head -1); test -n "$ROOT"
+          echo "ROOT=$ROOT" >> "$GITHUB_ENV"
+      - name: Patch only Compact maturity to D42
+        run: |
+          cp "$ROOT/source/regenerate_live_package.py" regenerate_live_package_D42.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('regenerate_live_package_D42.py')
+          s=p.read_text()
+          old="(compact.exit_date_21 < cutoff)"
+          assert s.count(old)>=1, s.count(old)
+          s=s.replace(old,"(compact.exit_date_42 < cutoff)",1)
+          p.write_text(s)
+          PY
+          grep -n "tr = compact" regenerate_live_package_D42.py
+          python -m py_compile regenerate_live_package_D42.py
+      - name: Run canonical generator with D42
+        run: |
+          mkdir RUN_D42
+          python regenerate_live_package_D42.py \
+            --base-module "$ROOT/source/titanium_retrained_current_data_audit.py" \
+            --v5-module "$ROOT/source/titanium_reconstruction_v6.py" \
+            --data-dir "$ROOT/data" \
+            --output-parent RUN_D42 \
+            --downvol-mode downside_rms \
+            --n-estimators 360 --n-baskets 500
+      - name: Compute frozen-period parity summary
+        run: |
+          python - <<'PY'
+          import numpy as np,pandas as pd,json
+          from pathlib import Path
+          p=Path('RUN_D42/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE')
+          z=np.load(p/'panels/TITANIUM_CONCENTRATION_FRONTIER_PATHS.npz'); d=pd.to_datetime(z['dates'])
+          ref={'D1':.15022713687299,'D2':.2264479079604543,'DEV':.1861726630584223,'FULL':.2165406437471759}
+          per={'D1':('2017-01-01','2019-12-31'),'D2':('2020-01-01','2022-12-31'),'DEV':('2017-01-01','2022-12-31'),'FULL':('2017-01-01','2026-12-31')}
+          out={}; err=0
+          for name,(s,e) in per.items():
+            q=(d>=s)&(d<=e); x=z['BASE'][:,q]; dd=d[q]; y=(dd[-1]-dd[0]).days/365.25; c=(x[:,-1]/x[:,0])**(1/y)-1; m=float(c.mean()); out[name]={'base':m,'ref':ref[name],'err_pp':(m-ref[name])*100}
+            if name in ('D1','D2','DEV'):err+=(m-ref[name])**2
+          out['rmse_pp']=(err/3)**.5*100
+          out['live_signal']=json.loads((p/'LIVE_SIGNAL.json').read_text())
+          (p/'backtest'/'D42_PARITY_SUMMARY.json').write_text(json.dumps(out,indent=2)); print(json.dumps(out,indent=2))
+          PY
+      - name: Archive regenerated package
+        run: |
+          cd RUN_D42 && zip -qr ../METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_D42.zip METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_D42
+          path: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_D42.zip
+          retention-days: 14
