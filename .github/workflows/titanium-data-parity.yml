@@ -1,0 +1,36 @@
+name: Titanium Raw-Adjusted Data Parity
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install dependencies
+        run: pip install numpy==2.3.5 pandas==2.2.3 pyarrow 'yfinance>=0.2.65'
+      - name: Download canonical package
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9007704034/zip -o outer.zip
+          mkdir outer && unzip -q outer.zip -d outer
+          inner=$(find outer -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' -print -quit); test -n "$inner"
+          mkdir pkg && unzip -q "$inner" -d pkg
+          root=$(find pkg -type d -path '*/data' -print -quit); test -n "$root"
+          echo "CANON=$root" >> "$GITHUB_ENV"
+      - name: Rebuild adjusted OHLC from raw prices and actions
+        run: python forensics/raw_adjusted_data_parity.py --canonical "$CANON" --output DATA_PARITY --start 2005-01-01 --end 2026-08-04
+      - name: Archive
+        run: zip -r TITANIUM_RAW_ADJUSTED_DATA_PARITY.zip DATA_PARITY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_RAW_ADJUSTED_DATA_PARITY
+          path: TITANIUM_RAW_ADJUSTED_DATA_PARITY.zip
+          retention-days: 7
