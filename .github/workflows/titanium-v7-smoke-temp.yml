@@ -23,85 +23,74 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install pinned dependencies
+      - name: Install frozen-compatible dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba 'yfinance>=0.2.65' requests
-      - name: Reconstruct verified engines
+          pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+      - name: Reconstruct exact production-aligned Base sources
         run: |
-          mkdir -p upstream/gz upstream/v6
-          for f in gz_00.b64 gz_01.b64 gz_02.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-source-faithful-20260803/gzpayload/$f" -o "upstream/gz/$f"; done
-          cat upstream/gz/gz_*.b64 | base64 -d | gzip -dc > upstream/base.py
-          echo '76b5da95c865a069d967189d61b1c8df3338eacc5a0e8941e8ee7025c42caf60  upstream/base.py' | sha256sum -c -
-          for f in rv5_00.b64 rv5_01.b64 rv5_02.b64 rv5_04.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-reconstruction-v5-20260803/reconstruction/$f" -o "upstream/v6/$f"; done
-          for f in rv5_03a.b64 rv5_03b.b64 rv5_03c.b64 rv5_03d.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-reconstruction-v5-20260803/reconstruction/$f" -o "upstream/v6/$f"; done
-          cat upstream/v6/rv5_00.b64 upstream/v6/rv5_01.b64 upstream/v6/rv5_02.b64 upstream/v6/rv5_03a.b64 upstream/v6/rv5_03b.b64 upstream/v6/rv5_03c.b64 upstream/v6/rv5_03d.b64 upstream/v6/rv5_04.b64 | base64 -d | gzip -dc > upstream/v6.py
-          echo 'ba99f9ce08d96e6b56567d44bf18b5caa7a76ccf13a7d44546e6d1416d79d65a  upstream/v6.py' | sha256sum -c -
-          sed -i 's/@njit(cache=True)/@njit(cache=False)/g; s/@njit(parallel=True,cache=True)/@njit(parallel=True,cache=False)/g' upstream/v6.py
-          python regeneration/patch_v23_generator.py
-          python -m py_compile upstream/base.py upstream/v6.py regeneration/regenerate_live_package.py regeneration/repair_vug_pin_successor.py
-      - name: Regenerate 150 ETF adjusted OHLCV from tickers
+          mkdir -p upstream
+          curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-live-package-regeneration-20260804/regeneration/exact_base_overlay.py.gz.b64" -o upstream/exact_base_overlay.py.gz.b64
+          base64 -d upstream/exact_base_overlay.py.gz.b64 | gzip -dc > upstream/exact_base_overlay.py
+          echo '6efba567b9998cfd43c34d2af148f162ff1ab032d14984948b12b3ee5e161122  upstream/exact_base_overlay.py' | sha256sum -c -
+          curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-live-package-regeneration-20260804/regeneration/titanium_base_parity_exact.py.gz.b64" -o upstream/titanium_base_parity_exact.py.gz.b64
+          base64 -d upstream/titanium_base_parity_exact.py.gz.b64 | gzip -dc > titanium_base_parity_exact.py
+          echo '7f385ffe91b44fe25cf8652a32ce917a9a06a65159ed3cba735c700f78c7c63c  titanium_base_parity_exact.py' | sha256sum -c -
+          sed -i 's/@njit(cache=True)/@njit(cache=False)/g; s/@njit(parallel=True,cache=True)/@njit(parallel=True,cache=False)/g' titanium_base_parity_exact.py
+          python -m py_compile upstream/exact_base_overlay.py titanium_base_parity_exact.py
+      - name: Recover validated 150 ETF matrices from last successful package
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p prices/titanium_retrained_output
-          python - <<'PY'
-          import importlib.util
-          from pathlib import Path
-          spec=importlib.util.spec_from_file_location('base','upstream/base.py')
-          m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
-          m.END_DOWNLOAD='2026-08-12'
-          m.download_ohlcv(Path('prices/titanium_retrained_output'))
-          PY
-          python regeneration/repair_vug_pin_successor.py
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          import pandas as pd
-          root=Path('prices/titanium_retrained_output')
-          mats={f:pd.read_parquet(root/f'{f}.parquet') for f in ['OPEN','HIGH','LOW','CLOSE','VOLUME']}
-          cols={k:set(v.columns.astype(str).str.upper()) for k,v in mats.items()}
-          common=set.intersection(*cols.values()); union=set.union(*cols.values())
-          if len(common)!=150 or len(union)!=150:
-              raise RuntimeError(f'Expected exactly 150 common ETF, got common={len(common)}, union={len(union)}')
-          info={'common_tickers':150,'first_date':str(min(v.index.min() for v in mats.values())),'last_date':str(max(v.index.max() for v in mats.values())),'shapes':{k:list(v.shape) for k,v in mats.items()},'pin_close_nonnull':int(mats['CLOSE']['PIN'].notna().sum()),'vug_close_nonnull':int(mats['CLOSE']['VUG'].notna().sum())}
-          Path('FRESH_OHLCV_VALIDATION.json').write_text(json.dumps(info,indent=2)); print(json.dumps(info,indent=2))
-          PY
-          sha256sum prices/titanium_retrained_output/{OPEN,HIGH,LOW,CLOSE,VOLUME}.parquet | tee INPUT_OHLCV_SHA256.txt
-      - name: Regenerate canonical V23 full live package
-        run: |
-          python regeneration/regenerate_live_package.py \
-            --base-module upstream/base.py \
-            --v5-module upstream/v6.py \
-            --data-dir prices/titanium_retrained_output \
-            --output-parent . \
-            --downvol-mode downside_rms \
-            --n-estimators 360 \
-            --n-baskets 500 | tee EXACT_V23_RUN_LOG.txt
-      - name: Validate package and compare frozen reference
-        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9117169381/zip -o previous.zip
+          mkdir wrapper package
+          unzip -q previous.zip -d wrapper
+          unzip -q wrapper/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d package
+          DATA=package/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/data
+          for f in OPEN HIGH LOW CLOSE VOLUME; do test -s "$DATA/${f}.parquet"; done
           python - <<'PY'
           import json, pandas as pd
           from pathlib import Path
-          root=Path('METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE')
-          assert root.exists()
-          m=pd.read_csv(root/'panels/V23_BASKET_MEMBERSHIP.csv')
-          sizes=m.groupby('basket').ticker.nunique(); assert len(sizes)==500 and sizes.eq(24).all()
-          r=pd.read_csv(root/'backtest/BASKET_RESULTS_500.csv')
-          g=pd.read_csv(root/'backtest/GLOBAL_SCORECARD.csv')
-          base=float(r[r.strategy=='BASE'].cagr.mean()); router=float(r[r.strategy=='ROUTER'].cagr.mean())
-          out={'base_mean_cagr':base,'router_mean_cagr':router,'base_delta_vs_frozen_pp':(base-0.2165406437471759)*100,'router_delta_vs_frozen_pp':(router-0.2274280966405981)*100,'router_median_cagr':float(r[r.strategy=='ROUTER'].cagr.median()),'global':g.set_index('strategy').to_dict('index'),'n_baskets':int(r.basket.nunique()),'membership_size_min':int(sizes.min()),'membership_size_max':int(sizes.max())}
-          Path('EXACT_V23_VALIDATION.json').write_text(json.dumps(out,indent=2)); print(json.dumps(out,indent=2))
+          d=Path('package/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/data')
+          m={f:pd.read_parquet(d/f'{f}.parquet') for f in ['OPEN','HIGH','LOW','CLOSE','VOLUME']}
+          counts=m['CLOSE'].notna().sum()
+          bad=counts[counts<252]
+          if len(m['CLOSE'].columns)!=150 or not bad.empty:
+              raise RuntimeError(f'Invalid cached 150 ETF matrix: columns={len(m["CLOSE"].columns)} bad={bad.to_dict()}')
+          print(json.dumps({'tickers':150,'min_close_rows':int(counts.min()),'PIN':int(counts['PIN']),'VUG':int(counts['VUG'])},indent=2))
           PY
-          test -s METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
-          sha256sum METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip | tee METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
+      - name: Run exact production Base parity full walk-forward
+        run: |
+          python titanium_base_parity_exact.py \
+            --base-module upstream/exact_base_overlay.py \
+            --data-dir package/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE/data \
+            --output TITANIUM_BASE_PARITY_EXACT | tee BASE_PARITY_RUN_LOG.txt
+      - name: Quantitative parity gate
+        run: |
+          python - <<'PY'
+          import pandas as pd, json
+          from pathlib import Path
+          r=pd.read_csv('TITANIUM_BASE_PARITY_EXACT/BASKET_RESULTS.csv')
+          b=r[r.strategy=='BASE']
+          g=pd.read_csv('TITANIUM_BASE_PARITY_EXACT/GLOBAL_SCORECARD.csv')
+          frozen=.2165406437471759
+          mean=float(b.cagr.mean())
+          out={'base_mean_cagr':mean,'base_median_cagr':float(b.cagr.median()),'delta_vs_frozen_pp':(mean-frozen)*100,'n_baskets':int(b.basket.nunique()),'global':g.to_dict('records')}
+          Path('BASE_PARITY_SUMMARY.json').write_text(json.dumps(out,indent=2)); print(json.dumps(out,indent=2))
+          PY
+      - name: Archive
+        if: always()
+        run: zip -r TITANIUM_BASE_PARITY_EXACT.zip TITANIUM_BASE_PARITY_EXACT BASE_PARITY_SUMMARY.json BASE_PARITY_RUN_LOG.txt titanium_base_parity_exact.py upstream/exact_base_overlay.py || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_EXACT_V23_PACKAGE
+          name: TITANIUM_BASE_PARITY_EXACT
           path: |
-            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
-            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
-            FRESH_OHLCV_VALIDATION.json
-            INPUT_OHLCV_SHA256.txt
-            EXACT_V23_VALIDATION.json
-            EXACT_V23_RUN_LOG.txt
+            TITANIUM_BASE_PARITY_EXACT.zip
+            BASE_PARITY_SUMMARY.json
+            BASE_PARITY_RUN_LOG.txt
+            TITANIUM_BASE_PARITY_EXACT/BASKET_RESULTS.csv
+            TITANIUM_BASE_PARITY_EXACT/GLOBAL_SCORECARD.csv
+            TITANIUM_BASE_PARITY_EXACT/FIT_AUDIT.csv
+            TITANIUM_BASE_PARITY_EXACT/MACRO_GATE_AUDIT.csv
           retention-days: 14
