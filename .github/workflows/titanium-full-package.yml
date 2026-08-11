@@ -15,6 +15,7 @@ jobs:
       MKL_NUM_THREADS: '2'
       OPENBLAS_NUM_THREADS: '2'
       NUMEXPR_NUM_THREADS: '2'
+      NUMBA_DISABLE_CACHING: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -23,7 +24,7 @@ jobs:
       - name: Install frozen dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+          pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba 'yfinance>=0.2.65' requests
       - name: Reconstruct verified Titanium sources
         run: |
           mkdir -p upstream/gzpayload upstream/reconstruction
@@ -78,12 +79,39 @@ jobs:
           python -m py_compile upstream/*.py regeneration/regenerate_live_package.py
           grep -n "Random(20260721)" regeneration/regenerate_live_package.py
           grep -n "V23_BASKET_MEMBERSHIP" regeneration/regenerate_live_package.py
-      - name: Download frozen ticker OHLCV matrices
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Regenerate fresh 150 ETF OHLCV matrices
         run: |
-          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/8839840705/zip -o prior.zip
-          mkdir prior && unzip -q prior.zip -d prior
+          mkdir -p prior/titanium_retrained_output
+          python - <<'PY'
+          import importlib.util
+          from pathlib import Path
+          p=Path('upstream/titanium_retrained_current_data_audit.py')
+          spec=importlib.util.spec_from_file_location('fresh_dl',p)
+          m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+          # Download through the same adjusted-OHLC routine used by the audited runner.
+          m.END_DOWNLOAD='2026-08-12'
+          m.download_ohlcv(Path('prior/titanium_retrained_output'))
+          PY
+          curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/main/regeneration/repair_vug_pin_temp.py" -o repair_vug_pin_temp.py
+          sed -i "s#ROOT=Path('prices/titanium_retrained_output')#ROOT=Path('prior/titanium_retrained_output')#" repair_vug_pin_temp.py
+          sed -i "s/end='2026-08-08'/end='2026-08-12'/g" repair_vug_pin_temp.py
+          python repair_vug_pin_temp.py
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd, json
+          root=Path('prior/titanium_retrained_output')
+          mats={f:pd.read_parquet(root/f'{f}.parquet') for f in ['OPEN','HIGH','LOW','CLOSE','VOLUME']}
+          cols=[set(x.columns.astype(str).str.upper()) for x in mats.values()]
+          common=set.intersection(*cols); union=set.union(*cols)
+          expected=set(__import__('importlib').util.module_from_spec(__import__('importlib').util.spec_from_file_location('x','upstream/titanium_retrained_current_data_audit.py')).__dict__.keys()) if False else None
+          if len(common)!=150 or len(union)!=150:
+              raise RuntimeError(f'OHLCV universe mismatch: common={len(common)} union={len(union)} missing_by_field={{k:len(union-set(v.columns.astype(str).str.upper())) for k,v in mats.items()}}')
+          shapes={k:list(v.shape) for k,v in mats.items()}
+          nonnull={k:int(v.notna().sum().sum()) for k,v in mats.items()}
+          info={'common_tickers':len(common),'union_tickers':len(union),'shapes':shapes,'nonnull_cells':nonnull,'first_date':str(min(v.index.min() for v in mats.values())),'last_date':str(max(v.index.max() for v in mats.values()))}
+          Path('FRESH_OHLCV_VALIDATION.json').write_text(json.dumps(info,indent=2))
+          print(json.dumps(info,indent=2))
+          PY
           for f in OPEN HIGH LOW CLOSE VOLUME; do test -s "prior/titanium_retrained_output/${f}.parquet"; done
           sha256sum prior/titanium_retrained_output/{OPEN,HIGH,LOW,CLOSE,VOLUME}.parquet | tee INPUT_OHLCV_SHA256.txt
       - name: Regenerate exact V23 full package
@@ -134,6 +162,7 @@ jobs:
             METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
             V23_BASKET_MEMBERSHIP_SHA256.txt
             INPUT_OHLCV_SHA256.txt
+            FRESH_OHLCV_VALIDATION.json
             EXACT_V23_VALIDATION.json
             EXACT_V23_RUN_LOG.txt
-          retention-days: 7
+          retention-days: 14
