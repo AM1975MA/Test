@@ -1,0 +1,60 @@
+name: Titanium Final Live Smoke
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen-compatible runtime
+        run: pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+      - name: Download canonical ticker-data package
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9007704034/zip -o outer.zip
+          mkdir outer && unzip -q outer.zip -d outer
+          inner=$(find outer -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' -print -quit); test -n "$inner"
+          mkdir pkg && unzip -q "$inner" -d pkg
+          root=$(find pkg -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE' -print -quit); test -n "$root"
+          echo "PKG=$root" >> "$GITHUB_ENV"
+      - name: Patch Opportunity state to official excess-max definition
+        run: |
+          cp "$PKG/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE.py" LIVE_OFFICIAL_OPP.py
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('LIVE_OFFICIAL_OPP.py');s=p.read_text()
+          old="ote['opp_raw']=sum(w*ote[c+'_rank'] for c,w in weights.items());ote['opp_z']=(ote.opp_raw-ote.opp_raw.mean())/(ote.opp_raw.std(ddof=0)+1e-12);og=ote.sort_values('opp_z',ascending=False)"
+          new="ote['opp_raw']=ote['target_excess_max_pred'];ote['opp_z']=(ote.opp_raw-ote.opp_raw.mean())/(ote.opp_raw.std(ddof=0)+1e-12);og=ote.sort_values('opp_z',ascending=False)"
+          if s.count(old)!=1: raise SystemExit('Opportunity patch pattern mismatch')
+          s=s.replace(old,new)
+          s=s.replace("ROOT=Path(__file__).resolve().parent", "ROOT=Path(__import__('os').environ['PKG']).resolve()")
+          p.write_text(s)
+          PY
+          python -m py_compile LIVE_OFFICIAL_OPP.py
+      - name: Execute corrected live runner
+        run: |
+          python LIVE_OFFICIAL_OPP.py --output LIVE_SIGNAL_OFFICIAL_OPP.json
+          cat "$PKG/LIVE_SIGNAL_OFFICIAL_OPP.json"
+          python - <<'PY'
+          import json, os
+          p=os.path.join(os.environ['PKG'],'LIVE_SIGNAL_OFFICIAL_OPP.json')
+          x=json.load(open(p))
+          assert x['top1'] and x['top2'] and abs(sum(x['final_weights'].values())-1)<1e-9
+          assert 'opportunity_gap_z' in x and 'router_on' in x
+          print('LIVE_SMOKE_OK',x['signal_date'],x['top1'],x['top2'],x['final_weights'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_FINAL_LIVE_SMOKE
+          path: |
+            LIVE_OFFICIAL_OPP.py
+            ${{ env.PKG }}/LIVE_SIGNAL_OFFICIAL_OPP.json
+          retention-days: 7
