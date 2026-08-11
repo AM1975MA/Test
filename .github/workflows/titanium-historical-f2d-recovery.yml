@@ -1,0 +1,102 @@
+name: Titanium Historical F2D Recovery
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen-compatible dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+      - name: Download best full data package
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9053946155/zip -o outer.zip
+          mkdir outer && unzip -q outer.zip -d outer
+          inner=$(find outer -name 'TITANIUM_IMMUTABLE_REGENERATION.zip' -print -quit); test -n "$inner"
+          mkdir package_extract && unzip -q "$inner" -d package_extract
+          root=$(find package_extract -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_REGENERATED' -print -quit); test -n "$root"
+          echo "PKG=$root" >> "$GITHUB_ENV"
+          test -f "$root/IMMUTABLE_RUNNER.py"
+          test -f "$root/OPEN.parquet"
+      - name: Reconstruct verified source dependencies
+        run: |
+          mkdir -p upstream/gzpayload upstream/reconstruction
+          for f in gz_00.b64 gz_01.b64 gz_02.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-source-faithful-20260803/gzpayload/$f" -o "upstream/gzpayload/$f"; done
+          cat upstream/gzpayload/gz_*.b64 | base64 -d | gzip -dc > upstream/base.py
+          echo '76b5da95c865a069d967189d61b1c8df3338eacc5a0e8941e8ee7025c42caf60  upstream/base.py' | sha256sum -c -
+          for f in rv5_00.b64 rv5_01.b64 rv5_02.b64 rv5_04.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-reconstruction-v5-20260803/reconstruction/$f" -o "upstream/reconstruction/$f"; done
+          for f in rv5_03a.b64 rv5_03b.b64 rv5_03c.b64 rv5_03d.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-reconstruction-v5-20260803/reconstruction/$f" -o "upstream/reconstruction/$f"; done
+          cat upstream/reconstruction/rv5_00.b64 upstream/reconstruction/rv5_01.b64 upstream/reconstruction/rv5_02.b64 upstream/reconstruction/rv5_03a.b64 upstream/reconstruction/rv5_03b.b64 upstream/reconstruction/rv5_03c.b64 upstream/reconstruction/rv5_03d.b64 upstream/reconstruction/rv5_04.b64 | base64 -d | gzip -dc > upstream/v5.py
+          echo 'ba99f9ce08d96e6b56567d44bf18b5caa7a76ccf13a7d44546e6d1416d79d65a  upstream/v5.py' | sha256sum -c -
+      - name: Patch historical pre-freeze ranker
+        run: |
+          python forensics/patch_historical_f2d.py --input "$PKG/IMMUTABLE_RUNNER.py" --output HISTORICAL_F2D_RUNNER.py
+          python -m py_compile HISTORICAL_F2D_RUNNER.py
+          grep -n "compact_historical_params\|target_rank_21.to_numpy\|n_estimators=60" HISTORICAL_F2D_RUNNER.py
+      - name: Run full 500-basket historical F2D recovery
+        run: |
+          set +e
+          python HISTORICAL_F2D_RUNNER.py --base-module upstream/base.py --v5-module upstream/v5.py --data-dir "$PKG" --output HISTORICAL_F2D_RECOVERY --n-estimators 60 --n-baskets 500
+          rc=$?
+          set -e
+          echo "Runner exit code after compute/package stage: $rc"
+          test -f HISTORICAL_F2D_RECOVERY/BASKET_RESULTS_500.csv
+          test -f HISTORICAL_F2D_RECOVERY/TARGET_ARRAYS_500.npz
+          test -f HISTORICAL_F2D_RECOVERY/TITANIUM_CONCENTRATION_FRONTIER_PATHS.npz
+          test -f HISTORICAL_F2D_RECOVERY/GLOBAL_SCORECARD.csv
+          test -f HISTORICAL_F2D_RECOVERY/KNOWN_SIGNAL_CHECK.json
+          echo "Core computation outputs verified; packaging failure, if any, is non-blocking."
+      - name: Run literal frozen execution on recovered targets
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/AM1975MA/Test/titanium-exact-frozen-execution-20260811/forensics/exact_frozen_execution_probe.py -o exact_frozen_execution_probe.py
+          python exact_frozen_execution_probe.py --package HISTORICAL_F2D_RECOVERY --output HISTORICAL_F2D_EXACT_EXECUTION
+      - name: Summarize recovery
+        run: |
+          python - <<'PY'
+          import json,pandas as pd
+          b=pd.read_csv('HISTORICAL_F2D_RECOVERY/BASKET_RESULTS_500.csv')
+          e=pd.read_csv('HISTORICAL_F2D_EXACT_EXECUTION/SUMMARY.csv')
+          g=pd.read_csv('HISTORICAL_F2D_RECOVERY/GLOBAL_SCORECARD.csv')
+          print('CURRENT EXECUTION MEANS')
+          print(b.groupby('strategy').cagr.agg(['mean','median']).to_string())
+          print('\nLITERAL FROZEN EXECUTION')
+          print(e.to_string(index=False))
+          print('\nGLOBAL')
+          print(g.to_string(index=False))
+          payload={'current_execution':b.groupby('strategy').cagr.mean().to_dict(),'exact_frozen_execution':e.to_dict('records'),'global':g.to_dict('records')}
+          open('HISTORICAL_F2D_RECOVERY_SUMMARY.json','w').write(json.dumps(payload,indent=2))
+          PY
+      - name: Build complete requested package
+        run: |
+          mkdir -p HISTORICAL_F2D_RECOVERY/code HISTORICAL_F2D_RECOVERY/audits
+          cp HISTORICAL_F2D_RUNNER.py HISTORICAL_F2D_RECOVERY/code/
+          cp forensics/patch_historical_f2d.py HISTORICAL_F2D_RECOVERY/code/
+          cp upstream/base.py HISTORICAL_F2D_RECOVERY/code/source_feature_engine.py
+          cp upstream/v5.py HISTORICAL_F2D_RECOVERY/code/source_execution_reconstruction.py
+          cp HISTORICAL_F2D_EXACT_EXECUTION/SUMMARY.csv HISTORICAL_F2D_RECOVERY/audits/EXACT_FROZEN_EXECUTION_SUMMARY.csv
+          cp HISTORICAL_F2D_EXACT_EXECUTION/SUMMARY.json HISTORICAL_F2D_RECOVERY/audits/EXACT_FROZEN_EXECUTION_SUMMARY.json
+          cp HISTORICAL_F2D_RECOVERY_SUMMARY.json HISTORICAL_F2D_RECOVERY/audits/
+          (cd HISTORICAL_F2D_RECOVERY && sha256sum $(find . -type f -printf '%P\n' | sort) > SHA256SUMS.txt)
+          zip -r METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip HISTORICAL_F2D_RECOVERY HISTORICAL_F2D_EXACT_EXECUTION
+          sha256sum METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip > METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          path: |
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
+            METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_SHA256.txt
+            HISTORICAL_F2D_RECOVERY_SUMMARY.json
+          retention-days: 7
