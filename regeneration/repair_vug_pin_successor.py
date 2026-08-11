@@ -16,8 +16,9 @@ def direct(t,start,end):
         res=r.json().get('chart',{}).get('result') or []
         if not res: return pd.DataFrame()
         z=res[0]; q=z['indicators']['quote'][0]; adj=(z['indicators'].get('adjclose') or [{}])[0].get('adjclose',q.get('close'))
-        idx=pd.to_datetime(z['timestamp'],unit='s',utc=True).tz_convert(None)
+        idx=pd.to_datetime(z['timestamp'],unit='s',utc=True).tz_convert(None).normalize()
         raw=pd.DataFrame({'Open':q.get('open'),'High':q.get('high'),'Low':q.get('low'),'Close':q.get('close'),'Volume':q.get('volume'),'Adj Close':adj},index=idx)
+        raw=raw[~raw.index.duplicated(keep='last')].sort_index()
         fac=raw['Adj Close']/raw['Close'].replace(0,np.nan)
         for f in ['Open','High','Low','Close']: raw[f]=raw[f]*fac
         return raw[FIELDS].dropna(how='all')
@@ -29,7 +30,8 @@ def yfdl(t,start,end):
         x=yf.download(t,start=start,end=end,auto_adjust=True,actions=False,repair=True,progress=False,threads=False,multi_level_index=False,timeout=60)
         if isinstance(x.columns,pd.MultiIndex): x.columns=x.columns.get_level_values(0)
         if x.empty: return pd.DataFrame()
-        x.index=pd.to_datetime(x.index).tz_localize(None)
+        x.index=pd.to_datetime(x.index).tz_localize(None).normalize()
+        x=x[~x.index.duplicated(keep='last')].sort_index()
         return x[FIELDS].apply(pd.to_numeric,errors='coerce').dropna(how='all')
     except Exception as e:
         print(t,'yf failed',repr(e)); return pd.DataFrame()
@@ -40,7 +42,7 @@ def stooq_pin():
         r=requests.get(url,headers={'User-Agent':'Mozilla/5.0'},timeout=60); r.raise_for_status()
         x=pd.read_csv(io.StringIO(r.text))
         if 'Date' not in x or len(x)<252: return pd.DataFrame()
-        x['Date']=pd.to_datetime(x['Date']); x=x.set_index('Date').rename(columns=str.title)
+        x['Date']=pd.to_datetime(x['Date']).dt.normalize(); x=x.set_index('Date').rename(columns=str.title)
         return x[FIELDS].apply(pd.to_numeric,errors='coerce').dropna(how='all')
     except Exception as e:
         print('PIN Stooq failed',repr(e)); return pd.DataFrame()
@@ -73,8 +75,12 @@ else:
     print('PIN/IMVP stitched continuity:',pin_old.index.min(),pin_old.index.max(),len(pin_old),'->',imvp.index.min(),imvp.index.max(),len(imvp),'combined',len(pin))
 
 for ticker,raw in [('VUG',vug),('PIN',pin)]:
+    raw=raw.copy(); raw.index=pd.to_datetime(raw.index).normalize()
     for f in FIELDS:
-        mat=pd.read_parquet(ROOT/f'{f.upper()}.parquet'); mat.index=pd.to_datetime(mat.index).tz_localize(None)
-        mat[ticker]=pd.to_numeric(raw[f],errors='coerce').reindex(mat.index)
+        mat=pd.read_parquet(ROOT/f'{f.upper()}.parquet'); mat.index=pd.to_datetime(mat.index).tz_localize(None).normalize()
+        aligned=pd.to_numeric(raw[f],errors='coerce').reindex(mat.index)
+        if int(aligned.notna().sum())<252:
+            raise RuntimeError(f'{ticker} {f} alignment failed: {int(aligned.notna().sum())} rows')
+        mat[ticker]=aligned
         mat.to_parquet(ROOT/f'{f.upper()}.parquet',compression='zstd')
     print(ticker,'rows',len(raw),'first',raw.index.min(),'last',raw.index.max(),'close_nonnull',int(raw.Close.notna().sum()))
