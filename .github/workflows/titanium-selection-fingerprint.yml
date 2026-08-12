@@ -1,0 +1,41 @@
+name: Titanium selection fingerprint
+
+on:
+  push:
+    branches: [titanium-gap-recovery-20260812]
+    paths:
+      - 'titanium_training_native/audit_titanium_selection_fingerprint.py'
+      - '.github/workflows/titanium-selection-fingerprint.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install pandas==2.2.3 numpy==2.3.5 pyarrow==25.0.1
+      - uses: actions/download-artifact@v4
+        with:
+          name: TITANIUM_PLATINUM_COMPACT_EXACT_TAIL_CVAR
+          path: best
+          repository: AM1975MA/Test
+          run-id: 31647358105
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compute selection fingerprint
+        run: |
+          SCORES=$(find best -name OOS_TICKER_SCORES.parquet | head -1)
+          LABELS=$(find best -name COMPACT_LABELED.parquet | head -1)
+          MEM=$(find best -name BASKET_MEMBERSHIP_500.csv | head -1)
+          python titanium_training_native/audit_titanium_selection_fingerprint.py --scores "$SCORES" --labels "$LABELS" --membership "$MEM" --output results
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_SELECTION_FINGERPRINT_BEST1908
+          path: results
+          retention-days: 30
