@@ -41,27 +41,30 @@ jobs:
           run-id: 31464219662
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Locate test bed
+      - name: Extract and verify test bed
         run: |
-          find input -maxdepth 3 -type f | sort | head -80
-          test -f input/HISTORICAL_F2D_RECOVERY/code/HISTORICAL_F2D_RUNNER.py
-          test -f input/HISTORICAL_F2D_RECOVERY/code/source_feature_engine.py
-          test -f input/HISTORICAL_F2D_RECOVERY/code/source_execution_reconstruction.py
-          test -f input/HISTORICAL_F2D_RECOVERY/OPEN.parquet
+          test -f input/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
+          mkdir -p input/package
+          unzip -q input/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d input/package
+          find input/package/HISTORICAL_F2D_RECOVERY -maxdepth 2 -type f | sort | head -80
+          test -f input/package/HISTORICAL_F2D_RECOVERY/code/HISTORICAL_F2D_RUNNER.py
+          test -f input/package/HISTORICAL_F2D_RECOVERY/code/source_feature_engine.py
+          test -f input/package/HISTORICAL_F2D_RECOVERY/code/source_execution_reconstruction.py
+          test -f input/package/HISTORICAL_F2D_RECOVERY/OPEN.parquet
 
       - name: Reconstruct training-native runner
         run: |
           python titanium_training_native/rebuild_v0.py \
-            --input input/HISTORICAL_F2D_RECOVERY/code/HISTORICAL_F2D_RUNNER.py \
+            --input input/package/HISTORICAL_F2D_RECOVERY/code/HISTORICAL_F2D_RUNNER.py \
             --output work/TITANIUM_TRAINING_NATIVE_V0.py
           python -m py_compile work/TITANIUM_TRAINING_NATIVE_V0.py
 
       - name: Train from scratch and backtest 500 baskets
         run: |
           python work/TITANIUM_TRAINING_NATIVE_V0.py \
-            --base-module input/HISTORICAL_F2D_RECOVERY/code/source_feature_engine.py \
-            --v5-module input/HISTORICAL_F2D_RECOVERY/code/source_execution_reconstruction.py \
-            --data-dir input/HISTORICAL_F2D_RECOVERY \
+            --base-module input/package/HISTORICAL_F2D_RECOVERY/code/source_feature_engine.py \
+            --v5-module input/package/HISTORICAL_F2D_RECOVERY/code/source_execution_reconstruction.py \
+            --data-dir input/package/HISTORICAL_F2D_RECOVERY \
             --output results \
             --n-estimators 360 \
             --n-baskets 500
@@ -98,6 +101,7 @@ jobs:
           mkdir -p artifact/source
           cp -f work/TITANIUM_TRAINING_NATIVE_V0.py artifact/source/ 2>/dev/null || true
           cp -f titanium_training_native/rebuild_v0.py artifact/source/
+          cp -f titanium_training_native/METHOD_CONTRACT.md artifact/source/
           if [ -d results ]; then cp -a results artifact/; fi
 
       - name: Upload validation artifact
