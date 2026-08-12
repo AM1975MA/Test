@@ -1,0 +1,110 @@
+name: Titanium training-native V0
+
+on:
+  push:
+    branches:
+      - titanium-training-native-rebuild-20260812
+    paths:
+      - 'titanium_training_native/**'
+      - '.github/workflows/titanium-training-native-v0.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install pinned runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install \
+            numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 \
+            scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 \
+            pyarrow matplotlib
+
+      - name: Download GitHub-hosted historical source/data test bed
+        uses: actions/download-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          path: input
+          repository: AM1975MA/Test
+          run-id: 31464219662
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Locate test bed
+        run: |
+          find input -maxdepth 3 -type f | sort | head -80
+          test -f input/HISTORICAL_F2D_RECOVERY/code/HISTORICAL_F2D_RUNNER.py
+          test -f input/HISTORICAL_F2D_RECOVERY/code/source_feature_engine.py
+          test -f input/HISTORICAL_F2D_RECOVERY/code/source_execution_reconstruction.py
+          test -f input/HISTORICAL_F2D_RECOVERY/OPEN.parquet
+
+      - name: Reconstruct training-native runner
+        run: |
+          python titanium_training_native/rebuild_v0.py \
+            --input input/HISTORICAL_F2D_RECOVERY/code/HISTORICAL_F2D_RUNNER.py \
+            --output work/TITANIUM_TRAINING_NATIVE_V0.py
+          python -m py_compile work/TITANIUM_TRAINING_NATIVE_V0.py
+
+      - name: Train from scratch and backtest 500 baskets
+        run: |
+          python work/TITANIUM_TRAINING_NATIVE_V0.py \
+            --base-module input/HISTORICAL_F2D_RECOVERY/code/source_feature_engine.py \
+            --v5-module input/HISTORICAL_F2D_RECOVERY/code/source_execution_reconstruction.py \
+            --data-dir input/HISTORICAL_F2D_RECOVERY \
+            --output results \
+            --n-estimators 360 \
+            --n-baskets 500
+
+      - name: Validation summary
+        run: |
+          python - <<'PY'
+          import json
+          import pandas as pd
+          from pathlib import Path
+          res = pd.read_csv('results/BASKET_RESULTS_500.csv')
+          glob = pd.read_csv('results/GLOBAL_SCORECARD.csv')
+          chk = json.loads(Path('results/KNOWN_SIGNAL_CHECK.json').read_text())
+          out = {
+              'base_mean_cagr': float(res.loc[res.strategy.eq('BASE'),'cagr'].mean()),
+              'direct_mean_cagr': float(res.loc[res.strategy.eq('DIRECT'),'cagr'].mean()),
+              'router_mean_cagr': float(res.loc[res.strategy.eq('ROUTER'),'cagr'].mean()),
+              'base_median_cagr': float(res.loc[res.strategy.eq('BASE'),'cagr'].median()),
+              'router_median_cagr': float(res.loc[res.strategy.eq('ROUTER'),'cagr'].median()),
+              'checkpoint': chk,
+              'global': glob.to_dict(orient='records'),
+              'official_frozen_base_full': 0.2165406437471759,
+              'official_frozen_router_full': 0.2274280966405981,
+          }
+          out['base_gap_pp'] = 100*(out['base_mean_cagr']-out['official_frozen_base_full'])
+          out['router_gap_pp'] = 100*(out['router_mean_cagr']-out['official_frozen_router_full'])
+          Path('results/TRAINING_NATIVE_V0_VALIDATION.json').write_text(json.dumps(out, indent=2))
+          print(json.dumps(out, indent=2))
+          PY
+
+      - name: Package source and results
+        if: always()
+        run: |
+          mkdir -p artifact/source
+          cp -f work/TITANIUM_TRAINING_NATIVE_V0.py artifact/source/ 2>/dev/null || true
+          cp -f titanium_training_native/rebuild_v0.py artifact/source/
+          if [ -d results ]; then cp -a results artifact/; fi
+
+      - name: Upload validation artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_TRAINING_NATIVE_V0_RESULTS
+          path: artifact
+          retention-days: 30
