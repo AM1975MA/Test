@@ -1,0 +1,74 @@
+name: Titanium Jul24 decile lineage
+
+on:
+  push:
+    branches: [titanium-gap-recovery-20260812]
+    paths:
+      - 'titanium_training_native/apply_sg_decile_relevance.py'
+      - '.github/workflows/titanium-jul24-decile-lineage.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  lineage:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 85
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 numba pyarrow matplotlib
+      - uses: actions/download-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          path: input
+          repository: AM1975MA/Test
+          run-id: 31464219662
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Jul24-lineage candidate
+        run: |
+          mkdir -p input/package work
+          unzip -q input/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d input/package
+          ROOT=input/package/HISTORICAL_F2D_RECOVERY
+          python titanium_training_native/rebuild_v1.py --runner-input $ROOT/code/HISTORICAL_F2D_RUNNER.py --execution-input $ROOT/code/source_execution_reconstruction.py --runner-output work/candidate.py --execution-output work/exact_execution.py
+          python titanium_training_native/apply_platinum_lineage_parity.py --source work/candidate.py
+          python titanium_training_native/apply_exact_broad_tail_parity.py --source work/candidate.py
+          python titanium_training_native/apply_exact_jul27_cvar.py --source work/candidate.py
+          python titanium_training_native/apply_sg_decile_relevance.py --source work/candidate.py
+          python -m py_compile work/candidate.py work/exact_execution.py
+      - name: Retrain and backtest 500 baskets
+        continue-on-error: true
+        run: |
+          ROOT=input/package/HISTORICAL_F2D_RECOVERY
+          python work/candidate.py --base-module $ROOT/code/source_feature_engine.py --v5-module work/exact_execution.py --data-dir $ROOT --output results --n-estimators 360 --n-baskets 500
+      - name: Score against frozen reference
+        run: |
+          test -f results/PERIOD_SCORECARD_500.csv
+          python - <<'PY'
+          import json,math,pandas as pd
+          from pathlib import Path
+          fr={'D1':.15022713687299,'D2':.2264479079604543,'DEV':.1861726630584223,'HOLD':.2760542274772661,'FULL':.2165406437471759}
+          sc=pd.read_csv('results/PERIOD_SCORECARD_500.csv'); b=sc[sc.strategy.eq('BASE')].set_index('period')
+          p={k:{'cagr':float(b.loc[k,'cagr']),'frozen':v,'gap_pp':100*(float(b.loc[k,'cagr'])-v)} for k,v in fr.items()}
+          chk=json.loads(Path('results/KNOWN_SIGNAL_CHECK.json').read_text())
+          o={'variant':'JUL24_DECILE_RELEVANCE_PLATINUM_FEATURES_EXACT_TAIL_CVAR','periods':p,'rmse_pp_5periods':math.sqrt(sum(x['gap_pp']**2 for x in p.values())/5),'checkpoint':chk}
+          Path('results/JUL24_LINEAGE_SCORE.json').write_text(json.dumps(o,indent=2)); print(json.dumps(o,indent=2))
+          PY
+      - name: Archive
+        if: always()
+        run: |
+          mkdir -p artifact/source
+          cp -f work/candidate.py work/exact_execution.py artifact/source/ 2>/dev/null || true
+          if [ -d results ]; then cp -a results artifact/; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TITANIUM_JUL24_DECILE_LINEAGE
+          path: artifact
+          retention-days: 30
