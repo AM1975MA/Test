@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - run: python -m pip install pandas==2.2.3 numpy==2.3.5 pyarrow
-      - name: Download canonical V1 outputs
+      - name: Download canonical V1 matrices
         uses: actions/download-artifact@v4
         with:
           name: TITANIUM_TRAINING_NATIVE_V1_CANONICAL
@@ -29,9 +29,27 @@ jobs:
           repository: AM1975MA/Test
           run-id: 31616228523
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download historical raw fixture
+        uses: actions/download-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          path: fixture
+          repository: AM1975MA/Test
+          run-id: 31464219662
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract raw fixture
+        run: |
+          mkdir -p fixture_pkg
+          unzip -q fixture/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d fixture_pkg
+          find fixture_pkg -name DAILY_OHLCV_ACTIONS_150ETF.parquet -print
       - name: Compare OHLC paths
-        run: python titanium_training_native/audit_adjusted_ohlc_path.py --root v1 --output results
+        run: |
+          python titanium_training_native/audit_adjusted_ohlc_path.py \
+            --matrix-root v1 \
+            --raw-root fixture_pkg \
+            --output results
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: TITANIUM_ADJUSTED_OHLC_AUDIT
           path: results
