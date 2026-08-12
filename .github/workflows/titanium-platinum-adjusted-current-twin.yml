@@ -1,0 +1,76 @@
+name: Titanium Platinum adjusted current twin
+
+on:
+  push:
+    branches: [titanium-gap-recovery-20260812]
+    paths:
+      - 'titanium_training_native/download_platinum_adjusted_ohlcv.py'
+      - '.github/workflows/titanium-platinum-adjusted-current-twin.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  twin:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 numba pyarrow matplotlib 'yfinance>=0.2.65'
+      - uses: actions/download-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          path: fixture
+          repository: AM1975MA/Test
+          run-id: 31464219662
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Materialize source and fixture
+        run: |
+          mkdir -p fixture_pkg work data
+          unzip -q fixture/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d fixture_pkg
+          ROOT=fixture_pkg/HISTORICAL_F2D_RECOVERY
+          cp $ROOT/BASKET_MEMBERSHIP_500.csv data/BASKET_MEMBERSHIP_500.csv
+          python titanium_training_native/rebuild_v1.py --runner-input $ROOT/code/HISTORICAL_F2D_RUNNER.py --execution-input $ROOT/code/source_execution_reconstruction.py --runner-output work/candidate.py --execution-output work/exact_execution.py
+          python titanium_training_native/apply_platinum_lineage_parity.py --source work/candidate.py
+          python -m py_compile work/candidate.py work/exact_execution.py
+      - name: Download 150 ETF with exact Platinum adjustment mechanics
+        run: |
+          ROOT=fixture_pkg/HISTORICAL_F2D_RECOVERY
+          python titanium_training_native/download_platinum_adjusted_ohlcv.py --base-module $ROOT/code/source_feature_engine.py --output data --start 2005-01-01 --end 2026-08-03
+      - name: Retrain full chain and backtest same 500 recovery baskets
+        continue-on-error: true
+        run: |
+          ROOT=fixture_pkg/HISTORICAL_F2D_RECOVERY
+          python work/candidate.py --base-module $ROOT/code/source_feature_engine.py --v5-module work/exact_execution.py --data-dir data --output results --n-estimators 360 --n-baskets 500
+      - name: Score twin against frozen reference
+        run: |
+          test -f results/PERIOD_SCORECARD_500.csv
+          python - <<'PY'
+          import json,math,pandas as pd
+          from pathlib import Path
+          fr={'D1':.15022713687299,'D2':.2264479079604543,'DEV':.1861726630584223,'HOLD':.2760542274772661,'FULL':.2165406437471759}
+          sc=pd.read_csv('results/PERIOD_SCORECARD_500.csv'); b=sc[sc.strategy.eq('BASE')].set_index('period')
+          p={k:{'cagr':float(b.loc[k,'cagr']),'gap_pp':100*(float(b.loc[k,'cagr'])-v)} for k,v in fr.items()}
+          chk=json.loads(Path('results/KNOWN_SIGNAL_CHECK.json').read_text()); dl=pd.read_csv('data/PLATINUM_DOWNLOAD_LOG.csv')
+          o={'variant':'CURRENT_VINTAGE_PLATINUM_ADJUSTMENT_PLUS_PLATINUM_COMPACT','usable_downloads':int(dl.ok.fillna(False).sum()),'periods':p,'rmse_pp_5periods':math.sqrt(sum(x['gap_pp']**2 for x in p.values())/5),'checkpoint':chk}
+          Path('results/CURRENT_PLATINUM_TWIN_SCORE.json').write_text(json.dumps(o,indent=2)); print(json.dumps(o,indent=2))
+          PY
+      - name: Archive
+        if: always()
+        run: |
+          mkdir -p artifact
+          cp -a results artifact/ 2>/dev/null || true
+          cp -a data/PLATINUM_DOWNLOAD_LOG.csv artifact/ 2>/dev/null || true
+          cp -a work/candidate.py work/exact_execution.py artifact/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TITANIUM_PLATINUM_ADJUSTED_CURRENT_TWIN
+          path: artifact
+          retention-days: 30
