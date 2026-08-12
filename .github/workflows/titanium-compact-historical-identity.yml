@@ -1,0 +1,109 @@
+name: Titanium Compact historical identity
+
+on:
+  push:
+    branches: [titanium-gap-recovery-20260812]
+    paths:
+      - 'titanium_training_native/apply_historical_compact_identity.py'
+      - '.github/workflows/titanium-compact-historical-identity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  identify:
+    strategy:
+      fail-fast: false
+      max-parallel: 7
+      matrix:
+        include:
+          - {id: S3B60_B5_XGB214, config: S3B60_B5, xgb: '2.1.4'}
+          - {id: S3B60_B5_XGB313, config: S3B60_B5, xgb: '3.1.3'}
+          - {id: S3B60_R100_XGB214, config: S3B60_R100, xgb: '2.1.4'}
+          - {id: S3B60_R100_XGB313, config: S3B60_R100, xgb: '3.1.3'}
+          - {id: REIMPL360_B10_XGB302, config: REIMPL360_B10, xgb: '3.0.2'}
+          - {id: REIMPL360_B10_XGB313, config: REIMPL360_B10, xgb: '3.1.3'}
+          - {id: REIMPL360_R100_XGB302, config: REIMPL360_R100, xgb: '3.0.2'}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install controlled runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install \
+            numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 \
+            scikit-learn==1.8.0 xgboost==${{ matrix.xgb }} joblib==1.5.3 \
+            numba pyarrow matplotlib
+          python - <<'PY'
+          import xgboost, sklearn, numpy, pandas
+          print('xgboost',xgboost.__version__,'sklearn',sklearn.__version__,'numpy',numpy.__version__,'pandas',pandas.__version__)
+          PY
+      - name: Download immutable historical test fixture
+        uses: actions/download-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          path: input
+          repository: AM1975MA/Test
+          run-id: 31464219662
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Materialize candidate from canonical V1
+        run: |
+          mkdir -p input/package work
+          unzip -q input/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d input/package
+          ROOT=input/package/HISTORICAL_F2D_RECOVERY
+          python titanium_training_native/rebuild_v1.py \
+            --runner-input $ROOT/code/HISTORICAL_F2D_RUNNER.py \
+            --execution-input $ROOT/code/source_execution_reconstruction.py \
+            --runner-output work/titanium_candidate.py \
+            --execution-output work/exact_execution.py
+          python titanium_training_native/apply_historical_compact_identity.py \
+            --source work/titanium_candidate.py --config ${{ matrix.config }}
+          python -m py_compile work/titanium_candidate.py work/exact_execution.py
+      - name: Train all annual models from scratch and backtest 500 baskets
+        run: |
+          ROOT=input/package/HISTORICAL_F2D_RECOVERY
+          python work/titanium_candidate.py \
+            --base-module $ROOT/code/source_feature_engine.py \
+            --v5-module work/exact_execution.py \
+            --data-dir $ROOT --output results --n-estimators 360 --n-baskets 500
+      - name: Score forensic identity against frozen periods
+        run: |
+          python - <<'PY'
+          import json, math, pandas as pd
+          from pathlib import Path
+          frozen={'D1':.15022713687299,'D2':.2264479079604543,'DEV':.1861726630584223,'HOLD':.2760542274772661,'FULL':.2165406437471759}
+          sc=pd.read_csv('results/PERIOD_SCORECARD_500.csv')
+          b=sc[sc.strategy.eq('BASE')].set_index('period')
+          chk=json.loads(Path('results/KNOWN_SIGNAL_CHECK.json').read_text())
+          periods={}
+          sq=[]
+          for p,v in frozen.items():
+              c=float(b.loc[p,'cagr']); gap=100*(c-v); periods[p]={'cagr':c,'gap_pp':gap}; sq.append(gap*gap)
+          rmse_pp=math.sqrt(sum(sq)/len(sq))
+          top=[]
+          if isinstance(chk,dict):
+              for key in ('top5','top','ranking'):
+                  if isinstance(chk.get(key),list): top=chk[key]; break
+          out={'id':'${{ matrix.id }}','config':'${{ matrix.config }}','xgboost':'${{ matrix.xgb }}','periods':periods,'rmse_pp_5periods':rmse_pp,'checkpoint':chk,'checkpoint_target':['USO','PALL']}
+          Path('results/HISTORICAL_IDENTITY_SCORE.json').write_text(json.dumps(out,indent=2,default=str))
+          print(json.dumps(out,indent=2,default=str))
+          PY
+      - name: Archive compact forensic result
+        if: always()
+        run: |
+          mkdir -p artifact/source
+          cp -f work/titanium_candidate.py work/exact_execution.py artifact/source/ 2>/dev/null || true
+          cp -f titanium_training_native/apply_historical_compact_identity.py artifact/source/
+          if [ -d results ]; then cp -a results artifact/; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TITANIUM_ID_${{ matrix.id }}
+          path: artifact
+          retention-days: 30
