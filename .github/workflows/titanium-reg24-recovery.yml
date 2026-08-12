@@ -1,0 +1,62 @@
+name: Titanium REG24 Frozen Selection Recovery
+on:
+  push:
+    branches: [titanium-reg24-recovery-20260812]
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      actions: read
+      contents: read
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      NUMBA_DISABLE_CACHING: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned analysis dependencies
+        run: pip install numpy==2.3.5 pandas==2.2.3 pyarrow numba
+      - name: Recover MAT_d42 checkpoint-aligned package
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9114935822/zip -o outer.zip
+          mkdir outer pkg
+          unzip -q outer.zip -d outer
+          inner=$(find outer -name 'TITANIUM_MAT_d42.zip' -print -quit); test -n "$inner"
+          unzip -q "$inner" -d pkg
+          root=$(find pkg -type d -name 'MAT_d42' -print -quit); test -n "$root"
+          echo "PKG=$root" >> "$GITHUB_ENV"
+          test -s "$root/OOS_TICKER_SCORES.parquet"
+          test -s "$root/BASKET_MEMBERSHIP_500.csv"
+          test -s "$root/OPEN.parquet"
+      - name: Run causal REG24 archaeology grid
+        run: |
+          python regeneration/reg24_recovery_audit.py --package "$PKG" --output REG24_RECOVERY | tee REG24_RUN_LOG.txt
+      - name: Parity sanity gates
+        run: |
+          python - <<'PY'
+          import json,pandas as pd
+          s=json.load(open('REG24_RECOVERY/SUMMARY.json'))
+          r=pd.read_csv('REG24_RECOVERY/REG24_VARIANT_SCORECARD.csv')
+          assert s['known_signal']['matches_USO_PALL'], s['known_signal']
+          assert len(r)>=50
+          assert 'RAW_NO_HYSTERESIS' in set(r.variant)
+          print(json.dumps({'best_variant':s['best_variant'],'best_DEV_RMSE_pp':s['best']['DEV_RMSE_pp'],'best_FULL_cagr':s['best']['FULL_cagr'],'known_signal':s['known_signal']['matches_USO_PALL']},indent=2))
+          PY
+      - name: Archive
+        if: always()
+        run: zip -r TITANIUM_REG24_RECOVERY.zip REG24_RECOVERY REG24_RUN_LOG.txt regeneration/reg24_recovery_audit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TITANIUM_REG24_RECOVERY
+          path: TITANIUM_REG24_RECOVERY.zip
+          retention-days: 14
