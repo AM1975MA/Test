@@ -1,0 +1,50 @@
+name: Titanium gap eligibility ablation
+
+on:
+  push:
+    branches: [titanium-gap-recovery-20260812]
+    paths:
+      - 'titanium_training_native/postscore_eligibility_ablation.py'
+      - '.github/workflows/titanium-gap-eligibility.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  eligibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install runtime
+        run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 numba pyarrow matplotlib
+      - name: Download completed V1 training artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: TITANIUM_TRAINING_NATIVE_V1_CANONICAL
+          path: v1
+          repository: AM1975MA/Test
+          run-id: 31616228523
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run score-time eligibility ablation
+        run: |
+          test -f v1/results/OOS_TICKER_SCORES.parquet
+          test -f v1/source/exact_execution_v1.py
+          python titanium_training_native/postscore_eligibility_ablation.py --artifact-root v1 --output results
+      - name: Archive
+        if: always()
+        run: |
+          mkdir -p artifact
+          cp -a results artifact/ 2>/dev/null || true
+          cp titanium_training_native/postscore_eligibility_ablation.py artifact/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TITANIUM_GAP_ELIGIBILITY
+          path: artifact
+          retention-days: 30
