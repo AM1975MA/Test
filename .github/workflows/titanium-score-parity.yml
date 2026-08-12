@@ -1,0 +1,35 @@
+name: Titanium score parity audit
+on:
+  push:
+    branches: [titanium-gap-recovery-20260812]
+    paths:
+      - 'titanium_training_native/compare_historical_score_panels.py'
+      - '.github/workflows/titanium-score-parity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  parity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 pyarrow
+      - uses: actions/download-artifact@v4
+        with:
+          name: TITANIUM_TRAINING_NATIVE_V1_CANONICAL
+          path: v1
+          repository: AM1975MA/Test
+          run-id: 31616228523
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compare V1 against historical panels
+        run: python titanium_training_native/compare_historical_score_panels.py --root v1 --output results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TITANIUM_HISTORICAL_SCORE_PARITY
+          path: results
+          retention-days: 30
