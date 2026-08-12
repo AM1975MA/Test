@@ -1,0 +1,160 @@
+name: Titanium training-native V1 canonical
+
+on:
+  push:
+    branches:
+      - titanium-training-native-v1-20260812
+    paths:
+      - 'titanium_training_native/**'
+      - '.github/workflows/titanium-training-native-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pinned runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install \
+            numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 \
+            scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 \
+            numba pyarrow matplotlib
+
+      - name: Download GitHub-hosted historical data test bed
+        uses: actions/download-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          path: input
+          repository: AM1975MA/Test
+          run-id: 31464219662
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract validation fixture
+        run: |
+          test -f input/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip
+          mkdir -p input/package
+          unzip -q input/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d input/package
+          ROOT=input/package/HISTORICAL_F2D_RECOVERY
+          test -f $ROOT/code/HISTORICAL_F2D_RUNNER.py
+          test -f $ROOT/code/source_feature_engine.py
+          test -f $ROOT/code/source_execution_reconstruction.py
+          test -f $ROOT/BASKET_MEMBERSHIP_500.csv
+          test -f $ROOT/OPEN.parquet
+          echo "Validation fixture ready"
+
+      - name: Materialize canonical V1 sources
+        run: |
+          ROOT=input/package/HISTORICAL_F2D_RECOVERY
+          mkdir -p work
+          python titanium_training_native/rebuild_v1.py \
+            --runner-input $ROOT/code/HISTORICAL_F2D_RUNNER.py \
+            --execution-input $ROOT/code/source_execution_reconstruction.py \
+            --runner-output work/titanium_training_native_v1.py \
+            --execution-output work/exact_execution_v1.py
+          python -m py_compile work/titanium_training_native_v1.py work/exact_execution_v1.py
+
+      - name: Pre-fit method contract tests
+        run: |
+          python titanium_training_native/validate_contract.py \
+            --runner work/titanium_training_native_v1.py \
+            --execution work/exact_execution_v1.py
+
+      - name: Train every annual model from scratch and backtest
+        run: |
+          ROOT=input/package/HISTORICAL_F2D_RECOVERY
+          python work/titanium_training_native_v1.py \
+            --base-module $ROOT/code/source_feature_engine.py \
+            --v5-module work/exact_execution_v1.py \
+            --data-dir $ROOT \
+            --output results \
+            --n-estimators 360 \
+            --n-baskets 500
+
+      - name: Post-fit leakage and result contract tests
+        run: |
+          python titanium_training_native/validate_contract.py \
+            --runner work/titanium_training_native_v1.py \
+            --execution work/exact_execution_v1.py \
+            --results results
+
+      - name: Build frozen-reference comparison
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import pandas as pd
+          ref = {
+            'D1': {'BASE': {'cagr':0.15022713687299,'maxdd':-0.207382590085061,'sharpe':0.8068518524881511,'calmar':0.7990520502260339},
+                   'ROUTER': {'cagr':0.15022713687299,'maxdd':-0.207382590085061,'sharpe':0.8068518524881511,'calmar':0.7990520502260339}},
+            'D2': {'BASE': {'cagr':0.2264479079604543,'maxdd':-0.2911055084533397,'sharpe':0.8141517091591729,'calmar':0.9045274620238156},
+                   'ROUTER': {'cagr':0.2372324888624407,'maxdd':-0.2971991772906276,'sharpe':0.8238724280088617,'calmar':0.9173228412587482}},
+            'DEV': {'BASE': {'cagr':0.1861726630584223,'maxdd':-0.3032222021036044,'sharpe':0.7914401010255743,'calmar':0.7010213171603239},
+                    'ROUTER': {'cagr':0.1913018804692021,'maxdd':-0.3082448048898485,'sharpe':0.7958953219396163,'calmar':0.7029793669473287}},
+            'HOLD': {'BASE': {'cagr':0.2760542274772661,'maxdd':-0.2771392937964511,'sharpe':0.9875581652260864,'calmar':1.0949853550384523},
+                     'ROUTER': {'cagr':0.2982011099828467,'maxdd':-0.2928827560444171,'sharpe':1.0030709126318866,'calmar':1.1105476460476498}},
+            'FULL': {'BASE': {'cagr':0.2165406437471759,'maxdd':-0.339350999208692,'sharpe':0.8680773452280528,'calmar':0.7172721558498814},
+                     'ROUTER': {'cagr':0.2274280966405981,'maxdd':-0.3495694212952301,'sharpe':0.8776637510899595,'calmar':0.722961411906838}},
+          }
+          s=pd.read_csv('results/PERIOD_SCORECARD_500.csv')
+          rows=[]
+          for period,v in ref.items():
+            for strategy,r in v.items():
+              q=s[(s.period==period)&(s.strategy==strategy)]
+              if q.empty: continue
+              x=q.iloc[0]
+              row={'period':period,'strategy':strategy}
+              for metric,val in r.items():
+                row['actual_'+metric]=float(x[metric]);row['frozen_'+metric]=val
+                row['gap_'+metric]=float(x[metric])-val
+              rows.append(row)
+          cmp=pd.DataFrame(rows)
+          cmp.to_csv('results/FROZEN_REFERENCE_COMPARISON.csv',index=False)
+          chk=json.loads(Path('results/KNOWN_SIGNAL_CHECK.json').read_text())
+          global_score=pd.read_csv('results/GLOBAL_SCORECARD.csv').to_dict(orient='records')
+          full_base=cmp[(cmp.period=='FULL')&(cmp.strategy=='BASE')].iloc[0]
+          full_router=cmp[(cmp.period=='FULL')&(cmp.strategy=='ROUTER')].iloc[0]
+          summary={
+            'checkpoint':chk,
+            'full_base_cagr':float(full_base.actual_cagr),
+            'full_base_gap_pp':100*float(full_base.gap_cagr),
+            'full_router_cagr':float(full_router.actual_cagr),
+            'full_router_gap_pp':100*float(full_router.gap_cagr),
+            'unrestricted_150':global_score,
+            'historical_parity_pass':bool(chk.get('matches',False) and abs(float(full_base.gap_cagr))<0.0025 and abs(float(full_router.gap_cagr))<0.0025),
+          }
+          Path('results/TRAINING_NATIVE_V1_VALIDATION.json').write_text(json.dumps(summary,indent=2))
+          print(cmp.to_string(index=False))
+          print(json.dumps(summary,indent=2))
+          PY
+
+      - name: Package canonical sources and results
+        if: always()
+        run: |
+          mkdir -p artifact/source
+          cp -f work/titanium_training_native_v1.py artifact/source/ 2>/dev/null || true
+          cp -f work/exact_execution_v1.py artifact/source/ 2>/dev/null || true
+          cp -f titanium_training_native/rebuild_v1.py artifact/source/
+          cp -f titanium_training_native/validate_contract.py artifact/source/
+          cp -f titanium_training_native/METHOD_CONTRACT.md artifact/source/
+          if [ -d results ]; then cp -a results artifact/; fi
+          find artifact -type f -print0 | sort -z | xargs -0 sha256sum > artifact/SHA256SUMS.txt
+
+      - name: Upload canonical validation artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_TRAINING_NATIVE_V1_CANONICAL
+          path: artifact
+          retention-days: 30
