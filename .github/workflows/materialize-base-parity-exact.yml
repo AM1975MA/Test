@@ -1,0 +1,29 @@
+name: Materialize exact Base parity source
+
+on:
+  push:
+    branches: [titanium-gap-recovery-20260812]
+    paths: ['.github/workflows/materialize-base-parity-exact.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and decode archived source
+        run: |
+          mkdir -p artifact
+          curl -fsSL https://raw.githubusercontent.com/AM1975MA/Test/titanium-base-exact-parity-20260812/regeneration/titanium_base_parity_exact.py.gz.b64 -o archived.b64
+          base64 -d archived.b64 | gzip -dc > artifact/titanium_base_parity_exact.py
+          python -m py_compile artifact/titanium_base_parity_exact.py
+          sha256sum artifact/titanium_base_parity_exact.py | tee artifact/SHA256.txt
+          wc -l -c artifact/titanium_base_parity_exact.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_BASE_PARITY_EXACT_SOURCE
+          path: artifact
+          retention-days: 30
