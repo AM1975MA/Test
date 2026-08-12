@@ -37,10 +37,16 @@ jobs:
           repository: AM1975MA/Test
           run-id: 31464219662
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract raw fixture
+      - name: Recursively extract raw fixture
         run: |
           mkdir -p fixture_pkg
           unzip -q fixture/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d fixture_pkg
+          for pass in 1 2 3; do
+            while IFS= read -r -d '' z; do
+              d="${z%.zip}_unpacked"
+              if [ ! -d "$d" ]; then mkdir -p "$d"; unzip -q "$z" -d "$d" || true; fi
+            done < <(find fixture_pkg -type f -name '*.zip' -print0)
+          done
           find fixture_pkg -name DAILY_OHLCV_ACTIONS_150ETF.parquet -print
       - name: Compare OHLC paths
         run: |
