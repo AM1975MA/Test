@@ -1,0 +1,65 @@
+name: Titanium Compact basket Optuna DEV
+
+on:
+  push:
+    branches: [titanium-gap-recovery-20260812]
+    paths:
+      - 'titanium_training_native/optimize_compact_basket_dev.py'
+      - '.github/workflows/titanium-compact-basket-optuna-dev.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  optimize:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 pyarrow==25.0.1 matplotlib optuna
+      - name: Download corrected source-faithful panel
+        uses: actions/download-artifact@v4
+        with:
+          name: TITANIUM_PLATINUM_COMPACT_EXACT_TAIL_CVAR
+          path: best
+          repository: AM1975MA/Test
+          run-id: 31647358105
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download constants fixture
+        uses: actions/download-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          path: fixture
+          repository: AM1975MA/Test
+          run-id: 31464219662
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Materialize inputs
+        run: |
+          mkdir -p fixture_pkg results
+          unzip -q fixture/METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip -d fixture_pkg
+          find best -name COMPACT_LABELED.parquet -print
+          find best -name BASKET_MEMBERSHIP_500.csv -print
+      - name: Optimize shard ${{ matrix.shard }} on DEV only
+        run: |
+          PANEL=$(find best -name COMPACT_LABELED.parquet | head -1)
+          MEM=$(find best -name BASKET_MEMBERSHIP_500.csv | head -1)
+          BASE=fixture_pkg/HISTORICAL_F2D_RECOVERY/code/source_feature_engine.py
+          python titanium_training_native/optimize_compact_basket_dev.py \
+            --panel "$PANEL" --membership "$MEM" --base-module "$BASE" \
+            --output results --trials 12 --shard ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_COMPACT_BASKET_OPTUNA_DEV_${{ matrix.shard }}
+          path: results
+          retention-days: 30
