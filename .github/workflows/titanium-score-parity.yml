@@ -3,7 +3,6 @@ on:
   push:
     branches: [titanium-gap-recovery-20260812]
     paths:
-      - 'titanium_training_native/compare_historical_score_panels.py'
       - '.github/workflows/titanium-score-parity.yml'
   workflow_dispatch:
 permissions:
@@ -18,18 +17,126 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 pyarrow
-      - uses: actions/download-artifact@v4
+      - name: Download generated training-native V1
+        uses: actions/download-artifact@v4
         with:
           name: TITANIUM_TRAINING_NATIVE_V1_CANONICAL
-          path: v1
+          path: generated
           repository: AM1975MA/Test
           run-id: 31616228523
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Compare V1 against historical panels
-        run: python titanium_training_native/compare_historical_score_panels.py --root v1 --output results
+      - name: Download independent historical F2D fixture
+        uses: actions/download-artifact@v4
+        with:
+          name: METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE
+          path: golden_artifact
+          repository: AM1975MA/Test
+          run-id: 31464219662
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Materialize independent golden panel
+        run: |
+          mkdir -p golden_pkg
+          INNER=$(find golden_artifact -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE.zip' | head -1)
+          test -n "$INNER"
+          unzip -q "$INNER" -d golden_pkg
+          test -f golden_pkg/HISTORICAL_F2D_RECOVERY/SUPER_GOLD_OOS_SCORE_PANEL.parquet
+          sha256sum generated/results/OOS_TICKER_SCORES.parquet golden_pkg/HISTORICAL_F2D_RECOVERY/SUPER_GOLD_OOS_SCORE_PANEL.parquet
+      - name: Independent row-level score parity
+        run: |
+          mkdir -p results
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import numpy as np
+          import pandas as pd
+          from scipy.stats import spearmanr
+
+          gen_path=Path('generated/results/OOS_TICKER_SCORES.parquet')
+          gold_path=Path('golden_pkg/HISTORICAL_F2D_RECOVERY/SUPER_GOLD_OOS_SCORE_PANEL.parquet')
+          g=pd.read_parquet(gen_path); h=pd.read_parquet(gold_path)
+          for x in (g,h):
+              x['signal_date']=pd.to_datetime(x['signal_date']).dt.tz_localize(None)
+              x['ticker']=x['ticker'].astype(str)
+          keys=['signal_date','ticker']
+          kg=set(map(tuple,g[keys].to_numpy())); kh=set(map(tuple,h[keys].to_numpy()))
+          common_cols=[c for c in g.columns if c in h.columns and c not in keys]
+          m=g.merge(h,on=keys,how='outer',suffixes=('_gen','_gold'),indicator=True)
+          both=m[m['_merge'].eq('both')].copy()
+          numeric=[]; categorical=[]
+          for c in common_cols:
+              a=pd.to_numeric(both[f'{c}_gen'],errors='coerce')
+              b=pd.to_numeric(both[f'{c}_gold'],errors='coerce')
+              ok=a.notna() & b.notna()
+              if ok.sum() >= max(10,int(.5*len(both))):
+                  d=(a[ok]-b[ok]).abs()
+                  rho=spearmanr(a[ok],b[ok]).statistic if ok.sum()>2 else np.nan
+                  numeric.append(dict(column=c,n=int(ok.sum()),spearman=float(rho) if np.isfinite(rho) else None,
+                                      mae=float(d.mean()),max_abs=float(d.max()),
+                                      exact_rate=float(np.isclose(a[ok],b[ok],rtol=0,atol=1e-12).mean())))
+              else:
+                  aa=both[f'{c}_gen'].astype('string'); bb=both[f'{c}_gold'].astype('string')
+                  ok=aa.notna() & bb.notna()
+                  categorical.append(dict(column=c,n=int(ok.sum()),agreement=float((aa[ok]==bb[ok]).mean()) if ok.any() else None))
+          pd.DataFrame(numeric).to_csv('results/COLUMN_NUMERIC_PARITY.csv',index=False)
+          pd.DataFrame(categorical).to_csv('results/COLUMN_CATEGORICAL_PARITY.csv',index=False)
+
+          tracked=[c for c in ['compact_rank','tail_raw','tail_rank','titanium_score_pre_macro','macro_bonus','titanium_score','TIT_R'] if c in common_cols]
+          monthly=[]
+          for dt,z in both.groupby('signal_date'):
+              row={'signal_date':dt}
+              for c in tracked:
+                  a=pd.to_numeric(z[f'{c}_gen'],errors='coerce'); b=pd.to_numeric(z[f'{c}_gold'],errors='coerce'); ok=a.notna()&b.notna()
+                  if ok.sum()>2:
+                      row[f'{c}_rho']=float(spearmanr(a[ok],b[ok]).statistic)
+                      row[f'{c}_mae']=float((a[ok]-b[ok]).abs().mean())
+                      row[f'{c}_maxabs']=float((a[ok]-b[ok]).abs().max())
+                      zg=z.loc[ok,keys].copy(); zg['a']=a[ok].to_numpy(); zg['b']=b[ok].to_numpy()
+                      ta=zg.sort_values(['a','ticker'],ascending=[False,True]).ticker.tolist()
+                      tb=zg.sort_values(['b','ticker'],ascending=[False,True]).ticker.tolist()
+                      row[f'{c}_top1_match']=bool(ta and tb and ta[0]==tb[0])
+                      row[f'{c}_top2_set_match']=set(ta[:2])==set(tb[:2])
+                      row[f'{c}_top5_overlap']=len(set(ta[:5])&set(tb[:5]))
+              monthly.append(row)
+          md=pd.DataFrame(monthly).sort_values('signal_date'); md.to_csv('results/MONTHLY_COMPONENT_PARITY.csv',index=False)
+
+          first_div={}
+          for c in tracked:
+              sub=md[['signal_date',f'{c}_maxabs']].dropna()
+              bad=sub[sub[f'{c}_maxabs']>1e-12]
+              first_div[c]=str(bad.signal_date.iloc[0].date()) if len(bad) else None
+
+          chk=[]
+          dt=pd.Timestamp('2026-06-30')
+          for label,df in [('generated',g),('golden',h)]:
+              z=df[df.signal_date.eq(dt)].sort_values(['TIT_R','ticker'],ascending=[False,True]).head(15)
+              for rank,(_,r) in enumerate(z.iterrows(),1):
+                  chk.append({'source':label,'rank':rank,'ticker':r.ticker,**{c:r[c] for c in tracked if c in r.index}})
+          pd.DataFrame(chk).to_csv('results/CHECKPOINT_2026_06_30.csv',index=False)
+
+          report={
+            'generated_shape':list(g.shape),'golden_shape':list(h.shape),
+            'generated_keys':len(kg),'golden_keys':len(kh),'common_keys':len(kg&kh),
+            'generated_only_keys':len(kg-kh),'golden_only_keys':len(kh-kg),
+            'common_columns':common_cols,'numeric_columns':numeric,'categorical_columns':categorical,
+            'first_divergence':first_div,
+            'monthly_summary':{}
+          }
+          for c in tracked:
+              rho=f'{c}_rho'; t1=f'{c}_top1_match'; t2=f'{c}_top2_set_match'; ov=f'{c}_top5_overlap'
+              report['monthly_summary'][c]={
+                'rho_mean':float(md[rho].mean()) if rho in md else None,
+                'rho_median':float(md[rho].median()) if rho in md else None,
+                'top1_match_rate':float(md[t1].mean()) if t1 in md else None,
+                'top2_set_match_rate':float(md[t2].mean()) if t2 in md else None,
+                'top5_overlap_mean':float(md[ov].mean()) if ov in md else None,
+              }
+          Path('results/INDEPENDENT_HISTORICAL_SCORE_PARITY.json').write_text(json.dumps(report,indent=2,default=str))
+          print(json.dumps(report,indent=2,default=str))
+          print(pd.DataFrame(chk).to_string(index=False))
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: TITANIUM_HISTORICAL_SCORE_PARITY
+          name: TITANIUM_INDEPENDENT_HISTORICAL_SCORE_PARITY
           path: results
           retention-days: 30
