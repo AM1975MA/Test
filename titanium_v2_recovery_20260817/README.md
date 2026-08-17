@@ -18,6 +18,7 @@ Read in this order:
 4. `ARTIFACTS.md`
 5. `live_parity_fixed/README.md`
 6. `retrain_only_official_baskets_20260818/RETRAIN_ONLY_RESULT.md`
+7. `target_redesign_20260818/TARGET_REDESIGN_REPORT.md`
 
 ## Directory policy
 
@@ -26,5 +27,6 @@ Read in this order:
 - `audit/` contains the direct frozen-vs-live comparison and a reproducible audit script.
 - `live_parity_fixed/` contains the correction, gates and validated text outputs. Canonical binary inputs remain in the complete archive referenced by `ARTIFACTS.md`.
 - `retrain_only_official_baskets_20260818/` contains the clean retraining-only experiment with official baskets fixed. It proves the fresh fit is deterministic but not equivalent to authenticated `TIT_R`.
+- `target_redesign_20260818/` tests five Compact targets while holding the rest of Titanium fixed. `CONSENSUS_MULTI` is the leading challenger, but remains unpromoted pending perturbation tests.
 
 Never overwrite the frozen baseline with output from `live_reference/`. A future live producer must either pass the parity gates or receive a new version name.
