@@ -1,0 +1,28 @@
+{
+  "status": "DIFFERENT",
+  "final_date": "2026-07-01",
+  "path_start": "2017-02-01",
+  "path_end": "2026-07-01",
+  "daily_observations": 2366,
+  "official_baskets": 500,
+  "official_frozen_v2": {
+    "baskets": 500,
+    "cagr_mean": 0.21654064374717594,
+    "cagr_median": 0.21558370673994653,
+    "maxdd_mean": -0.339350999208692,
+    "sharpe_mean": 0.868077345280489
+  },
+  "fresh_retrained_on_official_baskets": {
+    "baskets": 500,
+    "cagr_mean": 0.18838933132180766,
+    "cagr_median": 0.1823581427514479,
+    "maxdd_mean": -0.41283467724958406,
+    "sharpe_mean": 0.7489484335639466
+  },
+  "retrained_minus_official": {
+    "cagr_mean_pp": -2.815131242536828,
+    "maxdd_mean_pp": -7.348367804089206,
+    "sharpe_mean": -0.11912891171654238
+  },
+  "caveat": "The retrained path uses the current OHLC snapshot; the frozen path uses canonical frozen bytes. Selection membership, dates and strategy rules are fixed."
+}

@@ -17,6 +17,7 @@ Read in this order:
 3. `audit/LIVE_DISCREPANCY_METRICS.json`
 4. `ARTIFACTS.md`
 5. `live_parity_fixed/README.md`
+6. `retrain_only_official_baskets_20260818/RETRAIN_ONLY_RESULT.md`
 
 ## Directory policy
 
@@ -24,5 +25,6 @@ Read in this order:
 - `live_reference/` preserves the August regenerated live source, manifests, signal and selected audit outputs as a separate reference implementation.
 - `audit/` contains the direct frozen-vs-live comparison and a reproducible audit script.
 - `live_parity_fixed/` contains the correction, gates and validated text outputs. Canonical binary inputs remain in the complete archive referenced by `ARTIFACTS.md`.
+- `retrain_only_official_baskets_20260818/` contains the clean retraining-only experiment with official baskets fixed. It proves the fresh fit is deterministic but not equivalent to authenticated `TIT_R`.
 
 Never overwrite the frozen baseline with output from `live_reference/`. A future live producer must either pass the parity gates or receive a new version name.

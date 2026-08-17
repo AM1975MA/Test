@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "experiment": "fresh retraining only; official baskets, common dates, architecture and threshold fixed",
+  "elapsed_seconds": 245.86457657814026,
+  "data": {
+    "price_tickers": 150,
+    "price_start": "2005-01-03",
+    "price_end": "2026-07-31",
+    "retrained_rows": 17020,
+    "retrained_tickers": 148,
+    "retrained_signal_dates": 115,
+    "official_baskets": 500
+  },
+  "fresh_vs_existing_live_determinism": {
+    "key_rows": 17020,
+    "keys_identical": true,
+    "compact_rank_max_abs_delta": 0.0,
+    "compact_rank_allclose_1e_12": true,
+    "tail_rank_max_abs_delta": 0.0,
+    "tail_rank_allclose_1e_12": true,
+    "macro_bonus_max_abs_delta": 0.0,
+    "macro_bonus_allclose_1e_12": true,
+    "titanium_score_max_abs_delta": 0.0,
+    "titanium_score_allclose_1e_12": true
+  },
+  "fresh_retrained_vs_authenticated": {
+    "common_signal_dates": 113,
+    "common_start": "2017-01-31",
+    "common_end": "2026-05-29",
+    "common_tickers": 148,
+    "mean_monthly_score_correlation": 0.8374195249184165,
+    "unrestricted_top1_matches": 27,
+    "unrestricted_top1_agreement": 0.23893805309734514,
+    "basket_decisions": 56500,
+    "basket_top1_matches": 24545,
+    "basket_top1_agreement": 0.43442477876106195,
+    "basket_top2_ordered_matches": 8874,
+    "basket_top2_ordered_agreement": 0.15706194690265488,
+    "basket_top2_set_matches": 13856,
+    "basket_top2_set_agreement": 0.24523893805309735,
+    "concentration_regime_matches": 51225,
+    "concentration_regime_agreement": 0.9066371681415929
+  },
+  "isolated_monthly_replay": [
+    {
+      "strategy": "authenticated_TIT_R",
+      "baskets": 500,
+      "mean_months": 113.0,
+      "mean_cagr": 0.19714990103733926,
+      "median_cagr": 0.19913436310500088,
+      "mean_maxdd": -0.3622727266467263,
+      "mean_sharpe": 0.8061744247764666
+    },
+    {
+      "strategy": "fresh_retrained",
+      "baskets": 500,
+      "mean_months": 113.0,
+      "mean_cagr": 0.14403544884285646,
+      "median_cagr": 0.14123509835726833,
+      "mean_maxdd": -0.4413619487068673,
+      "mean_sharpe": 0.6134431335853877
+    }
+  ],
+  "interpretation_guardrails": [
+    "The selection comparison isolates retraining because official basket membership and common dates are fixed.",
+    "The monthly replay uses authenticated fwd_ret_21 labels and identical cost logic for both score panels.",
+    "The monthly replay is an attribution diagnostic and is not the official daily governor path scorecard."
+  ]
+}
