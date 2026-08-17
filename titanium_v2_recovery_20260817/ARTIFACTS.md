@@ -12,6 +12,13 @@ The inspected August live package is retained at:
 - Size: 89,912,144 bytes
 - SHA-256: `ffa94ba5518e556aaff16eface66687a5a64b417a01972412ea2e6a86553b128`
 
+The corrected parity-safe live/as-of package is retained at:
+
+- ChatGPT Library: `/METEOR_TITANIUM_V2_LIVE_PARITY_FIXED_20260818.zip`
+- Size: 54,562,479 bytes
+- SHA-256: `fd575a0f06f68b59273fc426083c592bdaa2e52df04273e1101b4143b15ef06f`
+- Validation: 500/500 baskets with 24 = 6×4 structure; 56,500/56,500 selections; official V2 metric gate PASS.
+
 ## Frozen sources of truth
 
 | Artifact | SHA-256 | Role |

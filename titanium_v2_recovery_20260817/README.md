@@ -8,6 +8,7 @@ This directory preserves the recovered frozen Titanium V2 baseline and keeps the
 - Frozen Titanium V2 `BALANCED`: 12% top-1/top-2 margin threshold, 75/25 fallback, governor `RC0.25_RW0.25_RE0.25_CD3_S1`, D+1 execution.
 - Official mean CAGR across 500 baskets: **21.6541%**.
 - The August live-retrained producer is **not** score- or selection-identical to the frozen baseline.
+- `live_parity_fixed/` is the corrected historical/live-as-of producer: it reuses the official baskets and authenticated `TIT_R`, passes 56,500/56,500 selection decisions and reproduces the official V2 scorecard at 1 July 2026.
 
 Read in this order:
 
@@ -15,11 +16,13 @@ Read in this order:
 2. `audit/LIVE_DISCREPANCY_AUDIT.md`
 3. `audit/LIVE_DISCREPANCY_METRICS.json`
 4. `ARTIFACTS.md`
+5. `live_parity_fixed/README.md`
 
 ## Directory policy
 
 - `official/` contains the recovered specification, replay code, official membership and text-form results.
 - `live_reference/` preserves the August regenerated live source, manifests, signal and selected audit outputs as a separate reference implementation.
 - `audit/` contains the direct frozen-vs-live comparison and a reproducible audit script.
+- `live_parity_fixed/` contains the correction, gates and validated text outputs. Canonical binary inputs remain in the complete archive referenced by `ARTIFACTS.md`.
 
 Never overwrite the frozen baseline with output from `live_reference/`. A future live producer must either pass the parity gates or receive a new version name.

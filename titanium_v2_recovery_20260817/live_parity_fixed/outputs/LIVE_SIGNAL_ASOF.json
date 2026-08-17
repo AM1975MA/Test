@@ -1,0 +1,14 @@
+{
+  "mode": "authenticated_historical_asof",
+  "signal_date": "2026-05-29",
+  "entry_date": "2026-06-01",
+  "exit_date": "2026-07-01",
+  "top1": "BNO",
+  "top2": "USL",
+  "top1_score": 1.0,
+  "top2_score": 0.9932885906040269,
+  "margin": 0.006711409395973145,
+  "concentration_threshold": 0.12,
+  "top1_weight": 0.75,
+  "top2_weight": 0.25
+}
