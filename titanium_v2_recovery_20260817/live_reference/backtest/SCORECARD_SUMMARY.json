@@ -1,0 +1,61 @@
+{
+  "downvol_mode": "zero_std",
+  "oos_start": "2017-02-01",
+  "oos_end": "2026-07-01",
+  "n_tickers": 150,
+  "n_baskets": 500,
+  "n_months": 113,
+  "basket_base_mean_cagr": 0.18734884714817177,
+  "basket_direct_mean_cagr": 0.1839855161188246,
+  "basket_router_mean_cagr": 0.18599774409396452,
+  "basket_router_median_cagr": 0.1798916287337361,
+  "basket_router_mean_maxdd": -0.41287165297883555,
+  "basket_router_median_maxdd": -0.3769293794976069,
+  "basket_router_percentiles": {
+    "0.01": 0.006551328459543607,
+    "0.05": 0.042416438325099594,
+    "0.1": 0.060054276323491126,
+    "0.25": 0.12123163479926397,
+    "0.5": 0.1798916287337361,
+    "0.75": 0.24535392582359083,
+    "0.9": 0.3094137874192766,
+    "0.95": 0.35777945883268375,
+    "0.99": 0.45754428737843833
+  },
+  "global": {
+    "BASE": {
+      "cagr": 0.227544431721453,
+      "maxdd": -0.47765308110297255,
+      "sharpe": 0.8040537184551103,
+      "final_equity": 6.8839805838692305,
+      "router_active_months": 28,
+      "direct_condition_months": 9
+    },
+    "DIRECT": {
+      "cagr": 0.23538638180165372,
+      "maxdd": -0.4631606943430773,
+      "sharpe": 0.8152517089818677,
+      "final_equity": 7.309098423674817,
+      "router_active_months": 28,
+      "direct_condition_months": 9
+    },
+    "ROUTER": {
+      "cagr": 0.23261345549270263,
+      "maxdd": -0.4776530811029728,
+      "sharpe": 0.8126834073518096,
+      "final_equity": 7.156168329056934,
+      "router_active_months": 28,
+      "direct_condition_months": 9
+    }
+  },
+  "frozen_reference": {
+    "Titanium_V2_CAGR": 0.21654064,
+    "Titanium_V2_MaxDD": -0.339351,
+    "Titanium_V2_Sharpe": 0.868077,
+    "Opportunity_Router_CAGR": 0.2274281,
+    "Opportunity_Router_MaxDD": -0.349569,
+    "Opportunity_Router_Sharpe": 0.877664
+  },
+  "delta_vs_frozen_router_mean_cagr": -0.04143035590603547,
+  "elapsed_seconds": 392.8524248600006
+}

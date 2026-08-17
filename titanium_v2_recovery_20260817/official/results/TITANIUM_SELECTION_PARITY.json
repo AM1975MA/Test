@@ -1,0 +1,12 @@
+{
+  "official_selection_shape": [
+    500,
+    113
+  ],
+  "decision_pairs": 56500,
+  "matched_pairs": 56500,
+  "agreement": 1.0,
+  "observed_selected_indices": 129,
+  "observed_selected_tickers": 129,
+  "ambiguous_index_mappings": 0
+}
