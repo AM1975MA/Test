@@ -1,0 +1,11 @@
+{
+  "name": "QUARTERLY_REFIT",
+  "family": "cutoff",
+  "cadence": "quarterly",
+  "annual_month": 1,
+  "rolling_years": null,
+  "train_ticker_dropout": 0.0,
+  "feature_noise_fraction": 0.0,
+  "scenario_seed": 260818,
+  "inference_ticker_dropout": 0.0
+}

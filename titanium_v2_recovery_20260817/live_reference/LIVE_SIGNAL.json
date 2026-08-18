@@ -1,0 +1,22 @@
+{
+  "signal_date": "2026-07-31",
+  "top1": "USL",
+  "top2": "DBO",
+  "margin": 0.007432432432432412,
+  "base_weights": {
+    "USL": 0.75,
+    "DBO": 0.25
+  },
+  "top_macro": "C02_US_SECTOR_THEME",
+  "macro_gap_z": 0.2949345580448335,
+  "opportunity_top_cluster": 5,
+  "opportunity_gap_z": 0.5733705602747474,
+  "direct_condition": true,
+  "router_on": false,
+  "final_weights": {
+    "USL": 0.75,
+    "DBO": 0.25
+  },
+  "downvol_mode": "zero_std",
+  "model_cutoff": "2026-08-01"
+}

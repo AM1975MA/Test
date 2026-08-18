@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "checks": {
+    "scenario_rows_18x3": true,
+    "unique_scenario_variant": true,
+    "scenario_count_18": true,
+    "variants_exact": true,
+    "daily_observations_fixed": true,
+    "signal_dates_fixed": true,
+    "decision_count_fixed": true,
+    "finite_headline_metrics": true,
+    "control_three_variants": true,
+    "control_keys_exact": true,
+    "control_score_delta_zero": true,
+    "control_top1_exact": true,
+    "control_decision_regime_exact": true,
+    "basket_cagr_reconciles": true,
+    "basket_maxdd_reconciles": true,
+    "basket_sharpe_reconciles": true,
+    "cagr_deltas_reconcile": true,
+    "maxdd_deltas_reconcile": true,
+    "aggregate_reconciles": true,
+    "all_checks_pass": true
+  },
+  "decision_scorecard": [
+    {
+      "variant": "CONSENSUS_MULTI",
+      "stress_scenarios": 17,
+      "stress_wins": 14,
+      "cagr_gap_mean_pp": 1.3486525338234678,
+      "cagr_gap_median_pp": 1.599560180559767,
+      "cagr_gap_worst_pp": -2.935786383023305,
+      "drawdown_improvement_scenarios": 16,
+      "sharpe_improvement_scenarios": 14,
+      "top1_agreement_mean": 0.7247131702238417,
+      "top1_agreement_worst": 0.3702123893805309,
+      "stress_win_rate": 0.8235294117647058,
+      "stress_families": 5,
+      "family_balanced_cagr_gap_pp": 1.2584974787351417,
+      "family_balanced_maxdd_gap_pp": 4.636436325909734,
+      "family_balanced_sharpe_gap": 0.06725131341921763
+    },
+    {
+      "variant": "MULTI_45_35_20",
+      "stress_scenarios": 17,
+      "stress_wins": 12,
+      "cagr_gap_mean_pp": 0.40474012155460637,
+      "cagr_gap_median_pp": 0.4214922935659893,
+      "cagr_gap_worst_pp": -3.0010699602050246,
+      "drawdown_improvement_scenarios": 15,
+      "sharpe_improvement_scenarios": 13,
+      "top1_agreement_mean": 0.7230390421655388,
+      "top1_agreement_worst": 0.3615221238938053,
+      "stress_win_rate": 0.7058823529411765,
+      "stress_families": 5,
+      "family_balanced_cagr_gap_pp": 0.2952087468590787,
+      "family_balanced_maxdd_gap_pp": 2.2245972381905124,
+      "family_balanced_sharpe_gap": 0.021957127086784142
+    }
+  ],
+  "interpretation": {
+    "economic_robustness": "CONSENSUS_MULTI leads the stress matrix on win rate, family-balanced CAGR gap, drawdown and Sharpe.",
+    "selection_stability": "Neither changed target materially stabilizes top-1 choices versus BASELINE_21; rolling windows are the weakest family.",
+    "production_gate": "Do not promote a target-only change as the final solution. Carry CONSENSUS_MULTI into temporal ensembling and explicit stability regularization tests."
+  },
+  "limitations": [
+    "The 18 stress states are structured sensitivity cases, not independent statistical draws.",
+    "Ticker baskets overlap, so basket counts are not independent observations.",
+    "Price-vintage stress uses feature noise rather than a second vendor snapshot.",
+    "The same historical interval has now informed model selection; no further target-weight tuning should use it."
+  ]
+}

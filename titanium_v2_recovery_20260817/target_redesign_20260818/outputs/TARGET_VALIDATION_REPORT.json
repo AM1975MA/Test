@@ -1,0 +1,109 @@
+{
+  "status": "PASS",
+  "method": "paired monthly replay on authenticated fwd_ret_21 labels; 10 bps one-way turnover cost",
+  "dependency_control": "time-block bootstrap uses the monthly mean across 500 overlapping baskets before resampling",
+  "paired_results": [
+    {
+      "variant": "CONSENSUS_MULTI",
+      "baskets": 500,
+      "months": 113,
+      "mean_basket_cagr": 0.17573598943187796,
+      "mean_cagr_delta_vs_baseline_pp": 3.1700540589021506,
+      "median_cagr_delta_vs_baseline_pp": 3.1971529485419037,
+      "p10_cagr_delta_vs_baseline_pp": -7.5117955515306365,
+      "p90_cagr_delta_vs_baseline_pp": 13.969129893410908,
+      "fraction_baskets_improved": 0.67
+    },
+    {
+      "variant": "MULTI_45_35_20",
+      "baskets": 500,
+      "months": 113,
+      "mean_basket_cagr": 0.16717354494699194,
+      "mean_cagr_delta_vs_baseline_pp": 2.3138096104135513,
+      "median_cagr_delta_vs_baseline_pp": 2.6558881561206227,
+      "p10_cagr_delta_vs_baseline_pp": -8.084584038402758,
+      "p90_cagr_delta_vs_baseline_pp": 11.639603191391243,
+      "fraction_baskets_improved": 0.624
+    },
+    {
+      "variant": "BASELINE_21",
+      "baskets": 500,
+      "months": 113,
+      "mean_basket_cagr": 0.14403544884285646,
+      "mean_cagr_delta_vs_baseline_pp": 0.0,
+      "median_cagr_delta_vs_baseline_pp": 0.0,
+      "p10_cagr_delta_vs_baseline_pp": 0.0,
+      "p90_cagr_delta_vs_baseline_pp": 0.0,
+      "fraction_baskets_improved": 0.0
+    },
+    {
+      "variant": "DOWNSIDE_UTILITY",
+      "baskets": 500,
+      "months": 113,
+      "mean_basket_cagr": 0.1330348703295868,
+      "mean_cagr_delta_vs_baseline_pp": -1.1000578513269659,
+      "median_cagr_delta_vs_baseline_pp": -0.7239182230290075,
+      "p10_cagr_delta_vs_baseline_pp": -12.9316929216406,
+      "p90_cagr_delta_vs_baseline_pp": 9.426549010783237,
+      "fraction_baskets_improved": 0.458
+    },
+    {
+      "variant": "TARGET_42",
+      "baskets": 500,
+      "months": 113,
+      "mean_basket_cagr": 0.13023056607804412,
+      "mean_cagr_delta_vs_baseline_pp": -1.3804882764812305,
+      "median_cagr_delta_vs_baseline_pp": -1.199370555205681,
+      "p10_cagr_delta_vs_baseline_pp": -10.638663009640956,
+      "p90_cagr_delta_vs_baseline_pp": 7.474585540341626,
+      "fraction_baskets_improved": 0.45
+    }
+  ],
+  "twelve_month_block_bootstrap_vs_baseline": {
+    "CONSENSUS_MULTI": {
+      "samples": 10000,
+      "block_months": 12,
+      "gap_mean_pp": 2.396744629681736,
+      "gap_p025_pp": -3.679009994841313,
+      "gap_p05_pp": -2.6798402789850995,
+      "gap_median_pp": 2.4280955266161253,
+      "gap_p95_pp": 7.340304335829892,
+      "gap_p975_pp": 8.244800309429571,
+      "probability_gap_positive": 0.7815
+    },
+    "DOWNSIDE_UTILITY": {
+      "samples": 10000,
+      "block_months": 12,
+      "gap_mean_pp": -1.2783025916887725,
+      "gap_p025_pp": -6.543475999630174,
+      "gap_p05_pp": -5.673912412012467,
+      "gap_median_pp": -1.2938026172200412,
+      "gap_p95_pp": 3.18669655298218,
+      "gap_p975_pp": 4.105018197003163,
+      "probability_gap_positive": 0.3146
+    },
+    "MULTI_45_35_20": {
+      "samples": 10000,
+      "block_months": 12,
+      "gap_mean_pp": 1.925550496525152,
+      "gap_p025_pp": -2.864481019368802,
+      "gap_p05_pp": -2.1557516968649204,
+      "gap_median_pp": 1.85643282570368,
+      "gap_p95_pp": 6.14948344518335,
+      "gap_p975_pp": 7.087140584556864,
+      "probability_gap_positive": 0.7781
+    },
+    "TARGET_42": {
+      "samples": 10000,
+      "block_months": 12,
+      "gap_mean_pp": -1.7411000085444142,
+      "gap_p025_pp": -7.010861299990704,
+      "gap_p05_pp": -6.166294166681905,
+      "gap_median_pp": -1.695400613685738,
+      "gap_p95_pp": 2.532519266680102,
+      "gap_p975_pp": 3.271435679575284,
+      "probability_gap_positive": 0.2587
+    }
+  },
+  "caveat": "This validation isolates score selection on authenticated labels; it does not include the daily governor and is not the primary path scorecard."
+}

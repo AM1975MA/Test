@@ -1,0 +1,17 @@
+{
+  "name": "Titanium_V1",
+  "status": "frozen_research_baseline",
+  "frozen_date": "2026-07-26",
+  "alpha_engine": {
+    "selection": "top_1",
+    "score": "0.70 * Compact + 0.30 * Ridge_TailMix",
+    "macro_filter": "development_selected_conditional_macro_filter"
+  },
+  "risk_governor": "RC0.25_RW0.25_RE0.25_CD3_S1",
+  "mean_500_baskets": {
+    "development": {"cagr": 0.1884191577, "maxdd": -0.3556007940, "sharpe": 0.7330178251, "calmar": 0.6111574923},
+    "holdout": {"cagr": 0.2945729036, "maxdd": -0.3294241565, "sharpe": 0.9230440771, "calmar": 1.0011952079},
+    "full": {"cagr": 0.2231403753, "maxdd": -0.3975219916, "sharpe": 0.8078419392, "calmar": 0.6332131610}
+  },
+  "statistical_caveat": "TailMix and macro conditional filter do not independently pass definitive White Reality Check / CSCV thresholds after full multiple-testing correction."
+}

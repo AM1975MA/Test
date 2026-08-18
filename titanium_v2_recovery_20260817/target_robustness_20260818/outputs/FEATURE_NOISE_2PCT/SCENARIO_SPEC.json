@@ -1,0 +1,11 @@
+{
+  "name": "FEATURE_NOISE_2PCT",
+  "family": "price_vintage",
+  "cadence": "annual",
+  "annual_month": 1,
+  "rolling_years": null,
+  "train_ticker_dropout": 0.0,
+  "feature_noise_fraction": 0.02,
+  "scenario_seed": 20001,
+  "inference_ticker_dropout": 0.0
+}

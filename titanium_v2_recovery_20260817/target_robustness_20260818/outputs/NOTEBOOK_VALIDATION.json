@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "notebook": "TITANIUM_TARGET_ROBUSTNESS.ipynb",
+  "code_cells_executed": 6,
+  "execution_mode": "shared-state fallback runner",
+  "native_jupyter_available": false,
+  "note": "The environment did not include native Jupyter packages. The notebook JSON parsed successfully and every code cell executed top-to-bottom in one shared Python state with a non-interactive matplotlib backend."
+}

@@ -1,0 +1,713 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Titanium target robustness",
+    "description": "Decision report for the Compact target redesign under live retraining stress.",
+    "generatedAt": "2026-08-18T02:02:45.131877+00:00",
+    "sources": [
+      {
+        "id": "robustness_matrix",
+        "label": "Titanium target robustness matrix",
+        "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+        "query": {
+          "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+          "language": "sql",
+          "engine": "duckdb",
+          "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+          "executed_at": "2026-08-18T02:02:45.131877+00:00",
+          "tables_used": [
+            "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+            "ROBUSTNESS_BASKET_METRICS.csv.gz",
+            "ROBUSTNESS_FAMILY_SCORECARD.csv"
+          ],
+          "filters": [
+            "Official 500 baskets",
+            "113 signal dates",
+            "Daily path through 2026-07-01",
+            "Target weights and downstream strategy rules frozen"
+          ],
+          "metric_definitions": {
+            "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+            "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+            "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+          }
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Titanium target robustness"
+      },
+      {
+        "id": "technical-summary",
+        "type": "markdown",
+        "body": "## Technical summary\n\n**`CONSENSUS_MULTI` is the stronger target challenger, but a target-only change does not solve live instability.** Across 17 actual stress states it beats the paired 21-day baseline in 14 (82.4%). Giving each stress family equal weight, it adds 1.26 percentage points of CAGR, improves mean MaxDD by 4.64 pp, and adds 0.067 Sharpe. However, mean top-1 agreement is only 72.5% and the worst case is 37.0%, essentially no better than the baseline under the same perturbations.",
+        "source": {
+          "id": "robustness_matrix",
+          "label": "Titanium target robustness matrix",
+          "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+          "query": {
+            "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+            "language": "sql",
+            "engine": "duckdb",
+            "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+            "executed_at": "2026-08-18T02:02:45.131877+00:00",
+            "tables_used": [
+              "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+              "ROBUSTNESS_BASKET_METRICS.csv.gz",
+              "ROBUSTNESS_FAMILY_SCORECARD.csv"
+            ],
+            "filters": [
+              "Official 500 baskets",
+              "113 signal dates",
+              "Daily path through 2026-07-01",
+              "Target weights and downstream strategy rules frozen"
+            ],
+            "metric_definitions": {
+              "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+              "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+              "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+            }
+          }
+        }
+      },
+      {
+        "id": "decision-section",
+        "type": "markdown",
+        "body": "## The target improves economics, not decision stability\n\n`CONSENSUS_MULTI` leads `MULTI_45_35_20` on stress win rate, family-balanced return, drawdown and Sharpe. Its worst paired CAGR gap remains -2.94 pp, so it fails a reasonable production worst-case gate. The result supports keeping it as a challenger, not promoting it directly to live.",
+        "source": {
+          "id": "robustness_matrix",
+          "label": "Titanium target robustness matrix",
+          "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+          "query": {
+            "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+            "language": "sql",
+            "engine": "duckdb",
+            "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+            "executed_at": "2026-08-18T02:02:45.131877+00:00",
+            "tables_used": [
+              "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+              "ROBUSTNESS_BASKET_METRICS.csv.gz",
+              "ROBUSTNESS_FAMILY_SCORECARD.csv"
+            ],
+            "filters": [
+              "Official 500 baskets",
+              "113 signal dates",
+              "Daily path through 2026-07-01",
+              "Target weights and downstream strategy rules frozen"
+            ],
+            "metric_definitions": {
+              "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+              "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+              "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+            }
+          }
+        }
+      },
+      {
+        "id": "decision-table-block",
+        "type": "table",
+        "tableId": "decision-table"
+      },
+      {
+        "id": "family-section",
+        "type": "markdown",
+        "body": "## Rolling windows remain the failure mode\n\nThe multi-horizon targets are robust to simulated feature-vintage noise and ticker dropout, while the rolling-window family is negative on average. The 5-year window is the clearest failure: `CONSENSUS_MULTI` loses 2.94 pp of CAGR and worsens drawdown. Cutoff timing also matters: December is negative, February positive, and quarterly refitting strongly favors `CONSENSUS_MULTI`.",
+        "source": {
+          "id": "robustness_matrix",
+          "label": "Titanium target robustness matrix",
+          "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+          "query": {
+            "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+            "language": "sql",
+            "engine": "duckdb",
+            "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+            "executed_at": "2026-08-18T02:02:45.131877+00:00",
+            "tables_used": [
+              "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+              "ROBUSTNESS_BASKET_METRICS.csv.gz",
+              "ROBUSTNESS_FAMILY_SCORECARD.csv"
+            ],
+            "filters": [
+              "Official 500 baskets",
+              "113 signal dates",
+              "Daily path through 2026-07-01",
+              "Target weights and downstream strategy rules frozen"
+            ],
+            "metric_definitions": {
+              "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+              "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+              "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+            }
+          }
+        }
+      },
+      {
+        "id": "family-chart-block",
+        "type": "chart",
+        "chartId": "family-cagr-gap"
+      },
+      {
+        "id": "weakness-section",
+        "type": "markdown",
+        "body": "## Negative states prevent production promotion\n\nThe table lists every state in which a candidate loses to the paired baseline. These are not discarded outliers; they define the present production risk.",
+        "source": {
+          "id": "robustness_matrix",
+          "label": "Titanium target robustness matrix",
+          "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+          "query": {
+            "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+            "language": "sql",
+            "engine": "duckdb",
+            "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+            "executed_at": "2026-08-18T02:02:45.131877+00:00",
+            "tables_used": [
+              "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+              "ROBUSTNESS_BASKET_METRICS.csv.gz",
+              "ROBUSTNESS_FAMILY_SCORECARD.csv"
+            ],
+            "filters": [
+              "Official 500 baskets",
+              "113 signal dates",
+              "Daily path through 2026-07-01",
+              "Target weights and downstream strategy rules frozen"
+            ],
+            "metric_definitions": {
+              "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+              "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+              "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+            }
+          }
+        }
+      },
+      {
+        "id": "weakness-table-block",
+        "type": "table",
+        "tableId": "weakness-table"
+      },
+      {
+        "id": "scope-section",
+        "type": "markdown",
+        "body": "## Scope, definitions and validation\n\nThe matrix uses 18 controlled states, 500 official baskets, 113 signal dates and 2,366 daily observations per state. Target weights, 125 features, XGBRanker parameters, three seeds, TailMix, macro layer, 70/30 blend, baskets, governor, costs, allocation rule, labels and evaluation OHLC stay fixed. The exact control has maximum score delta 0 and 100% decision agreement. Independent QA reconciles all scenario metrics to basket paths.",
+        "source": {
+          "id": "robustness_matrix",
+          "label": "Titanium target robustness matrix",
+          "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+          "query": {
+            "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+            "language": "sql",
+            "engine": "duckdb",
+            "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+            "executed_at": "2026-08-18T02:02:45.131877+00:00",
+            "tables_used": [
+              "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+              "ROBUSTNESS_BASKET_METRICS.csv.gz",
+              "ROBUSTNESS_FAMILY_SCORECARD.csv"
+            ],
+            "filters": [
+              "Official 500 baskets",
+              "113 signal dates",
+              "Daily path through 2026-07-01",
+              "Target weights and downstream strategy rules frozen"
+            ],
+            "metric_definitions": {
+              "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+              "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+              "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+            }
+          }
+        }
+      },
+      {
+        "id": "limitations-section",
+        "type": "markdown",
+        "body": "## Limitations and next step\n\nThe stress states are structured sensitivities, not independent statistical draws; baskets overlap; and price-vintage stress is feature noise rather than a second vendor snapshot. Next, preregister temporal rank ensembling across staggered cutoffs and longer admissible windows, then require cross-fit agreement before switching the live top-1. Do not retune target weights on the already inspected 2017-2026 history."
+      }
+    ],
+    "charts": [
+      {
+        "id": "family-cagr-gap",
+        "title": "Mean CAGR gap versus baseline by stress family",
+        "description": "Five stress families; percentage-point gap, equal weight within each family.",
+        "type": "bar",
+        "dataset": "family_gaps",
+        "encodings": {
+          "x": {
+            "field": "family",
+            "type": "nominal",
+            "title": "Stress family"
+          },
+          "y": {
+            "field": "cagr_gap_mean_pp",
+            "type": "quantitative",
+            "title": "CAGR gap (pp)"
+          },
+          "color": {
+            "field": "variant",
+            "type": "nominal",
+            "title": "Target"
+          }
+        },
+        "options": {
+          "grouping": "grouped",
+          "legend": {
+            "show": true
+          }
+        },
+        "source": {
+          "id": "robustness_matrix",
+          "label": "Titanium target robustness matrix",
+          "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+          "query": {
+            "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+            "language": "sql",
+            "engine": "duckdb",
+            "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+            "executed_at": "2026-08-18T02:02:45.131877+00:00",
+            "tables_used": [
+              "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+              "ROBUSTNESS_BASKET_METRICS.csv.gz",
+              "ROBUSTNESS_FAMILY_SCORECARD.csv"
+            ],
+            "filters": [
+              "Official 500 baskets",
+              "113 signal dates",
+              "Daily path through 2026-07-01",
+              "Target weights and downstream strategy rules frozen"
+            ],
+            "metric_definitions": {
+              "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+              "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+              "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+            }
+          }
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "decision-table",
+        "title": "Stress decision scorecard",
+        "description": "17 actual stress states; the exact control is excluded.",
+        "dataset": "decision_scorecard",
+        "columns": [
+          {
+            "field": "variant",
+            "label": "Target"
+          },
+          {
+            "field": "stress_wins",
+            "label": "Wins"
+          },
+          {
+            "field": "stress_scenarios",
+            "label": "States"
+          },
+          {
+            "field": "stress_win_rate",
+            "label": "Win rate",
+            "format": "percent"
+          },
+          {
+            "field": "family_balanced_cagr_gap_pp",
+            "label": "CAGR gap (pp)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "family_balanced_maxdd_gap_pp",
+            "label": "MaxDD gap (pp)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "family_balanced_sharpe_gap",
+            "label": "Sharpe gap",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "top1_agreement_mean",
+            "label": "Top-1 agreement",
+            "format": "percent"
+          },
+          {
+            "field": "top1_agreement_worst",
+            "label": "Worst top-1",
+            "format": "percent"
+          }
+        ],
+        "defaultSort": {
+          "field": "family_balanced_cagr_gap_pp",
+          "direction": "desc"
+        },
+        "source": {
+          "id": "robustness_matrix",
+          "label": "Titanium target robustness matrix",
+          "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+          "query": {
+            "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+            "language": "sql",
+            "engine": "duckdb",
+            "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+            "executed_at": "2026-08-18T02:02:45.131877+00:00",
+            "tables_used": [
+              "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+              "ROBUSTNESS_BASKET_METRICS.csv.gz",
+              "ROBUSTNESS_FAMILY_SCORECARD.csv"
+            ],
+            "filters": [
+              "Official 500 baskets",
+              "113 signal dates",
+              "Daily path through 2026-07-01",
+              "Target weights and downstream strategy rules frozen"
+            ],
+            "metric_definitions": {
+              "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+              "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+              "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+            }
+          }
+        }
+      },
+      {
+        "id": "weakness-table",
+        "title": "Candidate losses versus paired baseline",
+        "description": "All negative CAGR-gap states; positive MaxDD gap means smaller drawdown.",
+        "dataset": "negative_states",
+        "columns": [
+          {
+            "field": "scenario",
+            "label": "Scenario"
+          },
+          {
+            "field": "family",
+            "label": "Family"
+          },
+          {
+            "field": "variant",
+            "label": "Target"
+          },
+          {
+            "field": "cagr_delta_vs_baseline_pp",
+            "label": "CAGR gap (pp)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "maxdd_delta_vs_baseline_pp",
+            "label": "MaxDD gap (pp)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "basket_top1_agreement",
+            "label": "Top-1 agreement",
+            "format": "percent"
+          }
+        ],
+        "defaultSort": {
+          "field": "cagr_delta_vs_baseline_pp",
+          "direction": "asc"
+        },
+        "source": {
+          "id": "robustness_matrix",
+          "label": "Titanium target robustness matrix",
+          "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+          "query": {
+            "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+            "language": "sql",
+            "engine": "duckdb",
+            "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+            "executed_at": "2026-08-18T02:02:45.131877+00:00",
+            "tables_used": [
+              "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+              "ROBUSTNESS_BASKET_METRICS.csv.gz",
+              "ROBUSTNESS_FAMILY_SCORECARD.csv"
+            ],
+            "filters": [
+              "Official 500 baskets",
+              "113 signal dates",
+              "Daily path through 2026-07-01",
+              "Target weights and downstream strategy rules frozen"
+            ],
+            "metric_definitions": {
+              "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+              "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+              "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+            }
+          }
+        }
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "status": "ready",
+    "generatedAt": "2026-08-18T02:02:45.131877+00:00",
+    "datasets": {
+      "family_gaps": [
+        {
+          "variant": "CONSENSUS_MULTI",
+          "family": "cutoff",
+          "scenarios": 3,
+          "cagr_gap_mean_pp": 0.8817305405,
+          "cagr_gap_worst_pp": -1.9161800662,
+          "cagr_win_rate": 0.6666666667,
+          "maxdd_gap_mean_pp": 5.5668543257,
+          "sharpe_gap_mean": 0.0608794398,
+          "top1_agreement_mean": 0.7476755162,
+          "baskets_beating_baseline_mean": 0.5613333333
+        },
+        {
+          "variant": "CONSENSUS_MULTI",
+          "family": "price_vintage",
+          "scenarios": 3,
+          "cagr_gap_mean_pp": 2.8842816416,
+          "cagr_gap_worst_pp": 2.725788417,
+          "cagr_win_rate": 1.0,
+          "maxdd_gap_mean_pp": 6.7162915991,
+          "sharpe_gap_mean": 0.1256526595,
+          "top1_agreement_mean": 0.6898702065,
+          "baskets_beating_baseline_mean": 0.6493333333
+        },
+        {
+          "variant": "CONSENSUS_MULTI",
+          "family": "ticker_live",
+          "scenarios": 6,
+          "cagr_gap_mean_pp": 1.9057198949,
+          "cagr_gap_worst_pp": 0.5061139088,
+          "cagr_win_rate": 1.0,
+          "maxdd_gap_mean_pp": 5.6055913734,
+          "sharpe_gap_mean": 0.0928577949,
+          "top1_agreement_mean": 0.9039911504,
+          "baskets_beating_baseline_mean": 0.632
+        },
+        {
+          "variant": "CONSENSUS_MULTI",
+          "family": "ticker_training",
+          "scenarios": 2,
+          "cagr_gap_mean_pp": 1.6675287907,
+          "cagr_gap_worst_pp": 0.6817222963,
+          "cagr_win_rate": 1.0,
+          "maxdd_gap_mean_pp": 4.6213653489,
+          "sharpe_gap_mean": 0.0781614456,
+          "top1_agreement_mean": 0.6759823009,
+          "baskets_beating_baseline_mean": 0.575
+        },
+        {
+          "variant": "CONSENSUS_MULTI",
+          "family": "window",
+          "scenarios": 3,
+          "cagr_gap_mean_pp": -1.046773474,
+          "cagr_gap_worst_pp": -2.935786383,
+          "cagr_win_rate": 0.3333333333,
+          "maxdd_gap_mean_pp": 0.6720789823,
+          "sharpe_gap_mean": -0.0212947727,
+          "top1_agreement_mean": 0.4105250737,
+          "baskets_beating_baseline_mean": 0.418
+        },
+        {
+          "variant": "MULTI_45_35_20",
+          "family": "cutoff",
+          "scenarios": 3,
+          "cagr_gap_mean_pp": 0.0539020125,
+          "cagr_gap_worst_pp": -1.2113418779,
+          "cagr_win_rate": 0.6666666667,
+          "maxdd_gap_mean_pp": 2.2747841552,
+          "sharpe_gap_mean": 0.0165285792,
+          "top1_agreement_mean": 0.7514100295,
+          "baskets_beating_baseline_mean": 0.52
+        },
+        {
+          "variant": "MULTI_45_35_20",
+          "family": "price_vintage",
+          "scenarios": 3,
+          "cagr_gap_mean_pp": 0.8584299131,
+          "cagr_gap_worst_pp": 0.3608260273,
+          "cagr_win_rate": 1.0,
+          "maxdd_gap_mean_pp": 3.0133024038,
+          "sharpe_gap_mean": 0.0421834877,
+          "top1_agreement_mean": 0.6846312684,
+          "baskets_beating_baseline_mean": 0.546
+        },
+        {
+          "variant": "MULTI_45_35_20",
+          "family": "ticker_live",
+          "scenarios": 6,
+          "cagr_gap_mean_pp": 1.0118599998,
+          "cagr_gap_worst_pp": -0.5987691161,
+          "cagr_win_rate": 0.6666666667,
+          "maxdd_gap_mean_pp": 2.9341298376,
+          "sharpe_gap_mean": 0.0470009774,
+          "top1_agreement_mean": 0.9090088496,
+          "baskets_beating_baseline_mean": 0.573
+        },
+        {
+          "variant": "MULTI_45_35_20",
+          "family": "ticker_training",
+          "scenarios": 2,
+          "cagr_gap_mean_pp": 0.5831291358,
+          "cagr_gap_worst_pp": 0.4214922936,
+          "cagr_win_rate": 1.0,
+          "maxdd_gap_mean_pp": 2.1160385642,
+          "sharpe_gap_mean": 0.0276263787,
+          "top1_agreement_mean": 0.6573451327,
+          "baskets_beating_baseline_mean": 0.529
+        },
+        {
+          "variant": "MULTI_45_35_20",
+          "family": "window",
+          "scenarios": 3,
+          "cagr_gap_mean_pp": -1.031277327,
+          "cagr_gap_worst_pp": -3.0010699602,
+          "cagr_win_rate": 0.3333333333,
+          "maxdd_gap_mean_pp": 0.7847312301,
+          "sharpe_gap_mean": -0.0235537877,
+          "top1_agreement_mean": 0.4049321534,
+          "baskets_beating_baseline_mean": 0.43
+        }
+      ],
+      "decision_scorecard": [
+        {
+          "variant": "CONSENSUS_MULTI",
+          "stress_scenarios": 17,
+          "stress_wins": 14,
+          "cagr_gap_mean_pp": 1.3486525338,
+          "cagr_gap_median_pp": 1.5995601806,
+          "cagr_gap_worst_pp": -2.935786383,
+          "drawdown_improvement_scenarios": 16,
+          "sharpe_improvement_scenarios": 14,
+          "top1_agreement_mean": 0.7247131702,
+          "top1_agreement_worst": 0.3702123894,
+          "stress_win_rate": 0.8235294118,
+          "stress_families": 5,
+          "family_balanced_cagr_gap_pp": 1.2584974787,
+          "family_balanced_maxdd_gap_pp": 4.6364363259,
+          "family_balanced_sharpe_gap": 0.0672513134
+        },
+        {
+          "variant": "MULTI_45_35_20",
+          "stress_scenarios": 17,
+          "stress_wins": 12,
+          "cagr_gap_mean_pp": 0.4047401216,
+          "cagr_gap_median_pp": 0.4214922936,
+          "cagr_gap_worst_pp": -3.0010699602,
+          "drawdown_improvement_scenarios": 15,
+          "sharpe_improvement_scenarios": 13,
+          "top1_agreement_mean": 0.7230390422,
+          "top1_agreement_worst": 0.3615221239,
+          "stress_win_rate": 0.7058823529,
+          "stress_families": 5,
+          "family_balanced_cagr_gap_pp": 0.2952087469,
+          "family_balanced_maxdd_gap_pp": 2.2245972382,
+          "family_balanced_sharpe_gap": 0.0219571271
+        }
+      ],
+      "negative_states": [
+        {
+          "scenario": "ROLLING_10Y",
+          "family": "window",
+          "variant": "MULTI_45_35_20",
+          "cagr_delta_vs_baseline_pp": -3.0010699602,
+          "maxdd_delta_vs_baseline_pp": 0.8981104488,
+          "basket_top1_agreement": 0.4512743363
+        },
+        {
+          "scenario": "ROLLING_5Y",
+          "family": "window",
+          "variant": "CONSENSUS_MULTI",
+          "cagr_delta_vs_baseline_pp": -2.935786383,
+          "maxdd_delta_vs_baseline_pp": -0.7781495712,
+          "basket_top1_agreement": 0.3702123894
+        },
+        {
+          "scenario": "CUTOFF_DECEMBER",
+          "family": "cutoff",
+          "variant": "CONSENSUS_MULTI",
+          "cagr_delta_vs_baseline_pp": -1.9161800662,
+          "maxdd_delta_vs_baseline_pp": 3.3974879506,
+          "basket_top1_agreement": 0.6757522124
+        },
+        {
+          "scenario": "CUTOFF_DECEMBER",
+          "family": "cutoff",
+          "variant": "MULTI_45_35_20",
+          "cagr_delta_vs_baseline_pp": -1.2113418779,
+          "maxdd_delta_vs_baseline_pp": 1.4955819993,
+          "basket_top1_agreement": 0.6966548673
+        },
+        {
+          "scenario": "ROLLING_7Y",
+          "family": "window",
+          "variant": "CONSENSUS_MULTI",
+          "cagr_delta_vs_baseline_pp": -0.8803654957,
+          "maxdd_delta_vs_baseline_pp": 2.2401508691,
+          "basket_top1_agreement": 0.4185663717
+        },
+        {
+          "scenario": "LIVE_MISSING_10PCT_R3",
+          "family": "ticker_live",
+          "variant": "MULTI_45_35_20",
+          "cagr_delta_vs_baseline_pp": -0.5987691161,
+          "maxdd_delta_vs_baseline_pp": -0.264686437,
+          "basket_top1_agreement": 0.8962123894
+        },
+        {
+          "scenario": "ROLLING_5Y",
+          "family": "window",
+          "variant": "MULTI_45_35_20",
+          "cagr_delta_vs_baseline_pp": -0.4342332256,
+          "maxdd_delta_vs_baseline_pp": -0.2642197852,
+          "basket_top1_agreement": 0.3615221239
+        },
+        {
+          "scenario": "LIVE_MISSING_5PCT_R3",
+          "family": "ticker_live",
+          "variant": "MULTI_45_35_20",
+          "cagr_delta_vs_baseline_pp": -0.3796382806,
+          "maxdd_delta_vs_baseline_pp": 0.1947451021,
+          "basket_top1_agreement": 0.9276106195
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "robustness_matrix",
+      "label": "Titanium target robustness matrix",
+      "path": "target_robustness_20260818/outputs/ROBUSTNESS_SCENARIO_SCORECARD.csv",
+      "query": {
+        "description": "Controlled retraining and live-availability stress matrix on 500 official Titanium baskets.",
+        "language": "sql",
+        "engine": "duckdb",
+        "sql": "SELECT family, variant, COUNT(DISTINCT scenario) AS scenarios, AVG(cagr_delta_vs_baseline_pp) AS cagr_gap_mean_pp, MIN(cagr_delta_vs_baseline_pp) AS cagr_gap_worst_pp, AVG(maxdd_delta_vs_baseline_pp) AS maxdd_gap_mean_pp, AVG(sharpe_delta_vs_baseline) AS sharpe_gap_mean FROM read_csv_auto('ROBUSTNESS_SCENARIO_SCORECARD.csv') WHERE variant <> 'BASELINE_21' AND family <> 'control' GROUP BY family, variant ORDER BY family, variant",
+        "executed_at": "2026-08-18T02:02:45.131877+00:00",
+        "tables_used": [
+          "ROBUSTNESS_SCENARIO_SCORECARD.csv",
+          "ROBUSTNESS_BASKET_METRICS.csv.gz",
+          "ROBUSTNESS_FAMILY_SCORECARD.csv"
+        ],
+        "filters": [
+          "Official 500 baskets",
+          "113 signal dates",
+          "Daily path through 2026-07-01",
+          "Target weights and downstream strategy rules frozen"
+        ],
+        "metric_definitions": {
+          "CAGR gap": "Candidate mean basket CAGR minus BASELINE_21 mean basket CAGR within the same stress state, in percentage points.",
+          "MaxDD gap": "Candidate mean basket maximum drawdown minus BASELINE_21; positive values are improvements.",
+          "Top-1 agreement": "Share of official basket-date decisions whose top-ranked ticker matches the target's canonical fit."
+        }
+      }
+    }
+  ],
+  "package_info": {
+    "report_kind": "technical",
+    "snapshot_note": "Published snapshot, not a live connector."
+  }
+}

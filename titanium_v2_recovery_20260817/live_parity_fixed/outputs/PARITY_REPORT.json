@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "parity_final_date_requested": "2026-07-01",
+  "parity_path_end_used": "2026-07-01",
+  "canonical_inputs_sha256": {
+    "authentic/ORTHOGONAL_SCORE_PANEL.pkl": "57caef7e4b824d0a7c75cea389d7e957b2da23bb0925a15b696ca0bfdaa2af88",
+    "authentic/SUPER_GOLD_BASKET_MEMBERSHIP.csv": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+    "frozen_paths/REG_W24_F005_S008_PATHS.npz": "831b426d3a59b7132686555f4591212ddad999e79a1c5c7a118f1bfdd72d166b",
+    "frozen_paths/TITANIUM_CONCENTRATION_FRONTIER_PATHS.npz": "7bf8441c66d0256dd3e5897df8f0a2271b00faf0c1d6d5ed9bc2440d614adc54"
+  },
+  "canonical_inputs_hash_match": {
+    "authentic/ORTHOGONAL_SCORE_PANEL.pkl": true,
+    "authentic/SUPER_GOLD_BASKET_MEMBERSHIP.csv": true,
+    "frozen_paths/REG_W24_F005_S008_PATHS.npz": true,
+    "frozen_paths/TITANIUM_CONCENTRATION_FRONTIER_PATHS.npz": true
+  },
+  "basket_structure": {
+    "basket_count": 500,
+    "membership_rows": 12000,
+    "unique_tickers": 149,
+    "static_categories": [
+      "C01_US_BROAD_STYLE",
+      "C02_US_SECTOR_THEME",
+      "C03_DEVELOPED_GLOBAL",
+      "C04_EMERGING",
+      "C05_BONDS_CASH_CREDIT",
+      "C06_REAL_ASSETS"
+    ],
+    "required_tickers_per_category": 4,
+    "required_tickers_per_basket": 24,
+    "baskets_with_exact_4x6_structure": 500,
+    "all_baskets_valid": true,
+    "dynamic_s3b_balance_required": false
+  },
+  "selection_parity": {
+    "official_selection_shape": [
+      500,
+      113
+    ],
+    "authenticated_signal_dates": 113,
+    "decision_pairs": 56500,
+    "matched_pairs": 56500,
+    "mismatched_pairs": 0,
+    "agreement": 1.0,
+    "first_mismatch": null
+  },
+  "frozen_scorecard": [
+    {
+      "strategy": "Titanium_V1",
+      "path_start": "2017-02-01",
+      "path_end": "2026-07-01",
+      "daily_observations": 2366,
+      "baskets": 500,
+      "cagr_mean": 0.22319211622534027,
+      "cagr_median": 0.21879756155750285,
+      "maxdd_mean": -0.3975375599818048,
+      "sharpe_mean": 0.8079419812591827,
+      "calmar_mean": 0.6332513274447349
+    },
+    {
+      "strategy": "Titanium_V2",
+      "path_start": "2017-02-01",
+      "path_end": "2026-07-01",
+      "daily_observations": 2366,
+      "baskets": 500,
+      "cagr_mean": 0.21654064374717594,
+      "cagr_median": 0.21558370673994653,
+      "maxdd_mean": -0.339350999208692,
+      "sharpe_mean": 0.868077345280489,
+      "calmar_mean": 0.7172721558498814
+    }
+  ],
+  "official_v2_metric_parity": {
+    "reference": {
+      "cagr_mean": 0.2165406437471759,
+      "maxdd_mean": -0.339350999208692,
+      "sharpe_mean": 0.868077345280489
+    },
+    "actual": {
+      "cagr_mean": 0.21654064374717594,
+      "maxdd_mean": -0.339350999208692,
+      "sharpe_mean": 0.868077345280489
+    },
+    "absolute_gaps": {
+      "cagr_mean": 2.7755575615628914e-17,
+      "maxdd_mean": 0.0,
+      "sharpe_mean": 0.0
+    },
+    "tolerance": 1e-12,
+    "pass": true
+  },
+  "authenticated_panel": {
+    "rows": 16837,
+    "tickers": 149,
+    "signal_dates": 113,
+    "last_signal_date": "2026-05-29",
+    "last_exit_date": "2026-07-01"
+  },
+  "latest_unrestricted_signal": {
+    "mode": "authenticated_historical_asof",
+    "signal_date": "2026-05-29",
+    "entry_date": "2026-06-01",
+    "exit_date": "2026-07-01",
+    "top1": "BNO",
+    "top2": "USL",
+    "top1_score": 1.0,
+    "top2_score": 0.9932885906040269,
+    "margin": 0.006711409395973145,
+    "concentration_threshold": 0.12,
+    "top1_weight": 0.75,
+    "top2_weight": 0.25
+  },
+  "policy": {
+    "basket_resampling": false,
+    "tit_r_retraining_on_frozen_interval": false,
+    "dynamic_s3b_used_by_titanium_v2_base": false,
+    "successor_s3b_opportunity_lane_is_separate": true
+  }
+}

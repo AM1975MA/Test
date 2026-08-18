@@ -1,0 +1,14 @@
+{
+  "frozen_path_start": "2017-02-01",
+  "frozen_path_end": "2026-07-01",
+  "daily_rows": 2366,
+  "basket_count": 500,
+  "score_panel_rows": 16837,
+  "score_panel_dates": 113,
+  "score_panel_tickers": 149,
+  "unrestricted_universe_price_columns": 150,
+  "unrestricted_universe_scored_tickers": 149,
+  "unrestricted_last_signal": "2026-05-29",
+  "unrestricted_last_top1": "BNO",
+  "unrestricted_last_top2": "USL"
+}

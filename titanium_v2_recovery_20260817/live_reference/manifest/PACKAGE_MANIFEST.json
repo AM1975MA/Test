@@ -1,0 +1,308 @@
+{
+  "package": "METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE",
+  "created_utc": "2026-08-04T08:51:59.802145+00:00",
+  "downvol_mode": "zero_std",
+  "source_hashes": {
+    "base": "76b5da95c865a069d967189d61b1c8df3338eacc5a0e8941e8ee7025c42caf60",
+    "v5": "cfe04beda96f8baac2c351f1d72e8e38278039336efb8c5f982ca45b655b44a4",
+    "generator": "bbbedde0a1697c45f56d32136c511126f56ef35035ccdb0879ac18c6436642d6"
+  },
+  "files": [
+    {
+      "path": "LIVE_SIGNAL.json",
+      "size": 480,
+      "sha256": "c9bcc8a8456041f9af14d74435ec8958ca2de86886d3dc76935f1f89b21cc982"
+    },
+    {
+      "path": "METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE.py",
+      "size": 5408,
+      "sha256": "c925c4d848b7c10a60cae7ed994f65ebfbb58b2f8181d32c404f4771cdb5a7c7"
+    },
+    {
+      "path": "README.md",
+      "size": 1207,
+      "sha256": "8b0e49ee1f9165ccea19294a7d8e1a543ddfc650dbf41f49eac1c2c4c037f0a1"
+    },
+    {
+      "path": "backtest/BASKET_RESULTS_500.csv",
+      "size": 139054,
+      "sha256": "c41bed20c19d9449817e45f98b3d9c3eb314fa499b98f32b4871e80e8570d502"
+    },
+    {
+      "path": "backtest/FEATURE_PARITY_AUDIT.csv",
+      "size": 15714,
+      "sha256": "e2a7aad025585c8bd1ee5bb2547260edd5c3ee35fddd33ef404dcb1d7701884b"
+    },
+    {
+      "path": "backtest/GLOBAL_BASE_EQUITY.csv",
+      "size": 69754,
+      "sha256": "ed3cc0c4c43314407068a272462b7f9d4356c7f9bcef37ab1d3c8f1212e67101"
+    },
+    {
+      "path": "backtest/GLOBAL_DIRECT_EQUITY.csv",
+      "size": 69632,
+      "sha256": "68e9e7dd5f823798f0af28bdaa328bf155d9f5337c96218c6a0f77f441de1302"
+    },
+    {
+      "path": "backtest/GLOBAL_ROUTER_EQUITY.csv",
+      "size": 69619,
+      "sha256": "395203ecf6df88f76848c1a034627d3be81e578d965f12b19e7ede129f320a8f"
+    },
+    {
+      "path": "backtest/GLOBAL_SCORECARD.csv",
+      "size": 350,
+      "sha256": "615930a05ed927c921bfe343501344a78e5273338f66b328efe822b79607d3e3"
+    },
+    {
+      "path": "backtest/SCORECARD_SUMMARY.json",
+      "size": 1882,
+      "sha256": "f481ec9239d4ecf8854dab4a95386536101966d77afcc6dd32138ad2521b413c"
+    },
+    {
+      "path": "data/CLOSE.parquet",
+      "size": 4812770,
+      "sha256": "4b170c33404ba62c102220cc7b937cb23d85088e1bc40d90e175686c1ddc0b32"
+    },
+    {
+      "path": "data/DOWNLOAD_LOG.csv",
+      "size": 1401,
+      "sha256": "9e613f754da1fa795f832cfbe5bed3ea9b6fda17647460b33b862468cba7d9e2"
+    },
+    {
+      "path": "data/HIGH.parquet",
+      "size": 6640275,
+      "sha256": "d44aa7cdc6a5ca48c4c62100db9b4423e00bcd80b6a6a936f04f4ddcb2da99dd"
+    },
+    {
+      "path": "data/LOW.parquet",
+      "size": 6651323,
+      "sha256": "221a2c0596e6e5e13a0faca0f1bbc269ce4b5bd2bd6b02e03045a3e95df26284"
+    },
+    {
+      "path": "data/OPEN.parquet",
+      "size": 6674111,
+      "sha256": "01f69ac03823b8c241453e8470edd970f4dcc32e05b59d65235523ded65777d0"
+    },
+    {
+      "path": "data/VOLUME.parquet",
+      "size": 4348724,
+      "sha256": "e7f145408ca39dbfbd5e46892dd5422015b98db6330b65baf71696c8551c0cc6"
+    },
+    {
+      "path": "models/MODEL_MANIFEST.json",
+      "size": 13437,
+      "sha256": "c8eb0fc79ba2154a08e96605f651658da3665acc44a625c2fc97ff00fa8dffe9"
+    },
+    {
+      "path": "models/compact_seed_101.json",
+      "size": 733658,
+      "sha256": "a1758cbe395422b8985d066f090331b71d009cc928e2ab97ca598478092fec9e"
+    },
+    {
+      "path": "models/compact_seed_202.json",
+      "size": 723842,
+      "sha256": "361fe1e05c2ae3bf39f5d7c26a8f14936bde1175ab93cf9f7da54d23a464dc0c"
+    },
+    {
+      "path": "models/compact_seed_303.json",
+      "size": 736429,
+      "sha256": "0586cfe6904822d1be09d36cd9609b61354f5a9a5b05737cafe931ae3b083e31"
+    },
+    {
+      "path": "models/macro_destination.joblib",
+      "size": 3254,
+      "sha256": "d78f208b253b77d79a8d009544a837e810b0bac706e6e7133459468577c81a04"
+    },
+    {
+      "path": "models/opportunity_target_excess_max.joblib",
+      "size": 2902,
+      "sha256": "b577a6898bc7a79e4efc867d43a1b5452c05e90166b3569956952cdeee45bf45"
+    },
+    {
+      "path": "models/opportunity_target_explosive.joblib",
+      "size": 177728,
+      "sha256": "9353de8d3df821c3911fba57732a156f5c6e42c65f1a7c80146895af6b208db3"
+    },
+    {
+      "path": "models/opportunity_target_spread.joblib",
+      "size": 2270,
+      "sha256": "0f6aa4038fefba47e1a87852369a5e5eee92dbea824d2a046513cd36c119a00e"
+    },
+    {
+      "path": "models/opportunity_target_top2.joblib",
+      "size": 224884,
+      "sha256": "f1bcf39d30ad5ca9911a2fa937a835e7ddc99b67ba7a91303f4363aec105bd10"
+    },
+    {
+      "path": "models/tailmix.joblib",
+      "size": 2534,
+      "sha256": "790d966f3a34d9558a1f951c399c98957625927caf7e43c215288701ae746649"
+    },
+    {
+      "path": "panels/BASKET_MEMBERSHIP_500.csv",
+      "size": 318592,
+      "sha256": "674c53f9cc95286899e7fac5c4d07a5872b337e6e92fdac3bd2597a3ec87ab69"
+    },
+    {
+      "path": "panels/DYNAMIC_CLUSTERS_MONTHLY.csv",
+      "size": 1012377,
+      "sha256": "dd92305fc3f78b7cdbff889368ead74d04c3b5931e01a9bc5e126e4e46521fa5"
+    },
+    {
+      "path": "panels/FIT_AUDIT.csv",
+      "size": 399,
+      "sha256": "b0535a26a29bcee04461889e9bea9fabe3f4e27a63b38b1915aae8bd31716d9d"
+    },
+    {
+      "path": "panels/MACRO_DESTINATION_PANEL.parquet",
+      "size": 499962,
+      "sha256": "b0fad93ca85de10c04f183408e13c570339b80a7ce5950d26b7880e583609b40"
+    },
+    {
+      "path": "panels/MONTHLY_CALENDAR.csv",
+      "size": 3762,
+      "sha256": "d07453595706b55042fc83400b50c0d807eb2f6404e793b7c8f512f3cd7cc0d5"
+    },
+    {
+      "path": "panels/NPORT_TITANIUM_PANEL.parquet",
+      "size": 28594338,
+      "sha256": "10fda317fb48614300ffe7fb7890a28d690a6f8ced7ffe2351fbef0eb9a9de5b"
+    },
+    {
+      "path": "panels/OPPORTUNITY_TRAINING_PANEL.parquet",
+      "size": 1683688,
+      "sha256": "4ae8bef820964147b7ef03616fdeab6ee3b02268fd7617460b78fa5a19be4a12"
+    },
+    {
+      "path": "panels/ROUTER_SCHEDULE.csv",
+      "size": 4422,
+      "sha256": "f99383fc99afc3b8d67abf25bfb25c8b249078a0414d8e3d511200d769af0712"
+    },
+    {
+      "path": "panels/S3B_ARI.csv",
+      "size": 8405,
+      "sha256": "c222bb57c2d600b9ae8f9cbae392b28e54edb406d165de017e7cfe490c1df946"
+    },
+    {
+      "path": "panels/S3B_BALANCE.csv",
+      "size": 5979,
+      "sha256": "079359e461030afa827c2b62849aa38b37ee8dca571a7a84e34891bf6e690f53"
+    },
+    {
+      "path": "panels/SUPER_GOLD_OOS_SCORE_PANEL.parquet",
+      "size": 365747,
+      "sha256": "9bf312ee0e4425e4cf59c8d0350101dfc8f1093e298cfc78b9958e4fff74e58c"
+    },
+    {
+      "path": "panels/TAILMIX_PANEL.parquet",
+      "size": 5578063,
+      "sha256": "672686db6b1980a646abb24f51ec51a562603a20d53e17344375724fdfa2e7e9"
+    },
+    {
+      "path": "panels/TARGET_ARRAYS_500.npz",
+      "size": 322791,
+      "sha256": "18c3de006db1c524d10d347bced73e6ca6358f18ce84ca2f8b7eb2270617446f"
+    },
+    {
+      "path": "panels/TITANIUM_CONCENTRATION_FRONTIER_PATHS.npz",
+      "size": 26693452,
+      "sha256": "5931a9ea9420fdc279a09dcb5de191fdf242f99256fd0f51dbbf4dab38315f49"
+    },
+    {
+      "path": "panels/TITANIUM_V3_OPPORTUNITY_OOS_CLUSTER_PANEL.csv",
+      "size": 133162,
+      "sha256": "52ab9e704a077e72295f4bd784084eaa92fd21878d48bf4d1452a643b761a4f2"
+    },
+    {
+      "path": "requirements.txt",
+      "size": 130,
+      "sha256": "49f10ebf21ea8a32e7c26c46895377507efa4dd86222b81bcc792c8021918fd0"
+    },
+    {
+      "path": "source/__pycache__/titanium_reconstruction_v6.cpython-312.pyc",
+      "size": 77284,
+      "sha256": "238ce27c681e8d3cbc5fef6cbda5585f6215c3a75d09d6c8390cbf6ee1d0cd31"
+    },
+    {
+      "path": "source/__pycache__/titanium_retrained_current_data_audit.cpython-312.pyc",
+      "size": 83156,
+      "sha256": "4ea573e8c2490024a34e56630dd38aa5f79129ee74212efe81426d31d350e46d"
+    },
+    {
+      "path": "source/regenerate_live_package.py",
+      "size": 21726,
+      "sha256": "bbbedde0a1697c45f56d32136c511126f56ef35035ccdb0879ac18c6436642d6"
+    },
+    {
+      "path": "source/titanium_reconstruction_v6.py",
+      "size": 42639,
+      "sha256": "cfe04beda96f8baac2c351f1d72e8e38278039336efb8c5f982ca45b655b44a4"
+    },
+    {
+      "path": "source/titanium_retrained_current_data_audit.py",
+      "size": 39946,
+      "sha256": "76b5da95c865a069d967189d61b1c8df3338eacc5a0e8941e8ee7025c42caf60"
+    }
+  ],
+  "score_summary": {
+    "downvol_mode": "zero_std",
+    "oos_start": "2017-02-01",
+    "oos_end": "2026-07-01",
+    "n_tickers": 150,
+    "n_baskets": 500,
+    "n_months": 113,
+    "basket_base_mean_cagr": 0.18734884714817177,
+    "basket_direct_mean_cagr": 0.1839855161188246,
+    "basket_router_mean_cagr": 0.18599774409396452,
+    "basket_router_median_cagr": 0.1798916287337361,
+    "basket_router_mean_maxdd": -0.41287165297883555,
+    "basket_router_median_maxdd": -0.3769293794976069,
+    "basket_router_percentiles": {
+      "0.01": 0.006551328459543607,
+      "0.05": 0.042416438325099594,
+      "0.1": 0.060054276323491126,
+      "0.25": 0.12123163479926397,
+      "0.5": 0.1798916287337361,
+      "0.75": 0.24535392582359083,
+      "0.9": 0.3094137874192766,
+      "0.95": 0.35777945883268375,
+      "0.99": 0.45754428737843833
+    },
+    "global": {
+      "BASE": {
+        "cagr": 0.227544431721453,
+        "maxdd": -0.47765308110297255,
+        "sharpe": 0.8040537184551103,
+        "final_equity": 6.8839805838692305,
+        "router_active_months": 28,
+        "direct_condition_months": 9
+      },
+      "DIRECT": {
+        "cagr": 0.23538638180165372,
+        "maxdd": -0.4631606943430773,
+        "sharpe": 0.8152517089818677,
+        "final_equity": 7.309098423674817,
+        "router_active_months": 28,
+        "direct_condition_months": 9
+      },
+      "ROUTER": {
+        "cagr": 0.23261345549270263,
+        "maxdd": -0.4776530811029728,
+        "sharpe": 0.8126834073518096,
+        "final_equity": 7.156168329056934,
+        "router_active_months": 28,
+        "direct_condition_months": 9
+      }
+    },
+    "frozen_reference": {
+      "Titanium_V2_CAGR": 0.21654064,
+      "Titanium_V2_MaxDD": -0.339351,
+      "Titanium_V2_Sharpe": 0.868077,
+      "Opportunity_Router_CAGR": 0.2274281,
+      "Opportunity_Router_MaxDD": -0.349569,
+      "Opportunity_Router_Sharpe": 0.877664
+    },
+    "delta_vs_frozen_router_mean_cagr": -0.04143035590603547,
+    "elapsed_seconds": 392.8524248600006
+  }
+}

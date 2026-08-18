@@ -1,0 +1,18 @@
+{
+  "basket_count": 500,
+  "membership_rows": 12000,
+  "unique_tickers": 149,
+  "static_categories": [
+    "C01_US_BROAD_STYLE",
+    "C02_US_SECTOR_THEME",
+    "C03_DEVELOPED_GLOBAL",
+    "C04_EMERGING",
+    "C05_BONDS_CASH_CREDIT",
+    "C06_REAL_ASSETS"
+  ],
+  "required_tickers_per_category": 4,
+  "required_tickers_per_basket": 24,
+  "baskets_with_exact_4x6_structure": 500,
+  "all_baskets_valid": true,
+  "dynamic_s3b_balance_required": false
+}
