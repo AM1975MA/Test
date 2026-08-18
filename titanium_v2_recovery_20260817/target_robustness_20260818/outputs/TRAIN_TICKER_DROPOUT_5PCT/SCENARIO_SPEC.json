@@ -1,0 +1,11 @@
+{
+  "name": "TRAIN_TICKER_DROPOUT_5PCT",
+  "family": "ticker_training",
+  "cadence": "annual",
+  "annual_month": 1,
+  "rolling_years": null,
+  "train_ticker_dropout": 0.05,
+  "feature_noise_fraction": 0.0,
+  "scenario_seed": 5101,
+  "inference_ticker_dropout": 0.0
+}

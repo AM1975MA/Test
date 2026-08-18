@@ -1,0 +1,95 @@
+{
+  "status": "COMPLETED",
+  "elapsed_seconds": 37.08222770690918,
+  "scenario_count": 18,
+  "variants": [
+    "BASELINE_21",
+    "MULTI_45_35_20",
+    "CONSENSUS_MULTI"
+  ],
+  "fixed": [
+    "target weights",
+    "feature list",
+    "XGBRanker hyperparameters",
+    "three model seeds",
+    "TailMix",
+    "macro layer",
+    "70/30 blend",
+    "official 500 baskets",
+    "governor",
+    "costs",
+    "allocation rule",
+    "unperturbed labels",
+    "daily evaluation OHLC",
+    "final date 2026-07-01"
+  ],
+  "stress_families": [
+    "control",
+    "cutoff",
+    "price_vintage",
+    "ticker_live",
+    "ticker_training",
+    "window"
+  ],
+  "control_parity": [
+    {
+      "variant": "BASELINE_21",
+      "monthly_score_rank_correlation": 1.0,
+      "basket_top1_agreement": 1.0,
+      "cagr_mean": 0.1883893313218076
+    },
+    {
+      "variant": "MULTI_45_35_20",
+      "monthly_score_rank_correlation": 1.0,
+      "basket_top1_agreement": 1.0,
+      "cagr_mean": 0.1976766102738228
+    },
+    {
+      "variant": "CONSENSUS_MULTI",
+      "monthly_score_rank_correlation": 1.0,
+      "basket_top1_agreement": 1.0,
+      "cagr_mean": 0.2046355388413887
+    }
+  ],
+  "aggregate": [
+    {
+      "variant": "CONSENSUS_MULTI",
+      "scenarios": 18,
+      "mean_cagr": 0.1894546588158753,
+      "worst_cagr": 0.1191946940732226,
+      "mean_cagr_delta_vs_baseline_pp": 1.3639841014976146,
+      "worst_cagr_delta_vs_baseline_pp": -2.935786383023305,
+      "scenarios_beating_baseline": 15,
+      "mean_maxdd": -0.3654876949478379,
+      "worst_maxdd": -0.4340045375056249,
+      "mean_sharpe": 0.7863174213192707,
+      "worst_sharpe": 0.545839658761639,
+      "mean_score_correlation": 0.962378305995973,
+      "worst_score_correlation": 0.8092908615881917,
+      "mean_basket_top1_agreement": 0.7400068829891838,
+      "worst_basket_top1_agreement": 0.3702123893805309,
+      "mean_fraction_baskets_beating_baseline": 0.5797777777777777,
+      "scenario_win_rate_vs_baseline": 0.8333333333333334
+    },
+    {
+      "variant": "MULTI_45_35_20",
+      "scenarios": 18,
+      "mean_cagr": 0.18015332333513795,
+      "worst_cagr": 0.1339443745581496,
+      "mean_cagr_delta_vs_baseline_pp": 0.4338505534238794,
+      "worst_cagr_delta_vs_baseline_pp": -3.0010699602050246,
+      "scenarios_beating_baseline": 13,
+      "mean_maxdd": -0.38988071631684806,
+      "worst_maxdd": -0.4288652396454452,
+      "mean_sharpe": 0.7416271799313382,
+      "worst_sharpe": 0.5934241044130877,
+      "mean_score_correlation": 0.9636623621360462,
+      "worst_score_correlation": 0.8163657852679305,
+      "mean_basket_top1_agreement": 0.7384257620452311,
+      "worst_basket_top1_agreement": 0.3615221238938053,
+      "mean_fraction_baskets_beating_baseline": 0.5303333333333333,
+      "scenario_win_rate_vs_baseline": 0.7222222222222222
+    }
+  ],
+  "caveat": "Price-vintage stress is simulated as deterministic feature noise with labels and evaluation OHLC frozen; it is not a second vendor snapshot."
+}
