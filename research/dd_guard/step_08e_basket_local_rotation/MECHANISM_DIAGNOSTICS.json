@@ -1,0 +1,16 @@
+{
+  "n_decisions": 1124,
+  "membership_baskets": 500,
+  "members_per_basket": 24,
+  "score_age_mean_days": 14.194839857651246,
+  "score_age_median_days": 13.0,
+  "score_age_max_days": 32,
+  "bil_fallback_rate": 0.0,
+  "concentrated_100pct_rate_cond_nonbil": 0.046263345195729534,
+  "causal_beat_baseline_rate": 0.5382562277580071,
+  "causal_beat_bil_rate": 0.7126334519572953,
+  "causal_top1_full150_oracle_hit_rate": 0.009786476868327402,
+  "oracle_local_equals_full150_rate": 0.11298932384341637,
+  "oracle_local_beats_baseline_rate": 0.8665480427046264,
+  "oracle_stay_rate": 0.13345195729537365
+}
