@@ -1,0 +1,53 @@
+{
+  "step": "STEP07A",
+  "status": "REJECT_BEFORE_2023_HOLDOUT",
+  "holdout_2023_plus_opened": false,
+  "protocol_commit": "259870278099aa63fec336295152b0cfb6591716",
+  "result_commit": "31aefb9b53c119d2eacf973e5692496f0b5157a8",
+  "training_period": "2017-02-01 through 2020-12-31",
+  "validation_period": "2021-01-01 through 2022-12-31",
+  "normalization": "basket/local HGB volatility scale; exact held-ticker identity is not embedded in the frozen DD-guard path archive",
+  "primary": {
+    "model": "LOCAL_PLUS_REGIME",
+    "delta_cagr_vs_fusion1_pp": -0.4313856238311473,
+    "delta_mean_maxdd_vs_fusion1_pp": -0.41085750585893166,
+    "delta_p10_maxdd_vs_fusion1_pp": -0.4824740725154868,
+    "delta_p5_maxdd_vs_fusion1_pp": -0.39321495320059796,
+    "delta_sharpe_vs_fusion1": -0.01610591860362809,
+    "delta_cagr_vs_step06k_pp": -0.45636221554693535,
+    "delta_mean_maxdd_vs_step06k_pp": -0.4195964635201186,
+    "mean_gross": 0.9944117296222664,
+    "crash_next_auc": 0.9726090093073207,
+    "recovery_next_auc": 0.8628744414621369
+  },
+  "local_only": {
+    "delta_cagr_vs_fusion1_pp": -0.4036124604886169,
+    "delta_mean_maxdd_vs_fusion1_pp": -0.40528461689309836
+  },
+  "yearly_primary_vs_fusion1": {
+    "2021": {"delta_cagr_pp": -0.3534481793436264, "delta_mean_maxdd_pp": -0.3199829298328609},
+    "2022": {"delta_cagr_pp": -0.5073836514587651, "delta_mean_maxdd_pp": -0.22104424508173892}
+  },
+  "mechanism": {
+    "gross_delta_cagr_vs_hgb_pp": -0.40725111320917406,
+    "net_delta_cagr_vs_hgb_pp": -0.46099411961143133,
+    "approx_mean_total_transaction_cost_validation_pct": 0.09394,
+    "interpretation": "cost is not the main failure; de-risking decisions themselves lose economic value"
+  },
+  "gates": {
+    "mean_maxdd_vs_fusion1_ge_0_50": false,
+    "p10_vs_fusion1_ge_0_50": false,
+    "cagr_concession_vs_fusion1_ge_minus_0_50": true,
+    "mean_gross_ge_0_85": true,
+    "annual_maxdd_nonnegative_both": false,
+    "local_only_maxdd_nonnegative": false
+  },
+  "source_hashes": {
+    "TREATMENT_VALUE_SELECTED_PATHS.npz": "31bd3e935f70fa60df53537c0b6d637365a1c23ea2c2144b47775d42ea7f84ae",
+    "TRANSITION_FEATURES_HGB_DATES.csv": "599ba865af22afe929bf388f695e86ce9bbc2bd59de661d2ccaa8adc80daa81c",
+    "TRIGGER_LABEL_TABLE.csv": "e49b3034fd4180c31ce291b825841bae959b659b6e9291175d953d0d9ac8fa95",
+    "STEP07A_PROTOCOL.md": "1d6de1d1e73194088fd9a0a2664ebaa627bc5298b3add4caab41543b936ebf1e"
+  },
+  "library_package": "/Meteor/STEP07A_20260831/STEP07A_ADAPTIVE_HAZARD_DEVELOPMENT_REPRO_20260831.zip",
+  "package_sha256": "63e1404aba2acedcbef8bee5cedd2c68d3fe070827b6096d3978812cbd55fd0a"
+}
