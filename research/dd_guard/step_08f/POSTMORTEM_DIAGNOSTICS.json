@@ -1,0 +1,12 @@
+{
+  "eventtime_vs_monthly_selected1_match_rate": 0.26423487544483987,
+  "eventtime_event_adv_mean_by_year": {
+    "2021": -0.00015226407775551483,
+    "2022": 0.009565319725313963
+  },
+  "eventtime_event_adv_positive_rate_by_year": {
+    "2021": 0.521505376344086,
+    "2022": 0.5530035335689046
+  },
+  "interpretation": "Event-time refresh changes destination materially and improves CAGR, especially 2021, but does not preserve the drawdown/tail benefit of stale authentic monthly TIT_R."
+}
