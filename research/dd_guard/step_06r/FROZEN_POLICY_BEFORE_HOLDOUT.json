@@ -1,0 +1,37 @@
+{
+  "step": "STEP06R",
+  "freeze_stage": "BEFORE_ONE_SHOT_2023_PLUS_REPLAY",
+  "development_verdict": "QUALIFY_FOR_ONE_SHOT_HOLDOUT",
+  "selected_proxy": "QPROXY_A",
+  "selected_calibrator": "R1_EXPANDING_ECDF",
+  "model": {
+    "estimator": "StandardScaler + Ridge",
+    "ridge_alpha": 10.0,
+    "training_window": "2019-01-01 through 2020-12-31 crossings only",
+    "refit_before_holdout": false,
+    "target": "utility = ret_adv + 0.5 * dd_adv",
+    "features": ["neg1_jump3_pct252","neg5_minus_neg21_pct252","down3h_jump5_pct252","xle_r63","xlv_r3","xlf_r10","dgs10_chg63"],
+    "sample_weight": "1 / number of baskets sharing the crossing date"
+  },
+  "calibration": {
+    "method": "expanding weighted empirical CDF of raw model score",
+    "history_seed": "all 2019-2022 crossing scores, date weighted",
+    "holdout_update": "scores from a holdout crossing date enter calibration history only after that date; no holdout labels are used",
+    "threshold": 0.30,
+    "standard_if": "score_percentile <= 0.30",
+    "aggressive_if": "score_percentile > 0.30"
+  },
+  "actions": {
+    "standard": "FUSION1 tail: 50% gross at -5%, 25% at -7.5%",
+    "aggressive": "STEP06K tail: 25% gross at -5%, 0% at -7.5%"
+  },
+  "frozen_engine": {
+    "trigger": "FUSION1",
+    "initial_exposure": "STEP06K breadth softening: 87.5% if accel_rankmean > 0.50 else 75%",
+    "recovery_logic": "unchanged",
+    "transaction_cost_bps": 5
+  },
+  "holdout_period": "2023-01-01 through 2026-07-01",
+  "holdout_data_rule": "DGS10 is sourced from the official FRED DGS10 table; dgs10_chg63 is current DGS10 minus DGS10 63 frozen engine sessions earlier. No changes after replay.",
+  "promotion_rule": "diagnostic only unless it improves the frozen DD frontier without an unacceptable CAGR concession; no post-holdout retuning"
+}
