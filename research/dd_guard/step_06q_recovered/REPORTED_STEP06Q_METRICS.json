@@ -1,0 +1,35 @@
+{
+  "step": "STEP06Q",
+  "status": "REJECT_BEFORE_2023_HOLDOUT",
+  "selected_feature": "dgs10_chg63",
+  "interpretation": "63-session change in US Treasury 10Y yield",
+  "discovery": {
+    "period": "2019-2020",
+    "residual_spearman_pooled": 0.15623,
+    "residual_spearman_2019": 0.49414,
+    "residual_spearman_2020": 0.01532,
+    "forward_rmse_improvement_pct": 2.2867
+  },
+  "development": {
+    "period": "2021-2022",
+    "rmse_control": 0.0319027,
+    "rmse_with_dgs10_chg63": 0.0312409,
+    "rmse_improvement_pct": 2.0745,
+    "rmse_improvement_2021_pct": 0.4577,
+    "rmse_improvement_2022_pct": 10.601,
+    "incremental_spearman": 0.12442,
+    "2022_crossing_dates": 3
+  },
+  "controller_translation": {
+    "frozen_quantile": "q30",
+    "development_aggressive_rate": 1.0,
+    "problem": "no treatment contrast"
+  },
+  "holdout_2023_plus_opened": false,
+  "source_series_reported": {
+    "DTWEXBGS_blob_prefix": "c031eaf9",
+    "DGS10_blob_prefix": "6a6398f5",
+    "T10Y2Y_blob_prefix": "846cf849"
+  },
+  "persistence_note": "Original STEP06Q local artifacts were not persisted before the previous execution ended. This checkpoint records the already-computed reported metrics verbatim; reconstruction is audited separately and is not claimed to be exact parity unless demonstrated."
+}
