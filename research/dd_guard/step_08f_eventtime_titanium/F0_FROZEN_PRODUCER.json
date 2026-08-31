@@ -1,0 +1,11 @@
+{
+  "selected_model": "HGB",
+  "parity_pass": true,
+  "selection_rule": "max mean 2019-2020 same-date Spearman; top3 overlap tie-break",
+  "scorecard": [
+    {"model":"HGB","mean_spearman_2019_2020":0.864605713802982,"median_spearman_2019_2020":0.9038098235381457,"mean_basket_top3_overlap":0.5369166666666667},
+    {"model":"ET","mean_spearman_2019_2020":0.8542098728063324,"median_spearman_2019_2020":0.8990071173310076,"mean_basket_top3_overlap":0.5179722222222222},
+    {"model":"RIDGE10","mean_spearman_2019_2020":0.8450043847628143,"median_spearman_2019_2020":0.9007724490486336,"mean_basket_top3_overlap":0.4883055555555555}
+  ],
+  "economic_development_outcomes_seen_for_selection": false
+}
