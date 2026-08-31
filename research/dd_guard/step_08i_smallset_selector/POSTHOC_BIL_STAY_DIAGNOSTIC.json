@@ -1,0 +1,20 @@
+{
+  "status": "POSTHOC_DIAGNOSTIC_NOT_PREREGISTERED_NOT_PROMOTION_ELIGIBLE",
+  "policy": "Use the same STEP08I model but ignore ETF actions: choose BIL iff predicted BIL advantage > 0, else STAY",
+  "development_2021_2022": {
+    "delta_cagr_pp": -0.07404640709279064,
+    "delta_maxdd_pp": 0.3670126661446673,
+    "delta_p10_pp": 0.9992836702463919,
+    "delta_p5_pp": 0.2541745044355963,
+    "delta_worst_decile_pp": 0.5474675172418841,
+    "delta_worst_pp": 0.0,
+    "delta_sharpe": 0.0018221111252880728,
+    "delta_calmar": -0.00041120139458339366
+  },
+  "annual": [
+    {"year": 2021, "delta_cagr_pp": 0.006028, "delta_maxdd_pp": 0.012377, "delta_p10_pp": 0.0, "delta_p5_pp": 0.0, "delta_worst_decile_pp": 0.001809},
+    {"year": 2022, "delta_cagr_pp": -0.150113, "delta_maxdd_pp": 0.424344, "delta_p10_pp": 1.14761, "delta_p5_pp": 0.974211, "delta_worst_decile_pp": 0.932637}
+  ],
+  "action_counts": {"2021": {"BIL": 5, "STAY": 553}, "2022": {"BIL": 274, "STAY": 292}},
+  "interpretation": "Strong simplification diagnostic, but discovered after STEP08I development results and therefore not a valid preregistered promotion test."
+}
