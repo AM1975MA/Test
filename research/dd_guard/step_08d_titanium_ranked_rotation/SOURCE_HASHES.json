@@ -1,0 +1,52 @@
+{
+  "authentic_TIT_R_score_panel": {
+    "path": "/mnt/data/meteor/step08d_inputs/recovered/METEOR_TITANIUM_V2_RECOVERED_OFFICIAL_20260817/authentic/ORTHOGONAL_SCORE_PANEL.pkl",
+    "sha256": "57caef7e4b824d0a7c75cea389d7e957b2da23bb0925a15b696ca0bfdaa2af88",
+    "bytes": 4047641
+  },
+  "step08c_oracle_decisions": {
+    "path": "/mnt/data/meteor/step08c/ORACLE_DECISIONS.csv",
+    "sha256": "bd1bd79d89643aef33a269da7cd425a0d4fadf0cc466f4d6ddd57353a9122803",
+    "bytes": 344372
+  },
+  "fusion1_engine": {
+    "path": "/mnt/data/meteor/work06k/provenance/step06j_incremental_fusion.py",
+    "sha256": "4695d5f640e6f312941f57ed8751cac3ab67a8a45edbd24e0bf398659ed2c9bb",
+    "bytes": 15199
+  },
+  "fusion1_paths": {
+    "path": "/mnt/data/meteor/work06k/inputs/TREATMENT_VALUE_SELECTED_PATHS.npz",
+    "sha256": "31bd3e935f70fa60df53537c0b6d637365a1c23ea2c2144b47775d42ea7f84ae",
+    "bytes": 17844028
+  },
+  "close_150": {
+    "path": "/mnt/data/meteor/step08c_work/ohlcv/library_inputs/armed_accepted/data/armed_risk_v2_20260702/CLOSE.parquet",
+    "sha256": "90bbab01352f8ed6a8ae9c9d85fb6e34e79a261768e25e3ea1a2e9681e322a24",
+    "bytes": 3413752
+  },
+  "output_STEP08D_PROTOCOL.md": {
+    "sha256": "e8bd205abb796b65d6fae807171927e195cb887166d49427cc5f3cedb3a99dd7"
+  },
+  "output_step08d_titanium_ranked_rotation.py": {
+    "sha256": "60ba2ffa63df0dc537a908383341d3c28ad274e07c73f0b66a3ce064f983077b"
+  },
+  "output_DEVELOPMENT_SCORECARD.csv": {
+    "sha256": "6cef7a323cb31e32d742844b7ba976e5fa67a282ea3f1e15721359db6ddf4879"
+  },
+  "output_DEVELOPMENT_ANNUAL.csv": {
+    "sha256": "9594cae69b212b85ddcb02d42bc71fc1e5306dbb9d6b989a68edcffc3cb6a28f"
+  },
+  "output_MECHANISM_DIAGNOSTICS.json": {
+    "sha256": "21fc260634b227db2a715d61c160eda5f52c7732ae054ee537b19ce8578a324d"
+  },
+  "output_RESULT_DEVELOPMENT.json": {
+    "sha256": "3afdb8c2d16d38ec8bcb93c9e018af15787d900b906cba5d717193d0b24be5d3"
+  },
+  "output_RESULT_DEVELOPMENT.md": {
+    "sha256": "9b24caf39e1e442118410a85a4bec9454243d59f5d7497bc797bcb0b10b862ed"
+  },
+  "output_STEP08D_FINAL_CHECKPOINT.md": {
+    "sha256": "cb378cf37a9659a8fb949b75ab20f3bbf96957cc3734f5b33bf592df0fc0a364"
+  },
+  "repro_zip_sha256": "47f2b542243c52f087860aaedfd2eba55245507dedafa834eb78b52e324c4880"
+}
