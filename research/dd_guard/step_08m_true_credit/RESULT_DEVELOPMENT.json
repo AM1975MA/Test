@@ -1,0 +1,11 @@
+{
+  "step": "STEP08M",
+  "verdict": "REJECT_BEFORE_2023_HOLDOUT",
+  "holdout_2023_plus_opened": false,
+  "primary_policy": "TRUE_CREDIT_BREADTH",
+  "gate": false,
+  "gate_checks": {"mean_maxdd_ge_0p50": false, "p10_ge_0p50": false, "worst_decile_ge_0": false, "cagr_ge_minus_0p50": false, "annual_maxdd_nonnegative_both": false},
+  "primary": {"cagr": 17.45249113173437, "dd": -27.104220001144007, "sh": 0.6675394212069152, "calmar": 0.7946778202573729, "delta_cagr_pp": -2.9634939138514227, "delta_maxdd_pp": -0.95216369657442, "delta_p10_pp": -1.0561654433151872, "delta_p5_pp": -1.4102758208812247, "delta_worst_decile_pp": -1.7075356348716113, "delta_worst_pp": -4.400835377880185},
+  "annual_primary": [{"year": 2021, "delta_cagr_pp": -4.4435991064941724, "delta_maxdd_pp": -1.5369408306980965, "bil_rate": 0.6881720430107527, "n_decisions": 558}, {"year": 2022, "delta_cagr_pp": -1.474091638330954, "delta_maxdd_pp": -0.2757646487719221, "bil_rate": 0.3303886925795053, "n_decisions": 566}],
+  "mechanism": {"bil_rate": 0.5080071174377224, "oracle_bil_rate": 0.38256227758007116, "oracle_hit": 0.34608540925266906, "selected_bil_win_rate": 0.2329246935201401, "mean_realized_adv_selected_bil": -0.038308373442124725, "n_features": 45}
+}
