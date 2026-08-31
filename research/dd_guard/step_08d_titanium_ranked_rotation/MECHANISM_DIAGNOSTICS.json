@@ -1,0 +1,48 @@
+{
+  "n_decisions": 1124,
+  "unrestricted_authentic_parity": "72/72",
+  "score_age_days_mean": 14.194839857651246,
+  "score_age_days_median": 13.0,
+  "score_age_days_max": 32,
+  "balanced_concentrated_100pct_rate": 0.0,
+  "top1_bil_rate": 0.0,
+  "top1_oracle_hit_rate": 0.011565836298932384,
+  "top_destinations": {
+    "EWZ": 162,
+    "URA": 136,
+    "XLY": 134,
+    "SOXX": 107,
+    "EZA": 95,
+    "SMH": 63,
+    "PPLT": 62,
+    "USL": 60,
+    "TAN": 54,
+    "ARGT": 45,
+    "XRT": 43,
+    "GDXJ": 31,
+    "CPER": 29,
+    "BNO": 17,
+    "UNG": 16,
+    "TUR": 15,
+    "PALL": 15,
+    "KRE": 10,
+    "IWM": 9,
+    "XLE": 8
+  },
+  "event_utility": {
+    "TIT_R_TOP1": {
+      "mean_adv_vs_baseline": 0.002656138186014763,
+      "median_adv_vs_baseline": -0.001101030700905,
+      "beat_baseline_rate": 0.49555160142348753,
+      "beat_bil_rate": 0.7144128113879004,
+      "top1_oracle_hit_rate": 0.011565836298932384
+    },
+    "TIT_R_V2_BALANCED": {
+      "mean_adv_vs_baseline": 0.0015935078744358153,
+      "median_adv_vs_baseline": -0.0026645704452365956,
+      "beat_baseline_rate": 0.48576512455516013,
+      "beat_bil_rate": 0.7179715302491103,
+      "top1_oracle_hit_rate": 0.011565836298932384
+    }
+  }
+}
