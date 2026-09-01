@@ -1,0 +1,15 @@
+{
+  "step": "STEP09A4",
+  "verdict": "REJECT_STEP09A4_CFTC_POSITIONING_INSUFFICIENT",
+  "gate": false,
+  "holdout_2023_plus_opened": false,
+  "parity_max_abs_diff": 0.0,
+  "geometry_forward": {"balanced_accuracy":0.439109277988241,"auc_stay":0.4619370701217954,"auc_rotate":0.7030401596650158,"auc_bil":0.6785923470951998,"macro_auc":0.6145231922940037},
+  "cftc_forward": {"balanced_accuracy":0.4063675327998542,"auc_stay":0.4487799454405128,"auc_rotate":0.7195819360217957,"auc_bil":0.679194880650714,"macro_auc":0.6158522540376742},
+  "cftc_2021": {"balanced_accuracy":0.445599536536143,"auc_stay":0.4864054189715989,"auc_rotate":0.7857165504282024,"auc_bil":0.7598363373907615,"macro_auc":0.6773194355968544},
+  "loo_median_macro_auc":0.65911812567999,
+  "delta_vs_geometry":{"balanced_accuracy":-0.032741745188386795,"macro_auc":0.0013290617436705343,"auc_stay":-0.013157124681282606,"auc_rotate":0.01654177635677989,"auc_bil":0.0006025335555142064},
+  "coverage":{"events":564,"dates":50,"unique_cftc_reports_used":42,"median_report_age_days":9.0,"max_report_age_days":10},
+  "source_hashes":{"protocol":"2641ff201265ab4014ee2c103c632890364a3e3d515d01bc29821c07220d89ea","a2_panel":"4aa2c542e124c437f86ec47e2005bca2875c9582c4825e65a23639295e691deb","a2_result":"0cd228aece727eb94dd237a8992f7b4b4fbd718bb8cf3e3a5607d3794887cb13","cftc_required_reports":"1158a2dcaff364b74570d0e32242ff154d141ec9c8e103c1ec26fd906c14569d"},
+  "cftc_provenance":{"repo":"m0narch810/vanta","ref":"c47809585b6c3334b0a599d69873a4100db9745f","file":"data/processed/cot_ES.csv","blob_sha":"14fe9693cd0de6ca21bf5d9953773d50c41b1ea2","contract_market_code":"13874A","report_availability_lag_calendar_days":4}
+}
