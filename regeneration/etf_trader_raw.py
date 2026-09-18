@@ -14,7 +14,7 @@ univ=[(t,c) for c,xs in CATS.items() for t in xs]
 pd.DataFrame(univ,columns=["ticker","macro_category"]).to_csv(OUT/"universe.csv",index=False)
 hashes={}; coverage=[]
 for i,(t,c) in enumerate(univ,1):
-    d=yf.download(t,start="2014-01-01",end="2026-07-02",auto_adjust=False,actions=False,progress=False,threads=False)
+    d=yf.download(t,start="2004-01-01",end="2026-07-02",auto_adjust=False,actions=False,progress=False,threads=False)
     if isinstance(d.columns,pd.MultiIndex): d.columns=d.columns.get_level_values(0)
     d=d.reset_index()
     need=["Date","Open","High","Low","Close","Adj Close","Volume"]
@@ -27,6 +27,6 @@ for i,(t,c) in enumerate(univ,1):
     hashes[t]=hashlib.sha256(p.read_bytes()).hexdigest()
     coverage.append({"ticker":t,"rows":len(q),"first":q.date.iloc[0],"last":q.date.iloc[-1]})
     print(i,t,len(q),flush=True)
-manifest={"snapshot":"ETF_TRADER_RAW_REGEN_20260918","provider":"Yahoo Finance via yfinance","requested_start":"2014-01-01","last_included":"2026-07-01","tickers":len(univ),"excluded_historical_ticker":"PIN","price_semantics":"same-row Adj Close/raw Close adjustment for OHLC; raw Volume","backfill":False,"derived_strategy_artifacts_consumed":False,"file_sha256":hashes}
+manifest={"snapshot":"ETF_TRADER_RAW_LONG_REGEN_20260918","provider":"Yahoo Finance via yfinance","requested_start":"2004-01-01","last_included":"2026-07-01","tickers":len(univ),"excluded_historical_ticker":"PIN","price_semantics":"same-row Adj Close/raw Close adjustment for OHLC; raw Volume","backfill":False,"derived_strategy_artifacts_consumed":False,"file_sha256":hashes}
 (OUT/"manifest.json").write_text(json.dumps(manifest,indent=2))
 pd.DataFrame(coverage).to_csv(OUT/"coverage.csv",index=False)
