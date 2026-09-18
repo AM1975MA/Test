@@ -171,15 +171,20 @@ def main() -> None:
         for t in batch:
             n = int(extracted["Close"][t].notna().sum()) if t in extracted["Close"] else 0
             source = "yfinance"
+            error = ""
             if n < 252:
-                fb = yahoo_chart_fallback(t)
-                union = extracted["Close"].index.union(fb.index).sort_values()
-                for fld in FIELDS:
-                    extracted[fld] = extracted[fld].reindex(union)
-                    extracted[fld][t] = fb[fld].reindex(union)
-                n = int(extracted["Close"][t].notna().sum())
-                source = "yahoo_chart_fallback"
-            logs.append({"ticker": t, "rows_close": n, "ok": n >= 252, "source": source})
+                try:
+                    fb = yahoo_chart_fallback(t)
+                    union = extracted["Close"].index.union(fb.index).sort_values()
+                    for fld in FIELDS:
+                        extracted[fld] = extracted[fld].reindex(union)
+                        extracted[fld][t] = fb[fld].reindex(union)
+                    n = int(extracted["Close"][t].notna().sum())
+                    source = "yahoo_chart_fallback"
+                except Exception as exc:
+                    source = "unavailable"
+                    error = repr(exc)
+            logs.append({"ticker": t, "rows_close": n, "ok": n >= 252, "source": source, "error": error})
         for f in FIELDS:
             frames[f].append(extracted[f])
 
@@ -191,20 +196,21 @@ def main() -> None:
         mats[f] = x.apply(pd.to_numeric, errors="coerce")
 
     common = sorted(set.intersection(*(set(x.columns) for x in mats.values())))
-    if set(common) != set(ALL_TICKERS):
-        missing = sorted(set(ALL_TICKERS) - set(common))
-        extra = sorted(set(common) - set(ALL_TICKERS))
-        raise RuntimeError(f"ticker coverage mismatch missing={missing} extra={extra}")
-
-    for f in FIELDS:
-        mats[f] = mats[f].reindex(columns=ALL_TICKERS)
-
     bad = [r for r in logs if not r["ok"]]
-    if bad:
-        raise RuntimeError(f"insufficient history for ticker(s): {bad}")
+    bad_tickers = sorted(r["ticker"] for r in bad)
+    if bad_tickers != ["PIN"]:
+        raise RuntimeError(f"unexpected insufficient-history ticker(s): {bad}")
+    missing = sorted(set(ALL_TICKERS) - set(common))
+    unexpected_missing = sorted(set(missing) - {"PIN"})
+    if unexpected_missing:
+        raise RuntimeError(f"unexpected ticker coverage mismatch missing={unexpected_missing}")
+
+    available_tickers = [t for t in ALL_TICKERS if t not in set(bad_tickers)]
+    for f in FIELDS:
+        mats[f] = mats[f].reindex(columns=available_tickers)
 
     long_parts = []
-    for t in ALL_TICKERS:
+    for t in available_tickers:
         g = pd.DataFrame({
             "date": mats["Close"].index,
             "ticker": t,
@@ -231,7 +237,7 @@ def main() -> None:
     long.to_csv(csv_path, index=False, float_format="%.17g")
     pd.DataFrame(logs).to_csv(log_path, index=False)
     pd.DataFrame(
-        [{"ticker": t, "macro_category": TICKER_CATEGORY[t]} for t in ALL_TICKERS]
+        [{"ticker": t, "macro_category": TICKER_CATEGORY[t]} for t in available_tickers]
     ).to_csv(universe_path, index=False)
 
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
@@ -243,7 +249,9 @@ def main() -> None:
         "start": START,
         "end_exclusive": END_EXCLUSIVE,
         "intended_last_session": "2026-07-31",
-        "universe_tickers": len(ALL_TICKERS),
+        "requested_universe_tickers": len(ALL_TICKERS),
+        "usable_universe_tickers": len(available_tickers),
+        "excluded_tickers": bad_tickers,
         "rows": int(len(long)),
         "date_min": str(pd.to_datetime(long["date"]).min().date()),
         "date_max": str(pd.to_datetime(long["date"]).max().date()),
@@ -253,7 +261,7 @@ def main() -> None:
         "download_log_sha256": sha256(log_path),
         "universe_sha256": sha256(universe_path),
         "source_code": "scripts/download_titanium_v2_vintage.py",
-        "notes": "Redownload of the Titanium V2 Yahoo/yfinance universe at the original fixed vintage; direct Yahoo chart fallback is used only when yfinance returns insufficient history. Vendor historical revisions may differ from previously frozen parquet bytes.",
+        "notes": "Redownload of the Titanium V2 Yahoo/yfinance universe at the original fixed vintage. Historical Meteor research already classified PIN as unusable (150 requested / 149 usable), and PIN appears in zero official 500-basket membership rows. The snapshot therefore preserves the operational 149-ticker universe and records PIN as excluded. Vendor historical revisions may differ from previously frozen parquet bytes.",
     }
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 
