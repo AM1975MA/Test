@@ -61,55 +61,91 @@ def download_batch(batch: list[str]) -> pd.DataFrame:
 
 
 def yahoo_chart_fallback(ticker: str) -> pd.DataFrame:
+    errors = []
+
+    # First retry through yfinance with range=max. Some Yahoo symbols reject
+    # explicit start/end but still expose a complete max-range chart.
+    try:
+        h = yf.Ticker(ticker).history(period="max", auto_adjust=True, actions=False)
+        if h is not None and not h.empty:
+            h.index = pd.to_datetime(h.index).tz_localize(None)
+            h = h.loc[(h.index >= pd.Timestamp(START)) & (h.index < pd.Timestamp(END_EXCLUSIVE))]
+            cols = [x for x in FIELDS if x in h.columns]
+            h = h[cols].copy()
+            if h["Close"].notna().sum() >= 252:
+                return h.reindex(columns=FIELDS)
+        errors.append(f"yfinance max: only {0 if h is None else int(h.get('Close', pd.Series(dtype=float)).notna().sum())} closes")
+    except Exception as exc:
+        errors.append(f"yfinance max: {exc!r}")
+
     p1 = int(pd.Timestamp(START, tz="UTC").timestamp())
     p2 = int(pd.Timestamp(END_EXCLUSIVE, tz="UTC").timestamp())
-    params = {
-        "period1": p1,
-        "period2": p2,
-        "interval": "1d",
-        "events": "div,splits,capitalGains",
-        "includeAdjustedClose": "true",
-    }
-    errors = []
+    request_modes = [
+        {"period1": p1, "period2": p2},
+        {"range": "max"},
+    ]
     for host in ("query1.finance.yahoo.com", "query2.finance.yahoo.com"):
-        url = f"https://{host}/v8/finance/chart/{ticker}"
-        try:
-            r = curl_requests.get(url, params=params, impersonate="chrome", timeout=30)
-            if r.status_code != 200:
-                errors.append(f"{host}: HTTP {r.status_code}")
-                continue
-            payload = r.json()["chart"]
-            if payload.get("error"):
-                errors.append(f"{host}: {payload['error']}")
-                continue
-            result = payload.get("result") or []
-            if not result:
-                errors.append(f"{host}: empty result")
-                continue
-            z = result[0]
-            ts = z.get("timestamp") or []
-            quote = ((z.get("indicators") or {}).get("quote") or [{}])[0]
-            adj_block = ((z.get("indicators") or {}).get("adjclose") or [{}])[0]
-            raw_close = pd.Series(quote.get("close") or [], dtype="float64")
-            adj_close = pd.Series(adj_block.get("adjclose") or quote.get("close") or [], dtype="float64")
-            if len(ts) == 0 or len(raw_close) != len(ts):
-                errors.append(f"{host}: malformed result")
-                continue
-            factor = adj_close.div(raw_close.replace(0, pd.NA))
-            idx = pd.to_datetime(ts, unit="s", utc=True).tz_convert(None)
-            out = pd.DataFrame(index=idx)
-            for src, dst in (("open","Open"),("high","High"),("low","Low")):
-                vals = pd.Series(quote.get(src) or [], dtype="float64")
-                out[dst] = vals.to_numpy() * factor.to_numpy()
-            out["Close"] = adj_close.to_numpy()
-            out["Volume"] = pd.to_numeric(pd.Series(quote.get("volume") or []), errors="coerce").to_numpy()
-            out = out[~out.index.duplicated(keep="last")].sort_index()
-            if out["Close"].notna().sum() >= 252:
-                return out
-            errors.append(f"{host}: only {int(out['Close'].notna().sum())} closes")
-        except Exception as exc:
-            errors.append(f"{host}: {exc!r}")
+        for mode in request_modes:
+            params = {
+                **mode,
+                "interval": "1d",
+                "events": "div,splits,capitalGains",
+                "includeAdjustedClose": "true",
+                "includePrePost": "false",
+            }
+            try:
+                url = f"https://{host}/v8/finance/chart/{ticker}"
+                r = curl_requests.get(url, params=params, impersonate="chrome", timeout=30)
+                if r.status_code != 200:
+                    errors.append(f"{host} {mode}: HTTP {r.status_code}")
+                    continue
+                payload = r.json()["chart"]
+                if payload.get("error"):
+                    errors.append(f"{host} {mode}: {payload['error']}")
+                    continue
+                result = payload.get("result") or []
+                if not result:
+                    errors.append(f"{host} {mode}: empty result")
+                    continue
+                z = result[0]
+                ts = z.get("timestamp") or []
+                indicators = z.get("indicators") or {}
+                quote_list = indicators.get("quote") or []
+                adj_list = indicators.get("adjclose") or []
+                quote = quote_list[0] if quote_list else {}
+                adj_block = adj_list[0] if adj_list else {}
+                qclose = quote.get("close") or []
+                aclose = adj_block.get("adjclose") or []
+                if len(ts) == 0 or len(qclose) != len(ts):
+                    errors.append(
+                        f"{host} {mode}: malformed ts={len(ts)} close={len(qclose)} "
+                        f"quote_keys={sorted(quote.keys())} indicator_keys={sorted(indicators.keys())}"
+                    )
+                    continue
+                raw_close = pd.Series(qclose, dtype="float64")
+                adj_close = pd.Series(aclose if len(aclose) == len(ts) else qclose, dtype="float64")
+                factor = adj_close.div(raw_close.replace(0, pd.NA))
+                idx = pd.to_datetime(ts, unit="s", utc=True).tz_convert(None)
+                out = pd.DataFrame(index=idx)
+                for src, dst in (("open","Open"),("high","High"),("low","Low")):
+                    vals = quote.get(src) or []
+                    if len(vals) != len(ts):
+                        vals = [None] * len(ts)
+                    out[dst] = pd.Series(vals, dtype="float64").to_numpy() * factor.to_numpy()
+                out["Close"] = adj_close.to_numpy()
+                vols = quote.get("volume") or []
+                if len(vols) != len(ts):
+                    vols = [None] * len(ts)
+                out["Volume"] = pd.to_numeric(pd.Series(vols), errors="coerce").to_numpy()
+                out = out.loc[(out.index >= pd.Timestamp(START)) & (out.index < pd.Timestamp(END_EXCLUSIVE))]
+                out = out[~out.index.duplicated(keep="last")].sort_index()
+                if out["Close"].notna().sum() >= 252:
+                    return out
+                errors.append(f"{host} {mode}: only {int(out['Close'].notna().sum())} closes")
+            except Exception as exc:
+                errors.append(f"{host} {mode}: {exc!r}")
     raise RuntimeError(f"Yahoo chart fallback failed for {ticker}: {errors}")
+
 
 
 def field_frame(raw: pd.DataFrame, field: str, batch: list[str]) -> pd.DataFrame:
