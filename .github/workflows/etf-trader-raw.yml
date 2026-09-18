@@ -20,5 +20,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: etf-trader-raw-149
-          path: etf_trader_raw/
+          path: |
+            etf_trader_raw/
+            regeneration/titanium_kernel_local.py
           retention-days: 30
