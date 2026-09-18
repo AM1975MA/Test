@@ -1,6 +1,10 @@
 name: ETF Trader canonical raw regeneration
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'regeneration/etf_trader_raw.py'
+      - '.github/workflows/etf-trader-raw.yml'
 jobs:
   regenerate:
     runs-on: ubuntu-latest
