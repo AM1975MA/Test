@@ -24,4 +24,5 @@ jobs:
             etf_trader_raw/
             regeneration/titanium_kernel_local.py
             regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv
+            regeneration/campaign/
           retention-days: 30
