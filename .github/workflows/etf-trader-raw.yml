@@ -1,0 +1,20 @@
+name: ETF Trader canonical raw regeneration
+on:
+  workflow_dispatch:
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pandas yfinance
+      - run: python regeneration/etf_trader_raw.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: etf-trader-raw-149
+          path: etf_trader_raw/
+          retention-days: 30
