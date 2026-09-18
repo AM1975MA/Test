@@ -1,0 +1,22 @@
+{
+  "provider": "Yahoo Finance through yfinance; direct Yahoo chart fallback when yfinance returns insufficient history",
+  "auto_adjust": true,
+  "start": "2005-01-01",
+  "end_exclusive": "2026-08-03",
+  "intended_last_session": "2026-07-31",
+  "requested_universe_tickers": 150,
+  "usable_universe_tickers": 149,
+  "excluded_tickers": [
+    "PIN"
+  ],
+  "rows": 720956,
+  "date_min": "2005-01-03",
+  "date_max": "2026-07-31",
+  "archive": "METEOR_TITANIUM_OHLCV_150ETF_20260802.zip",
+  "archive_sha256": "95151a906237d2904467dd0ed5a452c9c8f09ce20fa6d90f616f911367d00d99",
+  "archive_size_bytes": 26637226,
+  "download_log_sha256": "622b5aaf2382322eee4f649d5de9c8a741a433f5a7167eb53b0a934ee54af0cc",
+  "universe_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "source_code": "scripts/download_titanium_v2_vintage.py",
+  "notes": "Redownload of the Titanium V2 Yahoo/yfinance universe at the original fixed vintage. Historical Meteor research already classified PIN as unusable (150 requested / 149 usable), and PIN appears in zero official 500-basket membership rows. The snapshot therefore preserves the operational 149-ticker universe and records PIN as excluded. Vendor historical revisions may differ from previously frozen parquet bytes."
+}
