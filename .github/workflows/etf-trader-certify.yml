@@ -1,0 +1,20 @@
+name: ETF Trader raw certification
+on:
+  workflow_dispatch:
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install pandas numpy yfinance
+      - run: python regeneration/etf_trader_raw.py
+      - run: python regeneration/certify_etf_trader_raw.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: etf-trader-certified-raw
+          path: |
+            etf_trader_raw/
+            certification/
+          retention-days: 30
