@@ -10,6 +10,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import yfinance as yf
+from curl_cffi import requests as curl_requests
 
 START = "2005-01-01"
 END_EXCLUSIVE = "2026-08-03"
@@ -59,6 +60,58 @@ def download_batch(batch: list[str]) -> pd.DataFrame:
     raise RuntimeError(f"batch failed after retries: {batch}: {last!r}")
 
 
+def yahoo_chart_fallback(ticker: str) -> pd.DataFrame:
+    p1 = int(pd.Timestamp(START, tz="UTC").timestamp())
+    p2 = int(pd.Timestamp(END_EXCLUSIVE, tz="UTC").timestamp())
+    params = {
+        "period1": p1,
+        "period2": p2,
+        "interval": "1d",
+        "events": "div,splits,capitalGains",
+        "includeAdjustedClose": "true",
+    }
+    errors = []
+    for host in ("query1.finance.yahoo.com", "query2.finance.yahoo.com"):
+        url = f"https://{host}/v8/finance/chart/{ticker}"
+        try:
+            r = curl_requests.get(url, params=params, impersonate="chrome", timeout=30)
+            if r.status_code != 200:
+                errors.append(f"{host}: HTTP {r.status_code}")
+                continue
+            payload = r.json()["chart"]
+            if payload.get("error"):
+                errors.append(f"{host}: {payload['error']}")
+                continue
+            result = payload.get("result") or []
+            if not result:
+                errors.append(f"{host}: empty result")
+                continue
+            z = result[0]
+            ts = z.get("timestamp") or []
+            quote = ((z.get("indicators") or {}).get("quote") or [{}])[0]
+            adj_block = ((z.get("indicators") or {}).get("adjclose") or [{}])[0]
+            raw_close = pd.Series(quote.get("close") or [], dtype="float64")
+            adj_close = pd.Series(adj_block.get("adjclose") or quote.get("close") or [], dtype="float64")
+            if len(ts) == 0 or len(raw_close) != len(ts):
+                errors.append(f"{host}: malformed result")
+                continue
+            factor = adj_close.div(raw_close.replace(0, pd.NA))
+            idx = pd.to_datetime(ts, unit="s", utc=True).tz_convert(None)
+            out = pd.DataFrame(index=idx)
+            for src, dst in (("open","Open"),("high","High"),("low","Low")):
+                vals = pd.Series(quote.get(src) or [], dtype="float64")
+                out[dst] = vals.to_numpy() * factor.to_numpy()
+            out["Close"] = adj_close.to_numpy()
+            out["Volume"] = pd.to_numeric(pd.Series(quote.get("volume") or []), errors="coerce").to_numpy()
+            out = out[~out.index.duplicated(keep="last")].sort_index()
+            if out["Close"].notna().sum() >= 252:
+                return out
+            errors.append(f"{host}: only {int(out['Close'].notna().sum())} closes")
+        except Exception as exc:
+            errors.append(f"{host}: {exc!r}")
+    raise RuntimeError(f"Yahoo chart fallback failed for {ticker}: {errors}")
+
+
 def field_frame(raw: pd.DataFrame, field: str, batch: list[str]) -> pd.DataFrame:
     if isinstance(raw.columns, pd.MultiIndex):
         if field not in raw.columns.get_level_values(0):
@@ -79,11 +132,20 @@ def main() -> None:
         batch = ALL_TICKERS[i:i+25]
         raw = download_batch(batch)
         extracted = {f: field_frame(raw, f, batch) for f in FIELDS}
-        for f in FIELDS:
-            frames[f].append(extracted[f])
         for t in batch:
             n = int(extracted["Close"][t].notna().sum()) if t in extracted["Close"] else 0
-            logs.append({"ticker": t, "rows_close": n, "ok": n >= 252})
+            source = "yfinance"
+            if n < 252:
+                fb = yahoo_chart_fallback(t)
+                union = extracted["Close"].index.union(fb.index).sort_values()
+                for fld in FIELDS:
+                    extracted[fld] = extracted[fld].reindex(union)
+                    extracted[fld][t] = fb[fld].reindex(union)
+                n = int(extracted["Close"][t].notna().sum())
+                source = "yahoo_chart_fallback"
+            logs.append({"ticker": t, "rows_close": n, "ok": n >= 252, "source": source})
+        for f in FIELDS:
+            frames[f].append(extracted[f])
 
     mats = {}
     for f in FIELDS:
@@ -140,7 +202,7 @@ def main() -> None:
         z.write(csv_path, arcname=csv_path.name)
 
     manifest = {
-        "provider": "Yahoo Finance through yfinance",
+        "provider": "Yahoo Finance through yfinance; direct Yahoo chart fallback when yfinance returns insufficient history",
         "auto_adjust": True,
         "start": START,
         "end_exclusive": END_EXCLUSIVE,
@@ -155,7 +217,7 @@ def main() -> None:
         "download_log_sha256": sha256(log_path),
         "universe_sha256": sha256(universe_path),
         "source_code": "scripts/download_titanium_v2_vintage.py",
-        "notes": "Redownload of the Titanium V2 Yahoo/yfinance universe at the original fixed vintage; vendor historical revisions may differ from previously frozen parquet bytes.",
+        "notes": "Redownload of the Titanium V2 Yahoo/yfinance universe at the original fixed vintage; direct Yahoo chart fallback is used only when yfinance returns insufficient history. Vendor historical revisions may differ from previously frozen parquet bytes.",
     }
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 
