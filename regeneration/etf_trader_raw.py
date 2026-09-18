@@ -9,7 +9,7 @@ CATS={
 "C04_EMERGING":['EWS','EWY','FXI','ASHR','INDA','VWO','EWT','IEMG','KWEB','EEM','MCHI','TUR','AAXJ','EWZ','EZA','EIDO','EWM','THD','EPHE','SCHE','DEM','DGS','EPI','ARGT'],
 "C05_BONDS_CASH_CREDIT":['AGG','BIL','EMB','IEF','IEI','LQD','BNDX','HYG','MUB','BND','JNK','SCHP','EDV','SHY','TLT','TIP','SHV','VGSH','VGIT','VGLT','VCIT','VCSH','MBB','BKLN','ANGL'],
 "C06_REAL_ASSETS":['COMT','GLD','SLV','GSG','IYR','PPLT','CPER','DBB','VNQ','DBC','GDX','PALL','BNO','DBA','GDXJ','IAU','USO','UNG','DBO','USL','RWO','RWX','WOOD','CORN','URA']}
-OUT=Path("etf_trader_raw"); OUT.mkdir(exist_ok=True) # push-trigger 20260918-long-history
+OUT=Path("etf_trader_raw"); OUT.mkdir(exist_ok=True) # push-trigger 20260918-source-transport
 univ=[(t,c) for c,xs in CATS.items() for t in xs]
 pd.DataFrame(univ,columns=["ticker","macro_category"]).to_csv(OUT/"universe.csv",index=False)
 hashes={}; coverage=[]
