@@ -1,6 +1,11 @@
 name: ETF Trader raw certification
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'regeneration/**'
+      - '.github/workflows/etf-trader-certify.yml'
 jobs:
   certify:
     runs-on: ubuntu-latest
