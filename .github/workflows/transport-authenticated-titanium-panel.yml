@@ -1,0 +1,38 @@
+name: Transport authenticated Titanium score panel
+
+on:
+  push:
+    paths:
+      - '.github/workflows/transport-authenticated-titanium-panel.yml'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pandas
+        run: python -m pip install --quiet pandas
+      - name: Reassemble and convert authenticated panel
+        run: |
+          cat transport/authentic_score_panel_20260919/part-* > /tmp/ORTHOGONAL_SCORE_PANEL.pkl
+          python - <<'PY'
+          import hashlib
+          import pandas as pd
+          p='/tmp/ORTHOGONAL_SCORE_PANEL.pkl'
+          raw=open(p,'rb').read()
+          assert len(raw)==4047641, len(raw)
+          assert hashlib.sha256(raw).hexdigest()=='57caef7e4b824d0a7c75cea389d7e957b2da23bb0925a15b696ca0bfdaa2af88'
+          df=pd.read_pickle(p)
+          print(df.shape)
+          print(df.columns.tolist())
+          df.to_csv('/tmp/AUTHENTIC_ORTHOGONAL_SCORE_PANEL.csv.gz',index=False,compression='gzip')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: authenticated-titanium-score-panel-csv
+          path: /tmp/AUTHENTIC_ORTHOGONAL_SCORE_PANEL.csv.gz
+          if-no-files-found: error
+          retention-days: 1
