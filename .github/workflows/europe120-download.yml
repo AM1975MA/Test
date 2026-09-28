@@ -4,12 +4,10 @@ on:
   push:
     paths:
       - 'europe120/download_europe120.py'
-      - 'europe120/run_europe120_2019.py'
       - '.github/workflows/europe120-download.yml'
   pull_request:
     paths:
       - 'europe120/download_europe120.py'
-      - 'europe120/run_europe120_2019.py'
       - '.github/workflows/europe120-download.yml'
 
 jobs:
@@ -26,11 +24,11 @@ jobs:
       - name: Install dependencies
         run: pip install pandas numpy pyarrow yfinance
       - name: Discover and download 120 EU-economy ETFs
-        run: python europe120/run_europe120_2019.py
+        run: python europe120/download_europe120.py
       - name: Upload EU120 snapshot
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: eu-economy-120-20260731
+          name: eu-economy-120-20260701
           path: europe120/output/
           retention-days: 30
