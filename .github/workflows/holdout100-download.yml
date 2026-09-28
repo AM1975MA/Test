@@ -1,0 +1,28 @@
+name: ETF Trader V2 holdout100 download
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'holdout100/download_holdout100.py'
+      - '.github/workflows/holdout100-download.yml'
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install pandas numpy pyarrow yfinance
+      - name: Download deterministic holdout100
+        run: python holdout100/download_holdout100.py
+      - name: Upload frozen holdout snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: etf-trader-v2-holdout100-20260731
+          path: holdout100/output/
+          retention-days: 30
