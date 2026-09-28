@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 import download_europe120 as d
 
+# Frozen transfer-test wrapper: no performance criterion is used for membership.
 # The European UCITS universe is materially younger than the original US-heavy
 # universe. Require one full year of history before the evaluation start, but do
 # not use any performance information for selection.
