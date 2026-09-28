@@ -5,6 +5,10 @@ on:
     paths:
       - 'europe120/download_europe120.py'
       - '.github/workflows/europe120-download.yml'
+  pull_request:
+    paths:
+      - 'europe120/download_europe120.py'
+      - '.github/workflows/europe120-download.yml'
 
 jobs:
   download:
