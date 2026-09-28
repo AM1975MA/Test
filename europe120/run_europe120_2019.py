@@ -5,11 +5,11 @@ import pandas as pd
 import download_europe120 as d
 
 # Frozen transfer-test wrapper: no performance criterion is used for membership.
-# The European UCITS universe is materially younger than the original US-heavy
-# universe. Require one full year of history before the evaluation start, but do
-# not use any performance information for selection.
+# The user requested 120 tickers, 20 per economic cluster. Distinct listings/share
+# classes are allowed as separate tickers as long as the underlying exposure is EU.
 d.PRE2017_CUTOFF = pd.Timestamp("2019-01-31")
 d.MIN_PRE2017_ROWS = 252
+d.norm_name = lambda s: ""  # disable fund-name deduplication; symbol uniqueness remains enforced
 
 rc = d.main()
 if rc == 0:
@@ -17,7 +17,8 @@ if rc == 0:
     m = json.loads(p.read_text())
     m["evaluation_start"] = "2019-02-01"
     m["history_requirement"] = ">=252 observations by 2019-01-31"
-    m["selection_rule"] = "frozen Yahoo query order + symbol order; economic-name filters; first 20 distinct funds per cluster with >=252 observations by 2019-01-31 and coverage through 2026-07-31; no return/performance criterion"
+    m["ticker_policy"] = "distinct ticker symbols; multiple listings/share classes of the same fund are allowed; exposure must remain European/EU"
+    m["selection_rule"] = "frozen Yahoo query order + symbol order; economic-name filters; first 20 valid ticker symbols per cluster with >=252 observations by 2019-01-31 and coverage through 2026-07-31; no return/performance criterion"
     for rec in m.get("selected", []):
         if "pre2017_rows" in rec:
             rec["pre2019_rows"] = rec.pop("pre2017_rows")
