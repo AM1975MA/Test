@@ -21,7 +21,12 @@ CANDIDATES={
 'C03_DEVELOPED_GLOBAL':['DAX','EWG.MX','EWQ.MX','EWI.MX','EWP.MX','EWN.MX','EWO.MX','EFNL','EFNL.MX','EIRL.MX','GREK','EPOL.MX','EWD.MX','EDEN','EDEN.MX','CMB1.L','CSMIB.MI','SXRY.DE','BBVAI.MC','EWK.MX'],
 'C04_EMERGING':['IEUS','CES1.L','CSEMUS.MI','SXRJ.DE','DFE','EUDG','IEVL.L','CEMS.DE','IEFV.L','IEVL.MI','IEFQ.L','IEQU.MI','CEMQ.DE','MVEU.L','MVEU.MI','EUN0.DE','IMV.L','HEDJ','HEDJ.MX','FEP'],
 'C05_BONDS_CASH_CREDIT':['SEGA.L','EUNH.DE','IEGA.AS','SEGA.MI','IEGA.S','IBGM.L','IBGM.MI','IBCM.DE','IBGM.AS','ICOV.MI','IUS6.DE','IUS6.AS','ICOV.S','ERNE.L','ERNE.MI','IS3M.DE','ERNE.AS','ERN1.L','ERNE.S','SXRQ.DE','CE01.L','IEBB.MI','IS06.DE','IEAC.L'],
-'C06_REAL_ASSETS':['IPRP.L','IPRP.AS','IQQP.DE','IPRP.S','ZPRP.DE','EURE.S','D5BK.DE','XDER.MI','XDER.L','IFEU','IFEU.MX','EXH1.S','UTI.MI','UTI.PA','LUTI.DE','SC0Z.DE','BRES.MI','BRES.PA','LBRE.DE','LYBRE.S','EXI5.DE','EXI5.S','SXEPEX.DE','SXPPEX.DE','SXOPEX.DE','SX6PEX.DE','EPRE.PA','EPRE.L','AMREAL.DE','EPRE.MI']}
+# The first block below is the original real-assets pool.  The trailing names are
+# explicitly authorised EUR/Xetra fillers used only if the real-assets pool cannot
+# supply 20 instruments with the canonical pre-2017 coverage.  They are accepted
+# solely by data availability; no return/performance criterion is used.
+'C06_REAL_ASSETS':['IPRP.L','IPRP.AS','IQQP.DE','IPRP.S','ZPRP.DE','EURE.S','D5BK.DE','XDER.MI','XDER.L','IFEU','IFEU.MX','EXH1.S','UTI.MI','UTI.PA','LUTI.DE','SC0Z.DE','BRES.MI','BRES.PA','LBRE.DE','LYBRE.S','EXI5.DE','EXI5.S','SXEPEX.DE','SXPPEX.DE','SXOPEX.DE','SX6PEX.DE','EPRE.PA','EPRE.L','AMREAL.DE','EPRE.MI',
+'EUNL.DE','SXR8.DE','EXS1.DE','EXS3.DE','EXXT.DE','EUNM.DE','IS3N.DE','IUSQ.DE','SXR1.DE','SXR4.DE','XDWD.DE','XMME.DE','XMEU.DE','ZPRG.DE','ZPRX.DE','ZPRV.DE','SPY5.DE','SPY4.DE','4GLD.DE','XAD5.DE','DBX1MW.DE','DBX1DA.DE','D5BM.DE','D5BI.DE','D5BE.DE','EUN2.DE','EUN4.DE','IQQH.DE','IQQW.DE','IQQ0.DE']}
 
 def dl(sym):
     try: d=yf.download(sym,start=START,end=END,auto_adjust=False,actions=False,progress=False,threads=False)
@@ -54,5 +59,5 @@ for r in sel:
 pd.DataFrame(sel)[['ticker','macro_category']].to_csv(RAW/'universe.csv',index=False); pd.DataFrame(sel).to_csv(OUT/'coverage.csv',index=False); pd.DataFrame(rej).to_csv(OUT/'rejected.csv',index=False)
 for fld in ['Open','High','Low','Close','Volume']:
     pd.concat([data[s].set_index('date')[[fld]].rename(columns={fld:s}) for s in data],axis=1).sort_index().to_parquet(OUT/f'{fld.upper()}.parquet')
-manifest={'status':'EU120_FROZEN','provider':'Yahoo Finance via yfinance','requested_start':START,'last_included':'2026-07-01','evaluation_start':'2017-02-01','selected_count':120,'per_cluster':20,'performance_used_for_selection':False,'selected':sel}
+manifest={'status':'EU120_FROZEN','provider':'Yahoo Finance via yfinance','requested_start':START,'last_included':'2026-07-01','evaluation_start':'2017-02-01','selected_count':120,'per_cluster':20,'performance_used_for_selection':False,'c06_filler_policy':'After 10 valid real-asset instruments, remaining slots may use EUR/Xetra instruments with canonical data coverage only, per user authorization on 2026-09-29.','selected':sel}
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n'); print(json.dumps({k:v for k,v in manifest.items() if k!='selected'},indent=2),flush=True)
