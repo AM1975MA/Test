@@ -13,6 +13,7 @@ jobs:
       - run: |
           mkdir -p wheel
           python -m pip download --only-binary=:all: --no-deps pyarrow -d wheel
+          ls -lh wheel
       - uses: actions/upload-artifact@v4
         with:
           name: pyarrow-cp313-wheel
