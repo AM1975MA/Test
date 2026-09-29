@@ -13,7 +13,6 @@ LAST=pd.Timestamp('2026-07-01')
 PRE=pd.Timestamp('2017-01-31')
 MIN_PRE=252
 MAX_ABS_DAILY_RETURN=0.25
-OHLC_REL_TOL=1e-6
 OUT=Path('europe120/frozen_output')
 RAW=OUT/'raw_ticker_csv'
 RAW.mkdir(parents=True,exist_ok=True)
@@ -25,9 +24,7 @@ EWS EWY FXI ASHR INDA VWO EWT IEMG KWEB EEM MCHI TUR AAXJ EWZ EZA EIDO EWM THD E
 AGG BIL EMB IEF IEI LQD BNDX HYG MUB BND JNK SCHP EDV SHY TLT TIP SHV VGSH VGIT VGLT VCIT VCSH MBB BKLN ANGL
 COMT GLD SLV GSG IYR PPLT CPER DBB VNQ DBC GDX PALL BNO DBA GDXJ IAU USO UNG DBO USL RWO RWX WOOD CORN URA'''.split())
 
-# Candidate order is frozen before observing post-2017 returns. Selection uses only
-# disjointness, pre-2017 coverage, end-date coverage and provider/data-quality gates.
-# Mexican listings are omitted because the provider vintage showed systematic scale breaks.
+# Fixed order. No post-2017 performance statistic is used to select replacements.
 CANDIDATES={
 'C01_US_BROAD_STYLE':[
     'IEUR','IEV','SPEU','HEU.PA','EZU','HEZU','CSSX5E.MI','CSX5.AS','CSX5.L','FEZ','SXRT.DE','IEU.AX','VEUR.SW','DBEU','FDD','EXSA.DE',
@@ -55,22 +52,23 @@ CANDIDATES={
 
 
 def dl(sym):
+    diag={'raw_rows':0,'dropped_nonpositive':0,'ohlc_envelope_fixes':0}
     if sym in ORIGINAL_149:
-        return None,'overlap_original149',None
+        return None,'overlap_original149',None,diag
     if sym.endswith('.MX'):
-        return None,'provider_mx_excluded',None
+        return None,'provider_mx_excluded',None,diag
     try:
         d=yf.download(sym,start=START,end=END,auto_adjust=False,actions=False,progress=False,threads=False)
     except Exception as e:
-        return None,f'download:{type(e).__name__}:{e}',None
+        return None,f'download:{type(e).__name__}:{e}',None,diag
     if d is None or d.empty:
-        return None,'empty',None
+        return None,'empty',None,diag
     if isinstance(d.columns,pd.MultiIndex):
         d.columns=d.columns.get_level_values(0)
     d=d.reset_index()
     req=['Date','Open','High','Low','Close','Adj Close','Volume']
     if any(c not in d.columns for c in req):
-        return None,'missing_columns',None
+        return None,'missing_columns',None,diag
     raw_close=pd.to_numeric(d['Close'],errors='coerce').replace(0,pd.NA)
     adj_close=pd.to_numeric(d['Adj Close'],errors='coerce')
     f=adj_close/raw_close
@@ -83,24 +81,29 @@ def dl(sym):
         'Volume':pd.to_numeric(d['Volume'],errors='coerce')
     }).dropna().sort_values('date').drop_duplicates('date',keep='last')
     q=q[q.date<=LAST].copy()
+    diag['raw_rows']=int(len(q))
+
+    # Deterministic provider sanitation, independent of future performance.
+    good=(q[['Open','High','Low','Close']]>0).all(axis=1)
+    diag['dropped_nonpositive']=int((~good).sum())
+    q=q.loc[good].copy()
+    if q.empty:
+        return None,'no_positive_ohlc',None,diag
+    old_hi=q['High'].copy(); old_lo=q['Low'].copy()
+    q['High']=q[['Open','High','Low','Close']].max(axis=1)
+    q['Low']=q[['Open','High','Low','Close']].min(axis=1)
+    diag['ohlc_envelope_fixes']=int(((q['High']!=old_hi)|(q['Low']!=old_lo)).sum())
+
     npre=int((q.date<=PRE).sum())
     if npre<MIN_PRE:
-        return None,f'pre2017:{npre}',None
-    if q.empty or q.date.max()<LAST:
-        return None,'ends_early',None
+        return None,f'pre2017:{npre}',None,diag
+    if q.date.max()<LAST:
+        return None,'ends_early',None,diag
     r=q['Close'].pct_change(fill_method=None).replace([np.inf,-np.inf],np.nan)
     max_abs=float(r.abs().max()) if r.notna().any() else np.nan
     if (not np.isfinite(max_abs)) or max_abs>MAX_ABS_DAILY_RETURN:
-        return None,f'quality_jump:{max_abs:.6f}',max_abs
-    if (q[['Open','High','Low','Close']]<=0).any(axis=None):
-        return None,'ohlc_nonpositive',max_abs
-    hi_ref=q[['Open','Close','Low']].max(axis=1)
-    lo_ref=q[['Open','Close','High']].min(axis=1)
-    bad_hi=q['High'] < hi_ref*(1.0-OHLC_REL_TOL)
-    bad_lo=q['Low'] > lo_ref*(1.0+OHLC_REL_TOL)
-    if bad_hi.any() or bad_lo.any():
-        return None,f'ohlc_sanity:{int(bad_hi.sum()+bad_lo.sum())}',max_abs
-    return q,None,max_abs
+        return None,f'quality_jump:{max_abs:.6f}',max_abs,diag
+    return q,None,max_abs,diag
 
 sel=[]; rej=[]; audit=[]; data={}; used=set()
 for cat,cands in CANDIDATES.items():
@@ -110,16 +113,16 @@ for cat,cands in CANDIDATES.items():
         if s in used:
             rej.append({'ticker':s,'macro_category':cat,'reason':'duplicate_global'})
             continue
-        q,err,max_abs=dl(s)
-        audit.append({'ticker':s,'macro_category':cat,'accepted':q is not None,'reason':err or 'ok','max_abs_daily_return':max_abs})
+        q,err,max_abs,diag=dl(s)
+        audit.append({'ticker':s,'macro_category':cat,'accepted':q is not None,'reason':err or 'ok','max_abs_daily_return':max_abs,**diag})
         if q is None:
             rej.append({'ticker':s,'macro_category':cat,'reason':err})
-            print('REJECT',cat,s,err,flush=True)
+            print('REJECT',cat,s,err,diag,flush=True)
             continue
         n+=1; used.add(s); data[s]=q
         sel.append({'ticker':s,'macro_category':cat,'rows':len(q),'first':str(q.date.min().date()),'last':str(q.date.max().date()),
-                    'pre2017_rows':int((q.date<=PRE).sum()),'max_abs_daily_return':max_abs})
-        print('SELECT',cat,n,'/20',s,'maxjump',f'{max_abs:.4%}',flush=True)
+                    'pre2017_rows':int((q.date<=PRE).sum()),'max_abs_daily_return':max_abs,**diag})
+        print('SELECT',cat,n,'/20',s,'maxjump',f'{max_abs:.4%}','san',diag,flush=True)
     if n!=20:
         pd.DataFrame(sel).to_csv(OUT/'partial_selected.csv',index=False)
         pd.DataFrame(rej).to_csv(OUT/'rejected.csv',index=False)
@@ -155,12 +158,13 @@ manifest={
     'performance_used_for_selection':False,
     'data_quality_rules':{
         'mexico_listings_excluded':True,
+        'drop_nonpositive_ohlc_rows':True,
+        'rebuild_high_low_as_ohlc_envelope':True,
         'max_abs_adjusted_daily_return':MAX_ABS_DAILY_RETURN,
-        'ohlc_relative_tolerance':OHLC_REL_TOL,
-        'minimum_pre2017_rows':MIN_PRE,
+        'minimum_pre2017_rows_after_sanitation':MIN_PRE,
         'must_reach_last_date':str(LAST.date())
     },
-    'replacement_policy':'Continue in frozen candidate order after any coverage/data-quality rejection; no post-2017 return statistic used.',
+    'replacement_policy':'Continue in fixed candidate order after any coverage/data-quality rejection; no post-2017 return statistic used.',
     'c06_filler_policy':'After real-asset instruments, remaining slots may use authorised EUR/Xetra instruments with canonical data coverage only; no performance criterion.',
     'selected':sel
 }
