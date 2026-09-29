@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import hashlib, json, re, time
+import ast, hashlib, json, re, time
 from pathlib import Path
 import pandas as pd
 import yfinance as yf
@@ -83,6 +83,20 @@ CLUSTERS = {
 }
 
 
+def original_149() -> set[str]:
+    src = Path("regeneration/etf_trader_raw.py").read_text(encoding="utf-8")
+    tree = ast.parse(src)
+    cats = None
+    for node in tree.body:
+        if isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id == "CATS":
+                    cats = ast.literal_eval(node.value)
+    if cats is None:
+        raise RuntimeError("cannot recover canonical CATS from regeneration/etf_trader_raw.py")
+    return {str(t).upper() for xs in cats.values() for t in xs}
+
+
 def text_ok(spec: dict, name: str) -> bool:
     x = (name or "").lower()
     if spec.get("exclude") and any(k in x for k in spec["exclude"]):
@@ -132,8 +146,9 @@ def download_one(symbol: str):
         "Close": pd.to_numeric(d["Adj Close"], errors="coerce"),
         "Volume": pd.to_numeric(d["Volume"], errors="coerce"),
     }).dropna().sort_values("date").drop_duplicates("date", keep="last")
-    if len(q[q["date"] <= PRE2017_CUTOFF]) < MIN_PRE2017_ROWS:
-        return None, f"insufficient_pre2017_rows:{len(q[q['date'] <= PRE2017_CUTOFF])}"
+    pre_rows = len(q[q["date"] <= PRE2017_CUTOFF])
+    if pre_rows < MIN_PRE2017_ROWS:
+        return None, f"insufficient_pre2017_rows:{pre_rows}"
     if q.empty or q["date"].max() < LAST_REQUIRED:
         return None, "ends_before_2026-07-01"
     return q[q["date"] <= LAST_REQUIRED].copy(), None
@@ -149,6 +164,7 @@ def main() -> int:
     raw.mkdir(parents=True, exist_ok=True)
     selected, rejected, data = [], [], {}
     used_symbols = set()
+    original = original_149()
 
     for cat, spec in CLUSTERS.items():
         pool, seen = [], set()
@@ -158,6 +174,9 @@ def main() -> int:
                 if r["symbol"] in seen:
                     continue
                 seen.add(r["symbol"])
+                if r["symbol"] in original:
+                    rejected.append({**r, "macro_category": cat, "reason": "overlap_original149"})
+                    continue
                 if text_ok(spec, r["name"]):
                     pool.append(r)
             time.sleep(0.15)
@@ -168,7 +187,7 @@ def main() -> int:
             if chosen >= PER_CLUSTER:
                 break
             sym = r["symbol"]
-            if sym in used_symbols:
+            if sym in used_symbols or sym in original:
                 continue
             q, reason = download_one(sym)
             if q is None:
@@ -197,6 +216,9 @@ def main() -> int:
 
     if len(selected) != 120:
         raise RuntimeError(f"expected 120, got {len(selected)}")
+    overlap = sorted(set(used_symbols) & original)
+    if overlap:
+        raise RuntimeError(f"EU120 overlaps original149: {overlap}")
 
     hashes = {}
     for rec in selected:
@@ -220,9 +242,10 @@ def main() -> int:
         "last_included": str(LAST_REQUIRED.date()),
         "price_semantics": "same-row Adj Close/raw Close adjustment for OHLC; raw Volume",
         "evaluation_start": "2017-02-01",
-        "selection_rule": "first 20 coverage-valid European-economy ETF tickers in frozen query/symbol order per cluster; no performance criterion",
+        "selection_rule": "first 20 coverage-valid European-economy ETF tickers, disjoint from original149, in frozen query/symbol order per cluster; no performance criterion",
         "selected_count": 120,
         "per_cluster": 20,
+        "intersection_with_original149": overlap,
         "performance_used_for_selection": False,
         "selected": selected,
         "file_sha256": hashes,
