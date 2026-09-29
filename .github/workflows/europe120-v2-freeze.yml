@@ -20,7 +20,7 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install pandas numpy pyarrow yfinance
-      - name: Freeze EU120 v2
+      - name: Freeze EU120 v2 (EUR equity universe)
         run: python europe120/freeze_eu120_v2_run.py
       - name: Upload EU120 v2 artifact
         if: always()
