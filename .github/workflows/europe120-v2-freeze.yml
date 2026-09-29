@@ -30,13 +30,13 @@ jobs:
           if old_c01 not in s: raise SystemExit('C01 insertion anchor not found')
           s=s.replace(old_c01,new_c01)
           old_c02="'C02_EUROPE_COUNTRY':['CSMIB.MI','EXS1.DE','C40.PA','BBVAI.MC','IAEX.AS','CSSMI.SW','SXRY.DE','EXH1.DE','EXH2.DE','EXH3.DE']"
-          new_c02="'C02_EUROPE_COUNTRY':['CSMIB.MI','EXS1.DE','C40.PA','BBVAI.MC','IAEX.AS','EXI1.DE','IBCJ.DE','LYMH.DE','CN1.PA','IS3U.DE','DBXI.DE','DBXD.DE','EL4A.DE','CAC.PA','DX2G.DE','LYXIB.MC','TDT.AS']"
+          new_c02="'C02_EUROPE_COUNTRY':['CSMIB.MI','EXS1.DE','C40.PA','BBVAI.MC','IAEX.AS','EXI1.DE','IBCJ.DE','LYMH.DE','CN1.PA','IS3U.DE','DBXI.DE','DBXD.DE','EL4A.DE','CAC.PA','DX2G.DE','LYXIB.MC','TDT.AS','EL4F.DE','CG1.MI','DAXX.MI','XSMI.MI']"
           if old_c02 not in s: raise SystemExit('C02 replacement anchor not found')
           s=s.replace(old_c02,new_c02)
           anchor="selected=[]; rejected=[]; data={}; used_tickers=set(); used_names=set()"
           semantic_lines=[
             "SEMANTIC={",
-            " 'C02_EUROPE_COUNTRY':['mib','dax','cac 40','ibex','aex','swiss','switzerland','poland','greece','france','germany','italy','spain','netherlands','belgium','austria','portugal','nordic','sweden','denmark','finland','norway'],",
+            " 'C02_EUROPE_COUNTRY':['mib','dax','cac 40','ibex','aex','sli','swiss','switzerland','poland','greece','france','germany','italy','spain','netherlands','belgium','austria','portugal','nordic','sweden','denmark','finland','norway'],",
             " 'C03_US_EQUITY_EUR':['s&p 500','s&p500','nasdaq','dow jones','russell','msci usa','usa','united states'],",
             " 'C04_WORLD_DEVELOPED':['world','developed','japan','topix','pacific','australia','canada'],",
             " 'C05_EMERGING_ASIA':['emerging','china','india','taiwan','korea','brazil','mexico','south africa','asia ex japan','eastern europe'],",
