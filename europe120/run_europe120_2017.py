@@ -14,7 +14,9 @@ EXTRA = {
     "C02_US_SECTOR_THEME": [
         "iShares Europe sector ETF", "SPDR Europe sector ETF", "Xtrackers Europe sector ETF",
         "Amundi Europe sector ETF", "Lyxor Europe sector ETF", "Europe financials ETF",
-        "Europe consumer ETF", "Europe industrials ETF", "Europe healthcare ETF", "Europe technology ETF"
+        "Europe consumer ETF", "Europe industrials ETF", "Europe healthcare ETF", "Europe technology ETF",
+        "EXV1.DE", "EXV2.DE", "EXV3.DE", "EXV4.DE", "EXV5.DE", "EXV6.DE", "EXV7.DE", "EXV8.DE", "EXV9.DE",
+        "EXH1.DE", "EXH2.DE", "EXH3.DE", "EXH4.DE", "EXH5.DE", "EXH6.DE", "EXH7.DE", "EXH8.DE", "EXH9.DE"
     ],
     "C03_DEVELOPED_GLOBAL": [
         "iShares Germany ETF", "iShares France ETF", "iShares Italy ETF", "iShares Spain ETF",
@@ -37,6 +39,10 @@ EXTRA = {
         "Europe oil gas ETF", "Europe construction ETF", "Eurozone real estate ETF"
     ],
 }
+
+# The original C02 sector cluster includes energy, utilities and materials, so do
+# not exclude those European sectors here. Only property/real-estate stays in C06.
+d.CLUSTERS["C02_US_SECTOR_THEME"]["exclude"] = ["bond", "real estate", "property"]
 
 for cat, qs in EXTRA.items():
     d.CLUSTERS[cat]["queries"] = list(dict.fromkeys(d.CLUSTERS[cat]["queries"] + qs))
