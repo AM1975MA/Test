@@ -59,14 +59,29 @@ f.CLUSTERS['C02_EUROPE_COUNTRY']['queries'] += [
     'MDAX UCITS ETF EUR','TecDAX UCITS ETF EUR','MSCI Nordic UCITS ETF EUR'
 ]
 
-f.SEEDS['C03_US_EQUITY_EUR'] += [
-    'IUSA.DE','IUS3.DE','IQQQ.DE','XSPX.DE','D5BM.DE','ZPRU.DE','ZPRV.DE',
-    'SPY5.DE','SXR8.DE','SXRV.DE','EXXT.DE'
+# C03 is US equity: broad/style first, then legacy S&P 500 sector funds where
+# needed. All listings are EUR and all funds still have to pass the pre-2017 and
+# data-quality gates. Deliberately exclude the prior erroneous Global Water seed.
+f.CLUSTERS['C03_US_EQUITY_EUR']['label'] = 'US equity broad / style / legacy S&P sectors via EUR listings'
+f.SEEDS['C03_US_EQUITY_EUR'] = [
+    'D5BM.DE','D500.DE','AUM5.DE','IUSA.DE','SXR4.DE','CSUS.MI','SPY5.DE','ESE.PA',
+    'SXRU.DE','SXRV.DE','CSNDX.MI','ZPRV.DE','SPYD.DE','USDV.DE','QDVB.DE','QDVI.DE','QDVR.DE',
+    'QDVE.DE','QDVG.DE','QDVH.DE','QDVF.DE','QDVK.DE','E500.DE'
 ]
+f.CLUSTERS['C03_US_EQUITY_EUR']['queries'] += [
+    'Dow Jones Industrial Average UCITS ETF EUR','MSCI USA Value Factor UCITS ETF EUR',
+    'MSCI USA Quality Factor UCITS ETF EUR','MSCI USA SRI UCITS ETF EUR',
+    'US Dividend Aristocrats UCITS ETF EUR','S&P 500 technology sector UCITS ETF EUR',
+    'S&P 500 healthcare sector UCITS ETF EUR','S&P 500 financials sector UCITS ETF EUR',
+    'S&P 500 energy sector UCITS ETF EUR','S&P 500 consumer discretionary sector UCITS ETF EUR'
+]
+
+# SXR4 is intentionally moved from World into US because it is MSCI USA.
 f.SEEDS['C04_WORLD_DEVELOPED'] += [
     'DBX1MW.DE','DBX1DA.DE','D5BI.DE','D5BE.DE','SXR1.DE','IQQ0.DE',
-    'EUNL.DE','XDWD.DE','IUSQ.DE','SXR4.DE'
+    'EUNL.DE','XDWD.DE','IUSQ.DE'
 ]
+f.SEEDS['C04_WORLD_DEVELOPED'] = [s for s in f.SEEDS['C04_WORLD_DEVELOPED'] if s != 'SXR4.DE']
 f.SEEDS['C05_EMERGING_ASIA'] += [
     'DBX1EM.DE','IQQE.DE','IQQC.DE','XCS6.DE','CINA.DE','SXRJ.DE',
     'IS3N.DE','EUNM.DE','XMME.DE'
