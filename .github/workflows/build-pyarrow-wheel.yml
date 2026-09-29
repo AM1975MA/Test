@@ -1,0 +1,20 @@
+name: Build pyarrow wheel for local EU120 replay
+on:
+  push:
+    branches: [ research/eu120-economy-p45-20260929 ]
+    paths: [ '.github/workflows/build-pyarrow-wheel.yml' ]
+jobs:
+  wheel:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: |
+          mkdir -p wheel
+          python -m pip download --only-binary=:all: --no-deps pyarrow -d wheel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pyarrow-cp313-wheel
+          path: wheel/
+          retention-days: 2
