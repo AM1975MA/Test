@@ -7,7 +7,9 @@ EXTRA = {
     "C01_US_BROAD_STYLE": [
         "iShares Europe ETF", "Vanguard Europe ETF", "SPDR Europe ETF", "Xtrackers Europe ETF",
         "Amundi Europe ETF", "WisdomTree Europe ETF", "First Trust Europe ETF", "Europe hedged equity ETF",
-        "Europe value ETF", "Europe minimum volatility ETF", "Europe dividend ETF", "Eurozone equity ETF"
+        "Europe value ETF", "Europe minimum volatility ETF", "Europe dividend ETF", "Eurozone equity ETF",
+        "WisdomTree Europe Hedged Equity Fund", "First Trust Europe AlphaDEX Fund",
+        "First Trust STOXX European Select Dividend Index Fund"
     ],
     "C02_US_SECTOR_THEME": [
         "iShares Europe sector ETF", "SPDR Europe sector ETF", "Xtrackers Europe sector ETF",
