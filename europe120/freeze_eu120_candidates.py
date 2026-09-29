@@ -13,6 +13,7 @@ LAST=pd.Timestamp('2026-07-01')
 PRE=pd.Timestamp('2017-01-31')
 MIN_PRE=252
 MAX_ABS_DAILY_RETURN=0.25
+OHLC_REL_TOL=1e-6
 OUT=Path('europe120/frozen_output')
 RAW=OUT/'raw_ticker_csv'
 RAW.mkdir(parents=True,exist_ok=True)
@@ -91,11 +92,14 @@ def dl(sym):
     max_abs=float(r.abs().max()) if r.notna().any() else np.nan
     if (not np.isfinite(max_abs)) or max_abs>MAX_ABS_DAILY_RETURN:
         return None,f'quality_jump:{max_abs:.6f}',max_abs
-    bad=((q[['Open','High','Low','Close']]<=0).any(axis=1) |
-         (q['High']<q[['Open','Close','Low']].max(axis=1)) |
-         (q['Low']>q[['Open','Close','High']].min(axis=1)))
-    if bad.any():
-        return None,f'ohlc_sanity:{int(bad.sum())}',max_abs
+    if (q[['Open','High','Low','Close']]<=0).any(axis=None):
+        return None,'ohlc_nonpositive',max_abs
+    hi_ref=q[['Open','Close','Low']].max(axis=1)
+    lo_ref=q[['Open','Close','High']].min(axis=1)
+    bad_hi=q['High'] < hi_ref*(1.0-OHLC_REL_TOL)
+    bad_lo=q['Low'] > lo_ref*(1.0+OHLC_REL_TOL)
+    if bad_hi.any() or bad_lo.any():
+        return None,f'ohlc_sanity:{int(bad_hi.sum()+bad_lo.sum())}',max_abs
     return q,None,max_abs
 
 sel=[]; rej=[]; audit=[]; data={}; used=set()
@@ -152,7 +156,7 @@ manifest={
     'data_quality_rules':{
         'mexico_listings_excluded':True,
         'max_abs_adjusted_daily_return':MAX_ABS_DAILY_RETURN,
-        'ohlc_sanity':True,
+        'ohlc_relative_tolerance':OHLC_REL_TOL,
         'minimum_pre2017_rows':MIN_PRE,
         'must_reach_last_date':str(LAST.date())
     },
