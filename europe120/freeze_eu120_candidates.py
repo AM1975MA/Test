@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import json, re, hashlib
+import json, re
 from pathlib import Path
 import pandas as pd
 import yfinance as yf
@@ -17,16 +17,17 @@ RAW.mkdir(parents=True,exist_ok=True)
 
 CANDIDATES={
 'C01_US_BROAD_STYLE':[
-'IEUR','IEV','SPEU','HEU.PA','VGK.MX','EZU','EZU.MX','HEZU','CSSX5E.MI','CSX5.AS','CSX5.L','FEZ','SXRT.DE','IEU.AX','IEV.MX','VEUR.SW','DBEU','HEDJ','HEDJ.MX','FEP','FEP.MX','FDD'],
+'IEUR','IEV','SPEU','HEU.PA','VGK.MX','EZU','EZU.MX','HEZU','CSSX5E.MI','CSX5.AS','CSX5.L','FEZ','SXRT.DE','IEU.AX','IEV.MX','VEUR.SW','DBEU','FEP.MX','FDD','EXSA.DE'],
 'C02_US_SECTOR_THEME':[
 '0BYJ.MU','EUFN','EUFN.MX','EXV1.DE','EXV2.DE','EXV3.DE','EXV4.DE','EXV5.DE','EXV6.DE','EXV7.DE','EXV8.DE','EXV9.DE','EXH1.DE','EXH2.DE','EXH3.DE','EXH4.DE','EXH5.DE','EXH6.DE','EXH8.DE','EXH9.DE'],
 'C03_DEVELOPED_GLOBAL':[
 'DAX','EWG.MX','EWQ.MX','EWI.MX','EWP.MX','EWN.MX','EWO.MX','EFNL','EFNL.MX','EIRL.MX','GREK','EPOL.MX','EWD.MX','EDEN','EDEN.MX','CMB1.L','CSMIB.MI','SXRY.DE','BBVAI.MC','EWK.MX'],
 'C04_EMERGING':[
 'IEUS','CES1.L','CSEMUS.MI','SXRJ.DE','DFE','EUDG',
-'IEVL.L','CEMS.DE','IEFV.L','IEVL.MI','IEVL.S',
-'IEFQ.L','IEQU.MI','CEMQ.DE','IEQU.S',
-'MVEU.L','MVEU.MI','EUN0.DE','IMV.L','MVEU.S'],
+'IEVL.L','CEMS.DE','IEFV.L','IEVL.MI',
+'IEFQ.L','IEQU.MI','CEMQ.DE',
+'MVEU.L','MVEU.MI','EUN0.DE','IMV.L',
+'HEDJ','HEDJ.MX','FEP'],
 'C05_BONDS_CASH_CREDIT':[
 'SEGA.L','EUNH.DE','IEGA.AS','SEGA.MI','IEGA.S',
 'IBGM.L','IBGM.MI','IBCM.DE','IBGM.AS',
@@ -52,12 +53,10 @@ def dl(sym):
         return None,f'download:{type(e).__name__}:{e}'
     if d is None or d.empty:
         return None,'empty'
-    if isinstance(d.columns,pd.MultiIndex):
-        d.columns=d.columns.get_level_values(0)
+    if isinstance(d.columns,pd.MultiIndex): d.columns=d.columns.get_level_values(0)
     d=d.reset_index()
     req=['Date','Open','High','Low','Close','Adj Close','Volume']
-    if any(c not in d.columns for c in req):
-        return None,'missing_columns'
+    if any(c not in d.columns for c in req): return None,'missing_columns'
     f=pd.to_numeric(d['Adj Close'],errors='coerce')/pd.to_numeric(d['Close'],errors='coerce').replace(0,pd.NA)
     q=pd.DataFrame({
       'date':pd.to_datetime(d['Date']),
