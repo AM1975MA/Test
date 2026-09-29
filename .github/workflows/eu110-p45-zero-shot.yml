@@ -1,32 +1,53 @@
 name: EU110 P45 zero-shot
 
 on:
-  pull_request:
-    branches: [ main ]
+  push:
+    branches:
+      - research/eu120-economy-p45-20260929
+    paths:
+      - '.github/workflows/eu110-p45-zero-shot.yml'
+      - 'europe120/p45_zero_shot_56/**'
   workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
 
 jobs:
   eu110:
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Checkout public ETF Trader source
+        run: git clone --depth 1 https://github.com/AM1975MA/Etf_trader.git _etf_trader
       - name: Install dependencies
-        run: pip install pandas numpy pyarrow yfinance scipy scikit-learn xgboost matplotlib
-      - name: Fetch frozen Trader_selector P45 source
         run: |
-          git clone --depth 1 --branch research/eu110-frozen-p45-zero-shot-20260929 https://github.com/AM1975MA/Trader_selector.git trader_selector
-      - name: Download EU110 raw data
-        run: python europe120/run_eu110_p45.py --stage download
-      - name: Execute frozen P45 zero-shot
-        run: python europe120/run_eu110_p45.py --stage p45 --trader-selector trader_selector
-      - name: Upload EU110 P45 result
+          python -m pip install --upgrade pip
+          python -m pip install -r _etf_trader/requirements.txt joblib
+      - name: Syntax check
+        run: python -m py_compile europe120/p45_zero_shot_56/run_p45_zero_shot_56.py
+      - name: Run fit-on-149 predict-on-EU110 P45 transfer
+        env:
+          ETF_TRADER_ROOT: ${{ github.workspace }}/_etf_trader
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: python europe120/p45_zero_shot_56/run_p45_zero_shot_56.py
+      - name: Print result
+        if: always()
+        run: |
+          if [ -f europe120/p45_zero_shot_56/results/RESULT.json ]; then
+            cat europe120/p45_zero_shot_56/results/RESULT.json
+          fi
+      - name: Upload result and inference checkpoints
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: eu110-p45-zero-shot-20260929
-          path: europe120/eu110_output/
+          name: eu110-p45-zero-shot-result
+          path: europe120/p45_zero_shot_56/results/
           retention-days: 30
