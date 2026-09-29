@@ -26,7 +26,7 @@ jobs:
           p=Path('europe120/build_eu120_v2.py')
           s=p.read_text()
           old="'CSEMUS.MI','SXRJ.DE','CEMS.DE','IEVL.MI','IEQU.MI','CEMQ.DE','MVEU.MI','EUN0.DE','ZPRX.DE']"
-          new="'CSEMUS.MI','SXRJ.DE','CEMS.DE','IEVL.MI','IEQU.MI','CEMQ.DE','MVEU.MI','EUN0.DE','ZPRX.DE','XMEU.DE','D5BL.DE','SDJ600.DE','LYY5.DE','CEMR.DE']"
+          new="'CSEMUS.MI','SXRJ.DE','CEMS.DE','IEVL.MI','IEQU.MI','CEMQ.DE','MVEU.MI','EUN0.DE','ZPRX.DE','XMEU.DE','D5BL.DE','SDJ600.DE','LYY5.DE','CEMR.DE','EXSE.DE','EXSD.DE','EXSI.DE']"
           if old not in s:
               raise SystemExit('C01 insertion anchor not found')
           p.write_text(s.replace(old,new))
