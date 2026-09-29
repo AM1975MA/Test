@@ -9,9 +9,6 @@ f.MAX_CONSEC_ZERO = 7
 src = inspect.getsource(f.download).replace('if medvol<500:', 'if medvol<250:')
 exec(src, f.__dict__)
 
-# Enforce uniqueness simultaneously by normalized fund name and by ISIN when
-# available. This prevents duplicate listings when Yahoo exposes an ISIN only
-# for one of the exchanges of the same fund.
 msrc = inspect.getsource(f.main)
 old = "original=original_149(); selected=[]; rejected=[]; quality=[]; data={}; used_tickers=set(); used_funds=set()"
 new = "original=original_149(); selected=[]; rejected=[]; quality=[]; data={}; used_tickers=set(); used_funds=set(); used_names=set(); used_isins=set()"
@@ -32,7 +29,7 @@ msrc = msrc.replace(old, new)
 exec(msrc, f.__dict__)
 
 f.SEEDS['C01_EUROPE_BROAD'] += [
-    'IDVY.MI','CSEMUS.MI','SXRJ.DE','CEMS.DE','IEVL.MI','IEQU.MI','CEMQ.DE','ZPRX.DE',
+    'IDVY.MI','ETBB.PA','CSEMUS.MI','SXRJ.DE','CEMS.DE','IEVL.MI','IEQU.MI','CEMQ.DE','ZPRX.DE',
     'SC0E.DE','SXRT.DE','HEU.PA','DBEU','D5BL.DE','ZPRW.DE','CEMU.AS','IQQA.DE'
 ]
 f.CLUSTERS['C01_EUROPE_BROAD']['queries'] += [
@@ -45,8 +42,6 @@ f.CLUSTERS['C01_EUROPE_BROAD']['queries'] += [
     'EURO STOXX mid cap UCITS ETF EUR','EURO STOXX total market UCITS ETF EUR'
 ]
 
-# Keep C02 strictly country/national-index equity. Explicitly remove earlier
-# experimental seeds that belonged to World, Clean Energy or bonds.
 f.SEEDS['C02_EUROPE_COUNTRY'] = [s for s in f.SEEDS['C02_EUROPE_COUNTRY'] if s not in {
     'IQQH.DE','IQQW.DE','CMB1.L','CSSMI.SW','NORW','FGM','CSEMU.S','CEU1.AS','CEU1.L','IUSZ.DE','XMEU.DE','SXR1.DE'
 }]
