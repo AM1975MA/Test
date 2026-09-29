@@ -64,7 +64,10 @@ f.CLUSTERS['C02_EUROPE_COUNTRY']['queries'] += [
 # data-quality gates. Deliberately exclude the prior erroneous Global Water seed.
 f.CLUSTERS['C03_US_EQUITY_EUR']['label'] = 'US equity broad / style / legacy S&P sectors via EUR listings'
 f.SEEDS['C03_US_EQUITY_EUR'] = [
+    # broad / alternative weighting / low-vol / fundamental, all old enough for 2017 start
     'D5BM.DE','D500.DE','AUM5.DE','IUSA.DE','SXR4.DE','CSUS.MI','SPY5.DE','ESE.PA',
+    'XD9U.DE','XDEW.DE','SPY1.DE','IBCK.DE','HDLV.DE','6PSA.DE','6PSH.DE','PSVX.DE','WTEU.DE','WTEC.DE',
+    # other broad/style and legacy US sector candidates
     'SXRU.DE','SXRV.DE','CSNDX.MI','ZPRV.DE','SPYD.DE','USDV.DE','QDVB.DE','QDVI.DE','QDVR.DE',
     'QDVE.DE','QDVG.DE','QDVH.DE','QDVF.DE','QDVK.DE','E500.DE'
 ]
@@ -73,7 +76,9 @@ f.CLUSTERS['C03_US_EQUITY_EUR']['queries'] += [
     'MSCI USA Quality Factor UCITS ETF EUR','MSCI USA SRI UCITS ETF EUR',
     'US Dividend Aristocrats UCITS ETF EUR','S&P 500 technology sector UCITS ETF EUR',
     'S&P 500 healthcare sector UCITS ETF EUR','S&P 500 financials sector UCITS ETF EUR',
-    'S&P 500 energy sector UCITS ETF EUR','S&P 500 consumer discretionary sector UCITS ETF EUR'
+    'S&P 500 energy sector UCITS ETF EUR','S&P 500 consumer discretionary sector UCITS ETF EUR',
+    'S&P 500 equal weight UCITS ETF EUR','S&P 500 minimum volatility UCITS ETF EUR',
+    'US high dividend low volatility UCITS ETF EUR','US fundamental value UCITS ETF EUR'
 ]
 
 # SXR4 is intentionally moved from World into US because it is MSCI USA.
