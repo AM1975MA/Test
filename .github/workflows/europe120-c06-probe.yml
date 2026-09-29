@@ -1,0 +1,29 @@
+name: EU120 C06 Yahoo probe
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'europe120/probe_c06_yahoo.py'
+      - '.github/workflows/europe120-c06-probe.yml'
+  pull_request:
+    paths:
+      - 'europe120/probe_c06_yahoo.py'
+      - '.github/workflows/europe120-c06-probe.yml'
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install pandas yfinance
+      - run: python europe120/probe_c06_yahoo.py
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eu120-c06-probe
+          path: europe120/c06_probe/
+          retention-days: 30
