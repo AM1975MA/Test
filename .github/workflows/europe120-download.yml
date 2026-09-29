@@ -5,11 +5,13 @@ on:
     paths:
       - 'europe120/download_europe120.py'
       - 'europe120/run_europe120_2017.py'
+      - 'europe120/catalog_europe120_2017.py'
       - '.github/workflows/europe120-download.yml'
   pull_request:
     paths:
       - 'europe120/download_europe120.py'
       - 'europe120/run_europe120_2017.py'
+      - 'europe120/catalog_europe120_2017.py'
       - '.github/workflows/europe120-download.yml'
 
 jobs:
@@ -25,12 +27,12 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install pandas numpy pyarrow yfinance
-      - name: Discover and download 120 EU-economy ETFs
-        run: python europe120/run_europe120_2017.py
-      - name: Upload EU120 snapshot
+      - name: Catalog EU-economy ETF candidates on canonical raw window
+        run: python europe120/catalog_europe120_2017.py
+      - name: Upload EU120 catalog
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: eu-economy-120-20260701
-          path: europe120/output/
+          name: eu-economy-120-catalog-20260701
+          path: europe120/catalog/
           retention-days: 30
