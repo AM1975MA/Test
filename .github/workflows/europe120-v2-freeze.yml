@@ -19,6 +19,18 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install pandas numpy pyarrow yfinance
+      - name: Add frozen C01 EUR candidates
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('europe120/build_eu120_v2.py')
+          s=p.read_text()
+          old="'CSEMUS.MI','SXRJ.DE','CEMS.DE','IEVL.MI','IEQU.MI','CEMQ.DE','MVEU.MI','EUN0.DE','ZPRX.DE']"
+          new="'CSEMUS.MI','SXRJ.DE','CEMS.DE','IEVL.MI','IEQU.MI','CEMQ.DE','MVEU.MI','EUN0.DE','ZPRX.DE','XMEU.DE','D5BL.DE','SDJ600.DE','LYY5.DE','CEMR.DE']"
+          if old not in s:
+              raise SystemExit('C01 insertion anchor not found')
+          p.write_text(s.replace(old,new))
+          PY
       - name: Build and freeze EU120 v2
         run: python europe120/build_eu120_v2.py
       - name: Upload EU120 v2
