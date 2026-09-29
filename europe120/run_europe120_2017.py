@@ -21,7 +21,8 @@ EXTRA = {
     "C03_DEVELOPED_GLOBAL": [
         "iShares Germany ETF", "iShares France ETF", "iShares Italy ETF", "iShares Spain ETF",
         "iShares Netherlands ETF", "iShares Belgium ETF", "iShares Austria ETF", "iShares Ireland ETF",
-        "iShares Poland ETF", "iShares Sweden ETF", "iShares Denmark ETF", "iShares Greece ETF"
+        "iShares Poland ETF", "iShares Sweden ETF", "iShares Denmark ETF", "iShares Greece ETF",
+        "PGAL", "EWK.MX", "HEWG", "DBGR"
     ],
     "C04_EMERGING": [
         "iShares Europe small cap ETF", "SPDR Europe small cap ETF", "Xtrackers Europe small cap ETF",
