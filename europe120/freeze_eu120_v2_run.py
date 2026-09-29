@@ -5,18 +5,12 @@ import inspect, json
 from pathlib import Path
 import freeze_eu120_v2 as f
 
-# Keep the strict 5% zero-return fraction and 25% jump gate, but allow a
-# maximum run of seven unchanged sessions. This is still much stricter than v1.
 f.MAX_CONSEC_ZERO = 7
-
-# The base freezer uses a literal 500-share pre-2017 median-volume floor.
-# Recompile that single function with a 250-share floor. All other gates stay
-# byte-for-byte identical.
 src = inspect.getsource(f.download).replace('if medvol<500:', 'if medvol<250:')
 exec(src, f.__dict__)
 
 f.SEEDS['C01_EUROPE_BROAD'] += [
-    'CSEMUS.MI','SXRJ.DE','CEMS.DE','IEVL.MI','IEQU.MI','CEMQ.DE','ZPRX.DE',
+    'IDVY.MI','CSEMUS.MI','SXRJ.DE','CEMS.DE','IEVL.MI','IEQU.MI','CEMQ.DE','ZPRX.DE',
     'SC0E.DE','SXRT.DE','HEU.PA','DBEU','D5BL.DE','ZPRW.DE','CEMU.AS'
 ]
 f.CLUSTERS['C01_EUROPE_BROAD']['queries'] += [
@@ -29,8 +23,6 @@ f.CLUSTERS['C01_EUROPE_BROAD']['queries'] += [
     'EURO STOXX mid cap UCITS ETF EUR','EURO STOXX total market UCITS ETF EUR'
 ]
 
-# Deterministic fallbacks for later clusters. Every ticker still has to pass
-# EUR currency, unique-fund identity, pre-2017 history and data-quality gates.
 f.SEEDS['C02_EUROPE_COUNTRY'] += [
     'ISF.MI','IQQH.DE','IQQW.DE','SXRY.DE','CMB1.L','CSSMI.SW','NORW','FGM',
     'CSEMU.S','CEU1.AS','CEU1.L','IUSZ.DE','XMEU.DE','SXR1.DE'
@@ -50,7 +42,6 @@ f.SEEDS['C05_EMERGING_ASIA'] += [
 
 if __name__ == '__main__':
     f.main()
-    # Correct the manifest to reflect the wrapper's explicit, frozen thresholds.
     p = Path('europe120/v2_frozen_output/manifest.json')
     m = json.loads(p.read_text())
     m['quality_rules']['max_consecutive_zero_returns'] = 7
