@@ -1,0 +1,30 @@
+name: EU120 v2 EUR equity freeze
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'europe120/freeze_eu120_v2.py'
+      - '.github/workflows/europe120-v2-freeze.yml'
+
+jobs:
+  freeze-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install pandas numpy pyarrow yfinance
+      - name: Freeze EU120 v2
+        run: python europe120/freeze_eu120_v2.py
+      - name: Upload EU120 v2 artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eu120-v2-equity-eur-20260701
+          path: europe120/v2_frozen_output/
+          retention-days: 30
