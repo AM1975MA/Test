@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'europe120/freeze_eu120_v2.py'
+      - 'europe120/freeze_eu120_v2_run.py'
       - '.github/workflows/europe120-v2-freeze.yml'
 
 jobs:
@@ -20,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: pip install pandas numpy pyarrow yfinance
       - name: Freeze EU120 v2
-        run: python europe120/freeze_eu120_v2.py
+        run: python europe120/freeze_eu120_v2_run.py
       - name: Upload EU120 v2 artifact
         if: always()
         uses: actions/upload-artifact@v4
