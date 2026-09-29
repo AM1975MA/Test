@@ -1,5 +1,8 @@
 name: Build pyarrow wheel for local EU120 replay
 on:
+  pull_request:
+    branches: [ main ]
+    paths: [ '.github/workflows/build-pyarrow-wheel.yml' ]
   push:
     branches: [ research/eu120-economy-p45-20260929 ]
     paths: [ '.github/workflows/build-pyarrow-wheel.yml' ]
