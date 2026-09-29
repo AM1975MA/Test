@@ -1,0 +1,32 @@
+name: EU110 P45 zero-shot
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  eu110:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install pandas numpy pyarrow yfinance scipy scikit-learn xgboost matplotlib
+      - name: Fetch frozen Trader_selector P45 source
+        run: |
+          git clone --depth 1 --branch research/eu110-frozen-p45-zero-shot-20260929 https://github.com/AM1975MA/Trader_selector.git trader_selector
+      - name: Download EU110 raw data
+        run: python europe120/run_eu110_p45.py --stage download
+      - name: Execute frozen P45 zero-shot
+        run: python europe120/run_eu110_p45.py --stage p45 --trader-selector trader_selector
+      - name: Upload EU110 P45 result
+        uses: actions/upload-artifact@v4
+        with:
+          name: eu110-p45-zero-shot-20260929
+          path: europe120/eu110_output/
+          retention-days: 30
