@@ -30,7 +30,7 @@ jobs:
           if old_c01 not in s: raise SystemExit('C01 insertion anchor not found')
           s=s.replace(old_c01,new_c01)
           old_c02="'C02_EUROPE_COUNTRY':['CSMIB.MI','EXS1.DE','C40.PA','BBVAI.MC','IAEX.AS','CSSMI.SW','SXRY.DE','EXH1.DE','EXH2.DE','EXH3.DE']"
-          new_c02="'C02_EUROPE_COUNTRY':['CSMIB.MI','EXS1.DE','C40.PA','BBVAI.MC','IAEX.AS','EXI1.DE','IBCJ.DE','LYMH.DE','CN1.PA','IS3U.DE','DBXI.DE','DBXD.DE','EL4A.DE','CAC.PA','DX2G.DE','LYXIB.MC','TDT.AS','EL4F.DE','CG1.MI','DAXX.MI','XSMI.MI']"
+          new_c02="'C02_EUROPE_COUNTRY':['CSMIB.MI','EXS1.DE','C40.PA','BBVAI.MC','IAEX.AS','EXI1.DE','IBCJ.DE','LYMH.DE','CN1.PA','IS3U.DE','DBXI.DE','DBXD.DE','EL4A.DE','CAC.PA','DX2G.DE','LYXIB.MC','TDT.AS','EL4F.DE','CG1.MI','DAXX.MI','XSMI.MI','DXS0.DE','SWEUAH.SW']"
           if old_c02 not in s: raise SystemExit('C02 replacement anchor not found')
           s=s.replace(old_c02,new_c02)
           anchor="selected=[]; rejected=[]; data={}; used_tickers=set(); used_names=set()"
