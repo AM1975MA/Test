@@ -1,6 +1,11 @@
 name: EU110 P45 zero-shot
 
 on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/eu110-p45-zero-shot.yml'
+      - 'europe120/p45_zero_shot_56/**'
   push:
     branches:
       - research/eu120-economy-p45-20260929
