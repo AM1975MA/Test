@@ -43,16 +43,20 @@ f.CLUSTERS['C01_EUROPE_BROAD']['queries'] += [
 ]
 
 f.SEEDS['C02_EUROPE_COUNTRY'] = [s for s in f.SEEDS['C02_EUROPE_COUNTRY'] if s not in {
-    'IQQH.DE','IQQW.DE','CMB1.L','CSSMI.SW','NORW','FGM','CSEMU.S','CEU1.AS','CEU1.L','IUSZ.DE','XMEU.DE','SXR1.DE'
+    'IQQH.DE','IQQW.DE','CMB1.L','CSSMI.SW','NORW','FGM','CSEMU.S','CEU1.AS','CEU1.L','IUSZ.DE','XMEU.DE','SXR1.DE',
+    'ATXEX.DE','CBATX.DE'
 }]
 f.SEEDS['C02_EUROPE_COUNTRY'] += [
-    'ISF.MI','SXRY.DE','C40.PA','CSMIB.MI','ATXEX.DE','XB4A.DE','CBATX.DE','CD47.DE','PPP.LS','OM3X.DE'
+    'ISF.MI','SXRY.DE','C40.PA','CSMIB.MI','EXXX.DE','XB4A.DE','C031.DE','EXS3.DE','EXS2.DE','XDN0.DE',
+    'CD47.DE','PPP.LS','OM3X.DE','IQQ5.DE'
 ]
 f.CLUSTERS['C02_EUROPE_COUNTRY']['exclude'] += ['government','eb.rexx','clean energy','world']
+f.CLUSTERS['C02_EUROPE_COUNTRY']['must_any'] += ['mdax','tecdax','atx','nordic','turkey']
 f.CLUSTERS['C02_EUROPE_COUNTRY']['queries'] += [
     'ATX Austria UCITS ETF EUR','PSI 20 Portugal UCITS ETF EUR','OMX Stockholm UCITS ETF EUR',
     'Sweden index UCITS ETF EUR','Nordic index UCITS ETF EUR','FTSE 100 UCITS ETF EUR',
-    'Swiss SMI UCITS ETF EUR','MSCI Switzerland UCITS ETF EUR','MSCI Poland UCITS ETF EUR'
+    'Swiss SMI UCITS ETF EUR','MSCI Switzerland UCITS ETF EUR','MSCI Poland UCITS ETF EUR',
+    'MDAX UCITS ETF EUR','TecDAX UCITS ETF EUR','MSCI Nordic UCITS ETF EUR'
 ]
 
 f.SEEDS['C03_US_EQUITY_EUR'] += [
