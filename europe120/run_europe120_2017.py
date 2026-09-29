@@ -40,9 +40,15 @@ EXTRA = {
     ],
 }
 
-# The original C02 sector cluster includes energy, utilities and materials, so do
-# not exclude those European sectors here. Only property/real-estate stays in C06.
+# Mirror the breadth of the original US sector cluster (financials, tech, health,
+# industrials, energy, utilities, materials, consumer, telecom, etc.).
 d.CLUSTERS["C02_US_SECTOR_THEME"]["exclude"] = ["bond", "real estate", "property"]
+d.CLUSTERS["C02_US_SECTOR_THEME"]["any"] = [
+    "bank", "insurance", "technology", "health", "industrial", "utilit", "telecom",
+    "auto", "chemical", "construction", "oil", "gas", "energy", "basic resources",
+    "material", "financial", "food", "beverage", "media", "retail", "travel",
+    "leisure", "consumer"
+]
 
 for cat, qs in EXTRA.items():
     d.CLUSTERS[cat]["queries"] = list(dict.fromkeys(d.CLUSTERS[cat]["queries"] + qs))
