@@ -196,7 +196,7 @@ def main():
     target=pd.read_csv(ROOT/"UNIVERSE_120.csv");srcu=target.copy();refs=pd.DataFrame({"ticker":REF_TICKERS,"macro_category":["REF_US","REF_CREDIT","REF_BOND","REF_CASH","REF_CASH"]})
     assert len(target)==120 and target.ticker.nunique()==120
     download_folder(srcu,RAW_TRAIN);download_folder(refs,RAW_REF)
-    env=os.environ.copy();env["PYTHONPATH"]=str(ETF/"src");subprocess.run([sys.executable,str(ETF/"scripts/build_ma3_panel_source_only.py"),"--data",str(RAW_TRAIN),"--output",str(MA3_TRAIN)],check=True,env=env,cwd=ETF)
+    env=os.environ.copy();env["PYTHONPATH"]=str(ETF/"src");subprocess.run([sys.executable,str(ROOT/"build_ma3_panel_causal.py"),"--data",str(RAW_TRAIN),"--output",str(MA3_TRAIN)],check=True,env=env,cwd=ETF)
     train_panel=pd.read_pickle(MA3_TRAIN/"RAW_FEATURE_PANEL.pkl");target_panel=train_panel.copy()
     for df in (train_panel,target_panel):df["signal_date"]=pd.to_datetime(df.signal_date);df["exit_date_63"]=pd.to_datetime(df.exit_date_63)
     target_tickers=target.ticker.astype(str).tolist();target_cats=dict(zip(target.ticker,target.macro_category));tmats,tcats,tdates,tcomp,ttail=build_titanium_parts(RAW_TRAIN,market_spy_raw=RAW_REF,candidates=target_tickers);train_parts=add_train_labels(tcomp,ttail,tmats,tdates);xcomp=tcomp.copy();xtail=ttail.copy();target_macro,target_mfeatures=dummy_macro(xtail,target_cats);target_parts=(xcomp,xtail,target_macro,target_mfeatures)
