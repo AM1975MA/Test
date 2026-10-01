@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "status": "AUTHORITATIVE_CURRENT_BASELINE_PLUS_FROZEN_V2_CANDIDATE",
+  "specification_date": "2026-09-26",
+  "baseline": {
+    "name": "HYBRID24_SOURCE_ONLY",
+    "canonical_runner": "scripts/run_ma3_highcagr24_ensemble_source_only.py",
+    "canonical_producer_module": "src/etf_trader/ma3/hybrid_producer.py",
+    "compatibility_wrapper": "src/etf_trader/ma3/ensemble.py",
+    "source_only": true,
+    "productive_inputs": [
+      "raw ETF OHLCV",
+      "versioned universe/category metadata",
+      "repository source"
+    ],
+    "target": {
+      "power": 1.5,
+      "weights": {
+        "rank21": 0.45,
+        "rank42": 0.35,
+        "rank63": 0.2
+      }
+    },
+    "producer": {
+      "extra_trees": {
+        "n_estimators": 120,
+        "max_features": 0.4,
+        "min_samples_leaf": 20,
+        "max_depth": 8,
+        "random_state": 101
+      },
+      "xgboost": {
+        "n_estimators": 400,
+        "max_depth": 2,
+        "learning_rate": 0.02,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9,
+        "min_child_weight": 12,
+        "reg_lambda": 12,
+        "reg_alpha": 0.2,
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "random_state": 101
+      },
+      "blend": {
+        "extra_trees": 0.6,
+        "xgboost": 0.4
+      },
+      "tail_smoothing": {
+        "current": 0.4,
+        "lag1": 0.3,
+        "lag2": 0.3,
+        "power": 1.1
+      },
+      "base_tail_blend": {
+        "base": 0.475,
+        "tail": 0.525
+      }
+    },
+    "baskets": {
+      "seed": 20260721,
+      "basket_count": 500,
+      "categories": 6,
+      "per_category": 4,
+      "names_per_basket": 24
+    },
+    "ddfirst": {
+      "weakness_votes": {
+        "fewer_than_3": 1,
+        "three": 0.95,
+        "four_plus": 0.75,
+        "severe": 0.25
+      },
+      "systemic_open_trigger": {
+        "rule1": {
+          "portfolio_gap_lte": -0.032,
+          "market_fraction_gap_below_minus_1pct_gte": 0.7
+        },
+        "rule2": {
+          "portfolio_gap_lte": -0.044,
+          "market_fraction_negative_gap_gte": 0.75
+        },
+        "cooldown_sessions": 3
+      }
+    },
+    "highcagr24": {
+      "transformed_gross": {
+        "from_0_95": 1,
+        "from_0_75": 0.945,
+        "severe": 0.66
+      },
+      "top1_margin_threshold": 0.03
+    },
+    "execution": {
+      "cost_per_half_l1_turnover": 0.001,
+      "stop": 0.055,
+      "stop_slippage": 0.001,
+      "semantics": "FROZEN_SAME_OPEN_SYSTEMIC_EXECUTION"
+    }
+  },
+  "candidate_v2": {
+    "name": "RISKOFF_HARD_MODELS",
+    "status": "FROZEN_CANDIDATE_PENDING_NEW_UNSEEN_TEMPORAL_GATE",
+    "producer_changed": false,
+    "gross_schedule_changed": false,
+    "rule": {
+      "applicable_states": "existing risk-off only (C4/SEVERE; transformed gross < 1)",
+      "minimum_top1_top2_margin": 0.03,
+      "model_agreement": "ET_RANK(top1)>ET_RANK(top2) AND XGB_RANK(top1)>XGB_RANK(top2)",
+      "action": "set risky-sleeve top1 weight to 1.0; gross unchanged"
+    },
+    "first_unseen_date": "2026-08-01",
+    "minimum_completed_monthly_rebalances": 6,
+    "preferred_completed_monthly_rebalances": 12
+  },
+  "prospective_guard": {
+    "required": true,
+    "module": "versions/ETF_TRAINER_V2/validation/preflight_guard.py",
+    "placement": "after fresh baseline ensemble rebuild, before frozen V2 evaluator",
+    "fail_closed_on": [
+      "unknown or duplicate basket members",
+      "non-finite productive scores",
+      "exact top1 tie",
+      "exact top2/top3 cutoff tie",
+      "missing/non-finite/non-positive entry Open/Low/Close"
+    ],
+    "strategy_decisions_changed": false
+  },
+  "source_identity": {
+    "src/etf_trader/ma3/hybrid_producer.py": "acf83f2cee6876c89dfd9948cfbf30889af4c08e",
+    "src/etf_trader/ma3/ensemble.py": "4b23fd297df6bfcf71557af9a7aaf7ca96c9a223",
+    "src/etf_trader/source_only/baskets.py": "a2f2f296026781367f11eee731ad41506939bb54",
+    "src/etf_trader/ma3/highcagr24.py": "5ee8a9812b97b928d3220ce656abd53c28a8b59f",
+    "src/etf_trader/ma3/ddfirst.py": "3794564fdfe8501c2c19e618bc7d1550884aeb53",
+    "src/etf_trader/ma3/v6.py": "6c5d3fd6f54fb5ef5162f4b26d3ef9af2af34701",
+    "scripts/run_ma3_highcagr24_ensemble_source_only.py": "79b5999730816e233c98ef71f60b2dbf02dd2071",
+    "versions/ETF_TRAINER_V2/source/stage19_architecture.py": "17e46929b38662ba2274c41be325c525e99b237a",
+    "versions/ETF_TRAINER_V2/validation/preflight_guard.py": "cf331fa0907b4cb4013b1d97a8f2ffbb13b12b8c",
+    "versions/ETF_TRAINER_V2/validation/run_future_campaign.py": "b2cb93de1b1a3a9739f4baec672d1d4c45435b64",
+    "versions/ETF_TRAINER_V2/validation/run_future_temporal_gate.py": "28e5c2f223fd299a4b2a2f265da4d7fdb2c6437e",
+    "versions/ETF_TRAINER_V2/validation/FUTURE_VALIDATION_PROTOCOL.json": "6e0a9a14df2979bd700072d0b5001eabfee5c34b"
+  },
+  "legacy_notice": {
+    "config/ma3_highcagr24.json": "legacy corrected ExtraTrees-only specification; not the authoritative Hybrid24 producer",
+    "scripts/run_ma3_highcagr24_source_only.py": "legacy corrected ExtraTrees-only runner; not canonical for Hybrid24"
+  }
+}

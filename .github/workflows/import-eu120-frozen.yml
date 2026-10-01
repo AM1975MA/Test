@@ -1,0 +1,47 @@
+name: Import frozen EU120 raw data
+
+on:
+  push:
+    branches: [ research/eu120-p45-retrain-20261002 ]
+    paths: [ '.github/workflows/import-eu120-frozen.yml' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve frozen EU120 artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p data/eu120
+          gh run download 36597035280 -R ${{ github.repository }} -n eu120-frozen-20260701 -D data/eu120
+      - name: Validate immutable membership and data
+        run: |
+          python - <<'PY'
+          import csv, hashlib, json
+          from pathlib import Path
+          d=Path("data/eu120")
+          m=json.loads((d/"manifest.json").read_text())
+          rows=list(csv.DictReader((d/"raw_ticker_csv/universe.csv").open()))
+          assert m["selected_count"]==m["unique_tickers"]==len(rows)==120
+          assert m["original149_overlap"]==0
+          assert len({r["ticker"] for r in rows})==120
+          assert len(list((d/"raw_ticker_csv").glob("*.csv")))==121
+          assert {r["ticker"] for r in rows}=={p.stem for p in (d/"raw_ticker_csv").glob("*.csv") if p.stem!="universe"}
+          out={"source_run":36597035280,"source_artifact_id":11046597169,"source_manifest_sha256":hashlib.sha256((d/"manifest.json").read_bytes()).hexdigest(),"count":len(rows),"status":m["status"]}
+          (d/"PROVENANCE.json").write_text(json.dumps(out,indent=2)+"\n")
+          print(out)
+          PY
+      - name: Commit frozen dataset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/eu120
+          git commit -m "Import verified EU120 frozen OHLCV snapshot"
+          git push origin HEAD:research/eu120-p45-retrain-20261002
