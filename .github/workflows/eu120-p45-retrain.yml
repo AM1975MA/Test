@@ -49,6 +49,15 @@ jobs:
           MKL_NUM_THREADS: '2'
           NUMEXPR_NUM_THREADS: '2'
         run: python europe120/eu120_retrain/run_eu120_retrain.py
+      - name: Recompute common-session economic replay and causal router
+        if: success()
+        env:
+          ETF_TRADER_ROOT: ${{ github.workspace }}/vendor/etf_trader_v2
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: python europe120/eu120_retrain/replay_audited.py
       - name: Upload performance and audit evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -62,3 +71,7 @@ jobs:
             europe120/eu120_retrain/results/ROUTER_TRACE.csv
             europe120/eu120_retrain/results/SHADOW_SKILL.csv
             europe120/eu120_retrain/results/MODEL_BUNDLE_MANIFEST.json
+            europe120/eu120_retrain/results/AUDITED_RESULT.json
+            europe120/eu120_retrain/results/AUDITED_ROUTER_TRACE.csv
+            europe120/eu120_retrain/results/AUDITED_SHADOW_SKILL.csv
+            europe120/eu120_retrain/results/AUDITED_ANNUAL_COMPARISON.csv

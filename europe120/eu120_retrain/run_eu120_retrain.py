@@ -210,10 +210,12 @@ def main():
     for row in cal.itertuples(index=False):
         entry=pd.Timestamp(row.entry_date);end=pd.Timestamp(row.exit_date)
         a=int(ds.get_indexer([entry])[0]);b=int(ds.get_indexer([end])[0])
-        if a<0 or b<0 or b<a:raise RuntimeError(f"shadow calendar mismatch {entry} {end}")
+        if a<0 or b<=a:raise RuntimeError(f"shadow calendar mismatch {entry} {end}")
         ea=paths["annual"];em=paths["monthly"]
-        ra=float(ea[b]/(ea[a-1] if a else 1.)-1)
-        rm=float(em[b]/(em[a-1] if a else 1.)-1)
+        # E[k] is already valued at the next session's open. At outcome_end
+        # only E[b-1] has matured; E[b] would consume the following open.
+        ra=float(ea[b-1]/(ea[a-1] if a else 1.)-1)
+        rm=float(em[b-1]/(em[a-1] if a else 1.)-1)
         ga=np.log1p(ra);gm=np.log1p(rm)
         skill=float(np.clip((gm-ga)/(abs(gm)+abs(ga)+1e-12),-1,1))
         shadow.append({"interval_signal_date":row.signal_date,"outcome_end":end,"annual_return":ra,"monthly_return":rm,"skill":skill})
