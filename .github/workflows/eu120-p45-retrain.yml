@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install source requirements
-        run: python -m pip install -r vendor/etf_trader_v2/requirements.txt matplotlib
+        run: python -m pip install -r vendor/etf_trader_v2/requirements.txt matplotlib 'pandas==2.2.3'
       - name: Retrieve frozen 149 reference prices
         env:
           GH_TOKEN: ${{ github.token }}
