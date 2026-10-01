@@ -3,7 +3,7 @@ name: EU120 P45 walk-forward retrain
 on:
   push:
     branches: [ research/eu120-p45-retrain-20261002 ]
-    paths: [ '.github/workflows/eu120-p45-retrain.yml' ]
+    paths: [ '.github/workflows/eu120-p45-retrain.yml', 'europe120/eu120_retrain/**' ]
   workflow_dispatch:
 
 permissions:

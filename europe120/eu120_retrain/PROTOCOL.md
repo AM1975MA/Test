@@ -18,3 +18,5 @@ FROZEN_149_ROOT=/path/to/extracted/raw149 \
 OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 \
 python europe120/eu120_retrain/run_eu120_retrain.py
 ```
+
+Causality repair: the source MA3 builder used next-session open availability to decide signal-date cluster membership. This experiment runs `build_ma3_panel_causal.py`, which uses the signal-date close availability instead; next-session open is retained solely for future labels. The pre-repair run is invalid and excluded.
