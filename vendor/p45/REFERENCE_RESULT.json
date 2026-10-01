@@ -1,0 +1,83 @@
+{
+  "status": "P45_CONTINUOUS_POSTERIOR_ROUTER_COMPLETE",
+  "parity_pass": true,
+  "p45": {
+    "cagr": 0.4696323041770124,
+    "compounded_return": 36.145294738503694,
+    "terminal_equity": 37.145294738503694,
+    "maxdd": -0.27065228320990764,
+    "sharpe": 1.4918385537157899,
+    "annualized_turnover": 13.134393530278674
+  },
+  "annual_reference": {
+    "cagr": 0.4314595242029944,
+    "maxdd": -0.2503576476357465,
+    "sharpe": 1.3635086089607882,
+    "turn": 12.807083509113824
+  },
+  "p42_50_50_reference": {
+    "cagr": 0.4475354991771064,
+    "maxdd": -0.27063751068647446,
+    "sharpe": 1.4291508593820934,
+    "turn": 13.104831222285583
+  },
+  "monthly_reference": {
+    "cagr": 0.37063594291857493,
+    "maxdd": -0.3516524326917191,
+    "sharpe": 1.2717391106878997,
+    "turn": 13.745053103725073
+  },
+  "delta_p45_minus_p42": {
+    "cagr_pp": 2.2096804999906015,
+    "maxdd_pp": -0.0014772523433181917,
+    "sharpe": 0.06268769433369648,
+    "turnover_ann": 0.029562307993090897
+  },
+  "delta_p45_minus_annual": {
+    "cagr_pp": 3.8172779974018023,
+    "maxdd_pp": -2.0294635574161113,
+    "sharpe": 0.1283299447550017,
+    "turnover_ann": 0.3273100211648501
+  },
+  "subperiods": {
+    "2017_2022": {
+      "p45": {"cagr": 0.4176649567497843, "maxdd": -0.23175635502113978, "sharpe": 1.4566381500107761},
+      "annual": {"cagr": 0.4568933245869175, "maxdd": -0.17468324686657755, "sharpe": 1.503408157493868},
+      "p42_50_50": {"cagr": 0.3984587877453917, "maxdd": -0.24463927911195416, "sharpe": 1.4123875646220463}
+    },
+    "2023_2026": {
+      "p45": {"cagr": 0.5624373553358563, "maxdd": -0.27065228320990764, "sharpe": 1.556898878807591},
+      "annual": {"cagr": 0.3892145709042496, "maxdd": -0.2503576476357464, "sharpe": 1.172874597318927},
+      "p42_50_50": {"cagr": 0.5349991502097047, "maxdd": -0.27063751068647435, "sharpe": 1.4722657878385197}
+    }
+  },
+  "posterior_weight_summary": {
+    "w_monthly_min": 0.02313850897508267,
+    "w_monthly_max": 0.9434801482773115,
+    "w_monthly_mean": 0.45695868822016256,
+    "w_monthly_median": 0.46283972271473,
+    "w_monthly_last": 0.7270511395216519,
+    "signals_wm_lt_025": 22,
+    "signals_wm_025_075": 80,
+    "signals_wm_gt_075": 12,
+    "mean_abs_deviation_from_050": 0.1926056334337201
+  },
+  "selection_agreement": {
+    "top1_vs_annual": 0.7522123893805309,
+    "top2_vs_annual": 0.5132743362831859,
+    "top1_vs_monthly": 0.7079646017699115,
+    "top2_vs_monthly": 0.46017699115044247,
+    "top1_vs_p42": 0.911504424778761,
+    "top2_vs_p42": 0.8230088495575221
+  },
+  "decision_gate": {
+    "causal_audit_pass": true,
+    "cagr_gt_p42_50_50": true,
+    "sharpe_ge_p42_50_50": true,
+    "maxdd_not_worse_than_annual_by_gt_2pp": false,
+    "positive_delta_vs_p42_2017_2022": true,
+    "positive_delta_vs_p42_2023_2026": true,
+    "pass_all": false
+  },
+  "evidence_status": "retrospective historical research; one preregistered P45 run; no rescue variants"
+}
