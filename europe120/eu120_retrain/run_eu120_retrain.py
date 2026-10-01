@@ -102,18 +102,25 @@ def compact_fit_predict(tr,te,cutoff,tag,modeldir):
     if train.signal_date.nunique()<60 or test.empty:return test[["signal_date","ticker"]].assign(compact_raw=np.nan)
     groups=train.groupby("signal_date",sort=True).size().tolist();y=(train.target_rank_pct*100).round().astype(int);X=train[k.F2D_FEATURES].replace([np.inf,-np.inf],np.nan);Xt=test[k.F2D_FEATURES].replace([np.inf,-np.inf],np.nan);ps=[]
     for seed in k.COMPACT_SEEDS:
-        m=XGBRanker(**k.COMPACT_PARAMS,random_state=seed);m.fit(X,y,group=groups,verbose=False);ps.append(m.predict(Xt));md=modeldir/f"{tag}_compact21_seed{seed}.json";md.parent.mkdir(parents=True,exist_ok=True);m.save_model(md)
+        md=modeldir/f"{tag}_compact21_seed{seed}.json";md.parent.mkdir(parents=True,exist_ok=True);m=XGBRanker(**k.COMPACT_PARAMS,random_state=seed)
+        if md.exists():m.load_model(md)
+        else:m.fit(X,y,group=groups,verbose=False);m.save_model(md)
+        ps.append(m.predict(Xt))
     o=test[["signal_date","ticker"]].copy();o["compact_raw"]=np.mean(ps,axis=0);return o
 
 def tail_fit_predict(tr,te,cutoff,tag,modeldir):
     valid=tr[k.TAIL_FEATURES].notna().sum(axis=1)>=12;train=tr[(tr.signal_date<cutoff)&(tr.exit_date_63<cutoff)&tr.y_tailmix.notna()&valid];vte=te[k.TAIL_FEATURES].notna().sum(axis=1)>=12;test=te[vte].copy()
     if train.empty or test.empty:return test[["signal_date","ticker"]].assign(tail_raw=np.nan)
-    m=make_pipeline(SimpleImputer(strategy="median"),StandardScaler(),Ridge(alpha=30.0));m.fit(train[k.TAIL_FEATURES],train.y_tailmix);joblib.dump(m,modeldir/f"{tag}_titanium_tail.joblib");o=test[["signal_date","ticker"]].copy();o["tail_raw"]=m.predict(test[k.TAIL_FEATURES]);return o
+    path=modeldir/f"{tag}_titanium_tail.joblib";m=joblib.load(path) if path.exists() else make_pipeline(SimpleImputer(strategy="median"),StandardScaler(),Ridge(alpha=30.0))
+    if not path.exists():m.fit(train[k.TAIL_FEATURES],train.y_tailmix);joblib.dump(m,path)
+    o=test[["signal_date","ticker"]].copy();o["tail_raw"]=m.predict(test[k.TAIL_FEATURES]);return o
 
 def macro_fit_predict(train_macro,target_macro,mfeatures,cutoff,tag,modeldir):
     tr=train_macro[(train_macro.signal_date<cutoff)&(train_macro.label_exit_date_63<cutoff)&train_macro.target_rank.notna()];te=target_macro.copy()
     if len(tr)<=50 or te.empty:return pd.DataFrame(columns=["signal_date","macro_category","macro_raw"])
-    m=make_pipeline(SimpleImputer(strategy="median"),StandardScaler(),Ridge(alpha=50.0));m.fit(tr[mfeatures],tr.target_rank);joblib.dump(m,modeldir/f"{tag}_titanium_macro.joblib");z=te[["signal_date","macro_category"]].copy();z["macro_raw"]=m.predict(te[mfeatures]);return z
+    path=modeldir/f"{tag}_titanium_macro.joblib";m=joblib.load(path) if path.exists() else make_pipeline(SimpleImputer(strategy="median"),StandardScaler(),Ridge(alpha=50.0))
+    if not path.exists():m.fit(tr[mfeatures],tr.target_rank);joblib.dump(m,path)
+    z=te[["signal_date","macro_category"]].copy();z["macro_raw"]=m.predict(te[mfeatures]);return z
 
 def assemble_base(preds,macro_preds,target_cats):
     p=pd.concat(preds,ignore_index=True);p["compact_rank"]=p.groupby("signal_date").compact_raw.rank(pct=True);p["tail_rank"]=p.groupby("signal_date").tail_raw.rank(pct=True);p["titanium_score"]=.70*p.compact_rank+.30*p.tail_rank
@@ -140,7 +147,12 @@ def corrected_target(panel):return .45*panel.target_rank_21.astype(float).pow(1.
 def fit_ma3_one(train_panel,target_panel,cutoff,sds,tag,modeldir):
     tr=train_panel[(train_panel.signal_date<cutoff)&(train_panel.exit_date_63<cutoff)].copy();tr["Y"]=corrected_target(tr);tr=tr[tr.Y.notna()];te=target_panel[target_panel.signal_date.isin(sds)].copy()
     if tr.empty or te.empty:return pd.DataFrame(columns=["signal_date","ticker","ET_RANK","XGB_RANK","TAIL_EXTRA"])
-    imp=SimpleImputer(strategy="median");xtr=imp.fit_transform(tr[list(FEATURES_42)]);xt=imp.transform(te[list(FEATURES_42)]);y=tr.Y.to_numpy(float);et=ExtraTreesRegressor(n_jobs=2,**ET_MODEL_KW);et.fit(xtr,y);xcfg=dict(XGB_MODEL_KW);xcfg["n_jobs"]=2;xb=XGBRegressor(**xcfg);xb.fit(xtr,y);joblib.dump(imp,modeldir/f"{tag}_ma3_imputer.joblib");joblib.dump(et,modeldir/f"{tag}_ma3_et.joblib");xb.save_model(modeldir/f"{tag}_ma3_xgb.json");te["ET_RAW"]=et.predict(xt);te["XGB_RAW"]=xb.predict(xt);te["ET_RANK"]=te.groupby("signal_date").ET_RAW.rank(pct=True,method="average");te["XGB_RANK"]=te.groupby("signal_date").XGB_RAW.rank(pct=True,method="average");te["TAIL_EXTRA"]=ET_WEIGHT*te.ET_RANK+XGB_WEIGHT*te.XGB_RANK;return te[["signal_date","ticker","ET_RANK","XGB_RANK","TAIL_EXTRA"]]
+    ip=modeldir/f"{tag}_ma3_imputer.joblib";ep=modeldir/f"{tag}_ma3_et.joblib";xp=modeldir/f"{tag}_ma3_xgb.json";xcfg=dict(XGB_MODEL_KW);xcfg["n_jobs"]=2
+    if ip.exists() and ep.exists() and xp.exists():
+        imp=joblib.load(ip);et=joblib.load(ep);xb=XGBRegressor(**xcfg);xb.load_model(xp)
+    else:
+        imp=SimpleImputer(strategy="median");xtr=imp.fit_transform(tr[list(FEATURES_42)]);y=tr.Y.to_numpy(float);et=ExtraTreesRegressor(n_jobs=2,**ET_MODEL_KW);et.fit(xtr,y);xb=XGBRegressor(**xcfg);xb.fit(xtr,y);joblib.dump(imp,ip);joblib.dump(et,ep);xb.save_model(xp)
+    xt=imp.transform(te[list(FEATURES_42)]);te["ET_RAW"]=et.predict(xt);te["XGB_RAW"]=xb.predict(xt);te["ET_RANK"]=te.groupby("signal_date").ET_RAW.rank(pct=True,method="average");te["XGB_RANK"]=te.groupby("signal_date").XGB_RAW.rank(pct=True,method="average");te["TAIL_EXTRA"]=ET_WEIGHT*te.ET_RANK+XGB_WEIGHT*te.XGB_RANK;return te[["signal_date","ticker","ET_RANK","XGB_RANK","TAIL_EXTRA"]]
 
 def fit_ma3_cross(train_panel,target_panel,mode,signals,modeldir):
     groups=[(pd.Timestamp(f"{y}-01-01"),signals[signals.year==y],f"A{y}") for y in sorted(set(signals.year))] if mode=="annual" else [(pd.Timestamp(sd),pd.DatetimeIndex([sd]),"M"+pd.Timestamp(sd).strftime("%Y%m%d")) for sd in signals];outs=[]
@@ -202,7 +214,11 @@ def main():
     target_tickers=target.ticker.astype(str).tolist();target_cats=dict(zip(target.ticker,target.macro_category));tmats,tcats,tdates,tcomp,ttail=build_titanium_parts(RAW_TRAIN,market_spy_raw=RAW_REF,candidates=target_tickers);train_parts=add_train_labels(tcomp,ttail,tmats,tdates);xcomp=tcomp.copy();xtail=ttail.copy();target_macro,target_mfeatures=dummy_macro(xtail,target_cats);target_parts=(xcomp,xtail,target_macro,target_mfeatures)
     signals=pd.DatetimeIndex(sorted(set(xcomp.signal_date)));signals=signals[(signals>=pd.Timestamp("2016-11-30"))&(signals<=LAST_SIGNAL)];p45_signals=signals[signals>=FIRST_SIGNAL]
     baseA=fit_titanium_cross(train_parts,target_parts,target_cats,"annual",p45_signals,MODELS/"annual");baseM=fit_titanium_cross(train_parts,target_parts,target_cats,"monthly",p45_signals,MODELS/"monthly");maA=fit_ma3_cross(train_panel,target_panel,"annual",p45_signals,MODELS/"annual");maM=fit_ma3_cross(train_panel,target_panel,"monthly",signals,MODELS/"monthly");pA=baseA.merge(maA,on=["signal_date","ticker"],how="inner");pM=baseM.merge(maM,on=["signal_date","ticker"],how="inner");preM=maM[maM.signal_date.isin([pd.Timestamp("2016-11-30"),pd.Timestamp("2016-12-30")])][["signal_date","ticker","TAIL_EXTRA"]]
-    cand_mats,_,_=load_ticker_csv_folder(RAW_TARGET);ref_mats,_,_=load_ticker_csv_folder(RAW_REF);cal=calendar_from_open(cand_mats["Open"],p45_signals).dropna(subset=["exit_date"]).reset_index(drop=True);pA=pA[pA.signal_date.isin(cal.signal_date)].copy();pM=pM[pM.signal_date.isin(cal.signal_date)].copy();sA,pmA=score_from_panel(pA,cal,target_tickers,False);sM,pmM=score_from_panel(pM,cal,target_tickers,True,preM)
+    cand_mats,_,_=load_ticker_csv_folder(RAW_TARGET);ref_mats,_,_=load_ticker_csv_folder(RAW_REF);cal=calendar_from_open(cand_mats["Open"],p45_signals).dropna(subset=["exit_date"]).reset_index(drop=True);pA=pA[pA.signal_date.isin(cal.signal_date)].copy();pM=pM[pM.signal_date.isin(cal.signal_date)].copy();pA.to_csv(OUT/"ANNUAL_PREDICTIONS_120.csv",index=False);pM.to_csv(OUT/"MONTHLY_PREDICTIONS_120.csv",index=False);print("PREDICTIONS_SAVED",len(pA),len(pM),flush=True)
+    # The cross-market replay is isolated in replay_audited.py. The older
+    # single-exchange replay below is retained only for historical diagnosis.
+    if os.environ.get("EU120_LEGACY_REPLAY")!="1":return
+    sA,pmA=score_from_panel(pA,cal,target_tickers,False);sM,pmM=score_from_panel(pM,cal,target_tickers,True,preM)
     results={};paths={}
     for name,s,pm in [("annual",sA,pmA),("monthly",sM,pmM)]:
         m,E,T,ds=replay(s,pm,cal,cand_mats,ref_mats,target_tickers);results[name]=m;paths[name]=E;print(name,json.dumps(m),flush=True)

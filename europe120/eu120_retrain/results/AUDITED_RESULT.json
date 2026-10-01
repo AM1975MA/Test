@@ -1,0 +1,47 @@
+{
+  "status": "EU120_CROSS_MARKET_COMMON_SESSION_REPLAY",
+  "source": "EU120 walk-forward trained predictions",
+  "period": [
+    "2017-02-01",
+    "2026-06-01"
+  ],
+  "signal_count": 111,
+  "non_common_sessions": 228,
+  "universe_point_in_time_gate": "FAIL: frozen 120 selected with observations through 2026-07-01",
+  "missing_score_policy": "exclude ETF at that signal; retained as -1e6 for ranking",
+  "annual_missing_scores": 1247,
+  "monthly_missing_scores": 1247,
+  "shadow_ingest_strictly_prior": true,
+  "calendar_policy": "next common observed open after signal; rebalance and stops only on common sessions",
+  "risk_warmup": "full pre-evaluation close history",
+  "results": {
+    "Annual": {
+      "cagr": 0.04475767036579567,
+      "maxdd": -0.40369971182882447,
+      "sharpe": 0.33701289438390597,
+      "terminal_equity": 1.5200407702586638,
+      "annualized_turnover": 12.577096402764095
+    },
+    "Monthly": {
+      "cagr": 0.05068962306538178,
+      "maxdd": -0.3021610610685044,
+      "sharpe": 0.36397246848436143,
+      "terminal_equity": 1.6046143276068578,
+      "annualized_turnover": 12.176891159732778
+    },
+    "P42_50_50": {
+      "cagr": 0.05634261474120447,
+      "maxdd": -0.32134695518120093,
+      "sharpe": 0.3982239925793486,
+      "terminal_equity": 1.6891064459419014,
+      "annualized_turnover": 11.901411472431608
+    },
+    "P45": {
+      "cagr": 0.051286201223697474,
+      "maxdd": -0.324231496648439,
+      "sharpe": 0.37299640730797207,
+      "terminal_equity": 1.6133487892374165,
+      "annualized_turnover": 12.084628840553126
+    }
+  }
+}

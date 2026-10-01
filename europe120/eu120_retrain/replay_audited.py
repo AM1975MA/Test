@@ -35,6 +35,10 @@ def common_calendar(raw_open: pd.DataFrame, signals: pd.DatetimeIndex) -> pd.Dat
 
 
 def replay(score, pm, cal, candidates, refs, tickers):
+    # An ETF with an incomplete feature history has no eligible score at that
+    # signal. Keep it below every finite candidate instead of feeding NaN to
+    # the allocation sort and its position weights.
+    score=np.where(np.isfinite(score),score,-1e6)
     cols = tickers + [t for t in m.REF_TICKERS if t not in tickers]
     raw_open = pd.concat([candidates["Open"][tickers], refs["Open"][cols[len(tickers):]]],axis=1).sort_index().reindex(columns=cols)
     raw_open = raw_open.reindex(raw_open.index.union(refs["Open"].index)).sort_index()
@@ -72,6 +76,8 @@ def replay(score, pm, cal, candidates, refs, tickers):
     alt=state.alt_idx[:,st:en+1].copy()
     alt[alt>=len(tickers)]=-1
     ti={t:i for i,t in enumerate(cols)}
+    for name,arr in (("O",O),("L",L),("C",C),("PC",PC),("gap",gap),("ud1",ud1),("uneg",uneg),("UH",UH),("SA",SA),("gross",g),("weight",w)):
+        if not np.isfinite(arr).all():raise RuntimeError(f"nonfinite execution input: {name}")
     E,T,_,_=v6c.simulate_with_alt.py_func(base.d1,base.d2,w,O,L,C,PC,gap,ud1,uneg,UH,SA,ti["BIL"],ti["SHV"],g,alt,True,available,.001)
     out=m.metrics(E[0])
     out["annualized_turnover"]=float(T.mean()*252)
@@ -147,6 +153,10 @@ def main():
     audit={"status":"EU120_CROSS_MARKET_COMMON_SESSION_REPLAY","source":"EU120 walk-forward trained predictions",
            "period":[str(ds.min().date()),str(ds.max().date())],
            "signal_count":len(cal),"non_common_sessions":int((~ro.notna().all(axis=1).reindex(ds)).sum()),
+           "universe_point_in_time_gate":"FAIL: frozen 120 selected with observations through 2026-07-01",
+           "missing_score_policy":"exclude ETF at that signal; retained as -1e6 for ranking",
+           "annual_missing_scores":int((~np.isfinite(sa)).sum()),
+           "monthly_missing_scores":int((~np.isfinite(sm)).sum()),
            "shadow_ingest_strictly_prior":True,
            "calendar_policy":"next common observed open after signal; rebalance and stops only on common sessions",
            "risk_warmup":"full pre-evaluation close history",
