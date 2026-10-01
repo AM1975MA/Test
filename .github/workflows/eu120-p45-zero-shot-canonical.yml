@@ -1,0 +1,121 @@
+name: EU120 canonical P45 zero-shot
+
+on:
+  push:
+    branches:
+      - research/eu120-economy-p45-20260929
+    paths:
+      - '.github/workflows/eu120-p45-zero-shot-canonical.yml'
+      - 'europe120/p45_zero_shot_120/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  eu120:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout Test runner
+        uses: actions/checkout@v4
+
+      - name: Checkout exact P41 source snapshot
+        uses: actions/checkout@v4
+        with:
+          repository: AM1975MA/Trader_selector
+          ref: 37fe09c266acc54ce5cf8d0212a7112a0908ad26
+          path: _p41
+          persist-credentials: false
+
+      - name: Checkout exact P45 router snapshot
+        uses: actions/checkout@v4
+        with:
+          repository: AM1975MA/Trader_selector
+          ref: bf8f5dc88ad746e795b5cc39028c7aff36c9f97c
+          path: _p45
+          persist-credentials: false
+
+      - name: Download frozen original149 raw input
+        uses: actions/download-artifact@v4
+        with:
+          name: etf-trader-raw-149
+          path: _inputs/raw149
+          github-token: ${{ github.token }}
+          repository: AM1975MA/Test
+          run-id: 36551650325
+
+      - name: Download frozen EU120 input
+        uses: actions/download-artifact@v4
+        with:
+          name: eu120-frozen-20260701
+          path: _inputs/eu120
+          github-token: ${{ github.token }}
+          repository: AM1975MA/Test
+          run-id: 36597035280
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install exact producer dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r _p41/vendor/etf_trader_v2/requirements.txt
+
+      - name: Frozen input and source gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import pandas as pd
+          p149=list(Path('_inputs/raw149').rglob('universe.csv'))
+          p120=list(Path('_inputs/eu120').rglob('universe.csv'))
+          a=[p for p in p149 if len(pd.read_csv(p))==149]
+          b=[p for p in p120 if len(pd.read_csv(p))==120]
+          assert len(a)==1,(p149,a)
+          assert len(b)==1,(p120,b)
+          u149=pd.read_csv(a[0]);u120=pd.read_csv(b[0])
+          assert len(set(u149.ticker)&set(u120.ticker))==0
+          m=json.loads((Path('_inputs/eu120')/'manifest.json').read_text())
+          assert m['selected_count']==120 and m['unique_tickers']==120 and m['original149_overlap']==0
+          print('FROZEN_GATE PASS 149=',len(u149),'EU120=',len(u120),'overlap=0')
+          PY
+          test "$(git -C _p41 rev-parse HEAD)" = "37fe09c266acc54ce5cf8d0212a7112a0908ad26"
+          test "$(git -C _p45 rev-parse HEAD)" = "bf8f5dc88ad746e795b5cc39028c7aff36c9f97c"
+
+      - name: Syntax check
+        run: |
+          python -m py_compile europe120/p45_zero_shot_56/run_p45_zero_shot_56.py
+          python -m py_compile europe120/p45_zero_shot_120/run_p45_zero_shot_120.py
+
+      - name: Run fit-on-frozen149 predict-on-frozen120 P45
+        env:
+          ETF_TRADER_ROOT: ${{ github.workspace }}/_p41/vendor/etf_trader_v2
+          RAW149_INPUT: ${{ github.workspace }}/_inputs/raw149
+          EU120_INPUT: ${{ github.workspace }}/_inputs/eu120
+          P45_ROUTE_PATH: ${{ github.workspace }}/_p45/research/p45_continuous_posterior_router_20260928/ROUTER_TRACE.csv
+          P45_PARITY_PATH: ${{ github.workspace }}/_p45/research/p45_continuous_posterior_router_20260928/PARITY_AUDIT.json
+          P41_COMMIT: 37fe09c266acc54ce5cf8d0212a7112a0908ad26
+          P45_COMMIT: bf8f5dc88ad746e795b5cc39028c7aff36c9f97c
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: python europe120/p45_zero_shot_120/run_p45_zero_shot_120.py
+
+      - name: Print final result
+        if: always()
+        run: |
+          if [ -f europe120/p45_zero_shot_120/results/RESULT.json ]; then
+            cat europe120/p45_zero_shot_120/results/RESULT.json
+          fi
+
+      - name: Upload EU120 canonical result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eu120-canonical-p45-zero-shot-result
+          path: europe120/p45_zero_shot_120/results/
+          retention-days: 30
