@@ -23,15 +23,17 @@ Cinque serie FRED di mercato, non presenti nelle 42 feature del retriever LTR v1
 - `VIXCLS` — CBOE VIX;
 - `DGS2` — Treasury 2Y;
 - `DGS10` — Treasury 10Y;
-- `BAMLH0A0HYM2` — US High Yield option-adjusted spread;
+- `BAA10Y` — Baa corporate spread vs Treasury 10Y;
 - `DTWEXBGS` — broad trade-weighted US dollar index.
+
+La specifica iniziale usava `BAMLH0A0HYM2`; prima di qualsiasi fit e' emerso che FRED nel 2026 ne espone solo gli ultimi tre anni. Il quality gate ha quindi bloccato il freeze. La serie e' stata sostituita, prima di osservare qualunque performance, con `BAA10Y`, mantenendo invariato il ruolo economico di credit-stress. La correzione e' documentata in `evidence_v2/protocols/MACRO_CONTEXT_V1_CREDIT_SERIES_AVAILABILITY_FIX.md`.
 
 Da queste vengono congelate **esattamente sei** feature di contesto, definite prima del test:
 - `vix_z252`;
 - `dgs2_delta21`;
 - `dgs10_delta21`;
 - `curve_10y2y_z252`;
-- `hy_oas_z252`;
+- `baa10y_z252`;
 - `usd_ret21`.
 
 Per evitare ambiguita' temporali, al segnale mensile il modello puo' usare solo l'ultima osservazione macro con data **strettamente precedente** alla `signal_date`.
@@ -60,4 +62,4 @@ Tutti e quattro devono essere veri. IC, NDCG, subperiodi e altre metriche sono d
 ## Fase corrente
 
 A. Congelare il blocco macro in `evidence_v2/data/macro_context_v1/` con URL, raw files, hash e trasformazioni.
-B. Solo dopo il freeze, preregistrare e lanciare un singolo retriever macro-context.
+B. Solo dopo il freeze, lanciare il singolo retriever macro-context gia' preregistrato.
