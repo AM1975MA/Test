@@ -47,7 +47,7 @@ CANDIDATES = {
         "PID","DWX","IQDF","FNDF","GWX","VSS","SCHC","IDMO","ACWX","VXUS",
         "IXUS","GWL","DWM","DNL","DOL","DLS","SCJ","DFJ","DXJS","EWUS",
         "EWGS","JPXN","IDV","DBJP","HEWJ","HEWG","HEWI","HEWL","PDN","DIM",
-        "AUSE","HFXI","DBAW","DWMF","DOL","DOO"
+        "AUSE","HFXI","DBAW","DWMF","DOO"
     ],
     "C04_EMERGING": [
         "FM","FNDE","XSOE","EEB","ILF","GXG","NGE","EGPT","EMFM","UAE",
@@ -102,7 +102,7 @@ def fetch_one(ticker: str) -> tuple[pd.DataFrame | None, str | None]:
             if d is not None and not d.empty:
                 break
             last_error = "empty"
-        except Exception as e:  # engineering retry only
+        except Exception as e:
             last_error = f"{type(e).__name__}:{e}"
         time.sleep(1.0 + attempt)
     else:
@@ -129,13 +129,11 @@ def fetch_one(ticker: str) -> tuple[pd.DataFrame | None, str | None]:
     q = q.dropna().sort_values("date").drop_duplicates("date", keep="last")
     if q.empty:
         return None, "no_valid_rows"
-
     if (q[["Open", "High", "Low", "Close"]] <= 0).any().any():
         return None, "nonpositive_ohlc"
     if (q["Volume"] < 0).any():
         return None, "negative_volume"
 
-    # Make high/low a strict OHLC envelope rather than rejecting harmless provider glitches.
     q["High"] = q[["High", "Open", "Close", "Low"]].max(axis=1)
     q["Low"] = q[["Low", "Open", "Close", "High"]].min(axis=1)
 
@@ -144,7 +142,6 @@ def fetch_one(ticker: str) -> tuple[pd.DataFrame | None, str | None]:
         return None, f"insufficient_pre2017_rows:{len(pre)}"
     if q.date.max() < LAST_REQUIRED:
         return None, f"ends_early:{q.date.max().date()}"
-
     q = q[q.date <= LAST_REQUIRED].copy()
     return q, None
 
@@ -171,13 +168,13 @@ def main() -> int:
 
     flat = [t for c in CATEGORIES for t in CANDIDATES[c]]
     if len(flat) != len(set(flat)):
-        dup = sorted(pd.Series(flat)[pd.Series(flat).duplicated()].unique().tolist())
+        s = pd.Series(flat)
+        dup = sorted(s[s.duplicated()].unique().tolist())
         raise RuntimeError(f"duplicate candidate ticker across pools: {dup}")
 
     out = Path(args.out)
     raw = out / "raw_ticker_csv"
     raw.mkdir(parents=True, exist_ok=True)
-
     selected: list[dict] = []
     rejected: list[dict] = []
     data: dict[str, pd.DataFrame] = {}
@@ -185,17 +182,13 @@ def main() -> int:
     for cat in CATEGORIES:
         n = 0
         for ticker in CANDIDATES[cat]:
-            tu = ticker.upper()
-            if tu in burned:
+            if ticker.upper() in burned:
                 rejected.append({"ticker": ticker, "macro_category": cat, "reason": "burned_set_overlap"})
                 continue
             q, reason = fetch_one(ticker)
             if q is None:
                 rejected.append({"ticker": ticker, "macro_category": cat, "reason": reason})
                 print("REJECT", cat, ticker, reason, flush=True)
-                continue
-            if n >= QUOTA_PER_CLUSTER:
-                rejected.append({"ticker": ticker, "macro_category": cat, "reason": "valid_reserve_not_needed"})
                 continue
             rec = {
                 "ticker": ticker,
