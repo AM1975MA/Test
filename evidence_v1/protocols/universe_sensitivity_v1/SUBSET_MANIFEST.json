@@ -1,0 +1,54 @@
+{
+  "protocol": "universe_sensitivity_v1",
+  "source_universe": "Original149 frozen metadata only",
+  "source_universe_rows": 149,
+  "selection_uses_prices_or_performance": false,
+  "salt": "evidence-v1-universe-sensitivity-v1",
+  "mandatory_calendar_anchor": "SPY",
+  "method": "nested proportional-deficit category balancing; salted SHA256 order within category",
+  "sizes": [
+    120,
+    100,
+    70
+  ],
+  "category_counts_original149": {
+    "C01_US_BROAD_STYLE": 25,
+    "C02_US_SECTOR_THEME": 25,
+    "C03_DEVELOPED_GLOBAL": 25,
+    "C04_EMERGING": 24,
+    "C05_BONDS_CASH_CREDIT": 25,
+    "C06_REAL_ASSETS": 25
+  },
+  "category_counts_subsets": {
+    "U120": {
+      "C01_US_BROAD_STYLE": 20,
+      "C02_US_SECTOR_THEME": 20,
+      "C03_DEVELOPED_GLOBAL": 20,
+      "C04_EMERGING": 20,
+      "C05_BONDS_CASH_CREDIT": 20,
+      "C06_REAL_ASSETS": 20
+    },
+    "U100": {
+      "C01_US_BROAD_STYLE": 17,
+      "C02_US_SECTOR_THEME": 17,
+      "C03_DEVELOPED_GLOBAL": 17,
+      "C04_EMERGING": 16,
+      "C05_BONDS_CASH_CREDIT": 17,
+      "C06_REAL_ASSETS": 16
+    },
+    "U70": {
+      "C01_US_BROAD_STYLE": 12,
+      "C02_US_SECTOR_THEME": 12,
+      "C03_DEVELOPED_GLOBAL": 12,
+      "C04_EMERGING": 11,
+      "C05_BONDS_CASH_CREDIT": 12,
+      "C06_REAL_ASSETS": 11
+    }
+  },
+  "priority_order_sha256": "787cc8131d912e2902e4adf84e47cb8feaf57c318f28e0b868958b596ec27fca",
+  "subset_sha256": {
+    "U120": "6b8d84a01ac7d33a23750154af872e68b57348029f667ef4206aea9ce791d0a0",
+    "U100": "1e2b85b2b1fc03d3c8de4f43646331b6d930a4d031d1c81442352e55b576063c",
+    "U70": "73071f3de06c9faa9f194ccb97e4563a6ceb97abe3ddf25179e8db1aff92b9ca"
+  }
+}
