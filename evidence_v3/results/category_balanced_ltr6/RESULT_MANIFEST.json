@@ -1,0 +1,9 @@
+{
+  "test": "category_balanced_ltr6",
+  "files_sha256": {
+    "MONTHLY.csv": "562337e71151a082b443d0f4a39c51c9b7ba7505f3e66ed0f9489cf83793a6b4",
+    "PROVENANCE.json": "15d9f2bc9e95908b85b6a1b4e8dc789ef4c956a3edb5faf8a3a5e289abdf8ef1",
+    "SELECTIONS.csv": "bf669e1c373c4679a8a9cd9f23f8dabe636a34df6ed3ea955bf8aa998ba561aa",
+    "SUMMARY.json": "3aaf1fb98a16fd07d0a745f7578212a0a4319da3c503ed034131bf34f3380b4d"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "line": "Evidence V3",
+  "test": "category_balanced_ltr6",
+  "status": "DEVELOPMENT_REJECTED",
+  "architecture": "one highest frozen OOS LTR-score ETF per each of six frozen categories, equal weight 1/6",
+  "model_refit": false,
+  "baseline_reproduction": {
+    "n_periods": 114,
+    "top1_cagr_proxy": -0.07567660003526044,
+    "top5ew_cagr_proxy": 0.034215706909629384,
+    "universe_ew_cagr_proxy": 0.08524482878917672
+  },
+  "full": {
+    "category_ltr6": {
+      "n": 114,
+      "cagr_proxy": 0.07399881666846708,
+      "annual_vol": 0.18027323310653287,
+      "sharpe_rf0": 0.486694317179178,
+      "max_drawdown": -0.2548623311953755,
+      "positive_rate": 0.5964912280701754,
+      "mean_period_return": 0.007311496507705567,
+      "worst_period": -0.1740750493632247,
+      "best_period": 0.1584670870636935
+    },
+    "universe_ew": {
+      "n": 114,
+      "cagr_proxy": 0.08524482878917672,
+      "annual_vol": 0.13864760233977844,
+      "sharpe_rf0": 0.6612475045214297,
+      "max_drawdown": -0.20141633871173703,
+      "positive_rate": 0.6491228070175439,
+      "mean_period_return": 0.007640031754588168,
+      "worst_period": -0.15435214611219233,
+      "best_period": 0.11491551574055535
+    },
+    "top1": {
+      "n": 114,
+      "cagr_proxy": -0.07567660003526044,
+      "annual_vol": 0.31825449523907046,
+      "sharpe_rf0": -0.08969039729241501,
+      "max_drawdown": -0.7278290853696594,
+      "positive_rate": 0.45614035087719296,
+      "mean_period_return": -0.002378697676507436,
+      "worst_period": -0.2256046214612456,
+      "best_period": 0.2713704513742294
+    },
+    "top5ew": {
+      "n": 114,
+      "cagr_proxy": 0.034215706909629384,
+      "annual_vol": 0.246290544514734,
+      "sharpe_rf0": 0.2619057693336054,
+      "max_drawdown": -0.4055339154412757,
+      "positive_rate": 0.543859649122807,
+      "mean_period_return": 0.005375409545060333,
+      "worst_period": -0.28325493289599313,
+      "best_period": 0.1597698776817073
+    },
+    "cagr_excess_vs_universe_pp": -1.1246012120709636
+  },
+  "2017_2022": {
+    "category_ltr6": {
+      "n": 72,
+      "cagr_proxy": 0.049088225086300064,
+      "annual_vol": 0.19210801077741968,
+      "sharpe_rf0": 0.3449632937136831,
+      "max_drawdown": -0.2548623311953755,
+      "positive_rate": 0.5555555555555556,
+      "mean_period_return": 0.005522517678880201,
+      "worst_period": -0.1740750493632247,
+      "best_period": 0.1584670870636935
+    },
+    "universe_ew": {
+      "n": 72,
+      "cagr_proxy": 0.08021267473428995,
+      "annual_vol": 0.15341792480185798,
+      "sharpe_rf0": 0.5809226132827711,
+      "max_drawdown": -0.20141633871173703,
+      "positive_rate": 0.6527777777777778,
+      "mean_period_return": 0.007426995150026249,
+      "worst_period": -0.15435214611219233,
+      "best_period": 0.11491551574055535
+    },
+    "cagr_excess_vs_universe_pp": -3.1124449647989882
+  },
+  "2023_2026": {
+    "category_ltr6": {
+      "n": 42,
+      "cagr_proxy": 0.11808660202310306,
+      "annual_vol": 0.159612978831997,
+      "sharpe_rf0": 0.7802611616974576,
+      "max_drawdown": -0.17408697608492774,
+      "positive_rate": 0.6666666666666666,
+      "mean_period_return": 0.010378317357120474,
+      "worst_period": -0.07652344509304279,
+      "best_period": 0.10157059166982925
+    },
+    "universe_ew": {
+      "n": 42,
+      "cagr_proxy": 0.0939259780937498,
+      "annual_vol": 0.11053960157400315,
+      "sharpe_rf0": 0.8690355943122503,
+      "max_drawdown": -0.13312706308068356,
+      "positive_rate": 0.6428571428571429,
+      "mean_period_return": 0.0080052373624086,
+      "worst_period": -0.06652177384511276,
+      "best_period": 0.0716300294635025
+    },
+    "cagr_excess_vs_universe_pp": 2.4160623929353253
+  },
+  "mean_monthly_category_name_turnover": 0.6932153392330384,
+  "primary_gate": {
+    "full_cagr_gt_universe_ew": false,
+    "2017_2022_cagr_gt_universe_ew": false,
+    "2023_2026_cagr_gt_universe_ew": true
+  },
+  "decision": "REJECT: close category-balanced LTR use on Dev72; no category-weight, category-count, TopN-per-category or nearby allocation variants"
+}

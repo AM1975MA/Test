@@ -1,0 +1,18 @@
+{
+  "line": "Evidence V3",
+  "test": "category_balanced_ltr6",
+  "git_commit": "536a4bff300162848f41d9c3d5bd9a4a3f0974ff",
+  "evaluator_git_blob": "5dd5e400c3c267e353b139cfb34b38024694c96c",
+  "preregistration_git_blob": "6c49036f9468c57de5a15510ab325476389efc4f",
+  "dev72_universe_sha256": "412e577eab42cf9978fe57d6e42c62f9959aa0e46667ee5070aa3a788b9b5778",
+  "frozen_predictions_sha256": "fafe49e44bd24a250ecb023338ef97696f79767404b281ff1d04af1f890c14b5",
+  "baseline_summary_sha256": "fb898837f35c2b50febddfd575dffe2c56d7bec43ab7d60252afb2ebb0576fa9",
+  "network_used_during_test": false,
+  "model_refit": false,
+  "original149_used": false,
+  "holdout70_used": false,
+  "eu110_eu120_used": false,
+  "python": "3.13.15",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3"
+}
