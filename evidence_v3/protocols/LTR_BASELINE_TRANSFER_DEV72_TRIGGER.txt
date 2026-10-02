@@ -1,0 +1,1 @@
+Evidence V3 Dev72 frozen-LTR baseline transfer execution marker. Source, preregistration, frozen data, model architecture and transfer gate are already committed and hash-gated.
