@@ -1,0 +1,97 @@
+name: Evidence V3 freeze Dev72
+
+on:
+  push:
+    branches: [ research/evidence-v3 ]
+    paths:
+      - 'evidence_v3/protocols/DEV72_FREEZE_TRIGGER.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  freeze-dev72:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+
+      - name: Fail-closed source and preregistration gate
+        run: |
+          set -euo pipefail
+          test "$(git hash-object evidence_v3/src/freeze_dev72.py)" = "0fc474e657975e11faf56629c3e98114dc09c796"
+          test "$(git hash-object evidence_v3/protocols/DEV72_FREEZE_PREREG.md)" = "d97e07918797802217002038edc115269ae9afb4"
+          test "$(git hash-object evidence_v3/reference/EU110_TESTED.csv)" = "3009dae729ef7c474ba8fd8c42757139f9c3727d"
+          test "$(git hash-object evidence_v1/data/original149/universe.csv)" = "7d176c3963e3bc69c53745a68e1a1e8db6ca570d"
+          test "$(git hash-object evidence_v1/data/holdout70/universe.csv)" = "22786903906e8433bda5464ab04d574637fa0be9"
+          python -m py_compile evidence_v3/src/freeze_dev72.py
+          test ! -e evidence_v3/data/dev72
+
+      - name: Install pinned freeze environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 pandas==2.2.3 yfinance==0.2.66
+
+      - name: Freeze Dev72 without performance use
+        run: |
+          rm -rf _evidence_v3_dev72
+          python evidence_v3/src/freeze_dev72.py \
+            --original149 evidence_v1/data/original149/universe.csv \
+            --holdout70 evidence_v1/data/holdout70/universe.csv \
+            --eu110 evidence_v3/reference/EU110_TESTED.csv \
+            --out _evidence_v3_dev72
+
+      - name: Build provenance
+        run: |
+          python - <<'PY'
+          import hashlib,json,platform,subprocess
+          from pathlib import Path
+          import numpy,pandas,yfinance
+          def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          out=Path('_evidence_v3_dev72')
+          m=json.loads((out/'manifest.json').read_text())
+          if m['selected_count'] != 72 or m['intersection_with_burned_union'] != [] or m['performance_used_for_selection'] is not False:
+              raise SystemExit('Dev72 manifest gate failed')
+          p={
+            'line':'Evidence V3','dataset':'Dev72','status':'FROZEN_NO_PERFORMANCE_TEST',
+            'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'freezer_git_blob':subprocess.check_output(['git','hash-object','evidence_v3/src/freeze_dev72.py'],text=True).strip(),
+            'preregistration_git_blob':subprocess.check_output(['git','hash-object','evidence_v3/protocols/DEV72_FREEZE_PREREG.md'],text=True).strip(),
+            'eu110_reference_git_blob':subprocess.check_output(['git','hash-object','evidence_v3/reference/EU110_TESTED.csv'],text=True).strip(),
+            'original149_universe_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/data/original149/universe.csv'],text=True).strip(),
+            'holdout70_universe_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/data/holdout70/universe.csv'],text=True).strip(),
+            'manifest_sha256':h(out/'manifest.json'),'universe_sha256':h(out/'universe.csv'),
+            'coverage_sha256':h(out/'coverage.csv'),'rejected_sha256':h(out/'rejected.csv'),
+            'network_used_only_for_data_freeze':True,'performance_test_executed':False,
+            'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,'yfinance':yfinance.__version__}
+          (out/'PROVENANCE.json').write_text(json.dumps(p,indent=2)+'\n')
+          print(json.dumps(p,indent=2))
+          PY
+
+      - name: Persist frozen Dev72 in branch
+        run: |
+          set -euo pipefail
+          mkdir -p evidence_v3/data/dev72
+          cp -r _evidence_v3_dev72/* evidence_v3/data/dev72/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence_v3/data/dev72
+          git commit -m "Freeze Evidence V3 Dev72 universe"
+          git pull --rebase origin research/evidence-v3
+          git push origin HEAD:research/evidence-v3
+
+      - name: Upload frozen Dev72
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-v3-dev72-frozen
+          retention-days: 90
+          if-no-files-found: error
+          path: evidence_v3/data/dev72/
