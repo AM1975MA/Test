@@ -8,8 +8,15 @@ This registry points to the durable result directories and immutable run/artifac
 | Pairwise reranker v1 | rejected | `37041677418` | `11242493662` | `13e227467d5f6a52624c71ac2e06b9a1d7fabb58d30fe2a4ff55250e2c829aad` | `evidence_v1/results/pairwise_reranker_v1/` |
 | Nonlinear reranker v2 | rejected by preregistered ranking rule | `37046279447` | `11244841228` | `ea8d03b91db5aa7fa3643dc7b93f575ea6d0b874599465cfa5a7b05e1e3865f4` | `evidence_v1/results/reranker_v2_nonlinear/` |
 | Universe Sensitivity v1 | validated diagnostic; `SUPPORT_REFERENCE_UNIVERSE` | `37055155515` | `11248586812` | `8ecabaeb80268929ab5f7610ca5848c9b265ebfab7e794a0f4ed2d8df177d58a` | `evidence_v1/results/universe_sensitivity_v1/` |
+| Reranker v3 target21 | rejected by preregistered ranking rule | `37056519705` | `11248488705` | `e3f380b4e33e7b6b6b824d4a47a646af4c1b13afe670a87ef0abee67015d3855` | `evidence_v1/results/reranker_v3_target21/` |
 
-Universe Sensitivity v1 result commit: `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`. The preregistered stability rule passed in U120, U100 and U70: reference-universe representation won all four stability metrics in every subset. This is **representation/stability evidence, not promotion evidence for a final selector**; diagnostic Top1/performance metrics did not improve consistently.
+### Universe Sensitivity v1
+
+Result commit: `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`. The preregistered stability rule passed in U120, U100 and U70: reference-universe representation won all four stability metrics in every subset. This is **representation/stability evidence, not promotion evidence for a final selector**; diagnostic Top1/performance metrics did not improve consistently.
+
+### Reranker v3 target21
+
+Result commit: `5e57b61302ed76ac0c28756d519e74d019b82ea9`. The frozen LTR comparator reproduced 114 periods, 10 exact Top1 global winners, 15 winners in Top2 and 21 in Top3. v3 produced 10 Top1, 14 Top2 and 19 Top3; therefore it failed the preregistered requirement that Top2 improve while Top1 not worsen. Top1 CAGR proxy also declined from 22.06% to 18.77%. No ex-post tuning is permitted for this version.
 
 ## Reusable checkpoints
 
@@ -45,6 +52,7 @@ Universe Sensitivity run `37054571788` is **not evidence**: after rebuilding pan
 - branch: `research/evidence-v1`
 - baseline frozen commit: `ea1c4e83118309bc7d4bc85f3ea93f658c687d3b`
 - latest validated diagnostic result commit: `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`
+- latest development reranker result commit: `5e57b61302ed76ac0c28756d519e74d019b82ea9`
 - data manifest SHA256: `1efba2bc213ba26b042a9e77630fe26664343654629e658f43d314d068ba9e71`
 - source manifest SHA256: `cc4d315da68ec42275a7a74f05446ac6cbb484c3bd92a7861cd76805c5a94782`
 
