@@ -1,0 +1,1 @@
+Evidence V4 magnitude-direction v1 execution marker. Dev60, architecture, Stage-1 LTR, Stage-2 sign target, Top10 K, classifier hyperparameters, decision rule and advancement gate are already committed and hash-gated.
