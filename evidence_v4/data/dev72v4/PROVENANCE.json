@@ -1,0 +1,21 @@
+{
+  "line": "Evidence V4",
+  "dataset": "Dev72V4",
+  "status": "FROZEN_ENGINEERING_FIX_NO_PERFORMANCE",
+  "invalid_preperformance_run": "37075621569",
+  "git_commit": "36f7f572b240e13889bd3c34150c064dda570a2c",
+  "expander_git_blob": "40627bcc9ec8ce778f242cec27991cdbf3738e0a",
+  "engineering_fix_git_blob": "edc3dfced2e64ecb59a1e7edaf59c00a49a11be5",
+  "architecture_prereg_git_blob": "8cdcc887f6707352645f90bff1a95519146bd1d7",
+  "architecture_source_git_blob": "b7a517b247e62de8866dfe35592a7ba73643b504",
+  "dev60_manifest_sha256": "c83494032c4a0675a1cf5769dd01cefa5025f406606e3bb0c4a2779f1a9e642a",
+  "manifest_sha256": "8a50de08efd056e2637b6e043ff540d19d882ab34e53c16c930eea43a642a4dd",
+  "universe_sha256": "ae19ffdd0f4e89c677734a640ca1814c3651489caddc61aef089158d3ccb6a62",
+  "coverage_sha256": "4b25de86755626eb9d31e49e2c13cb40c046845361343e28c70785406d7e0953",
+  "network_used_only_for_12_added_data_series": true,
+  "performance_test_executed": false,
+  "python": "3.13.15",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "yfinance": "0.2.66"
+}
