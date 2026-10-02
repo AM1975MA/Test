@@ -1,0 +1,95 @@
+name: Holdout70 Annual Monthly causal retrain
+
+on:
+  push:
+    branches: [ research/holdout60-20261002 ]
+    paths: [ '.github/workflows/holdout70-retrain.yml' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source requirements
+        run: python -m pip install -r vendor/etf_trader_v2/requirements.txt matplotlib 'pandas==2.2.3'
+      - name: Retrieve frozen holdout70
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 36994684932 -R ${{ github.repository }} -n holdout70-frozen-20260731 -D _holdout70
+      - name: Retrieve frozen 149 reference prices
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 36551650325 -R ${{ github.repository }} -n etf-trader-raw-149 -D _raw149
+      - name: Validate frozen inputs
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          h=Path('_holdout70'); r=Path('_raw149/etf_trader_raw')
+          u=list(csv.DictReader((h/'raw_ticker_csv/universe.csv').open()))
+          v=list(csv.DictReader((r/'universe.csv').open()))
+          m=json.loads((h/'manifest.json').read_text())
+          assert len(u)==70 and len(v)==149
+          assert m['selected_count']==70 and m['intersection_with_original149']==[]
+          assert m['ma3_architecture_gate']['pass'] is True
+          assert not ({x['ticker'] for x in u} & {x['ticker'] for x in v})
+          assert all((h/'raw_ticker_csv'/(x['ticker']+'.csv')).is_file() for x in u)
+          print('HOLDOUT70_INPUT_GATE_PASS')
+          PY
+      - name: Prepare holdout70 causal runner
+        run: |
+          cp _holdout70/raw_ticker_csv/universe.csv holdout70/FROZEN_UNIVERSE.csv
+          cp europe120/eu120_retrain/run_eu120_retrain.py holdout70/run_holdout70_retrain.py
+          cp europe120/eu120_retrain/build_ma3_panel_causal.py holdout70/build_ma3_panel_causal.py
+          cp europe120/eu120_retrain/bocpd_router.py holdout70/bocpd_router.py
+          sed -i 's/FROZEN_EU120_ROOT/FROZEN_HOLDOUT70_ROOT/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/len(meta)==120/len(meta)==70/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/UNIVERSE_120.csv/FROZEN_UNIVERSE.csv/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/len(target)==120/len(target)==70/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/target.ticker.nunique()==120/target.ticker.nunique()==70/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/training_target_overlap":120/training_target_overlap":70/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/120 ETF expanding walk-forward/70 ETF expanding walk-forward/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/P45_EU120_RETRAIN_COMPLETE/HOLDOUT70_RETRAIN_COMPLETE/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/ANNUAL_PREDICTIONS_120/ANNUAL_PREDICTIONS_70/g; s/MONTHLY_PREDICTIONS_120/MONTHLY_PREDICTIONS_70/g; s/PATHS_120/PATHS_70/g' holdout70/run_holdout70_retrain.py
+      - name: Fit and replay holdout70
+        env:
+          ETF_TRADER_ROOT: ${{ github.workspace }}/vendor/etf_trader_v2
+          FROZEN_HOLDOUT70_ROOT: ${{ github.workspace }}/_holdout70
+          FROZEN_149_ROOT: ${{ github.workspace }}/_raw149
+          EU120_LEGACY_REPLAY: '1'
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: python holdout70/run_holdout70_retrain.py
+      - name: Show result
+        if: success()
+        run: |
+          cat holdout70/results/RESULT.json
+          echo '--- annual comparison ---'
+          cat holdout70/results/ANNUAL_COMPARISON.csv
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: holdout70-causal-retrain-results
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            holdout70/results/RESULT.json
+            holdout70/results/ANNUAL_COMPARISON.csv
+            holdout70/results/ANNUAL_PREDICTIONS_70.csv
+            holdout70/results/MONTHLY_PREDICTIONS_70.csv
+            holdout70/results/MODEL_BUNDLE_MANIFEST.json
+            holdout70/results/ROUTER_TRACE.csv
+            holdout70/results/SHADOW_SKILL.csv
+            holdout70/results/PATHS_70.npz
