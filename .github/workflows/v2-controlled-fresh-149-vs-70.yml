@@ -1,13 +1,12 @@
-name: V2 controlled frozen-fresh 149 vs 70 resume
+name: V2 replay-only frozen-fresh 149 vs 70
 
 on:
   push:
     branches: [ research/v2-same-source-149-vs-70-20261002 ]
     paths:
       - '.github/workflows/v2-controlled-fresh-149-vs-70.yml'
-      - 'holdout70/v2_resume_holdout70.py'
+      - 'holdout70/v2_replay_only_from_checkpoint.py'
       - 'holdout70/v2_canonical_same_source_compare.py'
-      - 'holdout70/CANONICAL_149_REFERENCE.json'
   workflow_dispatch:
 
 permissions:
@@ -17,7 +16,7 @@ permissions:
 jobs:
   compare:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
 
@@ -25,22 +24,12 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Install one locked numerical environment
+      - name: Install locked replay environment
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r vendor/etf_trader_v2/requirements.txt matplotlib \
             'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' \
             'xgboost==3.1.3' 'numba==0.65.1' 'yfinance==0.2.66'
-          python - <<'PY'
-          import sys, numpy, pandas, sklearn, xgboost, numba, yfinance
-          print('python', sys.version)
-          print('numpy', numpy.__version__)
-          print('pandas', pandas.__version__)
-          print('sklearn', sklearn.__version__)
-          print('xgboost', xgboost.__version__)
-          print('numba', numba.__version__)
-          print('yfinance', yfinance.__version__)
-          PY
 
       - name: Gate exact productive V2 source blobs
         run: |
@@ -72,83 +61,74 @@ jobs:
                   if not raw.endswith(b'\n'):
                       path.write_bytes(raw + b'\n')
                       got = subprocess.check_output(['git','hash-object',p], text=True).strip()
-              print(p, got)
               assert got == want, (p, got, want)
           print('CANONICAL_V2_SOURCE_GATE_PASS')
           PY
 
-      - name: Restore exact frozen raw and completed 149 checkpoint
+      - name: Restore frozen raw, completed 149 and saved Holdout70 training checkpoint
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh run download 37017429560 -R ${{ github.repository }} \
             -n v2-controlled-fresh-raw-149-70 -D .
           gh run download 37017928047 -R ${{ github.repository }} \
-            -n v2-controlled-frozen-fresh-149-vs-70-results -D _partial
+            -n v2-controlled-frozen-fresh-149-vs-70-results -D _partial149
+          gh run download 37019935712 -R ${{ github.repository }} \
+            -n v2-controlled-frozen-fresh-149-vs-70-resume -D _checkpoint70
           test -f _fresh149/etf_trader_raw/manifest.json
           test -f _fresh70/raw_ticker_csv/manifest.json
-          test -f _partial/original149/RESULT.json
+          test -f _partial149/original149/RESULT.json
+          test -f _checkpoint70/holdout70/TIT_R_CANDIDATES_ONLY.csv
+          test -f _checkpoint70/holdout70/ENSEMBLE_TAIL_OOS.csv
+          test -f _checkpoint70/holdout70/ma3_panel/RAW_FEATURE_PANEL.pkl
 
-      - name: Verify frozen raw and 149 checkpoint contracts
+      - name: Verify resume checkpoint contract
         run: |
           python - <<'PY'
           import json, pandas as pd
           from pathlib import Path
-          u149=pd.read_csv('_fresh149/etf_trader_raw/universe.csv')
-          u70=pd.read_csv('_fresh70/raw_ticker_csv/universe.csv')
-          assert len(u149)==149 and u149.ticker.nunique()==149
-          assert len(u70)==70 and u70.ticker.nunique()==70
-          assert not (set(u149.ticker) & set(u70.ticker))
-          for p,n in [('_fresh149/etf_trader_raw/manifest.json',149),('_fresh70/raw_ticker_csv/manifest.json',70)]:
-              m=json.loads(Path(p).read_text())
-              assert m['status']=='UNIFORM_YAHOO_FRESH_RAW'
-              assert m['requested_start']=='2004-01-01'
-              assert m['requested_end_exclusive']=='2026-08-01'
-              assert m['tickers']==n
-              assert m['price_semantics']=='same-row Adj Close/raw Close adjustment for OHLC; raw Volume'
-              assert m['package_versions']['yfinance']=='0.2.66'
-              assert m['package_versions']['pandas']=='2.2.3'
-          r149=json.loads(Path('_partial/original149/RESULT.json').read_text())
+          r149=json.loads(Path('_partial149/original149/RESULT.json').read_text())
           assert r149['candidate_count']==149 and r149['sessions']==2366
           assert abs(r149['v2_full_universe']['cagr']-0.31603994562922105)<1e-12
-          print('RESUME_INPUT_GATE_PASS')
+          tit=pd.read_csv('_checkpoint70/holdout70/TIT_R_CANDIDATES_ONLY.csv')
+          pred=pd.read_csv('_checkpoint70/holdout70/ENSEMBLE_TAIL_OOS.csv')
+          assert tit.ticker.nunique()==70
+          assert pred.ticker.nunique()==70
+          print('REPLAY_ONLY_CHECKPOINT_GATE_PASS', len(tit), len(pred))
           PY
 
-      - name: Resume only Holdout70 canonical V2 leg
+      - name: Replay only Holdout70 from checkpoint
         env:
           FRESH_149_ROOT: ${{ github.workspace }}/_fresh149
           FRESH_70_ROOT: ${{ github.workspace }}/_fresh70
-          PARTIAL_RESULTS_ROOT: ${{ github.workspace }}/_partial
+          PARTIAL149_ROOT: ${{ github.workspace }}/_partial149
+          CHECKPOINT_ROOT: ${{ github.workspace }}/_checkpoint70
           OMP_NUM_THREADS: '2'
           OPENBLAS_NUM_THREADS: '2'
           MKL_NUM_THREADS: '2'
           NUMEXPR_NUM_THREADS: '2'
-        run: python holdout70/v2_resume_holdout70.py
+        run: python holdout70/v2_replay_only_from_checkpoint.py
 
       - name: Show result
         if: always()
         run: |
           test -f holdout70/fresh_same_source_results/COMPARISON.json && cat holdout70/fresh_same_source_results/COMPARISON.json || true
 
-      - name: Upload resume checkpoints and final evidence
+      - name: Upload final comparison evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v2-controlled-frozen-fresh-149-vs-70-resume
+          name: v2-controlled-frozen-fresh-149-vs-70-final
           retention-days: 90
           if-no-files-found: warn
           path: |
             holdout70/fresh_same_source_results/COMPARISON.json
             holdout70/fresh_same_source_results/original149/RESULT.json
-            holdout70/fresh_same_source_results/original149/INPUT_CONTRACT.json
             holdout70/fresh_same_source_results/original149/DAILY_LEADERS.csv
             holdout70/fresh_same_source_results/original149/FULL_UNIVERSE_PATH.npz
             holdout70/fresh_same_source_results/holdout70/RESULT.json
             holdout70/fresh_same_source_results/holdout70/INPUT_CONTRACT.json
-            holdout70/fresh_same_source_results/holdout70/TIT_R_CANDIDATES_ONLY.csv
-            holdout70/fresh_same_source_results/holdout70/titanium/TIT_R_SOURCE_ONLY.csv
-            holdout70/fresh_same_source_results/holdout70/ma3_panel/RAW_FEATURE_PANEL.pkl
-            holdout70/fresh_same_source_results/holdout70/ENSEMBLE_TAIL_OOS.csv
-            holdout70/fresh_same_source_results/holdout70/ENSEMBLE_FIT_AUDIT.csv
             holdout70/fresh_same_source_results/holdout70/DAILY_LEADERS.csv
             holdout70/fresh_same_source_results/holdout70/FULL_UNIVERSE_PATH.npz
+            holdout70/fresh_same_source_results/holdout70/TIT_R_CANDIDATES_ONLY.csv
+            holdout70/fresh_same_source_results/holdout70/ENSEMBLE_TAIL_OOS.csv
