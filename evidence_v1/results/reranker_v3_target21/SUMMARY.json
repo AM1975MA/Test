@@ -1,0 +1,87 @@
+{
+  "line": "Evidence V1",
+  "test": "reranker_v3_target21",
+  "status": "DEVELOPMENT_EVIDENCE_REJECTED",
+  "universe": "Original149 frozen",
+  "reference_representation": "Original149 stable reference universe",
+  "retriever": "frozen Retriever LTR v1 OOS Top10 checkpoint; no retraining",
+  "reranker_training_rows": "historical frozen retriever OOS Top10 only",
+  "label": "within-shortlist future 21d ordinal relevance: 9=best to 0=worst",
+  "maturity_gate": "exit_date_21 < annual cutoff",
+  "features": "frozen Hybrid24 FEATURES_42 computed on Original149 reference + frozen LTR_POSITION",
+  "model": "same XGBRanker rank:pairwise capacity/config as rejected v2; target changed, no sweep",
+  "evaluator": "global full-universe 21d winner; reranker choices restricted to frozen OOS LTR Top10",
+  "config": {
+    "objective": "rank:pairwise",
+    "n_estimators": 300,
+    "max_depth": 2,
+    "learning_rate": 0.02,
+    "subsample": 0.85,
+    "colsample_bytree": 0.75,
+    "min_child_weight": 20,
+    "reg_lambda": 20.0,
+    "reg_alpha": 1.0,
+    "tree_method": "hist",
+    "random_state": 211,
+    "n_jobs": 2,
+    "lambdarank_pair_method": "topk",
+    "lambdarank_num_pair_per_sample": 8
+  },
+  "primary_advancement_rule": "Top2 global-winner containment must beat frozen LTR v1 and exact Top1 global-winner rate must not fall below frozen LTR v1; CAGR and margin calibration are diagnostic only",
+  "full": {
+    "ltr": {
+      "n": 114,
+      "top1_21d_cagr_proxy": 0.220630708412056,
+      "top1_exact_winner_rate": 0.08771929824561403,
+      "top2_contains_winner_rate": 0.13157894736842105,
+      "top3_contains_winner_rate": 0.18421052631578946,
+      "margin_vs_top1_minus_top2_ret21_spearman": 0.005487940705939532
+    },
+    "reranker_v3": {
+      "n": 114,
+      "top1_21d_cagr_proxy": 0.18765816963376136,
+      "top1_exact_winner_rate": 0.08771929824561403,
+      "top2_contains_winner_rate": 0.12280701754385964,
+      "top3_contains_winner_rate": 0.16666666666666666,
+      "margin_vs_top1_minus_top2_ret21_spearman": -0.0342844413843381
+    }
+  },
+  "2017_2022": {
+    "ltr": {
+      "n": 72,
+      "top1_21d_cagr_proxy": 0.23722294298402802,
+      "top1_exact_winner_rate": 0.08333333333333333,
+      "top2_contains_winner_rate": 0.1388888888888889,
+      "top3_contains_winner_rate": 0.16666666666666666,
+      "margin_vs_top1_minus_top2_ret21_spearman": 0.03784809312495981
+    },
+    "reranker_v3": {
+      "n": 72,
+      "top1_21d_cagr_proxy": 0.15860849291995982,
+      "top1_exact_winner_rate": 0.09722222222222222,
+      "top2_contains_winner_rate": 0.1111111111111111,
+      "top3_contains_winner_rate": 0.1388888888888889,
+      "margin_vs_top1_minus_top2_ret21_spearman": -0.030259180654704485
+    }
+  },
+  "2023_2026": {
+    "ltr": {
+      "n": 42,
+      "top1_21d_cagr_proxy": 0.19270291404756024,
+      "top1_exact_winner_rate": 0.09523809523809523,
+      "top2_contains_winner_rate": 0.11904761904761904,
+      "top3_contains_winner_rate": 0.21428571428571427,
+      "margin_vs_top1_minus_top2_ret21_spearman": -0.016287172838505795
+    },
+    "reranker_v3": {
+      "n": 42,
+      "top1_21d_cagr_proxy": 0.23916226455881184,
+      "top1_exact_winner_rate": 0.07142857142857142,
+      "top2_contains_winner_rate": 0.14285714285714285,
+      "top3_contains_winner_rate": 0.21428571428571427,
+      "margin_vs_top1_minus_top2_ret21_spearman": -0.03622072765578154
+    }
+  },
+  "maturity_all_ok": true,
+  "decision": "REJECT: target-aligned v3 does not satisfy the preregistered ranking gate"
+}

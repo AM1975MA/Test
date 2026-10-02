@@ -1,0 +1,20 @@
+{
+  "line": "Evidence V1",
+  "test": "reranker_v3_target21",
+  "git_commit": "1f6e70c1fe5a125a361030e8c3170c6798e60d46",
+  "evaluator_git_blob": "a7bd126a270f770eceaf5c41c5950a401be83388",
+  "preregistration_git_blob": "a3cbf49b6d37189a24c87b0c7fb4fd0e080aa7fe",
+  "data_manifest_sha256": "1efba2bc213ba26b042a9e77630fe26664343654629e658f43d314d068ba9e71",
+  "source_manifest_sha256": "cc4d315da68ec42275a7a74f05446ac6cbb484c3bd92a7861cd76805c5a94782",
+  "requirements_sha256": "01305fe62203c7b7895d95836267c4288f86d2c5a763ce7070c9c3d3d9f807ae",
+  "retriever_checkpoint_manifest_sha256": "192ca33eaee3fe0d30d7091702dfa3f7d0359de2dd35d88dd4590e70cf09fc9d",
+  "retriever_top10_sha256": "c9874eea09418ed96e21f6835519fdde3e33ba11c07545ef924ae08fd31d8606",
+  "retriever_oos_predictions_sha256": "3f9e054fdc0716161cec185ad5a32a62671ad3032070b9ca24ceed655011abd6",
+  "panel_manifest_sha256": "3729fcb48b9e25ad42d7fe9f57086f77d3f0a8cdc2a094bbd47b7b915550c050",
+  "holdout70_used": false,
+  "python": "3.13.15",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "scikit_learn": "1.8.0",
+  "xgboost": "3.1.3"
+}
