@@ -15,6 +15,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
 EU = REPO / "europe120" / "eu120_retrain"
+sys.path.insert(0, str(EU))
 
 spec = importlib.util.spec_from_file_location("v2runner", EU / "run_eu120_retrain.py")
 r = importlib.util.module_from_spec(spec)
