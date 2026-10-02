@@ -1,0 +1,1 @@
+Evidence V3 category-balanced LTR6 execution marker. Source, preregistration and frozen inputs are already committed and hash-gated. No model refit or tuning is permitted.
