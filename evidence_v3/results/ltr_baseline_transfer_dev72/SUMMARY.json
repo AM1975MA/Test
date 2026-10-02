@@ -1,0 +1,65 @@
+{
+  "line": "Evidence V3",
+  "test": "ltr_baseline_transfer_dev72",
+  "status": "DEVELOPMENT_TRANSFER_FAIL",
+  "universe": "Dev72 frozen; disjoint new development universe",
+  "model": "exact Evidence V1 Retriever LTR v1 architecture retrained causally on Dev72",
+  "config": {
+    "objective": "rank:ndcg",
+    "n_estimators": 400,
+    "max_depth": 2,
+    "learning_rate": 0.02,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "min_child_weight": 12,
+    "reg_lambda": 12.0,
+    "reg_alpha": 0.2,
+    "tree_method": "hist",
+    "random_state": 101,
+    "n_jobs": 2,
+    "lambdarank_pair_method": "topk",
+    "lambdarank_num_pair_per_sample": 10
+  },
+  "evaluation": {
+    "n_periods": 114,
+    "first_signal": "2017-01-31",
+    "last_signal": "2026-06-30",
+    "mean_candidates": 72.0,
+    "min_candidates": 72,
+    "max_candidates": 72
+  },
+  "retrieval": {
+    "top1_hits": 8,
+    "top3_hits": 22,
+    "top5_hits": 33,
+    "top10_hits": 60,
+    "random_expected_top1_hits": 1.5833333333333337,
+    "random_expected_top5_hits": 7.916666666666665,
+    "random_expected_top10_hits": 15.83333333333333,
+    "top1_enrichment": 5.052631578947367,
+    "top5_enrichment": 4.1684210526315795,
+    "top10_enrichment": 3.789473684210527,
+    "winner_rank_mean": 13.114035087719298,
+    "winner_rank_median": 10.0,
+    "winner_rank_normalized_mean": 0.1706202125030887,
+    "mean_ic21": -0.018372492150383918,
+    "positive_ic21": 0.42105263157894735,
+    "ndcg5_mean": 0.47831886716791483,
+    "ndcg10_mean": 0.5140818882126713
+  },
+  "economics": {
+    "top1_cagr_proxy": -0.07567660003526067,
+    "top5ew_cagr_proxy": 0.034215706909629384,
+    "universe_ew_cagr_proxy": 0.08524482878917694,
+    "top1_minus_universe_cagr_pp": -16.09214288244376,
+    "top5ew_minus_universe_cagr_pp": -5.102912187954756
+  },
+  "primary_gate": {
+    "top5_enrichment_ge_2x": true,
+    "top10_enrichment_ge_1_5x": true,
+    "top1_cagr_gt_universe_ew": false,
+    "top5ew_cagr_gt_universe_ew": false
+  },
+  "decision": "FAIL: do not tune LTR target/hyperparameters/features/K on Dev72; reassess V3 architecture before any additional model run",
+  "fit_audit_all_maturity_ok": true
+}

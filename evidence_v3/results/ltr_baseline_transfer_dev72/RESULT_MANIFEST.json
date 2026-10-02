@@ -1,0 +1,10 @@
+{
+  "test": "ltr_baseline_transfer_dev72",
+  "files_sha256": {
+    "FIT_AUDIT.csv": "92ca4f6fddd1f7ebd249cf9c620355596902d489d7b770437a56a0d4cea8af5d",
+    "MONTHLY.csv": "80bb7ca325029eeabd134df29f3df1a9d6deb61437f59bb32905a0b4b3cc4113",
+    "PREDICTIONS.csv": "fafe49e44bd24a250ecb023338ef97696f79767404b281ff1d04af1f890c14b5",
+    "PROVENANCE.json": "d7b47e8524cf69ee4255916986f09e2e66b01b2397ae7d729029de5358af3316",
+    "SUMMARY.json": "fb898837f35c2b50febddfd575dffe2c56d7bec43ab7d60252afb2ebb0576fa9"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "line": "Evidence V3",
+  "test": "ltr_baseline_transfer_dev72",
+  "git_commit": "ffdc6c0354d6249cf3ea586f5cd24f0629e5fc12",
+  "evaluator_git_blob": "d218e1332267f0a10c66c17c11a8a06113809463",
+  "preregistration_git_blob": "5f78cb1893cbcc3e529bbc584029023811b386c5",
+  "dev72_manifest_sha256": "2856f629c06a5e66d6229756cdc721858b30c0e35b8ed78cc90a45872fe63b3c",
+  "dev72_universe_sha256": "412e577eab42cf9978fe57d6e42c62f9959aa0e46667ee5070aa3a788b9b5778",
+  "panel_manifest_sha256": "771b4e6e65db141c5b8093c7d6ecb5966dd6dacfb64e878b3357fb8ff8497ee5",
+  "builder_git_blob": "34cc133d4d44bb06cc21363b1444865e2d8ec5c1",
+  "producer_git_blob": "e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592",
+  "network_used_during_model_test": false,
+  "original149_used_for_fit": false,
+  "holdout70_used": false,
+  "eu110_eu120_used_for_fit": false,
+  "python": "3.13.15",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "scikit_learn": "1.8.0",
+  "xgboost": "3.1.3"
+}
