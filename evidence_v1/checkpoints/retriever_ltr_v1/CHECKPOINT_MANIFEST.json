@@ -1,0 +1,33 @@
+{
+  "checkpoint": "retriever_ltr_v1_oos",
+  "universe": "Original149 frozen",
+  "prediction_start": "2011-01-31",
+  "prediction_end": "2026-06-30",
+  "rows": 27162,
+  "signal_dates": 186,
+  "top5_rows": 930,
+  "top10_rows": 1860,
+  "join_key_for_downstream": [
+    "signal_date",
+    "ticker"
+  ],
+  "downstream_rule": "Join to frozen panel for features/labels and enforce label maturity before every downstream fit.",
+  "validation": {
+    "n_periods": 114,
+    "top1_exact_winner_count": 10,
+    "top5_winner_count": 32,
+    "top10_winner_count": 47,
+    "top1_exact_winner_rate": 0.08771929824561403,
+    "top5_winner_rate": 0.2807017543859649,
+    "top10_winner_rate": 0.41228070175438597,
+    "top1_21d_cagr_proxy": 0.220630708412056
+  },
+  "files_sha256": {
+    "OOS_PREDICTIONS.csv": "3f9e054fdc0716161cec185ad5a32a62671ad3032070b9ca24ceed655011abd6",
+    "TOP5.csv": "1cccbd18c7c05128fd9a22e2f71c51efa38a11c1d9f4c6a79c3022ee56ff85df",
+    "TOP10.csv": "c9874eea09418ed96e21f6835519fdde3e33ba11c07545ef924ae08fd31d8606",
+    "FIT_AUDIT.csv": "5fdfff0cad7b231abdf553dab2d6f105e511a68e01d4f454a816e572fac08839",
+    "CONFIG.json": "c23292ca05d5bedfcad07c2af9e145992ce4d6cac01088963021814e1de4a343",
+    "VALIDATION.json": "7bb0f06e46ae18999ae996792a198e393a496dc7bb8e81049fb73a3ead23f1c8"
+  }
+}

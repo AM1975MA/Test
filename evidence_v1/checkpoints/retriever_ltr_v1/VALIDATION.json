@@ -1,0 +1,10 @@
+{
+  "n_periods": 114,
+  "top1_exact_winner_count": 10,
+  "top5_winner_count": 32,
+  "top10_winner_count": 47,
+  "top1_exact_winner_rate": 0.08771929824561403,
+  "top5_winner_rate": 0.2807017543859649,
+  "top10_winner_rate": 0.41228070175438597,
+  "top1_21d_cagr_proxy": 0.220630708412056
+}
