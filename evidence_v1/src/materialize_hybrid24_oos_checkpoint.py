@@ -23,7 +23,7 @@ def main() -> int:
     ap.add_argument("--ensemble", required=True, help="source-only ENSEMBLE_TAIL_OOS.csv")
     ap.add_argument("--fit-audit", required=True, help="source-only ENSEMBLE_FIT_AUDIT.csv")
     ap.add_argument("--tit-r", required=True, help="source-only TIT_R_SOURCE_ONLY.csv")
-    ap.add_argument("--baseline-result", required=True, help="source-only RESULT.json from full canonical runner")
+    ap.add_argument("--baseline-result", required=True, help="source-only RESULT.json from canonical basket runner")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
@@ -133,15 +133,21 @@ def main() -> int:
         if contract.get(key) is not expected:
             raise RuntimeError(f"canonical source-only contract failed: {key}={contract.get(key)!r}")
 
+    # Engineering parity is scoped to the canonical 500 x 24-name basket runner.
+    # Its metric is the mean across canonical baskets and is NOT the same statistic
+    # as the separately certified full-universe V2 replay (31.6039946% CAGR), which
+    # uses one 149-name candidate basket plus the V2 current_plus_models_riskoff
+    # allocation rule. Mixing the two would be a non-homogeneous parity comparison.
     full_h24 = baseline.get("metrics", {}).get("full", {}).get("highcagr24", {})
-    if "cagr" not in full_h24:
-        raise RuntimeError("canonical baseline RESULT missing full/highcagr24/cagr")
-    baseline_cagr = float(full_h24["cagr"])
-    # The Evidence V1 source of truth certifies the canonical Original149 baseline
-    # at 31.60% CAGR.  This is an engineering parity gate, not a new research metric.
-    if round(baseline_cagr, 4) != 0.3160:
+    if "cagr" not in full_h24 or not np.isfinite(float(full_h24["cagr"])):
+        raise RuntimeError("canonical basket RESULT missing finite full/highcagr24/cagr")
+    basket_mean_cagr = float(full_h24["cagr"])
+    if int(contract.get("basket_seed", -1)) != 20260721:
+        raise RuntimeError(f"unexpected canonical basket seed: {contract.get('basket_seed')!r}")
+    expected_basket_sha = "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e"
+    if contract.get("basket_sha256") != expected_basket_sha:
         raise RuntimeError(
-            f"canonical baseline parity failed: full HighCAGR24 CAGR={baseline_cagr:.12f}, expected rounded 0.3160"
+            f"canonical basket identity failed: {contract.get('basket_sha256')!r} != {expected_basket_sha}"
         )
 
     checkpoint.to_csv(out / "OOS_SCORES.csv", index=False)
@@ -151,8 +157,13 @@ def main() -> int:
         json.dumps(
             {
                 "status": "PASS",
-                "full_highcagr24_cagr": baseline_cagr,
-                "evidence_v1_certified_rounded_cagr": 0.3160,
+                "engineering_gate_scope": "canonical source-only Hybrid24 500x24 basket runner",
+                "full_highcagr24_mean_basket_cagr_diagnostic": basket_mean_cagr,
+                "full_universe_v2_31_60_used_as_gate": False,
+                "full_universe_v2_reference_cagr": 0.31603994562922105,
+                "reason_not_compared": "different basket statistic and different V2 allocation rule",
+                "canonical_basket_seed": int(contract["basket_seed"]),
+                "canonical_basket_sha256": contract["basket_sha256"],
                 "source_only_contract": {k: contract.get(k) for k in required_contract},
                 "signal_dates": int(checkpoint.signal_date.nunique()),
                 "rows": int(len(checkpoint)),
@@ -173,7 +184,7 @@ def main() -> int:
             "ensemble": sha256_file(ensemble_path),
             "fit_audit": sha256_file(audit_path),
             "tit_r": sha256_file(tit_path),
-            "canonical_baseline_result": sha256_file(baseline_path),
+            "canonical_basket_result": sha256_file(baseline_path),
         },
         "files_sha256": {name: sha256_file(out / name) for name in manifest_files},
     }
