@@ -2,7 +2,7 @@
 
 ## Status
 
-**OPEN — Dev72 is now burned development data after the preregistered baseline-transfer test. One deterministic decision-layer hypothesis is being preregistered; no model tuning is allowed.**
+**DIAGNOSTIC PHASE — Dev72 is burned development data. Frozen LTR broad retrieval transferred strongly, but both global concentration and the preregistered category-balanced decision layer failed economic gates. No nearby allocation/model variants are permitted.**
 
 ## Why V3 exists
 
@@ -66,7 +66,7 @@ Additional diagnostics:
 - winner rank normalized mean `0.171`;
 - mean IC21 `-0.0184`.
 
-Thus the retrieval phenomenon transfers very strongly in a broad-recall sense.
+Thus the broad retrieval phenomenon transfers strongly.
 
 ### Economics
 
@@ -86,26 +86,67 @@ Primary gate:
 
 The key scientific result is not that LTR fails to find the future extreme: it finds it far above chance. The failure is that global score ordering/concentration does not convert that broad retrieval into economic value. Therefore no LTR target, hyperparameter, feature-set or K tuning is allowed on Dev72.
 
-## V3.1 — next and only current hypothesis
+## V3.1 — category-balanced LTR6 — REJECT / LINEA CHIUSA
 
-Before any further run, V3 will preregister one deterministic decision layer with **no model refit**:
+Protocol: `evidence_v3/protocols/CATEGORY_BALANCED_LTR6_PREREG.md`.
 
-`category-balanced LTR6 = equal weight of the highest frozen OOS LTR-score ETF in each of the six frozen Dev72 macro categories`.
+Exact architecture:
+- no model refit;
+- one highest frozen OOS LTR-score ETF from each of the six frozen Dev72 macro categories;
+- exactly six positions, equal-weight 1/6;
+- no category omission, score weighting, volatility weighting, cash or regime rule.
 
-Rationale is structural rather than performance-selected: Dev72 was frozen at exactly 12 ETFs per each of six categories. Category balancing removes cross-category score calibration/concentration as a source of portfolio dominance while retaining the already-produced causal OOS LTR rankings within each category.
+Valid run: `37074538540`.
 
-No category may be omitted, overweighted or selected according to realized performance. No K sweep is involved: six positions arise mechanically from the six preregistered universe categories.
+Result commit: `56bbdd0` (`Record Evidence V3 category-balanced LTR6 result`).
 
-If V3.1 fails its preregistered economic gate, this deterministic use of the frozen LTR scores will be closed on Dev72; no nearby category weighting or number-of-category variation will be tested.
+Artifact:
+- id `11256014074`;
+- SHA256 `c5892b4a4bbee8d7407759803cdf4293167e5f6571339a44c058516111ca431a`.
+
+Full 114-period result:
+
+| Portfolio proxy | CAGR | Ann. vol | Sharpe rf0 | Max DD |
+|---|---:|---:|---:|---:|
+| Global LTR Top1 | -7.57% | 31.83% | -0.090 | -72.78% |
+| Global LTR Top5-EW | 3.42% | 24.63% | 0.262 | -40.55% |
+| Category-balanced LTR6 | **7.40%** | 18.03% | 0.487 | -25.49% |
+| Dev72 Universe-EW | **8.52%** | 13.86% | 0.661 | -20.14% |
+
+Category-balanced LTR6 materially repairs the catastrophic global concentration, but still trails Universe-EW by **1.12 percentage points CAGR** over the full period.
+
+Subperiods:
+- 2017-2022: LTR6 **4.91%** vs Universe-EW **8.02%** — FAIL;
+- 2023-2026: LTR6 **11.81%** vs Universe-EW **9.39%** — PASS.
+
+Primary gate required LTR6 to beat Universe-EW full-window and in both broad subperiods. Gate result:
+- full-window: FAIL;
+- 2017-2022: FAIL;
+- 2023-2026: PASS.
+
+**Binding verdict: DEVELOPMENT_REJECTED.**
+
+The recent-period outperformance is diagnostic only and may not be converted into a regime rule. The category-balanced line is closed: no category weights, category omissions, Top2-per-category, alternate K, score weighting, volatility weighting or nearby allocation variants may be tested on Dev72.
+
+## Current scientific diagnosis
+
+Three facts now coexist on a genuinely disjoint universe:
+1. LTR Top5/Top10 winner retrieval is far above chance;
+2. global score concentration has very poor economic performance;
+3. deterministic category diversification removes much of the damage but still does not beat passive Universe-EW robustly across time.
+
+Before any new architecture is allowed, V3 may perform a **non-advancement diagnostic only** on the already frozen OOS predictions to determine whether high LTR scores preferentially identify positive winners, negative losers, or both return tails. This diagnostic may describe the failure mode but may not tune or select a trading rule on Dev72.
+
+If that diagnostic motivates a materially new direction/sign architecture, that architecture must be preregistered and tested on a **new disjoint development universe**, not selected by further performance trials on Dev72.
 
 ## Data status
 
 - Original149: closed/burned development.
 - Holdout70: burned diagnostic only.
 - EU110/EU120: previously tested, not clean V3 data.
-- Dev72: **now burned development** after Phase B.
+- Dev72: closed/burned development for model/allocation selection; diagnostic use only.
 - No Holdout-B has been opened.
 
 ## Repository rule
 
-Every V3 test must commit source, preregistration, workflow, provenance and durable results. Scientific source/preregistration must be frozen before the corresponding run.
+Every test and diagnostic must commit source/protocol, workflow, provenance and durable results. Scientific source/protocol must be frozen before the corresponding run.
