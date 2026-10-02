@@ -1,0 +1,1 @@
+Evidence V3 Dev72 data-freeze execution marker. Source and preregistration are already committed and hash-gated. No performance test is permitted in this workflow.
