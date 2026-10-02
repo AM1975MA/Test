@@ -1,0 +1,568 @@
+{
+  "status": "EVIDENCE_V4_DEV60_FROZEN",
+  "provider": "Yahoo Finance via yfinance",
+  "selection_rule": "first coverage-valid non-burned ticker in exact pre-V3 frozen candidate order; no performance criterion",
+  "requested_start": "2004-01-01",
+  "last_included": "2026-07-31",
+  "pre2017_cutoff": "2017-01-31",
+  "minimum_pre2017_rows": 252,
+  "selected_count": 60,
+  "per_cluster": 10,
+  "burned_reference_counts": {
+    "original149": 149,
+    "holdout70": 70,
+    "eu110_tested": 110,
+    "dev72": 72,
+    "union": 400
+  },
+  "intersection_with_burned_union": [],
+  "performance_used_for_selection": false,
+  "v3_candidate_order_sha256": "3c49c0c8ae5a2db0a86440428f5f3efba9e47205479033152939f2e16f8bb431",
+  "selected": [
+    {
+      "ticker": "VOE",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 5013,
+      "first": "2006-08-25",
+      "last": "2026-07-31",
+      "pre2017_rows": 2626
+    },
+    {
+      "ticker": "VOT",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 5013,
+      "first": "2006-08-25",
+      "last": "2026-07-31",
+      "pre2017_rows": 2626
+    },
+    {
+      "ticker": "SCHV",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 4181,
+      "first": "2009-12-15",
+      "last": "2026-07-31",
+      "pre2017_rows": 1794
+    },
+    {
+      "ticker": "SCHM",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 3909,
+      "first": "2011-01-13",
+      "last": "2026-07-31",
+      "pre2017_rows": 1522
+    },
+    {
+      "ticker": "MGK",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 4677,
+      "first": "2007-12-27",
+      "last": "2026-07-31",
+      "pre2017_rows": 2290
+    },
+    {
+      "ticker": "MGV",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 4677,
+      "first": "2007-12-27",
+      "last": "2026-07-31",
+      "pre2017_rows": 2290
+    },
+    {
+      "ticker": "SPYG",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 5680,
+      "first": "2004-01-02",
+      "last": "2026-07-31",
+      "pre2017_rows": 3293
+    },
+    {
+      "ticker": "SPYV",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 5680,
+      "first": "2004-01-02",
+      "last": "2026-07-31",
+      "pre2017_rows": 3293
+    },
+    {
+      "ticker": "VIOO",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 3997,
+      "first": "2010-09-09",
+      "last": "2026-07-31",
+      "pre2017_rows": 1610
+    },
+    {
+      "ticker": "VIOV",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "rows": 3997,
+      "first": "2010-09-09",
+      "last": "2026-07-31",
+      "pre2017_rows": 1610
+    },
+    {
+      "ticker": "IHE",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5091,
+      "first": "2006-05-05",
+      "last": "2026-07-31",
+      "pre2017_rows": 2704
+    },
+    {
+      "ticker": "IYG",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5680,
+      "first": "2004-01-02",
+      "last": "2026-07-31",
+      "pre2017_rows": 3293
+    },
+    {
+      "ticker": "IAI",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5091,
+      "first": "2006-05-05",
+      "last": "2026-07-31",
+      "pre2017_rows": 2704
+    },
+    {
+      "ticker": "IAT",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5091,
+      "first": "2006-05-05",
+      "last": "2026-07-31",
+      "pre2017_rows": 2704
+    },
+    {
+      "ticker": "IAK",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5091,
+      "first": "2006-05-05",
+      "last": "2026-07-31",
+      "pre2017_rows": 2704
+    },
+    {
+      "ticker": "IEO",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5091,
+      "first": "2006-05-05",
+      "last": "2026-07-31",
+      "pre2017_rows": 2704
+    },
+    {
+      "ticker": "IEZ",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5091,
+      "first": "2006-05-05",
+      "last": "2026-07-31",
+      "pre2017_rows": 2704
+    },
+    {
+      "ticker": "IYE",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5680,
+      "first": "2004-01-02",
+      "last": "2026-07-31",
+      "pre2017_rows": 3293
+    },
+    {
+      "ticker": "IYM",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5680,
+      "first": "2004-01-02",
+      "last": "2026-07-31",
+      "pre2017_rows": 3293
+    },
+    {
+      "ticker": "IYK",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "rows": 5680,
+      "first": "2004-01-02",
+      "last": "2026-07-31",
+      "pre2017_rows": 3293
+    },
+    {
+      "ticker": "DNL",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 5062,
+      "first": "2006-06-16",
+      "last": "2026-07-31",
+      "pre2017_rows": 2675
+    },
+    {
+      "ticker": "DOL",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 5062,
+      "first": "2006-06-16",
+      "last": "2026-07-31",
+      "pre2017_rows": 2675
+    },
+    {
+      "ticker": "DLS",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 5062,
+      "first": "2006-06-16",
+      "last": "2026-07-31",
+      "pre2017_rows": 2675
+    },
+    {
+      "ticker": "SCJ",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 4677,
+      "first": "2007-12-27",
+      "last": "2026-07-31",
+      "pre2017_rows": 2290
+    },
+    {
+      "ticker": "DFJ",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 5062,
+      "first": "2006-06-16",
+      "last": "2026-07-31",
+      "pre2017_rows": 2675
+    },
+    {
+      "ticker": "EWUS",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 3649,
+      "first": "2012-01-26",
+      "last": "2026-07-31",
+      "pre2017_rows": 1262
+    },
+    {
+      "ticker": "JPXN",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 5680,
+      "first": "2004-01-02",
+      "last": "2026-07-31",
+      "pre2017_rows": 3293
+    },
+    {
+      "ticker": "IDV",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 4808,
+      "first": "2007-06-21",
+      "last": "2026-07-31",
+      "pre2017_rows": 2421
+    },
+    {
+      "ticker": "DBJP",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 3808,
+      "first": "2011-06-09",
+      "last": "2026-07-31",
+      "pre2017_rows": 1421
+    },
+    {
+      "ticker": "HEWJ",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "rows": 3140,
+      "first": "2014-02-05",
+      "last": "2026-07-31",
+      "pre2017_rows": 753
+    },
+    {
+      "ticker": "CHIQ",
+      "macro_category": "C04_EMERGING",
+      "rows": 4191,
+      "first": "2009-12-01",
+      "last": "2026-07-31",
+      "pre2017_rows": 1804
+    },
+    {
+      "ticker": "BRF",
+      "macro_category": "C04_EMERGING",
+      "rows": 4330,
+      "first": "2009-05-14",
+      "last": "2026-07-31",
+      "pre2017_rows": 1943
+    },
+    {
+      "ticker": "EWZS",
+      "macro_category": "C04_EMERGING",
+      "rows": 3983,
+      "first": "2010-09-29",
+      "last": "2026-07-31",
+      "pre2017_rows": 1596
+    },
+    {
+      "ticker": "IDX",
+      "macro_category": "C04_EMERGING",
+      "rows": 4410,
+      "first": "2009-01-20",
+      "last": "2026-07-31",
+      "pre2017_rows": 2023
+    },
+    {
+      "ticker": "ECON",
+      "macro_category": "C04_EMERGING",
+      "rows": 3994,
+      "first": "2010-09-14",
+      "last": "2026-07-31",
+      "pre2017_rows": 1607
+    },
+    {
+      "ticker": "EMGF",
+      "macro_category": "C04_EMERGING",
+      "rows": 2668,
+      "first": "2015-12-18",
+      "last": "2026-07-31",
+      "pre2017_rows": 281
+    },
+    {
+      "ticker": "EEMA",
+      "macro_category": "C04_EMERGING",
+      "rows": 3639,
+      "first": "2012-02-09",
+      "last": "2026-07-31",
+      "pre2017_rows": 1252
+    },
+    {
+      "ticker": "EEMV",
+      "macro_category": "C04_EMERGING",
+      "rows": 3715,
+      "first": "2011-10-20",
+      "last": "2026-07-31",
+      "pre2017_rows": 1328
+    },
+    {
+      "ticker": "EEMO",
+      "macro_category": "C04_EMERGING",
+      "rows": 3629,
+      "first": "2012-02-24",
+      "last": "2026-07-31",
+      "pre2017_rows": 1242
+    },
+    {
+      "ticker": "HEEM",
+      "macro_category": "C04_EMERGING",
+      "rows": 2979,
+      "first": "2014-09-25",
+      "last": "2026-07-31",
+      "pre2017_rows": 592
+    },
+    {
+      "ticker": "LTPZ",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 4250,
+      "first": "2009-09-08",
+      "last": "2026-07-31",
+      "pre2017_rows": 1863
+    },
+    {
+      "ticker": "HYD",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 4398,
+      "first": "2009-02-05",
+      "last": "2026-07-31",
+      "pre2017_rows": 2011
+    },
+    {
+      "ticker": "HYMB",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 3846,
+      "first": "2011-04-14",
+      "last": "2026-07-31",
+      "pre2017_rows": 1459
+    },
+    {
+      "ticker": "SPSB",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 4169,
+      "first": "2010-01-04",
+      "last": "2026-07-31",
+      "pre2017_rows": 1782
+    },
+    {
+      "ticker": "SPTS",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 3686,
+      "first": "2011-12-01",
+      "last": "2026-07-31",
+      "pre2017_rows": 1299
+    },
+    {
+      "ticker": "SPTI",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 4824,
+      "first": "2007-05-30",
+      "last": "2026-07-31",
+      "pre2017_rows": 2437
+    },
+    {
+      "ticker": "SPTL",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 4824,
+      "first": "2007-05-30",
+      "last": "2026-07-31",
+      "pre2017_rows": 2437
+    },
+    {
+      "ticker": "SPIP",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 4824,
+      "first": "2007-05-30",
+      "last": "2026-07-31",
+      "pre2017_rows": 2437
+    },
+    {
+      "ticker": "SPAB",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 4824,
+      "first": "2007-05-30",
+      "last": "2026-07-31",
+      "pre2017_rows": 2437
+    },
+    {
+      "ticker": "VTEB",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "rows": 2749,
+      "first": "2015-08-25",
+      "last": "2026-07-31",
+      "pre2017_rows": 362
+    },
+    {
+      "ticker": "FRI",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 4837,
+      "first": "2007-05-10",
+      "last": "2026-07-31",
+      "pre2017_rows": 2450
+    },
+    {
+      "ticker": "IFGL",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 4703,
+      "first": "2007-11-19",
+      "last": "2026-07-31",
+      "pre2017_rows": 2316
+    },
+    {
+      "ticker": "DJP",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 4968,
+      "first": "2006-10-30",
+      "last": "2026-07-31",
+      "pre2017_rows": 2581
+    },
+    {
+      "ticker": "GCC",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 4659,
+      "first": "2008-01-24",
+      "last": "2026-07-31",
+      "pre2017_rows": 2272
+    },
+    {
+      "ticker": "SLX",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 4977,
+      "first": "2006-10-17",
+      "last": "2026-07-31",
+      "pre2017_rows": 2590
+    },
+    {
+      "ticker": "LIT",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 4030,
+      "first": "2010-07-23",
+      "last": "2026-07-31",
+      "pre2017_rows": 1643
+    },
+    {
+      "ticker": "REMX",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 3962,
+      "first": "2010-10-28",
+      "last": "2026-07-31",
+      "pre2017_rows": 1575
+    },
+    {
+      "ticker": "NLR",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 4770,
+      "first": "2007-08-15",
+      "last": "2026-07-31",
+      "pre2017_rows": 2383
+    },
+    {
+      "ticker": "FAN",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 4551,
+      "first": "2008-06-27",
+      "last": "2026-07-31",
+      "pre2017_rows": 2164
+    },
+    {
+      "ticker": "PIO",
+      "macro_category": "C06_REAL_ASSETS",
+      "rows": 4814,
+      "first": "2007-06-13",
+      "last": "2026-07-31",
+      "pre2017_rows": 2427
+    }
+  ],
+  "file_sha256": {
+    "VOE": "cf820bd2f42b28420a94206250ad1b561fe54b28f141919c9895f8c44bcc8402",
+    "VOT": "2043aae680478bcaec654fd564d67826525aff753993340a8017b10a722a34b6",
+    "SCHV": "5879d11295fefe81167439f1da40af1f6deba87af87d0e8cf23a6bed5e68f4da",
+    "SCHM": "e9ef9e8204769b2d470f8784cd048f48abba83912802eda4fd326867fcf3dbab",
+    "MGK": "942325fab5d290194ede1f5ac464c5d0a34a7d4b1b661a26774e9cf1f4d2172f",
+    "MGV": "23228e8f847e99417515a5a5e1fdc92e7cb98896c2dc88420e5e0abe2c51094d",
+    "SPYG": "b01e3d092205ef313ab498dabb038e01e3798138f56842a832e4afb754195894",
+    "SPYV": "ebc6417486d7738c9f77d7e6db0916aad29dc6bf9d91dcf92f821b4902cd75c3",
+    "VIOO": "c209d3a48aeebc4a98a76981153e56f2dd1c8ff22738699390f5ec3be6bddb57",
+    "VIOV": "66b55dc455a6291678153a9a111628cfa75567021a76f43a725681fd9de23d16",
+    "IHE": "29a17aa4f1a556d71c9950ceae01bd8a312346076d62834d19f9869f77d9a6f4",
+    "IYG": "fefb53604668349eb51b5604958aa5d24acea8bb3a5ffead4a741a39f7ccd9d4",
+    "IAI": "3203a169b221860f97d83e90ca4cffb70338287816f98c2452d0e8fb60195af2",
+    "IAT": "cf7d1b8e87cb1575467b8881bbf5ac3acc1fd873041914be10fe1720d4b9a365",
+    "IAK": "fa78506d0148a9fc44bb8674e6a0f3be3051806927366c7b4d80b74a7311ec71",
+    "IEO": "d4673605ce7c387598936616e25aa44caddc51cb6b0a7a3d0f8ac50ea3f210c1",
+    "IEZ": "8b67123a23f577bbd7978977d5e5feffb567babe4082b4b8d775e238d2f4ee22",
+    "IYE": "fd711fa342f77d66d64e86b936b3774afd10079ec0170795a77357bd6071b7b8",
+    "IYM": "047aedae42dbee56fb7a0f3f0334e33a758c89fff013ab72f4ba229d80892588",
+    "IYK": "d2a81dd6947ca50ec402541b050dd1ff2b77a58a2b299825d2a0bbfd1b243f21",
+    "DNL": "fcc922aa67b362c9cb89172b4a8fa70a4bb523e777fd0bc87d0b3bdcd9ee8b77",
+    "DOL": "c62e94498bfb6bd91c0094879516c800f45491a184ec1ce4fd6d00aec07e81cf",
+    "DLS": "69428746ab77221be04755f419f03251db1028d651eaaa81c4b630036ddb264b",
+    "SCJ": "eb35aac0486cf634a5dc55a9e05f7b7f13890f6a8055df7d933695052490dc03",
+    "DFJ": "e552e2786e5eaf50123847ec622dc4824aaf84dcd991c6649fcc711812276db3",
+    "EWUS": "ea5f90f383c72a6b1915b341487e33a3d5ea50352c494924c4fb6f7fc472e137",
+    "JPXN": "bbc567ed4f21acb5868b4ffd21e0428f837b1d554da1210342667a1d95d6a616",
+    "IDV": "487b5ee38c741789cb2ea86e2245517f97d9f05807a2c7a5c7fb53eadff5397d",
+    "DBJP": "aab19170bb9c6d96208118b886a008b58e126c452e96b575cfbcb808af68d083",
+    "HEWJ": "e9b6e2a0c3659b5f347ce16ff8101d20c6c79de8e824b3b8f3f6bc844de31afc",
+    "CHIQ": "c594380f56c42b07eece34be7774d0ac10b0ae0144ad54c2415f31fe72a4a892",
+    "BRF": "40f020b3740ab4931ad765470f2c0b4271b5882293701c68948e7e7cfd7cdb6c",
+    "EWZS": "379a4a806e5dcaa7063aa1642d3e5136b601148c44c0c7e700a144bae7669cc1",
+    "IDX": "d5ccb29ed53de38be55e12ceaa9fdda42ca5a3a3cccb1a2a006d9d1fc7fde027",
+    "ECON": "606350293e5301b218a42d0ed0bb43e38c21ba64a65d6d5652d9407e66f17e50",
+    "EMGF": "5e14c161c3f018c5efbead68c643d60b5e680eaaf3c2d4f461e4c46fe54c6a58",
+    "EEMA": "e389811f04dde4c2acc524ffad3376bf7bb154309f99743c8424053a4a9985d5",
+    "EEMV": "fc2f8ff7d65ebc7de4c95cb22b5605a6ab6c050f74f7fd08efdeef32ac7f13c4",
+    "EEMO": "ce743e9df8df91bedaa9e5eaf8fe03e409baf1aa3b1b3d076e8231d34ffa3ec3",
+    "HEEM": "7259fd86455263c3e796a3cb32db44013f9fad31526945cd5ee1a5dedd148e51",
+    "LTPZ": "ded7e76b20287214aeae6b2b0aaf186d14ac4f171137655cca9acf7c6fda01c2",
+    "HYD": "06281b7562b63852c132f0c5b07a7ec98f3bb9f3a9cfdcae165c50b7320e6e30",
+    "HYMB": "73f2d9ef463b8ee6b2b73636948ba73f638f4d2f7349eac089d7bb55cfdc910b",
+    "SPSB": "0c3edef3c83a833ad772ee6211eac788985968735d918a283566b1841f1089d4",
+    "SPTS": "8c8fee0f892e9937f24ea9a6cdff859b6fe62f567c311c188f197f5496f8b2cf",
+    "SPTI": "9bc9b03a0c205acd7d0dc56c55ae73d3242ba3b5361d4dc22665797ce94604e7",
+    "SPTL": "d33cfcbe62d02485c75177b9e48a27500c9d44330bd58bca05650a08df1d40de",
+    "SPIP": "e022cc42e84dbc8701ba464e6dffee719c9cc44c48b9e129a7475a0ae48c62ae",
+    "SPAB": "85e731d66b0b755376c6151ebdffda6163fa3d62fd1afcc316c7c2bc2fa07832",
+    "VTEB": "cc369ccc3841855c50b9bf8eba6d3fe6781f4cc6dd30a5ad97866023f086efcc",
+    "FRI": "6aefef88dc29d6f4fb9a3b2d1b6a0c92f8adfed27e06aa9feee3c5b83ffe3120",
+    "IFGL": "7ac0b897b8a5ac442d0d38dac7b94f22bff0e55d5f46df7ae8e68d1c266e6d61",
+    "DJP": "938b1e692aa2025a1fa2f8c2619a2949bee6823bb755dbe56147e5a6a4472423",
+    "GCC": "7cb5c10022ed55c99114e25bfa5c0cea322060f50024c569ff422652e5817489",
+    "SLX": "c39dd2ee99b80a00b64d91964e1c5401a1130dc512ae7941bdb3496950fdfb74",
+    "LIT": "8f3888fea46c018646f9326a6c9adbede2c879cd2cef97b73003fe3475ab475e",
+    "REMX": "05ab5ea827d802190a4c529dcd805aeed80e419bc245650fa0f8c0ddc4c8b828",
+    "NLR": "57f5448e81adf86911a1283ac043a081a54b0cf1aaa872cdb991fff27067c400",
+    "FAN": "64e3938e69fecbbf67bee3cd49c8afc3615d843d0827cb4355d079c3aa7a1271",
+    "PIO": "9c5639c64e391231a745cbc7b4bb8aa73cd535ff341fbe63d1da0cb092c39a1c"
+  },
+  "universe_sha256": "b2a14c91f5dad67132032f79249bd00a8fd742bf13eaddf6dea712ca93dcde40",
+  "coverage_sha256": "5a22e227cf5eb8b9a915123a36b5b63dd827d8d0ff20c7bfe651f9bc00545a35",
+  "rejected_sha256": "359b835492c25aaf54093b2772a80b431ad36a5b735c9205f8e95fefa64b0bb5"
+}

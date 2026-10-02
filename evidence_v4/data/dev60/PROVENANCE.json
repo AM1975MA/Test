@@ -1,0 +1,19 @@
+{
+  "line": "Evidence V4",
+  "dataset": "Dev60",
+  "status": "FROZEN_NO_PERFORMANCE_TEST",
+  "git_commit": "5973a6b5f5f8b27b166549fb7edad3d8b95b45a8",
+  "freezer_git_blob": "502cb0f0686309a16dfcfce7919419bd9b0a2815",
+  "preregistration_git_blob": "20a97ec222cbd72254f23c920b3f1b6da78ed40a",
+  "v3_candidate_source_git_blob": "0fc474e657975e11faf56629c3e98114dc09c796",
+  "manifest_sha256": "c83494032c4a0675a1cf5769dd01cefa5025f406606e3bb0c4a2779f1a9e642a",
+  "universe_sha256": "b2a14c91f5dad67132032f79249bd00a8fd742bf13eaddf6dea712ca93dcde40",
+  "coverage_sha256": "5a22e227cf5eb8b9a915123a36b5b63dd827d8d0ff20c7bfe651f9bc00545a35",
+  "rejected_sha256": "359b835492c25aaf54093b2772a80b431ad36a5b735c9205f8e95fefa64b0bb5",
+  "network_used_only_for_data_freeze": true,
+  "performance_test_executed": false,
+  "python": "3.13.15",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "yfinance": "0.2.66"
+}
