@@ -1,0 +1,80 @@
+{
+  "dataset": "evidence_v2_macro_context_v1",
+  "status": "FROZEN",
+  "freeze_range": {
+    "start": "2005-01-01",
+    "end": "2026-06-30"
+  },
+  "source": "FRED market series; downloaded once and frozen before model test",
+  "point_in_time_note": "FRED current historical market series are frozen as retrieved; no later network fetch is permitted in the model test. These market series are expected to have low revision risk, but this is not an ALFRED vintage reconstruction.",
+  "series": {
+    "VIXCLS": {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS&cosd=2005-01-01&coed=2026-06-30",
+      "raw_sha256": "19acf848e77c79614f091f159a7c0fdde09de768200dace795bd3b0894902037",
+      "first_observation": "2005-01-03",
+      "last_observation": "2026-06-30",
+      "non_null": 5437
+    },
+    "DGS2": {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2&cosd=2005-01-01&coed=2026-06-30",
+      "raw_sha256": "5c54867635d526c9a270e0807dd1f5a067ab2ddc4aadc74e7d752a6881031e96",
+      "first_observation": "2005-01-03",
+      "last_observation": "2026-06-30",
+      "non_null": 5377
+    },
+    "DGS10": {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2005-01-01&coed=2026-06-30",
+      "raw_sha256": "f4ceb9ea39496a615c14fc700bb8388979a099a9bdc6f9a5e0fcb6a7e2eb97e7",
+      "first_observation": "2005-01-03",
+      "last_observation": "2026-06-30",
+      "non_null": 5377
+    },
+    "BAA10Y": {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y&cosd=2005-01-01&coed=2026-06-30",
+      "raw_sha256": "cc60dbaf46cb2450376cff0f92d73d6b96e1de8d09c1a09c397d7bb38b97784f",
+      "first_observation": "2005-01-03",
+      "last_observation": "2026-06-30",
+      "non_null": 5372
+    },
+    "DTWEXBGS": {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS&cosd=2005-01-01&coed=2026-06-30",
+      "raw_sha256": "faa6cb4e04be8e9543bb419f8ef3119504002e4514b46bb755e976cb92c9ba02",
+      "first_observation": "2006-01-02",
+      "last_observation": "2026-06-30",
+      "non_null": 5137
+    }
+  },
+  "features": [
+    "vix_z252",
+    "dgs2_delta21",
+    "dgs10_delta21",
+    "curve_10y2y_z252",
+    "baa10y_z252",
+    "usd_ret21"
+  ],
+  "transformations": {
+    "vix_z252": "rolling 252-business-day z-score of log(VIXCLS), min 126",
+    "dgs2_delta21": "DGS2 minus 21-business-day lag",
+    "dgs10_delta21": "DGS10 minus 21-business-day lag",
+    "curve_10y2y_z252": "rolling 252-business-day z-score of DGS10-DGS2, min 126",
+    "baa10y_z252": "rolling 252-business-day z-score of BAA10Y, min 126",
+    "usd_ret21": "log(DTWEXBGS / 21-business-day lag)"
+  },
+  "alignment_rule_for_tests": "as-of join using only macro date strictly less than signal_date",
+  "coverage_from_2007": {
+    "vix_z252": 1.0,
+    "dgs2_delta21": 1.0,
+    "dgs10_delta21": 1.0,
+    "curve_10y2y_z252": 1.0,
+    "baa10y_z252": 1.0,
+    "usd_ret21": 1.0
+  },
+  "files_sha256": {
+    "MACRO_DAILY.csv": "a07b47d11784e5895fbd59f4a416671d6708f06bd12619b963a5b6c83f1d0474",
+    "raw/VIXCLS.csv": "19acf848e77c79614f091f159a7c0fdde09de768200dace795bd3b0894902037",
+    "raw/DGS2.csv": "5c54867635d526c9a270e0807dd1f5a067ab2ddc4aadc74e7d752a6881031e96",
+    "raw/DGS10.csv": "f4ceb9ea39496a615c14fc700bb8388979a099a9bdc6f9a5e0fcb6a7e2eb97e7",
+    "raw/BAA10Y.csv": "cc60dbaf46cb2450376cff0f92d73d6b96e1de8d09c1a09c397d7bb38b97784f",
+    "raw/DTWEXBGS.csv": "faa6cb4e04be8e9543bb419f8ef3119504002e4514b46bb755e976cb92c9ba02"
+  }
+}

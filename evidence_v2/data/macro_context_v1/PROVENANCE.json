@@ -1,0 +1,18 @@
+{
+  "line": "Evidence V2",
+  "dataset": "macro_context_v1",
+  "git_commit": "22f77c7b73e67981a514649836331668496f38ad",
+  "freezer_git_blob": "1e13dc856c5df2a6fa73590e9e2fb9de4129bc52",
+  "protocol_git_blob": "b697da42cbe5abb554056c06fd03f27e5d199e5e",
+  "fetch_retry_fix_git_blob": "a30dad9e58f50e0abc350fab1270e76dad42883c",
+  "credit_availability_fix_git_blob": "ecce43d323650e5c7209dc32bb04636dfae01441",
+  "invalid_timeout_run": "37068346569",
+  "invalid_coverage_run": "37068632875",
+  "network_used_only_for_data_freeze": true,
+  "model_test_executed": false,
+  "python": "3.13.15",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "manifest_sha256": "87da30de5f534bf369ddcba7bcab5d331c6542f08b179499d61e4504543e27f2",
+  "macro_daily_sha256": "a07b47d11784e5895fbd59f4a416671d6708f06bd12619b963a5b6c83f1d0474"
+}
