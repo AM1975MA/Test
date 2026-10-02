@@ -1,0 +1,550 @@
+{
+  "line": "Evidence V1",
+  "test": "universe_sensitivity_v1_supportfix",
+  "status": "DIAGNOSTIC_COMPLETE",
+  "invalidated_technical_run": 37053782730,
+  "invalidated_run_produced_metrics": false,
+  "universe": "Original149 frozen with preregistered nested U120/U100/U70 candidates",
+  "holdout70_used": false,
+  "support_rule": "A/B/C are aligned to identical common (signal_date,ticker) support before candidate-relative targets are recomputed",
+  "anchor_A": "frozen full149 Retriever LTR v1 OOS scores restricted to common candidate/date support; no retraining",
+  "method_B_reference": "same LTR v1 retrained on common-support candidate rows with FEATURES_42 computed in full149 reference universe; common-support candidate-relative targets",
+  "method_C_native": "same LTR v1 retrained on native source-only features on identical common support; same common-support candidate-relative targets",
+  "primary_stability_metrics": [
+    "Top1 agreement to A",
+    "Top5 turnover to A",
+    "rank correlation to A",
+    "normalized mean absolute rank displacement to A"
+  ],
+  "coverage": {
+    "U120": {
+      "subset": "U120",
+      "reference_rows_before": 25086,
+      "native_rows_before": 24954,
+      "common_rows": 24954,
+      "reference_only_rows": 132,
+      "native_only_rows": 0,
+      "reference_signal_dates_before": 226,
+      "native_signal_dates_before": 224,
+      "common_signal_dates": 224,
+      "reference_retention_on_common_support": 0.9947381009327912,
+      "native_retention_on_common_support": 1.0,
+      "tickers_seen_common": 120,
+      "evaluation_signal_dates_common": 114
+    },
+    "U100": {
+      "subset": "U100",
+      "reference_rows_before": 20982,
+      "native_rows_before": 20124,
+      "common_rows": 20124,
+      "reference_only_rows": 858,
+      "native_only_rows": 0,
+      "reference_signal_dates_before": 226,
+      "native_signal_dates_before": 212,
+      "common_signal_dates": 212,
+      "reference_retention_on_common_support": 0.9591078066914498,
+      "native_retention_on_common_support": 1.0,
+      "tickers_seen_common": 100,
+      "evaluation_signal_dates_common": 114
+    },
+    "U70": {
+      "subset": "U70",
+      "reference_rows_before": 14579,
+      "native_rows_before": 10061,
+      "common_rows": 10061,
+      "reference_only_rows": 4518,
+      "native_only_rows": 0,
+      "reference_signal_dates_before": 226,
+      "native_signal_dates_before": 144,
+      "common_signal_dates": 144,
+      "reference_retention_on_common_support": 0.6901022017971055,
+      "native_retention_on_common_support": 1.0,
+      "tickers_seen_common": 70,
+      "evaluation_signal_dates_common": 114
+    }
+  },
+  "full_2017_2026": {
+    "U120": {
+      "n_periods": 114,
+      "ref": {
+        "top1_agreement_to_fixed": 0.42105263157894735,
+        "top5_jaccard_to_fixed": 0.45460874408242835,
+        "top5_turnover_to_fixed": 0.5453912559175716,
+        "top10_jaccard_to_fixed": 0.5433271149215423,
+        "rank_corr_to_fixed": 0.8911670888451073,
+        "rank_mae_norm_to_fixed": 0.0982112143102855
+      },
+      "native": {
+        "top1_agreement_to_fixed": 0.3157894736842105,
+        "top5_jaccard_to_fixed": 0.3639654692286271,
+        "top5_turnover_to_fixed": 0.6360345307713728,
+        "top10_jaccard_to_fixed": 0.5190619064458074,
+        "rank_corr_to_fixed": 0.8676448656887723,
+        "rank_mae_norm_to_fixed": 0.1084955034645437
+      },
+      "ref_vs_native": {
+        "top1_agreement": 0.2982456140350877,
+        "top5_jaccard": 0.4057365636313004,
+        "rank_corr": 0.8828067373099739,
+        "rank_mae_norm": 0.10237726669615214
+      },
+      "diagnostic_performance": {
+        "fixed": {
+          "top1_exact_winner_rate": 0.08771929824561403,
+          "top5_winner_rate": 0.3157894736842105,
+          "top10_winner_rate": 0.5,
+          "top1_21d_cagr_proxy": 0.20430293768541885
+        },
+        "ref": {
+          "top1_exact_winner_rate": 0.07017543859649122,
+          "top5_winner_rate": 0.2982456140350877,
+          "top10_winner_rate": 0.47368421052631576,
+          "top1_21d_cagr_proxy": 0.05371804326342966
+        },
+        "native": {
+          "top1_exact_winner_rate": 0.08771929824561403,
+          "top5_winner_rate": 0.2807017543859649,
+          "top10_winner_rate": 0.49122807017543857,
+          "top1_21d_cagr_proxy": 0.2825098599539637
+        }
+      }
+    },
+    "U100": {
+      "n_periods": 114,
+      "ref": {
+        "top1_agreement_to_fixed": 0.40350877192982454,
+        "top5_jaccard_to_fixed": 0.4398496240601503,
+        "top5_turnover_to_fixed": 0.5601503759398496,
+        "top10_jaccard_to_fixed": 0.5375085440874915,
+        "rank_corr_to_fixed": 0.8774453234797164,
+        "rank_mae_norm_to_fixed": 0.10573631047315257
+      },
+      "native": {
+        "top1_agreement_to_fixed": 0.23684210526315788,
+        "top5_jaccard_to_fixed": 0.32396964633806735,
+        "top5_turnover_to_fixed": 0.6760303536619326,
+        "top10_jaccard_to_fixed": 0.4526793296143141,
+        "rank_corr_to_fixed": 0.7863924287165558,
+        "rank_mae_norm_to_fixed": 0.14190147084883925
+      },
+      "ref_vs_native": {
+        "top1_agreement": 0.30701754385964913,
+        "top5_jaccard": 0.40580618212197156,
+        "rank_corr": 0.857607129133966,
+        "rank_mae_norm": 0.11320574162679425
+      },
+      "diagnostic_performance": {
+        "fixed": {
+          "top1_exact_winner_rate": 0.08771929824561403,
+          "top5_winner_rate": 0.3157894736842105,
+          "top10_winner_rate": 0.5614035087719298,
+          "top1_21d_cagr_proxy": 0.28846900657277774
+        },
+        "ref": {
+          "top1_exact_winner_rate": 0.08771929824561403,
+          "top5_winner_rate": 0.2543859649122807,
+          "top10_winner_rate": 0.47368421052631576,
+          "top1_21d_cagr_proxy": 0.12165619189160015
+        },
+        "native": {
+          "top1_exact_winner_rate": 0.09649122807017543,
+          "top5_winner_rate": 0.2719298245614035,
+          "top10_winner_rate": 0.5,
+          "top1_21d_cagr_proxy": 0.1883900625895858
+        }
+      }
+    },
+    "U70": {
+      "n_periods": 114,
+      "ref": {
+        "top1_agreement_to_fixed": 0.30701754385964913,
+        "top5_jaccard_to_fixed": 0.4423558897243108,
+        "top5_turnover_to_fixed": 0.5576441102756893,
+        "top10_jaccard_to_fixed": 0.6624272413746098,
+        "rank_corr_to_fixed": 0.764486844791096,
+        "rank_mae_norm_to_fixed": 0.14654752824089207
+      },
+      "native": {
+        "top1_agreement_to_fixed": 0.2719298245614035,
+        "top5_jaccard_to_fixed": 0.40437900306321356,
+        "top5_turnover_to_fixed": 0.5956209969367865,
+        "top10_jaccard_to_fixed": 0.6193292574871521,
+        "rank_corr_to_fixed": 0.730963047545379,
+        "rank_mae_norm_to_fixed": 0.15888634630053394
+      },
+      "ref_vs_native": {
+        "top1_agreement": 0.4649122807017544,
+        "top5_jaccard": 0.5757101086048455,
+        "rank_corr": 0.856156619349967,
+        "rank_mae_norm": 0.11375177073117575
+      },
+      "diagnostic_performance": {
+        "fixed": {
+          "top1_exact_winner_rate": 0.10526315789473684,
+          "top5_winner_rate": 0.3333333333333333,
+          "top10_winner_rate": 0.49122807017543857,
+          "top1_21d_cagr_proxy": 0.2456617438968891
+        },
+        "ref": {
+          "top1_exact_winner_rate": 0.043859649122807015,
+          "top5_winner_rate": 0.2807017543859649,
+          "top10_winner_rate": 0.4473684210526316,
+          "top1_21d_cagr_proxy": -0.042360870231105685
+        },
+        "native": {
+          "top1_exact_winner_rate": 0.07017543859649122,
+          "top5_winner_rate": 0.2719298245614035,
+          "top10_winner_rate": 0.4824561403508772,
+          "top1_21d_cagr_proxy": 0.04308777908059991
+        }
+      }
+    }
+  },
+  "temporal_splits": {
+    "U120": {
+      "2017_2022": {
+        "n_periods": 72,
+        "ref": {
+          "top1_agreement_to_fixed": 0.4166666666666667,
+          "top5_jaccard_to_fixed": 0.4755842151675485,
+          "top5_turnover_to_fixed": 0.5244157848324515,
+          "top10_jaccard_to_fixed": 0.53876332001332,
+          "rank_corr_to_fixed": 0.870027239545956,
+          "rank_mae_norm_to_fixed": 0.10814464674758792
+        },
+        "native": {
+          "top1_agreement_to_fixed": 0.375,
+          "top5_jaccard_to_fixed": 0.37351190476190477,
+          "top5_turnover_to_fixed": 0.6264880952380952,
+          "top10_jaccard_to_fixed": 0.5177377769289533,
+          "rank_corr_to_fixed": 0.8491123033235332,
+          "rank_mae_norm_to_fixed": 0.11705960161842513
+        },
+        "ref_vs_native": {
+          "top1_agreement": 0.3194444444444444,
+          "top5_jaccard": 0.43474426807760136,
+          "rank_corr": 0.8748121011489994,
+          "rank_mae_norm": 0.10632975412387176
+        },
+        "diagnostic_performance": {
+          "fixed": {
+            "top1_exact_winner_rate": 0.08333333333333333,
+            "top5_winner_rate": 0.3055555555555556,
+            "top10_winner_rate": 0.4444444444444444,
+            "top1_21d_cagr_proxy": 0.19303639037287024
+          },
+          "ref": {
+            "top1_exact_winner_rate": 0.05555555555555555,
+            "top5_winner_rate": 0.3055555555555556,
+            "top10_winner_rate": 0.4305555555555556,
+            "top1_21d_cagr_proxy": -0.04890005364262817
+          },
+          "native": {
+            "top1_exact_winner_rate": 0.1111111111111111,
+            "top5_winner_rate": 0.2638888888888889,
+            "top10_winner_rate": 0.4583333333333333,
+            "top1_21d_cagr_proxy": 0.2983513498782122
+          }
+        }
+      },
+      "2023_2026": {
+        "n_periods": 42,
+        "ref": {
+          "top1_agreement_to_fixed": 0.42857142857142855,
+          "top5_jaccard_to_fixed": 0.4186507936507936,
+          "top5_turnover_to_fixed": 0.5813492063492064,
+          "top10_jaccard_to_fixed": 0.5511507633356374,
+          "rank_corr_to_fixed": 0.9274068305007952,
+          "rank_mae_norm_to_fixed": 0.08118247298919569
+        },
+        "native": {
+          "top1_agreement_to_fixed": 0.21428571428571427,
+          "top5_jaccard_to_fixed": 0.3476001511715798,
+          "top5_turnover_to_fixed": 0.6523998488284202,
+          "top10_jaccard_to_fixed": 0.5213318427604141,
+          "rank_corr_to_fixed": 0.8994149726006103,
+          "rank_mae_norm_to_fixed": 0.09381419234360411
+        },
+        "ref_vs_native": {
+          "top1_agreement": 0.2619047619047619,
+          "top5_jaccard": 0.35600907029478457,
+          "rank_corr": 0.8965118278716444,
+          "rank_mae_norm": 0.0956015739629185
+        },
+        "diagnostic_performance": {
+          "fixed": {
+            "top1_exact_winner_rate": 0.09523809523809523,
+            "top5_winner_rate": 0.3333333333333333,
+            "top10_winner_rate": 0.5952380952380952,
+            "top1_21d_cagr_proxy": 0.22386511008309906
+          },
+          "ref": {
+            "top1_exact_winner_rate": 0.09523809523809523,
+            "top5_winner_rate": 0.2857142857142857,
+            "top10_winner_rate": 0.5476190476190477,
+            "top1_21d_cagr_proxy": 0.256050634891986
+          },
+          "native": {
+            "top1_exact_winner_rate": 0.047619047619047616,
+            "top5_winner_rate": 0.30952380952380953,
+            "top10_winner_rate": 0.5476190476190477,
+            "top1_21d_cagr_proxy": 0.2558013977749207
+          }
+        }
+      }
+    },
+    "U100": {
+      "2017_2022": {
+        "n_periods": 72,
+        "ref": {
+          "top1_agreement_to_fixed": 0.3472222222222222,
+          "top5_jaccard_to_fixed": 0.39908509700176364,
+          "top5_turnover_to_fixed": 0.6009149029982364,
+          "top10_jaccard_to_fixed": 0.5007157194657195,
+          "rank_corr_to_fixed": 0.8513454678801212,
+          "rank_mae_norm_to_fixed": 0.11855218855218858
+        },
+        "native": {
+          "top1_agreement_to_fixed": 0.2361111111111111,
+          "top5_jaccard_to_fixed": 0.3245701058201058,
+          "top5_turnover_to_fixed": 0.6754298941798942,
+          "top10_jaccard_to_fixed": 0.44820001621472205,
+          "rank_corr_to_fixed": 0.7732459912657931,
+          "rank_mae_norm_to_fixed": 0.14677048260381595
+        },
+        "ref_vs_native": {
+          "top1_agreement": 0.3333333333333333,
+          "top5_jaccard": 0.4366732804232804,
+          "rank_corr": 0.866048938227156,
+          "rank_mae_norm": 0.10859708193041527
+        },
+        "diagnostic_performance": {
+          "fixed": {
+            "top1_exact_winner_rate": 0.08333333333333333,
+            "top5_winner_rate": 0.3055555555555556,
+            "top10_winner_rate": 0.5277777777777778,
+            "top1_21d_cagr_proxy": 0.3336318062375263
+          },
+          "ref": {
+            "top1_exact_winner_rate": 0.08333333333333333,
+            "top5_winner_rate": 0.19444444444444445,
+            "top10_winner_rate": 0.4027777777777778,
+            "top1_21d_cagr_proxy": 0.15800928993090135
+          },
+          "native": {
+            "top1_exact_winner_rate": 0.09722222222222222,
+            "top5_winner_rate": 0.2361111111111111,
+            "top10_winner_rate": 0.4722222222222222,
+            "top1_21d_cagr_proxy": 0.1658180522901045
+          }
+        }
+      },
+      "2023_2026": {
+        "n_periods": 42,
+        "ref": {
+          "top1_agreement_to_fixed": 0.5,
+          "top5_jaccard_to_fixed": 0.5097316704459561,
+          "top5_turnover_to_fixed": 0.49026832955404387,
+          "top10_jaccard_to_fixed": 0.6005819577248148,
+          "rank_corr_to_fixed": 0.922187933079022,
+          "rank_mae_norm_to_fixed": 0.08376623376623378
+        },
+        "native": {
+          "top1_agreement_to_fixed": 0.23809523809523808,
+          "top5_jaccard_to_fixed": 0.3229402872260015,
+          "top5_turnover_to_fixed": 0.6770597127739986,
+          "top10_jaccard_to_fixed": 0.4603581525850434,
+          "rank_corr_to_fixed": 0.8089291786321489,
+          "rank_mae_norm_to_fixed": 0.13355459355459356
+        },
+        "ref_vs_native": {
+          "top1_agreement": 0.2619047619047619,
+          "top5_jaccard": 0.352891156462585,
+          "rank_corr": 0.8431354564027832,
+          "rank_mae_norm": 0.1211063011063011
+        },
+        "diagnostic_performance": {
+          "fixed": {
+            "top1_exact_winner_rate": 0.09523809523809523,
+            "top5_winner_rate": 0.3333333333333333,
+            "top10_winner_rate": 0.6190476190476191,
+            "top1_21d_cagr_proxy": 0.21457653858423043
+          },
+          "ref": {
+            "top1_exact_winner_rate": 0.09523809523809523,
+            "top5_winner_rate": 0.35714285714285715,
+            "top10_winner_rate": 0.5952380952380952,
+            "top1_21d_cagr_proxy": 0.06197179705275091
+          },
+          "native": {
+            "top1_exact_winner_rate": 0.09523809523809523,
+            "top5_winner_rate": 0.3333333333333333,
+            "top10_winner_rate": 0.5476190476190477,
+            "top1_21d_cagr_proxy": 0.22810637813891876
+          }
+        }
+      }
+    },
+    "U70": {
+      "2017_2022": {
+        "n_periods": 72,
+        "ref": {
+          "top1_agreement_to_fixed": 0.3194444444444444,
+          "top5_jaccard_to_fixed": 0.4086750440917107,
+          "top5_turnover_to_fixed": 0.5913249559082894,
+          "top10_jaccard_to_fixed": 0.6136255719589053,
+          "rank_corr_to_fixed": 0.7128864977303434,
+          "rank_mae_norm_to_fixed": 0.16449850471589603
+        },
+        "native": {
+          "top1_agreement_to_fixed": 0.19444444444444445,
+          "top5_jaccard_to_fixed": 0.3715828924162257,
+          "top5_turnover_to_fixed": 0.6284171075837743,
+          "top10_jaccard_to_fixed": 0.5723739994573328,
+          "rank_corr_to_fixed": 0.6839816677844845,
+          "rank_mae_norm_to_fixed": 0.17437313089487003
+        },
+        "ref_vs_native": {
+          "top1_agreement": 0.5277777777777778,
+          "top5_jaccard": 0.5750661375661376,
+          "rank_corr": 0.8384976525821597,
+          "rank_mae_norm": 0.12092822636300898
+        },
+        "diagnostic_performance": {
+          "fixed": {
+            "top1_exact_winner_rate": 0.1111111111111111,
+            "top5_winner_rate": 0.3194444444444444,
+            "top10_winner_rate": 0.4722222222222222,
+            "top1_21d_cagr_proxy": 0.23294546271514194
+          },
+          "ref": {
+            "top1_exact_winner_rate": 0.041666666666666664,
+            "top5_winner_rate": 0.3055555555555556,
+            "top10_winner_rate": 0.4305555555555556,
+            "top1_21d_cagr_proxy": -0.12112581967439906
+          },
+          "native": {
+            "top1_exact_winner_rate": 0.05555555555555555,
+            "top5_winner_rate": 0.2638888888888889,
+            "top10_winner_rate": 0.4583333333333333,
+            "top1_21d_cagr_proxy": -0.018419444728070333
+          }
+        }
+      },
+      "2023_2026": {
+        "n_periods": 42,
+        "ref": {
+          "top1_agreement_to_fixed": 0.2857142857142857,
+          "top5_jaccard_to_fixed": 0.5000944822373394,
+          "top5_turnover_to_fixed": 0.49990551776266057,
+          "top10_jaccard_to_fixed": 0.7460872460872461,
+          "rank_corr_to_fixed": 0.8529445826095289,
+          "rank_mae_norm_to_fixed": 0.11577442571231393
+        },
+        "native": {
+          "top1_agreement_to_fixed": 0.40476190476190477,
+          "top5_jaccard_to_fixed": 0.4606009070294784,
+          "top5_turnover_to_fixed": 0.5393990929705216,
+          "top10_jaccard_to_fixed": 0.6998239855382712,
+          "rank_corr_to_fixed": 0.8115025557069122,
+          "rank_mae_norm_to_fixed": 0.13233757271024352
+        },
+        "ref_vs_native": {
+          "top1_agreement": 0.35714285714285715,
+          "top5_jaccard": 0.5768140589569161,
+          "rank_corr": 0.8864291338090657,
+          "rank_mae_norm": 0.10144927536231885
+        },
+        "diagnostic_performance": {
+          "fixed": {
+            "top1_exact_winner_rate": 0.09523809523809523,
+            "top5_winner_rate": 0.35714285714285715,
+            "top10_winner_rate": 0.5238095238095238,
+            "top1_21d_cagr_proxy": 0.2677669619777432
+          },
+          "ref": {
+            "top1_exact_winner_rate": 0.047619047619047616,
+            "top5_winner_rate": 0.23809523809523808,
+            "top10_winner_rate": 0.47619047619047616,
+            "top1_21d_cagr_proxy": 0.10943582963165599
+          },
+          "native": {
+            "top1_exact_winner_rate": 0.09523809523809523,
+            "top5_winner_rate": 0.2857142857142857,
+            "top10_winner_rate": 0.5238095238095238,
+            "top1_21d_cagr_proxy": 0.15762867350681997
+          }
+        }
+      }
+    }
+  },
+  "cluster_stability_reference_vs_native": {
+    "U100": {
+      "mean_adjusted_rand_index": 0.6947088547300998,
+      "median_adjusted_rand_index": 0.6922509018368208,
+      "mean_cluster_change_1_minus_ari": 0.30529114526990025
+    },
+    "U120": {
+      "mean_adjusted_rand_index": 0.7342271181129119,
+      "median_adjusted_rand_index": 0.7448845409403713,
+      "mean_cluster_change_1_minus_ari": 0.2657728818870882
+    },
+    "U70": {
+      "mean_adjusted_rand_index": 0.6229328394985522,
+      "median_adjusted_rand_index": 0.63233969775727,
+      "mean_cluster_change_1_minus_ari": 0.37706716050144773
+    }
+  },
+  "feature_drift_reference_vs_native": {
+    "U100": {
+      "mean_of_feature_mean_abs_delta": 0.04244758953780287,
+      "max_feature_mean_abs_delta": 0.12405581888438869,
+      "most_sensitive_feature": "cluster_eff_63_mean_rank"
+    },
+    "U120": {
+      "mean_of_feature_mean_abs_delta": 0.036997600424781917,
+      "max_feature_mean_abs_delta": 0.11078676493321829,
+      "most_sensitive_feature": "cluster_eff_63_mean_rank"
+    },
+    "U70": {
+      "mean_of_feature_mean_abs_delta": 0.058183161999542786,
+      "max_feature_mean_abs_delta": 0.1511909231568742,
+      "most_sensitive_feature": "cluster_eff_63_mean_rank"
+    }
+  },
+  "decision": {
+    "rule": "reference-universe stabilization is supported only if reference retraining has lower Top5 turnover to the frozen full149 anchor for U120/U100/U70 and wins at least 3 of 4 prespecified stability metrics in every subset",
+    "by_subset": {
+      "U120": {
+        "wins": {
+          "top1_agreement": true,
+          "top5_turnover": true,
+          "rank_corr": true,
+          "rank_mae_norm": true
+        },
+        "win_count": 4
+      },
+      "U100": {
+        "wins": {
+          "top1_agreement": true,
+          "top5_turnover": true,
+          "rank_corr": true,
+          "rank_mae_norm": true
+        },
+        "win_count": 4
+      },
+      "U70": {
+        "wins": {
+          "top1_agreement": true,
+          "top5_turnover": true,
+          "rank_corr": true,
+          "rank_mae_norm": true
+        },
+        "win_count": 4
+      }
+    },
+    "supported": true,
+    "decision": "SUPPORT_REFERENCE_UNIVERSE"
+  },
+  "interpretation_rule": "Performance metrics are diagnostic only. This test asks whether stable-reference representation reduces ranking sensitivity to candidate-universe shrinkage; it is not a promotion test."
+}
