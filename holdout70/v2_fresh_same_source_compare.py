@@ -8,15 +8,20 @@ import shutil
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+
+# v2_canonical_same_source_compare.py reads these at import time.  Point them
+# to the already-frozen controlled-fresh roots before importing it.
+os.environ["FROZEN_149_ROOT"] = os.environ["FRESH_149_ROOT"]
+os.environ["FROZEN_HOLDOUT70_ROOT"] = os.environ["FRESH_70_ROOT"]
+
 CANON = HERE / "v2_canonical_same_source_compare.py"
 spec = importlib.util.spec_from_file_location("canonical_compare", CANON)
 c = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(c)
 
-# The functions below are the canonical V2 source-only build/replay functions.
-# This wrapper changes only the acceptance contract: both universes are freshly
-# downloaded in the same job, so historical 149 hashes are reported but are not
-# used as an acceptance criterion for this controlled apples-to-apples lane.
+# Reuse the canonical build/replay implementation; change only the acceptance
+# contract.  Both universes come from one frozen fresh Yahoo vintage, so the
+# historical 149 hashes are descriptive references, not a gate for this lane.
 c.FROZEN149 = Path(os.environ["FRESH_149_ROOT"]).resolve() / "etf_trader_raw"
 c.FROZEN70 = Path(os.environ["FRESH_70_ROOT"]).resolve() / "raw_ticker_csv"
 c.OUT = HERE / "fresh_same_source_results"
@@ -36,38 +41,35 @@ def main() -> None:
     if overlap:
         raise RuntimeError(f"holdout70 overlap with original149: {overlap}")
 
-    print("=== FRESH ORIGINAL149 / CANONICAL V2 SOURCE ===", flush=True)
+    print("=== FROZEN-FRESH ORIGINAL149 / CANONICAL V2 SOURCE ===", flush=True)
     s149 = c.build_source_only_state("original149", c.FROZEN149)
     r149 = c.replay_full_universe(s149)
 
-    print("=== FRESH HOLDOUT70 / IDENTICAL CANONICAL V2 SOURCE ===", flush=True)
+    print("=== FROZEN-FRESH HOLDOUT70 / IDENTICAL CANONICAL V2 SOURCE ===", flush=True)
     s70 = c.build_source_only_state("holdout70", c.FROZEN70)
     r70 = c.replay_full_universe(s70)
 
     m149 = r149["v2_full_universe"]
     m70 = r70["v2_full_universe"]
     hist = c.CANONICAL149
-    historical_reference_delta = {
-        "cagr_pp": float((m149["cagr"] - hist["cagr"]) * 100),
-        "maxdd_pp": float((m149["maxdd"] - hist["maxdd"]) * 100),
-        "sharpe": float(m149["sharpe"] - hist["sharpe"]),
-    }
-
     result = {
-        "status": "CONTROLLED_FRESH_SAME_SOURCE_149_VS_70_COMPLETE",
+        "status": "CONTROLLED_FROZEN_FRESH_SAME_SOURCE_149_VS_70_COMPLETE",
         "interpretation_contract": {
-            "purpose": "compare original149 and disjoint holdout70 under one fresh Yahoo vintage and one identical canonical V2 source/execution stack",
+            "purpose": "compare original149 and disjoint holdout70 under one frozen fresh Yahoo vintage and one identical canonical V2 source/execution stack",
             "historical_43pct_used_as_input": False,
             "historical_scores_or_paths_consumed": False,
-            "same_download_job": True,
-            "same_downloader": True,
-            "same_price_semantics": True,
+            "same_raw_vintage": True,
+            "same_downloader_and_price_semantics": True,
             "same_model_source": True,
             "same_execution_source": True,
-            "infrastructure_refs_for_holdout70": "SPY/HYG/IEF/BIL/SHV may be supplied from fresh149 only as nonselectable infrastructure; economic top1/top2 and V6 alternates remain restricted to the 70 candidates"
+            "infrastructure_refs_for_holdout70": "SPY/HYG/IEF/BIL/SHV supplied from fresh149 only as nonselectable infrastructure; economic top1/top2 and V6 alternates remain restricted to the 70 candidates"
         },
         "historical_canonical149_reference": hist,
-        "fresh149_minus_historical_reference": historical_reference_delta,
+        "fresh149_minus_historical_reference": {
+            "cagr_pp": float((m149["cagr"] - hist["cagr"]) * 100),
+            "maxdd_pp": float((m149["maxdd"] - hist["maxdd"]) * 100),
+            "sharpe": float(m149["sharpe"] - hist["sharpe"]),
+        },
         "original149": r149,
         "holdout70": r70,
         "delta_70_minus_149": {

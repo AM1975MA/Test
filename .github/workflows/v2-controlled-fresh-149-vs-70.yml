@@ -1,19 +1,18 @@
-name: V2 controlled fresh 149 vs 70
+name: V2 controlled frozen-fresh 149 vs 70
 
 on:
   push:
     branches: [ research/v2-same-source-149-vs-70-20261002 ]
     paths:
       - '.github/workflows/v2-controlled-fresh-149-vs-70.yml'
-      - 'holdout70/download_uniform_yahoo.py'
       - 'holdout70/v2_fresh_same_source_compare.py'
       - 'holdout70/v2_canonical_same_source_compare.py'
-      - 'holdout70/universes/**'
       - 'holdout70/CANONICAL_149_REFERENCE.json'
   workflow_dispatch:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   compare:
@@ -69,8 +68,7 @@ jobs:
           for p, want in exp.items():
               got = subprocess.check_output(['git','hash-object',p], text=True).strip()
               if got != want and p in lf_fix:
-                  path = Path(p)
-                  raw = path.read_bytes()
+                  path = Path(p); raw = path.read_bytes()
                   if not raw.endswith(b'\n'):
                       path.write_bytes(raw + b'\n')
                       got = subprocess.check_output(['git','hash-object',p], text=True).strip()
@@ -79,18 +77,16 @@ jobs:
           print('CANONICAL_V2_SOURCE_GATE_PASS')
           PY
 
-      - name: Download both universes with one identical raw contract
+      - name: Restore the exact uniform raw frozen by run 37017429560
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          python holdout70/download_uniform_yahoo.py \
-            --universe holdout70/universes/original149.csv \
-            --output _fresh149/etf_trader_raw \
-            --start 2004-01-01 --end 2026-08-01
-          python holdout70/download_uniform_yahoo.py \
-            --universe holdout70/universes/holdout70.csv \
-            --output _fresh70/raw_ticker_csv \
-            --start 2004-01-01 --end 2026-08-01
+          gh run download 37017429560 -R ${{ github.repository }} \
+            -n v2-controlled-fresh-raw-149-70 -D .
+          test -f _fresh149/etf_trader_raw/manifest.json
+          test -f _fresh70/raw_ticker_csv/manifest.json
 
-      - name: Verify controlled raw contract
+      - name: Verify controlled frozen raw contract
         run: |
           python - <<'PY'
           import json, pandas as pd
@@ -108,7 +104,9 @@ jobs:
               assert m['requested_end_exclusive']=='2026-08-01'
               assert m['tickers']==n
               assert m['price_semantics']=='same-row Adj Close/raw Close adjustment for OHLC; raw Volume'
-          print('CONTROLLED_RAW_GATE_PASS')
+              assert m['package_versions']['yfinance']=='0.2.66'
+              assert m['package_versions']['pandas']=='2.2.3'
+          print('CONTROLLED_FROZEN_RAW_GATE_PASS')
           PY
 
       - name: Run identical canonical V2 freely on all 149 and all 70 candidates
@@ -126,22 +124,11 @@ jobs:
         run: |
           test -f holdout70/fresh_same_source_results/COMPARISON.json && cat holdout70/fresh_same_source_results/COMPARISON.json || true
 
-      - name: Freeze exact fresh raw used by this comparison
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: v2-controlled-fresh-raw-149-70
-          retention-days: 90
-          if-no-files-found: error
-          path: |
-            _fresh149/etf_trader_raw
-            _fresh70/raw_ticker_csv
-
       - name: Upload comparison evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v2-controlled-fresh-149-vs-70-results
+          name: v2-controlled-frozen-fresh-149-vs-70-results
           retention-days: 90
           if-no-files-found: warn
           path: |
