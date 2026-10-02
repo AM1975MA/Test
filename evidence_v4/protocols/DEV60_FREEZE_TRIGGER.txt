@@ -1,0 +1,1 @@
+Evidence V4 Dev60 data-freeze execution marker. Candidate order, exclusions and coverage-only selection are already committed and hash-gated. No performance test is permitted.
