@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import io
 import json
+import time
 import urllib.request
 from pathlib import Path
 
@@ -14,11 +15,11 @@ import pandas as pd
 START = pd.Timestamp("2005-01-01")
 END = pd.Timestamp("2026-06-30")
 SERIES = {
-    "VIXCLS": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
-    "DGS2": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
-    "DGS10": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
-    "BAMLH0A0HYM2": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
-    "DTWEXBGS": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS",
+    "VIXCLS": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS&cosd=2005-01-01&coed=2026-06-30",
+    "DGS2": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2&cosd=2005-01-01&coed=2026-06-30",
+    "DGS10": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2005-01-01&coed=2026-06-30",
+    "BAMLH0A0HYM2": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=2005-01-01&coed=2026-06-30",
+    "DTWEXBGS": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS&cosd=2005-01-01&coed=2026-06-30",
 }
 FEATURES = [
     "vix_z252",
@@ -45,9 +46,28 @@ def zscore(s: pd.Series, window: int = 252, minp: int = 126) -> pd.Series:
 
 
 def fetch(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "EvidenceV2/1.0"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return r.read()
+    last: Exception | None = None
+    for attempt in range(5):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": "EvidenceV2/1.0",
+                    "Accept": "text/csv,*/*;q=0.8",
+                    "Connection": "close",
+                },
+            )
+            with urllib.request.urlopen(req, timeout=120) as r:
+                data = r.read()
+            if len(data) < 100:
+                raise RuntimeError(f"unexpectedly short FRED response: {len(data)} bytes")
+            return data
+        except Exception as exc:
+            last = exc
+            if attempt == 4:
+                break
+            time.sleep(2 ** attempt)
+    raise RuntimeError(f"FRED download failed after retries for {url}: {last!r}")
 
 
 def main() -> int:
