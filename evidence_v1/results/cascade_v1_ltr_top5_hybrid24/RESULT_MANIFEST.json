@@ -1,0 +1,8 @@
+{
+  "test": "cascade_v1_ltr_top5_hybrid24",
+  "files_sha256": {
+    "MONTHLY.csv": "86b9a987ba18b84974302df82fa2e395d24f925bcae22e0c1c67da182717fade",
+    "PROVENANCE.json": "e0b0374c7362b1d9687f28e46fb12d9bb57275c2c2a3342cf3f3d2e201ff57b2",
+    "SUMMARY.json": "ac8ed311f9fa58590707f20053c0710261b6b0441b3f6f527fb09d6b03cd1a78"
+  }
+}
