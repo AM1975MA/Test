@@ -27,8 +27,9 @@ jobs:
       - name: Fail-closed source and protocol gate
         run: |
           set -euo pipefail
-          test "$(git hash-object evidence_v2/src/freeze_macro_context_v1.py)" = "50feddf41d7b0b41ee1df212b957a87f07c5e04b"
+          test "$(git hash-object evidence_v2/src/freeze_macro_context_v1.py)" = "0bf482ac212967479b42dadd6b5a8bf7fdf586d3"
           test "$(git hash-object evidence_v2/protocols/MACRO_CONTEXT_V1_FREEZE.md)" = "2774bc7bd8fd18839b917cd65d2e648938e7e35a"
+          test "$(git hash-object evidence_v2/protocols/MACRO_CONTEXT_V1_FETCH_RETRY_FIX.md)" = "a30dad9e58f50e0abc350fab1270e76dad42883c"
           test ! -e evidence_v2/data/macro_context_v1
           python -m py_compile evidence_v2/src/freeze_macro_context_v1.py
 
@@ -55,6 +56,8 @@ jobs:
             'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
             'freezer_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/src/freeze_macro_context_v1.py'],text=True).strip(),
             'protocol_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/protocols/MACRO_CONTEXT_V1_FREEZE.md'],text=True).strip(),
+            'fetch_retry_fix_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/protocols/MACRO_CONTEXT_V1_FETCH_RETRY_FIX.md'],text=True).strip(),
+            'invalid_initial_timeout_run':'37068346569',
             'network_used_only_for_data_freeze':True,
             'model_test_executed':False,
             'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,
