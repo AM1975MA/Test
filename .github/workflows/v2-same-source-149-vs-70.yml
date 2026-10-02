@@ -1,0 +1,88 @@
+name: V2 same-source 149 vs 70
+
+on:
+  push:
+    branches: [ research/v2-same-source-149-vs-70-20261002 ]
+    paths:
+      - '.github/workflows/v2-same-source-149-vs-70.yml'
+      - 'holdout70/v2_same_source_compare.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install frozen V2 requirements
+        run: python -m pip install -r vendor/etf_trader_v2/requirements.txt matplotlib 'pandas==2.2.3'
+
+      - name: Retrieve frozen 149 and holdout70 inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R ${{ github.repository }} -n etf-trader-raw-149 -D _raw149
+          gh run download 36994684932 -R ${{ github.repository }} -n holdout70-frozen-20260731 -D _holdout70
+
+      - name: Verify immutable input universes
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          p149=Path('_raw149/etf_trader_raw')
+          p70=Path('_holdout70/raw_ticker_csv')
+          u149=list(csv.DictReader((p149/'universe.csv').open()))
+          u70=list(csv.DictReader((p70/'universe.csv').open()))
+          assert len(u149)==149 and len({x['ticker'] for x in u149})==149
+          assert len(u70)==70 and len({x['ticker'] for x in u70})==70
+          assert not ({x['ticker'] for x in u149} & {x['ticker'] for x in u70})
+          m=json.loads(Path('_holdout70/manifest.json').read_text())
+          assert m['selected_count']==70
+          assert m['intersection_with_original149']==[]
+          print('IMMUTABLE_INPUT_GATE_PASS')
+          PY
+
+      - name: Run one-source full-universe comparison
+        env:
+          ETF_TRADER_ROOT: ${{ github.workspace }}/vendor/etf_trader_v2
+          FROZEN_149_ROOT: ${{ github.workspace }}/_raw149
+          FROZEN_HOLDOUT70_ROOT: ${{ github.workspace }}/_holdout70
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: python holdout70/v2_same_source_compare.py
+
+      - name: Show parity and comparison
+        if: always()
+        run: |
+          echo '--- 149 parity ---'
+          test -f holdout70/same_source_results/PARITY_149.json && cat holdout70/same_source_results/PARITY_149.json || true
+          echo '--- comparison ---'
+          test -f holdout70/same_source_results/COMPARISON.json && cat holdout70/same_source_results/COMPARISON.json || true
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v2-same-source-149-vs-70
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            holdout70/same_source_results/PARITY_149.json
+            holdout70/same_source_results/COMPARISON.json
+            holdout70/same_source_results/original149/RESULT.json
+            holdout70/same_source_results/original149/ANNUAL_PREDICTIONS.csv
+            holdout70/same_source_results/original149/PATH.npz
+            holdout70/same_source_results/holdout70/RESULT.json
+            holdout70/same_source_results/holdout70/ANNUAL_PREDICTIONS.csv
+            holdout70/same_source_results/holdout70/PATH.npz
