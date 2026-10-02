@@ -11,6 +11,7 @@ This registry points to the durable result directories and immutable run/artifac
 | Reranker v3 target21 | rejected by preregistered ranking rule | `37056519705` | `11248488705` | `e3f380b4e33e7b6b6b824d4a47a646af4c1b13afe670a87ef0abee67015d3855` | `evidence_v1/results/reranker_v3_target21/` |
 | Reranker v4 best classifier | rejected; deterministic reranker line closed | `37059193405` | `11249798147` | `1329862ae79af04b98aa5f26946a0be6fdbc9f210a000a1e31e0fb73b7ae32fe` | `evidence_v1/results/reranker_v4_best_classifier/` |
 | Allocation v1 LTR-EW5 | rejected by CAGR gate; risk improvement diagnostic | `37059734467` | `11249119736` | `3c1a3b4522f1149b8e00336838eb00c38acd7e3f0343b0e1ed157b6a2e14b7ba` | `evidence_v1/results/allocation_v1_ltr_ew5/` |
+| Allocation v2 causal expert blend | rejected; no causal relative-skill edge | `37060563323` | `11249594252` | `77a1914d46f9f32bb8d9cd27e42be9a0a289f71b8fcadd76ba894abbada8c134` | `evidence_v1/results/allocation_v2_causal_expert_blend/` |
 
 ### Universe Sensitivity v1
 
@@ -29,6 +30,12 @@ Result commit: `34f8f997ae1858a9007f6cc1809e6ad058855fca`. v4 used a single prer
 Result commit: `0117b203d83d0a0af478c7778a7de07e5ee3cc5e`. The single frozen allocation held the LTR Top5 at 20% each. Full-window CAGR was 20.36% versus frozen Top1 22.06%, so the primary gate failed even though EW5 materially improved risk: annualized volatility 24.97% vs 37.47%, max drawdown -31.94% vs -51.47%, Sharpe 0.869 vs 0.714 and Calmar 0.637 vs 0.429. Eligible-universe equal weight returned 9.92% CAGR. No ex-post K sweep is permitted.
 
 The subperiod reversal is diagnostic only: 2017–2022 Top1 CAGR 23.72% vs EW5 16.26%, while 2023–2026 Top1 19.27% vs EW5 27.73%. It must not be converted into a hard-coded 2023 regime rule.
+
+### Allocation v2 causal expert blend
+
+Result commit: `3fdcf97f92c5b23a3e49fc8bd71bf8813052efe8`. The single preregistered meta rule used the 12 most recent **matured** expert periods and allocated between frozen Top1 and frozen EW5 proportionally to each trailing compounded wealth. Full-window CAGR was **21.93%**, narrowly below frozen Top1 **22.06%**, while max drawdown improved to **-40.12%** from **-51.47%**, Sharpe to **0.832** from **0.714**, and Calmar to **0.547** from **0.429**. The CAGR gate therefore failed and the protocol forbids lookback/temperature/switch sweeps on Original149.
+
+A post-result diagnostic, explicitly **non-promotional**, found no meaningful persistence in relative expert skill: Spearman between trailing relative wealth and next-period Top1-minus-EW5 return was about **-0.052**, and the trailing leader predicted the next winning expert only **48.25%** of the time. This supports stopping adaptive-allocation tuning rather than trying nearby lookbacks.
 
 ## Reusable checkpoints
 
@@ -59,7 +66,7 @@ Universe Sensitivity run `37053782730` is **not evidence**: it stopped at the pr
 
 Universe Sensitivity run `37054571788` is **not evidence**: after rebuilding panels it stopped because anchor A was being required on pre-2011 rows, even though the preregistered evaluation starts in 2017. No summary, durable result or artifact was produced. The evaluation-window anchor correction was frozen before the valid run in `UNIVERSE_SENSITIVITY_V1_ANCHORFIX.md`.
 
-The extra trigger-file commits used for v4 and Allocation v1 are orchestration-only. Their scientific source and preregistration Git blobs were frozen before execution and verified fail-closed by the valid workflows.
+The extra trigger-file commits used for v4 and Allocation v1/v2 are orchestration-only. Their scientific source and preregistration Git blobs were frozen before execution and verified fail-closed by the valid workflows.
 
 ## Frozen state
 
@@ -67,7 +74,7 @@ The extra trigger-file commits used for v4 and Allocation v1 are orchestration-o
 - baseline frozen commit: `ea1c4e83118309bc7d4bc85f3ea93f658c687d3b`
 - latest validated diagnostic result commit: `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`
 - latest deterministic reranker result commit: `34f8f997ae1858a9007f6cc1809e6ad058855fca`
-- latest allocation result commit: `0117b203d83d0a0af478c7778a7de07e5ee3cc5e`
+- latest allocation result commit: `3fdcf97f92c5b23a3e49fc8bd71bf8813052efe8`
 - data manifest SHA256: `1efba2bc213ba26b042a9e77630fe26664343654629e658f43d314d068ba9e71`
 - source manifest SHA256: `cc4d315da68ec42275a7a74f05446ac6cbb484c3bd92a7861cd76805c5a94782`
 
