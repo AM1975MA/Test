@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/evidence-v1-materialize-hybrid24-oos-checkpoint.yml'
       - 'evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PREREG.md'
+      - 'evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_ARGFIX.md'
       - 'evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_TRIGGER.txt'
   workflow_dispatch:
 
@@ -31,6 +32,7 @@ jobs:
           set -euo pipefail
           test "$(git hash-object evidence_v1/src/materialize_hybrid24_oos_checkpoint.py)" = "e34ef851dde41540ca55c572565a770c9b5c8137"
           test "$(git hash-object evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PREREG.md)" = "e960342f854338b187085dbd89b47eccc2bce0f0"
+          test "$(git hash-object evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_ARGFIX.md)" = "0985a16c9a3eb6edc591f04f7192b5d011ddbc12"
           test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py)" = "34cc133d4d44bb06cc21363b1444865e2d8ec5c1"
           test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/scripts/build_tit_r_source_only.py)" = "136a7bebb1f63567fbfc4ffe586e54261a71b53e"
           test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py)" = "acf83f2cee6876c89dfd9948cfbf30889af4c08e"
@@ -48,13 +50,36 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r evidence_v1/requirements.lock.txt
 
-      - name: Build isolated source-only campaign root
+      - name: Build isolated source-only campaign root and frozen technical runner fix
         run: |
           set -euo pipefail
           rm -rf _evidence_v1_hybrid24
-          mkdir -p _evidence_v1_hybrid24/raw_ticker_csv _evidence_v1_hybrid24/out/ma3_panel _evidence_v1_hybrid24/out/titanium _evidence_v1_hybrid24/checkpoint
+          mkdir -p _evidence_v1_hybrid24/raw_ticker_csv _evidence_v1_hybrid24/out/ma3_panel _evidence_v1_hybrid24/out/titanium _evidence_v1_hybrid24/checkpoint _evidence_v1_hybrid24/scripts
           cp -a evidence_v1/source/baseline/etf_trader_v2/src _evidence_v1_hybrid24/src
           cp -a evidence_v1/data/original149/. _evidence_v1_hybrid24/raw_ticker_csv/
+          cp evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py _evidence_v1_hybrid24/scripts/build_ma3_panel_source_only.py
+          cp evidence_v1/source/baseline/etf_trader_v2/scripts/build_tit_r_source_only.py _evidence_v1_hybrid24/scripts/build_tit_r_source_only.py
+          python - <<'PY'
+          from pathlib import Path
+          src=Path('evidence_v1/source/baseline/etf_trader_v2/versions/ETF_TRAINER_V2/source/source_only_rebuild/finish_ensemble_stage19.py')
+          dst=Path('_evidence_v1_hybrid24/scripts/finish_ensemble_stage19.py')
+          text=src.read_text()
+          replacements=[
+              ('a=ap.parse_args()','args=ap.parse_args()'),
+              ('if a.end_year<2017:','if args.end_year<2017:'),
+              ('n_jobs=a.n_jobs,end_year=a.end_year','n_jobs=args.n_jobs,end_year=args.end_year'),
+              ('if a.prospective else','if args.prospective else'),
+          ]
+          for old,new in replacements:
+              count=text.count(old)
+              if count != 1:
+                  raise RuntimeError(f'argfix expected exactly one occurrence of {old!r}, found {count}')
+              text=text.replace(old,new)
+          if 'a=producer.allocations_from_score(' not in text:
+              raise RuntimeError('allocation result assignment unexpectedly missing')
+          dst.write_text(text)
+          print('TECHNICAL_ARGFIX_APPLIED', dst)
+          PY
 
       - name: Rebuild MA3 panel from frozen Original149
         env:
@@ -64,7 +89,7 @@ jobs:
           MKL_NUM_THREADS: '2'
           NUMEXPR_NUM_THREADS: '2'
         run: |
-          python evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py \
+          python _evidence_v1_hybrid24/scripts/build_ma3_panel_source_only.py \
             --data _evidence_v1_hybrid24/raw_ticker_csv \
             --cluster-data _evidence_v1_hybrid24/raw_ticker_csv \
             --output _evidence_v1_hybrid24/out/ma3_panel
@@ -77,7 +102,7 @@ jobs:
           MKL_NUM_THREADS: '1'
           NUMEXPR_NUM_THREADS: '1'
         run: |
-          python evidence_v1/source/baseline/etf_trader_v2/scripts/build_tit_r_source_only.py \
+          python _evidence_v1_hybrid24/scripts/build_tit_r_source_only.py \
             --data _evidence_v1_hybrid24/raw_ticker_csv \
             --output _evidence_v1_hybrid24/out/titanium \
             --xgb-workers 2 \
@@ -92,7 +117,7 @@ jobs:
           MKL_NUM_THREADS: '2'
           NUMEXPR_NUM_THREADS: '2'
         run: |
-          python evidence_v1/source/baseline/etf_trader_v2/versions/ETF_TRAINER_V2/source/source_only_rebuild/finish_ensemble_stage19.py \
+          python _evidence_v1_hybrid24/scripts/finish_ensemble_stage19.py \
             --end-year 2026 \
             --n-jobs 2
 
@@ -118,16 +143,19 @@ jobs:
             'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
             'materializer_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/src/materialize_hybrid24_oos_checkpoint.py'],text=True).strip(),
             'preregistration_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PREREG.md'],text=True).strip(),
+            'technical_argfix_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_ARGFIX.md'],text=True).strip(),
+            'canonical_runner_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/versions/ETF_TRAINER_V2/source/source_only_rebuild/finish_ensemble_stage19.py'],text=True).strip(),
+            'patched_runner_sha256':h('_evidence_v1_hybrid24/scripts/finish_ensemble_stage19.py'),
             'hybrid_producer_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py'],text=True).strip(),
             'build_panel_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py'],text=True).strip(),
             'build_tit_r_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/scripts/build_tit_r_source_only.py'],text=True).strip(),
-            'canonical_runner_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/versions/ETF_TRAINER_V2/source/source_only_rebuild/finish_ensemble_stage19.py'],text=True).strip(),
             'data_manifest_sha256':h('evidence_v1/DATA_MANIFEST_SHA256.txt'),
             'source_manifest_sha256':h('evidence_v1/SOURCE_MANIFEST_SHA256.txt'),
             'requirements_sha256':h('evidence_v1/requirements.lock.txt'),
             'panel_manifest_sha256':h('_evidence_v1_hybrid24/out/ma3_panel/RAW_FEATURE_PANEL_MANIFEST.json'),
             'tit_r_manifest_sha256':h('_evidence_v1_hybrid24/out/titanium/TIT_R_SOURCE_ONLY_MANIFEST.json'),
             'canonical_result_sha256':h('_evidence_v1_hybrid24/out/ensemble_source_only_fresh/RESULT.json'),
+            'invalid_technical_run':'37061720360',
             'ltr_checkpoint_consumed':False,
             'cascade_metrics_observed':False,
             'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,
