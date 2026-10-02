@@ -1,0 +1,43 @@
+name: Holdout70 frozen download
+
+on:
+  push:
+    branches: [ research/holdout60-20261002 ]
+    paths: [ '.github/workflows/holdout70-download.yml', 'holdout70/download_holdout70.py' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install 'pandas>=2.2,<3' 'numpy>=1.26,<3' 'yfinance==0.2.66' 'pyarrow>=16,<24'
+      - name: Download and quality-gate 70 ETFs
+        run: python holdout70/download_holdout70.py
+      - name: Validate architecture gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('holdout70/output/manifest.json').read_text())
+          assert m['selected_count']==70
+          assert m['intersection_with_original149']==[]
+          assert m['ma3_architecture_gate']['pass'] is True
+          assert m['performance_used_for_selection'] is False
+          print('HOLDOUT70_GATE_PASS')
+          PY
+      - name: Upload frozen holdout70
+        uses: actions/upload-artifact@v4
+        with:
+          name: holdout70-frozen-20260731
+          path: holdout70/output/
+          if-no-files-found: error
+          retention-days: 30
