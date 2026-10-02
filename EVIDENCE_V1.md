@@ -66,140 +66,151 @@ Regola preregistrata: B deve avere Top5 turnover inferiore a C in **tutti** U120
 
 **Esito: PASS, 12/12 metriche a favore di B.**
 
-2017-2026, 114 periodi per subset:
-
 | Subset | Top1 agreement B / C | Top5 turnover B / C | Rank corr B / C | Rank MAE norm B / C |
 |---|---:|---:|---:|---:|
 | U120 | **42.11% / 31.58%** | **54.54% / 63.60%** | **0.891 / 0.868** | **0.098 / 0.108** |
 | U100 | **40.35% / 23.68%** | **56.02% / 67.60%** | **0.877 / 0.786** | **0.106 / 0.142** |
 | U70 | **30.70% / 27.19%** | **55.76% / 59.56%** | **0.764 / 0.731** | **0.147 / 0.159** |
 
-Conclusione causale del test: **la representation è materialmente universe-dependent e un reference universe stabile riduce la sensibilità del ranking alla contrazione del candidate universe.** La regola preregistrata restituisce `SUPPORT_REFERENCE_UNIVERSE`.
+Conclusione causale: **la representation è materialmente universe-dependent e un reference universe stabile riduce la sensibilità del ranking alla contrazione del candidate universe.**
 
 Diagnostica representation:
 - mean Adjusted Rand Index cluster reference/native: **0.734 U120**, **0.695 U100**, **0.623 U70**;
-- il cluster drift cresce quindi al ridursi dell'universo;
 - mean feature absolute drift: **0.0370 U120**, **0.0424 U100**, **0.0582 U70**;
 - feature più sensibile in tutti i subset: **`cluster_eff_63_mean_rank`**;
-- il preprocessing nativo perde anche supporto storico al ridursi dell'universo: retention del full-reference sul common support **99.47% U120**, **95.91% U100**, **69.01% U70**; restano comunque tutte le **114** date di valutazione.
+- retention del full-reference sul common support: **99.47% U120**, **95.91% U100**, **69.01% U70**.
 
-**Caveat fondamentale:** questo test dimostra stabilità, non alpha. Le metriche performance erano preregistrate come diagnostiche e non migliorano in modo coerente con B. Per esempio il Top1 exact-winner B/C è 7.02%/8.77% su U120, 8.77%/9.65% su U100 e 4.39%/7.02% su U70. Quindi **B non viene promosso come selettore finale**.
+**Caveat:** il test dimostra stabilità, non alpha. Le metriche performance non migliorano in modo coerente con B, quindi B non viene promosso come selettore finale.
 
-Run valido `37055155515`; artifact `11248586812`; artifact SHA256 `8ecabaeb80268929ab5f7610ca5848c9b265ebfab7e794a0f4ed2d8df177d58a`; result commit `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`; risultati in `evidence_v1/results/universe_sensitivity_v1/`.
+Run `37055155515`; artifact `11248586812`; SHA256 `8ecabaeb80268929ab5f7610ca5848c9b265ebfab7e794a0f4ed2d8df177d58a`; result commit `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`; risultati in `evidence_v1/results/universe_sensitivity_v1/`.
 
-Audit tecnico: i run `37053782730` e `37054571788` sono **INVALIDI COME EVIDENZA**. Il primo si è fermato sul mismatch di supporto reference/native prima di produrre metriche; il secondo si è fermato perché richiedeva inutilmente anchor A su date pre-2011, fuori dalla finestra 2017-2026. Le due correzioni sono state preregistrate separatamente prima del run valido e non hanno modificato subset, modello, hyperparameter, metriche o decision rule. Protocolli: `UNIVERSE_SENSITIVITY_V1_PREREG.md`, `UNIVERSE_SENSITIVITY_V1_SUPPORTFIX.md`, `UNIVERSE_SENSITIVITY_V1_ANCHORFIX.md`.
+Audit tecnico: i run `37053782730` e `37054571788` sono invalidi come evidenza e sono documentati nel registry. Le correzioni erano strettamente tecniche e preregistrate prima del run valido.
 
 ## DIAGNOSTIC / BURNED
 
 ### Pairwise reranker v1 — SCARTATO
 
-Top10 LTR OOS -> logistic pairwise L2 sulle differenze delle 42 feature + rank LTR; training annual expanding solo su shortlist OOS mature.
+Top10 LTR OOS -> logistic pairwise L2 sulle differenze delle 42 feature + rank LTR; annual expanding solo su shortlist OOS mature.
 
 114 periodi:
-- LTR top1 proxy: **22.06% CAGR**;
-- reranker top1 proxy: **19.81% CAGR**;
-- exact-winner: **8.77% -> 7.02%**;
-- winner nel top2: **13.16% -> 8.77%**;
-- margin reranker vs successivo differenziale ritorni: Spearman **0.065**;
-- forte instabilità: **11.70%** nel 2017-2022, **35.10%** nel 2023-2026.
+- LTR top1 proxy **22.06% CAGR** vs reranker **19.81%**;
+- exact-winner **8.77% -> 7.02%**;
+- winner nel Top2 **13.16% -> 8.77%**;
+- margin Spearman **0.065**;
+- forte instabilità temporale.
 
-Conclusione: **la forma lineare pairwise v1 non risolve l'ordinamento della shortlist e non viene portata avanti.**
-
-Action `37041677418`; artifact `11242493662`; SHA256 `13e227467d5f6a52624c71ac2e06b9a1d7fabb58d30fe2a4ff55250e2c829aad`; risultati in `evidence_v1/results/pairwise_reranker_v1/`.
+Action `37041677418`; artifact `11242493662`; SHA256 `13e227467d5f6a52624c71ac2e06b9a1d7fabb58d30fe2a4ff55250e2c829aad`.
 
 ### Nonlinear reranker v2 — SCARTATO
 
-Top10 LTR OOS -> XGBoost `rank:pairwise`, shallow/regularized, singola configurazione preregistrata, 42 feature + posizione LTR normalizzata; annual expanding e maturity gate 63d. Il winner è valutato sul **full Original149**, mentre il reranker può scegliere solo nella shortlist OOS Top10.
+Top10 LTR OOS -> XGBoost `rank:pairwise`, shallow/regularized, singola configurazione preregistrata, 42 feature + posizione LTR normalizzata; annual expanding e maturity gate 63d.
 
 114 periodi:
-- LTR exact-winner Top1: **8.77%**;
-- v2 exact-winner Top1: **7.02%**;
-- LTR winner nel Top2: **13.16%**;
-- v2 winner nel Top2: **9.65%**;
-- LTR winner nel Top3: **18.42%**;
-- v2 winner nel Top3: **14.04%**;
-- top1 21d CAGR proxy: **22.06% -> 25.51%**, ma era metrica diagnostica e non criterio di avanzamento;
-- margin v2 vs successivo differenziale ritorni: Spearman **-0.006** circa;
-- 2023-2026: exact-winner **9.52% -> 2.38%**, Top2 **11.90% -> 2.38%**, CAGR proxy **19.27% -> 12.57%**.
+- Top1 exact-winner **8.77% -> 7.02%**;
+- Top2 **13.16% -> 9.65%**;
+- Top3 **18.42% -> 14.04%**;
+- CAGR proxy **22.06% -> 25.51%**, ma diagnostico e incapace di salvare il ranking gate;
+- 2023-2026 fortemente peggiore.
 
-La regola preregistrata richiedeva Top2 migliore dell'LTR e Top1 non peggiore: **fallita**. Quindi il v2 non viene promosso e non viene ritoccato ex-post.
-
-Run valido `37046279447`; artifact `11244841228`; artifact SHA256 `ea8d03b91db5aa7fa3643dc7b93f575ea6d0b874599465cfa5a7b05e1e3865f4`; risultati in `evidence_v1/results/reranker_v2_nonlinear/`.
-
-Audit: il precedente run tecnico `37045478600` è **INVALIDO COME EVIDENZA** perché l'evaluator definiva erroneamente il winner dentro la Top10 anziché sul full universe. È stato escluso prima di qualsiasi tuning; modello/configurazione non sono stati modificati nel rerun valido. Protocollo: `evidence_v1/protocols/RERANKER_V2_EVALFIX.md`.
+Run valido `37046279447`; artifact `11244841228`; SHA256 `ea8d03b91db5aa7fa3643dc7b93f575ea6d0b874599465cfa5a7b05e1e3865f4`.
 
 ### Reranker v3 target-aligned 21d — SCARTATO
 
-Ipotesi preregistrata: mantenere **identici capacità/configurazione del nonlinear v2, feature e frozen LTR Top10**, cambiando solo la supervision del reranker verso il compito realmente tradato. Label per ogni shortlist OOS: rilevanza ordinale futura 21d `9=best ... 0=worst`; maturity gate coerente `exit_date_21 < cutoff`.
-
-Il retriever **non è stato riaddestrato**: sono stati usati `TOP10.csv` e `OOS_PREDICTIONS.csv` del checkpoint LTR v1 già congelato.
+Stessa capacità/config del v2 e stessa frozen LTR Top10, ma label ordinale futura 21d `9=best ... 0=worst` e maturity `exit_date_21 < cutoff`.
 
 114 periodi:
-- LTR exact-winner Top1: **8.77% (10/114)**;
-- v3 exact-winner Top1: **8.77% (10/114)**;
-- LTR winner nel Top2: **13.16% (15/114)**;
-- v3 winner nel Top2: **12.28% (14/114)**;
-- LTR winner nel Top3: **18.42% (21/114)**;
-- v3 winner nel Top3: **16.67% (19/114)**;
-- top1 21d CAGR proxy: **22.06% -> 18.77%**;
-- margin v3 vs differenziale ritorni Top1-Top2: Spearman **-0.034**.
+- Top1 **10/114 -> 10/114**;
+- Top2 **15/114 -> 14/114**;
+- Top3 **21/114 -> 19/114**;
+- CAGR proxy **22.06% -> 18.77%**.
 
-La regola preregistrata richiedeva Top2 strettamente migliore e Top1 non peggiore. Top1 è invariato, ma Top2 peggiora: **v3 è REJECTED**.
+2017-2022 e 2023-2026 mostrano trade-off opposti; il target 21d non risolve l'ordinamento del top-tail.
 
-Instabilità temporale:
-- 2017-2022: v3 migliora Top1 (**8.33% -> 9.72%**) ma peggiora Top2 (**13.89% -> 11.11%**) e CAGR proxy (**23.72% -> 15.86%**);
-- 2023-2026: v3 migliora Top2 (**11.90% -> 14.29%**) e CAGR proxy (**19.27% -> 23.92%**), ma peggiora Top1 (**9.52% -> 7.14%**).
+Run `37056519705`; artifact `11248488705`; SHA256 `e3f380b4e33e7b6b6b824d4a47a646af4c1b13afe670a87ef0abee67015d3855`; result commit `5e57b61302ed76ac0c28756d519e74d019b82ea9`.
 
-Conclusione: **allineare il target direttamente a 21d non risolve l'ordinamento del top-tail e produce trade-off opposti tra periodi.** Il v3 non viene ritoccato ex-post.
+### Reranker v4 best-in-shortlist classifier — SCARTATO; LINEA CHIUSA
 
-Run `37056519705`; artifact `11248488705`; artifact SHA256 `e3f380b4e33e7b6b6b824d4a47a646af4c1b13afe670a87ef0abee67015d3855`; result commit `5e57b61302ed76ac0c28756d519e74d019b82ea9`; risultati in `evidence_v1/results/reranker_v3_target21/`.
+Ultima famiglia deterministica consentita su Original149. Frozen Top10 OOS, stable-reference `FEATURES_42` + `LTR_POSITION`; target binario: una sola classe positiva per signal date, l'ETF con miglior `fwd_ret_21` nella shortlist; XGBClassifier shallow/regularized con `scale_pos_weight=9`, singola configurazione preregistrata.
 
-**Holdout70 resta BURNED**: può essere usato solo per diagnostica e progettazione di ipotesi, non per promozione.
+114 periodi:
+- exact global winner Top1: **10/114 -> 8/114**;
+- global winner Top2: **15/114 -> 12/114**;
+- global winner Top3: **21/114 -> 16/114**;
+- CAGR proxy: **22.06% -> 14.16%**;
+- sulle 47 date in cui il global winner era effettivamente retrievable nella Top10: Top1 condizionale **21.28% -> 17.02%**, Top2 **31.91% -> 25.53%**.
+
+Il v4 migliora marginalmente alcune metriche di `shortlist-best`, ma peggiora il compito economico primario e fallisce nettamente la regola preregistrata.
+
+**Conseguenza vincolante:** la linea dei deterministic reranker su Original149 è **CHIUSA**. Nessun v5, nessun tuning v4, nessun altro head costruito per scegliere un singolo winner sul development set.
+
+Run `37059193405`; artifact `11249798147`; SHA256 `1329862ae79af04b98aa5f26946a0be6fdbc9f210a000a1e31e0fb73b7ae32fe`; result commit `34f8f997ae1858a9007f6cc1809e6ad058855fca`; risultati in `evidence_v1/results/reranker_v4_best_classifier/`.
+
+### Allocation v1 LTR-EW5 — SCARTATA dal gate CAGR, ma rischio migliorato
+
+Prima ipotesi portfolio-level dopo la chiusura reranker. Frozen LTR Top5, 20% per ETF, nessun uso di score margin, nessun tuning K, nessun training.
+
+Full 114:
+
+| Metrica | LTR Top1 | LTR-EW5 | Universe-EW |
+|---|---:|---:|---:|
+| CAGR | **22.06%** | **20.36%** | 9.92% |
+| Ann. vol | 37.47% | **24.97%** | 12.72% |
+| Sharpe rf0 | 0.714 | **0.869** | 0.810 |
+| Max DD | -51.47% | **-31.94%** | -19.28% |
+| Calmar | 0.429 | **0.637** | 0.514 |
+
+La regola preregistrata richiedeva che EW5 battesse Top1 in CAGR, non peggiorasse il drawdown e battesse universe-EW. **Fallisce solo il primo criterio:** 20.36% < 22.06%. Quindi EW5 semplice non avanza e non si prova ex-post Top3/Top10.
+
+Diagnostica temporale:
+- 2017-2022: Top1 **23.72% CAGR** vs EW5 **16.26%**;
+- 2023-2026: Top1 **19.27%** vs EW5 **27.73%**, con EW5 vol 24.07%, max DD -18.21%, Sharpe 1.142 e Calmar 1.523.
+
+Questa inversione **non** autorizza una regola hard-coded sul 2023. È solo evidenza che il trade-off concentrazione/diversificazione è non-stazionario e merita, se proseguito, una regola causale basata esclusivamente su risultati già maturi.
+
+Run `37059734467`; artifact `11249119736`; SHA256 `3c1a3b4522f1149b8e00336838eb00c38acd7e3f0343b0e1ed157b6a2e14b7ba`; result commit `0117b203d83d0a0af478c7778a7de07e5ee3cc5e`; risultati in `evidence_v1/results/allocation_v1_ltr_ew5/`.
+
+**Holdout70 resta BURNED**: solo diagnostica/progettazione, mai promotion.
 
 ## HYPOTHESIS corrente
 
-Le evidenze ora separano tre problemi:
+Le evidenze ora separano quattro fatti:
 
-1. **Retrieval:** LTR v1 aumenta nettamente la probabilità che il winner sia nella Top5/Top10 — confermato.
-2. **Representation:** ranks/clusters sono universe-dependent; un reference universe stabile riduce materialmente l'instabilità — confermato.
-3. **Final top-tail ordering:** tre reranker diversi non hanno superato LTR come decisione Top1/Top2 — non risolto.
+1. **Retrieval supportato:** LTR v1 porta il winner nella Top5/Top10 molto più spesso di Hybrid24.
+2. **Representation supportata:** una stable reference universe rende ranking/cluster materialmente più invarianti al candidate set.
+3. **Single-winner head non supportato:** quattro famiglie preregistrate di reranker/decision head hanno fallito. Questa linea è chiusa.
+4. **Diversificazione Top5:** EW5 sacrifica ~1.70 pp di CAGR full-window ma migliora fortemente vol, max DD, Sharpe e Calmar; inoltre la competenza relativa Top1/EW5 cambia nel tempo.
 
-Dopo v1 lineare, v2 nonlinear multi-horizon e v3 nonlinear target21, l'evidenza non supporta più l'idea che basti un'altra piccola variazione di ranker/target continuo sullo stesso setup.
+Architettura ancora plausibile:
 
-Architettura di representation da mantenere:
+`stable reference representation -> frozen LTR top-k retrieval -> causal portfolio-of-experts allocation -> eventuale risk sizing -> Holdout-B promotion`
 
-`features = f(asset, stable_reference_universe)` con `selection ∈ candidate_universe`.
-
-Nuova ipotesi da isolare, se si continua la linea deterministica: **il ranking loss spende capacità nell'ordinare tutta la Top10, mentre la decisione economica dipende quasi interamente dal top-tail.** Un head direttamente classificatorio `best-in-shortlist` può essere testato una sola volta come nuova famiglia di obiettivo, non come tuning di v3.
-
-Linea Evidence V1:
-
-`stable reference representation -> LTR top-k retrieval -> top-tail decision head OR top-k allocation -> calibrated probability/sizing`
+La prossima ipotesi non deve usare market regime labels, score margin o una data di break osservata ex-post. Deve imparare solo dalla **competenza relativa già maturata** dei due expert frozen (`Top1`, `EW5`).
 
 Vincoli:
-- Original149 è ormai un **development set fortemente burned**: ogni ulteriore variante deve essere preregistrata e non può costituire promotion evidence;
-- label mature;
-- training downstream solo su prediction OOS precedenti;
-- Holdout70 = burned/diagnostico;
-- nuovo Holdout-B congelato prima di qualsiasi promotion test;
-- nessuna ottimizzazione ex-post promossa;
-- reference universe e candidate universe esplicitamente distinti nel codice/provenance.
+- Original149 = development set fortemente burned; nessun risultato qui è promotion evidence;
+- nessun K sweep;
+- nessun ritorno ai deterministic reranker;
+- maturity gate esplicito anche per i rendimenti degli expert;
+- Holdout70 burned;
+- nuovo Holdout-B congelato prima di ogni promotion;
+- nessuna ottimizzazione ex-post promossa.
 
 ## NEXT TEST
 
-1. Se prosegue il reranking deterministico, consentire **un solo nuovo head v4 `best-in-shortlist` classification**, preregistrato senza sweep: frozen LTR Top10 OOS, reference-universe `FEATURES_42` + frozen `LTR_POSITION`; target binario `1` solo per l'ETF con miglior `fwd_ret_21` nella shortlist, `0` per gli altri nove.
-2. Usare un unico nonlinear classifier shallow/regularized con class weighting fissato ex ante dal rapporto strutturale 1:9; annual expanding, `exit_date_21 < cutoff`; ranking finale per probabilità prevista.
-3. Mantenere esattamente lo stesso gate: Top2 global-winner containment > LTR e Top1 global-winner >= LTR; CAGR solo diagnostico; riportare 2017-2022 e 2023-2026 separatamente.
-4. Se anche v4 fallisce, **chiudere la linea dei deterministic reranker sul development set** e passare a un test di top-k allocation/sizing che sfrutti il recall del Retriever LTR senza pretendere di identificare sempre un singolo winner.
-5. Se v4 passa, non promuoverlo sul 149: congelare prima un **Holdout-B nuovo e disgiunto**, poi un solo promotion test senza tuning.
-6. Confidence calibration/sizing resta separata e successiva a una decision rule che superi il gate.
+1. Preregistrare **Allocation v2 causal expert blend** con soli due expert frozen: `LTR Top1` e `LTR-EW5`.
+2. Una sola regola, senza sweep: per ogni signal date calcolare per ciascun expert la ricchezza composta sui **12 più recenti periodi già maturi** (`exit_date_21 < current signal_date`); peso dell'expert = sua trailing wealth / somma delle due trailing wealth. Nessun hard switch, nessun leverage, pesi sommano a 1.
+3. Usare anche la storia OOS frozen pre-2017 (checkpoint dal 2011) per inizializzare causalmente il trailing window; se non esistono 12 periodi maturi, usare 50/50 solo come bootstrap.
+4. Primary gate full 114: `CAGR(meta) > CAGR(frozen Top1)` e `MaxDD(meta) >= MaxDD(frozen Top1)`. EW5 e universe-EW restano comparatori diagnostici; sottoperiodi non possono cambiare il verdetto.
+5. Se Allocation v2 passa, **non** fare tuning sul 149: congelare un nuovo Holdout-B disgiunto prima di ogni test di promotion.
+6. Se Allocation v2 fallisce, non provare altri lookback/temperature/switch ex-post: fermare la linea adattiva e riesaminare l'architettura prima di qualunque nuovo test.
 
 ## Frozen state
 
 - Branch: `research/evidence-v1`
 - Baseline frozen commit: `ea1c4e83118309bc7d4bc85f3ea93f658c687d3b`
 - Latest validated diagnostic result commit: `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`
-- Latest development reranker result commit: `5e57b61302ed76ac0c28756d519e74d019b82ea9`
+- Latest deterministic reranker result commit: `34f8f997ae1858a9007f6cc1809e6ad058855fca`
+- Latest allocation result commit: `0117b203d83d0a0af478c7778a7de07e5ee3cc5e`
 - Data: `evidence_v1/data/original149/`, `evidence_v1/data/holdout70/`
 - Source baseline: `evidence_v1/source/baseline/`
 - Original149 files: **151**; Holdout70 files: **72**
@@ -209,6 +220,6 @@ Vincoli:
 - Frozen-data provenance: `evidence_v1/PROVENANCE.json`
 - Reusable LTR checkpoint: `evidence_v1/checkpoints/retriever_ltr_v1/`
 - Frozen universe-sensitivity subsets: `evidence_v1/protocols/universe_sensitivity_v1/`
-- Universe-sensitivity durable results: `evidence_v1/results/universe_sensitivity_v1/`
-- Reranker v3 durable results: `evidence_v1/results/reranker_v3_target21/`
+- Durable v4 results: `evidence_v1/results/reranker_v4_best_classifier/`
+- Durable allocation v1 results: `evidence_v1/results/allocation_v1_ltr_ew5/`
 - Results/artifacts registry: `evidence_v1/RESULTS_REGISTRY.md`
