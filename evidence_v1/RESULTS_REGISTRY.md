@@ -9,6 +9,8 @@ This registry points to the durable result directories and immutable run/artifac
 | Nonlinear reranker v2 | rejected by preregistered ranking rule | `37046279447` | `11244841228` | `ea8d03b91db5aa7fa3643dc7b93f575ea6d0b874599465cfa5a7b05e1e3865f4` | `evidence_v1/results/reranker_v2_nonlinear/` |
 | Universe Sensitivity v1 | validated diagnostic; `SUPPORT_REFERENCE_UNIVERSE` | `37055155515` | `11248586812` | `8ecabaeb80268929ab5f7610ca5848c9b265ebfab7e794a0f4ed2d8df177d58a` | `evidence_v1/results/universe_sensitivity_v1/` |
 | Reranker v3 target21 | rejected by preregistered ranking rule | `37056519705` | `11248488705` | `e3f380b4e33e7b6b6b824d4a47a646af4c1b13afe670a87ef0abee67015d3855` | `evidence_v1/results/reranker_v3_target21/` |
+| Reranker v4 best classifier | rejected; deterministic reranker line closed | `37059193405` | `11249798147` | `1329862ae79af04b98aa5f26946a0be6fdbc9f210a000a1e31e0fb73b7ae32fe` | `evidence_v1/results/reranker_v4_best_classifier/` |
+| Allocation v1 LTR-EW5 | rejected by CAGR gate; risk improvement diagnostic | `37059734467` | `11249119736` | `3c1a3b4522f1149b8e00336838eb00c38acd7e3f0343b0e1ed157b6a2e14b7ba` | `evidence_v1/results/allocation_v1_ltr_ew5/` |
 
 ### Universe Sensitivity v1
 
@@ -17,6 +19,16 @@ Result commit: `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`. The preregistered sta
 ### Reranker v3 target21
 
 Result commit: `5e57b61302ed76ac0c28756d519e74d019b82ea9`. The frozen LTR comparator reproduced 114 periods, 10 exact Top1 global winners, 15 winners in Top2 and 21 in Top3. v3 produced 10 Top1, 14 Top2 and 19 Top3; therefore it failed the preregistered requirement that Top2 improve while Top1 not worsen. Top1 CAGR proxy also declined from 22.06% to 18.77%. No ex-post tuning is permitted for this version.
+
+### Reranker v4 best classifier
+
+Result commit: `34f8f997ae1858a9007f6cc1809e6ad058855fca`. v4 used a single preregistered binary `best-in-shortlist` head with one positive and nine negatives per frozen OOS Top10. It produced 8/114 exact global winners, 12/114 global winners in Top2 and 16/114 in Top3 versus frozen LTR 10/15/21. Top1 CAGR proxy fell from 22.06% to 14.16%. The preregistered consequence is binding: **no v5 / no further deterministic reranker tuning on Original149**.
+
+### Allocation v1 LTR-EW5
+
+Result commit: `0117b203d83d0a0af478c7778a7de07e5ee3cc5e`. The single frozen allocation held the LTR Top5 at 20% each. Full-window CAGR was 20.36% versus frozen Top1 22.06%, so the primary gate failed even though EW5 materially improved risk: annualized volatility 24.97% vs 37.47%, max drawdown -31.94% vs -51.47%, Sharpe 0.869 vs 0.714 and Calmar 0.637 vs 0.429. Eligible-universe equal weight returned 9.92% CAGR. No ex-post K sweep is permitted.
+
+The subperiod reversal is diagnostic only: 2017–2022 Top1 CAGR 23.72% vs EW5 16.26%, while 2023–2026 Top1 19.27% vs EW5 27.73%. It must not be converted into a hard-coded 2023 regime rule.
 
 ## Reusable checkpoints
 
@@ -47,13 +59,16 @@ Universe Sensitivity run `37053782730` is **not evidence**: it stopped at the pr
 
 Universe Sensitivity run `37054571788` is **not evidence**: after rebuilding panels it stopped because anchor A was being required on pre-2011 rows, even though the preregistered evaluation starts in 2017. No summary, durable result or artifact was produced. The evaluation-window anchor correction was frozen before the valid run in `UNIVERSE_SENSITIVITY_V1_ANCHORFIX.md`.
 
+The extra trigger-file commits used for v4 and Allocation v1 are orchestration-only. Their scientific source and preregistration Git blobs were frozen before execution and verified fail-closed by the valid workflows.
+
 ## Frozen state
 
 - branch: `research/evidence-v1`
 - baseline frozen commit: `ea1c4e83118309bc7d4bc85f3ea93f658c687d3b`
 - latest validated diagnostic result commit: `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`
-- latest development reranker result commit: `5e57b61302ed76ac0c28756d519e74d019b82ea9`
+- latest deterministic reranker result commit: `34f8f997ae1858a9007f6cc1809e6ad058855fca`
+- latest allocation result commit: `0117b203d83d0a0af478c7778a7de07e5ee3cc5e`
 - data manifest SHA256: `1efba2bc213ba26b042a9e77630fe26664343654629e658f43d314d068ba9e71`
 - source manifest SHA256: `cc4d315da68ec42275a7a74f05446ac6cbb484c3bd92a7861cd76805c5a94782`
 
-Do not overwrite result or checkpoint versions already cited here. A materially changed model/configuration receives a new test/version and a new durable directory.
+Do not overwrite result or checkpoint versions already cited here. A materially changed model/configuration receives a new preregistered test/version and a new durable directory.
