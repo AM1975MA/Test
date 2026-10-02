@@ -1,11 +1,11 @@
-name: V2 controlled frozen-fresh 149 vs 70
+name: V2 controlled frozen-fresh 149 vs 70 resume
 
 on:
   push:
     branches: [ research/v2-same-source-149-vs-70-20261002 ]
     paths:
       - '.github/workflows/v2-controlled-fresh-149-vs-70.yml'
-      - 'holdout70/v2_fresh_same_source_compare.py'
+      - 'holdout70/v2_resume_holdout70.py'
       - 'holdout70/v2_canonical_same_source_compare.py'
       - 'holdout70/CANONICAL_149_REFERENCE.json'
   workflow_dispatch:
@@ -77,16 +77,19 @@ jobs:
           print('CANONICAL_V2_SOURCE_GATE_PASS')
           PY
 
-      - name: Restore the exact uniform raw frozen by run 37017429560
+      - name: Restore exact frozen raw and completed 149 checkpoint
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh run download 37017429560 -R ${{ github.repository }} \
             -n v2-controlled-fresh-raw-149-70 -D .
+          gh run download 37017928047 -R ${{ github.repository }} \
+            -n v2-controlled-frozen-fresh-149-vs-70-results -D _partial
           test -f _fresh149/etf_trader_raw/manifest.json
           test -f _fresh70/raw_ticker_csv/manifest.json
+          test -f _partial/original149/RESULT.json
 
-      - name: Verify controlled frozen raw contract
+      - name: Verify frozen raw and 149 checkpoint contracts
         run: |
           python - <<'PY'
           import json, pandas as pd
@@ -96,9 +99,8 @@ jobs:
           assert len(u149)==149 and u149.ticker.nunique()==149
           assert len(u70)==70 and u70.ticker.nunique()==70
           assert not (set(u149.ticker) & set(u70.ticker))
-          m149=json.loads(Path('_fresh149/etf_trader_raw/manifest.json').read_text())
-          m70=json.loads(Path('_fresh70/raw_ticker_csv/manifest.json').read_text())
-          for m,n in [(m149,149),(m70,70)]:
+          for p,n in [('_fresh149/etf_trader_raw/manifest.json',149),('_fresh70/raw_ticker_csv/manifest.json',70)]:
+              m=json.loads(Path(p).read_text())
               assert m['status']=='UNIFORM_YAHOO_FRESH_RAW'
               assert m['requested_start']=='2004-01-01'
               assert m['requested_end_exclusive']=='2026-08-01'
@@ -106,40 +108,47 @@ jobs:
               assert m['price_semantics']=='same-row Adj Close/raw Close adjustment for OHLC; raw Volume'
               assert m['package_versions']['yfinance']=='0.2.66'
               assert m['package_versions']['pandas']=='2.2.3'
-          print('CONTROLLED_FROZEN_RAW_GATE_PASS')
+          r149=json.loads(Path('_partial/original149/RESULT.json').read_text())
+          assert r149['candidate_count']==149 and r149['sessions']==2366
+          assert abs(r149['v2_full_universe']['cagr']-0.31603994562922105)<1e-12
+          print('RESUME_INPUT_GATE_PASS')
           PY
 
-      - name: Run identical canonical V2 freely on all 149 and all 70 candidates
+      - name: Resume only Holdout70 canonical V2 leg
         env:
           FRESH_149_ROOT: ${{ github.workspace }}/_fresh149
           FRESH_70_ROOT: ${{ github.workspace }}/_fresh70
+          PARTIAL_RESULTS_ROOT: ${{ github.workspace }}/_partial
           OMP_NUM_THREADS: '2'
           OPENBLAS_NUM_THREADS: '2'
           MKL_NUM_THREADS: '2'
           NUMEXPR_NUM_THREADS: '2'
-        run: python holdout70/v2_fresh_same_source_compare.py
+        run: python holdout70/v2_resume_holdout70.py
 
       - name: Show result
         if: always()
         run: |
           test -f holdout70/fresh_same_source_results/COMPARISON.json && cat holdout70/fresh_same_source_results/COMPARISON.json || true
 
-      - name: Upload comparison evidence
+      - name: Upload resume checkpoints and final evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v2-controlled-frozen-fresh-149-vs-70-results
+          name: v2-controlled-frozen-fresh-149-vs-70-resume
           retention-days: 90
           if-no-files-found: warn
           path: |
             holdout70/fresh_same_source_results/COMPARISON.json
             holdout70/fresh_same_source_results/original149/RESULT.json
             holdout70/fresh_same_source_results/original149/INPUT_CONTRACT.json
-            holdout70/fresh_same_source_results/original149/ENSEMBLE_FIT_AUDIT.csv
             holdout70/fresh_same_source_results/original149/DAILY_LEADERS.csv
             holdout70/fresh_same_source_results/original149/FULL_UNIVERSE_PATH.npz
             holdout70/fresh_same_source_results/holdout70/RESULT.json
             holdout70/fresh_same_source_results/holdout70/INPUT_CONTRACT.json
+            holdout70/fresh_same_source_results/holdout70/TIT_R_CANDIDATES_ONLY.csv
+            holdout70/fresh_same_source_results/holdout70/titanium/TIT_R_SOURCE_ONLY.csv
+            holdout70/fresh_same_source_results/holdout70/ma3_panel/RAW_FEATURE_PANEL.pkl
+            holdout70/fresh_same_source_results/holdout70/ENSEMBLE_TAIL_OOS.csv
             holdout70/fresh_same_source_results/holdout70/ENSEMBLE_FIT_AUDIT.csv
             holdout70/fresh_same_source_results/holdout70/DAILY_LEADERS.csv
             holdout70/fresh_same_source_results/holdout70/FULL_UNIVERSE_PATH.npz
