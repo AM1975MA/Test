@@ -1,0 +1,11 @@
+ticker,macro_category,reason
+GWL,C03_DEVELOPED_GLOBAL,download_failed:empty
+FM,C04_EMERGING,download_failed:empty
+EEB,C04_EMERGING,download_failed:empty
+GXG,C04_EMERGING,download_failed:empty
+NGE,C04_EMERGING,download_failed:empty
+EGPT,C04_EMERGING,download_failed:empty
+EMFM,C04_EMERGING,download_failed:empty
+RJI,C06_REAL_ASSETS,download_failed:empty
+RJA,C06_REAL_ASSETS,download_failed:empty
+RJN,C06_REAL_ASSETS,download_failed:empty
