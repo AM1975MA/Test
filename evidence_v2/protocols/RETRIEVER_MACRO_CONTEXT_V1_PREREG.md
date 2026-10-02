@@ -13,8 +13,10 @@ Use the exact frozen LTR v1 model/label/training schedule, adding exactly six fr
 - `dgs2_delta21`
 - `dgs10_delta21`
 - `curve_10y2y_z252`
-- `hy_oas_z252`
+- `baa10y_z252`
 - `usd_ret21`
+
+The credit feature is based on `BAA10Y` after the documented pre-model data-availability amendment replacing the FRED-truncated ICE HY OAS series. No performance result was observed before this substitution.
 
 No other feature, target, model, hyperparameter, K, loss, seed, lookback, normalization, weighting or allocation rule may change.
 
