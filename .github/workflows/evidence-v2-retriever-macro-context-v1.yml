@@ -29,6 +29,7 @@ jobs:
           set -euo pipefail
           test "$(git hash-object evidence_v2/src/retriever_macro_context_v1.py)" = "fec42f2149020bc2c53b2f36b35d18e5f17cf44e"
           test "$(git hash-object evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_PREREG.md)" = "90f9eb73891918086d95199d6523b720a001550c"
+          test "$(git hash-object evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_BASELINE_JOIN_FIX.md)" = "2c6aef96b24aa80c19a89c968c87c836e661846d"
           test "$(git hash-object evidence_v2/data/macro_context_v1/MANIFEST.json)" = "27c2071542a04c9425b47b7cdddc6e6e10f92d3a"
           test "$(git hash-object evidence_v2/data/macro_context_v1/MACRO_DAILY.csv)" = "d9c15805ef47828d15fc5126e9a8c8414e1696b2"
           test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/producer.py)" = "e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592"
@@ -60,11 +61,36 @@ jobs:
           NUMEXPR_NUM_THREADS: '2'
         run: |
           rm -rf _evidence_v2_macro_ltr
-          mkdir -p _evidence_v2_macro_ltr/panel149 _evidence_v2_macro_ltr/result
+          mkdir -p _evidence_v2_macro_ltr/panel149 _evidence_v2_macro_ltr/result _evidence_v2_macro_ltr/baseline_cp
           python evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py \
             --data evidence_v1/data/original149 \
             --cluster-data evidence_v1/data/original149 \
             --output _evidence_v2_macro_ltr/panel149
+
+      - name: Prepare frozen LTR comparator evaluation join
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          panel=pd.read_pickle('_evidence_v2_macro_ltr/panel149/RAW_FEATURE_PANEL.pkl').copy()
+          panel['signal_date']=pd.to_datetime(panel['signal_date'])
+          keys=['signal_date','ticker']
+          cols=keys+['fwd_ret_21','target_relevance']
+          if panel.duplicated(keys).any():
+              raise RuntimeError('source-only panel has duplicate comparator join keys')
+          base=pd.read_csv('evidence_v1/checkpoints/retriever_ltr_v1/OOS_PREDICTIONS.csv',parse_dates=['signal_date'])
+          if base.duplicated(keys).any():
+              raise RuntimeError('frozen LTR checkpoint has duplicate join keys')
+          joined=base.merge(panel[cols],on=keys,how='left',validate='one_to_one')
+          if joined['fwd_ret_21'].notna().sum()==0:
+              raise RuntimeError('comparator join produced no forward returns')
+          for c in ['LTR_SCORE','LTR_RANK','LTR_POSITION']:
+              if c not in joined.columns:
+                  raise RuntimeError(f'missing frozen comparator column {c}')
+          out=Path('_evidence_v2_macro_ltr/baseline_cp/OOS_PREDICTIONS.csv')
+          joined.to_csv(out,index=False)
+          print({'rows':len(joined),'dates':joined.signal_date.nunique(),'fwd21_nonnull':int(joined.fwd_ret_21.notna().sum())})
+          PY
 
       - name: Run single preregistered macro-context retriever
         run: |
@@ -72,7 +98,7 @@ jobs:
             --panel _evidence_v2_macro_ltr/panel149/RAW_FEATURE_PANEL.pkl \
             --macro evidence_v2/data/macro_context_v1/MACRO_DAILY.csv \
             --frozen-source evidence_v1/source/baseline/etf_trader_v2 \
-            --baseline-checkpoint evidence_v1/checkpoints/retriever_ltr_v1 \
+            --baseline-checkpoint _evidence_v2_macro_ltr/baseline_cp \
             --out _evidence_v2_macro_ltr/result
 
       - name: Build provenance and final manifest
@@ -88,6 +114,8 @@ jobs:
             'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
             'evaluator_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/src/retriever_macro_context_v1.py'],text=True).strip(),
             'preregistration_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_PREREG.md'],text=True).strip(),
+            'baseline_join_fix_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_BASELINE_JOIN_FIX.md'],text=True).strip(),
+            'invalid_prejoin_run':'37069284576',
             'macro_manifest_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/data/macro_context_v1/MANIFEST.json'],text=True).strip(),
             'macro_daily_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/data/macro_context_v1/MACRO_DAILY.csv'],text=True).strip(),
             'macro_manifest_sha256':h('evidence_v2/data/macro_context_v1/MANIFEST.json'),
@@ -97,10 +125,11 @@ jobs:
             'requirements_sha256':h('evidence_v1/requirements.lock.txt'),
             'retriever_checkpoint_manifest_sha256':h('evidence_v1/checkpoints/retriever_ltr_v1/CHECKPOINT_MANIFEST.json'),
             'retriever_oos_predictions_sha256':h('evidence_v1/checkpoints/retriever_ltr_v1/OOS_PREDICTIONS.csv'),
+            'joined_comparator_sha256':h('_evidence_v2_macro_ltr/baseline_cp/OOS_PREDICTIONS.csv'),
             'panel_manifest_sha256':h('_evidence_v2_macro_ltr/panel149/RAW_FEATURE_PANEL_MANIFEST.json'),
             'network_used_during_model_test':False,
             'holdout70_used':False,
-            'models_refit':'macro-context model only; frozen LTR checkpoint is comparator only',
+            'models_refit':'macro-context model only; frozen LTR scores are comparator only',
             'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,
             'scikit_learn':sklearn.__version__,'xgboost':xgboost.__version__}
           (r/'PROVENANCE.json').write_text(json.dumps(p,indent=2)+'\n')
