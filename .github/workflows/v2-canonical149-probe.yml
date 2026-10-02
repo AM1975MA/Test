@@ -30,11 +30,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh run download 36551650325 -R ${{ github.repository }} -n etf-trader-raw-149 -D _raw149
-      - name: Verify source hashes
+      - name: Verify exact canonical source bytes
         run: |
           python - <<'PY'
-          import hashlib
           from pathlib import Path
+          import subprocess
+
           exp={
             'vendor/etf_trader_v2/scripts/build_tit_r_source_only.py':'b06ae7d6960a91aa0c0896dca403f2c6b183467c',
             'vendor/etf_trader_v2/src/etf_trader/source_only/models.py':'fc642cce171facfcb92440a7708ee2428f120efe',
@@ -44,10 +45,23 @@ jobs:
             'vendor/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py':'acf83f2cee6876c89dfd9948cfbf30889af4c08e',
             'vendor/p45/v2_stage19_kernel.py':'364c16f61d1866946827626e0d8f26dab276aca4',
           }
-          # These are Git blob SHAs, not byte SHA256. Verify content identity through git object ids.
-          import subprocess
+          # Three vendored files were copied through a text API that omitted only
+          # their terminal LF. Restore it only when doing so produces the exact
+          # historical Git blob. No other source normalization is permitted.
+          terminal_lf_candidates={
+            'vendor/etf_trader_v2/scripts/build_tit_r_source_only.py',
+            'vendor/etf_trader_v2/src/etf_trader/source_only/models.py',
+            'vendor/etf_trader_v2/src/etf_trader/source_only/_xgb_worker.py',
+          }
           for p,want in exp.items():
-            got=subprocess.check_output(['git','rev-parse','HEAD:'+p],text=True).strip()
+            path=Path(p)
+            got=subprocess.check_output(['git','hash-object',p],text=True).strip()
+            if got!=want and p in terminal_lf_candidates:
+              raw=path.read_bytes()
+              if raw.endswith(b'\n'):
+                raise AssertionError((p,'unexpected mismatch despite terminal LF',got,want))
+              path.write_bytes(raw+b'\n')
+              got=subprocess.check_output(['git','hash-object',p],text=True).strip()
             print(p, got)
             assert got==want,(p,got,want)
           print('CANONICAL_SOURCE_HASH_GATE_PASS')
