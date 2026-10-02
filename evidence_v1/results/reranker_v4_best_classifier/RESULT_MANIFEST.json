@@ -1,0 +1,10 @@
+{
+  "test": "reranker_v4_best_classifier",
+  "files_sha256": {
+    "CONFIG.json": "c613e7797afb0222d91186c25db1eb59cd24e44a969907ce1322bd981c8901fa",
+    "FIT_AUDIT.csv": "72ca4ad8f6b653e3b6834e92491619193c9d3db131dd281275c7ef4ca4355459",
+    "MONTHLY.csv": "2c6f314b13dfd1ad5e5ffe70a2358c9fd4192f93ed762bd82e1a30c7a60742ca",
+    "PROVENANCE.json": "c815920313951549efe2869e42c7c15e265d12cb8b82d2e987c46b0eb17b38c8",
+    "SUMMARY.json": "40cb06ecf38a3d587dc1f867849738bf6d5ecf856c67802ec1243a79a4e89e84"
+  }
+}

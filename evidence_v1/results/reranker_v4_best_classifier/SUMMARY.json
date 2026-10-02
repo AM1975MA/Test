@@ -1,0 +1,123 @@
+{
+  "line": "Evidence V1",
+  "test": "reranker_v4_best_classifier",
+  "status": "DEVELOPMENT_EVIDENCE_REJECTED",
+  "universe": "Original149 frozen; burned development set only",
+  "reference_representation": "Original149 stable reference universe",
+  "retriever": "frozen Retriever LTR v1 OOS Top10 checkpoint; no retraining",
+  "reranker_training_rows": "historical frozen retriever OOS Top10 only",
+  "label": "binary best-in-shortlist future 21d: exactly 1 positive + 9 negatives per signal date",
+  "maturity_gate": "exit_date_21 < annual cutoff",
+  "features": "frozen Hybrid24 FEATURES_42 computed on Original149 reference + frozen LTR_POSITION",
+  "model": "XGBClassifier binary:logistic, shallow/regularized, structural class weight 9:1, single preregistered config",
+  "evaluator": "primary gate uses global full-universe 21d winner; classifier choices restricted to frozen OOS LTR Top10",
+  "config": {
+    "objective": "binary:logistic",
+    "n_estimators": 300,
+    "max_depth": 2,
+    "learning_rate": 0.02,
+    "subsample": 0.85,
+    "colsample_bytree": 0.75,
+    "min_child_weight": 20,
+    "reg_lambda": 20.0,
+    "reg_alpha": 1.0,
+    "tree_method": "hist",
+    "random_state": 211,
+    "n_jobs": 2,
+    "scale_pos_weight": 9.0,
+    "eval_metric": "logloss"
+  },
+  "primary_advancement_rule": "Top2 global-winner containment must beat frozen LTR v1 and exact Top1 global-winner rate must not fall below frozen LTR v1; CAGR and all shortlist-best diagnostics are secondary only",
+  "full": {
+    "ltr": {
+      "n": 114,
+      "top1_21d_cagr_proxy": 0.220630708412056,
+      "top1_exact_global_winner_rate": 0.08771929824561403,
+      "top2_contains_global_winner_rate": 0.13157894736842105,
+      "top3_contains_global_winner_rate": 0.18421052631578946,
+      "top1_exact_shortlist_best_rate": 0.13157894736842105,
+      "top2_contains_shortlist_best_rate": 0.21929824561403508,
+      "mean_shortlist_best_rank": 4.912280701754386,
+      "global_winner_retrievable_n": 47,
+      "conditional_top1_global_winner_rate_when_retrievable": 0.2127659574468085,
+      "conditional_top2_global_winner_rate_when_retrievable": 0.3191489361702128,
+      "margin_vs_top1_minus_top2_ret21_spearman": 0.005487940705939532
+    },
+    "reranker_v4": {
+      "n": 114,
+      "top1_21d_cagr_proxy": 0.14157085229165411,
+      "top1_exact_global_winner_rate": 0.07017543859649122,
+      "top2_contains_global_winner_rate": 0.10526315789473684,
+      "top3_contains_global_winner_rate": 0.14035087719298245,
+      "top1_exact_shortlist_best_rate": 0.14912280701754385,
+      "top2_contains_shortlist_best_rate": 0.23684210526315788,
+      "mean_shortlist_best_rank": 5.0701754385964914,
+      "global_winner_retrievable_n": 47,
+      "conditional_top1_global_winner_rate_when_retrievable": 0.1702127659574468,
+      "conditional_top2_global_winner_rate_when_retrievable": 0.2553191489361702,
+      "margin_vs_top1_minus_top2_ret21_spearman": 0.027472104655636785
+    }
+  },
+  "2017_2022": {
+    "ltr": {
+      "n": 72,
+      "top1_21d_cagr_proxy": 0.23722294298402802,
+      "top1_exact_global_winner_rate": 0.08333333333333333,
+      "top2_contains_global_winner_rate": 0.1388888888888889,
+      "top3_contains_global_winner_rate": 0.16666666666666666,
+      "top1_exact_shortlist_best_rate": 0.1527777777777778,
+      "top2_contains_shortlist_best_rate": 0.25,
+      "mean_shortlist_best_rank": 4.763888888888889,
+      "global_winner_retrievable_n": 26,
+      "conditional_top1_global_winner_rate_when_retrievable": 0.23076923076923078,
+      "conditional_top2_global_winner_rate_when_retrievable": 0.38461538461538464,
+      "margin_vs_top1_minus_top2_ret21_spearman": 0.03784809312495981
+    },
+    "reranker_v4": {
+      "n": 72,
+      "top1_21d_cagr_proxy": 0.15300736866951037,
+      "top1_exact_global_winner_rate": 0.06944444444444445,
+      "top2_contains_global_winner_rate": 0.1111111111111111,
+      "top3_contains_global_winner_rate": 0.125,
+      "top1_exact_shortlist_best_rate": 0.18055555555555555,
+      "top2_contains_shortlist_best_rate": 0.2638888888888889,
+      "mean_shortlist_best_rank": 4.902777777777778,
+      "global_winner_retrievable_n": 26,
+      "conditional_top1_global_winner_rate_when_retrievable": 0.19230769230769232,
+      "conditional_top2_global_winner_rate_when_retrievable": 0.3076923076923077,
+      "margin_vs_top1_minus_top2_ret21_spearman": 0.023409865586211335
+    }
+  },
+  "2023_2026": {
+    "ltr": {
+      "n": 42,
+      "top1_21d_cagr_proxy": 0.19270291404756024,
+      "top1_exact_global_winner_rate": 0.09523809523809523,
+      "top2_contains_global_winner_rate": 0.11904761904761904,
+      "top3_contains_global_winner_rate": 0.21428571428571427,
+      "top1_exact_shortlist_best_rate": 0.09523809523809523,
+      "top2_contains_shortlist_best_rate": 0.16666666666666666,
+      "mean_shortlist_best_rank": 5.166666666666667,
+      "global_winner_retrievable_n": 21,
+      "conditional_top1_global_winner_rate_when_retrievable": 0.19047619047619047,
+      "conditional_top2_global_winner_rate_when_retrievable": 0.23809523809523808,
+      "margin_vs_top1_minus_top2_ret21_spearman": -0.016287172838505795
+    },
+    "reranker_v4": {
+      "n": 42,
+      "top1_21d_cagr_proxy": 0.12222868700743161,
+      "top1_exact_global_winner_rate": 0.07142857142857142,
+      "top2_contains_global_winner_rate": 0.09523809523809523,
+      "top3_contains_global_winner_rate": 0.16666666666666666,
+      "top1_exact_shortlist_best_rate": 0.09523809523809523,
+      "top2_contains_shortlist_best_rate": 0.19047619047619047,
+      "mean_shortlist_best_rank": 5.357142857142857,
+      "global_winner_retrievable_n": 21,
+      "conditional_top1_global_winner_rate_when_retrievable": 0.14285714285714285,
+      "conditional_top2_global_winner_rate_when_retrievable": 0.19047619047619047,
+      "margin_vs_top1_minus_top2_ret21_spearman": 0.019528401264079086
+    }
+  },
+  "maturity_all_ok": true,
+  "decision": "REJECT: close deterministic reranker line on Original149 and move to preregistered top-k allocation/sizing"
+}
