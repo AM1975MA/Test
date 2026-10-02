@@ -1,0 +1,15 @@
+{
+  "line": "Evidence V1",
+  "branch": "research/evidence-v1",
+  "baseline_parent_commit": "68336aeca2d454f1796feab8de7748720bfc96a8",
+  "frozen_raw_source_run": 37017429560,
+  "frozen_raw_artifact_id": 11231770876,
+  "frozen_raw_artifact_digest": "sha256:7e880d80cab16abb52cb257bad79e4b04af22c1bfc1ad44e009d03a6485c306f",
+  "hybrid24_diagnostic_run": 37035270407,
+  "hybrid24_diagnostic_artifact_id": 11240321050,
+  "hybrid24_diagnostic_artifact_digest": "sha256:deb4127a221ed5c8ef62f27508e01b4f50ada3256bae54940b4edaf5af7e590a",
+  "original149_files": 151,
+  "holdout70_files": 72,
+  "data_manifest_sha256": "1efba2bc213ba26b042a9e77630fe26664343654629e658f43d314d068ba9e71",
+  "source_manifest_sha256": "cc4d315da68ec42275a7a74f05446ac6cbb484c3bd92a7861cd76805c5a94782"
+}
