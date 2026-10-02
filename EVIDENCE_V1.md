@@ -39,6 +39,18 @@ Conclusione: **LTR migliora il retrieval top-k sacrificando ranking globale; non
 
 Action `37040547189`; artifact `11241807171`; SHA256 `d139f0d31485dac1ae70c7b5fd7265887fac125626cb979e8054c18817496ead`; risultati in `evidence_v1/results/retriever_ltr_v1/`.
 
+### Checkpoint Retriever LTR v1 OOS — MATERIALIZZATO
+
+Il retriever non deve più essere riaddestrato per i test downstream già compatibili con questa versione. Il checkpoint riutilizzabile è in:
+
+`evidence_v1/checkpoints/retriever_ltr_v1/`
+
+Contiene prediction OOS, Top5, Top10, fit audit, config, validation, provenance e manifest con SHA256. Copertura OOS: **2011-01-31 → 2026-06-30**, **27,162** righe, **186** signal date. Il gate di materializzazione ha riprodotto prima del commit i conteggi certificati 2017-2026: **114** periodi, **10** winner Top1, **32** winner Top5, **47** winner Top10.
+
+Action `37047338155`; artifact `11244813213`; artifact SHA256 `2f1baed6984184e2123aa6df140c34882523b2eaf5a47a1874354e6dd5627f74`; commit checkpoint `6f966895d92773dadf8a5963ca7a848950c45504`.
+
+Regola downstream: join su `(signal_date, ticker)` al panel frozen e maturity gate indipendente prima di ogni fit.
+
 ## DIAGNOSTIC / BURNED
 
 ### Pairwise reranker v1 — SCARTATO
@@ -103,9 +115,9 @@ Vincoli:
 
 ## NEXT TEST
 
-1. Materializzare in repository il checkpoint riutilizzabile del Retriever LTR v1: prediction OOS + shortlist Top5/Top10 + fit audit, senza cambiare il modello.
-2. Test separato della sensibilità all'universo / normalizzazione su **reference universe stabile**, preregistrato e senza usare Holdout70 come promotion evidence.
-3. Solo se emerge una representation più universe-invariant, definire un reranker v3 con ipotesi nuova e singola configurazione preregistrata; niente sweep sul 149.
+1. Test preregistrato della sensibilità all'universo / normalizzazione usando **reference universe stabile** e sottouniversi Original149 -> 120/100/70, senza usare Holdout70 come promotion evidence. Misurare delta-rank, Top5 turnover, Top1 stability e cluster changes.
+2. Verificare se `features = f(asset, reference_universe)` con `selection ∈ candidate_universe` rende il producer/retriever più universe-invariant.
+3. Solo se emerge una representation più stabile, definire un reranker v3 con ipotesi nuova e singola configurazione preregistrata; niente sweep sul 149.
 4. Calibrazione confidence/sizing solo dopo un reranker che migliori stabilmente il ranking.
 5. Data-validation gate esterno per i nuovi ticker.
 6. Freeze Holdout-B e singolo test di promotion.
@@ -121,4 +133,5 @@ Vincoli:
 - Source manifest SHA256: `cc4d315da68ec42275a7a74f05446ac6cbb484c3bd92a7861cd76805c5a94782`
 - Environment: `evidence_v1/ENVIRONMENT.lock.txt`, `evidence_v1/requirements.lock.txt`
 - Frozen-data provenance: `evidence_v1/PROVENANCE.json`
+- Reusable LTR checkpoint: `evidence_v1/checkpoints/retriever_ltr_v1/`
 - Results/artifacts registry: `evidence_v1/RESULTS_REGISTRY.md`
