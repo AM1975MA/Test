@@ -6,12 +6,14 @@ Purpose: create an immutable macro-context dataset before any Evidence V2 model 
 
 ## Source series
 
-Exactly these FRED IDs are permitted:
+Exactly these FRED IDs are permitted after the documented pre-model availability correction:
 - `VIXCLS`
 - `DGS2`
 - `DGS10`
-- `BAMLH0A0HYM2`
+- `BAA10Y`
 - `DTWEXBGS`
+
+`BAA10Y` replaces the initially specified `BAMLH0A0HYM2`, which became unusable for long-history retrieval because FRED exposes only the latest three years of that licensed ICE series in 2026. The substitution is documented separately and occurred before any model fit or performance observation.
 
 Freeze interval: `2005-01-01` through `2026-06-30` inclusive.
 
@@ -22,7 +24,7 @@ Exactly six model-context features are produced:
 2. `dgs2_delta21`: 21-business-day change in 2Y yield;
 3. `dgs10_delta21`: 21-business-day change in 10Y yield;
 4. `curve_10y2y_z252`: rolling z-score of 10Y-2Y curve, 252 business days, min 126;
-5. `hy_oas_z252`: rolling z-score of HY OAS, 252 business days, min 126;
+5. `baa10y_z252`: rolling z-score of BAA10Y credit spread, 252 business days, min 126;
 6. `usd_ret21`: 21-business-day log return of broad USD index.
 
 Missing daily observations may only be forward-filled for at most 5 business days. No interpolation or future fill is permitted.
@@ -41,4 +43,4 @@ Any model using this dataset must perform an as-of join with `macro_date < signa
 
 ## Limitation recorded in advance
 
-This freezes FRED current historical market series as retrieved and is not an ALFRED vintage reconstruction. These are market-derived series with comparatively low revision risk, but any later promotion test should independently review point-in-time provenance.
+This freezes FRED current historical market series as retrieved and is not an ALFRED vintage reconstruction. These are market/rate series with comparatively low revision risk, but any later promotion test should independently review point-in-time provenance.
