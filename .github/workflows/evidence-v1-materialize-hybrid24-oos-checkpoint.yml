@@ -7,6 +7,7 @@ on:
       - '.github/workflows/evidence-v1-materialize-hybrid24-oos-checkpoint.yml'
       - 'evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PREREG.md'
       - 'evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_ARGFIX.md'
+      - 'evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PARITY_SCOPE_FIX.md'
       - 'evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_TRIGGER.txt'
   workflow_dispatch:
 
@@ -30,9 +31,10 @@ jobs:
       - name: Fail-closed frozen-state gate
         run: |
           set -euo pipefail
-          test "$(git hash-object evidence_v1/src/materialize_hybrid24_oos_checkpoint.py)" = "e34ef851dde41540ca55c572565a770c9b5c8137"
+          test "$(git hash-object evidence_v1/src/materialize_hybrid24_oos_checkpoint.py)" = "7edb2adcb1987c1a179892492664276cfaab0bf7"
           test "$(git hash-object evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PREREG.md)" = "e960342f854338b187085dbd89b47eccc2bce0f0"
           test "$(git hash-object evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_ARGFIX.md)" = "0985a16c9a3eb6edc591f04f7192b5d011ddbc12"
+          test "$(git hash-object evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PARITY_SCOPE_FIX.md)" = "8f55ccbbb2dafb7747e20e360d0f33b8653657ee"
           test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py)" = "34cc133d4d44bb06cc21363b1444865e2d8ec5c1"
           test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/scripts/build_tit_r_source_only.py)" = "136a7bebb1f63567fbfc4ffe586e54261a71b53e"
           test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py)" = "acf83f2cee6876c89dfd9948cfbf30889af4c08e"
@@ -108,7 +110,7 @@ jobs:
             --xgb-workers 2 \
             --xgb-threads-per-worker 1
 
-      - name: Rebuild canonical Hybrid24 ensemble and strategy parity
+      - name: Rebuild canonical Hybrid24 ensemble and basket runner
         env:
           ETF_TRAINER_V2_CAMPAIGN_ROOT: ${{ github.workspace }}/_evidence_v1_hybrid24
           PYTHONPATH: ${{ github.workspace }}/_evidence_v1_hybrid24/src
@@ -144,6 +146,7 @@ jobs:
             'materializer_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/src/materialize_hybrid24_oos_checkpoint.py'],text=True).strip(),
             'preregistration_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PREREG.md'],text=True).strip(),
             'technical_argfix_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_ARGFIX.md'],text=True).strip(),
+            'parity_scope_fix_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PARITY_SCOPE_FIX.md'],text=True).strip(),
             'canonical_runner_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/versions/ETF_TRAINER_V2/source/source_only_rebuild/finish_ensemble_stage19.py'],text=True).strip(),
             'patched_runner_sha256':h('_evidence_v1_hybrid24/scripts/finish_ensemble_stage19.py'),
             'hybrid_producer_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py'],text=True).strip(),
