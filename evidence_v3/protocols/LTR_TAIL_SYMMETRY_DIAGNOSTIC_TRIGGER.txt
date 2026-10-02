@@ -1,0 +1,1 @@
+Evidence V3 diagnostic-only execution marker. Source, protocol and frozen predictions are already committed and hash-gated. No trading rule, model refit or advancement gate is permitted.
