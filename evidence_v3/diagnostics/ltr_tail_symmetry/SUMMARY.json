@@ -1,0 +1,58 @@
+{
+  "line": "Evidence V3",
+  "diagnostic": "ltr_tail_symmetry",
+  "status": "DIAGNOSTIC_ONLY_NO_ADVANCEMENT_GATE",
+  "n_periods": 114,
+  "candidates_per_period": 72,
+  "winner_capture": {
+    "top1_hits": 8,
+    "top1_random_expected": 1.5833333333333333,
+    "top1_enrichment": 5.052631578947369,
+    "top5_hits": 33,
+    "top5_random_expected": 7.916666666666667,
+    "top5_enrichment": 4.168421052631579,
+    "top10_hits": 60,
+    "top10_random_expected": 15.833333333333334,
+    "top10_enrichment": 3.789473684210526
+  },
+  "loser_capture": {
+    "top1_hits": 8,
+    "top1_random_expected": 1.5833333333333333,
+    "top1_enrichment": 5.052631578947369,
+    "top5_hits": 30,
+    "top5_random_expected": 7.916666666666667,
+    "top5_enrichment": 3.789473684210526,
+    "top10_hits": 53,
+    "top10_random_expected": 15.833333333333334,
+    "top10_enrichment": 3.3473684210526313
+  },
+  "both_extremes": {
+    "top5_months": 3,
+    "top10_months": 20
+  },
+  "score_relationships": {
+    "mean_spearman_score_vs_return": -0.018372492150383918,
+    "median_spearman_score_vs_return": -0.04053315325744421,
+    "positive_month_rate_score_vs_return": 0.42105263157894735,
+    "mean_spearman_score_vs_abs_return": 0.3328283943844519,
+    "median_spearman_score_vs_abs_return": 0.33646858318862954,
+    "positive_month_rate_score_vs_abs_return": 0.9473684210526315
+  },
+  "absolute_return_concentration": {
+    "universe_mean_abs_ret21": 0.041525292154427684,
+    "top1_mean_abs_ret21": 0.07221036023104482,
+    "top5_mean_abs_ret21": 0.0702783178796156,
+    "top10_mean_abs_ret21": 0.07053949886196503,
+    "top1_vs_universe_ratio": 1.7389488787340248,
+    "top5_vs_universe_ratio": 1.6924219971351144,
+    "top10_vs_universe_ratio": 1.6987116815370478
+  },
+  "top10_tail_overlap": {
+    "mean_realized_top10_names": 2.6403508771929824,
+    "mean_realized_bottom10_names": 2.9035087719298245,
+    "months_more_positive_than_negative_tail_names": 49,
+    "months_more_negative_than_positive_tail_names": 57,
+    "months_equal_tail_counts": 8
+  },
+  "interpretation_rule": "Descriptive only. Do not select K, thresholds, buckets, directions or trading rules on Dev72 from this diagnostic."
+}

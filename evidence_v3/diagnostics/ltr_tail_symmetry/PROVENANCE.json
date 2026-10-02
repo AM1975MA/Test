@@ -1,0 +1,16 @@
+{
+  "line": "Evidence V3",
+  "diagnostic": "ltr_tail_symmetry",
+  "status": "DIAGNOSTIC_ONLY_NO_ADVANCEMENT_GATE",
+  "git_commit": "e2836f2291df115a1573219b2b06d256d23cf864",
+  "source_git_blob": "c58c93711fecfd3fc961a2705c1571b0fb25784b",
+  "protocol_git_blob": "7754ba08027d9ec1f333ac2919b4c1217ab52db5",
+  "frozen_predictions_sha256": "fafe49e44bd24a250ecb023338ef97696f79767404b281ff1d04af1f890c14b5",
+  "network_used": false,
+  "model_refit": false,
+  "trading_rule_tested": false,
+  "python": "3.13.15",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "scipy": "1.18.1"
+}

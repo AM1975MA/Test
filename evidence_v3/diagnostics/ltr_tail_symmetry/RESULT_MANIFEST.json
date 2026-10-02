@@ -1,0 +1,10 @@
+{
+  "diagnostic": "ltr_tail_symmetry",
+  "files_sha256": {
+    "BUCKET_MONTHLY.csv": "0ae1ad25297eed4da904be8c7b8e259f07a326d1ddc5ef3b59ca814a4018250f",
+    "BUCKET_SUMMARY.csv": "37e123d8fa022fad2709a7aaa0d4e40f80a36333abac2b5d2d03d0f516727afa",
+    "MONTHLY.csv": "f33af9940e38bbb1ad00792c4f9707ae6d051036674f89dfdb31ab8fd428bea0",
+    "PROVENANCE.json": "eceb0696b4245a2ee1ff85c17abe51bf50c20fa29c3ee4e64db288c3fa896700",
+    "SUMMARY.json": "40aaa5f3d5692b71a6d16e886ae8d73e73f1513771d2ae2fc691d0f4c9065ebd"
+  }
+}
