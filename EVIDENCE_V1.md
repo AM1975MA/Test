@@ -8,7 +8,7 @@ Questo file è la **source of truth** della linea Evidence V1. Prima di promuove
 3. test causale/reproducibile con artifact e metriche;
 4. questo file viene aggiornato: restano solo evidenze ancora valide; risultati smentiti/non comparabili vengono rimossi dallo stato corrente.
 
-Nessun risultato privo di source snapshot o frozen data può essere considerato Evidence V1.
+**Regola operativa:** i test Evidence V1 devono leggere sorgenti e dati dai path congelati `evidence_v1/source/` e `evidence_v1/data/`. Nessun risultato che dipenda solo da artifact temporanei, download live o codice esterno al branch può essere promosso.
 
 ## Baseline verificata
 
@@ -29,9 +29,9 @@ Nessun risultato privo di source snapshot o frozen data può essere considerato 
 - Un semplice meta-router logistic top1/top2 non risolve il problema.
 - Learning-to-Rank mostra potenziale come **retriever top-k**, non ancora come selettore top1 diretto.
 
-## Linea attiva: Evidence V1
+## Linea attiva
 
-Obiettivo: sostituire il singolo score statico con una pipeline causale e walk-forward:
+Obiettivo: pipeline causale e walk-forward:
 
 `Retriever top-k -> Pairwise reranker -> calibrated top1/top2 probability -> sizing`
 
@@ -44,15 +44,23 @@ Vincoli:
 
 ## Prossimi test
 
-1. Stabilire baseline retriever LTR su Original149 in expanding walk-forward.
-2. Costruire reranker pairwise solo su shortlist OOS mature.
-3. Calibrare probabilità top1>top2 e sizing usando solo storia OOS.
-4. Testare normalizzazione rispetto a reference universe stabile, separato dall'universo investibile.
-5. Congelare Holdout-B e usarlo una sola volta per la promotion.
+1. Baseline retriever LTR su Original149 in expanding walk-forward.
+2. Reranker pairwise solo su shortlist OOS mature.
+3. Calibrazione probabilità top1>top2 e sizing usando solo storia OOS.
+4. Normalizzazione rispetto a reference universe stabile, separato dall'universo investibile.
+5. Freeze Holdout-B e singolo test di promotion.
 
-## Provenance corrente
+## Frozen state
 
 - Branch: `research/evidence-v1`
-- Punto di partenza: commit `68336aeca2d454f1796feab8de7748720bfc96a8`
-- Diagnostica Hybrid24: Action `37035270407`, artifact `11240321050`, SHA256 `deb4127a221ed5c8ef62f27508e01b4f50ada3256bae54940b4edaf5af7e590a`.
-- Frozen raw 149+70 da materializzare nel branch Evidence V1: artifact `11231770876`.
+- Baseline frozen commit: `ea1c4e83118309bc7d4bc85f3ea93f658c687d3b`
+- Data repository paths:
+  - `evidence_v1/data/original149/`
+  - `evidence_v1/data/holdout70/`
+- Source snapshot: `evidence_v1/source/baseline/`
+- Original149 files: **151**
+- Holdout70 files: **72**
+- Data manifest SHA256: `1efba2bc213ba26b042a9e77630fe26664343654629e658f43d314d068ba9e71`
+- Source manifest SHA256: `cc4d315da68ec42275a7a74f05446ac6cbb484c3bd92a7861cd76805c5a94782`
+- Provenance: `evidence_v1/PROVENANCE.json`
+- Hybrid24 diagnostic: Action `37035270407`, artifact `11240321050`, SHA256 `deb4127a221ed5c8ef62f27508e01b4f50ada3256bae54940b4edaf5af7e590a`.
