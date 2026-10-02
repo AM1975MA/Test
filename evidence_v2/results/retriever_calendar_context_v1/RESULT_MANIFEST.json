@@ -1,0 +1,11 @@
+{
+  "test": "retriever_calendar_context_v1",
+  "files_sha256": {
+    "FIT_AUDIT.csv": "27ad96444d28ff09a00e0e3e6328a1c8435caeeed1179134dfd816189ce942c0",
+    "MONTHLY_BASELINE.csv": "c48e58e3a2df4cc4074c9b9fd9727b1f602fffb4eeb9ccc6825ad1582ee89e4c",
+    "MONTHLY_CALENDAR.csv": "804def1b592dcf8128a6c8ea12ea24e0c1373330463e0ab213210f7fff8bffbe",
+    "PREDICTIONS.csv": "07dd60dd1d2cdffae0a3f04e15e018cb3b5afb06fd67d9981fd327b304bf1b39",
+    "PROVENANCE.json": "eba4d9a8f8996ada1722ea11965610be90f6292d20706bc7623b9483ac09202f",
+    "SUMMARY.json": "1972ec5d9c6047caaeb2fa2568846b8ee8d04688e2692865df497f0031b71001"
+  }
+}
