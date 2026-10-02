@@ -4,7 +4,7 @@
 
 Evidence V1 e' chiusa. Original149 resta un development set fortemente burned e Holdout70 resta diagnostico/burned. Evidence V2 non riapre reranker, K sweep, allocation sweep o layer Hybrid24 respinti in V1.
 
-La nuova domanda generale e': **quale informazione realmente nuova, disponibile causalmente prima del segnale, puo' migliorare il retrieval cross-sectional senza riciclare varianti gia' respinte?**
+La domanda generale e': **quale informazione realmente nuova, disponibile causalmente prima del segnale, puo' migliorare il retrieval cross-sectional senza riciclare varianti gia' respinte?**
 
 ## Regole
 
@@ -17,86 +17,96 @@ La nuova domanda generale e': **quale informazione realmente nuova, disponibile 
 
 ## V2.1 — macro context — REJECT / LINEA CHIUSA
 
-### Dati congelati
+Dataset congelato: `evidence_v2/data/macro_context_v1/`.
 
-Dataset: `evidence_v2/data/macro_context_v1/`.
+Test valido:
+- run `37069663860`;
+- risultati `evidence_v2/results/retriever_macro_context_v1/`.
 
-Cinque serie FRED:
-- `VIXCLS` — CBOE VIX;
-- `DGS2` — Treasury 2Y;
-- `DGS10` — Treasury 10Y;
-- `BAA10Y` — Baa corporate spread vs Treasury 10Y;
-- `DTWEXBGS` — broad trade-weighted US dollar index.
+| Metrica | Frozen LTR | LTR + macro |
+|---|---:|---:|
+| Top1 global winner | 10/114 | 10/114 |
+| Top5 global winner | 32/114 | 32/114 |
+| Top10 global winner | 47/114 | 53/114 |
+| winner rank mediano | 13.0 | 11.5 |
+| mean IC21 | 0.0060 | -0.0017 |
+| Top1 CAGR proxy | 22.06% | 13.85% |
+| Top5-EW CAGR proxy | 20.36% | 15.40% |
 
-Sei feature preregistrate:
-- `vix_z252`;
-- `dgs2_delta21`;
-- `dgs10_delta21`;
-- `curve_10y2y_z252`;
-- `baa10y_z252`;
-- `usd_ret21`.
+Gate: Top5 FAIL; Top10 PASS; Top1 PASS; Top1 CAGR FAIL.
 
-L'iniziale `BAMLH0A0HYM2` e' stato sostituito prima di qualunque model fit valido perche' FRED nel 2026 ne rende disponibile solo una storia triennale; il quality gate aveva bloccato il freeze. La correzione di disponibilita' e' documentata in `evidence_v2/protocols/MACRO_CONTEXT_V1_CREDIT_SERIES_AVAILABILITY_FIX.md`.
+**Verdetto: REJECT.** Nessun subset delle serie, lookback alternativo, diversa trasformazione, normalizzazione o tuning vicino e' consentito su Original149.
 
-Macro freeze valido:
-- run `37069091858`;
-- artifact `11253653940`;
-- artifact SHA256 `067c8441b339cdc0365267242a86ab02d35ac90a3d95b10add17eb4db85e37e9`;
-- `MACRO_DAILY.csv` SHA256 `a07b47d11784e5895fbd59f4a416671d6708f06bd12619b963a5b6c83f1d0474`;
-- manifest SHA256 `87da30de5f534bf369ddcba7bcab5d331c6542f08b179499d61e4504543e27f2`;
-- copertura delle sei feature dal 2007: 100%.
+## V2.2 — semantic category context — REJECT / LINEA CHIUSA
 
-### Test preregistrato
+Nuova informazione: i sei valori statici e frozen di `macro_category` presenti in `evidence_v1/data/original149/universe.csv`, codificati one-hot:
+- `C01_US_BROAD_STYLE`;
+- `C02_US_SECTOR_THEME`;
+- `C03_DEVELOPED_GLOBAL`;
+- `C04_EMERGING`;
+- `C05_BONDS_CASH_CREDIT`;
+- `C06_REAL_ASSETS`.
 
-Modello identico Retriever LTR v1 (`rank:ndcg`, stessi hyperparametri, stessa label, annual expanding, maturity `exit_date_63 < cutoff`), con unica modifica `FEATURES_42 + 6 macro features`.
+Il test mantiene identici modello LTR, target, hyperparametri, annual expanding walk-forward e maturity gate; unica modifica: `FEATURES_42 + 6 category one-hot`.
 
-Allineamento macro: ultima osservazione con `macro_date < signal_date`.
+Preregistrazione: `evidence_v2/protocols/RETRIEVER_CATEGORY_CONTEXT_V1_PREREG.md`.
 
-Gate richiesto, tutti contemporaneamente:
+Run valido `37071806933`; risultati durabili in `evidence_v2/results/retriever_category_context_v1/`.
+
+Artifact:
+- id `11254929144`;
+- SHA256 `07aa9d0046cfaa4b506b429a5ccf332785f68c1b15b2a1c89e600a94b54c59a5`.
+
+| Metrica | Frozen LTR | LTR + category |
+|---|---:|---:|
+| Top1 global winner | 10/114 | 8/114 |
+| Top3 global winner | 21/114 | 20/114 |
+| Top5 global winner | 32/114 | 38/114 |
+| Top10 global winner | 47/114 | 55/114 |
+| winner rank mediano | 13.0 | 11.0 |
+| mean IC21 | 0.0060 | 0.0135 |
+| Top1 CAGR proxy | 22.06% | 12.21% |
+| Top5-EW CAGR proxy | 20.36% | 17.21% |
+
+Gate:
+- Top5 >32: PASS;
+- Top10 >47: PASS;
+- Top1 >=10: **FAIL**;
+- Top1 CAGR >=22.06%: **FAIL**.
+
+**Verdetto vincolante: REJECT.** La categoria semantica migliora la recall larga ma non la scelta estrema. Non sono consentiti category subset, encoding alternativi, embedding, interactions o model tuning vicino su Original149.
+
+## V2.3 — calendar context — ULTIMO TEST ORIGINAL149
+
+V2.3 introduce una classe informativa differente sia dalle feature tecniche/cluster, sia dal macro-context, sia dalla tassonomia semantica: **mese dell'anno noto ex-ante**.
+
+Una sola modifica ammessa:
+- aggiungere 12 indicatori binari `month_01` ... `month_12`, derivati esclusivamente da `signal_date`.
+
+Modello, target, hyperparametri, walk-forward, maturity gate e comparator restano identici al frozen LTR v1.
+
+Gate identico e preregistrato, tutti contemporaneamente:
 1. Top5 > 32/114;
 2. Top10 > 47/114;
 3. Top1 >= 10/114;
 4. Top1 CAGR proxy >= 22.0630708412%.
 
-Il primo run modello `37069284576` e' invalido per un errore tecnico del comparator: il frozen LTR checkpoint non contiene `fwd_ret_21`; il workflow e' stato corretto unendo score congelati e outcome del panel source-only sul key `(signal_date,ticker)`, come richiesto dal checkpoint stesso. Nessuna metrica era stata persistita o stampata prima del traceback. Fix documentato in `evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_BASELINE_JOIN_FIX.md`.
+**Stop rule:** V2.3 e' l'ultimo nuovo information-block test su Original149. Se fallisce, Evidence V2 viene chiusa sul development set e non si provano quarter, weekday, Fourier seasonality, alternate calendar encodings o altre varianti. Se passa, non si fanno altri test su Original149: si congela un nuovo disjoint Holdout-B prima di promotion.
 
-### Risultato valido
+## Stato ipotesi
 
-Run `37069663860`; risultati durabili in `evidence_v2/results/retriever_macro_context_v1/`.
-
-| Metrica | Frozen LTR | LTR + macro |
-|---|---:|---:|
-| Top1 global winner | 10/114 | 10/114 |
-| Top3 global winner | 21/114 | 21/114 |
-| Top5 global winner | 32/114 | 32/114 |
-| Top10 global winner | 47/114 | **53/114** |
-| winner rank mediano | 13.0 | **11.5** |
-| mean IC21 | 0.0060 | -0.0017 |
-| Top1 CAGR proxy | **22.06%** | **13.85%** |
-| Top5-EW CAGR proxy | **20.36%** | **15.40%** |
-
-Gate:
-- Top5 >32: **FAIL**;
-- Top10 >47: PASS;
-- Top1 >=10: PASS;
-- Top1 CAGR >=22.06%: **FAIL**.
-
-**Verdetto vincolante: REJECT.** Il macro-context migliora la recall profonda Top10 ma non il Top5 e deteriora materialmente il valore economico del vertice. Nessun subset delle serie, lookback alternativo, diversa trasformazione, diversa normalizzazione o tuning vicino e' consentito su Original149.
-
-## Stato ipotesi dopo V2.1
-
-1. LTR resta il retriever development di riferimento: Top5 32/114, Top10 47/114, Top1 CAGR proxy 22.06%.
-2. Il vantaggio macro osservato solo a Top10 non e' sufficiente per avanzare e non puo' essere selezionato ex-post come nuovo obiettivo.
-3. La linea macro-context e' chiusa.
-4. Qualunque V2.2 deve aggiungere una **classe informativa diversa** dalle feature tecniche/cluster gia' presenti e dal macro-context appena respinto.
-5. Se non esiste una classe informativa nuova con provenance causale forte, e' preferibile fermare la ricerca su Original149 piuttosto che moltiplicare tentativi.
+1. Frozen LTR resta il riferimento: Top5 32/114, Top10 47/114, Top1 10/114, Top1 CAGR 22.06%.
+2. Macro context: respinto; migliora solo Top10 e peggiora l'economia del vertice.
+3. Semantic category context: respinto; migliora Top5/Top10 ma peggiora Top1 e CAGR.
+4. V2.3 calendar context e' l'ultimo test Original149 consentito.
+5. Holdout70 resta escluso da promotion.
 
 ## Frozen state V2
 
 - Branch: `research/evidence-v2`.
 - V1 closure base commit: `071090ba85bfb4da9dff2b4b7d0a982b16d45aff`.
-- Macro dataset: `evidence_v2/data/macro_context_v1/`.
-- Macro result: `evidence_v2/results/retriever_macro_context_v1/`.
-- Valid macro test run: `37069663860`.
+- Valid macro run: `37069663860`.
+- Valid category run: `37071806933`.
+- Category result commit before this source-of-truth update: `2dd67f8a86db610a6757865e09c83f73a09f80dc`.
 - Original149: burned development only.
 - Holdout70: burned diagnostic only, never promotion.
