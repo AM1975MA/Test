@@ -65,9 +65,12 @@ Model: one single preregistered `XGBRanker` configuration, no sweep:
 
 Training schedule: annual expanding walk-forward. Prediction year `Y` may use only historical OOS shortlist rows with `exit_date_63 < Y-01-01`.
 
-Test source SHA256 frozen before execution:
+Fail-closed source identity for this preregistered test:
 
-`415f47efcf274686d7c1d3bf5c0016c04ee7bdbe6d5e3e0d813102cd7654e2b6`
+- Git blob SHA of `evidence_v1/src/reranker_v2_nonlinear.py`:
+  `6a3ad3c33cec375b18dc871ec971a947676cf067`
+
+The workflow must compare `git hash-object` of the executed test source to this exact blob before execution. Runtime provenance will additionally record SHA256.
 
 ## Primary comparison
 
