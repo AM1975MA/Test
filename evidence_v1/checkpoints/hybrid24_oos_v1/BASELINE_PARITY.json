@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "engineering_gate_scope": "canonical source-only Hybrid24 500x24 basket runner",
+  "full_highcagr24_mean_basket_cagr_diagnostic": 0.2236175650156307,
+  "full_universe_v2_31_60_used_as_gate": false,
+  "full_universe_v2_reference_cagr": 0.31603994562922105,
+  "reason_not_compared": "different basket statistic and different V2 allocation rule",
+  "canonical_basket_seed": 20260721,
+  "canonical_basket_sha256": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+  "source_only_contract": {
+    "historical_scores_consumed": false,
+    "historical_paths_consumed": false,
+    "historical_cluster_membership_consumed": false,
+    "historical_basket_membership_consumed": false,
+    "basket_membership_generated_from_source": true,
+    "titanium_maturity_safe": true,
+    "cluster_source_causal": true,
+    "ensemble_maturity_safe": true
+  },
+  "signal_dates": 114,
+  "rows": 16986,
+  "tickers": 149,
+  "min_signal_date": "2017-01-31",
+  "max_signal_date": "2026-06-30",
+  "cascade_metrics_observed": false
+}

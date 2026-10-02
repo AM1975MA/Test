@@ -1,0 +1,17 @@
+{
+  "checkpoint": "hybrid24_oos_v1",
+  "purpose": "materialize canonical source-only Hybrid24 OOS score; no LTR/cascade input consumed",
+  "source_inputs_sha256": {
+    "ensemble": "2cd62789999935a0fca3e2606a5a67d41f89ea884612e1a4d6ba332d28b578fb",
+    "fit_audit": "2f62b0512d4be762d9d1cbb11f881e71f7eb3f2e32fef9cd1f5650a7ade6359d",
+    "tit_r": "9fdc99dd750653b34ecb5b29dfb5989c71e4ae010483f6e8431e923c9c320f6f",
+    "canonical_basket_result": "7881b6a721c1b96a0576cd7e9bda79b3bbebcb922931380fdb4e9530932efdc8"
+  },
+  "files_sha256": {
+    "OOS_SCORES.csv": "661feb2b9b80997e78e51b4701a2f4d9501b1ac390ceb331d59bec837b0db4f7",
+    "FIT_AUDIT.csv": "2f62b0512d4be762d9d1cbb11f881e71f7eb3f2e32fef9cd1f5650a7ade6359d",
+    "CALENDAR.csv": "f3bee93ff5eb81fc4dafd4445db00a52c246df4520d3d8c7662cd44126ad1b70",
+    "BASELINE_PARITY.json": "2b26185285a38782b502657c8d7c7d430d18e3a649ccea1567331806b940bf06",
+    "PROVENANCE.json": "34238346e65923a944170280b36450023e7a3e17f341440ec9461b27db4ab0b2"
+  }
+}
