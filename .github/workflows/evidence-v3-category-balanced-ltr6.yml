@@ -1,0 +1,97 @@
+name: Evidence V3 category-balanced LTR6
+
+on:
+  push:
+    branches: [ research/evidence-v3 ]
+    paths:
+      - 'evidence_v3/protocols/CATEGORY_BALANCED_LTR6_TRIGGER.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  category-balanced-ltr6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+
+      - name: Fail-closed preregistration and frozen-input gate
+        run: |
+          set -euo pipefail
+          test "$(git hash-object evidence_v3/src/category_balanced_ltr6.py)" = "5dd5e400c3c267e353b139cfb34b38024694c96c"
+          test "$(git hash-object evidence_v3/protocols/CATEGORY_BALANCED_LTR6_PREREG.md)" = "6c49036f9468c57de5a15510ab325476389efc4f"
+          echo "412e577eab42cf9978fe57d6e42c62f9959aa0e46667ee5070aa3a788b9b5778  evidence_v3/data/dev72/universe.csv" | sha256sum -c -
+          echo "fafe49e44bd24a250ecb023338ef97696f79767404b281ff1d04af1f890c14b5  evidence_v3/results/ltr_baseline_transfer_dev72/PREDICTIONS.csv" | sha256sum -c -
+          echo "fb898837f35c2b50febddfd575dffe2c56d7bec43ab7d60252afb2ebb0576fa9  evidence_v3/results/ltr_baseline_transfer_dev72/SUMMARY.json" | sha256sum -c -
+          python -m py_compile evidence_v3/src/category_balanced_ltr6.py
+          test ! -e evidence_v3/results/category_balanced_ltr6
+
+      - name: Install pinned evaluation environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 pandas==2.2.3
+
+      - name: Run single preregistered category-balanced LTR6 test
+        run: |
+          rm -rf _evidence_v3_ltr6
+          mkdir -p _evidence_v3_ltr6/result
+          python evidence_v3/src/category_balanced_ltr6.py \
+            --predictions evidence_v3/results/ltr_baseline_transfer_dev72/PREDICTIONS.csv \
+            --universe evidence_v3/data/dev72/universe.csv \
+            --out _evidence_v3_ltr6/result
+
+      - name: Build provenance and final manifest
+        run: |
+          python - <<'PY'
+          import hashlib,json,platform,subprocess
+          from pathlib import Path
+          import numpy,pandas
+          def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          r=Path('_evidence_v3_ltr6/result')
+          p={
+            'line':'Evidence V3','test':'category_balanced_ltr6',
+            'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'evaluator_git_blob':subprocess.check_output(['git','hash-object','evidence_v3/src/category_balanced_ltr6.py'],text=True).strip(),
+            'preregistration_git_blob':subprocess.check_output(['git','hash-object','evidence_v3/protocols/CATEGORY_BALANCED_LTR6_PREREG.md'],text=True).strip(),
+            'dev72_universe_sha256':h('evidence_v3/data/dev72/universe.csv'),
+            'frozen_predictions_sha256':h('evidence_v3/results/ltr_baseline_transfer_dev72/PREDICTIONS.csv'),
+            'baseline_summary_sha256':h('evidence_v3/results/ltr_baseline_transfer_dev72/SUMMARY.json'),
+            'network_used_during_test':False,
+            'model_refit':False,
+            'original149_used':False,'holdout70_used':False,'eu110_eu120_used':False,
+            'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__}
+          (r/'PROVENANCE.json').write_text(json.dumps(p,indent=2)+'\n')
+          files=sorted(x.name for x in r.iterdir() if x.is_file() and x.name!='RESULT_MANIFEST.json')
+          (r/'RESULT_MANIFEST.json').write_text(json.dumps({'test':'category_balanced_ltr6','files_sha256':{f:h(r/f) for f in files}},indent=2)+'\n')
+          print(json.dumps(p,indent=2))
+          print((r/'SUMMARY.json').read_text())
+          PY
+
+      - name: Persist Evidence V3 category-balanced result
+        run: |
+          set -euo pipefail
+          mkdir -p evidence_v3/results/category_balanced_ltr6
+          cp _evidence_v3_ltr6/result/* evidence_v3/results/category_balanced_ltr6/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence_v3/results/category_balanced_ltr6
+          git commit -m "Record Evidence V3 category-balanced LTR6 result"
+          git pull --rebase origin research/evidence-v3
+          git push origin HEAD:research/evidence-v3
+
+      - name: Upload Evidence V3 category-balanced result
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-v3-category-balanced-ltr6
+          retention-days: 90
+          if-no-files-found: error
+          path: evidence_v3/results/category_balanced_ltr6/
