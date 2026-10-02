@@ -18,7 +18,7 @@ SERIES = {
     "VIXCLS": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS&cosd=2005-01-01&coed=2026-06-30",
     "DGS2": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2&cosd=2005-01-01&coed=2026-06-30",
     "DGS10": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2005-01-01&coed=2026-06-30",
-    "BAMLH0A0HYM2": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=2005-01-01&coed=2026-06-30",
+    "BAA10Y": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y&cosd=2005-01-01&coed=2026-06-30",
     "DTWEXBGS": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS&cosd=2005-01-01&coed=2026-06-30",
 }
 FEATURES = [
@@ -26,7 +26,7 @@ FEATURES = [
     "dgs2_delta21",
     "dgs10_delta21",
     "curve_10y2y_z252",
-    "hy_oas_z252",
+    "baa10y_z252",
     "usd_ret21",
 ]
 
@@ -118,7 +118,7 @@ def main() -> int:
     feat["dgs2_delta21"] = raw["DGS2"] - raw["DGS2"].shift(21)
     feat["dgs10_delta21"] = raw["DGS10"] - raw["DGS10"].shift(21)
     feat["curve_10y2y_z252"] = zscore(curve)
-    feat["hy_oas_z252"] = zscore(raw["BAMLH0A0HYM2"])
+    feat["baa10y_z252"] = zscore(raw["BAA10Y"])
     feat["usd_ret21"] = np.log(raw["DTWEXBGS"] / raw["DTWEXBGS"].shift(21))
 
     daily = pd.concat([raw, feat], axis=1)
@@ -147,7 +147,7 @@ def main() -> int:
             "dgs2_delta21": "DGS2 minus 21-business-day lag",
             "dgs10_delta21": "DGS10 minus 21-business-day lag",
             "curve_10y2y_z252": "rolling 252-business-day z-score of DGS10-DGS2, min 126",
-            "hy_oas_z252": "rolling 252-business-day z-score of BAMLH0A0HYM2, min 126",
+            "baa10y_z252": "rolling 252-business-day z-score of BAA10Y, min 126",
             "usd_ret21": "log(DTWEXBGS / 21-business-day lag)",
         },
         "alignment_rule_for_tests": "as-of join using only macro date strictly less than signal_date",
