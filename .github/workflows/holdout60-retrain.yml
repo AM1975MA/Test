@@ -53,6 +53,7 @@ jobs:
           sed -i 's/len(meta)==120/len(meta)==60/g' holdout60/run_holdout60_retrain.py
           sed -i 's/UNIVERSE_120.csv/FROZEN_UNIVERSE.csv/g' holdout60/run_holdout60_retrain.py
           sed -i 's/len(target)==120/len(target)==60/g' holdout60/run_holdout60_retrain.py
+          sed -i 's/target.ticker.nunique()==120/target.ticker.nunique()==60/g' holdout60/run_holdout60_retrain.py
           sed -i 's/training_target_overlap":120/training_target_overlap":60/g' holdout60/run_holdout60_retrain.py
           sed -i 's/120 ETF expanding walk-forward/60 ETF expanding walk-forward/g' holdout60/run_holdout60_retrain.py
           sed -i 's/P45_EU120_RETRAIN_COMPLETE/HOLDOUT60_RETRAIN_COMPLETE/g' holdout60/run_holdout60_retrain.py
