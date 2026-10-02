@@ -1,0 +1,109 @@
+name: Evidence V1 bootstrap freeze
+
+on:
+  push:
+    branches: [ research/evidence-v1 ]
+    paths:
+      - '.github/workflows/evidence-v1-bootstrap-freeze.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v1
+          fetch-depth: 1
+
+      - name: Restore exact frozen 149+70 raw artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf _evidence_raw
+          mkdir -p _evidence_raw
+          gh run download 37017429560 -R ${{ github.repository }} \
+            -n v2-controlled-fresh-raw-149-70 -D _evidence_raw
+          test -f _evidence_raw/_fresh149/etf_trader_raw/manifest.json
+          test -f _evidence_raw/_fresh70/raw_ticker_csv/manifest.json
+
+      - name: Freeze data and productive source snapshot in repository
+        run: |
+          rm -rf evidence_v1/data evidence_v1/source/baseline
+          mkdir -p evidence_v1/data/original149 evidence_v1/data/holdout70 evidence_v1/source/baseline
+
+          cp -a _evidence_raw/_fresh149/etf_trader_raw/. evidence_v1/data/original149/
+          cp -a _evidence_raw/_fresh70/raw_ticker_csv/. evidence_v1/data/holdout70/
+
+          cp -a vendor/etf_trader_v2 evidence_v1/source/baseline/etf_trader_v2
+          mkdir -p evidence_v1/source/baseline/p45
+          cp vendor/p45/v2_stage19_kernel.py evidence_v1/source/baseline/p45/v2_stage19_kernel.py
+          cp holdout70/hybrid24_top_tail_diagnostic.py evidence_v1/source/baseline/hybrid24_top_tail_diagnostic.py
+          cp holdout70/v2_replay_only_from_checkpoint.py evidence_v1/source/baseline/v2_replay_only_from_checkpoint.py
+
+      - name: Build immutable manifests
+        run: |
+          (
+            cd evidence_v1/data
+            find . -type f -print0 | sort -z | xargs -0 sha256sum
+          ) > evidence_v1/DATA_MANIFEST_SHA256.txt
+
+          (
+            cd evidence_v1/source
+            find . -type f -print0 | sort -z | xargs -0 sha256sum
+          ) > evidence_v1/SOURCE_MANIFEST_SHA256.txt
+
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+
+          def h(p):
+              x=hashlib.sha256()
+              with open(p,'rb') as f:
+                  for b in iter(lambda:f.read(1<<20), b''):
+                      x.update(b)
+              return x.hexdigest()
+
+          prov={
+            'line':'Evidence V1',
+            'branch':'research/evidence-v1',
+            'baseline_parent_commit':'68336aeca2d454f1796feab8de7748720bfc96a8',
+            'frozen_raw_source_run':37017429560,
+            'frozen_raw_artifact_id':11231770876,
+            'frozen_raw_artifact_digest':'sha256:7e880d80cab16abb52cb257bad79e4b04af22c1bfc1ad44e009d03a6485c306f',
+            'hybrid24_diagnostic_run':37035270407,
+            'hybrid24_diagnostic_artifact_id':11240321050,
+            'hybrid24_diagnostic_artifact_digest':'sha256:deb4127a221ed5c8ef62f27508e01b4f50ada3256bae54940b4edaf5af7e590a',
+            'original149_files':len(list(Path('evidence_v1/data/original149').glob('*.csv'))),
+            'holdout70_files':len(list(Path('evidence_v1/data/holdout70').glob('*.csv'))),
+            'data_manifest_sha256':h('evidence_v1/DATA_MANIFEST_SHA256.txt'),
+            'source_manifest_sha256':h('evidence_v1/SOURCE_MANIFEST_SHA256.txt'),
+          }
+          Path('evidence_v1/PROVENANCE.json').write_text(json.dumps(prov, indent=2)+'\n')
+          print(json.dumps(prov, indent=2))
+          PY
+
+      - name: Verify frozen counts and manifests
+        run: |
+          test "$(find evidence_v1/data/original149 -maxdepth 1 -name '*.csv' | wc -l)" -ge 150
+          test "$(find evidence_v1/data/holdout70 -maxdepth 1 -name '*.csv' | wc -l)" -ge 71
+          test -s evidence_v1/DATA_MANIFEST_SHA256.txt
+          test -s evidence_v1/SOURCE_MANIFEST_SHA256.txt
+          test -s evidence_v1/PROVENANCE.json
+
+      - name: Commit Evidence V1 frozen baseline
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add evidence_v1
+          if git diff --cached --quiet; then
+            echo 'No freeze changes to commit.'
+          else
+            git commit -m 'Freeze Evidence V1 baseline source and ticker data'
+            git push origin HEAD:research/evidence-v1
+          fi
