@@ -1,1 +1,1 @@
-Evidence V2 macro-context freeze orchestration marker v2. Scientific series, transformations and gates remain unchanged.
+Evidence V2 macro-context freeze orchestration marker v3. Corrected BAA10Y credit series is frozen before any model test; scientific gate unchanged.
