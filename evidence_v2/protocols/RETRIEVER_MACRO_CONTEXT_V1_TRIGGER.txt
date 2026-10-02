@@ -1,1 +1,1 @@
-Evidence V2 retriever macro-context v1 execution marker. Source, preregistration and frozen macro dataset are already committed and hash-gated.
+Evidence V2 retriever macro-context v1 execution marker v2. Comparator-only panel join fix is documented; scientific source, macro data and primary gate remain unchanged.
