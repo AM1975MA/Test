@@ -1,0 +1,96 @@
+name: Holdout70 Annual-only diagnostic
+
+on:
+  push:
+    branches: [ research/holdout60-20261002 ]
+    paths: [ '.github/workflows/holdout70-annual-only.yml' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  annual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install requirements
+        run: python -m pip install -r vendor/etf_trader_v2/requirements.txt 'pandas==2.2.3'
+      - name: Retrieve frozen inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36994684932 -R ${{ github.repository }} -n holdout70-frozen-20260731 -D _holdout70
+          gh run download 36551650325 -R ${{ github.repository }} -n etf-trader-raw-149 -D _raw149
+      - name: Prepare source-exact runner functions
+        run: |
+          cp _holdout70/raw_ticker_csv/universe.csv holdout70/FROZEN_UNIVERSE.csv
+          cp europe120/eu120_retrain/run_eu120_retrain.py holdout70/run_holdout70_retrain.py
+          cp europe120/eu120_retrain/build_ma3_panel_causal.py holdout70/build_ma3_panel_causal.py
+          cp europe120/eu120_retrain/bocpd_router.py holdout70/bocpd_router.py
+          sed -i 's/FROZEN_EU120_ROOT/FROZEN_HOLDOUT70_ROOT/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/len(meta)==120/len(meta)==70/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/UNIVERSE_120.csv/FROZEN_UNIVERSE.csv/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/len(target)==120/len(target)==70/g' holdout70/run_holdout70_retrain.py
+          sed -i 's/target.ticker.nunique()==120/target.ticker.nunique()==70/g' holdout70/run_holdout70_retrain.py
+      - name: Fit Annual only and replay
+        env:
+          ETF_TRADER_ROOT: ${{ github.workspace }}/vendor/etf_trader_v2
+          FROZEN_HOLDOUT70_ROOT: ${{ github.workspace }}/_holdout70
+          FROZEN_149_ROOT: ${{ github.workspace }}/_raw149
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python - <<'PY'
+          import json, os, subprocess, sys
+          from pathlib import Path
+          import numpy as np, pandas as pd
+          import holdout70.run_holdout70_retrain as r
+
+          target=pd.read_csv(r.ROOT/'FROZEN_UNIVERSE.csv')
+          assert len(target)==70 and target.ticker.nunique()==70
+          refs=pd.DataFrame({'ticker':r.REF_TICKERS,'macro_category':['REF_US','REF_CREDIT','REF_BOND','REF_CASH','REF_CASH']})
+          r.download_folder(target,r.RAW_TRAIN); r.download_folder(refs,r.RAW_REF)
+          env=os.environ.copy(); env['PYTHONPATH']=str(r.ETF/'src')
+          subprocess.run([sys.executable,str(r.ROOT/'build_ma3_panel_causal.py'),'--data',str(r.RAW_TRAIN),'--output',str(r.MA3_TRAIN)],check=True,env=env,cwd=r.ETF)
+          panel=pd.read_pickle(r.MA3_TRAIN/'RAW_FEATURE_PANEL.pkl')
+          panel['signal_date']=pd.to_datetime(panel.signal_date);panel['exit_date_63']=pd.to_datetime(panel.exit_date_63)
+          tickers=target.ticker.astype(str).tolist(); cats=dict(zip(target.ticker,target.macro_category))
+          tmats,tcats,tdates,tcomp,ttail=r.build_titanium_parts(r.RAW_TRAIN,market_spy_raw=r.RAW_REF,candidates=tickers)
+          train_parts=r.add_train_labels(tcomp,ttail,tmats,tdates)
+          target_macro,target_mfeatures=r.dummy_macro(ttail.copy(),cats)
+          target_parts=(tcomp.copy(),ttail.copy(),target_macro,target_mfeatures)
+          signals=pd.DatetimeIndex(sorted(set(tcomp.signal_date)))
+          signals=signals[(signals>=r.FIRST_SIGNAL)&(signals<=r.LAST_SIGNAL)]
+          base=r.fit_titanium_cross(train_parts,target_parts,cats,'annual',signals,r.MODELS/'annual_only')
+          ma=r.fit_ma3_cross(panel,panel,'annual',signals,r.MODELS/'annual_only')
+          p=base.merge(ma,on=['signal_date','ticker'],how='inner')
+          cand,_,_=r.load_ticker_csv_folder(r.RAW_TARGET); refm,_,_=r.load_ticker_csv_folder(r.RAW_REF)
+          cal=r.calendar_from_open(cand['Open'],signals).dropna(subset=['exit_date']).reset_index(drop=True)
+          p=p[p.signal_date.isin(cal.signal_date)].copy()
+          s,pm=r.score_from_panel(p,cal,tickers,False)
+          m,E,T,ds=r.replay(s,pm,cal,cand,refm,tickers)
+          C=cand['Close'].reindex(ds).ffill().bfill();eq=(C/C.iloc[0]).mean(axis=1).to_numpy(float)
+          result={'status':'HOLDOUT70_ANNUAL_ONLY_COMPLETE','period':[str(ds.min().date()),str(ds.max().date())],'target_count':70,'annual':m,'equal_weight_buy_hold':r.metrics(eq),'prediction_rows':int(len(p))}
+          out=r.OUT/'ANNUAL_ONLY_RESULT.json';out.write_text(json.dumps(result,indent=2)+'\n')
+          p.to_csv(r.OUT/'ANNUAL_ONLY_PREDICTIONS.csv',index=False)
+          print('ANNUAL_ONLY_RESULT',json.dumps(result,indent=2),flush=True)
+          PY
+      - name: Show result
+        run: cat holdout70/results/ANNUAL_ONLY_RESULT.json
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: holdout70-annual-only-result
+          path: |
+            holdout70/results/ANNUAL_ONLY_RESULT.json
+            holdout70/results/ANNUAL_ONLY_PREDICTIONS.csv
+          if-no-files-found: error
+          retention-days: 30
