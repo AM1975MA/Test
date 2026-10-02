@@ -1,0 +1,8 @@
+{
+  "test": "allocation_v1_ltr_ew5",
+  "files_sha256": {
+    "MONTHLY.csv": "71a3bb6bf505c405175ca3a969a6be52d8f22da8fa41de5135818b7f7a9af9ef",
+    "PROVENANCE.json": "b49f7caa2f41ba2ac0d26004b6e9d63fe130bca3759d455dc65dfc52865f1a44",
+    "SUMMARY.json": "6a2532bb057780da0a39a6234e1fcf4eddc8291fcd2e9aeb0e38d704fd851ff4"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "line": "Evidence V1",
+  "test": "allocation_v1_ltr_ew5",
+  "status": "DEVELOPMENT_EVIDENCE_REJECTED",
+  "universe": "Original149 frozen; burned development set only",
+  "retriever": "frozen Retriever LTR v1 OOS Top5 checkpoint; no retraining",
+  "allocation": "equal weight 20% each across frozen LTR Top5; monthly signal dates; 21d open-to-open forward return proxy",
+  "score_use": "LTR score used only to define frozen Top5/Top1; no score-proportional sizing and no margin confidence",
+  "comparators": "frozen LTR Top1 and equal-weight eligible OOS candidate universe on same dates/returns",
+  "primary_advancement_rule": "EW5 full-window CAGR must strictly exceed frozen LTR Top1 CAGR; EW5 max drawdown must be no worse than Top1; and EW5 CAGR must exceed universe-EW. Subperiod and other risk metrics are diagnostic only.",
+  "full": {
+    "ltr_top1": {
+      "n": 114,
+      "cagr": 0.220630708412056,
+      "annualized_vol": 0.37474214741462597,
+      "sharpe_rf0": 0.7140546721291775,
+      "max_drawdown": -0.5147222930936663,
+      "calmar": 0.42864028112321695,
+      "positive_period_rate": 0.5877192982456141,
+      "worst_period": -0.3500795104083475,
+      "best_period": 0.49959842267627663,
+      "mean_period_return": 0.02229886510042789
+    },
+    "ltr_ew5": {
+      "n": 114,
+      "cagr": 0.20360068077564386,
+      "annualized_vol": 0.2496963194933448,
+      "sharpe_rf0": 0.8689890025604848,
+      "max_drawdown": -0.31940798856682484,
+      "calmar": 0.6374313982852925,
+      "positive_period_rate": 0.5877192982456141,
+      "worst_period": -0.22796222303174263,
+      "best_period": 0.27268936262789245,
+      "mean_period_return": 0.01808194630162882
+    },
+    "universe_ew": {
+      "n": 114,
+      "cagr": 0.09916585304074377,
+      "annualized_vol": 0.12721535261942624,
+      "sharpe_rf0": 0.8097753194241832,
+      "max_drawdown": -0.19282088203607428,
+      "calmar": 0.5142900083933395,
+      "positive_period_rate": 0.6491228070175439,
+      "worst_period": -0.14630294460703766,
+      "best_period": 0.10904798877528823,
+      "mean_period_return": 0.008584654400254667
+    },
+    "mean_ew5_name_turnover": 0.6725663716814161,
+    "top5_contains_global_winner_rate": 0.2807017543859649
+  },
+  "2017_2022": {
+    "ltr_top1": {
+      "n": 72,
+      "cagr": 0.23722294298402802,
+      "annualized_vol": 0.3670976140342497,
+      "sharpe_rf0": 0.7601784870298719,
+      "max_drawdown": -0.5147222930936663,
+      "calmar": 0.4608755947954628,
+      "positive_period_rate": 0.5972222222222222,
+      "worst_period": -0.3500795104083475,
+      "best_period": 0.49959842267627663,
+      "mean_period_return": 0.023254975735735983
+    },
+    "ltr_ew5": {
+      "n": 72,
+      "cagr": 0.16256802139044346,
+      "annualized_vol": 0.2559745095416046,
+      "sharpe_rf0": 0.7157738572129114,
+      "max_drawdown": -0.31940798856682484,
+      "calmar": 0.5089666733755842,
+      "positive_period_rate": 0.5555555555555556,
+      "worst_period": -0.22796222303174263,
+      "best_period": 0.27268936262789245,
+      "mean_period_return": 0.015268321836898129
+    },
+    "universe_ew": {
+      "n": 72,
+      "cagr": 0.08799883421527088,
+      "annualized_vol": 0.14352243119571953,
+      "sharpe_rf0": 0.6612805052311245,
+      "max_drawdown": -0.19282088203607428,
+      "calmar": 0.4563760588897599,
+      "positive_period_rate": 0.6388888888888888,
+      "worst_period": -0.14630294460703766,
+      "best_period": 0.10904798877528823,
+      "mean_period_return": 0.007909048817758727
+    },
+    "mean_ew5_name_turnover": 0.6788732394366197,
+    "top5_contains_global_winner_rate": 0.2777777777777778
+  },
+  "2023_2026": {
+    "ltr_top1": {
+      "n": 42,
+      "cagr": 0.19270291404756024,
+      "annualized_vol": 0.3919503753318557,
+      "sharpe_rf0": 0.6325234906449687,
+      "max_drawdown": -0.3133049808392119,
+      "calmar": 0.6150649553396516,
+      "positive_period_rate": 0.5714285714285714,
+      "worst_period": -0.24564389381472118,
+      "best_period": 0.3747638837025058,
+      "mean_period_return": 0.02065981829704259
+    },
+    "ltr_ew5": {
+      "n": 42,
+      "cagr": 0.2773400044655423,
+      "annualized_vol": 0.2406625900769017,
+      "sharpe_rf0": 1.1421119927062486,
+      "max_drawdown": -0.1821232546870638,
+      "calmar": 1.5228148922667026,
+      "positive_period_rate": 0.6428571428571429,
+      "worst_period": -0.1660675402682419,
+      "best_period": 0.19797382309609687,
+      "mean_period_return": 0.02290530252688144
+    },
+    "universe_ew": {
+      "n": 42,
+      "cagr": 0.1185766231931813,
+      "annualized_vol": 0.09437677492335392,
+      "sharpe_rf0": 1.2388008053970787,
+      "max_drawdown": -0.10229392057134368,
+      "calmar": 1.1591756629415864,
+      "positive_period_rate": 0.6666666666666666,
+      "worst_period": -0.056807127681574685,
+      "best_period": 0.067129788295726,
+      "mean_period_return": 0.00974283539881914
+    },
+    "mean_ew5_name_turnover": 0.6619047619047619,
+    "top5_contains_global_winner_rate": 0.2857142857142857
+  },
+  "decision": "REJECT simple EW5 allocation; do not sweep K ex post; reassess allocation hypothesis before another configuration"
+}
