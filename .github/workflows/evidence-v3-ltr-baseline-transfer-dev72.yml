@@ -1,0 +1,138 @@
+name: Evidence V3 LTR baseline transfer Dev72
+
+on:
+  push:
+    branches: [ research/evidence-v3 ]
+    paths:
+      - 'evidence_v3/protocols/LTR_BASELINE_TRANSFER_DEV72_TRIGGER.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ltr-transfer-dev72:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+
+      - name: Fail-closed preregistration and frozen-data gate
+        run: |
+          set -euo pipefail
+          test "$(git hash-object evidence_v3/src/ltr_baseline_transfer_dev72.py)" = "d218e1332267f0a10c66c17c11a8a06113809463"
+          test "$(git hash-object evidence_v3/protocols/LTR_BASELINE_TRANSFER_DEV72_PREREG.md)" = "5f78cb1893cbcc3e529bbc584029023811b386c5"
+          test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py)" = "34cc133d4d44bb06cc21363b1444865e2d8ec5c1"
+          test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/producer.py)" = "e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592"
+          echo "2856f629c06a5e66d6229756cdc721858b30c0e35b8ed78cc90a45872fe63b3c  evidence_v3/data/dev72/manifest.json" | sha256sum -c -
+          echo "412e577eab42cf9978fe57d6e42c62f9959aa0e46667ee5070aa3a788b9b5778  evidence_v3/data/dev72/universe.csv" | sha256sum -c -
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          root=Path('evidence_v3/data/dev72')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['selected_count']==72
+          assert m['intersection_with_burned_union']==[]
+          assert m['performance_used_for_selection'] is False
+          for ticker,want in m['file_sha256'].items():
+              p=root/'raw_ticker_csv'/f'{ticker}.csv'
+              got=hashlib.sha256(p.read_bytes()).hexdigest()
+              if got != want: raise SystemExit(f'raw hash mismatch {ticker}: {got} != {want}')
+          print('Dev72 raw hashes: OK')
+          PY
+          echo "01305fe62203c7b7895d95836267c4288f86d2c5a763ce7070c9c3d3d9f807ae  evidence_v1/requirements.lock.txt" | sha256sum -c -
+          python -m py_compile evidence_v3/src/ltr_baseline_transfer_dev72.py
+          test ! -e evidence_v3/results/ltr_baseline_transfer_dev72
+
+      - name: Install locked numerical environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r evidence_v1/requirements.lock.txt
+
+      - name: Stage frozen Dev72 in canonical raw format
+        run: |
+          rm -rf _evidence_v3_ltr_transfer
+          mkdir -p _evidence_v3_ltr_transfer/data _evidence_v3_ltr_transfer/panel _evidence_v3_ltr_transfer/result
+          cp evidence_v3/data/dev72/universe.csv _evidence_v3_ltr_transfer/data/universe.csv
+          cp evidence_v3/data/dev72/raw_ticker_csv/*.csv _evidence_v3_ltr_transfer/data/
+
+      - name: Rebuild Dev72 canonical MA3 source-only panel
+        env:
+          PYTHONPATH: ${{ github.workspace }}/evidence_v1/source/baseline/etf_trader_v2/src
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py \
+            --data _evidence_v3_ltr_transfer/data \
+            --cluster-data _evidence_v3_ltr_transfer/data \
+            --output _evidence_v3_ltr_transfer/panel
+
+      - name: Run preregistered frozen-LTR transfer test
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python evidence_v3/src/ltr_baseline_transfer_dev72.py \
+            --panel _evidence_v3_ltr_transfer/panel/RAW_FEATURE_PANEL.pkl \
+            --frozen-source evidence_v1/source/baseline/etf_trader_v2 \
+            --out _evidence_v3_ltr_transfer/result
+
+      - name: Build provenance and result manifest
+        run: |
+          python - <<'PY'
+          import hashlib,json,platform,subprocess
+          from pathlib import Path
+          import numpy,pandas,sklearn,xgboost
+          def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          r=Path('_evidence_v3_ltr_transfer/result')
+          p={
+            'line':'Evidence V3','test':'ltr_baseline_transfer_dev72',
+            'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'evaluator_git_blob':subprocess.check_output(['git','hash-object','evidence_v3/src/ltr_baseline_transfer_dev72.py'],text=True).strip(),
+            'preregistration_git_blob':subprocess.check_output(['git','hash-object','evidence_v3/protocols/LTR_BASELINE_TRANSFER_DEV72_PREREG.md'],text=True).strip(),
+            'dev72_manifest_sha256':h('evidence_v3/data/dev72/manifest.json'),
+            'dev72_universe_sha256':h('evidence_v3/data/dev72/universe.csv'),
+            'panel_manifest_sha256':h('_evidence_v3_ltr_transfer/panel/RAW_FEATURE_PANEL_MANIFEST.json'),
+            'builder_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py'],text=True).strip(),
+            'producer_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/producer.py'],text=True).strip(),
+            'network_used_during_model_test':False,
+            'original149_used_for_fit':False,'holdout70_used':False,'eu110_eu120_used_for_fit':False,
+            'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,
+            'scikit_learn':sklearn.__version__,'xgboost':xgboost.__version__}
+          (r/'PROVENANCE.json').write_text(json.dumps(p,indent=2)+'\n')
+          files=sorted(x.name for x in r.iterdir() if x.is_file() and x.name!='RESULT_MANIFEST.json')
+          (r/'RESULT_MANIFEST.json').write_text(json.dumps({'test':'ltr_baseline_transfer_dev72','files_sha256':{f:h(r/f) for f in files}},indent=2)+'\n')
+          print(json.dumps(p,indent=2))
+          print((r/'SUMMARY.json').read_text())
+          PY
+
+      - name: Persist Evidence V3 transfer result
+        run: |
+          set -euo pipefail
+          mkdir -p evidence_v3/results/ltr_baseline_transfer_dev72
+          cp _evidence_v3_ltr_transfer/result/* evidence_v3/results/ltr_baseline_transfer_dev72/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence_v3/results/ltr_baseline_transfer_dev72
+          git commit -m "Record Evidence V3 LTR baseline transfer Dev72"
+          git pull --rebase origin research/evidence-v3
+          git push origin HEAD:research/evidence-v3
+
+      - name: Upload Evidence V3 transfer result
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-v3-ltr-baseline-transfer-dev72
+          retention-days: 90
+          if-no-files-found: error
+          path: evidence_v3/results/ltr_baseline_transfer_dev72/
