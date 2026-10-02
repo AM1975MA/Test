@@ -1,0 +1,163 @@
+name: Evidence V1 materialize Hybrid24 OOS checkpoint
+
+on:
+  push:
+    branches: [ research/evidence-v1 ]
+    paths:
+      - '.github/workflows/evidence-v1-materialize-hybrid24-oos-checkpoint.yml'
+      - 'evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PREREG.md'
+      - 'evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_TRIGGER.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-hybrid24-oos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v1
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+
+      - name: Fail-closed frozen-state gate
+        run: |
+          set -euo pipefail
+          test "$(git hash-object evidence_v1/src/materialize_hybrid24_oos_checkpoint.py)" = "e34ef851dde41540ca55c572565a770c9b5c8137"
+          test "$(git hash-object evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PREREG.md)" = "e960342f854338b187085dbd89b47eccc2bce0f0"
+          test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py)" = "34cc133d4d44bb06cc21363b1444865e2d8ec5c1"
+          test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/scripts/build_tit_r_source_only.py)" = "136a7bebb1f63567fbfc4ffe586e54261a71b53e"
+          test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py)" = "acf83f2cee6876c89dfd9948cfbf30889af4c08e"
+          test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/ensemble.py)" = "4b23fd297df6bfcf71557af9a7aaf7ca96c9a223"
+          test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/versions/ETF_TRAINER_V2/source/source_only_rebuild/finish_ensemble_stage19.py)" = "3d6463bf811a932e6f2922d6efbe2ecfdc6ec3a3"
+          echo "1efba2bc213ba26b042a9e77630fe26664343654629e658f43d314d068ba9e71  evidence_v1/DATA_MANIFEST_SHA256.txt" | sha256sum -c -
+          echo "cc4d315da68ec42275a7a74f05446ac6cbb484c3bd92a7861cd76805c5a94782  evidence_v1/SOURCE_MANIFEST_SHA256.txt" | sha256sum -c -
+          echo "01305fe62203c7b7895d95836267c4288f86d2c5a763ce7070c9c3d3d9f807ae  evidence_v1/requirements.lock.txt" | sha256sum -c -
+          (cd evidence_v1/data && sha256sum -c ../DATA_MANIFEST_SHA256.txt)
+          (cd evidence_v1/source && sha256sum -c ../SOURCE_MANIFEST_SHA256.txt)
+          python -m py_compile evidence_v1/src/materialize_hybrid24_oos_checkpoint.py
+
+      - name: Install locked numerical environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r evidence_v1/requirements.lock.txt
+
+      - name: Build isolated source-only campaign root
+        run: |
+          set -euo pipefail
+          rm -rf _evidence_v1_hybrid24
+          mkdir -p _evidence_v1_hybrid24/raw_ticker_csv _evidence_v1_hybrid24/out/ma3_panel _evidence_v1_hybrid24/out/titanium _evidence_v1_hybrid24/checkpoint
+          cp -a evidence_v1/source/baseline/etf_trader_v2/src _evidence_v1_hybrid24/src
+          cp -a evidence_v1/data/original149/. _evidence_v1_hybrid24/raw_ticker_csv/
+
+      - name: Rebuild MA3 panel from frozen Original149
+        env:
+          PYTHONPATH: ${{ github.workspace }}/_evidence_v1_hybrid24/src
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py \
+            --data _evidence_v1_hybrid24/raw_ticker_csv \
+            --cluster-data _evidence_v1_hybrid24/raw_ticker_csv \
+            --output _evidence_v1_hybrid24/out/ma3_panel
+
+      - name: Rebuild Titanium TIT_R from frozen Original149
+        env:
+          PYTHONPATH: ${{ github.workspace }}/_evidence_v1_hybrid24/src
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          NUMEXPR_NUM_THREADS: '1'
+        run: |
+          python evidence_v1/source/baseline/etf_trader_v2/scripts/build_tit_r_source_only.py \
+            --data _evidence_v1_hybrid24/raw_ticker_csv \
+            --output _evidence_v1_hybrid24/out/titanium \
+            --xgb-workers 2 \
+            --xgb-threads-per-worker 1
+
+      - name: Rebuild canonical Hybrid24 ensemble and strategy parity
+        env:
+          ETF_TRAINER_V2_CAMPAIGN_ROOT: ${{ github.workspace }}/_evidence_v1_hybrid24
+          PYTHONPATH: ${{ github.workspace }}/_evidence_v1_hybrid24/src
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python evidence_v1/source/baseline/etf_trader_v2/versions/ETF_TRAINER_V2/source/source_only_rebuild/finish_ensemble_stage19.py \
+            --end-year 2026 \
+            --n-jobs 2
+
+      - name: Materialize canonical Hybrid24 OOS scores
+        run: |
+          python evidence_v1/src/materialize_hybrid24_oos_checkpoint.py \
+            --ensemble _evidence_v1_hybrid24/out/ensemble_source_only_fresh/ENSEMBLE_TAIL_OOS.csv \
+            --fit-audit _evidence_v1_hybrid24/out/ensemble_source_only_fresh/ENSEMBLE_FIT_AUDIT.csv \
+            --tit-r _evidence_v1_hybrid24/out/titanium/TIT_R_SOURCE_ONLY.csv \
+            --baseline-result _evidence_v1_hybrid24/out/ensemble_source_only_fresh/RESULT.json \
+            --out _evidence_v1_hybrid24/checkpoint
+
+      - name: Build provenance
+        run: |
+          python - <<'PY'
+          import hashlib,json,platform,subprocess
+          from pathlib import Path
+          import numpy,pandas,sklearn,xgboost
+          def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          out=Path('_evidence_v1_hybrid24/checkpoint')
+          prov={
+            'line':'Evidence V1','checkpoint':'hybrid24_oos_v1',
+            'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'materializer_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/src/materialize_hybrid24_oos_checkpoint.py'],text=True).strip(),
+            'preregistration_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/protocols/HYBRID24_OOS_CHECKPOINT_PREREG.md'],text=True).strip(),
+            'hybrid_producer_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py'],text=True).strip(),
+            'build_panel_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py'],text=True).strip(),
+            'build_tit_r_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/scripts/build_tit_r_source_only.py'],text=True).strip(),
+            'canonical_runner_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/source/baseline/etf_trader_v2/versions/ETF_TRAINER_V2/source/source_only_rebuild/finish_ensemble_stage19.py'],text=True).strip(),
+            'data_manifest_sha256':h('evidence_v1/DATA_MANIFEST_SHA256.txt'),
+            'source_manifest_sha256':h('evidence_v1/SOURCE_MANIFEST_SHA256.txt'),
+            'requirements_sha256':h('evidence_v1/requirements.lock.txt'),
+            'panel_manifest_sha256':h('_evidence_v1_hybrid24/out/ma3_panel/RAW_FEATURE_PANEL_MANIFEST.json'),
+            'tit_r_manifest_sha256':h('_evidence_v1_hybrid24/out/titanium/TIT_R_SOURCE_ONLY_MANIFEST.json'),
+            'canonical_result_sha256':h('_evidence_v1_hybrid24/out/ensemble_source_only_fresh/RESULT.json'),
+            'ltr_checkpoint_consumed':False,
+            'cascade_metrics_observed':False,
+            'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,
+            'scikit_learn':sklearn.__version__,'xgboost':xgboost.__version__}
+          (out/'PROVENANCE.json').write_text(json.dumps(prov,indent=2)+'\n')
+          m=json.loads((out/'CHECKPOINT_MANIFEST.json').read_text())
+          m['files_sha256']['PROVENANCE.json']=h(out/'PROVENANCE.json')
+          (out/'CHECKPOINT_MANIFEST.json').write_text(json.dumps(m,indent=2)+'\n')
+          print(json.dumps(prov,indent=2))
+          print((out/'BASELINE_PARITY.json').read_text())
+          PY
+
+      - name: Persist Hybrid24 OOS checkpoint in branch
+        run: |
+          set -euo pipefail
+          test ! -e evidence_v1/checkpoints/hybrid24_oos_v1
+          mkdir -p evidence_v1/checkpoints/hybrid24_oos_v1
+          cp _evidence_v1_hybrid24/checkpoint/* evidence_v1/checkpoints/hybrid24_oos_v1/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence_v1/checkpoints/hybrid24_oos_v1
+          git diff --cached --stat
+          git commit -m "Materialize Evidence V1 Hybrid24 OOS checkpoint"
+          git pull --rebase origin research/evidence-v1
+          git push origin HEAD:research/evidence-v1
+
+      - name: Upload Hybrid24 checkpoint
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-v1-hybrid24-oos-checkpoint
+          retention-days: 90
+          if-no-files-found: error
+          path: evidence_v1/checkpoints/hybrid24_oos_v1/*
