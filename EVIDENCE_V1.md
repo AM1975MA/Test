@@ -156,53 +156,70 @@ Diagnostica non-promozionale post-result: trailing relative wealth vs successivo
 
 Run `37060563323`; artifact `11249594252`; SHA256 `77a1914d46f9f32bb8d9cd27e42be9a0a289f71b8fcadd76ba894abbada8c134`; result commit `3fdcf97f92c5b23a3e49fc8bd71bf8813052efe8`; risultati in `evidence_v1/results/allocation_v2_causal_expert_blend/`.
 
+### Hybrid24 OOS checkpoint — MATERIALIZZATO; ENGINEERING GATE PASS
+
+Il segnale Hybrid24 canonico è stato ricostruito source-only da Original149 frozen e materializzato prima di qualsiasi test della cascata.
+
+- MA3 rebuild: PASS;
+- Titanium rebuild: PASS;
+- annual fit maturity audit: PASS;
+- cluster/source causality: PASS;
+- historical scores/paths/cluster/basket artifacts consumed: **false**;
+- canonical baskets generati da sorgente, seed `20260721`, SHA256 `36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e`;
+- checkpoint: `evidence_v1/checkpoints/hybrid24_oos_v1/`;
+- `OOS_SCORES.csv` SHA256 `661feb2b9b80997e78e51b4701a2f4d9501b1ac390ceb331d59bec837b0db4f7`.
+
+La precedente richiesta di parity a **31.60%** è stata corretta prima della Fase B perché confrontava statistiche non omogenee: il 31.60% è il replay V2 full-universe, mentre il runner di materializzazione riporta la media sui 500 basket canonici. Nessun dato della cascata è stato osservato durante questa correzione.
+
+Run `37065765114`; artifact `11253020356`; artifact SHA256 `74fbeeb35eadeb625a86d5a1d15e6ad5d69a90a2c48223a3514be212918f5f18`.
+
+### Cascade v1 LTR Top5 -> Hybrid24 — SCARTATA; EVIDENCE V1 CHIUSA
+
+Protocollo singolo preregistrato: frozen `LTR Top5` -> selezione del candidato con massimo `HYBRID24_SCORE` canonico. Nessun training, nessun blend di score, nessun Top10 e nessun altro layer Hybrid24.
+
+Full 114:
+
+| Metrica | LTR Top1 | Hybrid24-only | Cascade Top5->Hybrid24 |
+|---|---:|---:|---:|
+| CAGR proxy | **22.06%** | 15.66% | **15.60%** |
+| Ann. vol | 37.47% | **32.94%** | 37.65% |
+| Sharpe rf0 | **0.714** | 0.605 | 0.569 |
+| Max DD | -51.47% | -54.60% | **-46.60%** |
+| Calmar | **0.429** | 0.287 | 0.335 |
+| Exact global winner | **10/114** | 3/114 | **5/114** |
+
+LTR Top5 conteneva il global winner **32/114 = 28.07%** delle volte, ma Hybrid24 lo seleziona dalla shortlist solo **5/32 = 15.63%** delle volte retrievable. La cascata coincide con LTR Top1 nel 35.09% dei periodi e con Hybrid24-only nel 42.98%.
+
+Subperiodi diagnostici:
+- 2017-2022 CAGR: LTR **23.72%**, Hybrid24-only **4.79%**, cascade **19.96%**;
+- 2023-2026 CAGR: LTR **19.27%**, Hybrid24-only **36.99%**, cascade **8.49%**.
+
+Il gate preregistrato fallisce nettamente: la cascata non batte il CAGR LTR Top1, non batte Hybrid24-only e riduce gli exact winner da 10 a 5 rispetto a LTR. Il risultato 2023-2026 di Hybrid24-only è diagnostico e non può essere trasformato in una regola temporale ex-post.
+
+**Conseguenza vincolante:** nessun Top10, Top3, BASE-only, ET-only, XGB-only, blend alternativo o altro cascade tuning su Original149. Non si congela Holdout-B perché la development hypothesis non ha superato il gate.
+
+Run `37067343776`; artifact `11252753465`; artifact SHA256 `d3526b8306797f917c34495d153083e69441e539b91d68f4db5cd9f9af75ca74`; result commit `a505666e61e25c8827fd66d6076fd175f2b6fe23`; risultati in `evidence_v1/results/cascade_v1_ltr_top5_hybrid24/`.
+
 **Holdout70 resta BURNED**: solo diagnostica/progettazione, mai promotion.
 
-## HYPOTHESIS corrente
+## CONCLUSIONI FINALI EVIDENCE V1
 
-Le evidenze separano ora cinque fatti:
+Le evidenze separano ora sei fatti:
 
-1. **LTR retrieval è supportato**: Top5/Top10 recall del winner è materialmente superiore al ranking Hybrid24 usato come retriever.
-2. **Stable-reference representation è supportata**: ranks/clusters sono più invarianti al candidate set.
-3. **Nuovi learned single-winner head non sono supportati**: quattro famiglie hanno fallito; linea chiusa.
+1. **LTR retrieval è reale come development evidence**: Top5/Top10 recall del winner è superiore al ranking Hybrid24 usato come retriever.
+2. **Stable-reference representation è supportata**: ranks/clusters sono più invarianti quando le feature restano ancorate a un reference universe stabile.
+3. **Il problema è la conversione retrieval -> scelta finale**: quattro learned reranker, il classifier best-in-shortlist e la cascata con Hybrid24 non migliorano la selezione del winner.
 4. **Top5 diversification migliora il rischio ma non il CAGR full-window**.
-5. **Trailing relative expert performance non mostra persistenza predittiva**: la linea adaptive Top1/EW5 è chiusa; non si cercano parametri vicini.
+5. **Trailing relative expert performance non fornisce una meta-allocation causale utile**.
+6. **Il segnale Hybrid24 non è complementare a LTR nel modo necessario**: dentro la shortlist Top5 peggiora materialmente CAGR e exact-winner rate rispetto a LTR Top1.
 
-Rimane una sola architettura naturale non ancora testata e non equivalente ai reranker falliti:
-
-`frozen LTR retrieval -> canonical Hybrid24 OOS score/selector`
-
-Motivazione: Hybrid24 canonico è già una pipeline maturity-safe separata e molto più forte come strategia completa (**31.60% CAGR** sul baseline Original149), mentre LTR ha recall Top5 superiore. Non si deve addestrare un nuovo head: si deve verificare se il **segnale canonico già esistente** può selezionare meglio dentro una shortlist LTR frozen.
-
-Prima di testare la cascata, il segnale Hybrid24 deve essere materializzato OOS da sorgenti frozen e verificato contro il baseline canonico. Nessun artifact storico non verificato può essere usato come input.
-
-Vincoli invariati:
-- Original149 = burned development set;
-- nessun K sweep: se si testa la cascata si usa **Top5 frozen** perché è il checkpoint già validato e la configurazione già usata nella linea allocation;
-- nessun nuovo modello o reranker;
-- nessun Holdout70 per promotion;
-- nessuna scelta ex-post del layer Hybrid24;
-- nuovo Holdout-B disgiunto e congelato prima di qualunque promotion claim.
+Quindi **Evidence V1 è CHIUSA**. Original149 è troppo burned per giustificare ulteriori varianti e il protocollo preregistrato impone di non trasformare i risultati osservati in nuovi parametri locali.
 
 ## NEXT TEST
 
-### Fase A — checkpoint Hybrid24 canonico, senza testare la cascata
+**Nessun altro test è consentito dentro Evidence V1 su Original149.**
 
-1. Ricostruire source-only da Original149 frozen:
-   - MA3 feature panel;
-   - Titanium `TIT_R`;
-   - Hybrid24 ensemble OOS (`BASE`, `ET_RANK`, `XGB_RANK`, final `score`);
-   - fit audits maturity-safe.
-2. Materializzare un checkpoint OOS joinabile su `(signal_date, ticker)` con almeno `BASE`, `ET_RANK`, `XGB_RANK`, `HYBRID24_SCORE` e rank cross-sectional.
-3. Riprodurre fail-closed la chain canonica baseline / provenance prima di rendere il checkpoint riutilizzabile. La parità del baseline e la causality audit sono engineering gates, non una nuova performance ricerca.
-4. Non guardare ancora la performance della cascata LTR->Hybrid24 durante la materializzazione.
-
-### Fase B — solo se Fase A passa
-
-5. Preregistrare **un singolo** cascade test: frozen `LTR Top5` -> ordinamento dei cinque candidati tramite **final `HYBRID24_SCORE` canonico**; nessuna nuova fit e nessun altro layer/variante.
-6. Primary comparator development: frozen LTR Top1 e corrispondente selector Hybrid24-only sulle stesse 114 date. Il test deve riportare anche il rapporto con il baseline strategico Hybrid24 31.60%, ma senza confondere un selector mensile 21d con la simulazione basket/risk completa.
-7. Nessun Top10, BASE-only, ET-only, XGB-only o altro blend se la singola cascata fallisce.
-8. Se la cascata mostra sviluppo convincente, congelare un **nuovo Holdout-B** prima di ogni promotion test. Se fallisce, chiudere Evidence V1 senza ulteriori varianti sul 149.
+Un eventuale programma successivo deve essere una nuova linea (`Evidence V2`) con una nuova ipotesi esplicita, non una variante locale di K/layer/blend/reranker. La nuova ipotesi deve essere preregistrata prima di utilizzare un nuovo dataset di sviluppo o un nuovo Holdout; Holdout70 resta escluso dalla promotion.
 
 ## Frozen state
 
@@ -211,6 +228,8 @@ Vincoli invariati:
 - Latest validated diagnostic result commit: `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`
 - Latest deterministic reranker result commit: `34f8f997ae1858a9007f6cc1809e6ad058855fca`
 - Latest allocation result commit: `3fdcf97f92c5b23a3e49fc8bd71bf8813052efe8`
+- Hybrid24 OOS checkpoint run: `37065765114`; artifact `11253020356`
+- Latest cascade result commit: `a505666e61e25c8827fd66d6076fd175f2b6fe23`
 - Data: `evidence_v1/data/original149/`, `evidence_v1/data/holdout70/`
 - Source baseline: `evidence_v1/source/baseline/`
 - Original149 files: **151**; Holdout70 files: **72**
@@ -219,8 +238,10 @@ Vincoli invariati:
 - Environment: `evidence_v1/ENVIRONMENT.lock.txt`, `evidence_v1/requirements.lock.txt`
 - Frozen-data provenance: `evidence_v1/PROVENANCE.json`
 - Reusable LTR checkpoint: `evidence_v1/checkpoints/retriever_ltr_v1/`
+- Reusable Hybrid24 checkpoint: `evidence_v1/checkpoints/hybrid24_oos_v1/`
 - Frozen universe-sensitivity subsets: `evidence_v1/protocols/universe_sensitivity_v1/`
 - Durable v4 results: `evidence_v1/results/reranker_v4_best_classifier/`
 - Durable allocation v1: `evidence_v1/results/allocation_v1_ltr_ew5/`
 - Durable allocation v2: `evidence_v1/results/allocation_v2_causal_expert_blend/`
+- Durable cascade v1: `evidence_v1/results/cascade_v1_ltr_top5_hybrid24/`
 - Results/artifacts registry: `evidence_v1/RESULTS_REGISTRY.md`
