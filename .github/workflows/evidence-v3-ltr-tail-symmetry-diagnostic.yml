@@ -1,0 +1,91 @@
+name: Evidence V3 LTR tail-symmetry diagnostic
+
+on:
+  push:
+    branches: [ research/evidence-v3 ]
+    paths:
+      - 'evidence_v3/protocols/LTR_TAIL_SYMMETRY_DIAGNOSTIC_TRIGGER.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tail-symmetry-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+
+      - name: Fail-closed diagnostic protocol and frozen-input gate
+        run: |
+          set -euo pipefail
+          test "$(git hash-object evidence_v3/src/ltr_tail_symmetry_diagnostic.py)" = "c58c93711fecfd3fc961a2705c1571b0fb25784b"
+          test "$(git hash-object evidence_v3/protocols/LTR_TAIL_SYMMETRY_DIAGNOSTIC_PREREG.md)" = "7754ba08027d9ec1f333ac2919b4c1217ab52db5"
+          echo "fafe49e44bd24a250ecb023338ef97696f79767404b281ff1d04af1f890c14b5  evidence_v3/results/ltr_baseline_transfer_dev72/PREDICTIONS.csv" | sha256sum -c -
+          python -m py_compile evidence_v3/src/ltr_tail_symmetry_diagnostic.py
+          test ! -e evidence_v3/diagnostics/ltr_tail_symmetry
+
+      - name: Install pinned diagnostic environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.18.1
+
+      - name: Run preregistered diagnostic only
+        run: |
+          rm -rf _evidence_v3_tail_diag
+          mkdir -p _evidence_v3_tail_diag/result
+          python evidence_v3/src/ltr_tail_symmetry_diagnostic.py \
+            --predictions evidence_v3/results/ltr_baseline_transfer_dev72/PREDICTIONS.csv \
+            --out _evidence_v3_tail_diag/result
+
+      - name: Build diagnostic provenance and manifest
+        run: |
+          python - <<'PY'
+          import hashlib,json,platform,subprocess
+          from pathlib import Path
+          import numpy,pandas,scipy
+          def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          r=Path('_evidence_v3_tail_diag/result')
+          p={
+            'line':'Evidence V3','diagnostic':'ltr_tail_symmetry',
+            'status':'DIAGNOSTIC_ONLY_NO_ADVANCEMENT_GATE',
+            'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'source_git_blob':subprocess.check_output(['git','hash-object','evidence_v3/src/ltr_tail_symmetry_diagnostic.py'],text=True).strip(),
+            'protocol_git_blob':subprocess.check_output(['git','hash-object','evidence_v3/protocols/LTR_TAIL_SYMMETRY_DIAGNOSTIC_PREREG.md'],text=True).strip(),
+            'frozen_predictions_sha256':h('evidence_v3/results/ltr_baseline_transfer_dev72/PREDICTIONS.csv'),
+            'network_used':False,'model_refit':False,'trading_rule_tested':False,
+            'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,'scipy':scipy.__version__}
+          (r/'PROVENANCE.json').write_text(json.dumps(p,indent=2)+'\n')
+          files=sorted(x.name for x in r.iterdir() if x.is_file() and x.name!='RESULT_MANIFEST.json')
+          (r/'RESULT_MANIFEST.json').write_text(json.dumps({'diagnostic':'ltr_tail_symmetry','files_sha256':{f:h(r/f) for f in files}},indent=2)+'\n')
+          print(json.dumps(p,indent=2))
+          print((r/'SUMMARY.json').read_text())
+          PY
+
+      - name: Persist Evidence V3 diagnostic
+        run: |
+          set -euo pipefail
+          mkdir -p evidence_v3/diagnostics/ltr_tail_symmetry
+          cp _evidence_v3_tail_diag/result/* evidence_v3/diagnostics/ltr_tail_symmetry/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence_v3/diagnostics/ltr_tail_symmetry
+          git commit -m "Record Evidence V3 LTR tail-symmetry diagnostic"
+          git pull --rebase origin research/evidence-v3
+          git push origin HEAD:research/evidence-v3
+
+      - name: Upload Evidence V3 diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-v3-ltr-tail-symmetry-diagnostic
+          retention-days: 90
+          if-no-files-found: error
+          path: evidence_v3/diagnostics/ltr_tail_symmetry/
