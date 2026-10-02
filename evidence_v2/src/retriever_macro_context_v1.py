@@ -21,7 +21,7 @@ MACRO_FEATURES = [
     "dgs2_delta21",
     "dgs10_delta21",
     "curve_10y2y_z252",
-    "hy_oas_z252",
+    "baa10y_z252",
     "usd_ret21",
 ]
 CONFIG = {
