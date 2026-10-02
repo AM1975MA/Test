@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/evidence-v1-reranker-v4-best-classifier.yml'
       - 'evidence_v1/protocols/RERANKER_V4_BEST_CLASSIFIER_PREREG.md'
+      - 'evidence_v1/protocols/RERANKER_V4_RUN_TRIGGER.txt'
   workflow_dispatch:
 
 permissions:
