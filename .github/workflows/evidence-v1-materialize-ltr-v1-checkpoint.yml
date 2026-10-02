@@ -1,0 +1,115 @@
+name: Evidence V1 materialize LTR v1 checkpoint
+
+on:
+  push:
+    branches: [ research/evidence-v1 ]
+    paths:
+      - '.github/workflows/evidence-v1-materialize-ltr-v1-checkpoint.yml'
+      - 'evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py'
+      - 'evidence_v1/protocols/RETRIEVER_LTR_V1_CHECKPOINT.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v1
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+
+      - name: Fail-closed frozen source and data gate
+        run: |
+          set -euo pipefail
+          test "$(git hash-object evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py)" = "159556acbb5487e3929151a6e6e8cd6a8709f797"
+          echo "cec776029910d46abfb01d9f3a80fc0e50b0f8b998ff89e47726a330e6930a9a  evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py" | sha256sum -c -
+          (cd evidence_v1/data && sha256sum -c ../DATA_MANIFEST_SHA256.txt)
+          (cd evidence_v1/source && sha256sum -c ../SOURCE_MANIFEST_SHA256.txt)
+
+      - name: Install locked numerical environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r evidence_v1/requirements.lock.txt
+
+      - name: Rebuild frozen Original149 feature panel
+        env:
+          PYTHONPATH: ${{ github.workspace }}/evidence_v1/source/baseline/etf_trader_v2/src
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          rm -rf _evidence_v1_ltr_checkpoint
+          mkdir -p _evidence_v1_ltr_checkpoint/panel149 _evidence_v1_ltr_checkpoint/checkpoint
+          python evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py \
+            --data evidence_v1/data/original149 \
+            --cluster-data evidence_v1/data/original149 \
+            --output _evidence_v1_ltr_checkpoint/panel149
+
+      - name: Materialize validated OOS predictions and shortlists
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py \
+            --panel _evidence_v1_ltr_checkpoint/panel149/RAW_FEATURE_PANEL.pkl \
+            --frozen-source evidence_v1/source/baseline/etf_trader_v2 \
+            --out _evidence_v1_ltr_checkpoint/checkpoint
+
+      - name: Add checkpoint provenance
+        run: |
+          python - <<'PY'
+          import hashlib,json,platform
+          from pathlib import Path
+          import numpy,pandas,sklearn,xgboost
+          def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          p={
+            'line':'Evidence V1',
+            'checkpoint':'retriever_ltr_v1_oos',
+            'workflow_input_commit':'${{ github.sha }}',
+            'source_git_blob':'159556acbb5487e3929151a6e6e8cd6a8709f797',
+            'source_sha256':h('evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py'),
+            'data_manifest_sha256':h('evidence_v1/DATA_MANIFEST_SHA256.txt'),
+            'source_manifest_sha256':h('evidence_v1/SOURCE_MANIFEST_SHA256.txt'),
+            'requirements_sha256':h('evidence_v1/requirements.lock.txt'),
+            'panel_manifest_sha256':h('_evidence_v1_ltr_checkpoint/panel149/RAW_FEATURE_PANEL_MANIFEST.json'),
+            'python':platform.python_version(),
+            'numpy':numpy.__version__,
+            'pandas':pandas.__version__,
+            'scikit_learn':sklearn.__version__,
+            'xgboost':xgboost.__version__
+          }
+          Path('_evidence_v1_ltr_checkpoint/checkpoint/PROVENANCE.json').write_text(json.dumps(p,indent=2)+'\n')
+          print(json.dumps(p,indent=2))
+          PY
+
+      - name: Persist checkpoint in branch
+        run: |
+          set -euo pipefail
+          rm -rf evidence_v1/checkpoints/retriever_ltr_v1
+          mkdir -p evidence_v1/checkpoints/retriever_ltr_v1
+          cp _evidence_v1_ltr_checkpoint/checkpoint/* evidence_v1/checkpoints/retriever_ltr_v1/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence_v1/checkpoints/retriever_ltr_v1
+          git diff --cached --stat
+          git commit -m "Materialize Evidence V1 LTR v1 OOS checkpoint"
+          git push origin HEAD:research/evidence-v1
+
+      - name: Upload checkpoint artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-v1-ltr-v1-durable-checkpoint
+          retention-days: 90
+          if-no-files-found: error
+          path: evidence_v1/checkpoints/retriever_ltr_v1/*
