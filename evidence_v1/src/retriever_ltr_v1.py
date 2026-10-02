@@ -38,6 +38,7 @@ def period_summary(m: pd.DataFrame) -> dict:
         "actual_top5_overlap_mean": float(m.actual_top5_overlap.mean()),
         "ndcg_at_5_mean": float(m.ndcg5.mean()),
         "ndcg_at_10_mean": float(m.ndcg10.mean()),
+        "ndcg_periods": int(m.ndcg5.notna().sum()),
         "top1_21d_cagr_proxy": monthly_cagr_proxy(m.top1_ret21),
         "top5ew_21d_cagr_proxy": monthly_cagr_proxy(m.top5ew_ret21),
     }
@@ -66,7 +67,7 @@ def main() -> int:
             raise RuntimeError(f"missing required target/evaluation column: {c}")
 
     # Evidence V1 baseline: keep the productive XGB_B hyperparameters unchanged
-    # and change only the learning objective to ranking.  Pair generation is
+    # and change only the learning objective to ranking. Pair generation is
     # explicitly top-k focused because this model is a RETRIEVER, not final sizing.
     config = {
         "objective": "rank:ndcg",
@@ -144,7 +145,10 @@ def main() -> int:
     pred = pd.concat(predictions, ignore_index=True)
     monthly = []
     for dt, g0 in pred.groupby("signal_date", sort=True):
-        g = g0.dropna(subset=["LTR_SCORE", "fwd_ret_21", "target_relevance"]).copy()
+        # 21-day trading diagnostics require only the 21-day outcome to be mature.
+        # NDCG is evaluated separately and only when the 63-day-derived relevance
+        # label is mature. This preserves the full 114-period 21-day comparison.
+        g = g0.dropna(subset=["LTR_SCORE", "fwd_ret_21"]).copy()
         if len(g) < 2:
             continue
         gp = g.sort_values("LTR_SCORE", ascending=False).reset_index(drop=True)
@@ -156,8 +160,16 @@ def main() -> int:
         pred_top5 = set(gp.head(5).ticker.astype(str))
 
         ic = spearmanr(g.LTR_SCORE, g.fwd_ret_21, nan_policy="omit").statistic
-        rel = g.target_relevance.astype(float).to_numpy()[None, :]
-        score = g.LTR_SCORE.astype(float).to_numpy()[None, :]
+
+        gr = g0.dropna(subset=["LTR_SCORE", "target_relevance"]).copy()
+        if len(gr) >= 2:
+            rel = gr.target_relevance.astype(float).to_numpy()[None, :]
+            score = gr.LTR_SCORE.astype(float).to_numpy()[None, :]
+            ndcg5 = float(ndcg_score(rel, score, k=5))
+            ndcg10 = float(ndcg_score(rel, score, k=10))
+        else:
+            ndcg5 = float("nan")
+            ndcg10 = float("nan")
 
         monthly.append({
             "signal_date": dt,
@@ -170,8 +182,8 @@ def main() -> int:
             "hit10": bool(winner_rank <= 10),
             "actual_top5_overlap": float(len(actual_top5 & pred_top5) / 5.0),
             "ic21": float(ic),
-            "ndcg5": float(ndcg_score(rel, score, k=5)),
-            "ndcg10": float(ndcg_score(rel, score, k=10)),
+            "ndcg5": ndcg5,
+            "ndcg10": ndcg10,
             "top1": str(gp.iloc[0].ticker),
             "top1_ret21": float(gp.iloc[0].fwd_ret_21),
             "top5ew_ret21": float(gp.head(5).fwd_ret_21.mean()),
@@ -189,6 +201,7 @@ def main() -> int:
         "training": "annual expanding walk-forward, 63d-label maturity gate",
         "feature_set": "frozen Hybrid24 FEATURES_42",
         "label": "target_relevance=floor(target_multi_rank*10), clipped 0..9",
+        "evaluation": "21d metrics on every mature 21d period; NDCG only where target_relevance is mature",
         "config": config,
         "full": period_summary(m),
         "2017_2022": period_summary(m[m.signal_date < pd.Timestamp("2023-01-01")]),
