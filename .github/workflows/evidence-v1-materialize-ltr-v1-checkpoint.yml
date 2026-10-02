@@ -6,7 +6,6 @@ on:
     paths:
       - '.github/workflows/evidence-v1-materialize-ltr-v1-checkpoint.yml'
       - 'evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py'
-      - 'evidence_v1/protocols/RETRIEVER_LTR_V1_CHECKPOINT.md'
   workflow_dispatch:
 
 permissions:
@@ -30,9 +29,11 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git hash-object evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py)" = "159556acbb5487e3929151a6e6e8cd6a8709f797"
-          echo "cec776029910d46abfb01d9f3a80fc0e50b0f8b998ff89e47726a330e6930a9a  evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py" | sha256sum -c -
           (cd evidence_v1/data && sha256sum -c ../DATA_MANIFEST_SHA256.txt)
           (cd evidence_v1/source && sha256sum -c ../SOURCE_MANIFEST_SHA256.txt)
+          sha256sum evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py \
+                    evidence_v1/protocols/RETRIEVER_LTR_V1_CHECKPOINT.md \
+                    evidence_v1/requirements.lock.txt
 
       - name: Install locked numerical environment
         run: |
@@ -69,7 +70,7 @@ jobs:
       - name: Add checkpoint provenance
         run: |
           python - <<'PY'
-          import hashlib,json,platform
+          import hashlib,json,platform,subprocess
           from pathlib import Path
           import numpy,pandas,sklearn,xgboost
           def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -77,8 +78,9 @@ jobs:
             'line':'Evidence V1',
             'checkpoint':'retriever_ltr_v1_oos',
             'workflow_input_commit':'${{ github.sha }}',
-            'source_git_blob':'159556acbb5487e3929151a6e6e8cd6a8709f797',
+            'source_git_blob':subprocess.check_output(['git','hash-object','evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py'],text=True).strip(),
             'source_sha256':h('evidence_v1/src/materialize_retriever_ltr_v1_checkpoint.py'),
+            'protocol_sha256':h('evidence_v1/protocols/RETRIEVER_LTR_V1_CHECKPOINT.md'),
             'data_manifest_sha256':h('evidence_v1/DATA_MANIFEST_SHA256.txt'),
             'source_manifest_sha256':h('evidence_v1/SOURCE_MANIFEST_SHA256.txt'),
             'requirements_sha256':h('evidence_v1/requirements.lock.txt'),
@@ -104,6 +106,7 @@ jobs:
           git add evidence_v1/checkpoints/retriever_ltr_v1
           git diff --cached --stat
           git commit -m "Materialize Evidence V1 LTR v1 OOS checkpoint"
+          git pull --rebase origin research/evidence-v1
           git push origin HEAD:research/evidence-v1
 
       - name: Upload checkpoint artifact
