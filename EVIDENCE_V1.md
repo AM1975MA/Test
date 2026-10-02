@@ -51,6 +51,44 @@ Action `37047338155`; artifact `11244813213`; artifact SHA256 `2f1baed6984184e21
 
 Regola downstream: join su `(signal_date, ticker)` al panel frozen e maturity gate indipendente prima di ogni fit.
 
+### Universe Sensitivity v1 — CONFERMATO come validated diagnostic
+
+Obiettivo: verificare se una representation calcolata su un **reference universe stabile** riduce l'instabilità del ranking quando cambia il candidate universe.
+
+I sottouniversi `U120`, `U100`, `U70` sono stati congelati **prima del test**, in modo deterministico, bilanciato per macro-categoria e senza usare prezzi/performance. `Holdout70` non è stato usato.
+
+Confronto preregistrato, sempre sul medesimo common support `(signal_date, ticker)` e con label candidate-relative identiche:
+- **A / fixed anchor:** LTR v1 Original149 OOS congelato, semplicemente ristretto ai candidati;
+- **B / reference:** stesso LTR v1 riaddestrato sui candidati, ma `FEATURES_42` e cluster calcolati nel reference universe Original149;
+- **C / native:** stesso LTR v1, ma feature e cluster ricalcolati dentro il candidate universe.
+
+Regola preregistrata: B deve avere Top5 turnover inferiore a C in **tutti** U120/U100/U70 e vincere almeno 3 delle 4 metriche di stabilità in ogni subset.
+
+**Esito: PASS, 12/12 metriche a favore di B.**
+
+2017-2026, 114 periodi per subset:
+
+| Subset | Top1 agreement B / C | Top5 turnover B / C | Rank corr B / C | Rank MAE norm B / C |
+|---|---:|---:|---:|---:|
+| U120 | **42.11% / 31.58%** | **54.54% / 63.60%** | **0.891 / 0.868** | **0.098 / 0.108** |
+| U100 | **40.35% / 23.68%** | **56.02% / 67.60%** | **0.877 / 0.786** | **0.106 / 0.142** |
+| U70 | **30.70% / 27.19%** | **55.76% / 59.56%** | **0.764 / 0.731** | **0.147 / 0.159** |
+
+Conclusione causale del test: **la representation è materialmente universe-dependent e un reference universe stabile riduce la sensibilità del ranking alla contrazione del candidate universe.** La regola preregistrata restituisce `SUPPORT_REFERENCE_UNIVERSE`.
+
+Diagnostica representation:
+- mean Adjusted Rand Index cluster reference/native: **0.734 U120**, **0.695 U100**, **0.623 U70**;
+- il cluster drift cresce quindi al ridursi dell'universo;
+- mean feature absolute drift: **0.0370 U120**, **0.0424 U100**, **0.0582 U70**;
+- feature più sensibile in tutti i subset: **`cluster_eff_63_mean_rank`**;
+- il preprocessing nativo perde anche supporto storico al ridursi dell'universo: retention del full-reference sul common support **99.47% U120**, **95.91% U100**, **69.01% U70**; restano comunque tutte le **114** date di valutazione.
+
+**Caveat fondamentale:** questo test dimostra stabilità, non alpha. Le metriche performance erano preregistrate come diagnostiche e non migliorano in modo coerente con B. Per esempio il Top1 exact-winner B/C è 7.02%/8.77% su U120, 8.77%/9.65% su U100 e 4.39%/7.02% su U70. Quindi **B non viene promosso come selettore finale**.
+
+Run valido `37055155515`; artifact `11248586812`; artifact SHA256 `8ecabaeb80268929ab5f7610ca5848c9b265ebfab7e794a0f4ed2d8df177d58a`; result commit `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`; risultati in `evidence_v1/results/universe_sensitivity_v1/`.
+
+Audit tecnico: i run `37053782730` e `37054571788` sono **INVALIDI COME EVIDENZA**. Il primo si è fermato sul mismatch di supporto reference/native prima di produrre metriche; il secondo si è fermato perché richiedeva inutilmente anchor A su date pre-2011, fuori dalla finestra 2017-2026. Le due correzioni sono state preregistrate separatamente prima del run valido e non hanno modificato subset, modello, hyperparameter, metriche o decision rule. Protocolli: `UNIVERSE_SENSITIVITY_V1_PREREG.md`, `UNIVERSE_SENSITIVITY_V1_SUPPORTFIX.md`, `UNIVERSE_SENSITIVITY_V1_ANCHORFIX.md`.
+
 ## DIAGNOSTIC / BURNED
 
 ### Pairwise reranker v1 — SCARTATO
@@ -94,38 +132,42 @@ Audit: il precedente run tecnico `37045478600` è **INVALIDO COME EVIDENZA** per
 
 ## HYPOTHESIS corrente
 
-Dopo due reranker causalmente corretti ma falliti, l'evidenza non supporta l'idea che basti aumentare la capacità del reranker mantenendo invariati representation/target.
+L'ipotesi `representation universe-dependent` è ora **supportata** dal test preregistrato. Questo elimina una parte importante dell'ambiguità: quando cambia il candidate universe, non conviene ricalcolare ranks/clusters come se il nuovo universo fosse il mondo intero.
 
-Ipotesi da testare prima di un v3:
-- la rappresentazione dipende troppo dall'universo corrente;
-- il target multi-horizon usato dal producer è adatto al retrieval ma non necessariamente all'ordinamento fine del top-tail;
-- la non-stazionarietà 2023-2026 è troppo forte per un reranker statico sulle stesse feature;
-- il valore del retriever LTR è soprattutto **recall**, non top1 selection.
+Architettura di representation da portare avanti:
 
-Linea ancora supportata:
+`features = f(asset, stable_reference_universe)` con `selection ∈ candidate_universe`.
 
-`LTR top-k retriever -> representation/target diagnostics -> eventuale reranker preregistrato -> calibrated top1/top2 probability -> sizing`
+Restano invece aperti due problemi distinti:
+- il target multi-horizon del producer è utile al retrieval ma non ha ancora dimostrato di ordinare bene il top-tail tradato;
+- maggiore stabilità del ranking non equivale automaticamente a maggiore performance Top1.
 
-Vincoli:
+Linea Evidence V1 ora supportata:
+
+`stable reference representation -> LTR top-k retrieval -> top-tail / decision-horizon reranker -> calibrated top1/top2 probability -> sizing`
+
+Vincoli invariati:
 - label mature;
-- training dei livelli successivi solo su prediction OOS precedenti;
+- training downstream solo su prediction OOS precedenti;
 - Holdout70 = burned/diagnostico;
 - nuovo Holdout-B congelato prima di osservare performance;
-- nessuna ottimizzazione ex-post promossa.
+- nessuna ottimizzazione ex-post promossa;
+- reference universe e candidate universe devono essere esplicitamente distinti nel codice e nella provenance.
 
 ## NEXT TEST
 
-1. Test preregistrato della sensibilità all'universo / normalizzazione usando **reference universe stabile** e sottouniversi Original149 -> 120/100/70, senza usare Holdout70 come promotion evidence. Misurare delta-rank, Top5 turnover, Top1 stability e cluster changes.
-2. Verificare se `features = f(asset, reference_universe)` con `selection ∈ candidate_universe` rende il producer/retriever più universe-invariant.
-3. Solo se emerge una representation più stabile, definire un reranker v3 con ipotesi nuova e singola configurazione preregistrata; niente sweep sul 149.
-4. Calibrazione confidence/sizing solo dopo un reranker che migliori stabilmente il ranking.
-5. Data-validation gate esterno per i nuovi ticker.
-6. Freeze Holdout-B e singolo test di promotion.
+1. Definire e preregistrare **Reranker v3 target-aligned**, senza sweep: frozen LTR Top10 OOS come retriever; representation da reference universe stabile; target del reranker allineato direttamente all'orizzonte decisionale 21d anziché riusare il target multi-horizon del producer.
+2. Training v3 annual expanding solo su shortlist OOS storiche con label 21d mature; nessuna riga in-sample del retriever.
+3. Valutazione primaria sul winner 21d del full Original149: Top2 containment deve superare LTR v1 e Top1 exact-winner non deve peggiorare; 2017-2022 e 2023-2026 devono essere riportati separatamente. CAGR resta diagnostico.
+4. Se v3 passa sul development set, congelare **Holdout-B nuovo e disgiunto** prima di qualunque promotion test; nessun tuning dopo il freeze.
+5. Calibrazione confidence/sizing solo dopo un reranker che migliori stabilmente l'ordinamento del top-tail.
+6. Mantenere il data-validation gate esterno per ogni nuovo ticker/reference universe.
 
 ## Frozen state
 
 - Branch: `research/evidence-v1`
 - Baseline frozen commit: `ea1c4e83118309bc7d4bc85f3ea93f658c687d3b`
+- Latest validated diagnostic result commit: `91ad9a5d9d717eb1a40f8d6bacb5cf12bbae8cc9`
 - Data: `evidence_v1/data/original149/`, `evidence_v1/data/holdout70/`
 - Source baseline: `evidence_v1/source/baseline/`
 - Original149 files: **151**; Holdout70 files: **72**
@@ -134,4 +176,6 @@ Vincoli:
 - Environment: `evidence_v1/ENVIRONMENT.lock.txt`, `evidence_v1/requirements.lock.txt`
 - Frozen-data provenance: `evidence_v1/PROVENANCE.json`
 - Reusable LTR checkpoint: `evidence_v1/checkpoints/retriever_ltr_v1/`
+- Frozen universe-sensitivity subsets: `evidence_v1/protocols/universe_sensitivity_v1/`
+- Universe-sensitivity durable results: `evidence_v1/results/universe_sensitivity_v1/`
 - Results/artifacts registry: `evidence_v1/RESULTS_REGISTRY.md`
