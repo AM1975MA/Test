@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "result": "Original149 fresh same-source canonical V2",
+  "expected_cagr": 0.31603994562922105,
+  "observed_cagr": 0.31603994562922105,
+  "absolute_difference": 0.0,
+  "period": ["2017-02-01", "2026-07-01"],
+  "sessions": 2366,
+  "evidence": {
+    "result_file": "holdout70/V2_CONTROLLED_FRESH_149_VS_70_FINAL.json",
+    "workflow_run": 37020787738,
+    "artifact_id": 11233440300,
+    "artifact_digest": "sha256:8a634318c141ae9894188b3df450cf060d68746568ac31a02fb7708d6a93f569",
+    "fresh_raw_source_run": 37017429560,
+    "fresh_raw_artifact_id": 11231770876,
+    "fresh_raw_artifact_digest": "sha256:7e880d80cab16abb52cb257bad79e4b04af22c1bfc1ad44e009d03a6485c306f",
+    "source_blob_gate": "CANONICAL_V2_SOURCE_GATE_PASS",
+    "raw_contract_gate": "CONTROLLED_RAW_GATE_PASS"
+  },
+  "technical_history": "The initial raw-download workflow run failed after freezing raw because of a missing environment variable in the first compare script. The raw download and source/raw gates succeeded; later checkpointed replay produced the valid 31.6039945629% result. The initial failure is classified as technical, not model evidence."
+}
