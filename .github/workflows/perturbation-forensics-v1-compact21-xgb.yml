@@ -40,7 +40,7 @@ jobs:
             "vendor/etf_trader_v2/src/etf_trader/source_only/_xgb_worker.py": "c07ef573da6aaa57a4e6bd2d097714e7105e5929",
           }
           for p,w in exp.items():
-              g=subprocess.check_output(["git","hash-object",p],text=True).strip()
+              g=subprocess.check_output(["git","rev-parse",f"HEAD:{p}"],text=True).strip()
               assert g==w,(p,g,w)
           print("COMPACT21_SOURCE_GATE_PASS")
           PY
