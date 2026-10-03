@@ -32,3 +32,19 @@ Questions to answer:
 3. Which model/component contributes most to Top1/Top2 divergence and CAGR dispersion?
 4. Is there any lookahead/data leakage in feature generation, target construction, fitting, clustering, ranking, allocation, or execution?
 5. Can the 29.75% / 30.84% / 34.68% dispersion be decomposed quantitatively by stage?
+
+
+## Forensic progress marker — 2026-10-03
+
+Confirmed findings:
+- Same raw bytes -> bit-identical model/replay outputs across runners and repeated runs. Runtime/code nondeterminism is not the source of the 4.9236 pp CAGR spread.
+- Frozen Repeat2 decisions executed on Repeat1/2/3 raw collapse CAGR span from 4.9236 pp to ~0.000022 pp. Execution prices, risk gross, stops and downstream execution mechanics are not material causes.
+- Raw/target perturbations are tiny; MA3 corrected target changes only ~0.19-0.20% of cells across repeats.
+- Titanium internal ablation reconstructs canonical TIT_R exactly. Primary instability is Compact21 XGBRanker: Compact21 raw outputs differ on 100% of common cells, mean abs ~0.035-0.036; Compact21 ranks differ on ~92-93.5% of cells. Tail is highly stable (rank changes ~5.8-6.5%, tiny mean raw difference ~5.7e-5 to 6.7e-5). Macro boost is inactive in the evaluated panel and contributes zero cross-repeat divergence.
+- Therefore the first dominant perturbation amplifier is the Compact21 / XGBRanker branch inside Titanium; final percentile ranking mainly propagates rather than originates the instability.
+- Process-isolated future-mutation/truncation audit still fails for MA3 ensemble predictions while TIT_R remains exactly invariant. This is now a genuine causal-invariance issue to localize, not an OpenMP/XGBoost process-state artifact. Maturity gates still pass. Do not certify lookahead absence yet.
+
+Immediate next forensic tasks:
+1. Compact21 XGB attribution: separate sensitivity to continuous/dev features, labels, quantile binning and tree split topology. The first attribution run failed at source gate and is INVALID TECHNICAL.
+2. Localize the MA3 future-invariance failure to feature construction vs ET/XGB fit/post-processing and determine whether it is operational lookahead or a boundary/normalization artifact.
+3. Only after (1)-(2), close forensic verdict and return to the deferred causal residual learner line.
