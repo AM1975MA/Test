@@ -57,7 +57,6 @@ def pairwise_accuracy(pred: np.ndarray, target: np.ndarray) -> float:
         return np.nan
     dp = p[i] - p[j]
     prod = np.sign(dp[comparable]) * np.sign(dy[comparable])
-    # A prediction tie receives half credit; realized-target ties are excluded.
     return float(((prod > 0).sum() + 0.5 * (prod == 0).sum()) / len(prod))
 
 
@@ -71,7 +70,6 @@ def rank_mae(pred: np.ndarray, target: np.ndarray) -> float:
 
 
 def remap_score_distribution(score: np.ndarray, ordering_rank: np.ndarray) -> np.ndarray:
-    """Preserve the exact score multiset while changing only ticker assignment/order."""
     score = np.asarray(score, dtype=float)
     ordering_rank = np.asarray(ordering_rank, dtype=float)
     out = score.copy()
@@ -79,7 +77,6 @@ def remap_score_distribution(score: np.ndarray, ordering_rank: np.ndarray) -> np
     idx = np.flatnonzero(finite)
     if len(idx) <= 1:
         return out
-    # Lowest ordering rank receives lowest score; ticker index is deterministic tie-breaker.
     order = idx[np.lexsort((idx, ordering_rank[idx]))]
     values = np.sort(score[idx])
     out[order] = values
@@ -87,13 +84,14 @@ def remap_score_distribution(score: np.ndarray, ordering_rank: np.ndarray) -> np
 
 
 def build_rank_feedback(mod, state: dict):
-    pred = state["pred"].copy()
+    # Technical adapter only: replay_full_universe performs this same canonical rename
+    # immediately before Stage19.  No controller logic or preregistered parameter changes.
+    pred = state["pred"].rename(columns={"ET_TAIL": "ET_RANK", "XGB_TAIL": "XGB_RANK"}).copy()
     tickers = list(map(str, state["candidate_tickers"]))
     cal = state["tit"][["signal_date", "entry_date", "exit_date"]].drop_duplicates().sort_values("signal_date").reset_index(drop=True)
     cal["signal_date"] = pd.to_datetime(cal["signal_date"])
     dates_idx = pd.DatetimeIndex(cal["signal_date"])
 
-    # Untouched canonical Stage19 score matrix before monkey-patching.
     score_base = np.asarray(mod.stage19.score_matrix(pred, cal, tickers), dtype=float)
     if score_base.shape != (len(dates_idx), len(tickers)):
         raise RuntimeError(("unexpected score shape", score_base.shape, len(dates_idx), len(tickers)))
@@ -117,7 +115,6 @@ def build_rank_feedback(mod, state: dict):
     dist_gate_max = 0.0
 
     for i, d in enumerate(dates_idx):
-        # Ingest each historical ranking outcome only after its 63d target has fully matured.
         for j in range(i):
             if j in matured_done:
                 continue
@@ -222,8 +219,6 @@ def run_one(raw: Path, compare_script: Path, out: Path):
         raise RuntimeError(f"unexpected universe size: {len(uu)}")
 
     state = mod.build_source_only_state("original149", raw)
-
-    # Untouched canonical baseline.
     baseline = mod.replay_full_universe(state)
     base_dir = state["base"]
     for fn in ["RESULT.json", "DAILY_LEADERS.csv", "FULL_UNIVERSE_PATH.npz"]:
@@ -234,7 +229,6 @@ def run_one(raw: Path, compare_script: Path, out: Path):
     audit, score_base, score_corr, direct = build_rank_feedback(mod, state)
     audit.to_csv(base_dir / "RANK_FEEDBACK_STATE_AUDIT.csv", index=False)
 
-    # Exact distribution gate: V1_B may reassign scores to tickers, never alter the score multiset.
     for i in range(score_base.shape[0]):
         b = np.sort(score_base[i][np.isfinite(score_base[i])])
         c = np.sort(score_corr[i][np.isfinite(score_corr[i])])
