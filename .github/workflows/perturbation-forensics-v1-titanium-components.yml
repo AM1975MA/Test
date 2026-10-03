@@ -1,0 +1,49 @@
+name: ETF trader perturbation forensics V1 Titanium component ablation
+
+on:
+  push:
+    branches:
+      - research/etf-trader-perturbation-forensics-v1
+    paths:
+      - .github/workflows/perturbation-forensics-v1-titanium-components.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install "numpy==2.3.5" "pandas==2.2.3" pyarrow scipy
+      - name: Download completed Titanium internal artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _all
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-1 -D _all/repeat1
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-2 -D _all/repeat2
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-3 -D _all/repeat3
+      - name: Exact component decomposition
+        run: |
+          mkdir -p forensics_v1/results
+          python forensics_v1/compare_titanium_components.py --root _all --out forensics_v1/results/TITANIUM_COMPONENT_ABLATION.json
+      - name: Persist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add forensics_v1/results/TITANIUM_COMPONENT_ABLATION.json
+          git commit -m "Persist exact Titanium component ablation"
+          git pull --rebase --autostash origin research/etf-trader-perturbation-forensics-v1
+          git push origin HEAD:research/etf-trader-perturbation-forensics-v1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: titanium-component-ablation
+          retention-days: 90
+          path: forensics_v1/results/TITANIUM_COMPONENT_ABLATION.json
