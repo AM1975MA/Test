@@ -1,0 +1,62 @@
+{
+  "status": "YFINANCE_REPEATABILITY_V1_COMPLETE",
+  "contract": {
+    "universe": "Original149",
+    "downloads": 3,
+    "start": "2004-01-01",
+    "end_exclusive": "2026-08-01",
+    "yfinance": "0.2.66",
+    "pandas": "2.2.3",
+    "price_semantics": "same-row Adj Close/raw Close adjustment for OHLC; raw Volume"
+  },
+  "pairs": [
+    {
+      "pair": "1_vs_2",
+      "tickers": 149,
+      "different_csv_sha256": 137,
+      "ticker_date_or_row_mismatch": 0,
+      "tickers_with_volume_difference": 0,
+      "tickers_with_ohlc_diff_gt_1e12": 137,
+      "tickers_with_ohlc_diff_gt_1e8": 137,
+      "tickers_with_return_diff_gt_1e12": 137,
+      "tickers_with_return_diff_gt_1e8": 137,
+      "max_abs_relative_ohlc_diff": 2.511053215190893e-06,
+      "max_abs_close_return_diff": 3.3955977173372176e-06,
+      "changed_tickers_constant_rescale": 0
+    },
+    {
+      "pair": "1_vs_3",
+      "tickers": 149,
+      "different_csv_sha256": 137,
+      "ticker_date_or_row_mismatch": 0,
+      "tickers_with_volume_difference": 0,
+      "tickers_with_ohlc_diff_gt_1e12": 137,
+      "tickers_with_ohlc_diff_gt_1e8": 137,
+      "tickers_with_return_diff_gt_1e12": 137,
+      "tickers_with_return_diff_gt_1e8": 137,
+      "max_abs_relative_ohlc_diff": 2.349156993830061e-06,
+      "max_abs_close_return_diff": 3.4176833055843403e-06,
+      "changed_tickers_constant_rescale": 0
+    },
+    {
+      "pair": "2_vs_3",
+      "tickers": 149,
+      "different_csv_sha256": 137,
+      "ticker_date_or_row_mismatch": 0,
+      "tickers_with_volume_difference": 0,
+      "tickers_with_ohlc_diff_gt_1e12": 137,
+      "tickers_with_ohlc_diff_gt_1e8": 137,
+      "tickers_with_return_diff_gt_1e12": 137,
+      "tickers_with_return_diff_gt_1e8": 137,
+      "max_abs_relative_ohlc_diff": 2.2141071956502817e-06,
+      "max_abs_close_return_diff": 3.7959142892285413e-06,
+      "changed_tickers_constant_rescale": 0
+    }
+  ],
+  "global": {
+    "any_date_or_row_mismatch": false,
+    "any_volume_difference": false,
+    "max_abs_relative_ohlc_diff": 2.511053215190893e-06,
+    "max_abs_close_return_diff": 3.7959142892285413e-06
+  }
+}
