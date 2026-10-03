@@ -93,7 +93,7 @@ jobs:
               pr=pkeys.merge(p,on=["signal_date","ticker"],validate="one_to_one")
               tr["Y"]=corrected_target(tr)
               imp=SimpleImputer(strategy="median")
-              X=imp.fit_transform(tr[FEATURES_42]);Xp=imp.transform(pr[FEATURES_42])
+              X=imp.fit_transform(tr[list(FEATURES_42)]);Xp=imp.transform(pr[list(FEATURES_42)])
               et=ExtraTreesRegressor(n_jobs=1,**ET_MODEL_KW);et.fit(X,tr.Y.to_numpy(float))
               raw=et.predict(Xp)
               o=pkeys.copy();o["raw"]=raw;o["rank"]=o.assign(raw=raw).groupby("signal_date")["raw"].rank(pct=True,method="average").to_numpy()
