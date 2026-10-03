@@ -1,0 +1,53 @@
+{
+  "status": "CANONICAL_V2_REPEAT_REPLAY_COMPLETE",
+  "baseline_reference_fresh_cagr": 0.31603994562922105,
+  "replays": [
+    {
+      "repeat": 1,
+      "cagr": 0.29753447746605766,
+      "maxdd": -0.34862133764907766,
+      "sharpe": 1.0461135207098167,
+      "terminal_equity": 11.536148681359933,
+      "annualized_turnover": 12.943838756619677,
+      "titanium_sha256": "78bd80d86c5b326feb49408b2ca82f11ebdc69b669fa80845948bf80f2b60094",
+      "predictions_sha256": "a5bc7e1cf25e287f45e3566e8692e5ee557f391a115710b7a51384879d08a0f7",
+      "ma3_panel_sha256": "eaaf6ba79eab75c58642d9e286753686b1e89e2686c99f98465f9c2f18408554"
+    },
+    {
+      "repeat": 2,
+      "cagr": 0.30843704925646037,
+      "maxdd": -0.2568961026668678,
+      "sharpe": 1.086992949896945,
+      "terminal_equity": 12.478988259917124,
+      "annualized_turnover": 12.96047576197712,
+      "titanium_sha256": "16b955a433b11bcb723f0b649b7c090bb8979d6ef21a3aaa342fec546663118f",
+      "predictions_sha256": "a86690d8dac9c76645845dcc22ace4272428a043764cfb19e4ad3e282fe68e85",
+      "ma3_panel_sha256": "265a417d817c979c9d48158b14febd918e4be7f200f9c0d1cc9cc4497b2a6524"
+    },
+    {
+      "repeat": 3,
+      "cagr": 0.346770790748319,
+      "maxdd": -0.36097505012561093,
+      "sharpe": 1.1829318538970461,
+      "terminal_equity": 16.365303998168837,
+      "annualized_turnover": 13.231319803527736,
+      "titanium_sha256": "051f73924b143d1a22bfc754735bd41c742f2b21445736c57471930074d5b153",
+      "predictions_sha256": "7ccb3e582ac054e9647d936a715b45fabaa38ccb30bb0a3fa34c05955aabe728",
+      "ma3_panel_sha256": "fffe6437cebff6b706be4e4868573c091a756bbf91f449bed6ee7870dde5e23f"
+    }
+  ],
+  "cagr_min": 0.29753447746605766,
+  "cagr_max": 0.346770790748319,
+  "cagr_span": 0.04923631328226136,
+  "cagr_span_percentage_points": 4.9236313282261355,
+  "max_abs_vs_31pp_reference": 0.03073084511909796,
+  "unique_titanium_hashes": 3,
+  "unique_prediction_hashes": 3,
+  "unique_ma3_panel_hashes": 3,
+  "interpretation_rule": {
+    "stable_if_cagr_span_pp_le_0_25": false,
+    "materially_unstable_if_cagr_span_pp_ge_2": true
+  },
+  "source_contract": "same canonical V2 blobs and pinned fresh-replay environment for all three jobs",
+  "raw_input_contract": "three consecutive Yahoo/yfinance 0.2.66 downloads from run 37121749852"
+}
