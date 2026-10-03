@@ -60,3 +60,27 @@ Confirmed findings:
 - Feature quantization diagnostic: Q4 (4 decimals on all 125 Compact21 F2D inputs) raises cross-snapshot exact feature equality to ~92% in training and reduces Compact21 rank mean difference by ~18%. Q3 is rejected diagnostically because it does not improve rank stability. Q4 full-pipeline test is preregistered and in progress.
 
 Deferred after forensic remains: causal state-dependent residual learner from the negative-feedback line.
+
+## Forensic closure update — 2026-10-03
+
+### Root-cause attribution
+- The ~4.9236 pp native CAGR dispersion is generated upstream in model decisions, not execution. Frozen-repeat2 decisions executed on all three raw snapshots reduce CAGR span to ~0.000022 pp.
+- Titanium internal ablation identifies Compact21 as the dominant amplifier. Compact21 rank mean absolute cross-snapshot difference is ~0.053–0.054 and changes ~92–93% of cells; Tail rank mean difference is only ~0.0004–0.00047; macro boost is invariant.
+- Compact21 XGB attribution shows inference perturbations alone have Top1 disagreement 0%; instability is created in training. Training-feature-only and training-label-only perturbations both materially alter the fitted XGBRanker.
+
+### Lookahead verdict
+- Static audit: PASS for operational causality/maturity in the inspected canonical Original149 path, with separate research-design caveats (burned development periods / survivorship-universe considerations).
+- Byte-preserved dynamic future mutation/truncation: all historical features, matured targets, Titanium and XGB_TAIL are exact before cutoff.
+- The previous 24 ET_TAIL differences are reproduced by repeated fits on identical data with canonical ET n_jobs=2, proving they are parallel ExtraTrees nondeterminism rather than future dependence.
+- Single-thread ET closure (et_n_jobs=1, xgb_n_jobs=1) gives exact ET_TAIL, XGB_TAIL and TAIL_HYBRID under both future mutation and truncation: dynamic causality PASS.
+- Code-quality action recommended: separate ET/XGB thread controls and force ExtraTrees to n_jobs=1 in certified replays.
+
+### Feature quantization
+- Diagnostic Q4: rounding all 125 Compact21 F2D features to 4 decimals reduces Compact21 rank cross-snapshot mean difference by ~18%; Q3 was diagnostically rejected.
+- Full Q4 replay: CAGR span falls from 4.923631 pp to 2.244969 pp, a 54.404% reduction.
+- Q4 mean CAGR falls from 31.7581% to 29.0134% (-2.7446 pp).
+- Mean pairwise Top1 disagreement worsens from 31.375% to 34.094%; either-Top1/Top2 disagreement improves slightly from 61.651% to 60.623%.
+- Therefore Q4 is a meaningful economic stabilizer but not sufficient as a final solution and must not be promoted from Original149 alone.
+
+### Next forensic hypothesis
+Compact21 training-label instability remains material. Test a separately preregistered label-stability intervention, preferably combined with Q4 only after a diagnostic gate, before returning to the deferred causal residual learner.
