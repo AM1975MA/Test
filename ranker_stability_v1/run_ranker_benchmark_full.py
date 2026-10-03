@@ -218,7 +218,7 @@ def main():
         "mean_fit_predict_seconds":mean(["timing_seconds","mean_fit_predict"]),
     }
     res["ALL_MATURITY_PASS"]=bool(all(res["per_year"][str(y)]["maturity_PASS"] for y in years))
-    res["ALL_DETERMINISM_PASS"]=bool(all(res["per_year"][str(y)]["determinism"]["PASS"] for y in YEARS))
+    res["ALL_DETERMINISM_PASS"]=bool(all(res["per_year"][str(y)]["determinism"]["PASS"] for y in years))
     Path(a.out).write_text(json.dumps(res,indent=2)+"\n")
     print(json.dumps(res,indent=2))
 if __name__=="__main__":
