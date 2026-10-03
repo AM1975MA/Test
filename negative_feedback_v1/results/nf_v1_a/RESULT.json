@@ -1,0 +1,41 @@
+{
+  "experiment": "NF_V1_A_CAUSAL_RESIDUAL_FEEDBACK",
+  "decision": "REJECT_V1_A_CURRENT_CONTROLLER",
+  "workflow_run": 37125874638,
+  "controller": {"alpha":0.20,"lambda":0.50,"cap":0.20,"min_matured_observations":3,"maturity_days":63},
+  "validity": {
+    "three_individual_replays": "PASS",
+    "repeat2_baseline_parity": "PASS",
+    "source_and_environment_gates": "PASS",
+    "summary_job": "TECHNICAL_FAILURE_ONLY_MISSING_PANDAS",
+    "post_hoc_parameter_change": false
+  },
+  "snapshots": [
+    {"repeat":1,"mae_base":0.3000903196,"mae_feedback":0.2813824556,"rmse_base":0.3733772375,"rmse_feedback":0.3517094550,"mean_error_base":-0.0999904898,"mean_error_feedback":-0.0663247202,"rank_ic_base":0.0965139055,"rank_ic_feedback":0.0926867528,"cagr_base":0.29753447746605766,"cagr_feedback":0.244982082157,"maxdd_base":-0.348593615,"maxdd_feedback":-0.369163493,"sharpe_base":1.0459912,"sharpe_feedback":0.8959957,"turnover_base":25.3641,"turnover_feedback":27.9311},
+    {"repeat":2,"mae_base":0.2997914564,"mae_feedback":0.2811542710,"rmse_base":0.3731738427,"rmse_feedback":0.3514716726,"mean_error_base":-0.0998885806,"mean_error_feedback":-0.0662492302,"rank_ic_base":0.0971648812,"rank_ic_feedback":0.0933654231,"cagr_base":0.30843704925646037,"cagr_feedback":0.336906601605,"maxdd_base":-0.256896103,"maxdd_feedback":-0.337787512,"sharpe_base":1.086993,"sharpe_feedback":1.1231527,"turnover_base":25.6943,"turnover_feedback":27.7932},
+    {"repeat":3,"mae_base":0.3001289142,"mae_feedback":0.2812450661,"rmse_base":0.3734098627,"rmse_feedback":0.3516182097,"mean_error_base":-0.1001043219,"mean_error_feedback":-0.0662705423,"rank_ic_base":0.0967003340,"rank_ic_feedback":0.0928503601,"cagr_base":0.346770790748319,"cagr_feedback":0.312908161373,"maxdd_base":-0.361017616,"maxdd_feedback":-0.379255228,"sharpe_base":1.1825270,"sharpe_feedback":1.0804292,"turnover_base":25.3771,"turnover_feedback":27.9080}
+  ],
+  "aggregate_direct_error": {
+    "mae_base":0.3000035634,"mae_feedback":0.2812605976,"mae_improvement_pct":6.2476,
+    "rmse_base":0.3733203143,"rmse_feedback":0.3515997791,"rmse_improvement_pct":5.8182,
+    "abs_mean_bias_base":0.0999944641,"abs_mean_bias_feedback":0.0662814976,"bias_improvement_pct":33.7148,
+    "rank_ic_base":0.0967930402,"rank_ic_feedback":0.0929675120,"rank_ic_delta":-0.0038255282
+  },
+  "cross_snapshot_stability": {
+    "pairwise_top1_agreement_base":0.6862496,"pairwise_top1_agreement_feedback":0.6689208,
+    "pairwise_ordered_top1_top2_agreement_base":0.3834883,"pairwise_ordered_top1_top2_agreement_feedback":0.4343477,
+    "pairwise_unordered_two_leader_set_agreement_base":0.4943646,"pairwise_unordered_two_leader_set_agreement_feedback":0.5507185,
+    "all_three_top1_agreement_base":0.541843,"all_three_top1_agreement_feedback":0.513525,
+    "all_three_ordered_pair_agreement_base":0.230347,"all_three_ordered_pair_agreement_feedback":0.286560,
+    "mean_rank_std_base":0.0123841,"mean_rank_std_feedback":0.0135241,
+    "mean_rank_range_base":0.0287424,"mean_rank_range_feedback":0.0313891,
+    "mean_pairwise_rank_spearman_base":0.9949009,"mean_pairwise_rank_spearman_feedback":0.9942841,
+    "cagr_span_pp_base":4.923631,"cagr_span_pp_feedback":9.19245
+  },
+  "residual_persistence": {
+    "lag1_autocorr_repeat1_base":0.26611,"lag1_autocorr_repeat1_feedback":0.26891,
+    "lag1_autocorr_repeat2_base":0.26554,"lag1_autocorr_repeat2_feedback":0.26804,
+    "lag1_autocorr_repeat3_base":0.26571,"lag1_autocorr_repeat3_feedback":0.26823
+  },
+  "interpretation": "Ticker-level matured residual feedback materially improves calibration (MAE, RMSE and mean bias) but fails the preregistered convergence objective: Top1 and rank stability worsen, residual persistence does not improve, and CAGR dispersion across perturbation snapshots nearly doubles. Pair-level Top1/Top2 agreement improves, which is retained as a diagnostic clue. The feedback concept is not rejected; this controller form is rejected."
+}
