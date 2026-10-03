@@ -168,8 +168,9 @@ def main():
     ap.add_argument("--r1",required=True); ap.add_argument("--r2",required=True); ap.add_argument("--r3",required=True)
     ap.add_argument("--out",required=True); ap.add_argument("--years",default="2017,2020,2023,2026")
     a=ap.parse_args()
+    years=tuple(int(x) for x in a.years.split(",") if x.strip())
     R={1:load(Path(a.r1)),2:load(Path(a.r2)),3:load(Path(a.r3))}
-    res={"status":"RANKER_STABILITY_V1_MODEL_COMPLETE","model":a.model,"years":list(YEARS),"per_year":{}}
+    res={"status":"RANKER_STABILITY_V1_MODEL_COMPLETE","model":a.model,"years":list(years),"per_year":{}}
     with tempfile.TemporaryDirectory() as td:
         tmp=Path(td)
         for year in years:
