@@ -1,0 +1,267 @@
+name: ETF_trader negative feedback V1 B
+
+on:
+  push:
+    branches: [ research/etf-trader-negative-feedback-v1 ]
+    paths:
+      - '.github/workflows/negative-feedback-v1-b.yml'
+      - 'negative_feedback_v1_b/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  replay:
+    strategy:
+      fail-fast: false
+      matrix:
+        repeat: [1, 2, 3]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+      ETF_TRADER_XGB_WORKERS: '3'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install exact canonical environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt matplotlib \
+            'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' \
+            'xgboost==3.1.3' 'numba==0.65.1' 'yfinance==0.2.66'
+          python - <<'PY'
+          import numpy,pandas,sklearn,xgboost,numba,yfinance
+          assert numpy.__version__=='2.3.5'
+          assert pandas.__version__=='2.2.3'
+          assert sklearn.__version__=='1.8.0'
+          assert xgboost.__version__=='3.1.3'
+          assert numba.__version__=='0.65.1'
+          assert yfinance.__version__=='0.2.66'
+          print('ENV_GATE_PASS')
+          PY
+
+      - name: Gate exact canonical V2 productive source blobs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess
+          exp={
+            'vendor/etf_trader_v2/src/etf_trader/source_only/kernel.py':'045e57996b02d481bd23f6e4dfe53738d43008e5',
+            'vendor/etf_trader_v2/src/etf_trader/source_only/features.py':'b7f6520b2b5bc54fdc26178dea839bad8a8fecaf',
+            'vendor/etf_trader_v2/src/etf_trader/source_only/models.py':'fc642cce171facfcb92440a7708ee2428f120efe',
+            'vendor/etf_trader_v2/src/etf_trader/source_only/_xgb_worker.py':'2b2ebd4d35ff32e88be62edc61a464656f6f7d4b',
+            'vendor/etf_trader_v2/scripts/build_tit_r_source_only.py':'b06ae7d6960a91aa0c0896dca403f2c6b183467c',
+            'vendor/etf_trader_v2/src/etf_trader/ma3/ensemble.py':'4b23fd297df6bfcf71557af9a7aaf7ca96c9a223',
+            'vendor/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py':'acf83f2cee6876c89dfd9948cfbf30889af4c08e',
+            'vendor/etf_trader_v2/src/etf_trader/ma3/producer.py':'e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592',
+            'vendor/etf_trader_v2/src/etf_trader/ma3/ddfirst.py':'3794564fdfe8501c2c19e618bc7d1550884aeb53',
+            'vendor/etf_trader_v2/src/etf_trader/ma3/v6.py':'6c5d3fd6f54fb5ef5162f4b26d3ef9af2af34701',
+            'vendor/p45/v2_stage19_kernel.py':'364c16f61d1866946827626e0d8f26dab276aca4',
+          }
+          lf_fix={
+            'vendor/etf_trader_v2/src/etf_trader/source_only/models.py',
+            'vendor/etf_trader_v2/src/etf_trader/source_only/_xgb_worker.py',
+            'vendor/etf_trader_v2/scripts/build_tit_r_source_only.py',
+          }
+          for p,want in exp.items():
+              got=subprocess.check_output(['git','hash-object',p],text=True).strip()
+              if got!=want and p in lf_fix:
+                  path=Path(p); raw=path.read_bytes()
+                  if not raw.endswith(b'\n'):
+                      path.write_bytes(raw+b'\n')
+                      got=subprocess.check_output(['git','hash-object',p],text=True).strip()
+              assert got==want,(p,got,want)
+          print('CANONICAL_V2_SOURCE_GATE_PASS')
+          PY
+
+      - name: Restore frozen Yahoo perturbation snapshot and canonical runner
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          test -f _raw/_repeat${{ matrix.repeat }}/universe.csv
+          mkdir -p holdout70
+          curl -fsSL \
+            'https://raw.githubusercontent.com/AM1975MA/Test/research/v2-same-source-149-vs-70-20261002/holdout70/v2_canonical_same_source_compare.py' \
+            -o holdout70/v2_canonical_same_source_compare.py
+          test "$(git hash-object holdout70/v2_canonical_same_source_compare.py)" = 'ebd578e0d92e986adb5c2fbf265a346f87b7218e'
+          echo INPUT_AND_RUNNER_GATE_PASS
+
+      - name: Run causal rank reliability feedback V1 B
+        run: |
+          python negative_feedback_v1_b/run_nf_v1_b.py \
+            --raw _raw/_repeat${{ matrix.repeat }} \
+            --compare-script holdout70/v2_canonical_same_source_compare.py \
+            --out _nf_result
+
+      - name: Gate repeat2 canonical parity and score distribution
+        if: matrix.repeat == 2
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('_nf_result/original149/NF_V1_B_RESULT.json'))
+          got=r['baseline']['cagr']
+          want=0.30843704925646037
+          assert abs(got-want)<1e-12,(got,want)
+          assert r['direct_rank_metrics']['score_distribution_max_abs_error']==0.0
+          print('REPEAT2_BASELINE_PARITY_PASS',got)
+          print('SCORE_DISTRIBUTION_GATE_PASS')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nf-v1-b-repeat-${{ matrix.repeat }}
+          retention-days: 90
+          if-no-files-found: error
+          path: |
+            _nf_result/original149/NF_V1_B_RESULT.json
+            _nf_result/original149/BASELINE_DAILY_LEADERS.csv
+            _nf_result/original149/FEEDBACK_DAILY_LEADERS.csv
+            _nf_result/original149/RANK_FEEDBACK_STATE_AUDIT.csv
+            _nf_result/original149/BASELINE_RESULT.json
+            _nf_result/original149/FEEDBACK_RESULT.json
+
+  summarize:
+    needs: replay
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: nf-v1-b-repeat-*
+          path: _collected
+
+      - name: Build frozen cross-snapshot convergence report
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import itertools,json
+          import numpy as np
+          import pandas as pd
+
+          roots={int(p.name.rsplit('-',1)[-1]):p for p in Path('_collected').glob('nf-v1-b-repeat-*')}
+          if set(roots)!={1,2,3}: raise RuntimeError(roots)
+          rows={}; leaders={}; audits={}
+          for rep,root in sorted(roots.items()):
+              rows[rep]=json.load(open(next(root.rglob('NF_V1_B_RESULT.json'))))
+              leaders[rep]={
+                  'base':pd.read_csv(next(root.rglob('BASELINE_DAILY_LEADERS.csv'))),
+                  'feedback':pd.read_csv(next(root.rglob('FEEDBACK_DAILY_LEADERS.csv'))),
+              }
+              a=pd.read_csv(next(root.rglob('RANK_FEEDBACK_STATE_AUDIT.csv')))
+              a['signal_date']=pd.to_datetime(a['signal_date'])
+              audits[rep]=a
+
+          def pairwise_leader_metrics(kind):
+              top1=[]; ordered=[]; unordered=[]
+              for a,b in itertools.combinations([1,2,3],2):
+                  x=leaders[a][kind].merge(leaders[b][kind],on='date',suffixes=('_a','_b'))
+                  top1.append(float((x.top1_a==x.top1_b).mean()))
+                  ordered.append(float(((x.top1_a==x.top1_b)&(x.top2_a==x.top2_b)).mean()))
+                  unordered.append(float(np.mean([
+                      {r.top1_a,r.top2_a}=={r.top1_b,r.top2_b}
+                      for r in x.itertuples()
+                  ])))
+              return {
+                  'pairwise_top1':float(np.mean(top1)),
+                  'pairwise_ordered_top1_top2':float(np.mean(ordered)),
+                  'pairwise_unordered_top2_set':float(np.mean(unordered)),
+              }
+
+          def all_three_top1(kind):
+              x=leaders[1][kind][['date','top1']].rename(columns={'top1':'a'})
+              x=x.merge(leaders[2][kind][['date','top1']].rename(columns={'top1':'b'}),on='date')
+              x=x.merge(leaders[3][kind][['date','top1']].rename(columns={'top1':'c'}),on='date')
+              return float(((x.a==x.b)&(x.a==x.c)).mean())
+
+          def rank_cross_snapshot(col):
+              wide=[]
+              for rep in [1,2,3]:
+                  z=audits[rep][['signal_date','ticker',col]].rename(columns={col:f'r{rep}'})
+                  wide.append(z)
+              x=wide[0].merge(wide[1],on=['signal_date','ticker']).merge(wide[2],on=['signal_date','ticker'])
+              spears=[]
+              for a,b in itertools.combinations(['r1','r2','r3'],2):
+                  for _,g in x.groupby('signal_date'):
+                      spears.append(g[a].corr(g[b],method='spearman'))
+              vals=x[['r1','r2','r3']].to_numpy(float)
+              return {
+                  'mean_pairwise_spearman':float(np.nanmean(spears)),
+                  'mean_rank_std':float(np.nanmean(np.nanstd(vals,axis=1))),
+                  'mean_rank_range':float(np.nanmean(np.nanmax(vals,axis=1)-np.nanmin(vals,axis=1))),
+              }
+
+          direct_keys=['rank_mae_base','rank_mae_feedback','mean_rank_ic_base','mean_rank_ic_feedback',
+                       'mean_pairwise_accuracy_base','mean_pairwise_accuracy_feedback']
+          direct={k:float(np.mean([rows[r]['direct_rank_metrics'][k] for r in [1,2,3]])) for k in direct_keys}
+          base_l=pairwise_leader_metrics('base'); fb_l=pairwise_leader_metrics('feedback')
+          base_rank=rank_cross_snapshot('RANK_BASE'); fb_rank=rank_cross_snapshot('RANK_FEEDBACK')
+          bc=[rows[r]['baseline']['cagr'] for r in [1,2,3]]
+          fc=[rows[r]['feedback']['cagr'] for r in [1,2,3]]
+
+          out={
+            'status':'NF_V1_B_SUMMARY_COMPLETE',
+            'experiment':'NF_V1_B_RANK_RELIABILITY_FEEDBACK',
+            'controller':rows[1]['controller'],
+            'repeats':[{'repeat':r,**rows[r]} for r in [1,2,3]],
+            'aggregate_direct_rank_metrics':{
+                **direct,
+                'rank_mae_delta':direct['rank_mae_feedback']-direct['rank_mae_base'],
+                'rank_ic_delta':direct['mean_rank_ic_feedback']-direct['mean_rank_ic_base'],
+                'pairwise_accuracy_delta':direct['mean_pairwise_accuracy_feedback']-direct['mean_pairwise_accuracy_base'],
+            },
+            'cross_snapshot_stability':{
+                'base':{**base_l,'all_three_top1':all_three_top1('base'),**base_rank,
+                        'cagr_span_pp':100*(max(bc)-min(bc))},
+                'feedback':{**fb_l,'all_three_top1':all_three_top1('feedback'),**fb_rank,
+                            'cagr_span_pp':100*(max(fc)-min(fc))},
+            },
+          }
+          g1=(out['aggregate_direct_rank_metrics']['rank_mae_delta']<0 or
+              out['aggregate_direct_rank_metrics']['pairwise_accuracy_delta']>0)
+          g2=fb_l['pairwise_top1']>base_l['pairwise_top1']
+          g3=fb_rank['mean_pairwise_spearman']-base_rank['mean_pairwise_spearman']>=-0.001
+          g4=out['cross_snapshot_stability']['feedback']['cagr_span_pp']<=out['cross_snapshot_stability']['base']['cagr_span_pp']
+          out['promising_gate']={
+              'direct_rank_error_improved':bool(g1),
+              'top1_stability_improved':bool(g2),
+              'rank_spearman_not_materially_worse':bool(g3),
+              'cagr_span_not_increased':bool(g4),
+              'PASS':bool(g1 and g2 and g3 and g4),
+          }
+          out['decision']='PROMISING_V1_B' if out['promising_gate']['PASS'] else 'REJECT_V1_B_CURRENT_CONTROLLER'
+          dest=Path('negative_feedback_v1_b/results/nf_v1_b')
+          dest.mkdir(parents=True,exist_ok=True)
+          (dest/'RESULT.json').write_text(json.dumps(out,indent=2)+'\n')
+          print(json.dumps(out,indent=2))
+          PY
+
+      - name: Persist frozen result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add negative_feedback_v1_b/results/nf_v1_b/RESULT.json
+          git commit -m 'Persist negative feedback V1 B result'
+          git pull --rebase origin research/etf-trader-negative-feedback-v1
+          git push origin HEAD:research/etf-trader-negative-feedback-v1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nf-v1-b-summary
+          retention-days: 90
+          path: negative_feedback_v1_b/results/nf_v1_b/RESULT.json
