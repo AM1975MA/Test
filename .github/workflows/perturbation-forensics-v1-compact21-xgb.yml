@@ -44,8 +44,8 @@ jobs:
               g=subprocess.check_output(["git","hash-object",p],text=True).strip()
               if g!=w and p in normalize:
                   q=Path(p);b=q.read_bytes()
-                  if not b.endswith(b"\\n"):
-                      q.write_bytes(b+b"\\n")
+                  if not b.endswith(b"\n"):
+                      q.write_bytes(b+b"\n")
                       g=subprocess.check_output(["git","hash-object",p],text=True).strip()
               assert g==w,(p,g,w)
           print("COMPACT21_SOURCE_GATE_PASS")
