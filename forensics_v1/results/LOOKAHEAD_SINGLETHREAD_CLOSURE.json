@@ -1,0 +1,48 @@
+{
+  "status": "LOOKAHEAD_SINGLETHREAD_CLOSURE_COMPLETE",
+  "comparisons": {
+    "mutate": {
+      "ET_TAIL": {
+        "n": 12516,
+        "changed_gt1e12": 0,
+        "max_abs": 0.0,
+        "PASS": true
+      },
+      "XGB_TAIL": {
+        "n": 12516,
+        "changed_gt1e12": 0,
+        "max_abs": 0.0,
+        "PASS": true
+      },
+      "TAIL_HYBRID": {
+        "n": 12516,
+        "changed_gt1e12": 0,
+        "max_abs": 0.0,
+        "PASS": true
+      },
+      "PASS": true
+    },
+    "truncate": {
+      "ET_TAIL": {
+        "n": 12367,
+        "changed_gt1e12": 0,
+        "max_abs": 0.0,
+        "PASS": true
+      },
+      "XGB_TAIL": {
+        "n": 12367,
+        "changed_gt1e12": 0,
+        "max_abs": 0.0,
+        "PASS": true
+      },
+      "TAIL_HYBRID": {
+        "n": 12367,
+        "changed_gt1e12": 0,
+        "max_abs": 0.0,
+        "PASS": true
+      },
+      "PASS": true
+    }
+  },
+  "PASS": true
+}
