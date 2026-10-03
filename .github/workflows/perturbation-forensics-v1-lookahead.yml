@@ -1,0 +1,95 @@
+name: ETF_trader perturbation forensics V1 lookahead
+
+on:
+  push:
+    branches: [ research/etf-trader-perturbation-forensics-v1 ]
+    paths:
+      - '.github/workflows/perturbation-forensics-v1-lookahead.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  dynamic:
+    strategy:
+      fail-fast: false
+      matrix:
+        cutoff: ['2020-12-31','2023-12-29']
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+      ETF_TRADER_XGB_WORKERS: '3'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.13' }
+      - name: Install pinned environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt matplotlib 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'numba==0.65.1' 'yfinance==0.2.66'
+      - name: Gate canonical source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess
+          exp={'vendor/etf_trader_v2/src/etf_trader/source_only/kernel.py':'045e57996b02d481bd23f6e4dfe53738d43008e5','vendor/etf_trader_v2/src/etf_trader/source_only/features.py':'b7f6520b2b5bc54fdc26178dea839bad8a8fecaf','vendor/etf_trader_v2/src/etf_trader/source_only/models.py':'fc642cce171facfcb92440a7708ee2428f120efe','vendor/etf_trader_v2/src/etf_trader/source_only/_xgb_worker.py':'2b2ebd4d35ff32e88be62edc61a464656f6f7d4b','vendor/etf_trader_v2/scripts/build_tit_r_source_only.py':'b06ae7d6960a91aa0c0896dca403f2c6b183467c','vendor/etf_trader_v2/src/etf_trader/ma3/ensemble.py':'4b23fd297df6bfcf71557af9a7aaf7ca96c9a223','vendor/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py':'acf83f2cee6876c89dfd9948cfbf30889af4c08e','vendor/etf_trader_v2/src/etf_trader/ma3/producer.py':'e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592','vendor/etf_trader_v2/src/etf_trader/ma3/ddfirst.py':'3794564fdfe8501c2c19e618bc7d1550884aeb53','vendor/etf_trader_v2/src/etf_trader/ma3/v6.py':'6c5d3fd6f54fb5ef5162f4b26d3ef9af2af34701','vendor/p45/v2_stage19_kernel.py':'364c16f61d1866946827626e0d8f26dab276aca4'}
+          lf={'vendor/etf_trader_v2/src/etf_trader/source_only/models.py','vendor/etf_trader_v2/src/etf_trader/source_only/_xgb_worker.py','vendor/etf_trader_v2/scripts/build_tit_r_source_only.py'}
+          for p,w in exp.items():
+            g=subprocess.check_output(['git','hash-object',p],text=True).strip()
+            if g!=w and p in lf:
+              q=Path(p);b=q.read_bytes();
+              if not b.endswith(b'\n'):q.write_bytes(b+b'\n');g=subprocess.check_output(['git','hash-object',p],text=True).strip()
+            assert g==w,(p,g,w)
+          print('SOURCE_GATE_PASS')
+          PY
+      - name: Restore repeat2 and canonical runner
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          test -f _raw/_repeat2/universe.csv
+          mkdir -p holdout70
+          curl -fsSL 'https://raw.githubusercontent.com/AM1975MA/Test/research/v2-same-source-149-vs-70-20261002/holdout70/v2_canonical_same_source_compare.py' -o holdout70/v2_canonical_same_source_compare.py
+          test "$(git hash-object holdout70/v2_canonical_same_source_compare.py)" = 'ebd578e0d92e986adb5c2fbf265a346f87b7218e'
+      - name: Run future mutation and truncation audit
+        run: |
+          python forensics_v1/run_lookahead_dynamic.py --raw _raw/_repeat2 --compare-script holdout70/v2_canonical_same_source_compare.py --cutoff '${{ matrix.cutoff }}' --out _lookahead
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lookahead-${{ matrix.cutoff }}
+          retention-days: 90
+          path: _lookahead/RESULT.json
+
+  summarize:
+    needs: dynamic
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { pattern: 'lookahead-*', path: '_look' }
+      - name: Combine audit
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          rows=[]
+          for p in sorted(Path('_look').rglob('RESULT.json')): rows.append(json.loads(p.read_text()))
+          out={'status':'LOOKAHEAD_DYNAMIC_SUMMARY','tests':rows,'PASS':bool(rows and all(x.get('PASS') for x in rows))}
+          q=Path('forensics_v1/results/LOOKAHEAD_DYNAMIC.json');q.parent.mkdir(parents=True,exist_ok=True);q.write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))
+          PY
+      - name: Persist
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add forensics_v1/results/LOOKAHEAD_DYNAMIC.json
+          git commit -m 'Persist dynamic lookahead forensic'
+          git pull --rebase origin research/etf-trader-perturbation-forensics-v1
+          git push origin HEAD:research/etf-trader-perturbation-forensics-v1
+      - uses: actions/upload-artifact@v4
+        with: { name: lookahead-dynamic-summary, retention-days: 90, path: forensics_v1/results/LOOKAHEAD_DYNAMIC.json }
