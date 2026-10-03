@@ -1,0 +1,81 @@
+{
+  "status": "NF_V1_C_SUMMARY_COMPLETE",
+  "experiment": "NF_V1_C_CONFIDENCE_FEEDBACK",
+  "scientific_run_id": 37147439339,
+  "invalid_technical_run_id": 37146915048,
+  "decision": "REJECT_NF_V1_C_CURRENT_CONTROLLER",
+  "technical_note": "The first run was invalid because scaling risk_gross also changed canonical confidence_weights. The corrected wiring keeps canonical confidence on canonical gross and applies feedback gain only to simulation gross. Controller formula and preregistered parameters were unchanged.",
+  "controller": {
+    "alpha": 0.3333333333333333,
+    "min_matured_dates": 3,
+    "null_pairwise_accuracy": 0.5,
+    "gain_rule": "gain=min(1,max(0,2*q_ewma))",
+    "ranking_modified": false,
+    "risk_can_only_decrease": true
+  },
+  "repeats": [
+    {
+      "repeat": 1,
+      "baseline": {"cagr": 0.29753447746605766, "maxdd": -0.34862133764907766, "sharpe": 1.0461135207098167},
+      "feedback": {"cagr": 0.2906844227611231, "maxdd": -0.34838764081760853, "sharpe": 1.0325055372133796},
+      "cagr_delta_pp": -0.6850054704934564,
+      "active_daily_fraction": 0.22020287404902789,
+      "mean_active_daily_gain": 0.9561940840330577,
+      "decision_identity_pass": true,
+      "artifact_id": 11282723107,
+      "artifact_digest": "sha256:cf12b45b1f02e50ac3243f4d9460819d83e54457e0e5bf66c8e9232b7e52917a"
+    },
+    {
+      "repeat": 2,
+      "baseline": {"cagr": 0.30843704925646037, "maxdd": -0.2568961026668677, "sharpe": 1.086992949896945},
+      "feedback": {"cagr": 0.30348570769165806, "maxdd": -0.2494420061024366, "sharpe": 1.0791003069782625},
+      "cagr_delta_pp": -0.4951341564802312,
+      "active_daily_fraction": 0.18427726120033813,
+      "mean_active_daily_gain": 0.9515654204159639,
+      "decision_identity_pass": true,
+      "repeat2_parity_pass": true,
+      "artifact_id": 11283252099,
+      "artifact_digest": "sha256:f17198628250db3f04668b5a538594b5f93593b9173cdbf0b3c533287f8bb9e7"
+    },
+    {
+      "repeat": 3,
+      "baseline": {"cagr": 0.346770790748319, "maxdd": -0.36097505012561093, "sharpe": 1.1829318538970461},
+      "feedback": {"cagr": 0.33915293007382885, "maxdd": -0.3595927162525502, "sharpe": 1.1689057751618563},
+      "cagr_delta_pp": -0.7617860674490162,
+      "active_daily_fraction": 0.2028740490278952,
+      "mean_active_daily_gain": 0.9518146117155396,
+      "decision_identity_pass": true,
+      "artifact_id": 11283052469,
+      "artifact_digest": "sha256:c7eed73a4df710ea719201e0f42bb25cf4c7a682fbb03184d02fe3279d190a93"
+    }
+  ],
+  "aggregate": {
+    "baseline_cagr_span_pp": 4.9236313282261355,
+    "feedback_cagr_span_pp": 4.846850731270575,
+    "span_reduction_pp": 0.07678059695556065,
+    "span_reduction_fraction": 0.0155943026268831,
+    "span_ratio": 0.9844056973731169,
+    "mean_baseline_cagr": 0.317580772490279,
+    "mean_feedback_cagr": 0.31110768684220336,
+    "mean_cagr_retention_ratio": 0.9796175140033901,
+    "mean_baseline_maxdd": -0.32216416348051874,
+    "mean_feedback_maxdd": -0.31914078772419846,
+    "mean_maxdd_improvement_pp": 0.3023375756320278,
+    "mean_baseline_sharpe": 1.1053461081679359,
+    "mean_feedback_sharpe": 1.0935038731178328,
+    "mean_sharpe_delta": -0.011842235050103067,
+    "mean_active_daily_fraction": 0.20245139475908705,
+    "mean_active_daily_gain": 0.9531913720548538
+  },
+  "promising_gate": {
+    "decision_identity_all": true,
+    "repeat2_parity": true,
+    "feedback_active": true,
+    "cagr_span_reduced_25pct": false,
+    "mean_cagr_retention_90pct": true,
+    "mean_maxdd_not_worse": true,
+    "mean_sharpe_not_worse_by_0p02": true,
+    "PASS": false
+  },
+  "interpretation": "Risk-gain feedback is directionally stable and preserves decisions exactly. It mildly reduces cross-snapshot CAGR dispersion and improves average MaxDD while retaining most CAGR, but the convergence effect is far below the preregistered threshold. No parameter sweep or ex-post retuning is allowed within V1_C."
+}
