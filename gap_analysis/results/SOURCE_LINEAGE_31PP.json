@@ -1,0 +1,50 @@
+{
+  "status": "FROZEN_SOURCE_LINEAGE",
+  "result_identity": "Original149 fresh same-source canonical V2",
+  "metric": "CAGR",
+  "cagr": 0.31603994562922105,
+  "cagr_percent": 31.603994562922105,
+  "period": ["2017-02-01", "2026-07-01"],
+  "sessions": 2366,
+  "candidate_count": 149,
+  "result_source": {
+    "repository": "AM1975MA/Test",
+    "branch": "research/v2-same-source-149-vs-70-20261002",
+    "file": "holdout70/V2_CONTROLLED_FRESH_149_VS_70_FINAL.json",
+    "blob_sha": "7f31670261e4951bd10ae45f8bf0f0d6c890601a",
+    "workflow_run": 37020787738,
+    "artifact_id": 11233440300,
+    "artifact_digest": "sha256:8a634318c141ae9894188b3df450cf060d68746568ac31a02fb7708d6a93f569"
+  },
+  "raw_lineage": {
+    "source_run": 37017429560,
+    "artifact_id": 11231770876,
+    "artifact_digest": "sha256:7e880d80cab16abb52cb257bad79e4b04af22c1bfc1ad44e009d03a6485c306f",
+    "provider": "Yahoo Finance via yfinance",
+    "yfinance_version": "0.2.66",
+    "pandas_version": "2.2.3",
+    "requested_start": "2004-01-01",
+    "requested_end_exclusive": "2026-08-01",
+    "last_observation": "2026-07-31",
+    "price_semantics": "same-row Adj Close/raw Close adjustment for OHLC; raw Volume",
+    "fresh_download_time_utc": "2026-10-02T14:06Z"
+  },
+  "productive_source_gate": {
+    "status": "PASS",
+    "kernel.py": "045e57996b02d481bd23f6e4dfe53738d43008e5",
+    "features.py": "b7f6520b2b5bc54fdc26178dea839bad8a8fecaf",
+    "models.py": "fc642cce171facfcb92440a7708ee2428f120efe",
+    "_xgb_worker.py": "2b2ebd4d35ff32e88be62edc61a464656f6f7d4b",
+    "build_tit_r_source_only.py": "b06ae7d6960a91aa0c0896dca403f2c6b183467c",
+    "ensemble.py": "4b23fd297df6bfcf71557af9a7aaf7ca96c9a223",
+    "hybrid_producer.py": "acf83f2cee6876c89dfd9948cfbf30889af4c08e",
+    "producer.py": "e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592",
+    "ddfirst.py": "3794564fdfe8501c2c19e618bc7d1550884aeb53",
+    "v6.py": "6c5d3fd6f54fb5ef5162f4b26d3ef9af2af34701",
+    "v2_stage19_kernel.py": "364c16f61d1866946827626e0d8f26dab276aca4"
+  },
+  "derived_artifact_hashes": {
+    "titanium_sha256": "9fdc99dd750653b34ecb5b29dfb5989c71e4ae010483f6e8431e923c9c320f6f",
+    "predictions_sha256": "0aaad6bc99466e5bfa2bac48287bbd127dc45a9aaa393ec68998840803aab02b"
+  }
+}
