@@ -1,0 +1,210 @@
+{
+  "status": "FEATURE_QUANTIZATION_V1_COMPLETE",
+  "years": [
+    2017,
+    2020,
+    2023,
+    2026
+  ],
+  "variants": {
+    "BASE": {
+      "decimals": null,
+      "per_year": {
+        "2017": {
+          "n": 1788,
+          "raw_mean_abs": 0.0483870692551136,
+          "raw_max_abs": 0.32399994134902954,
+          "rank_mean_abs": 0.07547708061198444,
+          "rank_p99_abs": 0.26932885906040194,
+          "rank_max_abs": 0.4899328859060403,
+          "mean_daily_spearman": 0.9395664792309089,
+          "top1_disagreement_fraction": 0.5,
+          "test_feature_exact_fraction": 0.4471543561278233,
+          "train_feature_exact_fraction": 0.4401014681903459,
+          "integer_label_disagreement_fraction": 0.0006821282401091405
+        },
+        "2020": {
+          "n": 1788,
+          "raw_mean_abs": 0.03505980968475342,
+          "raw_max_abs": 0.1793029010295868,
+          "rank_mean_abs": 0.06068044982958725,
+          "rank_p99_abs": 0.2827516778523482,
+          "rank_max_abs": 0.5033557046979866,
+          "mean_daily_spearman": 0.9534648406796058,
+          "top1_disagreement_fraction": 0.3333333333333333,
+          "test_feature_exact_fraction": 0.4504709535454627,
+          "train_feature_exact_fraction": 0.441058306173304,
+          "integer_label_disagreement_fraction": 0.0006969855375500958
+        },
+        "2023": {
+          "n": 1788,
+          "raw_mean_abs": 0.032946936786174774,
+          "raw_max_abs": 0.15477412939071655,
+          "rank_mean_abs": 0.04565109679744156,
+          "rank_p99_abs": 0.19550335570469723,
+          "rank_max_abs": 0.2818791946308725,
+          "mean_daily_spearman": 0.9752472942741398,
+          "top1_disagreement_fraction": 0.5833333333333334,
+          "test_feature_exact_fraction": 0.4643545815255683,
+          "train_feature_exact_fraction": 0.4427333735251779,
+          "integer_label_disagreement_fraction": 0.0005649717514124294
+        },
+        "2026": {
+          "n": 894,
+          "raw_mean_abs": 0.037799324840307236,
+          "raw_max_abs": 0.2855415940284729,
+          "rank_mean_abs": 0.05664909989039533,
+          "rank_p99_abs": 0.2751677852348993,
+          "rank_max_abs": 0.3624161073825503,
+          "mean_daily_spearman": 0.9598899570711653,
+          "top1_disagreement_fraction": 0.3333333333333333,
+          "test_feature_exact_fraction": 0.5914175942143624,
+          "train_feature_exact_fraction": 0.44971560578497866,
+          "integer_label_disagreement_fraction": 0.0004729110631631839
+        }
+      },
+      "aggregate_mean": {
+        "raw_mean_abs": 0.03854828514158726,
+        "rank_mean_abs": 0.059614431782352144,
+        "mean_daily_spearman": 0.9570421428139549,
+        "top1_disagreement_fraction": 0.43749999999999994,
+        "test_feature_exact_fraction": 0.48834937135330414,
+        "train_feature_exact_fraction": 0.44340218841845164
+      }
+    },
+    "Q4": {
+      "decimals": 4,
+      "per_year": {
+        "2017": {
+          "n": 1788,
+          "raw_mean_abs": 0.029011251404881477,
+          "raw_max_abs": 0.1651877611875534,
+          "rank_mean_abs": 0.05119889494467217,
+          "rank_p99_abs": 0.21563758389261667,
+          "rank_max_abs": 0.3557046979865772,
+          "mean_daily_spearman": 0.9703842433037063,
+          "top1_disagreement_fraction": 0.75,
+          "test_feature_exact_fraction": 0.9019368454924452,
+          "train_feature_exact_fraction": 0.9115022777728249,
+          "integer_label_disagreement_fraction": 0.0006821282401091405
+        },
+        "2020": {
+          "n": 1788,
+          "raw_mean_abs": 0.03304809704422951,
+          "raw_max_abs": 0.1823265105485916,
+          "rank_mean_abs": 0.05675420026124949,
+          "rank_p99_abs": 0.26932885906040194,
+          "rank_max_abs": 0.3758389261744967,
+          "mean_daily_spearman": 0.959190700767882,
+          "top1_disagreement_fraction": 0.5,
+          "test_feature_exact_fraction": 0.9463456926244764,
+          "train_feature_exact_fraction": 0.9121085712182625,
+          "integer_label_disagreement_fraction": 0.0006969855375500958
+        },
+        "2023": {
+          "n": 1788,
+          "raw_mean_abs": 0.03314008191227913,
+          "raw_max_abs": 0.19203850626945496,
+          "rank_mean_abs": 0.04653694278035524,
+          "rank_p99_abs": 0.20805369127516782,
+          "rank_max_abs": 0.46308724832214765,
+          "mean_daily_spearman": 0.9749274442227462,
+          "top1_disagreement_fraction": 0.5,
+          "test_feature_exact_fraction": 0.944432083657804,
+          "train_feature_exact_fraction": 0.9176527322601971,
+          "integer_label_disagreement_fraction": 0.0005649717514124294
+        },
+        "2026": {
+          "n": 894,
+          "raw_mean_abs": 0.024261491373181343,
+          "raw_max_abs": 0.1252378523349762,
+          "rank_mean_abs": 0.04103418764920499,
+          "rank_p99_abs": 0.2224161073825495,
+          "rank_max_abs": 0.38926174496644295,
+          "mean_daily_spearman": 0.9767470826531229,
+          "top1_disagreement_fraction": 0.5,
+          "test_feature_exact_fraction": 0.9780778575060738,
+          "train_feature_exact_fraction": 0.923546979279027,
+          "integer_label_disagreement_fraction": 0.0004729110631631839
+        }
+      },
+      "aggregate_mean": {
+        "raw_mean_abs": 0.029865230433642864,
+        "rank_mean_abs": 0.04888105640887048,
+        "mean_daily_spearman": 0.9703123677368644,
+        "top1_disagreement_fraction": 0.5625,
+        "test_feature_exact_fraction": 0.9426981198201998,
+        "train_feature_exact_fraction": 0.9162026401325778,
+        "rank_mean_abs_reduction_vs_base_pct": 18.00465936280064,
+        "top1_disagreement_reduction_vs_base_pct": -28.571428571428587
+      }
+    },
+    "Q3": {
+      "decimals": 3,
+      "per_year": {
+        "2017": {
+          "n": 1788,
+          "raw_mean_abs": 0.031176116317510605,
+          "raw_max_abs": 0.14620892703533173,
+          "rank_mean_abs": 0.05812050508235365,
+          "rank_p99_abs": 0.261744966442953,
+          "rank_max_abs": 0.34899328859060397,
+          "mean_daily_spearman": 0.9601493439748473,
+          "top1_disagreement_fraction": 0.75,
+          "test_feature_exact_fraction": 0.980115746984474,
+          "train_feature_exact_fraction": 0.9824847040161975,
+          "integer_label_disagreement_fraction": 0.0006821282401091405
+        },
+        "2020": {
+          "n": 1788,
+          "raw_mean_abs": 0.048338551074266434,
+          "raw_max_abs": 0.20307610929012299,
+          "rank_mean_abs": 0.08669279161599329,
+          "rank_p99_abs": 0.34986577181207973,
+          "rank_max_abs": 0.5100671140939597,
+          "mean_daily_spearman": 0.9124430134832817,
+          "top1_disagreement_fraction": 0.4166666666666667,
+          "test_feature_exact_fraction": 0.9893746848922627,
+          "train_feature_exact_fraction": 0.9825481863593764,
+          "integer_label_disagreement_fraction": 0.0006969855375500958
+        },
+        "2023": {
+          "n": 1788,
+          "raw_mean_abs": 0.034350331872701645,
+          "raw_max_abs": 0.18192985653877258,
+          "rank_mean_abs": 0.05196462621803823,
+          "rank_p99_abs": 0.22147651006711405,
+          "rank_max_abs": 0.44295302013422816,
+          "mean_daily_spearman": 0.9686610435939295,
+          "top1_disagreement_fraction": 0.5,
+          "test_feature_exact_fraction": 0.990442021730263,
+          "train_feature_exact_fraction": 0.9838051273710362,
+          "integer_label_disagreement_fraction": 0.0005649717514124294
+        },
+        "2026": {
+          "n": 894,
+          "raw_mean_abs": 0.024523796513676643,
+          "raw_max_abs": 0.14045590162277222,
+          "rank_mean_abs": 0.04553848925724067,
+          "rank_p99_abs": 0.21523489932885864,
+          "rank_max_abs": 0.32885906040268464,
+          "mean_daily_spearman": 0.9743092085373964,
+          "top1_disagreement_fraction": 0.5,
+          "test_feature_exact_fraction": 0.9960638077480837,
+          "train_feature_exact_fraction": 0.9852231741831275,
+          "integer_label_disagreement_fraction": 0.0004729110631631839
+        }
+      },
+      "aggregate_mean": {
+        "raw_mean_abs": 0.03459719894453883,
+        "rank_mean_abs": 0.06057910304340646,
+        "mean_daily_spearman": 0.9538906523973637,
+        "top1_disagreement_fraction": 0.5416666666666667,
+        "test_feature_exact_fraction": 0.9889990653387708,
+        "train_feature_exact_fraction": 0.9835152979824343,
+        "rank_mean_abs_reduction_vs_base_pct": -1.6181841077950057,
+        "top1_disagreement_reduction_vs_base_pct": -23.809523809523842
+      }
+    }
+  }
+}
