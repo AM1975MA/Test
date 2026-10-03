@@ -1,0 +1,116 @@
+name: ETF trader ET affected years determinism forensic
+
+on:
+  push:
+    branches:
+      - research/etf-trader-perturbation-forensics-v1
+    paths:
+      - .github/workflows/perturbation-forensics-v1-et-determinism-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  fit:
+    strategy:
+      fail-fast: false
+      matrix:
+        run:
+          - 1
+          - 2
+          - 3
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+      NUMEXPR_NUM_THREADS: "2"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install "numpy==2.3.5" "pandas==2.2.3" "scikit-learn==1.8.0" "xgboost==3.1.3" pyarrow
+      - name: Download byte-preserved 2023 base panel
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _et
+          gh run download 37151445684 -R ${{ github.repository }} -n lookahead-bp-2023-12-29-base -D _et/base
+      - name: Fit affected annual ET models independently
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          import numpy as np,pandas as pd
+          from sklearn.impute import SimpleImputer
+          from sklearn.ensemble import ExtraTreesRegressor
+          from etf_trader.ma3.producer import FEATURES_42
+          from etf_trader.ma3.hybrid_producer import ET_MODEL_KW, corrected_target
+          p=pd.read_parquet("_et/base/PANEL.parquet")
+          p["signal_date"]=pd.to_datetime(p.signal_date);p["exit_date_63"]=pd.to_datetime(p.exit_date_63)
+          outs=[]
+          for year in [2017,2021,2022,2023]:
+              cutoff=pd.Timestamp(year,1,1)
+              tr=p[(p.signal_date<cutoff)&(p.exit_date_63<cutoff)].copy().sort_values(["signal_date","ticker"])
+              te=p[p.signal_date.dt.year.eq(year)].copy().sort_values(["signal_date","ticker"])
+              tr["Y"]=corrected_target(tr);tr=tr[tr.Y.notna()].copy()
+              imp=SimpleImputer(strategy="median")
+              X=imp.fit_transform(tr[list(FEATURES_42)]);Xt=imp.transform(te[list(FEATURES_42)])
+              et=ExtraTreesRegressor(n_jobs=2,**ET_MODEL_KW);et.fit(X,tr.Y.to_numpy(float))
+              raw=et.predict(Xt)
+              o=te[["signal_date","ticker"]].copy();o["year"]=year;o["raw"]=raw;o["rank"]=o.groupby("signal_date")["raw"].rank(pct=True,method="average")
+              outs.append(o)
+          out=pd.concat(outs,ignore_index=True).sort_values(["signal_date","ticker"]).reset_index(drop=True)
+          Path("_out").mkdir();out.to_parquet("_out/ET.parquet",index=False)
+          h=hashlib.sha256(pd.util.hash_pandas_object(out,index=False).to_numpy(np.uint64).tobytes()).hexdigest()
+          Path("_out/META.json").write_text(json.dumps({"hash":h,"rows":len(out)},indent=2)+"\n")
+          print(h)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: et-det-v2-${{ matrix.run }}
+          retention-days: 90
+          path: _out/
+
+  summarize:
+    needs: fit
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install "numpy==2.3.5" "pandas==2.2.3" pyarrow
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: et-det-v2-*
+          path: _all
+      - name: Compare
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,numpy as np,pandas as pd
+          R={i:pd.read_parquet(Path("_all")/f"et-det-v2-{i}"/"ET.parquet") for i in (1,2,3)}
+          pairs={}
+          for a,b in ((1,2),(1,3),(2,3)):
+              x=R[a].merge(R[b],on=["signal_date","ticker","year"],suffixes=("_a","_b"),validate="one_to_one")
+              dr=np.abs(x.raw_a-x.raw_b);dk=np.abs(x.rank_a-x.rank_b)
+              pairs[f"{a}-{b}"]={"raw_changed_gt1e12":int(np.sum(dr>1e-12)),"raw_max_abs":float(dr.max()),"rank_changed_gt1e12":int(np.sum(dk>1e-12)),"rank_max_abs":float(dk.max())}
+          out={"status":"ET_AFFECTED_YEARS_DETERMINISM_COMPLETE","years":[2017,2021,2022,2023],"pairs":pairs}
+          out["PASS"]=bool(all(v["raw_changed_gt1e12"]==0 and v["rank_changed_gt1e12"]==0 for v in pairs.values()))
+          Path("forensics_v1/results/ET_DETERMINISM_AFFECTED_YEARS.json").write_text(json.dumps(out,indent=2)+"\n")
+          print(json.dumps(out,indent=2))
+          PY
+      - name: Persist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+AM1975MA@users.noreply.github.com"
+          git add forensics_v1/results/ET_DETERMINISM_AFFECTED_YEARS.json
+          git commit -m "Persist affected-year ET determinism forensic"
+          git pull --rebase --autostash origin research/etf-trader-perturbation-forensics-v1
+          git push origin HEAD:research/etf-trader-perturbation-forensics-v1
