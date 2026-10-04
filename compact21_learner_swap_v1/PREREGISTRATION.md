@@ -67,6 +67,28 @@ PYTHONHASHSEED=0. Hardware/runtime details and source/input hashes are retained.
 Any infrastructure correction is documented and does not change model recipes
 or acceptance thresholds after outcomes.
 
+### Execution-only amendment, before using full-strategy outcomes
+
+Initial CI run 37194714662 passed 45 tests and all three MA3 double-build
+checks. Several full jobs were blocked before training by the declared
+environment equality guard: GitHub supplied AMD EPYC7763 and Intel Xeon6973P-C
+hosts with different NumPy runtime SIMD profiles despite identical wheels.
+This is an infrastructure mismatch, not a candidate economic screen result.
+No full-strategy outcome was used to choose the correction.
+
+All three learners, all preflights and all nine raw replays are rerun uniformly
+with OPENBLAS_CORETYPE=Haswell and NPY_DISABLE_CPU_FEATURES set to
+AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,
+AVX512_ICL,AVX512_SPR. Both observed CPU families support the resulting AVX2
+profile. Fresh-process checks on the pinned wheel verify identical declared
+SIMD selection and Haswell kernels. Hardware details remain recorded and
+exact semantic/preservation checks remain mandatory; this does not guarantee
+cross-host equality in advance. No model, target, recipe or threshold changes.
+The initial attempt and partial diagnostic artifacts are retained separately;
+its results are never mixed with the corrected run. Final aggregation consumes
+the benchmark artifact from its own run, independent of branch checkpoint
+timing. Environment failure now retains actual and expected fields for audit.
+
 ## Diagnostics and benchmark qualification
 
 Report percentile rank MAD, Spearman, Top1 disagreement, Top5 Jaccard,

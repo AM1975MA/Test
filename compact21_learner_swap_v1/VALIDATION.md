@@ -36,3 +36,11 @@ wheel before the passing checks; no model configuration was changed.
 
 These checks validate implementation and causal boundaries. They do not
 establish strategy quality, population robustness or investment performance.
+
+Execution-profile amendment: all 46 tests pass locally under the uniform
+AVX2/Haswell settings, including a new test that a blocking environment
+comparison preserves actual/expected fields before raising. The canonical
+MA3 double rebuild also passes exact panel and membership equality under
+that profile. Its values differ from the automatic CPU profile in 43 columns
+(maximum absolute difference 1.7339907287805545e-11); all experimental arms
+are therefore regenerated, and initial-attempt results remain separate.

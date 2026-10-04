@@ -11,7 +11,7 @@ from unittest.mock import patch
 import numpy as np
 import pandas as pd
 
-from compact21_learner_swap_v1.run_full_pipeline import make_compact_hook
+from compact21_learner_swap_v1.run_full_pipeline import make_compact_hook, persist_input_environment_evidence, ENVIRONMENT_GATE_KEYS
 from compact21_learner_swap_v1 import learners
 from etf_trader.source_only import kernel, models
 
@@ -113,6 +113,22 @@ class FullHookTests(unittest.TestCase):
         for variant in learners.VARIANTS:
             with self.subTest(variant=variant),self.assertRaisesRegex(ValueError,'Immature'):
                 learners.fit(bad,[self.test],variant,2017,self.root,variant)
+
+
+class EnvironmentFailureEvidenceTests(unittest.TestCase):
+    def test_blocked_environment_persists_actual_expected_input_before_raise(self):
+        with tempfile.TemporaryDirectory(prefix='environment_failure_evidence_') as directory:
+            root=Path(directory)
+            expected={key:f'frozen_{key}' for key in ENVIRONMENT_GATE_KEYS}
+            actual=dict(expected,numpy_build_config={'SIMD Extensions': {'found': ['AVX512F']}})
+            contract={'line':'COMPACT21_LEARNER_SWAP_V1','environment':actual}
+            report=persist_input_environment_evidence(root,contract,{'environment':expected})
+            self.assertFalse(report['passed'])
+            self.assertEqual(report['mismatched_keys'],['numpy_build_config'])
+            self.assertEqual(json.loads((root/'INPUT_CONTRACT.json').read_text()),contract)
+            retained=json.loads((root/'ENVIRONMENT_COMPARISON.json').read_text())
+            self.assertEqual(retained['actual']['numpy_build_config'],actual['numpy_build_config'])
+            self.assertEqual(retained['expected']['numpy_build_config'],expected['numpy_build_config'])
 
 
 if __name__=='__main__':unittest.main()

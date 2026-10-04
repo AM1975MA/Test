@@ -8,11 +8,13 @@ permissions:
   contents: write
   actions: read
 concurrency:
-  group: compact21-learner-swap-v1-${{ github.ref }}
+  group: compact21-learner-swap-v1-${{ github.ref }}-${{ github.sha }}
   cancel-in-progress: false
 env:
   PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
   PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: 'Haswell'
   OMP_NUM_THREADS: '1'
   OPENBLAS_NUM_THREADS: '1'
   MKL_NUM_THREADS: '1'
@@ -182,6 +184,7 @@ jobs:
             _full/DAILY_LEADERS_*.csv
             _full/evidence/
             _full/MA3_REFERENCE_COMPARISON.json
+            _full/ENVIRONMENT_COMPARISON.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -192,6 +195,7 @@ jobs:
             _full/RESULT_*.json
             _full/DAILY_LEADERS_*.csv
             _full/MA3_REFERENCE_COMPARISON.json
+            _full/ENVIRONMENT_COMPARISON.json
             _full/evidence/ENSEMBLE_FIT_AUDIT.csv
             _full/evidence/ENSEMBLE_TAIL_OOS.csv
             _full/evidence/ma3/SEMANTIC_FINGERPRINT.json
@@ -214,8 +218,12 @@ jobs:
         with:
           pattern: learner-ma3-reference-*
           path: _refs
+      - uses: actions/download-artifact@v4
+        with:
+          name: learner-benchmark-summary
+          path: _benchmark_summary
       - name: Independent evidence reconstruction and fixed joint assessment
-        run: python compact21_learner_swap_v1/summarize_full.py --inputs _fulls --out compact21_learner_swap_v1/results/FULL_REPLAY.json --benchmark-summary compact21_learner_swap_v1/results/BENCHMARK.json --ma3-reference-inputs _refs
+        run: python compact21_learner_swap_v1/summarize_full.py --inputs _fulls --out compact21_learner_swap_v1/results/FULL_REPLAY.json --benchmark-summary _benchmark_summary/BENCHMARK.json --ma3-reference-inputs _refs
       - name: Persist full outcome
         run: |
           git config user.name 'github-actions[bot]'

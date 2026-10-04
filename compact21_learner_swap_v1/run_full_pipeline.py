@@ -54,6 +54,23 @@ def load_compare(path: Path):
     return module
 
 
+ENVIRONMENT_GATE_KEYS = ("python", "machine", "numpy", "pandas", "scipy", "sklearn", "execution_env", "numpy_build_config")
+
+
+def persist_input_environment_evidence(out, contract, reference_contract):
+    """Keep blocking environment differences reviewable even when replay stops."""
+    actual, expected = contract["environment"], reference_contract.get("environment", {})
+    mismatches = [key for key in ENVIRONMENT_GATE_KEYS if actual.get(key) != expected.get(key)]
+    comparison = {"passed": not mismatches, "required_keys": list(ENVIRONMENT_GATE_KEYS),
+                  "mismatched_keys": mismatches,
+                  "expected": {key: expected.get(key) for key in ENVIRONMENT_GATE_KEYS},
+                  "actual": {key: actual.get(key) for key in ENVIRONMENT_GATE_KEYS},
+                  "gate": "exact_environment_metadata; no tolerance"}
+    (Path(out) / "INPUT_CONTRACT.json").write_text(json.dumps(contract, indent=2) + "\n")
+    (Path(out) / "ENVIRONMENT_COMPARISON.json").write_text(json.dumps(comparison, indent=2) + "\n")
+    return comparison
+
+
 def make_compact_hook(variant: str, model_module):
     """Mirror canonical worker scheduling exactly, altering only horizon 21."""
     if variant not in VARIANTS:
@@ -238,6 +255,12 @@ def main():
     ma3_reference = Path(args.ma3_reference).resolve()
     reference_contract_path = ma3_reference / "INPUT_CONTRACT.json"
     reference_contract = json.loads(reference_contract_path.read_text())
+    contract["ma3_reference_contract_sha256"] = file_hash(reference_contract_path)
+    contract["ma3_reference_contract"] = reference_contract
+    from compact21_learner_swap_v1.prepare_ma3 import environment_contract
+    contract["environment"] = environment_contract()
+    environment_comparison = persist_input_environment_evidence(out, contract, reference_contract)
+
     if (reference_contract.get("line") != "COMPACT21_LEARNER_SWAP_V1"
             or reference_contract.get("purpose") != "independent_ma3_reference"
             or reference_contract.get("historical_outputs_consumed") is not False
@@ -248,18 +271,11 @@ def main():
         raise RuntimeError("Independent MA3 preflight reference provenance/repeat gate failed")
     if reference_contract.get("raw_files_sha256") != contract["raw_files_sha256"]:
         raise RuntimeError("Independent MA3 reference raw source mismatch")
-    contract["ma3_reference_contract_sha256"] = file_hash(reference_contract_path)
-    contract["ma3_reference_contract"] = reference_contract
-    from compact21_learner_swap_v1.prepare_ma3 import environment_contract
-    contract["environment"] = environment_contract()
     for relative, expected in reference_contract.get("canonical_sources_sha256", {}).items():
         if file_hash(REPO / relative) != expected:
             raise RuntimeError(f"Independent MA3 reference canonical source changed: {relative}")
-    required_env = ("python", "machine", "numpy", "pandas", "scipy", "sklearn", "execution_env", "numpy_build_config")
-    if any(contract["environment"].get(key) != reference_contract.get("environment", {}).get(key)
-           for key in required_env):
-        raise RuntimeError("Independent MA3 reference numerical environment mismatch")
-    (out / "INPUT_CONTRACT.json").write_text(json.dumps(contract, indent=2) + "\n")
+    if not environment_comparison["passed"]:
+        raise RuntimeError("Independent MA3 reference numerical environment mismatch; see ENVIRONMENT_COMPARISON.json")
     candidate, titanium_raw, candidate_tickers = compare.prepare_candidate_and_titanium_raw(name, raw)
     candidate_hashes = {path.name: file_hash(path) for path in sorted(candidate.glob("*.csv"))}
     if candidate_hashes != reference_contract.get("candidate_raw_files_sha256"):
