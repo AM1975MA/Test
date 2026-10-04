@@ -16,6 +16,25 @@ exclude ExtraTrees scheduling nondeterminism. Feature/target settings, XGBoost
 hyperparameters, seeds, blending, allocation, risk and execution are frozen.
 Historical Q4 results remain diagnostic references, not the new gate baseline.
 
+## Completed experiment
+
+Run [37167010405](https://github.com/AM1975MA/Test/actions/runs/37167010405)
+completed all seven benchmarks and nine unconditional raw replay controls.
+All six challengers fail the frozen 25% rank-MAD improvement threshold; the
+best result is SCALE_ECON1BP at 10.5094%. No challenger advances and no model
+or negative-feedback setting is promoted or changed.
+
+The full controls reproduce the historical Q4 economics and daily leaders:
+CAGR span falls 54.4042%, but mean CAGR falls from 31.7581% to 29.0134% and
+mean daily Top1 disagreement rises from 31.3750% to 34.0941%. Q4 restricted
+to Compact21 and Q4_LEGACY produce identical economic metrics and leaders.
+Both fail the economic robustness gate. Three MA3 panel file-hash checks
+also fail (Q4 repeats 2/3 and Q4_LEGACY repeat 2); without retained panel
+values their semantic equality cannot be certified. Those failures remain
+visible and are not waived. See [AUDIT.md](AUDIT.md),
+[BENCHMARK.json](results/BENCHMARK.json) and
+[FULL_REPLAY.json](results/FULL_REPLAY.json) for the complete evidence.
+
 ## Local validation
 From repository root with pinned numerical dependencies:
 

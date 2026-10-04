@@ -71,4 +71,31 @@ Mean training pair-relation disagreement falls from approximately 1.41553e-5 for
 
 The scale quantizer's step for every feature is identical across all three snapshots in every annual fold. Thus the observed failure of these SCALE recipes is not attributable to IQR crossing a dyadic step boundary in the tested data. Residual feature/value bin-boundary changes, pair-relation changes and their fitted-tree interactions remain; this benchmark does not separately attribute their shares.
 
-This rejects the specific fixed recipes, not all quantization, all alternative targets or the untested hypothesis of a measured-noise-aware transform. SCALE is a scale-resolution proxy and never estimated a vendor noise floor. Original149 remains burned development evidence. Full raw replay outcomes and their economic/source checks are still pending; no production suitability or unobserved economic result is asserted.
+This rejects the specific fixed recipes, not all quantization, all alternative targets or the untested hypothesis of a measured-noise-aware transform. SCALE is a scale-resolution proxy and never estimated a vendor noise floor. Original149 remains burned development evidence.
+
+## Full raw replay outcome — independently verified
+
+All nine raw replay jobs and the full summary completed successfully in GitHub run `37167010405`. The persisted FULL_REPLAY.json blob SHA is `04040d51398fe711a76350baa5e20047d2126e5a`. The independent audit downloaded and inspected every raw replay ZIP, recomputed CAGR spans/means and daily leader disagreements directly from their metrics/CSVs, and found no discrepancy with the final summary. Each replay covers the same 2,366 dates; there is no duplicate-date or silent inner-join loss. Compact21/Compact63 strict fit-exit maturity and the retained MA3 ensemble maturity audits all pass.
+
+| Replay | Repeat | CAGR | MaxDD | Sharpe | Annual turnover |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| BASE | 1 | 29.7534% | -34.8621% | 1.04611 | 12.94384 |
+| BASE | 2 | 30.8437% | -25.6896% | 1.08699 | 12.96048 |
+| BASE | 3 | 34.6771% | -36.0975% | 1.18293 | 13.23132 |
+| Q4 and Q4_LEGACY | 1 | 28.8182% | -31.0687% | 1.04241 | 13.16436 |
+| Q4 and Q4_LEGACY | 2 | 27.9886% | -34.9213% | 1.00753 | 13.12205 |
+| Q4 and Q4_LEGACY | 3 | 30.2336% | -36.0048% | 1.09054 | 13.92485 |
+
+Q4 and Q4_LEGACY have exactly identical metrics, all daily leaders and Titanium output hashes for every repeat. Thus incidentally rounding the inactive Compact63 horizon in the old recipe has no effect on this observed baseline replay. Their economic values reproduce the old Q4 result.
+
+The new BASE CAGR span is 4.923631 pp and mean CAGR 31.7581%; Q4/Q4_LEGACY span is 2.244969 pp and mean CAGR 29.0134%. The span reduction is 54.4042%, but mean CAGR falls 2.74464 pp to approximately 91.3577% of BASE, below the frozen 95% floor. Mean pairwise daily Top1 disagreement rises from 31.3750% to 34.0941%, an increase of 2.71908 pp. The economic robustness gate therefore fails on both decision convergence and mean CAGR even before the unresolved evidence issue below.
+
+### MA3 evidence issue remains unresolved
+
+The MA3 pickle byte hash differs from its same-repeat BASE in three outcomes: Q4 repeat 2, Q4 repeat 3 and Q4_LEGACY repeat 2. Accordingly `ma3_features_preserved` is false and ALL_EVIDENCE_PASS remains false for both Q4 variants. All other reported evidence checks pass, including same raw files/canonical source, source-only regeneration flags, preserved Compact63 predictions for isolated Q4, unchanged negative feedback and strict maturity.
+
+The retained ZIPs contain the result, daily leaders, input contract and ensemble fit audit; they do **not** retain RAW_FEATURE_PANEL.pkl or a value-level MA3 fingerprint. Therefore this audit cannot distinguish a semantic feature difference from a serialization, floating-point representation or runtime artifact. Inspection of the builder found no timestamp/path metadata written into the DataFrame; cluster construction sorts set-derived ticker lists and uses a fixed seed. Those source observations and identical economic outcomes do not prove semantic equality of the missing panels. No gate is relaxed, no equality claim is substituted for the failed hash check, and no new regeneration is used ex-post to rescue this result.
+
+### Final disposition
+
+No challenger passed the benchmark advancement gate, and Q4's unconditional full replay control failed the fixed economic/decision gate. All preregistered outcomes, including failures and the unresolved MA3 evidence flags, remain recorded. This line supplies engineering evidence and does not justify strategy promotion or production adoption. A future measured-noise experiment or alternative learner requires a distinct preregistration and new validation; no threshold or recipe is changed here.
