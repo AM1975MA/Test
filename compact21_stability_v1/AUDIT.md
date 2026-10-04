@@ -47,6 +47,28 @@ The full hook mirrors canonical scheduling and preserves Compact63 inputs, label
 
 `summarize_full.py` retains every outcome and verifies expected benchmark advancement membership, exactly three repeats, identical leader dates/sessions, raw/source identity against each repeat's BASE, source-only regeneration flags/hashes, strict fit-exit maturity audits, unchanged negative feedback, canonical MA3 feature hashes, and Compact63 prediction preservation except Q4_LEGACY. Its fixed economic diagnostic gate requires span <=75% of new BASE, Top1 disagreement no worse and mean CAGR >=95% of new BASE, plus source/maturity evidence. Historical Q4 is a diagnostic comparison only. Eight preserved standard-library unit tests for aggregate success, source rejection, maturity rejection, coverage loss, missing results, nonfinite JSON, expected-matrix completeness and silent inner joins passed.
 
-Workflow review identified and corrected contract upload, artifact-name compatibility and passing the persisted benchmark advancement matrix. Dependency pins and separate unit discovery are recorded by the author. The targets and quantizer are train-only by construction, and synthetic tests exercise their future-row independence. This is not a new full raw future-mutation/truncation replay: no claim of a new dynamic full-pipeline causality PASS is made here.
+Workflow review identified and corrected contract upload, artifact-name compatibility and passing the persisted benchmark advancement matrix. Dependency pins and separate unit discovery are recorded by the author. The targets and quantizer are train-only by construction. Actual-worker synthetic integration tests preserve canonical Compact21 BASE and all compared Compact63 prediction bytes, check intervention shapes/targets, and confirm that appended future rows with extreme feature/outcome mutations leave SCALE_ECON1BP fitted inputs and both horizons' predictions exact. These four integration tests passed; 13 target tests and nine quantizer tests also passed. A reduced two-round smoke execution of the actual benchmark runner completed for all seven variants. Reduced rounds are used only in synthetic testing; the frozen experiment remains 360 rounds. This is not a new full raw future-mutation/truncation replay: no claim of a new dynamic full-pipeline causality PASS is made here.
 
-Real frozen-panel/model execution and actual outcome review remain pending. This audit does not certify production suitability or any unobserved stability outcome.
+## Frozen benchmark outcome — independently verified
+
+GitHub run `37167010405` completed all seven frozen 2017–2026 benchmark variants successfully. Persisted BENCHMARK.json blob SHA is `f0d85116b1b8691913a967e820a35de483966b50`. The independent audit recomputed annual/pair aggregates and the advancement gate from individual cells, found no discrepancy with the summary, and verified common input hashes/year folds across variants. All maturity and exact repeated-fit determinism checks pass.
+
+| Variant | Rank MAD improvement | Common Top1 disagreement | Native Top1 disagreement | NDCG@5 | Advance |
+| --- | ---: | ---: | ---: | ---: | --- |
+| BASE | 0% | 49.4444% | 49.4444% | 0.546566 | Control |
+| Q4 | 7.5944% | 52.7778% | 52.7778% | 0.554519 | No |
+| ORDINAL | 8.7188% | 51.1111% | 51.1111% | 0.547736 | No |
+| ECON1BP | 8.8977% | 48.8889% | 48.8889% | 0.549085 | No |
+| Q4_ECON1BP | 2.7985% | 51.3889% | 51.3889% | 0.550257 | No |
+| SCALE | 10.2782% | 49.1667% | 49.7222% | 0.547624 | No |
+| SCALE_ECON1BP | 10.5094% | 50.8333% | 50.8333% | 0.545585 | No |
+
+All six challengers fail the preregistered minimum 25% rank-MAD improvement. Several also worsen Top1 disagreement. The quality floor passes for every variant; it does not override the stability failure. SCALE's common-input Top1 gain is small and its native-input Top1 disagreement worsens. No challenger advances. The full replay matrix correctly contains only three unconditional controls (BASE, Q4 and Q4_LEGACY), each on three raw snapshots.
+
+Pair-specific inspection matters. On pair 1–3, BASE Top1 disagreement is 42.5%, versus ECON1BP 52.5%, ORDINAL 57.5% and SCALE 47.5%, despite some more favorable aggregate means across all pairs. These are monthly query disagreements, distinct from later daily strategy leader disagreements.
+
+Mean training pair-relation disagreement falls from approximately 1.41553e-5 for canonical labels to 9.82932e-6 for ORDINAL and 9.95131e-6 for ECON1BP. Dense integer-ID disagreement is much larger because occupied label levels can renumber; it should not be interpreted as equivalent changes to pairwise learning relations. Reduced relation disagreement does not translate into adequate fitted-ranker convergence in this test.
+
+The scale quantizer's step for every feature is identical across all three snapshots in every annual fold. Thus the observed failure of these SCALE recipes is not attributable to IQR crossing a dyadic step boundary in the tested data. Residual feature/value bin-boundary changes, pair-relation changes and their fitted-tree interactions remain; this benchmark does not separately attribute their shares.
+
+This rejects the specific fixed recipes, not all quantization, all alternative targets or the untested hypothesis of a measured-noise-aware transform. SCALE is a scale-resolution proxy and never estimated a vendor noise floor. Original149 remains burned development evidence. Full raw replay outcomes and their economic/source checks are still pending; no production suitability or unobserved economic result is asserted.
