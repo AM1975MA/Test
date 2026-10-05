@@ -13,7 +13,22 @@ def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def normalized_numeric(contract):
     keys=('python','machine','numpy','pandas','scipy','sklearn','execution_env','numpy_build_config','effective_cpu_features')
     if any(key not in contract for key in keys):raise ValueError('Incomplete numeric contract')
-    result={key:contract[key] for key in keys}
+    result={key:contract[key] for key in keys if key!='effective_cpu_features'}
+    # show_config retains the compiled dispatch target availability. The raw
+    # inventory also contains constituent hardware flags (VL, BW, etc.) that
+    # cannot dispatch independently in this pinned NumPy wheel.
+    simd=contract['numpy_build_config']['SIMD Extensions']
+    if contract['numpy']!='2.3.5':raise ValueError('Unregistered NumPy dispatch semantics')
+    groups=('AVX512F','AVX512CD','AVX512_KNL','AVX512_KNM','AVX512_SKX','AVX512_CLX','AVX512_CNL','AVX512_ICL','AVX512_SPR')
+    active=simd['baseline']+simd['found'];inactive=simd['not found']
+    expected={'SSE','SSE2','SSE3','SSSE3','SSE41','POPCNT','SSE42','AVX','F16C','FMA3','AVX2',*groups}
+    if set(active)&set(inactive) or set(active+inactive)!=expected:raise ValueError('Incomplete compiled dispatch inventory')
+    features=contract['effective_cpu_features']
+    if any(features.get(key) is not True for key in active) or any(features.get(key) is not False for key in inactive):
+        raise ValueError('Dispatch report contradicts retained CPU availability')
+    if any(features[key] for key in groups) or not features['AVX2'] or not features['FMA3']:
+        raise ValueError('Not the frozen AVX2 numerical profile')
+    result['compiled_cpu_targets']={key:features[key] for key in sorted(expected)}
     result['threadpools']=[{key:p.get(key) for key in ('user_api','internal_api','num_threads','version','threading_layer','architecture')} for p in contract['threadpools']]
     return result
 
@@ -42,7 +57,11 @@ def load_variant(root,variant):
     if set(native.vintage)!={1,2,3} or set(common.vintage)!={1,2,3}:raise ValueError('Missing vintage')
     for frame in (native,common):
         if not frame.groupby('signal_date').vintage.nunique().eq(3).all():raise ValueError('Date lacks all vintages')
-    from compact21_learner_swap_v1.run_benchmark import keys_hash
+    # The frozen reference was created on Linux. Canonical LF serialization
+    # makes independent Windows verification invariant to host CSV newlines.
+    def keys_hash(frame):
+        data=frame[KEYS].sort_values(KEYS).to_csv(index=False,date_format='%Y-%m-%dT%H:%M:%S',lineterminator='\n')
+        return hashlib.sha256(data.encode()).hexdigest()
     for year,cell in q['per_year'].items():
         coverage=cell['evaluation_coverage']
         for repeat in (1,2,3):
