@@ -1,0 +1,79 @@
+{
+  "status": "PARTIAL_K12_FORWARD_RESULTS",
+  "source_run": 37530678164,
+  "rows": [
+    {
+      "variant": "K13_A",
+      "n": 13,
+      "rank_mad": 0.04238072359102943,
+      "rank_mad_improvement": 0.20717823404394786,
+      "top1": 0.475,
+      "ndcg5": 0.5342793263564957,
+      "ndcg_ratio": 0.9775207300831721,
+      "top5": 0.1188888888888889,
+      "top5_ratio": 0.9502664298401422,
+      "advance": false
+    },
+    {
+      "variant": "K13_M",
+      "n": 13,
+      "rank_mad": 0.04443543584122837,
+      "rank_mad_improvement": 0.16874046194609105,
+      "top1": 0.4194444444444444,
+      "ndcg5": 0.5115519857004943,
+      "ndcg_ratio": 0.93593864832379,
+      "top5": 0.09811111111111111,
+      "top5_ratio": 0.7841918294849023,
+      "advance": false
+    },
+    {
+      "variant": "K14_ES",
+      "n": 14,
+      "rank_mad": 0.046866507514676504,
+      "rank_mad_improvement": 0.12326208465578792,
+      "top1": 0.475,
+      "ndcg5": 0.5233647554453906,
+      "ndcg_ratio": 0.9575513642491497,
+      "top5": 0.09933333333333334,
+      "top5_ratio": 0.7939609236234458,
+      "advance": false
+    },
+    {
+      "variant": "K14_SM",
+      "n": 14,
+      "rank_mad": 0.044747233608095724,
+      "rank_mad_improvement": 0.1629076201443702,
+      "top1": 0.3916666666666667,
+      "ndcg5": 0.5098361089514504,
+      "ndcg_ratio": 0.9327992697071841,
+      "top5": 0.09166666666666669,
+      "top5_ratio": 0.7326820603907639,
+      "advance": false
+    },
+    {
+      "variant": "K15_AEM",
+      "n": 15,
+      "rank_mad": 0.04462036244613606,
+      "rank_mad_improvement": 0.16528101564474917,
+      "top1": 0.4,
+      "ndcg5": 0.5128215447282034,
+      "ndcg_ratio": 0.9382614413019742,
+      "top5": 0.11155555555555556,
+      "top5_ratio": 0.8916518650088809,
+      "advance": false
+    },
+    {
+      "variant": "K15_ASM",
+      "n": 15,
+      "rank_mad": 0.04248757563473116,
+      "rank_mad_improvement": 0.2051793388197627,
+      "top1": 0.3555555555555555,
+      "ndcg5": 0.5148877640874295,
+      "ndcg_ratio": 0.9420418089054083,
+      "top5": 0.10866666666666668,
+      "top5_ratio": 0.8685612788632328,
+      "advance": false
+    }
+  ],
+  "interpretation": "K13_A is the only completed candidate so far that passes both frozen predictive preservation floors (NDCG>=95%, Top5>=95%). It misses the frozen Rank-MAD improvement gate: 20.72% vs required 25%. Mom10-containing completed variants are not competitive on predictive preservation."
+}
