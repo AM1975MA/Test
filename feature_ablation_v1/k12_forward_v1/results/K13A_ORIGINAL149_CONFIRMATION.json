@@ -1,0 +1,45 @@
+{
+  "status": "K13A_ORIGINAL149_THREE_REPEAT_CONFIRMED",
+  "source_raw_run": 37121749852,
+  "source_raw_artifact": "yfinance-repeatability-v1-raw",
+  "raw_universe_size": 149,
+  "titanium_internal_run": 37150436612,
+  "lineage": "Each titanium-internal-fixed-repeat-{1,2,3} was rebuilt directly from _raw/_repeat{1,2,3} of run 37121749852 before K13_A benchmarking.",
+  "variant": "K13_A",
+  "features_added_to_K12": [
+    "autocorr1_63"
+  ],
+  "aggregate": {
+    "rank_mean_abs": 0.04238072359102943,
+    "rank_mad_improvement_vs_BASE": 0.20717823404394786,
+    "mean_daily_spearman": 0.9779120966604188,
+    "top1_disagreement_fraction": 0.475,
+    "top5_jaccard": 0.5864417989417989,
+    "ndcg5": 0.5342793263564957,
+    "ndcg5_ratio_vs_BASE": 0.9775207300831721,
+    "top5_realized_overlap": 0.1188888888888889,
+    "top5_ratio_vs_BASE": 0.9502664298401422
+  },
+  "pairwise": {
+    "1-2": {
+      "rank_mean_abs": 0.040832244793778054,
+      "top1_disagreement_fraction": 0.5166666666666666,
+      "mean_daily_spearman": 0.9796540903319426,
+      "top5_jaccard": 0.5738095238095239
+    },
+    "1-3": {
+      "rank_mean_abs": 0.042916985721363904,
+      "top1_disagreement_fraction": 0.4833333333333334,
+      "mean_daily_spearman": 0.9772353528024669,
+      "top5_jaccard": 0.5864087301587302
+    },
+    "2-3": {
+      "rank_mean_abs": 0.043392940257946336,
+      "top1_disagreement_fraction": 0.425,
+      "mean_daily_spearman": 0.9768468468468466,
+      "top5_jaccard": 0.5991071428571428
+    }
+  },
+  "decision": "KEEP_AS_LEADING_CANDIDATE_NOT_ADOPTED",
+  "note": "K13_A preserves the frozen predictive floors on the exact Original149 three-repeat lineage, but still misses the preregistered 25% Rank-MAD improvement gate and Top1 remains unstable."
+}
