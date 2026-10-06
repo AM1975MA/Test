@@ -6,9 +6,9 @@
 
 Feature-selection run: `37524219056`  
 Subset-training run: `37525303093`  
-Reference BASE: independently verified canonical benchmark run `37167010405`, BENCHMARK blob `f0d85116b1b8691913a967e820a35de483966b50`.
+Reference BASE: `BASE125` artifact `11443391752` from the same subset-training run `37525303093`, digest `sha256:fbb17d3c0351620d36507ff55befd9f4936ec66559fa1e575e4bfcfaf56bcfa2`.
 
-The BASE125 cell of run 37525303093 was still executing when this result was frozen. The reference BASE is the already independently verified canonical BASE on the same three frozen TI_COMPACT snapshots, 2017-2026 folds and unchanged ranker configuration.
+BASE125 completed successfully in the same run. Its aggregate metrics are exactly identical to the earlier independently verified canonical BASE benchmark.
 
 ## Results
 
