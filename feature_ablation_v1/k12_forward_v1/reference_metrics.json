@@ -1,0 +1,41 @@
+{
+  "schema": "COMPACT21_K12_FORWARD_REFERENCE_V1",
+  "source_run": 37525303093,
+  "base_artifact": {
+    "id": 11443391752,
+    "digest": "sha256:fbb17d3c0351620d36507ff55befd9f4936ec66559fa1e575e4bfcfaf56bcfa2"
+  },
+  "baseline": {
+    "rank_mad": 0.05345555005029805,
+    "stability_spearman": 0.9644913840014513,
+    "top1_disagreement": 0.49444444444444446,
+    "ndcg5": 0.5465657248118274,
+    "top5_realized_overlap": 0.12511111111111112
+  },
+  "controls": {
+    "K12_CONTROL": {
+      "rank_mad": 0.039456931369457826,
+      "stability_spearman": 0.9810029526170465,
+      "top1_disagreement": 0.4027777777777778,
+      "ndcg5": 0.5268137565782987,
+      "top5_realized_overlap": 0.10133333333333334
+    },
+    "K16_CONTROL": {
+      "rank_mad": 0.045780470349183484,
+      "stability_spearman": 0.9743339782735757,
+      "top1_disagreement": 0.43611111111111106,
+      "ndcg5": 0.5212104154020968,
+      "top5_realized_overlap": 0.12544444444444444
+    }
+  },
+  "acceptance_gate": {
+    "rank_mad_improvement_min": 0.25,
+    "stability_spearman_no_worse": true,
+    "top1_disagreement_no_worse": true,
+    "ndcg5_ratio_min": 0.95,
+    "top5_realized_overlap_ratio_min": 0.95,
+    "maturity_required": true,
+    "determinism_required": true
+  },
+  "control_tolerance_abs": 1e-12
+}
