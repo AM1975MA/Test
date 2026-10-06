@@ -1,12 +1,9 @@
-name: COMPACT21_ORTHOGONAL_SUBSET_BENCHMARK_V1
+name: COMPACT21_K12_FORWARD_ABLATION_V1
 on:
   pull_request:
-    branches: [research/compact21-orthogonal-feature-ablation-v1]
+    branches: [research/compact21-k12-forward-ablation-v1]
     paths:
-      - feature_ablation_v1/subset_benchmark_trigger.txt
-      - feature_ablation_v1/selected_sets.json
-      - feature_ablation_v1/run_subset_benchmark.py
-      - feature_ablation_v1/summarize_subset_benchmark.py
+      - feature_ablation_v1/k12_forward_v1/**
       - .github/workflows/compact21-orthogonal-subset-benchmark-v1.yml
   workflow_dispatch:
 permissions:
@@ -25,9 +22,9 @@ jobs:
     timeout-minutes: 180
     strategy:
       fail-fast: false
-      max-parallel: 8
+      max-parallel: 16
       matrix:
-        variant: [BASE125,K8,K12,K16,K24,K32,K40,FAMILY46]
+        variant: [K12,K13_A,K13_E,K13_S,K13_M,K14_AE,K14_AS,K14_AM,K14_ES,K14_EM,K14_SM,K15_AES,K15_AEM,K15_ASM,K15_ESM,K16]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -41,19 +38,23 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p _ti/r1 _ti/r2 _ti/r3 _subset
+          mkdir -p _ti/r1 _ti/r2 _ti/r3 _out
           gh run download 37150436612 -R "${{ github.repository }}" -n titanium-internal-fixed-repeat-1 -D _ti/r1
           gh run download 37150436612 -R "${{ github.repository }}" -n titanium-internal-fixed-repeat-2 -D _ti/r2
           gh run download 37150436612 -R "${{ github.repository }}" -n titanium-internal-fixed-repeat-3 -D _ti/r3
-      - name: Canonical XGB on frozen feature subset
+      - name: Canonical XGB K12 forward ablation
         run: |
-          python feature_ablation_v1/run_subset_benchmark.py             --variant ${{ matrix.variant }}             --sets feature_ablation_v1/selected_sets.json             --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3             --out _subset/${{ matrix.variant }}.json
+          python feature_ablation_v1/k12_forward_v1/run_benchmark.py \
+            --variant ${{ matrix.variant }} \
+            --variants feature_ablation_v1/k12_forward_v1/variants.json \
+            --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 \
+            --out _out/${{ matrix.variant }}.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: compact21-subset-${{ matrix.variant }}
+          name: compact21-k12-forward-${{ matrix.variant }}
           retention-days: 90
-          path: _subset/${{ matrix.variant }}.json
+          path: _out/${{ matrix.variant }}.json
   summary:
     needs: benchmark
     runs-on: ubuntu-24.04
@@ -64,14 +65,18 @@ jobs:
           python-version: '3.13'
       - uses: actions/download-artifact@v4
         with:
-          pattern: compact21-subset-*
-          path: _subsets
-      - name: Frozen stability and predictive-quality gate
+          pattern: compact21-k12-forward-*
+          path: _results
+      - name: Frozen gate summary
         run: |
           mkdir -p _summary
-          python feature_ablation_v1/summarize_subset_benchmark.py             --inputs _subsets             --out _summary/SUBSET_BENCHMARK.json             --md _summary/SUBSET_BENCHMARK.md
+          python feature_ablation_v1/k12_forward_v1/summarize.py \
+            --inputs _results \
+            --variants feature_ablation_v1/k12_forward_v1/variants.json \
+            --out _summary/K12_FORWARD_SUMMARY.json \
+            --md _summary/K12_FORWARD_SUMMARY.md
       - uses: actions/upload-artifact@v4
         with:
-          name: compact21-subset-benchmark-summary
+          name: compact21-k12-forward-summary
           retention-days: 90
           path: _summary/*
