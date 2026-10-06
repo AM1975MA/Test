@@ -1,17 +1,19 @@
 {
   "schema": "COMPACT21_ORTHOGONAL_SUBSET_TRAINING_RESULTS_V1",
-  "status": "COMPLETE_WITH_BASE_REFERENCE_FROM_INDEPENDENTLY_VERIFIED_FROZEN_RUN",
+  "status": "COMPLETE",
   "feature_selection_run": 37524219056,
   "subset_training_run": 37525303093,
   "baseline_reference": {
-    "source_run": 37167010405,
+    "source_run": 37525303093,
     "benchmark_blob_sha": "f0d85116b1b8691913a967e820a35de483966b50",
-    "note": "Current BASE125 matrix cell in run 37525303093 was still in progress when this result was frozen. Reference baseline is the independently verified canonical BASE on the same frozen three snapshots, years 2017-2026, model architecture and numerical protocol.",
+    "note": "BASE125 completed successfully in the same subset-training run. Its aggregate metrics are exactly identical to the independently verified canonical BASE reference.",
     "rank_mean_abs": 0.05345555005029805,
     "mean_daily_spearman": 0.9644913840014513,
     "top1_disagreement_fraction": 0.49444444444444446,
     "ndcg5": 0.5465657248118274,
-    "top5_realized_overlap": 0.12511111111111112
+    "top5_realized_overlap": 0.12511111111111112,
+    "artifact_id": 11443391752,
+    "artifact_digest": "sha256:fbb17d3c0351620d36507ff55befd9f4936ec66559fa1e575e4bfcfaf56bcfa2"
   },
   "frozen_gate": {
     "rank_mad_improvement_min": 0.25,
