@@ -1,0 +1,69 @@
+{
+  "status": "FEATURE_QUANTIZATION_FULL_Q4_V1_COMPLETE",
+  "q4": {
+    "1": {
+      "cagr": 0.2881817323609264,
+      "maxdd": -0.3106872171761593,
+      "sharpe": 1.042414098579642,
+      "terminal_equity": 10.778618772285494,
+      "annualized_turnover": 13.164356981005456,
+      "mean_risky_gross": 0.9837637362637363
+    },
+    "2": {
+      "cagr": 0.27988589024249283,
+      "maxdd": -0.34921279278647177,
+      "sharpe": 1.0075325454794795,
+      "terminal_equity": 10.144227276839075,
+      "annualized_turnover": 13.12205285012613,
+      "mean_risky_gross": 0.9837637362637363
+    },
+    "3": {
+      "cagr": 0.30233557997503796,
+      "maxdd": -0.3600484867847127,
+      "sharpe": 1.0905424582877798,
+      "terminal_equity": 11.943197514273852,
+      "annualized_turnover": 13.9248476352904,
+      "mean_risky_gross": 0.9837637362637363
+    }
+  },
+  "baseline_cagr": {
+    "1": 0.29753447746605727,
+    "2": 0.30843704925646037,
+    "3": 0.346770790748319
+  },
+  "q4_cagr_span_pp": 2.244968973254513,
+  "baseline_cagr_span_pp": 4.9236313282261746,
+  "cagr_span_reduction_pct": 54.404202435211516,
+  "mean_q4_cagr": 0.2901344008594857,
+  "mean_baseline_cagr": 0.3175807724902789,
+  "pairs": {
+    "1-2": {
+      "q4_top1_disagreement": 0.32713440405748095,
+      "native_top1_disagreement": 0.3326289095519865,
+      "q4_top2_disagreement": 0.5663567202028741,
+      "native_top2_disagreement": 0.5701606086221471,
+      "q4_either_disagreement": 0.5929839391377852,
+      "native_either_disagreement": 0.6132713440405748
+    },
+    "1-3": {
+      "q4_top1_disagreement": 0.33474218089602703,
+      "native_top1_disagreement": 0.3076923076923077,
+      "q4_top2_disagreement": 0.591715976331361,
+      "native_top2_disagreement": 0.6238377007607777,
+      "q4_either_disagreement": 0.6276415891800508,
+      "native_either_disagreement": 0.6610312764158918
+    },
+    "2-3": {
+      "q4_top1_disagreement": 0.3609467455621302,
+      "native_top1_disagreement": 0.30092983939137785,
+      "q4_top2_disagreement": 0.555367709213863,
+      "native_top2_disagreement": 0.5033812341504649,
+      "q4_either_disagreement": 0.5980557903634827,
+      "native_either_disagreement": 0.5752324598478444
+    }
+  },
+  "mean_q4_top1_disagreement": 0.3409411101718794,
+  "mean_native_top1_disagreement": 0.3137503522118907,
+  "mean_q4_either_disagreement": 0.6062271062271062,
+  "mean_native_either_disagreement": 0.6165116934347704
+}

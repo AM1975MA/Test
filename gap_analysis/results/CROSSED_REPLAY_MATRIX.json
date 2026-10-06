@@ -1,0 +1,29 @@
+{
+  "status": "DEGENERATE_CROSSED_MATRIX_COMPLETE",
+  "explanation": "The intended code-by-data crossed replay collapses to a data-vintage comparison because the fresh run explicitly hash-gates the productive V2 source to the same canonical blobs used by the historical reference. There is no distinct current-vs-historical productive code factor left to cross for the Annual V2 benchmark.",
+  "matrix": [
+    {
+      "code": "canonical V2 source, historical frozen productive blobs",
+      "data": "historical frozen raw vintage",
+      "cagr": 0.4314595242029944,
+      "parity": "PASS"
+    },
+    {
+      "code": "canonical V2 source, same productive blobs hash-gated in fresh workflow",
+      "data": "2026-10-02 Yahoo/yfinance 0.2.66 fresh raw vintage",
+      "cagr": 0.31603994562922105,
+      "parity": "PASS"
+    }
+  ],
+  "delta_percentage_points": -11.541957857377334,
+  "controlled_factors": [
+    "Original149 universe",
+    "evaluation period",
+    "canonical productive source chain",
+    "Annual V2 metric identity",
+    "adjusted-OHLC construction semantics",
+    "Stage19/V2 execution architecture"
+  ],
+  "changed_factor": "raw market-data bytes/vintage",
+  "conclusion": "The observed 11.541958 pp difference is a data-lineage/vintage effect at the experiment level. Further decomposition into signal-state versus realized-price contribution would be an optional forensic ablation, not a prerequisite for identifying the baseline lineage mismatch."
+}

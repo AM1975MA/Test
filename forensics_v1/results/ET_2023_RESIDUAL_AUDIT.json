@@ -1,0 +1,399 @@
+{
+  "status": "ET_2023_RESIDUAL_AUDIT_COMPLETE",
+  "stored": {
+    "mutate": {
+      "changed": 24,
+      "max_abs": 0.03355704697986578,
+      "by_date": {
+        "2017-02-28": 3,
+        "2017-09-29": 7,
+        "2021-06-30": 8,
+        "2022-10-31": 6
+      },
+      "rows": [
+        {
+          "signal_date": "2017-02-28 00:00:00",
+          "ticker": "BND",
+          "ET_TAIL_base": 0.020134228187919462,
+          "ET_TAIL_mutate": 0.03355704697986577,
+          "abs_diff": 0.01342281879194631
+        },
+        {
+          "signal_date": "2017-02-28 00:00:00",
+          "ticker": "SHV",
+          "ET_TAIL_base": 0.026845637583892617,
+          "ET_TAIL_mutate": 0.020134228187919462,
+          "abs_diff": 0.006711409395973155
+        },
+        {
+          "signal_date": "2017-02-28 00:00:00",
+          "ticker": "VCSH",
+          "ET_TAIL_base": 0.03355704697986577,
+          "ET_TAIL_mutate": 0.026845637583892617,
+          "abs_diff": 0.006711409395973155
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "BKLN",
+          "ET_TAIL_base": 0.1342281879194631,
+          "ET_TAIL_mutate": 0.1476510067114094,
+          "abs_diff": 0.013422818791946317
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "IVV",
+          "ET_TAIL_base": 0.14093959731543623,
+          "ET_TAIL_mutate": 0.12751677852348994,
+          "abs_diff": 0.01342281879194629
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "MBB",
+          "ET_TAIL_base": 0.18791946308724833,
+          "ET_TAIL_mutate": 0.20134228187919462,
+          "abs_diff": 0.01342281879194629
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "MUB",
+          "ET_TAIL_base": 0.1476510067114094,
+          "ET_TAIL_mutate": 0.14093959731543623,
+          "abs_diff": 0.006711409395973172
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "SCHB",
+          "ET_TAIL_base": 0.20134228187919462,
+          "ET_TAIL_mutate": 0.19463087248322147,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "VGIT",
+          "ET_TAIL_base": 0.12751677852348994,
+          "ET_TAIL_mutate": 0.1342281879194631,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "XLE",
+          "ET_TAIL_base": 0.19463087248322147,
+          "ET_TAIL_mutate": 0.18791946308724833,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "EDV",
+          "ET_TAIL_base": 0.959731543624161,
+          "ET_TAIL_mutate": 0.9530201342281879,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "EIDO",
+          "ET_TAIL_base": 0.5838926174496645,
+          "ET_TAIL_mutate": 0.5906040268456376,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "EWU",
+          "ET_TAIL_base": 0.9530201342281879,
+          "ET_TAIL_mutate": 0.959731543624161,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "HACK",
+          "ET_TAIL_base": 0.5906040268456376,
+          "ET_TAIL_mutate": 0.5973154362416108,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "LQD",
+          "ET_TAIL_base": 0.14093959731543623,
+          "ET_TAIL_mutate": 0.1476510067114094,
+          "abs_diff": 0.006711409395973172
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "SCHE",
+          "ET_TAIL_base": 0.1476510067114094,
+          "ET_TAIL_mutate": 0.15436241610738255,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "SCHP",
+          "ET_TAIL_base": 0.15436241610738255,
+          "ET_TAIL_mutate": 0.14093959731543623,
+          "abs_diff": 0.013422818791946317
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "TLT",
+          "ET_TAIL_base": 0.5973154362416108,
+          "ET_TAIL_mutate": 0.5838926174496645,
+          "abs_diff": 0.01342281879194629
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "ASHR",
+          "ET_TAIL_base": 0.3825503355704698,
+          "ET_TAIL_mutate": 0.38926174496644295,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "DBA",
+          "ET_TAIL_base": 0.40939597315436244,
+          "ET_TAIL_mutate": 0.37583892617449666,
+          "abs_diff": 0.03355704697986578
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "EFA",
+          "ET_TAIL_base": 0.37583892617449666,
+          "ET_TAIL_mutate": 0.3825503355704698,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "EWU",
+          "ET_TAIL_base": 0.38926174496644295,
+          "ET_TAIL_mutate": 0.3959731543624161,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "HACK",
+          "ET_TAIL_base": 0.3959731543624161,
+          "ET_TAIL_mutate": 0.40268456375838924,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "IWM",
+          "ET_TAIL_base": 0.40268456375838924,
+          "ET_TAIL_mutate": 0.40939597315436244,
+          "abs_diff": 0.0067114093959732
+        }
+      ]
+    },
+    "truncate": {
+      "changed": 24,
+      "max_abs": 0.03355704697986578,
+      "by_date": {
+        "2017-02-28": 3,
+        "2017-09-29": 7,
+        "2021-06-30": 8,
+        "2022-10-31": 6
+      },
+      "rows": [
+        {
+          "signal_date": "2017-02-28 00:00:00",
+          "ticker": "BND",
+          "ET_TAIL_base": 0.020134228187919462,
+          "ET_TAIL_truncate": 0.03355704697986577,
+          "abs_diff": 0.01342281879194631
+        },
+        {
+          "signal_date": "2017-02-28 00:00:00",
+          "ticker": "SHV",
+          "ET_TAIL_base": 0.026845637583892617,
+          "ET_TAIL_truncate": 0.020134228187919462,
+          "abs_diff": 0.006711409395973155
+        },
+        {
+          "signal_date": "2017-02-28 00:00:00",
+          "ticker": "VCSH",
+          "ET_TAIL_base": 0.03355704697986577,
+          "ET_TAIL_truncate": 0.026845637583892617,
+          "abs_diff": 0.006711409395973155
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "BKLN",
+          "ET_TAIL_base": 0.1342281879194631,
+          "ET_TAIL_truncate": 0.1476510067114094,
+          "abs_diff": 0.013422818791946317
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "IVV",
+          "ET_TAIL_base": 0.14093959731543623,
+          "ET_TAIL_truncate": 0.12751677852348994,
+          "abs_diff": 0.01342281879194629
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "MBB",
+          "ET_TAIL_base": 0.18791946308724833,
+          "ET_TAIL_truncate": 0.20134228187919462,
+          "abs_diff": 0.01342281879194629
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "MUB",
+          "ET_TAIL_base": 0.1476510067114094,
+          "ET_TAIL_truncate": 0.14093959731543623,
+          "abs_diff": 0.006711409395973172
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "SCHB",
+          "ET_TAIL_base": 0.20134228187919462,
+          "ET_TAIL_truncate": 0.19463087248322147,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "VGIT",
+          "ET_TAIL_base": 0.12751677852348994,
+          "ET_TAIL_truncate": 0.1342281879194631,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2017-09-29 00:00:00",
+          "ticker": "XLE",
+          "ET_TAIL_base": 0.19463087248322147,
+          "ET_TAIL_truncate": 0.18791946308724833,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "EDV",
+          "ET_TAIL_base": 0.959731543624161,
+          "ET_TAIL_truncate": 0.9530201342281879,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "EIDO",
+          "ET_TAIL_base": 0.5838926174496645,
+          "ET_TAIL_truncate": 0.5906040268456376,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "EWU",
+          "ET_TAIL_base": 0.9530201342281879,
+          "ET_TAIL_truncate": 0.959731543624161,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "HACK",
+          "ET_TAIL_base": 0.5906040268456376,
+          "ET_TAIL_truncate": 0.5973154362416108,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "LQD",
+          "ET_TAIL_base": 0.14093959731543623,
+          "ET_TAIL_truncate": 0.1476510067114094,
+          "abs_diff": 0.006711409395973172
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "SCHE",
+          "ET_TAIL_base": 0.1476510067114094,
+          "ET_TAIL_truncate": 0.15436241610738255,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "SCHP",
+          "ET_TAIL_base": 0.15436241610738255,
+          "ET_TAIL_truncate": 0.14093959731543623,
+          "abs_diff": 0.013422818791946317
+        },
+        {
+          "signal_date": "2021-06-30 00:00:00",
+          "ticker": "TLT",
+          "ET_TAIL_base": 0.5973154362416108,
+          "ET_TAIL_truncate": 0.5838926174496645,
+          "abs_diff": 0.01342281879194629
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "ASHR",
+          "ET_TAIL_base": 0.3825503355704698,
+          "ET_TAIL_truncate": 0.38926174496644295,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "DBA",
+          "ET_TAIL_base": 0.40939597315436244,
+          "ET_TAIL_truncate": 0.37583892617449666,
+          "abs_diff": 0.03355704697986578
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "EFA",
+          "ET_TAIL_base": 0.37583892617449666,
+          "ET_TAIL_truncate": 0.3825503355704698,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "EWU",
+          "ET_TAIL_base": 0.38926174496644295,
+          "ET_TAIL_truncate": 0.3959731543624161,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "HACK",
+          "ET_TAIL_base": 0.3959731543624161,
+          "ET_TAIL_truncate": 0.40268456375838924,
+          "abs_diff": 0.006711409395973145
+        },
+        {
+          "signal_date": "2022-10-31 00:00:00",
+          "ticker": "IWM",
+          "ET_TAIL_base": 0.40268456375838924,
+          "ET_TAIL_truncate": 0.40939597315436244,
+          "abs_diff": 0.0067114093959732
+        }
+      ]
+    }
+  },
+  "refit": {
+    "mutate": {
+      "raw_changed": 0,
+      "raw_max_abs": 0.0,
+      "rank_changed": 0,
+      "rank_max_abs": 0.0
+    },
+    "truncate": {
+      "raw_changed": 0,
+      "raw_max_abs": 0.0,
+      "rank_changed": 0,
+      "rank_max_abs": 0.0
+    }
+  },
+  "rowsets": {
+    "base": {
+      "train_rows": 24521,
+      "pred_rows": 1788,
+      "train_key_hash": "5061431644468628410",
+      "pred_key_hash": "15193673369195895115"
+    },
+    "mutate": {
+      "train_rows": 24521,
+      "pred_rows": 1788,
+      "train_key_hash": "5061431644468628410",
+      "pred_key_hash": "15193673369195895115"
+    },
+    "truncate": {
+      "train_rows": 24521,
+      "pred_rows": 1639,
+      "train_key_hash": "5061431644468628410",
+      "pred_key_hash": "1062848156011432298"
+    }
+  }
+}

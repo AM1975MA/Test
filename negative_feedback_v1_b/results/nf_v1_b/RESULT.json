@@ -1,0 +1,77 @@
+{
+  "status": "NF_V1_B_SUMMARY_COMPLETE",
+  "experiment": "NF_V1_B_RANK_RELIABILITY_FEEDBACK",
+  "controller": {
+    "type": "causal_expanding_pairwise_rank_reliability_with_temporal_inertia",
+    "min_matured_dates": 3,
+    "score_distribution_preserved_exactly": true,
+    "free_gain_parameters": 0
+  },
+  "aggregate_direct_rank_metrics": {
+    "rank_mae_base": 0.31087796954199365,
+    "rank_mae_feedback": 0.31159243564090194,
+    "mean_rank_ic_base": 0.10784513154547619,
+    "mean_rank_ic_feedback": 0.10191531999984747,
+    "mean_pairwise_accuracy_base": 0.5375566024940232,
+    "mean_pairwise_accuracy_feedback": 0.5361210112706575,
+    "rank_mae_delta": 0.0007144660989082952,
+    "rank_ic_delta": -0.005929811545628716,
+    "pairwise_accuracy_delta": -0.0014355912233656731
+  },
+  "cross_snapshot_stability": {
+    "base": {
+      "pairwise_top1": 0.6862496477881094,
+      "pairwise_ordered_top1_top2": 0.38348830656522964,
+      "pairwise_unordered_top2_set": 0.4943646097492252,
+      "all_three_top1": 0.569737954353339,
+      "mean_pairwise_spearman": 0.9861229226400544,
+      "mean_rank_std": 0.020461355047021408,
+      "mean_rank_range": 0.04756265918162371,
+      "cagr_span_pp": 4.9236313282261746
+    },
+    "feedback": {
+      "pairwise_top1": 0.6873767258382643,
+      "pairwise_ordered_top1_top2": 0.37094956325725564,
+      "pairwise_unordered_top2_set": 0.5249366018596788,
+      "all_three_top1": 0.5481825866441251,
+      "mean_pairwise_spearman": 0.9901083669328106,
+      "mean_rank_std": 0.017541253646572455,
+      "mean_rank_range": 0.04079119243087675,
+      "cagr_span_pp": 9.52683959557675
+    }
+  },
+  "repeats": [
+    {
+      "repeat": 1,
+      "baseline": {"cagr": 0.29753447746605727,"maxdd": -0.3486213376490779,"sharpe": 1.0461135207098158,"terminal_equity": 11.5361486813599,"annualized_turnover": 12.943838756619677,"mean_risky_gross": 0.9837637362637363},
+      "feedback": {"cagr": 0.184728807349938,"maxdd": -0.34354358243253613,"sharpe": 0.7333818598447616,"terminal_equity": 4.911341460534102,"annualized_turnover": 12.396584276422379,"mean_risky_gross": 0.9837637362637363},
+      "economic_delta": {"cagr_pp": -11.280567011611927,"maxdd_pp": 0.5077755216541746,"sharpe": -0.3127316608650542,"turnover": -0.5472544801972976}
+    },
+    {
+      "repeat": 2,
+      "baseline": {"cagr": 0.30843704925646037,"maxdd": -0.2568961026668678,"sharpe": 1.086992949896945,"terminal_equity": 12.478988259917124,"annualized_turnover": 12.96047576197712,"mean_risky_gross": 0.9837637362637363},
+      "feedback": {"cagr": 0.21929319031117994,"maxdd": -0.32865005017170257,"sharpe": 0.8440673143455293,"terminal_equity": 6.4336856401038265,"annualized_turnover": 12.568422703320799,"mean_risky_gross": 0.9837637362637363},
+      "economic_delta": {"cagr_pp": -8.914385894528042,"maxdd_pp": -7.175394750483477,"sharpe": -0.24292563555141578,"turnover": -0.39205305865632134}
+    },
+    {
+      "repeat": 3,
+      "baseline": {"cagr": 0.346770790748319,"maxdd": -0.36097505012561093,"sharpe": 1.1829318538970461,"terminal_equity": 16.365303998168837,"annualized_turnover": 13.231319803527736,"mean_risky_gross": 0.9837637362637363},
+      "feedback": {"cagr": 0.2799972033057055,"maxdd": -0.30362183468844217,"sharpe": 1.006345936758929,"terminal_equity": 10.152513688157514,"annualized_turnover": 12.170249377512762,"mean_risky_gross": 0.9837637362637363},
+      "economic_delta": {"cagr_pp": -6.677358744261353,"maxdd_pp": 5.735321543716876,"sharpe": -0.17658591713811722,"turnover": -1.0610704260149735}
+    }
+  ],
+  "technical_notes": {
+    "first_attempt": "INVALID_TECHNICAL_ET_RANK_ADAPTER",
+    "first_attempt_run": 37127597437,
+    "valid_run": 37128678668,
+    "summarize_job_failure": "INVALID_TECHNICAL_MISSING_SCIPY_ONLY; individual replay artifacts valid"
+  },
+  "promising_gate": {
+    "direct_rank_error_improved": false,
+    "top1_stability_improved": true,
+    "rank_spearman_not_materially_worse": true,
+    "cagr_span_not_increased": false,
+    "PASS": false
+  },
+  "decision": "REJECT_V1_B_CURRENT_CONTROLLER"
+}

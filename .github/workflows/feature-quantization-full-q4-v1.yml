@@ -1,0 +1,160 @@
+name: ETF trader full Q4 feature quantization
+
+on:
+  push:
+    branches:
+      - research/etf-trader-perturbation-forensics-v1
+    paths:
+      - .github/workflows/feature-quantization-full-q4-v1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  replay:
+    strategy:
+      fail-fast: false
+      matrix:
+        repeat:
+          - 1
+          - 2
+          - 3
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+      NUMEXPR_NUM_THREADS: "2"
+      ETF_TRADER_XGB_THREADS_PER_WORKER: "1"
+      ETF_TRADER_XGB_WORKERS: "3"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install pinned environment
+        run: python -m pip install -r vendor/etf_trader_v2/requirements.txt matplotlib "numpy==2.3.5" "pandas==2.2.3" "scikit-learn==1.8.0" "xgboost==3.1.3" "numba==0.65.1" "yfinance==0.2.66"
+      - name: Gate canonical productive source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess
+          exp={
+            "vendor/etf_trader_v2/src/etf_trader/source_only/kernel.py":"045e57996b02d481bd23f6e4dfe53738d43008e5",
+            "vendor/etf_trader_v2/src/etf_trader/source_only/features.py":"b7f6520b2b5bc54fdc26178dea839bad8a8fecaf",
+            "vendor/etf_trader_v2/src/etf_trader/source_only/models.py":"fc642cce171facfcb92440a7708ee2428f120efe",
+            "vendor/etf_trader_v2/src/etf_trader/source_only/_xgb_worker.py":"2b2ebd4d35ff32e88be62edc61a464656f6f7d4b",
+            "vendor/etf_trader_v2/src/etf_trader/ma3/ensemble.py":"4b23fd297df6bfcf71557af9a7aaf7ca96c9a223",
+            "vendor/etf_trader_v2/src/etf_trader/ma3/hybrid_producer.py":"acf83f2cee6876c89dfd9948cfbf30889af4c08e",
+            "vendor/etf_trader_v2/src/etf_trader/ma3/producer.py":"e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592",
+            "vendor/etf_trader_v2/src/etf_trader/ma3/ddfirst.py":"3794564fdfe8501c2c19e618bc7d1550884aeb53",
+            "vendor/etf_trader_v2/src/etf_trader/ma3/v6.py":"6c5d3fd6f54fb5ef5162f4b26d3ef9af2af34701",
+            "vendor/p45/v2_stage19_kernel.py":"364c16f61d1866946827626e0d8f26dab276aca4"
+          }
+          lf={"vendor/etf_trader_v2/src/etf_trader/source_only/models.py","vendor/etf_trader_v2/src/etf_trader/source_only/_xgb_worker.py"}
+          for p,w in exp.items():
+              g=subprocess.check_output(["git","hash-object",p],text=True).strip()
+              if g!=w and p in lf:
+                  q=Path(p);b=q.read_bytes()
+                  if not b.endswith(b"\n"):
+                      q.write_bytes(b+b"\n");g=subprocess.check_output(["git","hash-object",p],text=True).strip()
+              assert g==w,(p,g,w)
+          print("SOURCE_GATE_PASS")
+          PY
+      - name: Restore frozen repeat and canonical runner
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          mkdir -p holdout70
+          curl --retry 6 --retry-all-errors --retry-delay 2 -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/research/v2-same-source-149-vs-70-20261002/holdout70/v2_canonical_same_source_compare.py" -o holdout70/v2_canonical_same_source_compare.py
+          test "$(git hash-object holdout70/v2_canonical_same_source_compare.py)" = "ebd578e0d92e986adb5c2fbf265a346f87b7218e"
+      - name: Run full Q4 replay
+        run: |
+          python forensics_v1/run_full_q4_pipeline.py             --raw _raw/_repeat${{ matrix.repeat }}             --compare-script holdout70/v2_canonical_same_source_compare.py             --decimals 4             --out _q4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full-q4-repeat-${{ matrix.repeat }}
+          retention-days: 90
+          compression-level: 6
+          path: |
+            _q4/RESULT_Q4.json
+            _q4/DAILY_LEADERS_Q4.csv
+
+  summarize:
+    needs: replay
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install "numpy==2.3.5" "pandas==2.2.3"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: full-q4-repeat-*
+          path: _all
+      - name: Aggregate stability
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, numpy as np, pandas as pd
+          base_cagr={1:0.29753447746605727,2:0.30843704925646037,3:0.346770790748319}
+          stage=json.loads(Path("forensics_v1/results/STAGE_AMPLIFICATION.json").read_text())
+          R={};L={}
+          for i in (1,2,3):
+              p=Path("_all")/f"full-q4-repeat-{i}"
+              R[i]=json.loads((p/"RESULT_Q4.json").read_text())
+              L[i]=pd.read_csv(p/"DAILY_LEADERS_Q4.csv")
+          pairs={}
+          for a,b in ((1,2),(1,3),(2,3)):
+              x=L[a].merge(L[b],on="date",suffixes=("_a","_b"))
+              top1=float(np.mean(x.top1_a!=x.top1_b))
+              top2=float(np.mean(x.top2_a!=x.top2_b))
+              either=float(np.mean((x.top1_a!=x.top1_b)|(x.top2_a!=x.top2_b)))
+              native=stage["pairs"][f"{a}-{b}"]["decisions"]
+              pairs[f"{a}-{b}"]={
+                "q4_top1_disagreement":top1,
+                "native_top1_disagreement":native["top1_disagreement_fraction"],
+                "q4_top2_disagreement":top2,
+                "native_top2_disagreement":native["top2_disagreement_fraction"],
+                "q4_either_disagreement":either,
+                "native_either_disagreement":native["either_top1_top2_disagreement_fraction"]
+              }
+          qc={i:R[i]["v2_full_universe"]["cagr"] for i in (1,2,3)}
+          span=(max(qc.values())-min(qc.values()))*100
+          bspan=(max(base_cagr.values())-min(base_cagr.values()))*100
+          out={
+            "status":"FEATURE_QUANTIZATION_FULL_Q4_V1_COMPLETE",
+            "q4":{str(i):R[i]["v2_full_universe"] for i in (1,2,3)},
+            "baseline_cagr":base_cagr,
+            "q4_cagr_span_pp":span,
+            "baseline_cagr_span_pp":bspan,
+            "cagr_span_reduction_pct":100*(bspan-span)/bspan,
+            "mean_q4_cagr":float(np.mean(list(qc.values()))),
+            "mean_baseline_cagr":float(np.mean(list(base_cagr.values()))),
+            "pairs":pairs,
+            "mean_q4_top1_disagreement":float(np.mean([v["q4_top1_disagreement"] for v in pairs.values()])),
+            "mean_native_top1_disagreement":float(np.mean([v["native_top1_disagreement"] for v in pairs.values()])),
+            "mean_q4_either_disagreement":float(np.mean([v["q4_either_disagreement"] for v in pairs.values()])),
+            "mean_native_either_disagreement":float(np.mean([v["native_either_disagreement"] for v in pairs.values()]))
+          }
+          Path("forensics_v1/results/FEATURE_QUANTIZATION_FULL_Q4_V1.json").write_text(json.dumps(out,indent=2)+"\n")
+          print(json.dumps(out,indent=2))
+          PY
+      - name: Persist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add forensics_v1/results/FEATURE_QUANTIZATION_FULL_Q4_V1.json
+          git commit -m "Persist full pipeline Q4 quantization forensic"
+          git pull --rebase --autostash origin research/etf-trader-perturbation-forensics-v1
+          git push origin HEAD:research/etf-trader-perturbation-forensics-v1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full-q4-summary
+          retention-days: 90
+          path: forensics_v1/results/FEATURE_QUANTIZATION_FULL_Q4_V1.json

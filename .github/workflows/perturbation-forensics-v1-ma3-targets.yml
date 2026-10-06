@@ -1,0 +1,50 @@
+name: ETF_trader perturbation forensics V1 MA3 targets
+on:
+  push:
+    branches: [ research/etf-trader-perturbation-forensics-v1 ]
+    paths: [ '.github/workflows/perturbation-forensics-v1-ma3-targets.yml' ]
+  workflow_dispatch:
+permissions: { contents: write, actions: read }
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.13' }
+      - run: python -m pip install pandas==2.2.3 pyarrow numpy==2.3.5
+      - name: Download existing canonical stage dumps
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          for i in 1 2 3; do gh run download 37149531053 -R ${{ github.repository }} -n forensic-stage-repeat-$i -D _r$i; done
+      - name: Compare labels and targets
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import numpy as np,pandas as pd
+          R={i:pd.read_parquet(f'_r{i}/RAW_FEATURE_PANEL.parquet') for i in [1,2,3]}
+          targets=['target_rank_21','target_rank_42','target_rank_63']
+          out={'status':'MA3_TARGET_STABILITY_COMPLETE','pairs':{}}
+          for a,b in [(1,2),(1,3),(2,3)]:
+            A=R[a];B=R[b]; cols=[c for c in targets if c in A and c in B]
+            x=A[['signal_date','ticker']+cols].merge(B[['signal_date','ticker']+cols],on=['signal_date','ticker'],suffixes=('_a','_b'))
+            q={}
+            for c in cols:
+              u=x[c+'_a'].to_numpy(float);v=x[c+'_b'].to_numpy(float);m=np.isfinite(u)&np.isfinite(v);d=np.abs(u-v);n=max(int(m.sum()),1)
+              q[c]={'n':int(m.sum()),'changed_fraction_gt1e12':float(np.sum(m&(d>1e-12))/n),'mean_abs':float(np.mean(d[m])) if m.any() else None,'max_abs':float(np.max(d[m])) if m.any() else None}
+            if len(cols)==3:
+              yA=.45*x['target_rank_21_a'].to_numpy(float)**1.5+.35*x['target_rank_42_a'].to_numpy(float)**1.5+.20*x['target_rank_63_a'].to_numpy(float)**1.5
+              yB=.45*x['target_rank_21_b'].to_numpy(float)**1.5+.35*x['target_rank_42_b'].to_numpy(float)**1.5+.20*x['target_rank_63_b'].to_numpy(float)**1.5
+              m=np.isfinite(yA)&np.isfinite(yB);d=np.abs(yA-yB);n=max(int(m.sum()),1);q['CORRECTED_TARGET']={'n':int(m.sum()),'changed_fraction_gt1e12':float(np.sum(m&(d>1e-12))/n),'mean_abs':float(np.mean(d[m])) if m.any() else None,'max_abs':float(np.max(d[m])) if m.any() else None}
+            out['pairs'][f'{a}-{b}']=q
+          p=Path('forensics_v1/results/MA3_TARGET_STABILITY.json');p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))
+          PY
+      - name: Persist
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add forensics_v1/results/MA3_TARGET_STABILITY.json
+          git commit -m 'Persist MA3 target stability forensic'
+          git pull --rebase --autostash origin research/etf-trader-perturbation-forensics-v1
+          git push origin HEAD:research/etf-trader-perturbation-forensics-v1

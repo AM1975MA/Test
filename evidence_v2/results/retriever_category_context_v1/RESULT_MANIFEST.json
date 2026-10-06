@@ -1,0 +1,11 @@
+{
+  "test": "retriever_category_context_v1",
+  "files_sha256": {
+    "FIT_AUDIT.csv": "27ad96444d28ff09a00e0e3e6328a1c8435caeeed1179134dfd816189ce942c0",
+    "MONTHLY_BASELINE.csv": "c48e58e3a2df4cc4074c9b9fd9727b1f602fffb4eeb9ccc6825ad1582ee89e4c",
+    "MONTHLY_CATEGORY.csv": "5f6827bda3a299838fae2abdbe5a748fc157c106251dbcf885fd8e1d80ff689c",
+    "PREDICTIONS.csv": "d576b2302b4167e6a29521029f702546bd433aa908e90b9234a2226252e32743",
+    "PROVENANCE.json": "5f793a58db52e3205fb187e9bdd1d2b50f327609bcca77921b3abfabe3868f9a",
+    "SUMMARY.json": "9aaf599d0a4d98d101a41984042ac8f012dceffec75417103d0726bb5557c10c"
+  }
+}

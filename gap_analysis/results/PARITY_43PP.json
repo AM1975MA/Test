@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "result": "Original149 historical canonical Annual V2",
+  "expected_cagr": 0.4314595242029944,
+  "observed_cagr": 0.4314595242029944,
+  "absolute_difference": 0.0,
+  "period": ["2017-02-01", "2026-07-01"],
+  "sessions": 2366,
+  "evidence": {
+    "reference_result_file": "vendor/p45/REFERENCE_RESULT.json",
+    "parity_audit_file": "vendor/p45/REFERENCE_PARITY_AUDIT.json",
+    "canonical_reference_file": "holdout70/CANONICAL_149_REFERENCE.json",
+    "reference_result_blob": "cd563101a85ee0737d36467b93c3b6235357b8f8",
+    "parity_audit_blob": "d9b232a6c2165887d084e87a56f9637a8d199ff2",
+    "canonical_reference_blob": "5d97ba62a0034999eba45c71d34ac5b5c3e9cc4e"
+  },
+  "metric_identity": "Annual V2 reference. This is deliberately not the P45 historical CAGR 0.469632304."
+}

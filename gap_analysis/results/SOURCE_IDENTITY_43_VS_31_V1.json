@@ -1,0 +1,46 @@
+{
+  "status": "SOURCE_IDENTITY_ESTABLISHED_AT_RUNTIME",
+  "historical_etf_trader_commit": "53f5939ab858ece6425e46266bd42b99b8bd1cab",
+  "fresh_replay_run": 37020787738,
+  "conclusion": "The productive ETF_trader source executed by the 31.603995% fresh-data replay is the same historical source at Git-blob level after the replay workflow's explicit terminal-newline normalization for three files.",
+  "historical_blobs": {
+    "kernel.py": "045e57996b02d481bd23f6e4dfe53738d43008e5",
+    "features.py": "b7f6520b2b5bc54fdc26178dea839bad8a8fecaf",
+    "models.py": "fc642cce171facfcb92440a7708ee2428f120efe",
+    "_xgb_worker.py": "2b2ebd4d35ff32e88be62edc61a464656f6f7d4b",
+    "build_tit_r_source_only.py": "b06ae7d6960a91aa0c0896dca403f2c6b183467c",
+    "ensemble.py": "4b23fd297df6bfcf71557af9a7aaf7ca96c9a223",
+    "hybrid_producer.py": "acf83f2cee6876c89dfd9948cfbf30889af4c08e",
+    "producer.py": "e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592",
+    "ddfirst.py": "3794564fdfe8501c2c19e618bc7d1550884aeb53",
+    "v6.py": "6c5d3fd6f54fb5ef5162f4b26d3ef9af2af34701",
+    "v2_stage19_kernel.py": "364c16f61d1866946827626e0d8f26dab276aca4"
+  },
+  "repository_snapshot_notes": {
+    "exact_without_normalization": [
+      "kernel.py",
+      "features.py",
+      "ensemble.py",
+      "hybrid_producer.py",
+      "producer.py",
+      "ddfirst.py",
+      "v6.py"
+    ],
+    "repo_copy_differs_only_by_missing_terminal_lf_before_runtime_gate": [
+      "models.py",
+      "_xgb_worker.py",
+      "build_tit_r_source_only.py"
+    ],
+    "runtime_behavior": "The fresh replay workflow appends a final LF only to these three files when necessary, recomputes git hash-object, and fails unless the resulting blob equals the historical expected blob. This gate passed before the model replay."
+  },
+  "historical_reference_parity": {
+    "annual_v2_cagr": 0.4314595242029944,
+    "parity_difference": 0.0,
+    "pass": true
+  },
+  "remaining_uncertainty": {
+    "python_package_environment_historical_vs_fresh": "NOT YET PROVEN BYTE/BUILD IDENTICAL. The fresh replay environment is pinned, but the exact package build/version set used in the original historical production of the 43.145952% artifact is not fully archived in the currently inspected evidence.",
+    "interpretation": "Source-code identity is established. Environment identity remains a separate forensic factor and must not be silently assumed."
+  },
+  "failed_ci_audit_note": "Workflow run 37122071047 failed before comparison because the runner could not authenticate a cross-repository private clone. This is a technical failure and does not contradict the source identity evidence obtained from direct repository metadata and the already-passed runtime Git-blob gate."
+}

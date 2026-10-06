@@ -1,0 +1,1 @@
+Freeze exactly the 110 validated names already produced by the validation script (20 each C01-C05, 10 C06). Do not search for additional names. Run frozen P45 zero-shot transfer on these 110 with no retraining and persist result artifacts.

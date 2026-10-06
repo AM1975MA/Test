@@ -1,0 +1,162 @@
+name: Evidence V2 retriever macro context v1
+
+on:
+  push:
+    branches: [ research/evidence-v2 ]
+    paths:
+      - 'evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_TRIGGER.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  retriever-macro-context-v1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v2
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+
+      - name: Fail-closed preregistration and frozen-state gate
+        run: |
+          set -euo pipefail
+          test "$(git hash-object evidence_v2/src/retriever_macro_context_v1.py)" = "fec42f2149020bc2c53b2f36b35d18e5f17cf44e"
+          test "$(git hash-object evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_PREREG.md)" = "90f9eb73891918086d95199d6523b720a001550c"
+          test "$(git hash-object evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_BASELINE_JOIN_FIX.md)" = "2c6aef96b24aa80c19a89c968c87c836e661846d"
+          test "$(git hash-object evidence_v2/data/macro_context_v1/MANIFEST.json)" = "27c2071542a04c9425b47b7cdddc6e6e10f92d3a"
+          test "$(git hash-object evidence_v2/data/macro_context_v1/MACRO_DAILY.csv)" = "d9c15805ef47828d15fc5126e9a8c8414e1696b2"
+          test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/src/etf_trader/ma3/producer.py)" = "e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592"
+          test "$(git hash-object evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py)" = "34cc133d4d44bb06cc21363b1444865e2d8ec5c1"
+          test "$(git hash-object evidence_v1/checkpoints/retriever_ltr_v1/CHECKPOINT_MANIFEST.json)" = "e51a8651f6696a0081acb09e3ed230e7e35fd79c"
+          test "$(git hash-object evidence_v1/checkpoints/retriever_ltr_v1/OOS_PREDICTIONS.csv)" = "1745a6d12b6957bc629998c7ac3417550ac9bceb"
+          echo "87da30de5f534bf369ddcba7bcab5d331c6542f08b179499d61e4504543e27f2  evidence_v2/data/macro_context_v1/MANIFEST.json" | sha256sum -c -
+          echo "a07b47d11784e5895fbd59f4a416671d6708f06bd12619b963a5b6c83f1d0474  evidence_v2/data/macro_context_v1/MACRO_DAILY.csv" | sha256sum -c -
+          echo "3f9e054fdc0716161cec185ad5a32a62671ad3032070b9ca24ceed655011abd6  evidence_v1/checkpoints/retriever_ltr_v1/OOS_PREDICTIONS.csv" | sha256sum -c -
+          echo "1efba2bc213ba26b042a9e77630fe26664343654629e658f43d314d068ba9e71  evidence_v1/DATA_MANIFEST_SHA256.txt" | sha256sum -c -
+          echo "cc4d315da68ec42275a7a74f05446ac6cbb484c3bd92a7861cd76805c5a94782  evidence_v1/SOURCE_MANIFEST_SHA256.txt" | sha256sum -c -
+          echo "01305fe62203c7b7895d95836267c4288f86d2c5a763ce7070c9c3d3d9f807ae  evidence_v1/requirements.lock.txt" | sha256sum -c -
+          (cd evidence_v1/data && sha256sum -c ../DATA_MANIFEST_SHA256.txt)
+          (cd evidence_v1/source && sha256sum -c ../SOURCE_MANIFEST_SHA256.txt)
+          python -m py_compile evidence_v2/src/retriever_macro_context_v1.py
+          test ! -e evidence_v2/results/retriever_macro_context_v1
+
+      - name: Install locked numerical environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r evidence_v1/requirements.lock.txt
+
+      - name: Rebuild frozen Original149 reference panel
+        env:
+          PYTHONPATH: ${{ github.workspace }}/evidence_v1/source/baseline/etf_trader_v2/src
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          rm -rf _evidence_v2_macro_ltr
+          mkdir -p _evidence_v2_macro_ltr/panel149 _evidence_v2_macro_ltr/result _evidence_v2_macro_ltr/baseline_cp
+          python evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py \
+            --data evidence_v1/data/original149 \
+            --cluster-data evidence_v1/data/original149 \
+            --output _evidence_v2_macro_ltr/panel149
+
+      - name: Prepare frozen LTR comparator evaluation join
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          panel=pd.read_pickle('_evidence_v2_macro_ltr/panel149/RAW_FEATURE_PANEL.pkl').copy()
+          panel['signal_date']=pd.to_datetime(panel['signal_date'])
+          keys=['signal_date','ticker']
+          cols=keys+['fwd_ret_21','target_relevance']
+          if panel.duplicated(keys).any():
+              raise RuntimeError('source-only panel has duplicate comparator join keys')
+          base=pd.read_csv('evidence_v1/checkpoints/retriever_ltr_v1/OOS_PREDICTIONS.csv',parse_dates=['signal_date'])
+          if base.duplicated(keys).any():
+              raise RuntimeError('frozen LTR checkpoint has duplicate join keys')
+          joined=base.merge(panel[cols],on=keys,how='left',validate='one_to_one')
+          if joined['fwd_ret_21'].notna().sum()==0:
+              raise RuntimeError('comparator join produced no forward returns')
+          for c in ['LTR_SCORE','LTR_RANK','LTR_POSITION']:
+              if c not in joined.columns:
+                  raise RuntimeError(f'missing frozen comparator column {c}')
+          out=Path('_evidence_v2_macro_ltr/baseline_cp/OOS_PREDICTIONS.csv')
+          joined.to_csv(out,index=False)
+          print({'rows':len(joined),'dates':joined.signal_date.nunique(),'fwd21_nonnull':int(joined.fwd_ret_21.notna().sum())})
+          PY
+
+      - name: Run single preregistered macro-context retriever
+        run: |
+          python evidence_v2/src/retriever_macro_context_v1.py \
+            --panel _evidence_v2_macro_ltr/panel149/RAW_FEATURE_PANEL.pkl \
+            --macro evidence_v2/data/macro_context_v1/MACRO_DAILY.csv \
+            --frozen-source evidence_v1/source/baseline/etf_trader_v2 \
+            --baseline-checkpoint _evidence_v2_macro_ltr/baseline_cp \
+            --out _evidence_v2_macro_ltr/result
+
+      - name: Build provenance and final manifest
+        run: |
+          python - <<'PY'
+          import hashlib,json,platform,subprocess
+          from pathlib import Path
+          import numpy,pandas,sklearn,xgboost
+          def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          r=Path('_evidence_v2_macro_ltr/result')
+          p={
+            'line':'Evidence V2','test':'retriever_macro_context_v1',
+            'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'evaluator_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/src/retriever_macro_context_v1.py'],text=True).strip(),
+            'preregistration_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_PREREG.md'],text=True).strip(),
+            'baseline_join_fix_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/protocols/RETRIEVER_MACRO_CONTEXT_V1_BASELINE_JOIN_FIX.md'],text=True).strip(),
+            'invalid_prejoin_run':'37069284576',
+            'macro_manifest_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/data/macro_context_v1/MANIFEST.json'],text=True).strip(),
+            'macro_daily_git_blob':subprocess.check_output(['git','hash-object','evidence_v2/data/macro_context_v1/MACRO_DAILY.csv'],text=True).strip(),
+            'macro_manifest_sha256':h('evidence_v2/data/macro_context_v1/MANIFEST.json'),
+            'macro_daily_sha256':h('evidence_v2/data/macro_context_v1/MACRO_DAILY.csv'),
+            'data_manifest_sha256':h('evidence_v1/DATA_MANIFEST_SHA256.txt'),
+            'source_manifest_sha256':h('evidence_v1/SOURCE_MANIFEST_SHA256.txt'),
+            'requirements_sha256':h('evidence_v1/requirements.lock.txt'),
+            'retriever_checkpoint_manifest_sha256':h('evidence_v1/checkpoints/retriever_ltr_v1/CHECKPOINT_MANIFEST.json'),
+            'retriever_oos_predictions_sha256':h('evidence_v1/checkpoints/retriever_ltr_v1/OOS_PREDICTIONS.csv'),
+            'joined_comparator_sha256':h('_evidence_v2_macro_ltr/baseline_cp/OOS_PREDICTIONS.csv'),
+            'panel_manifest_sha256':h('_evidence_v2_macro_ltr/panel149/RAW_FEATURE_PANEL_MANIFEST.json'),
+            'network_used_during_model_test':False,
+            'holdout70_used':False,
+            'models_refit':'macro-context model only; frozen LTR scores are comparator only',
+            'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,
+            'scikit_learn':sklearn.__version__,'xgboost':xgboost.__version__}
+          (r/'PROVENANCE.json').write_text(json.dumps(p,indent=2)+'\n')
+          files=sorted(x.name for x in r.iterdir() if x.is_file() and x.name!='RESULT_MANIFEST.json')
+          (r/'RESULT_MANIFEST.json').write_text(json.dumps({'test':'retriever_macro_context_v1','files_sha256':{f:h(r/f) for f in files}},indent=2)+'\n')
+          print(json.dumps(p,indent=2))
+          print((r/'SUMMARY.json').read_text())
+          PY
+
+      - name: Persist Evidence V2 result in branch
+        run: |
+          set -euo pipefail
+          test ! -e evidence_v2/results/retriever_macro_context_v1
+          mkdir -p evidence_v2/results/retriever_macro_context_v1
+          cp _evidence_v2_macro_ltr/result/* evidence_v2/results/retriever_macro_context_v1/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence_v2/results/retriever_macro_context_v1
+          git diff --cached --stat
+          git commit -m "Record Evidence V2 macro-context retriever v1"
+          git pull --rebase origin research/evidence-v2
+          git push origin HEAD:research/evidence-v2
+
+      - name: Upload Evidence V2 result
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-v2-retriever-macro-context-v1
+          retention-days: 90
+          if-no-files-found: error
+          path: evidence_v2/results/retriever_macro_context_v1/*

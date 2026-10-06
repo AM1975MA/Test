@@ -1,0 +1,1 @@
+Evidence V2 retriever calendar-context v1 execution marker. Source, preregistration, frozen Original149 data and comparator checkpoint are already committed and hash-gated.

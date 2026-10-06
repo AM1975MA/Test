@@ -1,0 +1,19 @@
+{
+  "status": "PANEL_ORDER_FORENSIC_COMPLETE",
+  "comparisons": {
+    "mutate": {
+      "rows_base": 26905,
+      "rows_other": 26905,
+      "ordered_keys_equal": true,
+      "sorted_keys_equal": true,
+      "first_order_difference": null
+    },
+    "truncate": {
+      "rows_base": 26905,
+      "rows_other": 26756,
+      "ordered_keys_equal": false,
+      "sorted_keys_equal": false,
+      "first_order_difference": null
+    }
+  }
+}

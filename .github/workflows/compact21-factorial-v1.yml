@@ -1,0 +1,114 @@
+name: COMPACT21_FACTORIAL_V1
+on:
+  push:
+    branches: [research/compact21-factorial-v1]
+    paths: [.github/workflows/compact21-factorial-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: compact21-factorial-v1-${{ github.sha }}
+  cancel-in-progress: false
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: 'Haswell'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+  ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+  ETF_TRADER_XGB_WORKERS: '1'
+jobs:
+  validation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Frozen dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - name: Canonical source gate
+        run: python compact21_stability_v1/source_gate.py
+      - name: Attribution, donor integrity and frozen predictive tests
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m unittest discover -s compact21_factorial_v1/tests -v 2>&1 | tee FACTORIAL_VALIDATION.txt
+          python -m unittest discover -s compact21_predictive_v2/tests -v 2>&1 | tee PREDICTIVE_VALIDATION.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: factorial-validation
+          retention-days: 90
+          path: '*VALIDATION.txt'
+  factorial:
+    needs: validation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        model: [BASE,RIDGE,LGBM_LAMBDARANK,ADDITIVE_RIDGE]
+        year: [2017,2018,2019,2020,2021,2022,2023,2024,2025,2026]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Frozen dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - name: Canonical source gate
+        run: python compact21_stability_v1/source_gate.py
+      - name: Original immutable panels and retained diagonal controls
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-1 -D _ti/r1
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-2 -D _ti/r2
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-3 -D _ti/r3
+          gh run download 37229180477 -R ${{ github.repository }} -n predictive-${{ matrix.model }} -D _reference
+      - name: Nine unique X/y cells and independent exact refits
+        run: python -m compact21_factorial_v1.run --model ${{ matrix.model }} --year ${{ matrix.year }} --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --reference _reference --out _factorial
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: factorial-${{ matrix.model }}-${{ matrix.year }}
+          retention-days: 90
+          path: _factorial/
+  summary:
+    needs: factorial
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Frozen dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: factorial-*
+          path: _results
+      - name: Original references and authoritative Repeat2 outcome targets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37229180477 -R ${{ github.repository }} -n predictive-BASE -D _references/BASE
+          gh run download 37229180477 -R ${{ github.repository }} -n predictive-RIDGE -D _references/RIDGE
+          gh run download 37229180477 -R ${{ github.repository }} -n predictive-LGBM_LAMBDARANK -D _references/LGBM_LAMBDARANK
+          gh run download 37229180477 -R ${{ github.repository }} -n predictive-ADDITIVE_RIDGE -D _references/ADDITIVE_RIDGE
+      - name: Independent attribution, per-date evidence and fixed-outcome quality
+        run: python -m compact21_factorial_v1.summarize --inputs _results --references _references --out _summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: factorial-summary
+          retention-days: 90
+          path: _summary/

@@ -1,0 +1,70 @@
+name: ETF trader panel order forensic
+
+on:
+  push:
+    branches:
+      - research/etf-trader-perturbation-forensics-v1
+    paths:
+      - .github/workflows/perturbation-forensics-v1-panel-order.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install "pandas==2.2.3" pyarrow
+      - name: Download byte-preserved panels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _p
+          gh run download 37151445684 -R ${{ github.repository }} -n lookahead-bp-2023-12-29-base -D _p/base
+          gh run download 37151445684 -R ${{ github.repository }} -n lookahead-bp-2023-12-29-mutate -D _p/mutate
+          gh run download 37151445684 -R ${{ github.repository }} -n lookahead-bp-2023-12-29-truncate -D _p/truncate
+      - name: Compare row order
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,pandas as pd
+          cutoff=pd.Timestamp("2023-12-29")
+          R={}
+          for m in ["base","mutate","truncate"]:
+              p=pd.read_parquet(Path("_p")/m/"PANEL.parquet")
+              p["signal_date"]=pd.to_datetime(p.signal_date)
+              p=p[p.signal_date<=cutoff].copy()
+              R[m]=p
+          out={"status":"PANEL_ORDER_FORENSIC_COMPLETE","comparisons":{}}
+          for mode in ["mutate","truncate"]:
+              A=R["base"];B=R[mode]
+              ka=A[["signal_date","ticker"]].reset_index(drop=True)
+              kb=B[["signal_date","ticker"]].reset_index(drop=True)
+              seq_equal=bool(len(ka)==len(kb) and ka.equals(kb))
+              sa=ka.sort_values(["signal_date","ticker"]).reset_index(drop=True)
+              sb=kb.sort_values(["signal_date","ticker"]).reset_index(drop=True)
+              set_equal=bool(len(sa)==len(sb) and sa.equals(sb))
+              first=None
+              if len(ka)==len(kb):
+                  d=(ka!=kb).any(axis=1)
+                  if d.any():
+                      i=int(d.idxmax());first={"index":i,"base":ka.iloc[i].astype(str).to_dict(),"other":kb.iloc[i].astype(str).to_dict()}
+              out["comparisons"][mode]={"rows_base":len(ka),"rows_other":len(kb),"ordered_keys_equal":seq_equal,"sorted_keys_equal":set_equal,"first_order_difference":first}
+          Path("forensics_v1/results/PANEL_ORDER_FORENSIC.json").write_text(json.dumps(out,indent=2)+"\n")
+          print(json.dumps(out,indent=2))
+          PY
+      - name: Persist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add forensics_v1/results/PANEL_ORDER_FORENSIC.json
+          git commit -m "Persist panel row-order forensic"
+          git pull --rebase --autostash origin research/etf-trader-perturbation-forensics-v1
+          git push origin HEAD:research/etf-trader-perturbation-forensics-v1

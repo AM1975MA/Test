@@ -1,0 +1,8 @@
+{
+  "test": "allocation_v2_causal_expert_blend",
+  "files_sha256": {
+    "MONTHLY.csv": "3dbe8f5619a2c1f2ee2554b067491362bbea1da9feed2c9bcd2605e7d2f321e3",
+    "PROVENANCE.json": "787015de1815955272bf43db51bc7811450beb14fe9641f0e983c3f2d4553187",
+    "SUMMARY.json": "8962a8d346ea7efc3b9d8d7600a6ad9567bcd9df761d1bdbdbaec08b55d629b4"
+  }
+}

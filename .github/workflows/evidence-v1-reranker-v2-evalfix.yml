@@ -1,0 +1,107 @@
+name: Evidence V1 nonlinear reranker v2 evalfix
+
+on:
+  push:
+    branches: [ research/evidence-v1 ]
+    paths:
+      - '.github/workflows/evidence-v1-reranker-v2-evalfix.yml'
+      - 'evidence_v1/src/reranker_v2_nonlinear_evalfix.py'
+      - 'evidence_v1/protocols/RERANKER_V2_EVALFIX.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reranker-v2-evalfix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v1
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+
+      - name: Fail-closed corrected evaluator and frozen state gate
+        run: |
+          set -euo pipefail
+          echo "97804291b154f096ca404fc194eba89cffc596fd269e93f2f6e6728cd0aa5779  evidence_v1/src/reranker_v2_nonlinear_evalfix.py" | sha256sum -c -
+          (cd evidence_v1/data && sha256sum -c ../DATA_MANIFEST_SHA256.txt)
+          (cd evidence_v1/source && sha256sum -c ../SOURCE_MANIFEST_SHA256.txt)
+          sha256sum evidence_v1/protocols/RERANKER_V2_PREREG.md \
+                    evidence_v1/protocols/RERANKER_V2_EVALFIX.md \
+                    evidence_v1/requirements.lock.txt
+
+      - name: Install locked numerical environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r evidence_v1/requirements.lock.txt
+
+      - name: Rebuild Original149 feature panel from frozen repository state
+        env:
+          PYTHONPATH: ${{ github.workspace }}/evidence_v1/source/baseline/etf_trader_v2/src
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          rm -rf _evidence_v1_rr2_evalfix
+          mkdir -p _evidence_v1_rr2_evalfix/panel149
+          python evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py \
+            --data evidence_v1/data/original149 \
+            --cluster-data evidence_v1/data/original149 \
+            --output _evidence_v1_rr2_evalfix/panel149
+
+      - name: Run preregistered nonlinear reranker v2 with corrected evaluator
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python evidence_v1/src/reranker_v2_nonlinear_evalfix.py \
+            --panel _evidence_v1_rr2_evalfix/panel149/RAW_FEATURE_PANEL.pkl \
+            --frozen-source evidence_v1/source/baseline/etf_trader_v2 \
+            --out _evidence_v1_rr2_evalfix/result
+
+      - name: Build provenance
+        run: |
+          python - <<'PY'
+          import hashlib,json,platform
+          from pathlib import Path
+          import numpy,pandas,sklearn,xgboost
+          def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          p={
+            'line':'Evidence V1','test':'reranker_v2_nonlinear_evalfix',
+            'git_commit':'${{ github.sha }}',
+            'invalidated_technical_run':37045478600,
+            'invalidated_technical_artifact':11243968811,
+            'data_manifest_sha256':h('evidence_v1/DATA_MANIFEST_SHA256.txt'),
+            'source_manifest_sha256':h('evidence_v1/SOURCE_MANIFEST_SHA256.txt'),
+            'test_source_sha256':h('evidence_v1/src/reranker_v2_nonlinear_evalfix.py'),
+            'original_preregistration_sha256':h('evidence_v1/protocols/RERANKER_V2_PREREG.md'),
+            'evalfix_protocol_sha256':h('evidence_v1/protocols/RERANKER_V2_EVALFIX.md'),
+            'requirements_sha256':h('evidence_v1/requirements.lock.txt'),
+            'panel_manifest_sha256':h('_evidence_v1_rr2_evalfix/panel149/RAW_FEATURE_PANEL_MANIFEST.json'),
+            'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,
+            'scikit_learn':sklearn.__version__,'xgboost':xgboost.__version__}
+          Path('_evidence_v1_rr2_evalfix/result/PROVENANCE.json').write_text(json.dumps(p,indent=2)+'\n')
+          print(json.dumps(p,indent=2))
+          PY
+
+      - name: Show corrected result
+        run: cat _evidence_v1_rr2_evalfix/result/SUMMARY.json
+
+      - name: Upload corrected Evidence V1 reranker v2 evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-v1-reranker-v2-evalfix
+          retention-days: 90
+          if-no-files-found: error
+          path: |
+            _evidence_v1_rr2_evalfix/result/*
+            _evidence_v1_rr2_evalfix/panel149/RAW_FEATURE_PANEL_MANIFEST.json

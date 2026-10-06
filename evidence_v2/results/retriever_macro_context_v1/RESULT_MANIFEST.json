@@ -1,0 +1,12 @@
+{
+  "test": "retriever_macro_context_v1",
+  "files_sha256": {
+    "FIT_AUDIT.csv": "27ad96444d28ff09a00e0e3e6328a1c8435caeeed1179134dfd816189ce942c0",
+    "MACRO_ALIGNMENT.csv": "8339c529c55c3f4d60b9b748062b382623aee2c2ca884e4631569cec55ffb7ab",
+    "MONTHLY_BASELINE.csv": "d39e9150493feaf470c774468f428fc1c49b9ed41515c252073bb1193ccb8946",
+    "MONTHLY_MACRO.csv": "94d39d2d218c2a3214102c7ad09fec6fcf5ba100b60a2fdfc7810fa928bf6e7b",
+    "PREDICTIONS.csv": "e2b70a196b3622eac153a0a5f3e823ef7deab0279fcf78b81db96783c256a3ec",
+    "PROVENANCE.json": "60723cc3eb1abeee04a5d44f52726971eaa5f30be079f002ff3263addd58a017",
+    "SUMMARY.json": "623812920cc1d40e1e54affc4955d65910dbb6e47bb8670b851941e6f2b6ac55"
+  }
+}

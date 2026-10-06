@@ -1,0 +1,84 @@
+name: Gap analysis - yfinance repeatability v1
+
+on:
+  push:
+    branches:
+      - research/evidence-v2
+    paths:
+      - '.github/workflows/gap-analysis-yfinance-repeatability-v1.yml'
+      - 'gap_analysis/protocols/YFINANCE_REPEATABILITY_V1_TRIGGER.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repeatability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install frozen acquisition environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'yfinance==0.2.66'
+          python - <<'PY'
+          import pandas, yfinance
+          assert pandas.__version__ == '2.2.3'
+          assert yfinance.__version__ == '0.2.66'
+          print('ENV_GATE_PASS', pandas.__version__, yfinance.__version__)
+          PY
+
+      - name: Gate frozen universe and source
+        run: |
+          python - <<'PY'
+          import hashlib, pandas as pd
+          from pathlib import Path
+          u=Path('evidence_v1/data/original149/universe.csv')
+          q=pd.read_csv(u)
+          assert len(q)==149 and q.ticker.nunique()==149
+          assert hashlib.sha256(u.read_bytes()).hexdigest()=='7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6'
+          print('UNIVERSE_GATE_PASS')
+          PY
+          test "$(git hash-object gap_analysis/src/download_uniform_yahoo_vintage_test.py)" = "$(git hash-object gap_analysis/src/download_uniform_yahoo_vintage_test.py)"
+
+      - name: Acquisition 1
+        run: python gap_analysis/src/download_uniform_yahoo_vintage_test.py --universe evidence_v1/data/original149/universe.csv --output _repeat1 --start 2004-01-01 --end 2026-08-01
+
+      - name: Acquisition 2
+        run: python gap_analysis/src/download_uniform_yahoo_vintage_test.py --universe evidence_v1/data/original149/universe.csv --output _repeat2 --start 2004-01-01 --end 2026-08-01
+
+      - name: Acquisition 3
+        run: python gap_analysis/src/download_uniform_yahoo_vintage_test.py --universe evidence_v1/data/original149/universe.csv --output _repeat3 --start 2004-01-01 --end 2026-08-01
+
+      - name: Compare all three acquisitions
+        run: |
+          rm -rf gap_analysis/results/yfinance_repeatability_v1
+          python gap_analysis/src/compare_repeated_yahoo_downloads.py \
+            --root1 _repeat1 --root2 _repeat2 --root3 _repeat3 \
+            --out gap_analysis/results/yfinance_repeatability_v1
+
+      - name: Persist compact diagnostic
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add gap_analysis/results/yfinance_repeatability_v1/
+          git commit -m 'Persist yfinance repeatability v1 result' || true
+          git push
+
+      - name: Upload raw repeat acquisitions
+        uses: actions/upload-artifact@v4
+        with:
+          name: yfinance-repeatability-v1-raw
+          path: |
+            _repeat1/
+            _repeat2/
+            _repeat3/
+          retention-days: 30

@@ -1,0 +1,113 @@
+name: COMPACT21_SEMIDEV_V1
+on:
+  push:
+    branches: [research/compact21-semidev-v1]
+    paths: [.github/workflows/compact21-semidev-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: compact21-semidev-v1-${{ github.sha }}
+  cancel-in-progress: false
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: 'Haswell'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+  ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+  ETF_TRADER_XGB_WORKERS: '1'
+jobs:
+  validation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Frozen dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - name: Canonical source gate
+        run: python compact21_stability_v1/source_gate.py
+      - name: View, cohort, integrity and frozen predictive checks
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m unittest discover -s compact21_semidev_v1/tests -v 2>&1 | tee SEMIDEV_VALIDATION.txt
+          python -m unittest discover -s compact21_predictive_v2/tests -v 2>&1 | tee PREDICTIVE_VALIDATION.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: semidev-validation
+          retention-days: 90
+          path: '*VALIDATION.txt'
+  predictive:
+    needs: validation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        year: [2017,2018,2019,2020,2021,2022,2023,2024,2025,2026]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Frozen dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - name: Canonical source gate
+        run: python compact21_stability_v1/source_gate.py
+      - name: Immutable raw snapshots, panels, original contracts and BASE vectors
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-1 -D _ti/r1
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-2 -D _ti/r2
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-3 -D _ti/r3
+          gh run download 37195399755 -R ${{ github.repository }} -n learner-full-BASE-r1 -D _contracts/r1
+          gh run download 37195399755 -R ${{ github.repository }} -n learner-full-BASE-r2 -D _contracts/r2
+          gh run download 37195399755 -R ${{ github.repository }} -n learner-full-BASE-r3 -D _contracts/r3
+          gh run download 37229180477 -R ${{ github.repository }} -n predictive-BASE -D _reference
+      - name: Old BASE controls then a single semideviation variant with exact refits
+        run: python -m compact21_semidev_v1.run --year ${{ matrix.year }} --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --raw-root _raw --contracts-root _contracts --reference _reference --out _semidev
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: semidev-${{ matrix.year }}
+          retention-days: 90
+          path: _semidev/
+  summary:
+    needs: predictive
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Frozen dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: semidev-*
+          path: _results
+      - name: Original BASE vectors and outcomes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 37229180477 -R ${{ github.repository }} -n predictive-BASE -D _reference
+      - name: Independent retained-vector predictive and stability gates
+        run: python -m compact21_semidev_v1.summarize --inputs _results --references _reference --out _summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: semidev-summary
+          retention-days: 90
+          path: _summary/

@@ -1,0 +1,26 @@
+{
+  "status": "EXECUTION_ABLATION_COMPLETE",
+  "scientific_run_id": 37149788452,
+  "reference_decisions": "repeat2 exact canonical d1/d2/weight1/alt_idx",
+  "native_cagr_span_pp": 4.9236313282261355,
+  "cross_execution": {
+    "1": {
+      "frozen_repeat2_risk": {"cagr": 0.3084369025584919, "maxdd": -0.256896102666868, "sharpe": 1.0869925516381465, "terminal_equity": 12.478975123871805, "turnover_ann": 12.960475725744491},
+      "destination_risk": {"cagr": 0.3084369025584919, "maxdd": -0.256896102666868, "sharpe": 1.0869925516381465, "terminal_equity": 12.478975123871805, "turnover_ann": 12.960475725744491}
+    },
+    "2": {
+      "frozen_repeat2_risk": {"cagr": 0.30843704925646037, "maxdd": -0.2568961026668678, "sharpe": 1.086992949896945, "terminal_equity": 12.478988259917124, "turnover_ann": 12.96047576197712},
+      "destination_risk": {"cagr": 0.30843704925646037, "maxdd": -0.2568961026668678, "sharpe": 1.086992949896945, "terminal_equity": 12.478988259917124, "turnover_ann": 12.96047576197712}
+    },
+    "3": {
+      "frozen_repeat2_risk": {"cagr": 0.30843682946657525, "maxdd": -0.256896102666868, "sharpe": 1.0869924198404544, "terminal_equity": 12.478968578872834, "turnover_ann": 12.960475722876163},
+      "destination_risk": {"cagr": 0.30843682946657525, "maxdd": -0.256896102666868, "sharpe": 1.0869924198404544, "terminal_equity": 12.478968578872834, "turnover_ann": 12.960475722876163}
+    }
+  },
+  "spans": {
+    "frozen_repeat2_risk": {"cagr_span_pp": 2.1978988512527664e-05, "cagrs": [0.3084369025584919,0.30843704925646037,0.30843682946657525]},
+    "destination_risk": {"cagr_span_pp": 2.1978988512527664e-05, "cagrs": [0.3084369025584919,0.30843704925646037,0.30843682946657525]}
+  },
+  "repeat2_native_parity": {"expected": 0.30843704925646037, "cross_exec": 0.30843704925646037, "abs_diff": 0.0},
+  "interpretation": "With identical repeat2 decisions frozen, executing them on repeat1/repeat2/repeat3 raw produces effectively identical economics. The 4.9236 pp native CAGR dispersion is therefore not caused materially by destination raw execution prices, destination risk gross, stops, or downstream execution mechanics. The dispersion is generated upstream through different decisions/model states."
+}

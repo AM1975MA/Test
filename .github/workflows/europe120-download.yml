@@ -1,0 +1,38 @@
+name: EU economy 120 ETF download
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'europe120/download_europe120.py'
+      - 'europe120/run_europe120_2017.py'
+      - 'europe120/catalog_europe120_2017.py'
+      - '.github/workflows/europe120-download.yml'
+  pull_request:
+    paths:
+      - 'europe120/download_europe120.py'
+      - 'europe120/run_europe120_2017.py'
+      - 'europe120/catalog_europe120_2017.py'
+      - '.github/workflows/europe120-download.yml'
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install pandas numpy pyarrow yfinance
+      - name: Catalog EU-economy ETF candidates on canonical raw window
+        run: python europe120/catalog_europe120_2017.py
+      - name: Upload EU120 catalog
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eu-economy-120-catalog-20260701
+          path: europe120/catalog/
+          retention-days: 30

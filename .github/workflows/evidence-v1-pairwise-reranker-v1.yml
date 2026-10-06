@@ -1,0 +1,97 @@
+name: Evidence V1 pairwise reranker v1
+
+on:
+  push:
+    branches: [ research/evidence-v1 ]
+    paths:
+      - '.github/workflows/evidence-v1-pairwise-reranker-v1.yml'
+      - 'evidence_v1/src/pairwise_reranker_v1.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reranker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/evidence-v1
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+
+      - name: Verify frozen Evidence V1 state
+        run: |
+          (cd evidence_v1/data && sha256sum -c ../DATA_MANIFEST_SHA256.txt)
+          (cd evidence_v1/source && sha256sum -c ../SOURCE_MANIFEST_SHA256.txt)
+          sha256sum evidence_v1/src/pairwise_reranker_v1.py evidence_v1/requirements.lock.txt
+
+      - name: Install locked numerical environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r evidence_v1/requirements.lock.txt
+
+      - name: Rebuild Original149 feature panel from frozen repository state
+        env:
+          PYTHONPATH: ${{ github.workspace }}/evidence_v1/source/baseline/etf_trader_v2/src
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          rm -rf _evidence_v1_pairwise
+          mkdir -p _evidence_v1_pairwise/panel149
+          python evidence_v1/source/baseline/etf_trader_v2/scripts/build_ma3_panel_source_only.py \
+            --data evidence_v1/data/original149 \
+            --cluster-data evidence_v1/data/original149 \
+            --output _evidence_v1_pairwise/panel149
+
+      - name: Run pairwise reranker v1
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python evidence_v1/src/pairwise_reranker_v1.py \
+            --panel _evidence_v1_pairwise/panel149/RAW_FEATURE_PANEL.pkl \
+            --frozen-source evidence_v1/source/baseline/etf_trader_v2 \
+            --out _evidence_v1_pairwise/result
+
+      - name: Build provenance
+        run: |
+          python - <<'PY'
+          import hashlib,json,platform
+          from pathlib import Path
+          import numpy,pandas,sklearn,xgboost
+          def h(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          p={
+            'line':'Evidence V1','test':'pairwise_reranker_v1','git_commit':'${{ github.sha }}',
+            'data_manifest_sha256':h('evidence_v1/DATA_MANIFEST_SHA256.txt'),
+            'source_manifest_sha256':h('evidence_v1/SOURCE_MANIFEST_SHA256.txt'),
+            'test_source_sha256':h('evidence_v1/src/pairwise_reranker_v1.py'),
+            'requirements_sha256':h('evidence_v1/requirements.lock.txt'),
+            'panel_manifest_sha256':h('_evidence_v1_pairwise/panel149/RAW_FEATURE_PANEL_MANIFEST.json'),
+            'python':platform.python_version(),'numpy':numpy.__version__,'pandas':pandas.__version__,
+            'scikit_learn':sklearn.__version__,'xgboost':xgboost.__version__}
+          Path('_evidence_v1_pairwise/result/PROVENANCE.json').write_text(json.dumps(p,indent=2)+'\n')
+          print(json.dumps(p,indent=2))
+          PY
+
+      - name: Show result
+        run: cat _evidence_v1_pairwise/result/SUMMARY.json
+
+      - name: Upload Evidence V1 pairwise evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-v1-pairwise-reranker-v1
+          retention-days: 90
+          if-no-files-found: error
+          path: |
+            _evidence_v1_pairwise/result/*
+            _evidence_v1_pairwise/panel149/RAW_FEATURE_PANEL_MANIFEST.json

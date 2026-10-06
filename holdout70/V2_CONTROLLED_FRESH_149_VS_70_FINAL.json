@@ -1,0 +1,63 @@
+{
+  "status": "REPLAY_ONLY_CHECKPOINTED_SAME_SOURCE_149_VS_70_COMPLETE",
+  "workflow_run": 37020787738,
+  "artifact_id": 11233440300,
+  "artifact_digest": "sha256:8a634318c141ae9894188b3df450cf060d68746568ac31a02fb7708d6a93f569",
+  "period": ["2017-02-01", "2026-07-01"],
+  "sessions": 2366,
+  "raw_contract": {
+    "source_run": 37017429560,
+    "provider": "Yahoo Finance via yfinance",
+    "yfinance": "0.2.66",
+    "requested_start": "2004-01-01",
+    "requested_end_exclusive": "2026-08-01",
+    "same_raw_vintage_for_149_and_70": true
+  },
+  "source_contract": {
+    "same_canonical_v2_source": true,
+    "historical_scores_consumed": false,
+    "historical_paths_consumed": false,
+    "top1_top2_candidate_only": true,
+    "holdout70_v6_alt_candidate_only": true,
+    "holdout70_market_refs_nonselectable": ["SPY", "HYG", "IEF"],
+    "holdout70_cash_refs_nonselectable": ["BIL", "SHV"]
+  },
+  "historical_reference_149": {
+    "cagr": 0.4314595242029944,
+    "maxdd": -0.2503576476357465,
+    "sharpe": 1.3635086089607882,
+    "note": "Historical canonical result from a different frozen raw vintage; not the apples-to-apples comparator for Holdout70."
+  },
+  "original149_fresh_same_vintage": {
+    "candidate_count": 149,
+    "cagr": 0.31603994562922105,
+    "maxdd": -0.35770632905415756,
+    "sharpe": 1.1106205717725306,
+    "terminal_equity": 13.17662119487108,
+    "annualized_turnover": 13.189296774622923,
+    "equal_weight_buy_hold_cagr": 0.10346324405252597,
+    "titanium_sha256": "9fdc99dd750653b34ecb5b29dfb5989c71e4ae010483f6e8431e923c9c320f6f",
+    "predictions_sha256": "0aaad6bc99466e5bfa2bac48287bbd127dc45a9aaa393ec68998840803aab02b"
+  },
+  "holdout70_fresh_same_vintage": {
+    "candidate_count": 70,
+    "cagr": 0.18891062512083895,
+    "maxdd": -0.3958460717398342,
+    "sharpe": 0.8471155409220673,
+    "terminal_equity": 5.076537127838446,
+    "annualized_turnover": 14.35479907548573,
+    "equal_weight_buy_hold_cagr": 0.10619787810795567,
+    "titanium_sha256": "08485d06fcf769982950648ef2c0fc121232a73959bf2efaa0aad500fa0a5e10",
+    "predictions_sha256": "ec65b7d2f34772383d518e640a9967c5f9fa677501fb25c9be68bd314af9bc67"
+  },
+  "delta_holdout70_minus_original149": {
+    "cagr_percentage_points": -12.71293205083821,
+    "maxdd_percentage_points": -3.813974268567666,
+    "sharpe": -0.2635050308504633
+  },
+  "fresh149_minus_historical149": {
+    "cagr_percentage_points": -11.541957857377334,
+    "maxdd_percentage_points": -10.734868141841103,
+    "sharpe": -0.2528880371882576
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "test": "reranker_v3_target21",
+  "files_sha256": {
+    "CONFIG.json": "9e9e7ada3d1988b594da45c19d1ec8ca5f84acadcf907d9e978c9de6bdd373f8",
+    "FIT_AUDIT.csv": "a5af3c3c227ea356b5038d745dc02691cefc558afd8cc9aade166d817570dd7d",
+    "MONTHLY.csv": "33f13063684d8a23bfcc3e90c2656a5bf9d32b742ccf4035c0e9620178638e06",
+    "PROVENANCE.json": "0d3931be07330c9b65f5fd07fbcd627e97fcee64ae4af0211d4e05911437c520",
+    "SUMMARY.json": "9aa3ce27d94190586072d0db588008c70c61f5682689ec26198e52df10498a5c"
+  }
+}

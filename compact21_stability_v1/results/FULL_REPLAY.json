@@ -1,0 +1,570 @@
+{
+  "status": "COMPACT21_STABILITY_V1_FULL_SUMMARY_COMPLETE",
+  "variants": [
+    "BASE",
+    "Q4",
+    "Q4_LEGACY"
+  ],
+  "models": {
+    "BASE": {
+      "raw_metrics": {
+        "1": {
+          "cagr": 0.29753447746605766,
+          "maxdd": -0.3486213376490779,
+          "sharpe": 1.046113520709817,
+          "terminal_equity": 11.536148681359933,
+          "annualized_turnover": 12.943838756619677,
+          "mean_risky_gross": 0.9837637362637363
+        },
+        "2": {
+          "cagr": 0.3084370492564604,
+          "maxdd": -0.25689610266686813,
+          "sharpe": 1.0869929498969455,
+          "terminal_equity": 12.478988259917129,
+          "annualized_turnover": 12.96047576197712,
+          "mean_risky_gross": 0.9837637362637363
+        },
+        "3": {
+          "cagr": 0.346770790748319,
+          "maxdd": -0.36097505012561093,
+          "sharpe": 1.1829318538970461,
+          "terminal_equity": 16.365303998168837,
+          "annualized_turnover": 13.231319803527736,
+          "mean_risky_gross": 0.9837637362637363
+        }
+      },
+      "metric_means": {
+        "cagr": 0.31758077249027905,
+        "maxdd": -0.32216416348051896,
+        "sharpe": 1.105346108167936,
+        "annualized_turnover": 13.045211440708178
+      },
+      "cagr_span_pp": 4.9236313282261355,
+      "cagr_mean": 0.31758077249027905,
+      "pairs": {
+        "1-2": {
+          "top1_disagreement": 0.3326289095519865,
+          "top2_disagreement": 0.5701606086221471,
+          "either_disagreement": 0.6132713440405748,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "1-3": {
+          "top1_disagreement": 0.3076923076923077,
+          "top2_disagreement": 0.6238377007607777,
+          "either_disagreement": 0.6610312764158918,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "2-3": {
+          "top1_disagreement": 0.30092983939137785,
+          "top2_disagreement": 0.5033812341504649,
+          "either_disagreement": 0.5752324598478444,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        }
+      },
+      "mean_top1_disagreement": 0.3137503522118907,
+      "mean_top2_disagreement": 0.5657931811777965,
+      "mean_either_disagreement": 0.6165116934347703,
+      "evidence_checks": {
+        "1": {
+          "maturity_audits": true,
+          "fit_years_unique": true,
+          "fit_years_match_base": true,
+          "source_only_regeneration": true,
+          "same_raw_and_canonical_source_as_base": true,
+          "negative_feedback_unchanged": true,
+          "no_CAGR_selection": true,
+          "compact63_preserved_or_explicit_legacy": true,
+          "ma3_features_preserved": true
+        },
+        "2": {
+          "maturity_audits": true,
+          "fit_years_unique": true,
+          "fit_years_match_base": true,
+          "source_only_regeneration": true,
+          "same_raw_and_canonical_source_as_base": true,
+          "negative_feedback_unchanged": true,
+          "no_CAGR_selection": true,
+          "compact63_preserved_or_explicit_legacy": true,
+          "ma3_features_preserved": true
+        },
+        "3": {
+          "maturity_audits": true,
+          "fit_years_unique": true,
+          "fit_years_match_base": true,
+          "source_only_regeneration": true,
+          "same_raw_and_canonical_source_as_base": true,
+          "negative_feedback_unchanged": true,
+          "no_CAGR_selection": true,
+          "compact63_preserved_or_explicit_legacy": true,
+          "ma3_features_preserved": true
+        }
+      },
+      "ALL_EVIDENCE_PASS": true,
+      "files": {
+        "1": {
+          "result": "/home/runner/work/Test/Test/_fulls/compact21-full-BASE-r1/RESULT_BASE.json",
+          "result_sha256": "14b475acce4ea40e0f5ee2269128f996b480cb4e03c906c8f7bfe9f581d35054",
+          "leaders_sha256": "e23dafdfd21dd688aba56ce80885ada463ed7882946dd985346326d2a9d69f58",
+          "contract_sha256": "ed5d10a9c2b6de85b4b500ff70cca98f17e92444698a124b44817c0c9527bdb3"
+        },
+        "2": {
+          "result": "/home/runner/work/Test/Test/_fulls/compact21-full-BASE-r2/RESULT_BASE.json",
+          "result_sha256": "ab05d338e3a122cdea8bc04630dd24183b9054bc02a818cafb3d6c1abc53b7cf",
+          "leaders_sha256": "4970574b6884b2f04ae4768d94bc673a36fefe6c9575777cbdbcf3f8f37595ff",
+          "contract_sha256": "41f58268d26722606e2509105e08ec0f020decad909d63c883e497b50ce7479b"
+        },
+        "3": {
+          "result": "/home/runner/work/Test/Test/_fulls/compact21-full-BASE-r3/RESULT_BASE.json",
+          "result_sha256": "ab16acb1e358f021d777445680dc5627509f2f4041d4c41f9ea22e95ef55d8b8",
+          "leaders_sha256": "1c273f0f788a6db8ee96675f1de8cba58c9fff4231bbd96b1d260bb3a42a23d2",
+          "contract_sha256": "76b90fb2aac6273c1370a1c248978509588a1541a4c5da01a488f7bf6b163f5f"
+        }
+      },
+      "comparison_to_new_BASE": {
+        "cagr_mean_delta_pp": 0.0,
+        "span_reduction_pct": 0.0,
+        "top1_disagreement_delta_pp": 0.0,
+        "checks": {
+          "span_le75pct_base": false,
+          "top1_not_worse_than_base": true,
+          "mean_CAGR_ge95pct_base": true,
+          "all_source_and_maturity_evidence": true
+        },
+        "ECONOMIC_ROBUSTNESS_GATE_PASS": false
+      },
+      "same_repeat_changes_vs_BASE": {
+        "1": {
+          "top1_disagreement": 0,
+          "top2_disagreement": 0,
+          "either_disagreement": 0,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "2": {
+          "top1_disagreement": 0,
+          "top2_disagreement": 0,
+          "either_disagreement": 0,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "3": {
+          "top1_disagreement": 0,
+          "top2_disagreement": 0,
+          "either_disagreement": 0,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        }
+      },
+      "comparison_to_historical_Q4_diagnostic_only": {
+        "cagr_mean_delta_pp": 2.744637163079333,
+        "span_delta_pp": 2.6786623549716224,
+        "top1_disagreement_delta_pp": -2.719075795998871
+      }
+    },
+    "Q4": {
+      "raw_metrics": {
+        "1": {
+          "cagr": 0.2881817323609264,
+          "maxdd": -0.3106872171761593,
+          "sharpe": 1.042414098579642,
+          "terminal_equity": 10.778618772285494,
+          "annualized_turnover": 13.164356981005456,
+          "mean_risky_gross": 0.9837637362637363
+        },
+        "2": {
+          "cagr": 0.27988589024249283,
+          "maxdd": -0.349212792786472,
+          "sharpe": 1.0075325454794795,
+          "terminal_equity": 10.144227276839075,
+          "annualized_turnover": 13.12205285012613,
+          "mean_risky_gross": 0.9837637362637363
+        },
+        "3": {
+          "cagr": 0.30233557997503796,
+          "maxdd": -0.3600484867847127,
+          "sharpe": 1.0905424582877798,
+          "terminal_equity": 11.943197514273852,
+          "annualized_turnover": 13.9248476352904,
+          "mean_risky_gross": 0.9837637362637363
+        }
+      },
+      "metric_means": {
+        "cagr": 0.2901344008594857,
+        "maxdd": -0.3399828322491147,
+        "sharpe": 1.0468297007823004,
+        "annualized_turnover": 13.403752488807328
+      },
+      "cagr_span_pp": 2.244968973254513,
+      "cagr_mean": 0.2901344008594857,
+      "pairs": {
+        "1-2": {
+          "top1_disagreement": 0.32713440405748095,
+          "top2_disagreement": 0.5663567202028741,
+          "either_disagreement": 0.5929839391377852,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "1-3": {
+          "top1_disagreement": 0.33474218089602703,
+          "top2_disagreement": 0.591715976331361,
+          "either_disagreement": 0.6276415891800508,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "2-3": {
+          "top1_disagreement": 0.3609467455621302,
+          "top2_disagreement": 0.555367709213863,
+          "either_disagreement": 0.5980557903634827,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        }
+      },
+      "mean_top1_disagreement": 0.3409411101718794,
+      "mean_top2_disagreement": 0.5711468019160327,
+      "mean_either_disagreement": 0.6062271062271062,
+      "evidence_checks": {
+        "1": {
+          "maturity_audits": true,
+          "fit_years_unique": true,
+          "fit_years_match_base": true,
+          "source_only_regeneration": true,
+          "same_raw_and_canonical_source_as_base": true,
+          "negative_feedback_unchanged": true,
+          "no_CAGR_selection": true,
+          "compact63_preserved_or_explicit_legacy": true,
+          "ma3_features_preserved": true
+        },
+        "2": {
+          "maturity_audits": true,
+          "fit_years_unique": true,
+          "fit_years_match_base": true,
+          "source_only_regeneration": true,
+          "same_raw_and_canonical_source_as_base": true,
+          "negative_feedback_unchanged": true,
+          "no_CAGR_selection": true,
+          "compact63_preserved_or_explicit_legacy": true,
+          "ma3_features_preserved": false
+        },
+        "3": {
+          "maturity_audits": true,
+          "fit_years_unique": true,
+          "fit_years_match_base": true,
+          "source_only_regeneration": true,
+          "same_raw_and_canonical_source_as_base": true,
+          "negative_feedback_unchanged": true,
+          "no_CAGR_selection": true,
+          "compact63_preserved_or_explicit_legacy": true,
+          "ma3_features_preserved": false
+        }
+      },
+      "ALL_EVIDENCE_PASS": false,
+      "files": {
+        "1": {
+          "result": "/home/runner/work/Test/Test/_fulls/compact21-full-Q4-r1/RESULT_Q4.json",
+          "result_sha256": "72f63a05100f9cc903e84c6158e2e92bbb4a1ecda4c91785b2cbebf083443d81",
+          "leaders_sha256": "7bc4e561f70cf6bfc1d8add07eac84dc558aa5cdbe4c17715fe13764df8df31f",
+          "contract_sha256": "3b6e097ab12578891566fd4943525d3a5bc2b9f79556265b2246685046c9fc95"
+        },
+        "2": {
+          "result": "/home/runner/work/Test/Test/_fulls/compact21-full-Q4-r2/RESULT_Q4.json",
+          "result_sha256": "62112202a3db2542fcf5a1748cbd69ac60ab71714fe4a6473b633cbb8879bc24",
+          "leaders_sha256": "1d474a8df7b41bc09e464315d22a909a74b66aabf4e187a33b52643a7a432d34",
+          "contract_sha256": "827292dde2ee3327a1660d264ebd289c70caec1c1ebe167823cd96f18d39eb9a"
+        },
+        "3": {
+          "result": "/home/runner/work/Test/Test/_fulls/compact21-full-Q4-r3/RESULT_Q4.json",
+          "result_sha256": "5b93de852016533c4cf9a42b2e5bbfe1e8c7fc873710cc435cef18bec217583d",
+          "leaders_sha256": "94073a9e12d2fa4c896042256e269787d77482bb90977242a31bac6eae8707b6",
+          "contract_sha256": "e9eb1def64ad4536419031cba649d2ae93953484a7c8e40801203f58da6b3e39"
+        }
+      },
+      "comparison_to_new_BASE": {
+        "cagr_mean_delta_pp": -2.744637163079333,
+        "span_reduction_pct": 54.40420243521116,
+        "top1_disagreement_delta_pp": 2.719075795998871,
+        "checks": {
+          "span_le75pct_base": true,
+          "top1_not_worse_than_base": false,
+          "mean_CAGR_ge95pct_base": false,
+          "all_source_and_maturity_evidence": false
+        },
+        "ECONOMIC_ROBUSTNESS_GATE_PASS": false
+      },
+      "same_repeat_changes_vs_BASE": {
+        "1": {
+          "top1_disagreement": 0.26458157227387996,
+          "top2_disagreement": 0.5545224006762468,
+          "either_disagreement": 0.5638207945900253,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "2": {
+          "top1_disagreement": 0.3258664412510566,
+          "top2_disagreement": 0.5118343195266272,
+          "either_disagreement": 0.5460693153000845,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "3": {
+          "top1_disagreement": 0.26669484361792056,
+          "top2_disagreement": 0.4881656804733728,
+          "either_disagreement": 0.5236686390532544,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        }
+      },
+      "comparison_to_historical_Q4_diagnostic_only": {
+        "cagr_mean_delta_pp": 0.0,
+        "span_delta_pp": 0.0,
+        "top1_disagreement_delta_pp": 0.0
+      }
+    },
+    "Q4_LEGACY": {
+      "raw_metrics": {
+        "1": {
+          "cagr": 0.2881817323609264,
+          "maxdd": -0.3106872171761593,
+          "sharpe": 1.042414098579642,
+          "terminal_equity": 10.778618772285494,
+          "annualized_turnover": 13.164356981005456,
+          "mean_risky_gross": 0.9837637362637363
+        },
+        "2": {
+          "cagr": 0.27988589024249283,
+          "maxdd": -0.349212792786472,
+          "sharpe": 1.0075325454794795,
+          "terminal_equity": 10.144227276839075,
+          "annualized_turnover": 13.12205285012613,
+          "mean_risky_gross": 0.9837637362637363
+        },
+        "3": {
+          "cagr": 0.30233557997503796,
+          "maxdd": -0.3600484867847127,
+          "sharpe": 1.0905424582877798,
+          "terminal_equity": 11.943197514273852,
+          "annualized_turnover": 13.9248476352904,
+          "mean_risky_gross": 0.9837637362637363
+        }
+      },
+      "metric_means": {
+        "cagr": 0.2901344008594857,
+        "maxdd": -0.3399828322491147,
+        "sharpe": 1.0468297007823004,
+        "annualized_turnover": 13.403752488807328
+      },
+      "cagr_span_pp": 2.244968973254513,
+      "cagr_mean": 0.2901344008594857,
+      "pairs": {
+        "1-2": {
+          "top1_disagreement": 0.32713440405748095,
+          "top2_disagreement": 0.5663567202028741,
+          "either_disagreement": 0.5929839391377852,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "1-3": {
+          "top1_disagreement": 0.33474218089602703,
+          "top2_disagreement": 0.591715976331361,
+          "either_disagreement": 0.6276415891800508,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "2-3": {
+          "top1_disagreement": 0.3609467455621302,
+          "top2_disagreement": 0.555367709213863,
+          "either_disagreement": 0.5980557903634827,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        }
+      },
+      "mean_top1_disagreement": 0.3409411101718794,
+      "mean_top2_disagreement": 0.5711468019160327,
+      "mean_either_disagreement": 0.6062271062271062,
+      "evidence_checks": {
+        "1": {
+          "maturity_audits": true,
+          "fit_years_unique": true,
+          "fit_years_match_base": true,
+          "source_only_regeneration": true,
+          "same_raw_and_canonical_source_as_base": true,
+          "negative_feedback_unchanged": true,
+          "no_CAGR_selection": true,
+          "compact63_preserved_or_explicit_legacy": true,
+          "ma3_features_preserved": true
+        },
+        "2": {
+          "maturity_audits": true,
+          "fit_years_unique": true,
+          "fit_years_match_base": true,
+          "source_only_regeneration": true,
+          "same_raw_and_canonical_source_as_base": true,
+          "negative_feedback_unchanged": true,
+          "no_CAGR_selection": true,
+          "compact63_preserved_or_explicit_legacy": true,
+          "ma3_features_preserved": false
+        },
+        "3": {
+          "maturity_audits": true,
+          "fit_years_unique": true,
+          "fit_years_match_base": true,
+          "source_only_regeneration": true,
+          "same_raw_and_canonical_source_as_base": true,
+          "negative_feedback_unchanged": true,
+          "no_CAGR_selection": true,
+          "compact63_preserved_or_explicit_legacy": true,
+          "ma3_features_preserved": true
+        }
+      },
+      "ALL_EVIDENCE_PASS": false,
+      "files": {
+        "1": {
+          "result": "/home/runner/work/Test/Test/_fulls/compact21-full-Q4_LEGACY-r1/RESULT_Q4_LEGACY.json",
+          "result_sha256": "33365e58dc47f8d7d31bb03612b3e101b0628e4012e6a9e499c424b661f13ef5",
+          "leaders_sha256": "7bc4e561f70cf6bfc1d8add07eac84dc558aa5cdbe4c17715fe13764df8df31f",
+          "contract_sha256": "dc82be2ad0c64a804abee69dffab636990b15fb5ad2bd802560cf8ab1478f3c7"
+        },
+        "2": {
+          "result": "/home/runner/work/Test/Test/_fulls/compact21-full-Q4_LEGACY-r2/RESULT_Q4_LEGACY.json",
+          "result_sha256": "3de626b88c58695cc9b4fa6ff19674db83b8d5f0454b8635b66cb0cdce052c31",
+          "leaders_sha256": "1d474a8df7b41bc09e464315d22a909a74b66aabf4e187a33b52643a7a432d34",
+          "contract_sha256": "26e5712dd7605f1dcf14d126f6101af6c5929f9e1eb52fb82ea0f873aec06e49"
+        },
+        "3": {
+          "result": "/home/runner/work/Test/Test/_fulls/compact21-full-Q4_LEGACY-r3/RESULT_Q4_LEGACY.json",
+          "result_sha256": "e6cb491fad8a669c21337aa16be34439c27bc4bd0e4e3a0628bd7169a01eff9b",
+          "leaders_sha256": "94073a9e12d2fa4c896042256e269787d77482bb90977242a31bac6eae8707b6",
+          "contract_sha256": "5baad3a68d266b8ca9329d2e486d747cbd5ddd09d5a3c4dcd7493b73746f2074"
+        }
+      },
+      "comparison_to_new_BASE": {
+        "cagr_mean_delta_pp": -2.744637163079333,
+        "span_reduction_pct": 54.40420243521116,
+        "top1_disagreement_delta_pp": 2.719075795998871,
+        "checks": {
+          "span_le75pct_base": true,
+          "top1_not_worse_than_base": false,
+          "mean_CAGR_ge95pct_base": false,
+          "all_source_and_maturity_evidence": false
+        },
+        "ECONOMIC_ROBUSTNESS_GATE_PASS": false
+      },
+      "same_repeat_changes_vs_BASE": {
+        "1": {
+          "top1_disagreement": 0.26458157227387996,
+          "top2_disagreement": 0.5545224006762468,
+          "either_disagreement": 0.5638207945900253,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "2": {
+          "top1_disagreement": 0.3258664412510566,
+          "top2_disagreement": 0.5118343195266272,
+          "either_disagreement": 0.5460693153000845,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        },
+        "3": {
+          "top1_disagreement": 0.26669484361792056,
+          "top2_disagreement": 0.4881656804733728,
+          "either_disagreement": 0.5236686390532544,
+          "common_dates": 2366,
+          "left_dates": 2366,
+          "right_dates": 2366,
+          "coverage": 1.0,
+          "start": "2017-02-01",
+          "end": "2026-07-01"
+        }
+      },
+      "comparison_to_historical_Q4_diagnostic_only": {
+        "cagr_mean_delta_pp": 0.0,
+        "span_delta_pp": 0.0,
+        "top1_disagreement_delta_pp": 0.0
+      }
+    }
+  },
+  "historical_Q4_reference": {
+    "source": "/home/runner/work/Test/Test/forensics_v1/results/FEATURE_QUANTIZATION_FULL_Q4_V1.json",
+    "source_sha256": "19ff201f47494fedb2caf3d087286da2582807aef93753bda8e5d092f5a038c2",
+    "q4_span_pp": 2.244968973254513,
+    "native_span_pp": 4.9236313282261746,
+    "span_reduction_pct": 54.404202435211516,
+    "q4_mean_CAGR": 0.2901344008594857,
+    "q4_mean_top1_disagreement": 0.3409411101718794,
+    "caution": "Three-snapshot development evidence; old global Q4 also rounded inactive Compact63. Threading/runtime differences can affect parity. New BASE is the gate comparator; historical Q4 is not used for promotion."
+  },
+  "benchmark_matrix_checked": true,
+  "gate_definition": "Span <=75% new BASE; Top1 disagreement <=new BASE; mean CAGR >=95% new BASE; source/maturity controls PASS.",
+  "interpretation": "All preregistered outcomes retained. Gates are research diagnostics; no production adoption. Three snapshots do not estimate population variance or independent investment performance.",
+  "production_adoption": false
+}

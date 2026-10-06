@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "completed_shadow_intervals": 113,
+  "ingested_by_last_signal": 112,
+  "all_outcomes_strictly_before_influenced_signal": true,
+  "last_completed_shadow_outcome_end": "2026-07-01",
+  "last_signal": "2026-06-30",
+  "last_completed_shadow_used_by_router": false,
+  "parity_pass_all": true
+}

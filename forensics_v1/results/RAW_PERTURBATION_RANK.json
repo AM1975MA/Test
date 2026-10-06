@@ -1,0 +1,44 @@
+{
+  "status": "RAW_TO_RANK_COMPLETE",
+  "scope": "Original149, 114 monthly signal dates, three frozen consecutive Yahoo snapshots",
+  "pair_1_2": {
+    "close_mean_relative_diff": 1.4883655350088946e-7,
+    "close_max_relative_diff": 2.5110532151219967e-6,
+    "daily_log_return_mean_abs_diff": 2.07264609645865e-7,
+    "daily_log_return_max_abs_diff": 3.3978170730364354e-6,
+    "ret21_rank_changed_fraction": 0.0,
+    "ret63_rank_changed_fraction": 0.00023548804898154696,
+    "ret126_rank_changed_fraction": 0.0,
+    "vol21_rank_changed_fraction": 0.0004709760979629829,
+    "downvol21_rank_changed_fraction": 0.013310580204778155,
+    "downvol63_rank_changed_fraction": 0.017969888295289005,
+    "eff63_rank_changed_fraction": 0.0017661603673613246
+  },
+  "pair_1_3": {
+    "close_mean_relative_diff": 1.4871299880974506e-7,
+    "close_max_relative_diff": 2.3491569938263036e-6,
+    "daily_log_return_mean_abs_diff": 2.074943643819574e-7,
+    "daily_log_return_max_abs_diff": 3.4259738486142055e-6,
+    "ret21_rank_changed_fraction": 0.0005887201224538119,
+    "ret63_rank_changed_fraction": 0.00011774402449071797,
+    "ret126_rank_changed_fraction": 0.0,
+    "vol21_rank_changed_fraction": 0.0004709760979629829,
+    "downvol21_rank_changed_fraction": 0.0007962689113866217,
+    "downvol63_rank_changed_fraction": 0.018293670066375278,
+    "eff63_rank_changed_fraction": 0.0014129282938890597
+  },
+  "pair_2_3": {
+    "close_mean_relative_diff": 1.4850173119665206e-7,
+    "close_max_relative_diff": 2.2141071956502817e-6,
+    "daily_log_return_mean_abs_diff": 2.0723762348969767e-7,
+    "daily_log_return_max_abs_diff": 3.802382499085155e-6,
+    "ret21_rank_changed_fraction": 0.0005887201224538119,
+    "ret63_rank_changed_fraction": 0.00011774402449071797,
+    "ret126_rank_changed_fraction": 0.0,
+    "vol21_rank_changed_fraction": 0.0004709760979629829,
+    "downvol21_rank_changed_fraction": 0.012514220705347023,
+    "downvol63_rank_changed_fraction": 0.0003237817710862734,
+    "eff63_rank_changed_fraction": 0.0012951842693983417
+  },
+  "interpretation": "The ppm-scale raw perturbation does not by itself cause broad rank instability in simple momentum/volatility features. Most representative rank transforms change in far below 0.2% of signal-date/ticker cells; the largest observed exceptions in this low-level audit are downside-volatility ranks (~1-2% depending on pair). Therefore any very broad TIT_R/prediction divergence must be amplified later or arise from more complex feature/cluster/model transforms rather than from simple cross-sectional return ranking alone."
+}

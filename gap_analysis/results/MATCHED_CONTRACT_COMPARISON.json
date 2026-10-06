@@ -1,0 +1,40 @@
+{
+  "status": "STAGE_0B_COMPLETE",
+  "comparison": "Original149 31.603995% fresh vs 43.145952% historical Annual V2",
+  "historical_cagr": 0.4314595242029944,
+  "fresh_cagr": 0.31603994562922105,
+  "fresh_minus_historical_cagr_percentage_points": -11.541957857377334,
+  "matched_dimensions": {
+    "economic_universe": "MATCH: Original149 / 149 candidates",
+    "evaluation_period": "MATCH: 2017-02-01 to 2026-07-01",
+    "sessions": "MATCH: 2366",
+    "productive_v2_source": "MATCH / HASH-GATED on the canonical source chain",
+    "annual_v2_metric_identity": "MATCH",
+    "adjusted_ohlc_semantics": "MATCH: adjustment factor Adj Close/raw Close applied to OHLC",
+    "transaction_cost_contract": "MATCH: canonical Stage19/V2 contract",
+    "execution_architecture": "MATCH: canonical V2 / Stage19 daily execution"
+  },
+  "nonmatched_dimensions": {
+    "raw_market_data_bytes": "DIFFERENT",
+    "raw_data_vintage": "DIFFERENT",
+    "historical_exact_yfinance_version": "NOT RECOVERED IN CURRENT FORENSIC EVIDENCE",
+    "fresh_yfinance_version": "0.2.66",
+    "fresh_download_time": "2026-10-02",
+    "historical_frozen_matrix_hashes": "see SOURCE_LINEAGE_43PP.json",
+    "fresh_raw_artifact_digest": "sha256:7e880d80cab16abb52cb257bad79e4b04af22c1bfc1ad44e009d03a6485c306f"
+  },
+  "derived_state_changes": {
+    "historical_titanium_sha256": "8ec29dd155583b3721fd760fcec9bfbbe43cf96f79e79dd6fd034d478e411dcc",
+    "fresh_titanium_sha256": "9fdc99dd750653b34ecb5b29dfb5989c71e4ae010483f6e8431e923c9c320f6f",
+    "historical_predictions_sha256": "5caf2d1047234e854ff484d5794e421fe1dd6b5283ccde202907a3f0769ab238",
+    "fresh_predictions_sha256": "0aaad6bc99466e5bfa2bac48287bbd127dc45a9aaa393ec68998840803aab02b",
+    "interpretation": "Different raw vintages propagate into different reconstructed model state/predictions. They also alter realized execution prices, so the total economic delta must be attributed to data lineage as a whole unless further ablation is performed."
+  },
+  "causal_classification": {
+    "DATA_VINTAGE_EFFECT": "CONFIRMED_AT_TOP_LEVEL",
+    "SOURCE_CODE_EFFECT": "NOT_SUPPORTED; canonical source is hash-gated and matched",
+    "METRIC_DEFINITION_EFFECT": "NOT_SUPPORTED for the 31.604 vs 43.146 Annual comparison",
+    "EXECUTION_CONTRACT_EFFECT": "NOT_SUPPORTED by the matched canonical contract",
+    "CLUSTER_RECONSTRUCTION_EFFECT": "STRONGLY_SUPPORTED AS A PROPAGATION CHANNEL BY PRIOR SOURCE-FIDELITY ABLATION, BUT NOT CLAIMED TO EXPLAIN 100% OF THE 11.542 pp"
+  }
+}

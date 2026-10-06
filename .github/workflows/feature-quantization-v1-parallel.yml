@@ -1,0 +1,106 @@
+name: ETF trader feature quantization V1 parallel
+on:
+  push:
+    branches:
+      - research/etf-trader-perturbation-forensics-v1
+    paths:
+      - .github/workflows/feature-quantization-v1-parallel.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  cell:
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2017, 2020, 2023, 2026]
+        variant: [BASE, Q4, Q3]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      NUMEXPR_NUM_THREADS: "1"
+      ETF_TRADER_XGB_THREADS_PER_WORKER: "1"
+      ETF_TRADER_XGB_WORKERS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install pinned environment
+        run: python -m pip install "numpy==2.3.5" "pandas==2.2.3" "scikit-learn==1.8.0" "xgboost==3.1.3" pyarrow matplotlib
+      - name: Gate Compact21 source
+        run: |
+          python - <<'PY'
+          import subprocess
+          exp={
+            "vendor/etf_trader_v2/src/etf_trader/source_only/kernel.py":"045e57996b02d481bd23f6e4dfe53738d43008e5",
+            "vendor/etf_trader_v2/src/etf_trader/source_only/_xgb_worker.py":"c07ef573da6aaa57a4e6bd2d097714e7105e5929",
+          }
+          for p,w in exp.items():
+              g=subprocess.check_output(["git","rev-parse",f"HEAD:{p}"],text=True).strip()
+              assert g==w,(p,g,w)
+          PY
+      - name: Download frozen Titanium artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _ti
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-1 -D _ti/repeat1
+          gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-3 -D _ti/repeat3
+      - name: Run one preregistered quantization cell
+        env:
+          PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src
+        run: |
+          mkdir -p _out
+          python forensics_v1/run_feature_quantization_one.py             --r1 _ti/repeat1 --r3 _ti/repeat3             --year ${{ matrix.year }} --variant ${{ matrix.variant }}             --out "_out/${{ matrix.variant }}_${{ matrix.year }}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fq-${{ matrix.variant }}-${{ matrix.year }}
+          retention-days: 90
+          path: _out/*.json
+  summarize:
+    needs: cell
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: fq-*
+          path: _all
+      - name: Aggregate
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, numpy as np
+          rows=[json.loads(p.read_text()) for p in Path("_all").rglob("*.json")]
+          variants={}
+          for v in ["BASE","Q4","Q3"]:
+              rr=sorted([x for x in rows if x["variant"]==v],key=lambda x:x["year"])
+              fields=["raw_mean_abs","rank_mean_abs","mean_daily_spearman","top1_disagreement_fraction","test_feature_exact_fraction","train_feature_exact_fraction"]
+              variants[v]={"per_year":rr,"aggregate_mean":{f:float(np.mean([x[f] for x in rr])) for f in fields}}
+          b=variants["BASE"]["aggregate_mean"]
+          for v in ["Q4","Q3"]:
+              c=variants[v]["aggregate_mean"]
+              c["rank_mean_abs_reduction_vs_base_pct"]=100*(b["rank_mean_abs"]-c["rank_mean_abs"])/b["rank_mean_abs"]
+              c["top1_disagreement_reduction_vs_base_pct"]=100*(b["top1_disagreement_fraction"]-c["top1_disagreement_fraction"])/b["top1_disagreement_fraction"] if b["top1_disagreement_fraction"] else None
+          out={"status":"FEATURE_QUANTIZATION_V1_PARALLEL_COMPLETE","variants":variants}
+          Path("forensics_v1/results/FEATURE_QUANTIZATION_V1_PARALLEL.json").write_text(json.dumps(out,indent=2)+"\n")
+          print(json.dumps(out,indent=2))
+          PY
+      - name: Persist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add forensics_v1/results/FEATURE_QUANTIZATION_V1_PARALLEL.json
+          git commit -m "Persist parallel feature quantization V1"
+          git pull --rebase --autostash origin research/etf-trader-perturbation-forensics-v1
+          git push origin HEAD:research/etf-trader-perturbation-forensics-v1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: feature-quantization-v1-parallel-summary
+          retention-days: 90
+          path: forensics_v1/results/FEATURE_QUANTIZATION_V1_PARALLEL.json

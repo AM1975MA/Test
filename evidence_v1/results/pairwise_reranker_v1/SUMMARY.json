@@ -1,0 +1,26 @@
+{
+  "line": "Evidence V1",
+  "test": "pairwise_reranker_v1",
+  "status": "DEVELOPMENT_EVIDENCE_REJECTED",
+  "universe": "Original149 frozen",
+  "retriever": "LTR v1 top10, OOS annual expanding from 2011",
+  "pair_label": "candidate A target_multi_rank > candidate B target_multi_rank",
+  "pair_features": "differences of frozen Hybrid24 FEATURES_42 + LTR percentile-rank difference",
+  "reranker": "L2 logistic regression C=1.0, annual expanding",
+  "full": {
+    "n": 114,
+    "pair_top1_21d_cagr_proxy": 0.1980742215310367,
+    "ltr_top1_21d_cagr_proxy": 0.220630708412056,
+    "pair_top1_exact_winner_rate": 0.07017543859649122,
+    "ltr_top1_exact_winner_rate": 0.08771929824561403,
+    "pair_top2_contains_winner_rate": 0.08771929824561403,
+    "ltr_top2_contains_winner_rate": 0.13157894736842105,
+    "ltr_top10_contains_winner_rate": 0.41228070175438597,
+    "pair_margin_vs_top1_minus_top2_ret21_spearman": 0.06496020736720601
+  },
+  "2017_2022": {"pair_top1_21d_cagr_proxy": 0.116985387549571, "ltr_top1_21d_cagr_proxy": 0.23722294298402802},
+  "2023_2026": {"pair_top1_21d_cagr_proxy": 0.35101484630494273, "ltr_top1_21d_cagr_proxy": 0.19270291404756024},
+  "ltr_maturity_all_ok": true,
+  "pairwise_maturity_all_ok": true,
+  "decision": "REJECT: worse full-period top1 performance and winner retrieval than LTR v1; strong subperiod instability"
+}

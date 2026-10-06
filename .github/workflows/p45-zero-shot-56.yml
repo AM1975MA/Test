@@ -1,0 +1,53 @@
+name: P45 zero-shot 56 ETFs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/eu120-economy-p45-20260929
+    paths:
+      - '.github/workflows/p45-zero-shot-56.yml'
+      - 'europe120/p45_zero_shot_56/**'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  p45-zero-shot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Checkout public ETF Trader source
+        run: git clone --depth 1 https://github.com/AM1975MA/Etf_trader.git _etf_trader
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r _etf_trader/requirements.txt joblib
+      - name: Syntax check
+        run: python -m py_compile europe120/p45_zero_shot_56/run_p45_zero_shot_56.py
+      - name: Run fit-on-149 predict-on-56 P45 transfer
+        env:
+          ETF_TRADER_ROOT: ${{ github.workspace }}/_etf_trader
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: python europe120/p45_zero_shot_56/run_p45_zero_shot_56.py
+      - name: Print result
+        if: always()
+        run: |
+          if [ -f europe120/p45_zero_shot_56/results/RESULT.json ]; then
+            cat europe120/p45_zero_shot_56/results/RESULT.json
+          fi
+      - name: Upload result and inference checkpoints
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p45-zero-shot-56-result
+          path: europe120/p45_zero_shot_56/results/
+          retention-days: 30
