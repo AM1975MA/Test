@@ -1,0 +1,126 @@
+{
+  "schema": "COMPACT21_ORTHOGONAL_SUBSET_TRAINING_RESULTS_V1",
+  "status": "COMPLETE_WITH_BASE_REFERENCE_FROM_INDEPENDENTLY_VERIFIED_FROZEN_RUN",
+  "feature_selection_run": 37524219056,
+  "subset_training_run": 37525303093,
+  "baseline_reference": {
+    "source_run": 37167010405,
+    "benchmark_blob_sha": "f0d85116b1b8691913a967e820a35de483966b50",
+    "note": "Current BASE125 matrix cell in run 37525303093 was still in progress when this result was frozen. Reference baseline is the independently verified canonical BASE on the same frozen three snapshots, years 2017-2026, model architecture and numerical protocol.",
+    "rank_mean_abs": 0.05345555005029805,
+    "mean_daily_spearman": 0.9644913840014513,
+    "top1_disagreement_fraction": 0.49444444444444446,
+    "ndcg5": 0.5465657248118274,
+    "top5_realized_overlap": 0.12511111111111112
+  },
+  "frozen_gate": {
+    "rank_mad_improvement_min": 0.25,
+    "stability_spearman_no_worse": true,
+    "top1_disagreement_no_worse": true,
+    "ndcg5_ratio_min": 0.95,
+    "top5_realized_overlap_ratio_min": 0.95,
+    "maturity_required": true,
+    "determinism_required": true
+  },
+  "results": [
+    {
+      "variant": "K8",
+      "features": 8,
+      "rank_mean_abs": 0.034069786646247165,
+      "rank_mad_improvement_pct": 36.26520237058677,
+      "mean_daily_spearman": 0.985252030554044,
+      "top1_disagreement_fraction": 0.375,
+      "ndcg5": 0.5049094706778529,
+      "ndcg5_ratio_pct": 92.37854621265977,
+      "top5_realized_overlap": 0.09700000000000002,
+      "top5_ratio_pct": 77.53108348134991,
+      "advance": false
+    },
+    {
+      "variant": "K12",
+      "features": 12,
+      "rank_mean_abs": 0.039456931369457826,
+      "rank_mad_improvement_pct": 26.18739993820749,
+      "mean_daily_spearman": 0.9810029526170465,
+      "top1_disagreement_fraction": 0.4027777777777778,
+      "ndcg5": 0.5268137565782987,
+      "ndcg5_ratio_pct": 96.38616778607386,
+      "top5_realized_overlap": 0.10133333333333334,
+      "top5_ratio_pct": 80.99467140319716,
+      "advance": false
+    },
+    {
+      "variant": "K16",
+      "features": 16,
+      "rank_mean_abs": 0.045780470349183484,
+      "rank_mad_improvement_pct": 14.357872463930931,
+      "mean_daily_spearman": 0.9743339782735757,
+      "top1_disagreement_fraction": 0.43611111111111106,
+      "ndcg5": 0.5212104154020968,
+      "ndcg5_ratio_pct": 95.36097705020563,
+      "top5_realized_overlap": 0.12544444444444444,
+      "top5_ratio_pct": 100.2664298401421,
+      "advance": false
+    },
+    {
+      "variant": "K24",
+      "features": 24,
+      "rank_mean_abs": 0.047105861097347976,
+      "rank_mad_improvement_pct": 11.878446572854351,
+      "mean_daily_spearman": 0.9728785646601464,
+      "top1_disagreement_fraction": 0.41944444444444434,
+      "ndcg5": 0.5048838766377529,
+      "ndcg5_ratio_pct": 92.37386351139658,
+      "top5_realized_overlap": 0.10666666666666666,
+      "top5_ratio_pct": 85.2575488454707,
+      "advance": false
+    },
+    {
+      "variant": "K32",
+      "features": 32,
+      "rank_mean_abs": 0.049824832715243066,
+      "rank_mad_improvement_pct": 6.792030634122604,
+      "mean_daily_spearman": 0.9695723139246629,
+      "top1_disagreement_fraction": 0.41111111111111115,
+      "ndcg5": 0.5267916220156759,
+      "ndcg5_ratio_pct": 96.38211803293018,
+      "top5_realized_overlap": 0.11533333333333336,
+      "top5_ratio_pct": 92.1847246891652,
+      "advance": false
+    },
+    {
+      "variant": "K40",
+      "features": 40,
+      "rank_mean_abs": 0.046513170077423935,
+      "rank_mad_improvement_pct": 12.987201453061104,
+      "mean_daily_spearman": 0.9736847854565976,
+      "top1_disagreement_fraction": 0.42500000000000004,
+      "ndcg5": 0.5230629075837325,
+      "ndcg5_ratio_pct": 95.69991015514438,
+      "top5_realized_overlap": 0.11811111111111114,
+      "top5_ratio_pct": 94.404973357016,
+      "advance": false
+    },
+    {
+      "variant": "FAMILY46",
+      "features": 46,
+      "rank_mean_abs": 0.0476087163240895,
+      "rank_mad_improvement_pct": 10.937748691589688,
+      "mean_daily_spearman": 0.9726780236612452,
+      "top1_disagreement_fraction": 0.4000000000000001,
+      "ndcg5": 0.5377450378325571,
+      "ndcg5_ratio_pct": 98.38616170410117,
+      "top5_realized_overlap": 0.12055555555555557,
+      "top5_ratio_pct": 96.35879218472469,
+      "advance": false
+    }
+  ],
+  "conclusion": {
+    "strict_gate_winner": null,
+    "stability_frontier": "K12",
+    "quality_preserving_frontier": "FAMILY46",
+    "top5_preserving_compact_candidate": "K16",
+    "disposition": "NO_ADOPTION",
+    "interpretation": "Feature ablation is directionally useful but does not yet solve stability without predictive trade-off. K12 proves >25% rank-MAD reduction is attainable while keeping NDCG5 above 95%, but Top5 realized overlap degrades materially. FAMILY46 preserves most predictive quality and improves Top1 disagreement, but rank-MAD improvement is only ~10.9%. K16 preserves Top5 realized overlap but rank-MAD improvement is only ~14.4%."
+  }
+}
