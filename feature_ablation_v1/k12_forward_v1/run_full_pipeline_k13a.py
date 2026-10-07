@@ -22,12 +22,14 @@ import numpy as np
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-REPO = HERE.parent
+REPO = HERE.parents[1]
 SRC = REPO / "vendor" / "etf_trader_v2" / "src"
 sys.path.insert(0, str(SRC))
 sys.path.insert(0, str(REPO))
 
-VARIANTS = ("BASE", "Q4", "ORDINAL", "ECON1BP", "Q4_ECON1BP", "SCALE", "SCALE_ECON1BP", "Q4_LEGACY", "K13A")\n\nK13A_FEATURES = ["mom252_dev","gkvol21_pct","corr_mkt126_dev","acc_mom_21_63_dev","acc_mom_5_21_dev","mom63_dev","log_adv63_pct","volume_surprise21_pct","kurt63_dev","beta_mkt126_dev","efficiency126_dev","mom126_pct","autocorr1_63"]
+VARIANTS = ("BASE", "Q4", "ORDINAL", "ECON1BP", "Q4_ECON1BP", "SCALE", "SCALE_ECON1BP", "Q4_LEGACY", "K13A")
+
+K13A_FEATURES = ["mom252_dev","gkvol21_pct","corr_mkt126_dev","acc_mom_21_63_dev","acc_mom_5_21_dev","mom63_dev","log_adv63_pct","volume_surprise21_pct","kurt63_dev","beta_mkt126_dev","efficiency126_dev","mom126_pct","autocorr1_63"]
 
 
 def file_hash(path: Path) -> str:
@@ -112,7 +114,10 @@ def make_compact_hook(variant: str, model_module):
                 xte = canonical_test
                 y = (train[f"target_rank_{horizon}"] * 100).round().astype(int).to_numpy()
                 transform = {"feature_transform": "identity", "target_transform": "legacy_round_rank_x100"}
-                if horizon == 21 and variant not in ("BASE", "Q4_LEGACY"):
+                if horizon == 21 and variant == "K13A":
+                    xtr, xte, y, transform = transform21(train, te, K13A_FEATURES, variant, cutoff)
+                    transform.update(feature_transform="K13A_subset_identity", feature_count=len(K13A_FEATURES), features=K13A_FEATURES)
+                elif horizon == 21 and variant not in ("BASE", "Q4_LEGACY"):
                     xtr, xte, y, transform = transform21(train, te, k.F2D_FEATURES, variant, cutoff)
                 if variant == "Q4_LEGACY":
                     transform["feature_transform"] = "global_frame_decimal_round_4"
@@ -211,6 +216,10 @@ def main():
     parser.add_argument("--universe-name", default="original149")
     parser.add_argument("--reference-raw", help="Frozen original149 raw; required if candidate universe lacks infrastructure")
     args = parser.parse_args()
+    if args.variant == "K13A":
+        frozen_features = json.loads((HERE / "variants.json").read_text())["variants"]["K13_A"]
+        if frozen_features != K13A_FEATURES:
+            raise RuntimeError("K13A feature list differs from frozen K13_A benchmark")
     raw, out = Path(args.raw).resolve(), Path(args.out).resolve()
     if out.exists() and any(out.iterdir()):
         raise RuntimeError(f"output already contains files; use a fresh directory: {out}")
@@ -231,7 +240,7 @@ def main():
                                                        for ticker in compare.INFRA
                                                        if (path := reference / f"{ticker}.csv").exists()},
                 "intervention_sources_sha256": {path.name: file_hash(path)
-                                                  for path in (HERE / "targets.py", HERE / "quantization.py")
+                                                  for path in (REPO / "compact21_stability_v1" / "targets.py", REPO / "compact21_stability_v1" / "quantization.py")
                                                   if path.exists()},
                 "compact63_unchanged_by_design": args.variant != "Q4_LEGACY",
                 "legacy_q4_note": "Prior full Q4 rounded both Compact21 and Compact63; Q4 here intervenes only on Compact21.",
