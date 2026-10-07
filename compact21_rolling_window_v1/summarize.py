@@ -15,7 +15,6 @@ from compact21_semidev_v1.summarize import (
     prediction_audit, sha, sorted_vectors, validate_maturity,
 )
 from compact21_semidev_v1.run import FROZEN_TI, select_original_frames
-from compact21_learner_swap_v1.run_benchmark import evaluation_coverage
 from compact21_learner_swap_v1 import learners
 from ranker_stability_v1.run_ranker_benchmark_full import load, quality
 from etf_trader.source_only.kernel import F2D_FEATURES
@@ -40,6 +39,24 @@ def check_complete_matrix(jobs):
 
 def _annual(reference, kind, year):
     return reference[kind].loc[reference[kind].signal_date.dt.year == year].sort_values(VECTOR_KEYS).reset_index(drop=True)
+
+
+def physical_coverage(trains, tests, common):
+    """Rebuild the legacy key contract with explicit LF on every OS."""
+    result = dict(train_keys_sha256={str(v): keys_hash(trains[v]) for v in (1, 2, 3)},
+        test_keys_sha256={str(v): keys_hash(tests[v]) for v in (1, 2, 3)},
+        common_keys_sha256=keys_hash(common), common_rows=len(common),
+        common_queries=common.signal_date.nunique(), quality_keys_sha256={},
+        quality_rows={}, quality_queries={})
+    for v in (1, 2, 3):
+        frame = tests[v]
+        mature = (frame.target_rank_21.notna() & frame.exit_date_21.notna() &
+                  frame.exit_date_21.le(pd.Timestamp('2026-07-01')))
+        q = frame.loc[mature]
+        result['quality_keys_sha256'][str(v)] = keys_hash(q)
+        result['quality_rows'][str(v)] = len(q)
+        result['quality_queries'][str(v)] = q.signal_date.nunique()
+    return result
 
 
 def load_year(path, base, frames):
@@ -101,7 +118,7 @@ def load_year(path, base, frames):
     exact_frame(vectors[FILES[2]], old_native, list(old_native.columns), 'Exact original BASE native control')
     exact_frame(vectors[FILES[3]], old_common, list(old_common.columns), 'Exact original BASE common control')
     a, old_a = r['per_year'][str(year)], br['per_year'][str(year)]
-    if a['evaluation_coverage'] != evaluation_coverage(physical_trains, tests, common_input) or \
+    if a['evaluation_coverage'] != physical_coverage(physical_trains, tests, common_input) or \
        a['determinism_PASS'] is not True:
         raise ValueError('Physical rolling coverage/refit differs')
     for field in ('test_keys_sha256', 'common_keys_sha256', 'common_rows',
@@ -261,3 +278,4 @@ if __name__ == '__main__':
     result = summarize(args.inputs, args.references, args.out,
         {v: getattr(args, f'r{v}') for v in (1, 2, 3)})
     print(json.dumps({v: result['models'][v]['gate'] for v in WINDOWS}, indent=2))
+
