@@ -1,11 +1,7 @@
 name: COMPACT21_K12_FORWARD_ABLATION_V1
 on:
-  pull_request:
-    branches: [research/compact21-orthogonal-feature-ablation-v1, research/compact21-k12-forward-ablation-v1]
-    paths:
-      - feature_ablation_v1/k12_forward_v1/**
-      - .github/workflows/compact21-k12-forward-ablation-v1.yml
   workflow_dispatch:
+
 permissions:
   contents: read
   actions: read
