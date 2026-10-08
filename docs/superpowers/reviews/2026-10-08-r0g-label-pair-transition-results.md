@@ -1,5 +1,7 @@
 # R0-G — Read-only Yahoo Repeat1/Repeat3 rank-pair and tie-transition audit
 
+> **POST-RUN QA (2026-10-08):** A new name-order test found that the *research diagnostic* originally compared pair labels positionally. Corrected the helper to align both input Series by **ticker** before comparing pair signs. The frozen Repeat1/Repeat3 source data already used identical ticker order: the R0-G results JSON SHA256 remained **74763f6b9c02c8228934586247e77f3d4de18728fb5b10e12bf910124f2ed347** both before and after correction. All **10** R0-F/R0-G unit tests and Python compile check PASS. No XGB refit or V2 backtest was performed.
+
 **Date 2026-10-08.** **NO XGBoost fitting, no full V2 portfolio replay, no Original149 parameter search.** This is an original, *descriptive* derivative of the already frozen Original149 Repeat1/3 vendor acquisitions, **not a new financial OOS sample**.
 
 **Pre-registration before computing outcomes:** [R0-G protocol](2026-10-08-r0g-label-pair-transition-prereg.md), commit `dc37f6f08febb4ae051818946d85b11922009b0d`.
