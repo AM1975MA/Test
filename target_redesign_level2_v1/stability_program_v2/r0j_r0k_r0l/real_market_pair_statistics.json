@@ -1,0 +1,33 @@
+{
+  "status": "READ_ONLY_FROZEN_VINTAGES",
+  "historical_data": "Yahoo Repeat1 vs Repeat3 frozen Original149",
+  "horizon_trading_sessions": 21,
+  "months": 267,
+  "theoretical_valid_pairs": 2333613,
+  "ordinal_label_changes": 16,
+  "strict_pair_inversions": 8,
+  "tie_created": 7,
+  "tie_broken": 7,
+  "max_abs_return_gap_for_flipped_pairs_bp": 0.01159911682480086,
+  "max_relevance_pct_in_flipped_pairs": 0.8053691275167785,
+  "band_10bp": {
+    "excluded_pairs": 45181,
+    "excluded_fraction": 0.019360965164318164,
+    "mask_state_changes": 17,
+    "ordinal_sign_flips_among_eligible_either": 0
+  },
+  "band_20bp": {
+    "excluded_pairs": 88417,
+    "excluded_fraction": 0.037888458797581265,
+    "mask_state_changes": 14,
+    "ordinal_sign_flips_among_eligible_either": 0,
+    "top_decile_involved_dropped_pairs": 2373,
+    "top_decile_vs_bottom_quartile_dropped_pairs": 0
+  },
+  "notes": [
+    "20bp is transaction-cost heuristic, not established optimum ambiguity scale",
+    "Theoretical complete pair enumeration is NOT the same as XGBoost internal pair sampling",
+    "No training using these frozen financial datasets"
+  ],
+  "source": "ETF_Trader_V2_R0J_R0K_R0L_Completato_20261009.zip"
+}
