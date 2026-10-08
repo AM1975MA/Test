@@ -55,6 +55,25 @@
 
 ---
 
+## Active decision update — 9 October 2026 (R0-J / R0-M / R0-N)
+
+**Read this before launching any future learner tests.** [R0-M preregistered hard-20bp-mask test](../reviews/2026-10-09-r0m-pair-band-results.md): 18 synthetic fits, two worlds, Data audit PASS, **FAIL_JOINT_GATE**. The mask neutralized a constructed near-tie flip, but exact winner capture fell 13/40→12/40 and mean synthetic selected return fell in both worlds relative to identical custom full-pairs unmasked loss. The 20bp transaction-fee assumption is **not** a validated noise floor; do not integrate or tune the hard mask.
+
+**Genuine native-XGB finding**: the original source has **no explicit** LambdaRank pair settings. XGBoost 3.1.3 native training objective defaults to `topk`, `lambdarank_num_pair_per_sample=4294967295` (effectively exhaustive pairs); **do not** misinterpret the separate evaluation `ndcg@3` pair count **3** as a training objective truncation. Tested config on 4×18 toy group shows original and explicit k=18 **predictions exactly equal**, while topk=3 is different. Verified official version-specific docs at https://xgboost.readthedocs.io/en/release_3.1.0/parameter.html.
+
+**Promising but explicitly limited first native candidate, R0-N**: [pre-frozen one-axis design](../reviews/2026-10-09-r0n-native-topk5-prereg.md), [results and Data independent audit](../reviews/2026-10-09-r0n-native-topk5-results.md). Only change is native `lambdarank_num_pair_per_sample=5`, preserving `rank:pairwise`, all ETF candidate eligibility, 125 features, 360 rounds, seeds 101/202/303 and original hyperparameters. Exactly **36 synthetic-only fits**, two *new* 20-query eval worlds, X-only/Y-only distinct perturbations, saved 36 model-score .npz and checksum. In world A Top5 18/20 both, X/Y Top1 concordance 20/20 both; world B top5 improves **15/20→17/20**, X-only concordance **17→20/20**, Y-only **16→19/20**, exact winner 4/20 both; artificial mean selected returns improve in both worlds. **Counterevidence**: world B **NDCG@5 drops .90339→.87849**, paired descriptive 95% interval for delta [−.05159,−.00079]; selected return improvements have broad intervals crossing zero. **Classification: SYNTHETIC_MECHANISM_PLAUSIBLE_WITH_RANKING_REGRESSION, NOT MODEL APPROVAL**. The source program first created only 18 entries in the hash manifest; QA caught it, test RED then fix GREEN, verified 36 hashes; no booster rerun.
+
+**Updated shortest economically responsible progression**:
+- P0: exact source/preprocessing/fit/MA3 state snapshots and valid `REPLAY/PREDICT/REFIT` contract; original Booster missing means no fake historical replay.
+- P1: decision/exposure-weighted economic attribution with already saved materials only; do not re-run 2017–26 portfolio or fit experiments.
+- P2: for genuinely new causal ETF data, preregister **one** native topk5 versus untouched exhaustive objective *provided* we have enough as-of time forward to measure daily portfolio economics. **Rank-quality noninferiority is an explicit fourth gate**, not merely Top1 and Top5 hit; a ~.025 drop in artificial NDCG is a risk warning that must be measured on future ETF outcomes. No alternative K / custom loss / smoothing / rounds search on burned histories.
+- Gate future: full unchanged V2 net paired results per data vintage, daily MaxDD, fees/turnover, exposure-weighted material flip rate, and rare realized positive-tail capture. Short clean future sample => report provisional cumulative daily economics rather than annualized CAGR and defer go/no-go.
+- If topk5 lacks rank/financial quality, **NO GO**; keep original native exhaustive objective and no learner changes. Dense and cascade remain untrained design alternatives; no new training until evidence changes.
+
+**Development scope** remains `AM1975MA/Test@research/v2-xgb-immutable-checkpoints-20261008`; production `Etf_trader` and `Trader_selector` untouched. Only test protocols, diagnostics and future criteria changed.
+
+---
+
 ## Hard constraints
 
 - Repository `AM1975MA/Test`, branch `research/v2-xgb-immutable-checkpoints-20261008` **only**; no `Etf_trader`, `Trader_selector`, production vendor source, live funding/risk code, merge or PR without explicit later authorization. This document is **an execution proposal, not permission to fit or deploy financial learners**.
