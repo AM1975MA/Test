@@ -22,6 +22,21 @@
 - Before any new money-bearing intervention, preregister **one** policy, thresholds and prospectively timestamped sources. Do not tune fixed-tree duration, split regularization, gain margins, seed or vote weights on old Original149.
 - Candidate-approval lifecycle (champion/challenger, valid until, model universe, feature schema) is defined in companion [Plan A](2026-10-08-v2-model-lifecycle.md).
 
+## User-approved R0: read-only review of three additional architectures (no training)
+
+**User decision (8 October 2026):** add to technical analysis **(S1) XGBoost leaf count/structure; (S2) small regularized stacked Dense learning-to-rank network; (S3) high-recall 149→37/38 ETF first stage plus optional later ranking of survivors**. This is **approval of analysis only**; it does not supersede the requirement for separate approval before any implementation or training. The precise questions, evidence sources, failure gates and independent-expert briefs are in the [three-architecture analysis addendum](../specs/2026-10-08-v2-three-architecture-analysis-addendum.md).
+
+**R0 work packets to complete in order; all read-only, no new tests or retraining:**
+- [ ] **R0a — Trees expert inventory:** check whether authentic existing trained boosters/tree dumps survive; summarize effective leaf/branch observability, `max_depth=4` and `min_child_weight=8` semantics; designate first possible split-bifurcation falsifier. Explicitly label unobserved split counts/runner-up gains `UNKNOWN`.
+- [ ] **R0b — Neural ranking expert feasibility:** outline one compact Dense candidate architecture class without selecting a width/depth from historic returns; account for effective monthly sample size, query-level ranking loss, signal maturity and nested purged chronological early-stopping policy. No model fitting.
+- [ ] **R0c — Cascade expert no-repeat audit:** cite `evidence_v1/results/cascade_v1_ltr_top5_hybrid24/SUMMARY.json` and all `reranker_v1–v4` failures. Assess **fixed 25%** OOS first-stage recall of exceptional winners from *already frozen* predictions if those files are accessible, otherwise `INSUFFICIENT_ARTIFACTS`; **never tune K**, refit, or claim Top5/Top10 experience directly measures Top25% performance.
+- [ ] **R0d — Quant adversarial review:** challenge risk of losing rare upside, available effective independent months, transaction costs and required full-V2 economic guardrails, and separate score stability from fit robustness. A new model with lower CAGR is not a success.
+- [ ] **R0e — Integrated decision:** publish source-grounded R0 matrix and **no more than one** proposed new mechanism for subsequent approval; if none is demonstrably promising, `NO_CANDIDATE` and STOP.
+
+**Existing Tasks 1–5 below describe a separate, *future* research implementation**. In particular Tasks 2–3's synthetic fittings are NOT included in R0 approval. No financial or synthetic model trainings have been authorized by the user's most recent approval. **Actual independent agent dispatch is unavailable in this session**; do not conflate detailed reviewer briefs with executed reviews.
+
+---
+
 ## Review Focus
 
 1. **Already-used old evidence**: no re-training on preexamined original 149 to fill missing old booster files; label 'historical split attribution unknown'. Task 1.
