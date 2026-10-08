@@ -43,6 +43,28 @@
 
 ---
 
+## ACTIVE RESEARCH DECISION — R0-F and R0-G, superseding R0-E inference
+
+**Status: max_leaves=8 is a NO GO as a proven stability fix.** Do not promote, search nearby leaf counts, or repeat any Original149 backtest. The earlier favorable [R0-E](../reviews/2026-10-08-r0e-synthetic-leaf-cap-results.md) used a +1 label-grade change that did not reverse an ordinal pair, on one easy 120-tree synthetic fixture; hence it under-tested the target-sensitivity problem.
+
+**Corrected R0-F, pre-registered before fitting:** [protocol](../reviews/2026-10-08-r0f-rank-reversal-360-prereg.md), [results](../reviews/2026-10-08-r0f-rank-reversal-360-results.md). Sixteen **synthetic-only** rank:pairwise fits, 2 independent worlds × original/cap8 × X-only/Y-only/joint/original, 360 rounds each, 125 features, one actual single-pair rank inversion. Original-vs-cap8 Top1 agreement: World A X-only 12/12 vs 10/12, Y-only 7/12 vs 8/12; World B X-only 12/12 vs 9/12, Y-only 7/12 vs 7/12, joint 7/12 vs 5/12. Eight-leaf cap is not uniformly beneficial even on synthetic data. **No financial test or new ETF fit.**
+
+**R0-G no-fit historical label mechanism:** [prereg](../reviews/2026-10-08-r0g-label-pair-transition-prereg.md), [results](../reviews/2026-10-08-r0g-label-pair-transition-results.md). From the frozen Yahoo Repeat1/3 raw Open, 267 signal months and canonical percent-rank ×100 integer labels: Compact21 **16 changed relevance grades, 8 strict within-month pair reversals, 7 tie→order and 7 order→tie changes**. Compact63: 10 grades changed, 5 reversals, 3+3 tie transitions. Four cumulative year-cutoff changed-grade counts **12/16/16/16** agree with original 2017/2020/2023/2026 forensic calculations, without repeating model fitting. This is **price-derived label auditing**, not a reconstructed original 125-feature-valid training matrix or model trees.
+
+**QA:** 7 unit tests for R0-F passed. New R0-G named-index QA caught an analysis-only positional alignment defect; corrected ticker alignment, 10 tests passed and the original R0-G result JSON hash remained unchanged. Original V2 untouched.
+
+### Updated sequence and strict stop gates
+
+1. **Next R0-H read-only forensic:** inspect the **eight** actual flipped 21d ordinal pairs and the tie transitions, recording date, tickers, prior/current adjusted Open at entry/exit, original/revised forward-return margin and exactly where pairs cross. No model fit. Examine eligibility only from frozen source evidence. **Maintain separate X-feature-only instability**; label fixes alone cannot solve the ~62.5% earlier training-X Top1 disagreement.
+2. **Rank:pairwise loss/gradient mechanism review:** evaluate whether pair formation around near-equal returns is discontinuous and could be made statistically robust without sacrificing genuinely large-upside winners. Do not launch an L50-style binning repeat or introduce an unregistered margin.
+3. **Dense neural ranker remains a technical contingency**, not authorized to train or sweep. Its compact capacity, purged chronology and top-tail quality must be designed before a candidate is selected.
+4. **Top38 adaptive screener using trailing cross-sectional dispersion is NO GO** (R0-D miss AUC around 0.50, 17 lost eventual winners). Earlier LTR Top5/Top10 cascades must never be rerun or tuned on same Original149.
+5. **Future actual financial test:** require genuinely fresh as-of data, model/universe provenance, one prelocked intervention, same-vintage matched unchanged full V2 CAGR per vintage, daily DD, costs, turnover and tail opportunity capture. If unavailable, stop at diagnostics and preserve incumbent V2.
+
+**The older optimistic R0-E statement later in this file is an archived observation, NOT an active recommendation.** No agents were independently dispatched; the environment exposes Superpowers skills but no agent spawn action.
+
+---
+
 ## Review Focus
 
 1. **Already-used old evidence**: no re-training on preexamined original 149 to fill missing old booster files; label 'historical split attribution unknown'. Task 1.
