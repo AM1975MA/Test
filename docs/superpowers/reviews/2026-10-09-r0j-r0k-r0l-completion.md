@@ -6,6 +6,8 @@
 
 Un obiettivo pairwise che **ignora in training soltanto le coppie con differenze di rendimento minime** è una strada *tecnicamente realizzabile*. Non richiede una riduzione generalizzata dei 125 input, dei 360 alberi né delle foglie. Il principio è preservare comparazioni ad alta separazione economica, evitando che revisioni impercettibili degli Open rettificati cambino il segno di un confronto di ranking.
 
+**Distribuzione temporale:** le 8 inversioni Compact21 appartengono alle date di segnale **2010 (1), 2011 (1), 2012 (1), 2014 (1), 2015 (2), 2019 (2)**: **6/8 precedono l'inizio della valutazione 2017**. Poiché l'addestramento annuale utilizza la storia pregressa, una revisione di etichette antiche può essere trascinata in molti futuri training annuali; tuttavia non sappiamo se ogni coppia fosse effettivamente presente nella coorte a 125 feature di ciascun fit. Non sono otto nuove inversioni di decisione osservate nel trading 2017–2026.
+
 **Il dato realmente osservato non è un CAGR:** gli otto confronti Compact21 la cui rilevanza intera inverte l'ordine fra Yahoo Repeat1/Repeat3 sono tutti separati da **non oltre 0,0115991 punti base** nei rendimenti Open-to-Open a 21 sedute. **Nessuno** comprende un ticker nel decile più elevato della rilevanza di training (massimo percentile 80,54%). Sono dati storici già utilizzati nello sviluppo: il test è diagnostico, non un nuovo holdout.
 
 ## R0-J — Analisi estesa delle coppie sui due storici congelati
