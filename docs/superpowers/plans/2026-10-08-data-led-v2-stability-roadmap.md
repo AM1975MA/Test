@@ -10,6 +10,22 @@
 
 **Spec:** [Data consolidated evidence decision](../reviews/2026-10-08-data-consolidated-stability-decision.md), [model lifecycle design](../specs/2026-10-08-v2-model-lifecycle-and-training-stability-v2-design.md), and [three architecture analysis addendum](../specs/2026-10-08-v2-three-architecture-analysis-addendum.md).
 
+## LATEST EMPIRICAL PIVOT — 2026-10-09 — REAL 2.33M-PAIR EVIDENCE
+
+**This section takes priority over earlier blanket proposals.** [Data R0-J/R0-K/R0-L evidence report](../reviews/2026-10-09-r0j-real-material-pairs-and-r0l-cost-aware-path.md); [research-only executable custom loss](../../target_redesign_level2_v1/stability_program_v2/cost_pairwise.py) and [TDD tests](../../target_redesign_level2_v1/stability_program_v2/tests/test_cost_pairwise.py).
+
+- **Real matched Yahoo Repeat1/3 adjusted Open history**, 267 mature monthly 21d target dates, **2,333,613 unordered ETF pairs**. Among integer relevance pairs, only 8 strict order reversals +14 transitions into/out of tied grade. Strictly inverted original 21d forward return gaps **all <=0.0116 bp** and no pair had relevance > 81.3rd percentile. All 22 changed grade relations had spread **<=7.6489 bp**.
+- **Existing strategy fee scale**: 0.1% buy + 0.1% sell => **20bp** roundtrip illustration, not a claim each potential pair comparison incurs exactly this cost. At a 20bp return-spread band, only **88,417 / 2,333,613 = 3.7888%** of real pairs are deemed indistinguishable; **96.2112%** remain. **0 of 118,939 high-decile-vs-bottom-quartile comparisons removed**. All retained pairs are directionally stable across Repeat1 vs Repeat3; **14 eligibility statuses** cross the fee-band boundary and must be handled by future soft weighting. Crucially this is **descriptive pair-level evidence**, not model-prediction/CAGR proof.
+- **Native rank:ndcg (linear gain)** technical fit works with original 0-100 label grades in XGB3.1.3, but R0-K independent synthetic world A shows better X/Y Top1 agreement **while lower top5, exact winner and NDCG quality**; NO GO as a blanket replacement, second world incomplete/unreported, NOT a full candidate.
+- **Custom mask feasibility**: TDD 4/4 GREEN, compile GREEN, actual XGB custom objective on artificial 10x149 groups/125 features returned 25 rounds and nonconstant scores. **Only feasibility**: the full-pair sampling/normalization does NOT match original native `rank:pairwise`, historical as-of maturity and financial alpha still unverified.
+- **Priority #1 new unique hypothesis:** an economically justified **pairwise confidence weighting** against ambiguous near-tie returns, **not global label quantization L50**, no retraining on burnt Original149 for gain selection. Do not treat hard 20bp binary cutoff as already validated: X-only training instability previously 62.5% remains independent, and there are 14 fee-band eligibility edge flips. Consider *continuous* uncertainty weighting in a separately preregistered synthetic falsifier only after verifying native pair-gradient semantics, retaining all extreme-tail pairs.
+- **STOP conditions:** if X-only decision instability remains severe or if synthetic high-upside capture falls, do not claim resolved. Do not invoke new financial full-V2 replay on 2017-26 to optimize band or loss. Keep P0 source/versioning and P1 capital attribution essential, and P4 new prospective full V2 gate compulsory.
+
+**Next action sequence:** (1) implement historical as-of label maturity and pair-gradient contract in research-only package; (2) compare exact native pair selection/sampling and loss scale vs custom objective on synthetic fixtures; (3) prereg one X/Y separate + joint perturbed synthetic test without tuning band or seeds; (4) only with independent future financial evidence evaluate same-vintage full V2 and tail economic non-inferiority. **No production adoption and no new CAGR reported.**
+
+---
+
+
 ## Hard constraints
 
 - Repository `AM1975MA/Test`, branch `research/v2-xgb-immutable-checkpoints-20261008` **only**; no `Etf_trader`, `Trader_selector`, production vendor source, live funding/risk code, merge or PR without explicit later authorization. This document is **an execution proposal, not permission to fit or deploy financial learners**.
