@@ -1,5 +1,8 @@
 # Immutable Compact21 XGBoost Checkpoints — Implementation Plan
 
+> **SUPERSEDED — DO NOT EXECUTE.** This freeze-centric draft was replaced after review of support for new ETF universes, new dates and genuinely new training. Follow [Model Lifecycle Plan](2026-10-08-v2-model-lifecycle.md) and [Training Stability Research Plan](2026-10-08-v2-xgb-training-stability-research.md), grounded in [revised design](../specs/2026-10-08-v2-model-lifecycle-and-training-stability-v2-design.md). Retained for historical audit; no code from this draft has been authorized.
+
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Make ETF Trader V2's canonical Compact21 XGBoost annual training and prediction artifacts immutable, verifiable and reloadable, without changing training semantics or strategy decisions.
