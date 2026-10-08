@@ -1,4 +1,7 @@
 # ETF Trader V2 — Spec di integrazione checkpoint XGBoost e provenienza dati
+
+> **SUPERSEDED AS PROJECT-LEVEL DESIGN — RETAINED AS HISTORICAL RECORD.** Checkpoints alone do not address stability of fresh training, new periods or changes in ETF universe. See [revised design](2026-10-08-v2-model-lifecycle-and-training-stability-v2-design.md) and its two independent implementation/research plans. No production changes are approved by this document.
+
 **Spec di progettazione Superpowers | 2026-10-08 | SOLO `AM1975MA/Test` | branch `research/target-redesign-level2-v1`**
 
 **Stato:** design proposto per revisione dell'utente; **non implementato e non approvato per la V2 reale**. Non modifica `Etf_trader` o `Trader_selector`. L'utente ha già approvato la direzione generale: preservare la V2 e rendere riproducibile il training, evitando nuovi test finanziari già eseguiti. Prima di un'integrazione ampia Superpowers richiede revisione di questa specifica e successivo piano esecutivo.
