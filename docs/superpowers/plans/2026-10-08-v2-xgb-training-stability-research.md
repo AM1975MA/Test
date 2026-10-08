@@ -65,6 +65,12 @@
 
 ---
 
+## Decision-level roadmap after full Data evidence review
+
+**Latest recommended direction**: [Data/Superpowers comprehensive evidence decision](../reviews/2026-10-08-data-consolidated-stability-decision.md) and [staged, TDD-ready Data-led V2 stability roadmap](2026-10-08-data-led-v2-stability-roadmap.md). These *govern priority and future investment validation*. Earlier R0 steps below remain an historical experiment ledger, **not additional tests to rerun**. New work first addresses source/MA3 parity, exposure-weighted *economic* consequence of decision flips and separate X- vs y-training mechanism; leaves, round reductions, top38, risk gating and soft regression not promoted. No new fit/portfolio replay authorized by this docs update.
+
+---
+
 ## ACTIVE UPDATE R0-H (2026-10-08) — Number of boosting rounds examined, NO simple cutoff fix
 
 **User observation addressed:** earlier studies varied tree LEAF capacity but did not isolate **360 boosting rounds per seed/horizon** of canonical Compact21. R0-H [preregistered](../reviews/2026-10-08-r0h-boosting-rounds-prereg.md) and [completed](../reviews/2026-10-08-r0h-boosting-rounds-results.md) a genuinely new no-ETF-data synthetic *prefix* diagnostic, not another backtest. XGBoost `iteration_range=(0,N)` evaluates the first N trees of a fixed 360-round training trajectory; a separate 60-round refit had **exact same predictions** as the 60-prefix (maxabs 0). This isolates the cumulative contribution of later trees without fitting six separate models or selecting by past CAGR.
