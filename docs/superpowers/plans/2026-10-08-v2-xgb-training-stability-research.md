@@ -33,6 +33,8 @@
 - [ ] **R0d — Quant adversarial review:** challenge risk of losing rare upside, available effective independent months, transaction costs and required full-V2 economic guardrails, and separate score stability from fit robustness. A new model with lower CAGR is not a success.
 - [ ] **R0e — Integrated decision:** publish source-grounded R0 matrix and **no more than one** proposed new mechanism for subsequent approval; if none is demonstrably promising, `NO_CANDIDATE` and STOP.
 
+**R0 evidence update, verified and recorded (not training):** a Git tree inventory contains no authentic Compact21 `.ubj`/fitted tree-dump models among visible tracked objects; original split structure cannot be reconstructed from predictions alone. [Read-only fixed 25% frozen LTR check](../reviews/2026-10-08-r0-frozen-top-quartile-recall.md): 97/114 (85.0877%) 21d global winners retained by top38; 2017–22 56/72, 2023–26 41/42; 17 major winners missed. This is NOT canonical Compact21 and NOT full-V2 P&L. Source Top5 recomputed 32/114 and Top10 47/114 exactly match archived results; no model fitted. R0a booster availability remains conditional on extra non-GitHub archived artifacts. Neural literature/capacity review remains unexecuted by an independent reviewer. Do not mark R0 complete.
+
 **Existing Tasks 1–5 below describe a separate, *future* research implementation**. In particular Tasks 2–3's synthetic fittings are NOT included in R0 approval. No financial or synthetic model trainings have been authorized by the user's most recent approval. **Actual independent agent dispatch is unavailable in this session**; do not conflate detailed reviewer briefs with executed reviews.
 
 ---
