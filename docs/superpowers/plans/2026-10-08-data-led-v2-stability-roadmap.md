@@ -26,6 +26,27 @@
 ---
 
 
+## Aggiornamento eseguito — 9 ottobre 2026: R0-J / R0-K / R0-L CHIUSI
+
+**Rapporto tecnico e fonte delle nuove decisioni:** [Completamento R0-J/R0-K/R0-L](../reviews/2026-10-09-r0j-r0k-r0l-completion.md). Il prototipo e i [risultati strutturati](../../../target_redesign_level2_v1/stability_program_v2/r0j_r0k_r0l/real_market_pair_statistics.json) sono sul branch di ricerca. **Questo aggiornamento è successivo agli esiti; non costituisce una nuova preregistrazione.**
+
+**Dato reale perseguibile ma non validazione:** 8 inversioni strette nel Compact21, tutte entro **0,0115991 bp** di differenza di rendimento 21d su due Yahoo vintages; nessun ETF nel decile superiore fra queste inversioni. Una banda di 20 bp elimina 88.417/2.333.613 coppie teoriche (3,78885%), zero sign flips tra quelle eleggibili in almeno una vintage, **ma 14 status eligibility flips persistono**, e 2.373 coppie escluse coinvolgono il top-decile. 20 bp è motivazione iniziale di costi, NON scala ottimale provata del noise o della loss; i costi comuni alle alternative non giustificano automaticamente una banda economica. Le coppie enumerate non equivalgono alle coppie effettivamente campionate da XGBoost.
+
+**R0-K obiettivo generale rank:ndcg: NO GO su base sintetica preliminare**: nel mondo A 10/12 Top5 vs 11/12 pairwise con stabilità più alta; B `rank:ndcg` completato (9 fit rimasti) ma il baseline `rank:pairwise` B era stato allenato nel run interrotto **senza output persistito**, quindi B matched comparison non disponibile e NON rifatto. Non descrivere R0-K come 36/36 fit validamente confrontabili.
+
+**R0-L custom pairwise masker: FEASIBLE TECHNICALLY, NOT ECONOMICALLY VERIFIED**: codice `Test` con gradiente/diagonale Hessiana, 8 unit test GREEN, 12-round QuantileDMatrix smoke PASS. Attenzione: obiettivo su tutte le coppie ammissibili (non campionamento nativo XGB), Hessiana diagonale approssimata, rendimenti futuri del training devono essere MATURI; adapter full-V2/source-only non realizzato.
+
+### Conseguenza sulla sequenza
+
+1. **Next task = Track A provenance e shadow objective test**, non un altro filtro/leaf/rounds/stock-picking backtest. Precisare matematicamente la loss rispetto a XGBoost native e documentare in anticipo il criterio per impostare la banda senza usare P&L storici. Validare freeze/replay/predict/refit e maturità delle etichette prima di un fit su dati reali.
+2. **Next TDD scope**: gruppi, ticker/date e `exit_date_h < cutoff`; diag Hessiana, pair normalization, finite-difference grad, X-only/Y-only/joint perturbations, tail-recall, rank-robustness; same native 125-feature input contract. Due fixture sintetiche NUOVE, non stessa seed R0-F/H/K. Un solo candidato fissato prima dei risultati.
+3. **Nuovi dati**: usare un nuovo campione as-of maturato, senza accettare le tre vintage Yahoo come tre mercati indipendenti. Full-V2 matched portfolio gate e risk-policy gate separati. NO GO se la capacità di selezionare top-tail scende.
+4. **Se non è possibile dimostrare la stabilità contemporaneamente per X-only e Y-only**, conservare `rank:pairwise` canonico, senza ulteriori griglie sullo stesso Original149.
+
+**Stato:** diagnostica R0-J/K/L completata nei limiti documentati, report salvato. Nessuna prova di CAGR migliorato, nessuna modifica in `Etf_trader`, nessuna validazione completa V2 in questo aggiornamento.
+
+---
+
 ## Hard constraints
 
 - Repository `AM1975MA/Test`, branch `research/v2-xgb-immutable-checkpoints-20261008` **only**; no `Etf_trader`, `Trader_selector`, production vendor source, live funding/risk code, merge or PR without explicit later authorization. This document is **an execution proposal, not permission to fit or deploy financial learners**.
