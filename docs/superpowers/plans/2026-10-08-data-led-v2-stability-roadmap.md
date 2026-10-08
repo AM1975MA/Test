@@ -74,6 +74,22 @@
 
 ---
 
+## ACTIVE DECISION UPDATE — R0-M / R0-N / R0-O (2026-10-09)
+
+**Two more attempts at stabilizing the XGBoost pairwise training process have now been concretely tested on artificial grouped datasets, independently audited and rejected as direct drop-in replacements. Do not repeat/tune them on burned historical Original149.**
+
+- **R0-M, custom pairwise objective excluding <20bp realized-return differences:** mathematical invariance to a deliberately swapped, excluded middle-relevance pair is demonstrated but future-tail quality does **not** improve. In synthetic 40 eval groups, matched custom all-pairs vs masked20: Top5 hit `33/40 vs 33/40`, exact winner `13/40 vs 12/40`, Y-only Top1 stability `38/40 vs 40/40`; NDCG `0.9177 vs 0.9159`; selected artificial return lower under mask20. Custom diagonal Hessian/all-pairs are **NOT native rank:pairwise**, so this cannot isolate the masking effect by contrasting directly against native XGB. **NO GO** [source](../reviews/2026-10-09-r0m-pair-band-results.md).
+- **R0-N, native `rank:pairwise`, one `lambdarank_num_pair_per_sample=5` change:** initial 2-world 36-fit exploratory synthetic study seemed encouraging for Top1 hit and vintage-perturbation stability but worsened full NDCG@5 in difficult world B by ~0.0249; actual forecast arrays and 53 SHA256 ZIP archive members read-only reverified, 5 unit tests PASS. [Data audit](../reviews/2026-10-09-r0n-native-pair-policy-data-audit.md). **No traceable GitHub pre-training prereg document for R0-N**, do not call it independently preregistered.
+- **R0-O, genuinely new, preregistered (commit `5b360826`) hard synthetic world B with 60 held-out query groups, three seeds and 360 rounds:** 18 independent new synthetic fits, 18 prediction files independently hash-verified, 4 TDD tests PASS, full Data audit. Native default vs topk5: X-only agreement `56/60→58/60`, Y-only `46/60→53/60`, **top1 among latent Top5 `43/60→37/60`**, selected artificial return `0.032720→0.031708`, NDCG `0.871001→0.867030`; 9 correct tail hits lost against only 3 recovered; one observed exact-winner count rises 13→15 but does **not** meet preregistered wider tail-quality gate. **TWO OF FIVE preregistered guardrails FAIL** → `NO_GO`, see [R0-O report](../reviews/2026-10-09-r0o-native-topk5-confirmation-results.md).
+
+**Scientific takeaway:** fewer pairwise comparisons or hard deletion of near-equal return pairs can suppress sensitivity to certain label and feature perturbations but **may suppress genuine positive-tail signal**. The stability/alpha frontier is not solved by a single XGB objective/topk switch. Do **not** sweep values 2/3/10, retune 20bp, try L50/Q4 again, or present artificial return deltas as financial CAGR.
+
+**Next highest-value engineering/research step:** `P0` full model/data provenance (including MA3/cluster), then `P1` *real* fixed-source score/position-to-daily-P&L attribution on **existing** frozen artifacts; distinguish X-feature and y-pair gradient causes with non-financial read-only forensics. Only after a precise causal mechanism and genuinely future point-in-time ETF observations exist should one candidate enter **matched full V2 economic gate**. If unavailable, keep canonical V2 unchanged rather than manufacture a positive result.
+
+**Current research scope is TEST-only; no `Etf_trader` code or original V2 risk/MA3 strategy changed.**
+
+---
+
 ## Hard constraints
 
 - Repository `AM1975MA/Test`, branch `research/v2-xgb-immutable-checkpoints-20261008` **only**; no `Etf_trader`, `Trader_selector`, production vendor source, live funding/risk code, merge or PR without explicit later authorization. This document is **an execution proposal, not permission to fit or deploy financial learners**.
