@@ -65,6 +65,20 @@
 
 ---
 
+## ACTIVE UPDATE R0-H (2026-10-08) — Number of boosting rounds examined, NO simple cutoff fix
+
+**User observation addressed:** earlier studies varied tree LEAF capacity but did not isolate **360 boosting rounds per seed/horizon** of canonical Compact21. R0-H [preregistered](../reviews/2026-10-08-r0h-boosting-rounds-prereg.md) and [completed](../reviews/2026-10-08-r0h-boosting-rounds-results.md) a genuinely new no-ETF-data synthetic *prefix* diagnostic, not another backtest. XGBoost `iteration_range=(0,N)` evaluates the first N trees of a fixed 360-round training trajectory; a separate 60-round refit had **exact same predictions** as the 60-prefix (maxabs 0). This isolates the cumulative contribution of later trees without fitting six separate models or selecting by past CAGR.
+
+**Fixed prefixes:** 60,120,180,240,300,360; two new synthetic worlds, three canonical XGB seeds, scenarios baseline / train X-only jitter / one actual within-query pair-reversing training label. 18 fits to 360 rounds + one 60-round parity sanity, all on artificial grouped 125-feature data, no ETF returns. Original `max_depth=4` and unconstrained `max_leaves`, original eta .035 and regularization fixed.
+
+**Actual result (ensemble):** Y-only Top1 agreement to its own matching prefix baseline A/B respectively `10/12,11/12` at 60; `10/12,9/12` at 120; `10/12,10/12` at 180; `11/12,10/12` at 240 and 300; `12/12,10/12` at 360. **Reducing rounds does NOT monotonically improve stability.** World A is more stable at 360; World B oscillates. X-only Top1 12/12 at every prefix in these new worlds although ranks/scores can move; do not generalize from toy worlds. Baseline synthetic Top5 quality A/B `12/12,8/12` at 60 and `12/12,8/12` at 360, with an intermediate peak `12/12,9/12` at 120, far too little evidence to optimize the round count. Five unit tests GREEN, syntax GREEN, all 18 full fits accounted for.
+
+**DECISION:** keep `n_estimators=360` as **unchanged incumbent**. **NO GO** for claiming fewer trees cure the original Yahoo-vintage sensitivity, and DO NOT conduct a grid search on Original149, Replay1/2/3, Golden or EU120. Also, contrary to intuition, later trees can *stabilize* some ordering on synthetic data. Need genuinely new as-of finance data and registered *one* challenger with full unchanged V2 profit/downside gates before any change is justified.
+
+**Next analytical priority remains** rank-pair inversions/ties (R0-G) **and separate training-X split/histogram sensitivity**; cutting rounds and cutting leaves have both failed to yield a consistent synthetic-only cure. Retain Dense as an untrained alternative and no-fitted adaptive Top38 filter (R0-D NO GO). True independent subagent dispatch unavailable; Superpowers methods performed inline.
+
+---
+
 ## Review Focus
 
 1. **Already-used old evidence**: no re-training on preexamined original 149 to fill missing old booster files; label 'historical split attribution unknown'. Task 1.
