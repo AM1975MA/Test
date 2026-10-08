@@ -1,0 +1,43 @@
+{
+  "status": "PARTIALLY_RECOVERED_NONREPEAT",
+  "baseline_xgboost_3_1_3": true,
+  "rounds": 360,
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "n_features": 125,
+  "grouped_train": 1440,
+  "grouped_eval": 480,
+  "world_A": {
+    "pairwise": {
+      "baseline_top5_hit": 11,
+      "baseline_exact_winner": 7,
+      "baseline_ndcg_5": 0.9337436179799677,
+      "x_only_top1_agreement": 9,
+      "y_only_top1_agreement": 10
+    },
+    "ndcg": {
+      "baseline_top5_hit": 10,
+      "baseline_exact_winner": 5,
+      "baseline_ndcg_5": 0.902242284591816,
+      "x_only_top1_agreement": 12,
+      "y_only_top1_agreement": 12
+    }
+  },
+  "world_B": {
+    "pairwise": {
+      "status": "NINE_FITS_RAN_BEFORE_INTERRUPTION_BUT_PREDICTIONS_WERE_NOT_PERSISTED;NO_METRICS_AVAILABLE"
+    },
+    "ndcg": {
+      "baseline_top5_hit": 9,
+      "baseline_exact_winner": 4,
+      "baseline_ndcg_5": 0.8096640664890268,
+      "x_only_top1_agreement": 12,
+      "y_only_top1_agreement": 9
+    }
+  },
+  "status_note": "No full World B matched pairwise-vs-ndcg comparison is possible without rerunning the lost fits; work avoids duplication. Synthetic results only, not ETF profit/financial validation",
+  "recommendation": "NO_GO_GENERAL_OBJECTIVE_SWAP"
+}
