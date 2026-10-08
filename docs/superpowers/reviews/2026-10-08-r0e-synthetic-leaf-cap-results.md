@@ -1,5 +1,7 @@
 # R0-E Results — pre-registered synthetic XGBoost leaf-cap test (no financial data)
 
+> **SUBSEQUENT CONTRADICTING EVIDENCE (R0-F, 2026-10-08): DO NOT PROMOTE max_leaves=8.** A genuinely rank-reversing single-label test with 360 trees, two independent synthetic worlds and separate X/Y perturbations showed capped-8 stability **sometimes worse** than original depth-4 XGBoost. This older report is retained only as the exact preregistered R0-E outcome. See [R0-F](2026-10-08-r0f-rank-reversal-360-results.md) and [active plan](../plans/2026-10-08-v2-xgb-training-stability-research.md).
+
 **Date:** 2026-10-08. **Status:** SYNTHETIC MECHANISM EVIDENCE ONLY, NOT PERFORMANCE APPROVAL.
 **Repository:** `AM1975MA/Test`, research branch `research/v2-xgb-immutable-checkpoints-20261008`.
 **Frozen preregistration:** [R0-E protocol](2026-10-08-r0e-synthetic-leaf-cap-prereg.md), commit `17ac960659f8eda26efea1138618fd8b39832bb2`, published before running model fits.
