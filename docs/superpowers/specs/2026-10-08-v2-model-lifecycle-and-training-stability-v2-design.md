@@ -4,6 +4,8 @@
 **Project:** `AM1975MA/Test`. **Development branch:** `research/v2-xgb-immutable-checkpoints-20261008`.
 **Supersedes the intent**, not the history, of `docs/superpowers/specs/2026-10-08-etf-v2-checkpoint-integration-design.md` and its original checkpoint-only plan. The old artifacts remain intact as evidence. **No change to `Etf_trader`, `Trader_selector`, or `vendor/etf_trader_v2` until a subsequent separate approval. No prior financial tests repeated.**
 
+> **Approved analytical extension (user confirmation, 2026-10-08):** evaluate (i) XGBoost number/shape of leaves, (ii) regularized stacked Dense learning-to-rank, (iii) 149→37/38 high-recall funnel **on existing evidence only**. The authoritative [analysis-only addendum](2026-10-08-v2-three-architecture-analysis-addendum.md) defines scope and four specialist review briefs. Existing frozen-LTR Top38 winner-retention diagnostic [97/114 months](../reviews/2026-10-08-r0-frozen-top-quartile-recall.md) is *not* canonical Compact21, not full-V2 CAGR, and not prospective validation. **No new fitting, tests or implementation are approved.**
+
 ## 1. Correction of the original goal
 
 **Wrong implicit interpretation to avoid:** a frozen trained XGBoost is a solution to the sensitivity of training; or it ought to be used indefinitely when new tickers/time periods arrive; or it ought to be preferred merely because an old historical CAGR was high.
