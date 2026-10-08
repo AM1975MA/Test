@@ -1,0 +1,14 @@
+{
+  "source": "frozen Yahoo Repeat1 adjusted Open, original149, 267 mature signal dates, 21 trading-day future returns",
+  "fee_cost_per_side_bp": 10,
+  "illustrative_roundtrip_bp": 20,
+  "pairs_total": 2333613,
+  "pairs_under_10bp": 45181,
+  "pairs_under_20bp": 88417,
+  "top_decile_pairs_total": 454043,
+  "top_decile_pairs_under_20bp": 2373,
+  "top_decile_vs_bottom_quartile_pairs": 118939,
+  "top_decile_vs_bottom_quartile_pairs_under_20bp": 0,
+  "financial_training": false,
+  "full_v2_backtest": false
+}
