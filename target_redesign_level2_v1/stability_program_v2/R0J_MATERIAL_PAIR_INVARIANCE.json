@@ -1,0 +1,19 @@
+{
+  "source": "frozen Yahoo Repeat1/Repeat3 adjusted Open, 149 ETF original universe; strict material-pair orientation",
+  "months": 267,
+  "common_pairs": 2333613,
+  "band_10bp": {
+    "eligible_both": 2288421,
+    "eligible_either": 2288438,
+    "eligibility_flips": 17,
+    "sign_inversions_if_eligible_either": 0
+  },
+  "band_20bp": {
+    "eligible_both": 2245191,
+    "eligible_either": 2245205,
+    "eligibility_flips": 14,
+    "sign_inversions_if_eligible_either": 0
+  },
+  "financial_training": false,
+  "full_v2_backtest": false
+}
