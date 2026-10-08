@@ -47,6 +47,14 @@
 
 ---
 
+## 2026-10-09 R0-M — completed pre-registered synthetic three-arm mask test (active stop decision)
+
+[Original R0-M preregistration](../reviews/2026-10-09-r0m-pair-band-prereg.md), [new Data review with results](../reviews/2026-10-09-r0m-data-pairmask-results.md). **18 synthetic XGBoost fits**, 2 independent artificial worlds, 3 training conditions and 3 model objectives, seed101 and 360 rounds; **no real ETF train, no full V2 financial backtest**. The proper mask-only comparison is custom full-pair logistic **20bp versus 0bp**, NOT native rank:pairwise versus custom. A pair reversal under 0.1bp of synthetic forward return produces **Top1 stability 40/40 vs 38/40** in the matched custom models; however **top5 capture changes 17→18 in world A, 16→15 in world B**, exact synthetic winner aggregate **13→12/40**, average NDCG drops **.917695→.915921**, and selected synthetic return worsens in both worlds. Train-X stability **40/40→39/40**. **Predeclared joint gate: FAIL / NO GO; do not integrate 20bp hard-mask objective or tune a new threshold on Original149**. Programmatically validated: **12/12 focused Python tests GREEN**, independent Data results audit PASS. Full source/test/JSON artifact zipped for download; not all source files are GitHub-committed. 
+
+**Subsequent direction:** (1) preserve source-native pair sampling/scale/curvature as far as possible; (2) define ambiguous pairs using independently measured data-revision uncertainty, not the assumed trade fee as a sufficient measurement-error bound; (3) avoid hard threshold eligibility discontinuities (14 real Repeat1/3 threshold flips at 20bp), consider *hypothetical* continuous weighting only after a different pre-registration; (4) require train-X-only stress and high-upside selection alongside rank consistency. **This is a research hypothesis, not a proven solution.** Existing V2 360 rounds, three seeds, MA3 and risk remain untouched.
+
+---
+
 ## Hard constraints
 
 - Repository `AM1975MA/Test`, branch `research/v2-xgb-immutable-checkpoints-20261008` **only**; no `Etf_trader`, `Trader_selector`, production vendor source, live funding/risk code, merge or PR without explicit later authorization. This document is **an execution proposal, not permission to fit or deploy financial learners**.
