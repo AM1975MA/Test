@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-08",
+  "scope": "synthetic API compatibility and immutable contract only",
+  "engine": "xgboost 3.1.3",
+  "checkpoint_unit_tests": 8,
+  "xgboost_compat_tests": 2,
+  "total_tests_passed": 10,
+  "original_worker": "QuantileDMatrix",
+  "refresh_with_quantile_dmatrix": "FAIL: Not implemented for QuantileDMatrix",
+  "refresh_with_dmatrix": "PASS",
+  "rank_objective": "rank:pairwise",
+  "base_tree_count": 12,
+  "updated_tree_count": 12,
+  "identical_split_topology": true,
+  "changed_leaf_count": 87,
+  "updated_model_reload_prediction_max_abs_diff": 0,
+  "refresh_vs_original_prediction_max_abs_diff": 0.5497514605522156,
+  "full_v2_cagr_test": "NOT EXECUTED",
+  "production_changes": "NONE",
+  "research_repo_target": "AM1975MA/Test"
+}
