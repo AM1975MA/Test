@@ -24,7 +24,7 @@ The read-only reviewer independently re-executed *tests and audit on preserved m
 - R0-M purposely reverses one synthetic ordinal pair of near-identical returns; it falls within the 20bp mask before and after reversal. The perfect Y stability of that arm is therefore *partly structurally guaranteed by how the perturbation was designed*, not evidence of immunity to broad vendor-vintage revisions.
 
 **Independent revalidation 2026-10-09**:
-- `pytest` on original R0M four tests and original R0L eight tests: **12 PASSED**; R0M `data_audit.py` reports **`DATA_AUDIT_PASS`**, **18 archived models**, two worlds and all three training scenarios. No model training performed by QA.
+- `pytest` on original R0M four tests and original R0L eight tests: **12 PASSED**; R0M `data_audit.py` reports **`DATA_AUDIT_PASS`**, **18 fitted model runs accounted for in the archived metrics/logs (R0-M did not preserve Booster checkpoints or per-query prediction arrays)**, two worlds and all three training scenarios. No model training performed by QA.
 - Additionally audited related closer-to-native R0-O `rank:pairwise` topk5 vs default, full canonical three XGB seeds and 360 iterations: in 60 artificial test groups top5 hits **43→37**, exact winners **13→15**, NDCG@5 **0.871001→0.867030**, artificial return **3.27199%→3.17076%**, X-only Top1 agreement **56→58**, Y-only **46→53**. Four targeted tests PASS; archived `data_audit.py` recomputation returned `guards_all_pass=false`. This distinct native-topk5 objective also **fails joint release gate** and should not be tuned against old Original149.
 - **No full V2 trading engine/canonical MA3 predictions were generated for either intervention**, so **financial CAGR and daily drawdown are unknown**, not zero.
 
