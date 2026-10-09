@@ -1,0 +1,31 @@
+name: ETF_EXTREME_RETURNS_FORENSICS_V1
+on:
+  push:
+    branches: [research/etf-extreme-returns-forensics-v1]
+    paths: [.github/workflows/etf-extreme-returns-forensics-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  forensic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Retrieve three immutable original Yahoo input acquisitions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+      - name: Independently reconstruct and deduplicate all return alerts
+        run: python -m data_quality_audit_v1.extreme_return_forensics --r1 _raw/_repeat1 --r2 _raw/_repeat2 --r3 _raw/_repeat3 --out _events
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: etf-extreme-returns-forensics-v1
+          retention-days: 90
+          path: _events/
