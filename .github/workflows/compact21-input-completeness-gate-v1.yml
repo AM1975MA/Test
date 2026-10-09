@@ -1,0 +1,55 @@
+name: COMPACT21_INPUT_COMPLETENESS_GATE_V1
+on:
+  push:
+    branches: [research/compact-input-completeness-gate-v1]
+    paths: [.github/workflows/compact21-input-completeness-gate-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [original, downvol_experimental]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Immutable frozen 125 feature contract from canonical source
+        run: |
+          python - <<'PY'
+          import ast,json
+          from pathlib import Path
+          source=ast.parse(Path('vendor/etf_trader_v2/src/etf_trader/source_only/kernel.py').read_text())
+          features=next(ast.literal_eval(n.value) for n in source.body
+            if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='F2D_FEATURES' for t in n.targets))
+          assert len(features)==125 and len(set(features))==125
+          Path('_features.json').write_text(json.dumps(features))
+          print('CANONICAL_FEATURE_CONTRACT_125_PASS')
+          PY
+      - name: Restore independent Original149 source panels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for r in 1 2 3; do
+            if [ "${{ matrix.variant }}" = original ]; then
+              gh run download 37150436612 -R ${{ github.repository }} -n titanium-internal-fixed-repeat-${r} -D "_input/r${r}"
+            else
+              gh run download 37936573578 -R ${{ github.repository }} -n cleaned-original149-repeat-${r} -D "_input/r${r}"
+            fi
+            test -f "_input/r${r}/TI_COMPACT.parquet"
+          done
+      - name: All 125 columns, 30-vs-125 cohort/temporal coverage, pairwise drift
+        run: |
+          python data_quality_audit_v1/completeness_gate.py --r1 _input/r1 --r2 _input/r2 --r3 _input/r3 --features _features.json --out _result
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compact21-input-completeness-${{ matrix.variant }}
+          retention-days: 90
+          path: _result/
