@@ -1,0 +1,16 @@
+# R0-Q — preregistration of parameter-free continuous downside-risk feature (no ETF model fitting)
+**2026-10-09 | AM1975MA/Test | research/v2-xgb-immutable-checkpoints-20261008**
+
+**Status frozen before computing new outcome.** This new experiment is a READ-ONLY FEATURE diagnostic in response to R0-P's demonstrated raw Yahoo Repeat1/3 sign-at-zero/downside-volatility amplification. It does not test/train canonical Compact21, edit source-only code, run full V2, or use 2017–26 P&L to choose parameters.
+
+**Fixed universe and data:** exact frozen `yfinance-repeatability-v1-raw.zip` (149 ETF, adjusted Close), source sha256 `fcc02918b3a42c3fecde273c4639ca4eed1b5f31e4b8c32aeea4c2a8e4c00f86`, repeats 1 and 3; last SPY-valid trading signal for every month Feb 2004–Jul 2026, horizons **21/63/126** already used by source-only. No future rows for features. For each lookback, use `r_t=log(C_t/C_(t-1))`.
+
+**Reference exact original:** `rolling_downvol(r,h) = std(ddof=0, r.where(r<0).rolling(h,min_periods=max(10,h//2)))*sqrt(252)`. Reference normalization `(x-cross_section_median)/(1.4826*cross_section_MAD)`, clipped to [-8,8]. This value is discontinuous under a near-zero return's sign crossing because sample membership and minimum-valid-count can change.
+
+**ONE parameter-free candidate**, not a numerical epsilon sweep: continuous downside root-mean-square / lower-partial moment about zero `sqrt(rolling_mean( minimum(r,0)**2, window=h, min_periods=h))*sqrt(252)`. Negative log returns count with their magnitude, zero and positive returns count as **zero downside contributions**, not NaN. The mapping `r→min(r,0)^2` is continuous at zero. It has DIFFERENT statistical semantics from the existing negative-only conditional standard deviation; no claim of equivalence or preservation of alpha. Same robust cross-sectional median/MAD map and clamp, computed only from as-of signal data.
+
+**Predeclared outcomes** for each horizon and within each vintage: complete paired cell counts; cross-vintage mean, p99 and max absolute change of raw-feature and normalized-feature; number >0.01 and >0.1 normalized units; missingness disagreement. **Information preservation caution:** within each vintage monthly Spearman of original vs alternative raw downside risk on finite common tickers, median/IQR across dates, and median top-10 ETF set intersection. Do NOT select horizon or threshold by best result; never translate predictor similarity directly into economic non-inferiority.
+
+**Special attribution check:** months with original normalized change >0.1: compare continuous norm spread on *those fixed original anomaly dates*; record if any remain. For IYT 2007-06-29 sign crossing show original/continuous count and risk scores. Require source-matched reference parity against R0-P published figures on all three horizons before accepting candidate diagnostics.
+
+**Stop rules:** an apparent revision-stability gain accompanied by major rank reordering compared with original means `SYNTHETIC/FEATURE-ONLY CAUTION`, not deployment; even perfect feature agreement cannot prove the whole 125-feature annual XGB fit stable. If a meaningful fixed-horizon result emerges, recommend one new *prospective* point-in-time and full V2 gate. **No ETF training, CAGR, hyperparameter tuning or production commit.**
