@@ -106,6 +106,15 @@ This note is the **latest active priority**. Older R0 synthetic plans remain in 
 
 ---
 
+## ACTIVE DATA GATE R0-Q (2026-10-09) — Real Yahoo feature discontinuity
+
+**New strongest actual-input evidence:** R0-Q [preregistered](../reviews/2026-10-09-r0q-continuous-downside-feature-prereg.md) and [Data-reviewed](../reviews/2026-10-09-r0q-continuous-downside-feature-results.md). On 149 real ETFs, 270 month ends, frozen Yahoo Repeat1/3, a **parameter-free** continuous lower-partial-moment downside volatility removes original large normalized feature-change events **on exact same valid ticker/date support**: 21d native 44 cells >0.1 → LPM2 0, 63d 16→0, 126d 4→0. Native vs LPM2 cross-vintage **mean absolute difference reduction 23.2× / 44.0× / 24.2×** on matched support; not a fitted score or simulated investment return. Earlier overall max differences 0.911→0.00230, 0.3616→0.00130, 0.9676→0.00041 were *not matched-support*, and must never be presented as economic robustness.
+
+**Decisive QA/risk:** the new downside definition increases nonmissing feature counts 1.90×/2.72×/3.95× (21/63/126). Top10 ETF risk-feature overlap original vs new is only 83.2%/89.5%/93.3% on average and semantics are changed, so **NO production promotion or CAGR claim**. Actual Compact21 uses `at least 30 of 125 features` to accept a row; changes in feature availability do *not* prove new row count. No fitted model/financial replay was run.
+
+**Adjusted priority after R0-M/O FAILS:** stop default custom full-pair 20bp masked loss and native topk5 as candidate fixes (tail quality loss). Prioritize the now source-verified **feature-sign membership discontinuity**, its missingness/MA3 lineage, and then **one prospective X-feature-only ablation** with real new point-in-time market observations. A single fixed LPM2 challenger may be considered only after new as-of data/maturity checks and the identical annual XGB three seeds/two horizons/full V2 economic gate; if unavailable, `NO MODEL CHANGE`. Never silently reuse boosters trained on original downvol with LPM2 features.
+
+---
 ## Hard constraints
 
 - Repository `AM1975MA/Test`, branch `research/v2-xgb-immutable-checkpoints-20261008` **only**; no `Etf_trader`, `Trader_selector`, production vendor source, live funding/risk code, merge or PR without explicit later authorization. This document is **an execution proposal, not permission to fit or deploy financial learners**.
