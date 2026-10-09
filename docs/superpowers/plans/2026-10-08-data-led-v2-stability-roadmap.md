@@ -1,5 +1,7 @@
 # ETF Trader V2 — Data-led training stability Implementation & Research Plan
 
+> **VERDETTO OPERATIVO AGGIORNATO, 2026-10-09:** il test pairwise `R0-M` con filtro rigido di 20 bp è **NO GO** (0bp vs 20bp custom: stabilità y-only 38→40/40, ma X-only 40→39/40, vincitore esatto 13→12/40, NDCG peggiora). Non ripetere i 18 fit sintetici. Il dato reale `R0-Q` identifica invece una concreta discontinuità in `rolling_downvol` e un'alternativa continua che riduce di **23.20×/43.96×/24.25×** la differenza media tra Repeat1/3 sulle stesse celle valide 21/63/126; **nessun modello rifittato, nessun CAGR dimostrato**. La nuova feature cambia semantica e copertura: prossimo gate = parità e maturità del pannello completo 125 feature prima di un eventuale unico test X-only preregistrato su nuovi dati causali. Riferimento Data: [verdetto R0M/R0Q](../reviews/2026-10-09-data-r0m-r0q-decision.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** eliminate silent retraining/data-vintage drift and establish **at most one** mechanism-backed change to Compact21 which demonstrably reduces economically material prediction instability **without sacrificing full V2 upside capture**.
