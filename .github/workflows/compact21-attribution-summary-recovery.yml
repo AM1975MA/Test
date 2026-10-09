@@ -4,6 +4,7 @@ on:
     branches: [research/compact21-training-source-attribution-v1]
     paths:
       - .github/workflows/compact21-attribution-summary-recovery.yml
+      - compact21_training_attribution_v1/summarize.py
   workflow_dispatch:
 permissions:
   contents: read
