@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 
 from compact21_semidev_v1.view import sha
+from compact21_predictive_v2.summarize import normalized_numeric
 from ranker_stability_v1.run_ranker_benchmark_full import stability
 
 LINE = "COMPACT21_TRAINING_SOURCE_ATTRIBUTION_V1"
@@ -60,7 +61,7 @@ def summarize(root: Path):
                    and v.get("metadata_exact") for v in r["controls"].values()):
             raise ValueError("Original BASE exact parity missing")
         fixed = (r["input_sha256"], r["fit_sources"],
-                 r["preregistration_sha256"], r["numeric_contract"],
+                 r["preregistration_sha256"], normalized_numeric(r["numeric_contract"]),
                  r["reference_baseline_sha256"])
         if hashes is None:
             hashes = fixed
