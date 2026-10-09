@@ -90,6 +90,22 @@
 
 ---
 
+## NEW ACTIVE EVIDENCE (2026-10-09): R0-P real Yahoo source-feature discontinuity
+
+**Actionable finding** from [Data R0-P](../reviews/2026-10-09-r0p-real-feature-signflip-root-cause.md), **not a full V2 CAGR improvement**. Yahoo Repeat1/3 adjusted Close of IYT on **2007-06-28** changed a near-zero one-day log return from +1.0455e-7 to −1.0455e-7. The canonical `rolling_downvol` uses `ret.where(ret<0)` and a hard `min_periods=max(10,h//2)`. For IYT, `downvol63` negative sample count on 2007-06-29 crossed **30→31 (min 31)** and `downvol126` count crossed **62→63 (min 63)** in October 2007. This adds IYT to the robust cross-sectional med/MAD cohort in one raw vintage only, altering **other ETFs' normalized features despite byte-identical raw downside-vol**. E.g. UNG `downvol63_dev` 2.153→2.515, SLV `downvol21_dev` 5.824→4.913 and LQD `downvol126_dev` −6.551→−5.584. **This is a real upstream amplification mechanism, no learner fit needed.**
+
+R0-P duplicated original `TITANIUM_INTERNAL.json` repeat1/3 feature delta maxima exactly to <1e-10 on **149 frozen tickers ×270 monthly last-trading dates**. Exploratory `epsilon=1e-6` log-return negativity guard (post-hoc **not optimized or approved**) reduces **MAX native vintage** deltas: `downvol21_dev 0.9110→0.00152`, `downvol63_dev 0.3616→0.00112`, `downvol126_dev 0.9676→0.00260`; no cross-vintage missingness disagreements remain in these three independently reconstructed feature panels. TDD 3 PASS, independent Data checks PASS. **BUT** in Repeat3 alone there are 81/79/10 feature cells >0.01 changed relative to the original by h21/63/126, and other features and true V2 learner/MA3 states are untreated. No CAGR, Top5 hit or true fit stability has been measured; it is **not safe to patch production** or claim whole-strategy alpha preservation.
+
+**Research decision changes:**
+1. **Prioritize a source-faithful, point-in-time numerical-discontinuity diagnosis of *all 125 features*** and of `min_periods`, return sign/missingness and robust median/MAD cohort before further XGB loss/leaf/topk hyperparameter trials.
+2. Keep original `rank:pairwise`, three seeds, 360 rounds and MA3 V2 as canonical control. **R0-M hard 20bp pair exclusion and R0-O native topk5 failed conjunctive tail-quality gates**; do not retune them on burnt market history or toy worlds.
+3. Build only **research-local TDD parity and content-addressed model/feature lineage**; derive a numerical tolerance from **data-provider precision/as-of revision characteristics**, not best historical CAGR. A prospective source-side candidate must additionally establish no missingness/feature-distribution harm and retain high-upside capture in a wholly matched full V2 with independent as-of data.
+4. If no pristine prospective vintage exists, retain the original model and document this **real data input instability** as the next development-worthy root cause; do not invent future financial validation results.
+
+This note is the **latest active priority**. Older R0 synthetic plans remain in the history for audit, not invitations to repeat them.
+
+---
+
 ## Hard constraints
 
 - Repository `AM1975MA/Test`, branch `research/v2-xgb-immutable-checkpoints-20261008` **only**; no `Etf_trader`, `Trader_selector`, production vendor source, live funding/risk code, merge or PR without explicit later authorization. This document is **an execution proposal, not permission to fit or deploy financial learners**.
