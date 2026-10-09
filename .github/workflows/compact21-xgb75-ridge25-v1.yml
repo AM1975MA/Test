@@ -1,0 +1,57 @@
+name: COMPACT21_XGB75_RIDGE25_V1
+on:
+  push:
+    branches: [research/compact21-xgb75-ridge25-v1]
+    paths: [.github/workflows/compact21-xgb75-ridge25-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: 'Haswell'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  frozen_hybrid:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - name: Frozen source numerical runtime
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - name: Source integrity gate
+        run: python compact21_stability_v1/source_gate.py
+      - name: Synthetic implementation and predictive tests
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m unittest discover -s compact21_xgb_ridge_hybrid_v1/tests -v 2>&1 | tee HYBRID_VALIDATION.txt
+          python -m unittest discover -s compact21_predictive_v2/tests -v 2>&1 | tee PREDICTIVE_VALIDATION.txt
+      - name: Immutable full-history BASE and RIDGE predictive vectors
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37229180477 -R ${{ github.repository }} -n predictive-BASE -D _reference/BASE
+          gh run download 37229180477 -R ${{ github.repository }} -n predictive-RIDGE -D _reference/RIDGE
+      - name: Independent 114-month stability and quality gates
+        run: python -m compact21_xgb_ridge_hybrid_v1.evaluate --reference _reference --out _summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: xgb75-ridge25-summary
+          retention-days: 90
+          path: _summary/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: xgb75-ridge25-tests
+          retention-days: 90
+          path: '*VALIDATION.txt'
