@@ -20,6 +20,18 @@ KEYS=["signal_date","ticker"]
 YEARS=tuple(range(2017,2027))
 
 
+def exact_prediction_cohort(candidate, baseline):
+    """Compare all non-score evidence after canonical key sorting only."""
+    order=["vintage","signal_date","ticker"]
+    if any(col not in candidate for col in order+["pred"]) or any(col not in baseline for col in order+["pred"]):
+        raise ValueError("Incomplete prediction evidence columns")
+    if len(candidate)!=len(baseline) or candidate.duplicated(order).any() or baseline.duplicated(order).any():
+        raise ValueError("Missing/duplicate original prediction coverage")
+    left=candidate.sort_values(order).reset_index(drop=True).drop(columns="pred")
+    right=baseline.sort_values(order).reset_index(drop=True).drop(columns="pred")
+    pd.testing.assert_frame_equal(left,right,check_exact=True)
+
+
 def summarize(years,refdir):
     base=load_variant(refdir,"BASE")
     br=base["result"]
@@ -60,10 +72,7 @@ def summarize(years,refdir):
     for tag,actual,old in (("native",n,base["native"]),("common",c,base["common"])):
         if actual.signal_date.nunique()!=114 or actual.vintage.nunique()!=3:
             raise ValueError("Original 114-month or vintage support missing")
-        if len(actual)!=len(old):
-            raise ValueError("Row coverage changed")
-        pd.testing.assert_frame_equal(actual.drop(columns="pred"),
-                                     old.drop(columns="pred"),check_exact=True)
+        exact_prediction_cohort(actual,old)
         if not np.isfinite(actual.pred.to_numpy(dtype=float)).all():
             raise ValueError("Nonfinite cleaned model output")
     ev=evaluate(n,quality_exit_cutoff="2026-07-01",expected_keys=base["native"][["vintage"]+KEYS])
