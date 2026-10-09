@@ -1,0 +1,64 @@
+name: COMPACT21_LEARNER_SWAP_FULL_RECOVERY
+on:
+  push:
+    branches: [research/compact21-learner-swap-recovery-v1]
+    paths: [.github/workflows/compact21-learner-swap-full-recovery.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: 'Haswell'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  read_only_reconstruct:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - name: Original source summarizer dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - name: Canonical source gate
+        run: python compact21_stability_v1/source_gate.py
+      - name: Reuse original benchmark, 9 full and 3 MA3 reference artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37195399755 -R ${{ github.repository }} -p 'learner-benchmark-*' -D _benchmarks
+          gh run download 37195399755 -R ${{ github.repository }} -p 'learner-full-*' -D _fulls
+          gh run download 37195399755 -R ${{ github.repository }} -p 'learner-ma3-reference-r*' -D _refs
+          for v in BASE RIDGE LGBM_LAMBDARANK; do
+            test -f "_benchmarks/learner-benchmark-${v}/${v}.json"
+            for r in 1 2 3; do
+              test -f "_fulls/learner-full-${v}-r${r}/RESULT_${v}.json"
+            done
+          done
+      - name: Reproduce original preregistered three-model benchmark verdict
+        run: |
+          mkdir -p _summary
+          python compact21_learner_swap_v1/summarize.py --inputs _benchmarks --out _summary/BENCHMARK.json
+      - name: Full semantic audit and independent original nine-replay economic gates
+        run: |
+          python compact21_learner_swap_v1/summarize_full.py --inputs _fulls --out _summary/FULL_REPLAY.json --benchmark-summary _summary/BENCHMARK.json --ma3-reference-inputs _refs
+          python - <<'PY'
+          import json
+          r=json.load(open('_summary/FULL_REPLAY.json'))
+          print('FULL_REPLAY_STATUS',r.get('status'))
+          print('ROOT_KEYS',list(r))
+          print('FINAL_EVIDENCE_EXISTS',bool(r))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: learner-original9-full-recovery
+          retention-days: 90
+          path: _summary/
