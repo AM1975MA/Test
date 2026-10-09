@@ -1,0 +1,101 @@
+name: COMPACT21_CLEAN_DOWNVOL_TRAINING_V1
+on:
+  push:
+    branches: [research/compact21-clean-downvol-training-v1]
+    paths: [.github/workflows/compact21-clean-downvol-training-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: compact21-cleaned-training-${{ github.sha }}
+  cancel-in-progress: false
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: 'Haswell'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+  ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+  ETF_TRADER_XGB_WORKERS: '1'
+jobs:
+  validation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - name: Frozen dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - name: Canonical source gate
+        run: python compact21_stability_v1/source_gate.py
+      - name: Fixed source-cleaning and original predictive regression tests
+        run: |
+          python -m unittest discover -s compact21_downvol_cleanup_v1/tests -v
+          python -m unittest discover -s compact21_predictive_v2/tests -v
+  yearly:
+    needs: validation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        year: [2017,2018,2019,2020,2021,2022,2023,2024,2025,2026]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - name: Frozen dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - name: Canonical source gate
+        run: python compact21_stability_v1/source_gate.py
+      - name: Three independent prospectively cleaned source panels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37936573578 -R ${{ github.repository }} -n cleaned-original149-repeat-1 -D _clean/r1
+          gh run download 37936573578 -R ${{ github.repository }} -n cleaned-original149-repeat-2 -D _clean/r2
+          gh run download 37936573578 -R ${{ github.repository }} -n cleaned-original149-repeat-3 -D _clean/r3
+          gh run download 37229180477 -R ${{ github.repository }} -n predictive-BASE -D _ref
+      - name: Canonical XGB training, independent refit and exact original outcomes
+        run: python -m compact21_downvol_cleanup_v1.train --year ${{ matrix.year }} --r1 _clean/r1 --r2 _clean/r2 --r3 _clean/r3 --reference _ref --out _year
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cleaned-model-${{ matrix.year }}
+          retention-days: 90
+          path: _year/
+  summary:
+    needs: yearly
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - name: Frozen dependencies
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cleaned-model-20*
+          path: _years
+      - name: Frozen original BASE vectors and outcomes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 37229180477 -R ${{ github.repository }} -n predictive-BASE -D _ref
+      - name: Independent stability, quality and statistical paired gates
+        run: python -m compact21_downvol_cleanup_v1.summarize_training --years _years --reference _ref --out _summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cleaned-downvol-model-summary
+          retention-days: 90
+          path: _summary/
