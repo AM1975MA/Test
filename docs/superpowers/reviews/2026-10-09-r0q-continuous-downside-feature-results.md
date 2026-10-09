@@ -59,3 +59,19 @@ This is informative similarity but substantial change in feature ordering. With 
 ## Additional source-code eligibility QA
 
 The source-only `models.py` does **not** require every feature to be present: it defines `valid = frame[k.F2D_FEATURES].notna().sum(axis=1) >= 30`, and each annual `Xtr` retains its remaining per-feature NaNs for `QuantileDMatrix`. Therefore **a feature's available cell count is not the same thing as the number of training rows**. R0-Q proves large changes to the *downvol feature availability*, but **does not measure whether any canonical ETF training row enters/leaves the actual >=30-feature cohort**. Such a conclusion requires the full 125-feature point-in-time panel. The new feature is not a drop-in replacement even if the selected train-row cohort happens to remain identical, because NaN routing, ranks and values change.
+
+## Post-run Data matched-support review (quality-control only, not a new test-selected threshold)
+
+The first attempt to compare on the original native support **failed**, because 4/23/13 cells (21/63/126 sessions) originally finite across Repeat1/Repeat3 were *not* finite under the challenger (for example early incomplete lookbacks). This must not be hidden. We therefore used the **four-way intersection** of both formulas and both price vintages:
+
+| Window | Four-way valid cells | Original valid cells excluded | Max original delta on these cells | Max LPM2 delta on exactly same cells | Cells >0.1 native→LPM2 | Mean delta reduction |
+|---|---:|---:|---:|---:|---:|---:|
+| 21 | 18,412 | 4 | 0.911013 | 0.002302 | 44→**0** | **23.2×** |
+| 63 | 12,724 | 23 | 0.235884 | 0.000656 | 16→**0** | **44.0×** |
+| 126 | 8,676 | 13 | 0.967647 | 0.000404 | 4→**0** | **24.2×** |
+
+Thus a material feature-stability advantage remains on *exactly matched ETF/date support*, even when the differing missingness is excluded from both arms. The earlier headline 396×/278×/2,335× max gap reduction compared each formula's *own* valid support, so those ratios are **not** matched-support causal comparisons; use the new table for any like-for-like conclusion. QA metrics came from `matched_support_audit.py`, which belongs to the checked conversation ZIP `ETF_Trader_V2_R0Q_Continuous_Downside_Data.zip` (15 files).
+
+**Source-level row eligibility caveat:** `models.py::fit_predict` applies `frame[k.F2D_FEATURES].notna().sum(axis=1)>=30`. Therefore a change in *one feature's* observed-cell count does not prove a change in the number of *training rows*: annual train rows may remain the same and only missing-value routing change. The complete 125-feature panel is required to quantify cohort changes.
+
+**Final QA:** 6 focused tests GREEN, `compileall` PASS, Data audit PASS, matched-support audit PASS, ZIP manifest hashes verified. No XGB fit and no portfolio backtest.
