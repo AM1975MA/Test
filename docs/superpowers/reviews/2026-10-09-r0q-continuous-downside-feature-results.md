@@ -55,3 +55,7 @@ This is informative similarity but substantial change in feature ordering. With 
 5. A label-only confidence-margin fix and native topk5 fit already **FAILED** joint synthetic gates (R0-M and R0-O); do not rerun those or overwrite annual V2.
 
 **Bottom line:** We have located a concrete and preventable *input numerical discontinuity* with large cross-vintage amplification in the actual ETF source feature. We have not proven that removing this discontinuity improves the economic objective. Real missingness and feature-rank changes make prospective predictive and full-V2 validation mandatory.
+
+## Additional source-code eligibility QA
+
+The source-only `models.py` does **not** require every feature to be present: it defines `valid = frame[k.F2D_FEATURES].notna().sum(axis=1) >= 30`, and each annual `Xtr` retains its remaining per-feature NaNs for `QuantileDMatrix`. Therefore **a feature's available cell count is not the same thing as the number of training rows**. R0-Q proves large changes to the *downvol feature availability*, but **does not measure whether any canonical ETF training row enters/leaves the actual >=30-feature cohort**. Such a conclusion requires the full 125-feature point-in-time panel. The new feature is not a drop-in replacement even if the selected train-row cohort happens to remain identical, because NaN routing, ranks and values change.
