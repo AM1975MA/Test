@@ -45,7 +45,7 @@ def repair_downvol_family(panel: pd.DataFrame, log_returns: pd.DataFrame,
     dates=pd.DatetimeIndex(dates)
     if not dates.is_unique or not dates.is_monotonic_increasing:
         raise ValueError("Invalid feature calendar")
-    if panel.ticker.astype(str).isin(log_returns.columns).all() is False:
+    if not panel.ticker.astype(str).isin(log_returns.columns).all():
         raise ValueError("Unknown ticker in original returns")
     if not pd.to_datetime(panel.signal_date).isin(dates).all():
         raise ValueError("Original panel date outside frozen calendar")
