@@ -52,7 +52,7 @@ def main():
  report=dict(status="RESIDUAL_NAN_ROOTCAUSE_PROFILE_COMPLETE",source_run=37936573578,
    counts=[dict(repeat=i,eligible=int(x.eligible.sum()),incomplete=int(x.incomplete.sum()),
       full_complete=int((x.eligible&~x.incomplete).sum()),
-      missing_feature_values_on_incomplete=int(x.loc[x.incomplete,"missing_count"].sum())) for i,x in enumerate(signatures,1)],
+      missing_feature_values_on_incomplete=int(rows[i-1].loc[rows[i-1].incomplete,"missing_count"].sum())) for i,x in enumerate(signatures,1)],
    pairwise_incomplete_mask_changes=pair,
    worst_features=base.head(30).to_dict("records"),
    unresolved_not_yet_classified_as_broken=True,trained=False,changed_raw=False)
