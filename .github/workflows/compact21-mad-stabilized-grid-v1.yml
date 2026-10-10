@@ -1,0 +1,35 @@
+name: COMPACT21_MAD_STABILIZED_GRID_V1
+on:
+  push:
+    branches: [research/compact21-mad-stabilized-grid-v1]
+    paths: [.github/workflows/compact21-mad-stabilized-grid-v1.yml, data_quality_audit_v1/mad_stabilized_grid.py]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  data_only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Retrieve exact original independent per-source research features
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for r in 1 2 3; do
+            gh run download 37936573578 -R ${{ github.repository }} -n cleaned-original149-repeat-${r} -D "_panel/r${r}"
+            test -f "_panel/r${r}/TI_COMPACT.parquet"
+          done
+      - name: Analyze frozen denominator grid and synthetic epsilon perturbations
+        run: python data_quality_audit_v1/mad_stabilized_grid.py --r1 _panel/r1 --r2 _panel/r2 --r3 _panel/r3 --out _result
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compact21-mad-stabilized-grid-v1
+          retention-days: 90
+          path: _result/
