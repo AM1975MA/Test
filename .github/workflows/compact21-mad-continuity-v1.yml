@@ -2,7 +2,7 @@ name: COMPACT21_MAD_CONTINUITY_V1
 on:
   push:
     branches: [research/compact21-mad-continuity-v1]
-    paths: [.github/workflows/compact21-mad-continuity-v1.yml]
+    paths: [.github/workflows/compact21-mad-continuity-v1.yml, data_quality_audit_v1/mad_continuity.py]
   workflow_dispatch:
 permissions:
   contents: read
