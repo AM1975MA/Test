@@ -59,6 +59,9 @@ def main():
   "transitions":b.groupby("kind")[["observations","diff_gt_0_1","diff_gt_1"]].sum().reset_index().to_dict("records"),
   "max_transition_abs_diff":float(b.loc[b.kind.eq("zero_positive_flip"),"max_abs_diff"].max()) if b.kind.eq("zero_positive_flip").any() else None,
   "no_model_training":True,"no_approved_repair":True}
- report=json.loads(json.dumps(report,default=lambda v: None if isinstance(v,float) and not np.isfinite(v) else float(v)))\n report["max_transition_abs_diff"]=None if not np.isfinite(report["max_transition_abs_diff"]) else report["max_transition_abs_diff"]\n (out/"RESULT.json").write_text(json.dumps(report,indent=2,allow_nan=True)+"\n")
+ for_key="max_transition_abs_diff"
+ value=report[for_key]
+ report[for_key]=None if value is None or not np.isfinite(value) else value
+ (out/"RESULT.json").write_text(json.dumps(report,indent=2,allow_nan=False)+"\n")
  print(json.dumps(report,indent=2,allow_nan=False))
 if __name__=="__main__":main()
