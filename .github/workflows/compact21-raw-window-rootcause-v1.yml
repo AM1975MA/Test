@@ -1,0 +1,36 @@
+name: COMPACT21_RAW_WINDOW_ROOTCAUSE_V1
+on:
+  push:
+    branches: [research/compact21-residual-nan-rootcause-v1]
+    paths: [.github/workflows/compact21-raw-window-rootcause-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  classify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Frozen independent raw Yahoo snapshots and cleaned feature panels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          for r in 1 2 3; do
+            gh run download 37936573578 -R ${{ github.repository }} -n cleaned-original149-repeat-${r} -D "_input/r${r}"
+          done
+      - name: Classify long-lookback feature NaNs against actual price windows
+        run: |
+          python data_quality_audit_v1/raw_window_rootcause.py --r1 _input/r1 --r2 _input/r2 --r3 _input/r3 --raw1 _raw/_repeat1 --raw2 _raw/_repeat2 --raw3 _raw/_repeat3 --out _result
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compact21-long-lookback-raw-causes
+          path: _result/
+          retention-days: 90
