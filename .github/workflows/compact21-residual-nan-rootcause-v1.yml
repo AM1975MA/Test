@@ -1,0 +1,35 @@
+name: COMPACT21_RESIDUAL_NAN_ROOTCAUSE_V1
+on:
+  push:
+    branches: [research/compact21-residual-nan-rootcause-v1]
+    paths: [.github/workflows/compact21-residual-nan-rootcause-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.15'
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Restore independently cleaned data, not original model predictions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for r in 1 2 3; do
+            gh run download 37936573578 -R ${{ github.repository }} -n cleaned-original149-repeat-${r} -D "_input/r${r}"
+            test -f "_input/r${r}/TI_COMPACT.parquet"
+          done
+      - name: Classify remaining feature nulls by field/ticker/year and compare vintage masks
+        run: python data_quality_audit_v1/residual_nan_diagnosis.py --r1 _input/r1 --r2 _input/r2 --r3 _input/r3 --out _result
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compact21-residual-nan-causal-inventory
+          retention-days: 90
+          path: _result/
