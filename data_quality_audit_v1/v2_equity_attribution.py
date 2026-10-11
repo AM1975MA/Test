@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 def read_run(root,alpha,repeat):
- folder=root/f"alpha-{alpha}-repeat-{repeat}"
+ folder=root/f"equity-alpha-{alpha}-repeat-{repeat}"
  eqs=list(folder.rglob("FULL_UNIVERSE_PATH.npz"))
  leads=list(folder.rglob("DAILY_LEADERS.csv"))
  metrics=list(folder.rglob("RESULT.json"))
