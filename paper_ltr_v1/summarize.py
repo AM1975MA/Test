@@ -14,6 +14,9 @@ def ordered(frame):
     if f.duplicated(KEYS).any(): raise ValueError('Chiavi duplicate')
     return f.sort_values(KEYS).reset_index(drop=True)
 
+def reduction_gate(candidate,baseline):
+    return candidate==0 if baseline==0 else candidate<=.75*baseline
+
 def common_truth(frame,truth):
     f=ordered(frame); truth=ordered(truth)
     outcomes=truth[truth.vintage=='2'].drop(columns=['vintage','pred'])
@@ -42,6 +45,16 @@ def main():
     c=Path(a.candidate);b=Path(a.baseline)
     cr=json.loads((c/'RESULT.json').read_text());br=json.loads((b/'RESULT.json').read_text())
     if cr.get('status')!='PAPER_LTR_V1_COMPLETE' or cr.get('ALL_MATURITY_PASS') is not True:raise ValueError('Candidato non completo o maturazione fallita')
+    if br.get('status')!='COMPACT21_PREDICTIVE_V2_COMPLETE' or br.get('variant')!='BASE' or br.get('years')!=list(range(2017,2027)) or br.get('LEGACY_PARITY_PASS') is not True or br.get('ALL_DETERMINISM_PASS') is not True:raise ValueError('Baseline non certificata')
+    if hashlib.sha256((b/'RESULT.json').read_bytes()).hexdigest()!=cr['baseline']['result_sha256'] or br['files_sha256']!=cr['baseline']['files_sha256']:raise ValueError('Identità baseline diversa da quella verificata prima del fit')
+    if cr.get('years')!=list(range(2017,2027)) or set(cr.get('per_year',{}))!=set(map(str,range(2017,2027))):raise ValueError('Anni candidato incompleti')
+    for year,cell in cr['per_year'].items():
+        for au in cell['transforms'].values():
+            cutoff=pd.Timestamp(int(year),1,1);validation=pd.Timestamp(au['validation_start'])
+            if au['maturity_PASS'] is not True or au['purge_PASS'] is not True or pd.Timestamp(au['max_exit_date_21'])>=cutoff or pd.Timestamp(au['max_signal_date'])>=cutoff or pd.Timestamp(au['max_subtrain_exit_date_21'])>=validation:raise ValueError('Audit maturazione/purge fallito')
+    if not cr.get('model_files_sha256'):raise ValueError('Checkpoint mancanti')
+    for name,expected in cr['model_files_sha256'].items():
+        if hashlib.sha256((c/name).read_bytes()).hexdigest()!=expected:raise ValueError('Hash checkpoint diverso')
     for directory,result in ((c,cr),(b,br)):
         for name in ('NATIVE_PREDICTIONS.parquet','COMMON_PREDICTIONS.parquet'):
             if hashlib.sha256((directory/name).read_bytes()).hexdigest()!=result['files_sha256'][name]:raise ValueError('Hash predizioni non corrispondente')
@@ -58,8 +71,8 @@ def main():
     cs=stabs['LISTNET'];bs=stabs['BASE']
     reductions={scope:{metric:float(1-cs[scope]['aggregate'][metric]/bs[scope]['aggregate'][metric]) if bs[scope]['aggregate'][metric] else None for metric in ('rank_mad','top1_disagreement')} for scope in ('common','native')}
     checks={
-        'rank_mad_common_reduction_ge25pct':reductions['common']['rank_mad']>=.25,
-        'native_top1_reduction_ge25pct':reductions['native']['top1_disagreement']>=.25,
+        'rank_mad_common_reduction_ge25pct':reduction_gate(cs['common']['aggregate']['rank_mad'],bs['common']['aggregate']['rank_mad']),
+        'native_top1_reduction_ge25pct':reduction_gate(cs['native']['aggregate']['top1_disagreement'],bs['native']['aggregate']['top1_disagreement']),
         'native_ordered_top2_not_worse':cs['native']['aggregate']['ordered_top2_disagreement']<=bs['native']['aggregate']['ordered_top2_disagreement'],
         'top1_quality_ge95pct':cq['top1_realized_percentile']>=.95*bq['top1_realized_percentile'],
         'ndcg5_ge95pct':cq['ndcg5']>=.95*bq['ndcg5'],

@@ -1,8 +1,13 @@
 import unittest
 import pandas as pd
-from paper_ltr_v1.summarize import stability, common_truth
+from paper_ltr_v1.summarize import stability, common_truth, reduction_gate
 
 class SummaryTest(unittest.TestCase):
+    def test_zero_baseline_reduction_gate(self):
+        self.assertTrue(reduction_gate(0.,0.))
+        self.assertFalse(reduction_gate(.01,0.))
+        self.assertTrue(reduction_gate(.75,1.))
+        self.assertFalse(reduction_gate(.75000001,1.))
     def frame(self):
         return pd.DataFrame([dict(vintage=i,signal_date='2020-01-02',ticker=t,pred=p,target_rank_21=q,exit_date_21=pd.Timestamp('2020-02-03')) for i in (1,2,3) for t,p,q in (('A',3.,.1),('B',2.,.7),('C',1.,1.))])
 
