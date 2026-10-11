@@ -1,0 +1,25 @@
+name: V2_PIT_ETF_ELIGIBILITY_AUDIT
+on:
+  push:
+    branches: [research/v2-point-in-time-eligibility-20261011]
+    paths: [.github/workflows/v2-pit-etf-eligibility.yml]
+permissions: {contents: read, actions: read}
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Restore pristine 3-source Yahoo and stabilized feature panels
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          gh run download 38094232042 -R ${{ github.repository }} -n compact21-two-alpha-panels-v1 -D _panels
+      - name: Determine point-in-time ETF availability from 2017
+        run: |
+          python data_quality_audit_v1/pit_etf_eligibility.py --raw1 _raw/_repeat1 --raw2 _raw/_repeat2 --raw3 _raw/_repeat3 --panel1 _panels/alpha_1/repeat_1 --panel2 _panels/alpha_1/repeat_2 --panel3 _panels/alpha_1/repeat_3 --out _audit
+      - uses: actions/upload-artifact@v4
+        with: {name: v2-pit-etf-eligibility-2017-2026, path: _audit/}
