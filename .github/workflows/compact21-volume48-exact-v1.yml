@@ -1,0 +1,32 @@
+name: COMPACT21_EXACT_VOLUME_NAN_REPLAY_V1
+on:
+  push:
+    branches: [research/compact21-volume48-exact-replay-v1]
+    paths: [.github/workflows/compact21-volume48-exact-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Restore immutable raw Yahoo snapshots and Compact panels
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          gh run download 38094232042 -R ${{ github.repository }} -n compact21-two-alpha-panels-v1 -D _panels
+      - name: Reproduce actual rolling volume surprise missingness
+        run: |
+          python data_quality_audit_v1/volume_surprise_exact_nulls.py --r1 _panels/alpha_1/repeat_1 --r2 _panels/alpha_1/repeat_2 --r3 _panels/alpha_1/repeat_3 --raw1 _raw/_repeat1 --raw2 _raw/_repeat2 --raw3 _raw/_repeat3 --out _audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compact21-exact-volume-null-audit
+          path: _audit/
+          retention-days: 90
