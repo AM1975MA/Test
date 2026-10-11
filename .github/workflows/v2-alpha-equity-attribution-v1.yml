@@ -1,0 +1,98 @@
+name: V2_ALPHA_EQUITY_ATTRIBUTION_V1
+on:
+  push:
+    branches: [research/v2-alpha-cagr-attribution-v1]
+    paths: [.github/workflows/v2-alpha-equity-attribution-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        repeat: [1, 2, 3]
+        alpha: ['0.05','1.0']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - name: Exact prior V2 replay dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt matplotlib \
+            'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' \
+            'xgboost==3.1.3' 'numba==0.65.1' 'yfinance==0.2.66'
+      - name: Freeze original shared source and apply research patch
+        run: |
+          test "$(git hash-object vendor/etf_trader_v2/src/etf_trader/source_only/kernel.py)" = '045e57996b02d481bd23f6e4dfe53738d43008e5'
+          python data_quality_audit_v1/patch_v2_mad_alpha.py vendor/etf_trader_v2/src/etf_trader/source_only/kernel.py --alpha ${{ matrix.alpha }}
+          python - <<'PY'
+          import sys,numpy as np,pandas as pd
+          sys.path.insert(0,'vendor/etf_trader_v2/src')
+          from etf_trader.source_only.kernel import cs_robust_dev,rolling_downvol
+          d=pd.DataFrame([[0.]*8+[2.,3.],[0.]*8+[2.,3.]])
+          val=cs_robust_dev(d)
+          assert np.isfinite(val.to_numpy()).all()
+          assert val.iloc[0,-1]>0
+          assert rolling_downvol(pd.DataFrame({'up':[.01]*130}),21).iloc[-1,0]==0
+          print('REPLAY_PATCH_GATE_OK')
+          PY
+      - name: Exact frozen original Yahoo raw download
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          test -f "_raw/_repeat${{ matrix.repeat }}/manifest.json"
+      - name: Exact canonical whole V2 replay runner
+        run: |
+          mkdir -p holdout70
+          curl -fsSL 'https://raw.githubusercontent.com/AM1975MA/Test/research/v2-same-source-149-vs-70-20261002/holdout70/v2_canonical_same_source_compare.py' -o holdout70/v2_canonical_same_source_compare.py
+          test "$(git hash-object holdout70/v2_canonical_same_source_compare.py)" = 'ebd578e0d92e986adb5c2fbf265a346f87b7218e'
+      - name: Full research V2 replay on the original independent acquisition
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+          ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+          ETF_TRADER_XGB_WORKERS: '3'
+        run: |
+          python gap_analysis/src/replay_repeat_snapshot.py \
+            --raw "_raw/_repeat${{ matrix.repeat }}" \
+            --compare-script holdout70/v2_canonical_same_source_compare.py \
+            --out _result
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: equity-alpha-${{ matrix.alpha }}-repeat-${{ matrix.repeat }}
+          retention-days: 90
+          path: |
+            _result/original149/RESULT.json
+            _result/original149/ENSEMBLE_FIT_AUDIT.csv
+            _result/original149/DAILY_LEADERS.csv
+            _result/original149/FULL_UNIVERSE_PATH.npz
+  analyze:
+    needs: replay
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: equity-alpha-*
+          path: _frozen
+      - name: Exactly partition pairwise replay log terminal wealth divergence
+        run: python data_quality_audit_v1/v2_equity_attribution.py --root _frozen --out _attribution
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-equity-cagr-attribution
+          path: _attribution/
+          retention-days: 90
