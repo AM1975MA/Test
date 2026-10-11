@@ -18,6 +18,18 @@ def main():
     spec=importlib.util.spec_from_file_location('history_canonical_compare',ROOT/'holdout70/v2_canonical_same_source_compare.py')
     mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
     mod.FROZEN149=out/'derived_raw';mod.FROZEN70=mod.FROZEN149;mod.OUT=out/'replay'
+    original_ensemble=mod.fit_ensemble_producer
+    def baseline_ensemble(*args,**kwargs):
+        kwargs['n_jobs']=1
+        return original_ensemble(*args,**kwargs)
+    mod.fit_ensemble_producer=baseline_ensemble
+    original_run=mod.run
+    def baseline_run(cmd):
+        cmd=list(cmd)
+        if '--xgb-workers' in cmd:
+            cmd[cmd.index('--xgb-workers')+1]='1'
+        return original_run(cmd)
+    mod.run=baseline_run
     state=mod.build_source_only_state('original149',mod.FROZEN149)
     panel=pd.read_pickle(state['ma3_panel_path'])
     assert panel.signal_date.ge('2012-01-01').all()

@@ -3,15 +3,18 @@ on:
   push:
     branches: [research/v2-history-2011-2012-20261011]
     paths: [.github/workflows/v2-history-2011-2012-full.yml]
-permissions: {contents: read, actions: read}
+permissions: {contents: read, actions: write}
 env:
   PYTHONPATH: '${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}'
-  OMP_NUM_THREADS: '2'
-  OPENBLAS_NUM_THREADS: '2'
-  MKL_NUM_THREADS: '2'
-  NUMEXPR_NUM_THREADS: '2'
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: 'Haswell'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
   ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
-  ETF_TRADER_XGB_WORKERS: '3'
+  ETF_TRADER_XGB_WORKERS: '1'
 jobs:
   replay:
     runs-on: ubuntu-24.04
@@ -20,6 +23,10 @@ jobs:
       fail-fast: false
       matrix: {repeat: [1, 2, 3]}
     steps:
+      - name: Stop preliminary run with mismatched numerical execution
+        if: matrix.repeat == 1
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: gh run cancel 38176634299 -R AM1975MA/Test || true
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.13'}
