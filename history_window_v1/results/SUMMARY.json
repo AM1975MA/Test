@@ -1,0 +1,325 @@
+{
+  "status": "THREE_SOURCE_HISTORY_WINDOW_REJECTED_AT_FEASIBILITY_GATE",
+  "baseline_recovery_run": 37934815636,
+  "baseline_original_run": 37195399755,
+  "raw_run": 37121749852,
+  "baseline": [
+    {
+      "repeat": 1,
+      "start": "2017-02-01",
+      "end": "2026-07-01",
+      "sessions": 2366,
+      "cagr": 0.29753447746605766,
+      "maxdd": -0.3486213376490779,
+      "sharpe": 1.046113520709817,
+      "terminal_equity": 11.536148681359933,
+      "annualized_turnover": 12.943838756619677,
+      "mean_risky_gross": 0.9837637362637363
+    },
+    {
+      "repeat": 2,
+      "start": "2017-02-01",
+      "end": "2026-07-01",
+      "sessions": 2366,
+      "cagr": 0.3084370492564604,
+      "maxdd": -0.25689610266686813,
+      "sharpe": 1.0869929498969455,
+      "terminal_equity": 12.478988259917129,
+      "annualized_turnover": 12.96047576197712,
+      "mean_risky_gross": 0.9837637362637363
+    },
+    {
+      "repeat": 3,
+      "start": "2017-02-01",
+      "end": "2026-07-01",
+      "sessions": 2366,
+      "cagr": 0.346770790748319,
+      "maxdd": -0.36097505012561093,
+      "sharpe": 1.1829318538970461,
+      "terminal_equity": 16.365303998168837,
+      "annualized_turnover": 13.231319803527736,
+      "mean_risky_gross": 0.9837637362637363
+    }
+  ],
+  "baseline_dispersion": {
+    "mean_cagr": 0.31758077249027905,
+    "cagr_span_pp": 4.9236313282261355,
+    "cagr_population_std_pp": 2.111491403944539
+  },
+  "baseline_daily_selection_disagreement": {
+    "sessions": 2366,
+    "top1_any_count": 1018,
+    "top1_any_fraction": 0.43026204564666104,
+    "top2_ordered_any_count": 1812,
+    "top2_ordered_any_fraction": 0.7658495350803043,
+    "top2_set_any_count": 1585,
+    "top2_set_any_fraction": 0.6699070160608622,
+    "pairwise": [
+      {
+        "pair": [
+          1,
+          2
+        ],
+        "top1_fraction": 0.3326289095519865,
+        "top2_ordered_fraction": 0.6132713440405748,
+        "top2_set_fraction": 0.4902789518174134
+      },
+      {
+        "pair": [
+          1,
+          3
+        ],
+        "top1_fraction": 0.3076923076923077,
+        "top2_ordered_fraction": 0.6610312764158918,
+        "top2_set_fraction": 0.5393068469991547
+      },
+      {
+        "pair": [
+          2,
+          3
+        ],
+        "top1_fraction": 0.30092983939137785,
+        "top2_ordered_fraction": 0.5752324598478444,
+        "top2_set_fraction": 0.48732037193575656
+      }
+    ]
+  },
+  "candidate_audits": [
+    {
+      "status": "INFEASIBLE_2017_WITH_UNCHANGED_V2",
+      "raw_start": "2011-01-01",
+      "training_start": "2012-01-01",
+      "candidate_count": 149,
+      "original_producer_gate": [
+        {
+          "year": 2017,
+          "status": "SKIP_INSUFFICIENT_MATURE_HISTORY",
+          "train_signal_dates": 58,
+          "required": 60
+        }
+      ],
+      "original_producer_error": "no annual model has at least 60 mature monthly training signals",
+      "causal_prefix_checks": {
+        "compact": {
+          "rows": 8791,
+          "columns": 125,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "tail": {
+          "rows": 8791,
+          "columns": 60,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "extra": {
+          "rows": 8791,
+          "columns": 18,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "macro": {
+          "rows": 354,
+          "columns": 18,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "opportunity": {
+          "rows": 472,
+          "columns": 120,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "ma3": {
+          "rows": 8475,
+          "columns": 42,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "ma3_membership": {
+          "rows": 8475,
+          "columns": 1,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        }
+      },
+      "opportunity_original_forward_label_predictors": [
+        "target_excess_max",
+        "target_excess_max_rank"
+      ],
+      "opportunity_full_feature_contract_causal": false,
+      "original_inputs_unchanged": true,
+      "model_source_unchanged": true,
+      "candidate_2017_2026_metrics": null,
+      "decision": "KEEP_ORIGINAL_HISTORY",
+      "reason": "2017 has fewer than the unchanged required 60 mature monthly signals; no complete comparable performance or selection series exists. No 2018-only replay is represented as 2017-2026.",
+      "opportunity_contract": "kernel Opportunity panel checked separately; canonical source-only TIT_R/MA3/Stage19 does not call fit_predict_all/router Opportunity. Adding it would change the baseline. Original Opportunity suffix discovery includes forward target_excess_max and its rank: explicitly NOT causality certified and not silently fixed."
+    },
+    {
+      "status": "INFEASIBLE_2017_WITH_UNCHANGED_V2",
+      "raw_start": "2011-01-01",
+      "training_start": "2012-01-01",
+      "candidate_count": 149,
+      "original_producer_gate": [
+        {
+          "year": 2017,
+          "status": "SKIP_INSUFFICIENT_MATURE_HISTORY",
+          "train_signal_dates": 58,
+          "required": 60
+        }
+      ],
+      "original_producer_error": "no annual model has at least 60 mature monthly training signals",
+      "causal_prefix_checks": {
+        "compact": {
+          "rows": 8791,
+          "columns": 125,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "tail": {
+          "rows": 8791,
+          "columns": 60,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "extra": {
+          "rows": 8791,
+          "columns": 18,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "macro": {
+          "rows": 354,
+          "columns": 18,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "opportunity": {
+          "rows": 472,
+          "columns": 120,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "ma3": {
+          "rows": 8475,
+          "columns": 42,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "ma3_membership": {
+          "rows": 8475,
+          "columns": 1,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        }
+      },
+      "opportunity_original_forward_label_predictors": [
+        "target_excess_max",
+        "target_excess_max_rank"
+      ],
+      "opportunity_full_feature_contract_causal": false,
+      "original_inputs_unchanged": true,
+      "model_source_unchanged": true,
+      "candidate_2017_2026_metrics": null,
+      "decision": "KEEP_ORIGINAL_HISTORY",
+      "reason": "2017 has fewer than the unchanged required 60 mature monthly signals; no complete comparable performance or selection series exists. No 2018-only replay is represented as 2017-2026.",
+      "opportunity_contract": "kernel Opportunity panel checked separately; canonical source-only TIT_R/MA3/Stage19 does not call fit_predict_all/router Opportunity. Adding it would change the baseline. Original Opportunity suffix discovery includes forward target_excess_max and its rank: explicitly NOT causality certified and not silently fixed."
+    },
+    {
+      "status": "INFEASIBLE_2017_WITH_UNCHANGED_V2",
+      "raw_start": "2011-01-01",
+      "training_start": "2012-01-01",
+      "candidate_count": 149,
+      "original_producer_gate": [
+        {
+          "year": 2017,
+          "status": "SKIP_INSUFFICIENT_MATURE_HISTORY",
+          "train_signal_dates": 58,
+          "required": 60
+        }
+      ],
+      "original_producer_error": "no annual model has at least 60 mature monthly training signals",
+      "causal_prefix_checks": {
+        "compact": {
+          "rows": 8791,
+          "columns": 125,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "tail": {
+          "rows": 8791,
+          "columns": 60,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "extra": {
+          "rows": 8791,
+          "columns": 18,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "macro": {
+          "rows": 354,
+          "columns": 18,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "opportunity": {
+          "rows": 472,
+          "columns": 120,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "ma3": {
+          "rows": 8475,
+          "columns": 42,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        },
+        "ma3_membership": {
+          "rows": 8475,
+          "columns": 1,
+          "first_signal": "2012-01-31",
+          "last_signal": "2016-11-30",
+          "exact_equal": true
+        }
+      },
+      "opportunity_original_forward_label_predictors": [
+        "target_excess_max",
+        "target_excess_max_rank"
+      ],
+      "opportunity_full_feature_contract_causal": false,
+      "original_inputs_unchanged": true,
+      "model_source_unchanged": true,
+      "candidate_2017_2026_metrics": null,
+      "decision": "KEEP_ORIGINAL_HISTORY",
+      "reason": "2017 has fewer than the unchanged required 60 mature monthly signals; no complete comparable performance or selection series exists. No 2018-only replay is represented as 2017-2026.",
+      "opportunity_contract": "kernel Opportunity panel checked separately; canonical source-only TIT_R/MA3/Stage19 does not call fit_predict_all/router Opportunity. Adding it would change the baseline. Original Opportunity suffix discovery includes forward target_excess_max and its rank: explicitly NOT causality certified and not silently fixed."
+    }
+  ],
+  "candidate_metrics": null,
+  "candidate_selection_disagreement": null,
+  "full_comparison_completed": false,
+  "decision": "KEEP_ORIGINAL_HISTORY",
+  "decision_scope": "Operational feasibility of requested unchanged model over complete 2017-2026. No assertion that original history outperforms 2011/2012 on an unmeasured comparable backtest."
+}

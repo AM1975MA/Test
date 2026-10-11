@@ -1,0 +1,8 @@
+[
+  {
+    "year": 2017,
+    "status": "SKIP_INSUFFICIENT_MATURE_HISTORY",
+    "train_signal_dates": 58,
+    "required": 60
+  }
+]
