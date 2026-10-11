@@ -1,0 +1,33 @@
+name: COMPACT21_FORMULA_MISSINGNESS_GATE_V1
+on:
+  push:
+    branches: [research/compact21-formula-rootcause-v1]
+    paths: [.github/workflows/compact21-formula-missingness-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  analyze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Restore exact frozen Original149 sources and alpha panels
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          gh run download 38094232042 -R ${{ github.repository }} -n compact21-two-alpha-panels-v1 -D _panels
+          test -f _panels/alpha_1/repeat_1/TI_COMPACT.parquet
+      - name: Verify formula dependency minimum history and domain guards
+        run: |
+          python data_quality_audit_v1/formula_missingness_gate.py --r1 _panels/alpha_1/repeat_1 --r2 _panels/alpha_1/repeat_2 --r3 _panels/alpha_1/repeat_3 --raw1 _raw/_repeat1 --raw2 _raw/_repeat2 --raw3 _raw/_repeat3 --out _report
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compact21-formula-missingness-gate
+          path: _report/
+          retention-days: 90
