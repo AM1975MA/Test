@@ -74,3 +74,24 @@ jobs:
             _result/original149/ENSEMBLE_FIT_AUDIT.csv
             _result/original149/DAILY_LEADERS.csv
             _result/original149/ENSEMBLE_TAIL_OOS.csv
+  summarize:
+    needs: replay
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: same-source-fit-*
+          path: _frozen
+      - name: Compare repeated fitting on byte-identical Yahoo source
+        run: python data_quality_audit_v1/same_input_fit_compare.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-same-source-fit-repeatability-summary
+          path: SUMMARY.json
+          retention-days: 90
