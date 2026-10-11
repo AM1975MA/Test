@@ -1,4 +1,5 @@
 name: V2_HISTORY_2011_2012_FEASIBILITY
+# v2: record inactive Opportunity forward-label predictors as an existing defect.
 on:
   push:
     branches: [research/v2-history-2011-2012-20261011]

@@ -77,8 +77,12 @@ def main():
     derive(raw,out/'prefix_raw','2016-12-30')
     panels,mf,of=build(out/'derived_raw');prefix,pmf,pof=build(out/'prefix_raw')
     assert mf==pmf and of==pof
+    # Original inactive Opportunity discovers predictors by suffix, accidentally
+    # including target_excess_max and target_excess_max_rank. Record the source
+    # defect; never certify these forward-label fields as causal predictors.
+    opportunity_forward_predictors=[c for c in of if c.startswith('target_')]
     causal={}
-    for name,features,keys in [('compact',k.F2D_FEATURES,['signal_date','ticker']),('tail',k.TAIL_FEATURES,['signal_date','ticker']),('extra',list(panels['extra'].columns[2:]),['signal_date','ticker']),('macro',mf,['signal_date','macro_category']),('opportunity',of,['signal_date','cluster_id'])]:
+    for name,features,keys in [('compact',k.F2D_FEATURES,['signal_date','ticker']),('tail',k.TAIL_FEATURES,['signal_date','ticker']),('extra',list(panels['extra'].columns[2:]),['signal_date','ticker']),('macro',mf,['signal_date','macro_category']),('opportunity_non_target_predictors',[c for c in of if not c.startswith('target_')],['signal_date','cluster_id'])]:
         causal[name]=same(panels[name],prefix[name],keys,features)
     mp=ma3(out/'derived_raw',out/'ma3');mpp=ma3(out/'prefix_raw',out/'ma3_prefix')
     causal['ma3']=same(mp,mpp,['signal_date','ticker'],list(FEATURES_42))
@@ -106,7 +110,7 @@ def main():
     gate=json.loads((out/'original_producer_2017/eligibility_audit.json').read_text())
     assert gate[0]['status']=='SKIP_INSUFFICIENT_MATURE_HISTORY' and gate[0]['train_signal_dates']<60
     assert originals=={p.name:digest(p) for p in raw.glob('*') if p.is_file()}
-    result={'status':'INFEASIBLE_2017_WITH_UNCHANGED_V2','raw_start':'2011-01-01','training_start':'2012-01-01','candidate_count':149,'original_producer_gate':gate,'original_producer_error':producer_error,'causal_prefix_checks':causal,'original_inputs_unchanged':True,'model_source_unchanged':True,'candidate_2017_2026_metrics':None,'decision':'KEEP_ORIGINAL_HISTORY','reason':'2017 has fewer than the unchanged required 60 mature monthly signals; no complete comparable performance or selection series exists. No 2018-only replay is represented as 2017-2026.','opportunity_contract':'kernel Opportunity panel checked separately; canonical source-only TIT_R/MA3/Stage19 does not call fit_predict_all/router Opportunity. Adding it would change the baseline.'}
+    result={'status':'INFEASIBLE_2017_WITH_UNCHANGED_V2','raw_start':'2011-01-01','training_start':'2012-01-01','candidate_count':149,'original_producer_gate':gate,'original_producer_error':producer_error,'causal_prefix_checks':causal,'opportunity_original_forward_label_predictors':opportunity_forward_predictors,'opportunity_full_feature_contract_causal':not opportunity_forward_predictors,'original_inputs_unchanged':True,'model_source_unchanged':True,'candidate_2017_2026_metrics':None,'decision':'KEEP_ORIGINAL_HISTORY','reason':'2017 has fewer than the unchanged required 60 mature monthly signals; no complete comparable performance or selection series exists. No 2018-only replay is represented as 2017-2026.','opportunity_contract':'kernel Opportunity panel checked separately; canonical source-only TIT_R/MA3/Stage19 does not call fit_predict_all/router Opportunity. Adding it would change the baseline. Original Opportunity suffix discovery includes forward target_excess_max and its rank: explicitly NOT causality certified and not silently fixed.'}
     (out/'RESULT.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2),flush=True)
 
 if __name__=='__main__':main()
