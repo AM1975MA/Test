@@ -1,0 +1,37 @@
+name: COMPACT21_RESIDUAL_RAW_COVERAGE_V1
+on:
+  push:
+    branches: [research/compact21-all-base-raw-coverage-v1]
+    paths: [.github/workflows/compact21-residual-raw-coverage-v1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Restore frozen independent sources and feature panels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37121749852 -R ${{ github.repository }} -n yfinance-repeatability-v1-raw -D _raw
+          for r in 1 2 3; do
+            gh run download 38094232042 -R ${{ github.repository }} -n compact21-two-alpha-panels-v1 -D _panels
+            break
+          done
+          for r in 1 2 3; do test -f "_panels/alpha_1/repeat_${r}/TI_COMPACT.parquet"; done
+      - name: Diagnose residual base NaNs from frozen raw close-date histories
+        run: |
+          python data_quality_audit_v1/raw_coverage_remaining_base.py --r1 _panels/alpha_1/repeat_1 --r2 _panels/alpha_1/repeat_2 --r3 _panels/alpha_1/repeat_3 --raw1 _raw/_repeat1 --raw2 _raw/_repeat2 --raw3 _raw/_repeat3 --out _report
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compact21-residual-base-raw-coverage-v1
+          path: _report/
+          retention-days: 90
