@@ -82,7 +82,7 @@ def main():
     # defect; never certify these forward-label fields as causal predictors.
     opportunity_forward_predictors=[c for c in of if c.startswith('target_')]
     causal={}
-    for name,features,keys in [('compact',k.F2D_FEATURES,['signal_date','ticker']),('tail',k.TAIL_FEATURES,['signal_date','ticker']),('extra',list(panels['extra'].columns[2:]),['signal_date','ticker']),('macro',mf,['signal_date','macro_category']),('opportunity_non_target_predictors',[c for c in of if not c.startswith('target_')],['signal_date','cluster_id'])]:
+    for name,features,keys in [('compact',k.F2D_FEATURES,['signal_date','ticker']),('tail',k.TAIL_FEATURES,['signal_date','ticker']),('extra',list(panels['extra'].columns[2:]),['signal_date','ticker']),('macro',mf,['signal_date','macro_category']),('opportunity',[c for c in of if not c.startswith('target_')],['signal_date','cluster_id'])]:
         causal[name]=same(panels[name],prefix[name],keys,features)
     mp=ma3(out/'derived_raw',out/'ma3');mpp=ma3(out/'prefix_raw',out/'ma3_prefix')
     causal['ma3']=same(mp,mpp,['signal_date','ticker'],list(FEATURES_42))

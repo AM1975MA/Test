@@ -131,5 +131,19 @@
     "head": "research/v2-history-retention-gate-20261011",
     "sha": "3efa2873b27f6f23619baeab5566339cae3fa267",
     "body": "Prechecked previous PR work; no certified total V2 training-history cut-off located. Read-only run 38171032263 uses existing frozen Compact21 feature snapshots and maps pre-2017 ticker/date training-feature availability, with earliest 30-feature-eligible signal 2004-02-27. Source audit shows annual XGB training uses all past eligible mature rows (minimum 60 training months is only a threshold, not a fixed window). Therefore pruning 2004–2016 without fit equivalence would change model behavior. Gate verdict NO_CUTOFF_CERTIFIED; full Tail/MA3/Macro as-of dependency remains to verify. Original prices untouched; no re-fitting, no CAGR, no production changes."
+  },
+  {
+    "number": 69,
+    "title": "Research: full V2 temporal retention contract for Compact, Tail, MA3 and Macro",
+    "head": "research/v2-full-temporal-contract-20261011",
+    "sha": "3a0059eee9ba4434333411a1ea5daff2c4eb56b1",
+    "body": "Code-derived review only, after searching prior PRs for equivalent completed temporal cutoff validation. Documents kernel Compact21 annual 21-day label maturation / minimum 60 months, Tail and Macro 63-day maturity, Opportunity 21-day maturity, MA3 panel calendar.min()+365d and rolling 252 cover, MA3 expanding annual 63-day matured training, execution dependencies. Concludes no safe physical history cutoff can be certified without preserving every historical training row and proving full prediction/replay parity; 253-bar feature warmup is insufficient by itself. Frozen Original149 research history untouched. No training, data deletion, ETF removal or production changes. Follow-up: only implement point-in-time per-ETF inclusion if distinct model-specific eligibility specs are verified."
+  },
+  {
+    "number": 70,
+    "title": "Research: 2017–2026 per-ETF point-in-time warmup eligibility census",
+    "head": "research/v2-point-in-time-eligibility-20261011",
+    "sha": "bbb65c7abd385616f0dda77334e65f9051e8848f",
+    "body": "Reuses all three frozen Original149 Yahoo acquisitions and α=1 Compact21 panels, after duplicate checking prior work. GitHub Actions 38173382353 SUCCESS: each source 114 monthly operational signals × 149 ETFs = 16,986 combinations; 0 fail 253 consecutive positive Close bars, 0 fail baseline >=30 Compact21 valid feature count, only 2 fail stricter 125-feature completeness. No performance/training, no replacement ETF warranted for simple feature warmup. Preserves original prices and production Etf_trader. Caveat: not full Tail/MA3/Macro eligibility or point-in-time universe survivorship certification."
   }
 ]
