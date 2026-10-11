@@ -1,0 +1,52 @@
+[
+  {
+    "year": 2017,
+    "status": "FIT",
+    "train_signal_dates": 58
+  },
+  {
+    "year": 2018,
+    "status": "FIT",
+    "train_signal_dates": 70
+  },
+  {
+    "year": 2019,
+    "status": "FIT",
+    "train_signal_dates": 82
+  },
+  {
+    "year": 2020,
+    "status": "FIT",
+    "train_signal_dates": 94
+  },
+  {
+    "year": 2021,
+    "status": "FIT",
+    "train_signal_dates": 107
+  },
+  {
+    "year": 2022,
+    "status": "FIT",
+    "train_signal_dates": 119
+  },
+  {
+    "year": 2023,
+    "status": "FIT",
+    "train_signal_dates": 130
+  },
+  {
+    "year": 2024,
+    "status": "FIT",
+    "train_signal_dates": 142
+  },
+  {
+    "year": 2025,
+    "status": "FIT",
+    "train_signal_dates": 154
+  },
+  {
+    "year": 2026,
+    "status": "FIT",
+    "train_signal_dates": 167
+  }
+]

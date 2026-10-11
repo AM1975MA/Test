@@ -1,0 +1,24 @@
+{
+  "repository": "AM1975MA/Test",
+  "run": 38176821223,
+  "execution_commit": "b1d7d328c1d4a6c8198969a7965b92f61cdc191e",
+  "artifacts": [
+    {
+      "repeat": 1,
+      "id": 11716064447,
+      "sha256": "5de0fa16370b45c1e1d7ceb4e08d2144394dc6913c669e07e8abe08186806fc4"
+    },
+    {
+      "repeat": 2,
+      "id": 11716074503,
+      "sha256": "4ee85b5e8c19fb785ee4dedc70facbfdaab911e861119aa9bcc7ba3d368f143e"
+    },
+    {
+      "repeat": 3,
+      "id": 11716193341,
+      "sha256": "3e55f7bfadf24a60895deeac160a4cf114d59e98de09d4722ca69e0c0414cf04"
+    }
+  ],
+  "zip_hashes_verified": true,
+  "jobs_all_success": true
+}

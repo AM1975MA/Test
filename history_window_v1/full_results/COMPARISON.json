@@ -1,0 +1,177 @@
+{
+  "status": "THREE_SOURCE_COMPLETE_2017_2026_HISTORY_COMPARISON",
+  "candidate": [
+    {
+      "repeat": 1,
+      "cagr": 0.2948457456848394,
+      "maxdd": -0.3047506245913436,
+      "sharpe": 1.0059237490593682,
+      "terminal_equity": 11.313647795061728,
+      "annualized_turnover": 13.469611994021742,
+      "mean_risky_gross": 0.9837637362637363
+    },
+    {
+      "repeat": 2,
+      "cagr": 0.2794695188608803,
+      "maxdd": -0.3575451395882242,
+      "sharpe": 0.9791131938414854,
+      "terminal_equity": 10.113285143597754,
+      "annualized_turnover": 12.945754817767828,
+      "mean_risky_gross": 0.9837637362637363
+    },
+    {
+      "repeat": 3,
+      "cagr": 0.2665646121182195,
+      "maxdd": -0.3033505621502739,
+      "sharpe": 0.9646414028541864,
+      "terminal_equity": 9.195106904760173,
+      "annualized_turnover": 13.398548648715108,
+      "mean_risky_gross": 0.9837637362637363
+    }
+  ],
+  "candidate_dispersion": {
+    "mean_cagr": 0.28029329222131305,
+    "cagr_span_pp": 2.8281133566619876,
+    "cagr_population_std_pp": 1.1560408898917818,
+    "mean_maxdd": -0.3218821087766139,
+    "mean_sharpe": 0.98322611525168
+  },
+  "candidate_selection_disagreement": {
+    "sessions": 2366,
+    "top1_any_count": 947,
+    "top1_any_fraction": 0.40025359256128484,
+    "top2_ordered_any_count": 1730,
+    "top2_ordered_any_fraction": 0.7311918850380389,
+    "top2_set_any_count": 1459,
+    "top2_set_any_fraction": 0.6166525781910397,
+    "pairwise": [
+      {
+        "pair": [
+          1,
+          2
+        ],
+        "top1_fraction": 0.2696534234995773,
+        "top2_ordered_fraction": 0.5748098055790364,
+        "top2_set_fraction": 0.4687235841081995
+      },
+      {
+        "pair": [
+          1,
+          3
+        ],
+        "top1_fraction": 0.2781065088757396,
+        "top2_ordered_fraction": 0.5989010989010989,
+        "top2_set_fraction": 0.4830938292476754
+      },
+      {
+        "pair": [
+          2,
+          3
+        ],
+        "top1_fraction": 0.2789518174133559,
+        "top2_ordered_fraction": 0.5452240067624683,
+        "top2_set_fraction": 0.4319526627218935
+      }
+    ]
+  },
+  "baseline": [
+    {
+      "repeat": 1,
+      "start": "2017-02-01",
+      "end": "2026-07-01",
+      "sessions": 2366,
+      "cagr": 0.29753447746605766,
+      "maxdd": -0.3486213376490779,
+      "sharpe": 1.046113520709817,
+      "terminal_equity": 11.536148681359933,
+      "annualized_turnover": 12.943838756619677,
+      "mean_risky_gross": 0.9837637362637363
+    },
+    {
+      "repeat": 2,
+      "start": "2017-02-01",
+      "end": "2026-07-01",
+      "sessions": 2366,
+      "cagr": 0.3084370492564604,
+      "maxdd": -0.25689610266686813,
+      "sharpe": 1.0869929498969455,
+      "terminal_equity": 12.478988259917129,
+      "annualized_turnover": 12.96047576197712,
+      "mean_risky_gross": 0.9837637362637363
+    },
+    {
+      "repeat": 3,
+      "start": "2017-02-01",
+      "end": "2026-07-01",
+      "sessions": 2366,
+      "cagr": 0.346770790748319,
+      "maxdd": -0.36097505012561093,
+      "sharpe": 1.1829318538970461,
+      "terminal_equity": 16.365303998168837,
+      "annualized_turnover": 13.231319803527736,
+      "mean_risky_gross": 0.9837637362637363
+    }
+  ],
+  "baseline_dispersion": {
+    "mean_cagr": 0.31758077249027905,
+    "cagr_span_pp": 4.9236313282261355,
+    "cagr_population_std_pp": 2.111491403944539
+  },
+  "baseline_selection_disagreement": {
+    "sessions": 2366,
+    "top1_any_count": 1018,
+    "top1_any_fraction": 0.43026204564666104,
+    "top2_ordered_any_count": 1812,
+    "top2_ordered_any_fraction": 0.7658495350803043,
+    "top2_set_any_count": 1585,
+    "top2_set_any_fraction": 0.6699070160608622,
+    "pairwise": [
+      {
+        "pair": [
+          1,
+          2
+        ],
+        "top1_fraction": 0.3326289095519865,
+        "top2_ordered_fraction": 0.6132713440405748,
+        "top2_set_fraction": 0.4902789518174134
+      },
+      {
+        "pair": [
+          1,
+          3
+        ],
+        "top1_fraction": 0.3076923076923077,
+        "top2_ordered_fraction": 0.6610312764158918,
+        "top2_set_fraction": 0.5393068469991547
+      },
+      {
+        "pair": [
+          2,
+          3
+        ],
+        "top1_fraction": 0.30092983939137785,
+        "top2_ordered_fraction": 0.5752324598478444,
+        "top2_set_fraction": 0.48732037193575656
+      }
+    ]
+  },
+  "checks": {
+    "cagr_span_reduced_at_least25pct": true,
+    "top1_any_disagreement_improved": true,
+    "ordered_top2_any_not_worse": true,
+    "mean_cagr_at_least95pct_baseline": false,
+    "each_source_cagr_at_least95pct_baseline": false,
+    "mean_maxdd_not_worse_more_than2pp": true,
+    "mean_sharpe_at_least95pct_baseline": false
+  },
+  "all_gates_pass": false,
+  "decision": "KEEP_ORIGINAL_HISTORY",
+  "training_gate_relaxation": {
+    "old": 60,
+    "new": 58,
+    "user_authorized": true,
+    "maturity_unchanged": true
+  },
+  "production_changed": false,
+  "caveat": "Already examined Original149 and correlated frozen acquisitions; recommendation is research evidence, not independent future validation or production promotion."
+}

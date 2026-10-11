@@ -1,64 +1,36 @@
 # Decisione tecnica: mantenere lo storico originale
 
-Verifica conclusa su tutti e tre i download Yahoo congelati Original149: [Actions 38175552177](https://github.com/AM1975MA/Test/actions/runs/38175552177), tre audit e aggregazione **SUCCESS**. Branch `research/v2-history-2011-2012-20261011`, [PR #71](https://github.com/AM1975MA/Test/pull/71). Il confronto completo di performance 2017–2026 **non è stato eseguito** perché la nuova finestra non soddisfa il requisito originale per il primo fit annuale. Questo è un esito negativo di fattibilità, non un risultato di performance della variante.
+Confronto completo concluso sui tre download Yahoo congelati Original149: [Actions 38176821223](https://github.com/AM1975MA/Test/actions/runs/38176821223), tre replay e aggregazione SUCCESS. Periodo identico alla baseline: 2017-02-01–2026-07-01, 2.366 sedute e 149 ETF. Risultati verificati anche ricalcolando CAGR, MaxDD e Sharpe dalle tre curve di capitale: scarto inferiore a 1e-12.
 
-## Vincolo numerico verificato
+| Download | CAGR originale | CAGR 2011/2012 | MaxDD originale | MaxDD 2011/2012 | Sharpe originale | Sharpe 2011/2012 |
+|---|---:|---:|---:|---:|---:|---:|
+| 1 | 29,7534% | 29,4846% | −34,8621% | −30,4751% | 1,0461 | 1,0059 |
+| 2 | 30,8437% | 27,9470% | −25,6896% | −35,7545% | 1,0870 | 0,9791 |
+| 3 | 34,6771% | 26,6565% | −36,0975% | −30,3351% | 1,1829 | 0,9646 |
 
-OHLCV derivati dal 2011-01-01; nessuna osservazione precedente negli input di calcolo. Il 2011 è solo riscaldamento; segnali di training dal 2012-01-01, con uscita dell'etichetta strettamente precedente al 1° gennaio dell'anno di fit.
-
-| Componente | Mesi di training maturi al fit 2017, per ciascun download | Righe, per ciascun download |
+| Misura | Originale | 2011/2012 |
 |---|---:|---:|
-| Compact21 | 58 | 8.422 |
-| Compact63 | 56 | 8.124 |
-| Tail | 56 | 8.124 |
-| Macro | 56 | 336 |
-| MA3 | 56 | 8.028 |
-| Opportunity, percorso separato | 58 | 464 |
+| CAGR medio | 31,7581% | 28,0293% |
+| Dispersione CAGR massimo–minimo | 4,9236 pp | 2,8281 pp |
+| Deviazione standard dei CAGR, popolazione | 2,1115 pp | 1,1560 pp |
+| MaxDD medio | −32,2164% | −32,1882% |
+| Sharpe medio | 1,1053 | 0,9832 |
+| Disaccordo Top1, almeno due download | 43,0262% (1018/2366) | 40,0254% (947/2366) |
+| Disaccordo coppia Top1/Top2 ordinata | 76,5850% (1812/2366) | 73,1192% (1730/2366) |
+| Disaccordo insieme Top2 non ordinato | 66,9907% (1585/2366) | 61,6653% (1459/2366) |
 
-Il produttore originale `source_only.models.fit_predict` richiede **60 mesi maturi Compact21**. L'invocazione effettiva per il 2017, su tutti e tre i download, restituisce `SKIP_INSUFFICIENT_MATURE_HISTORY`, `train_signal_dates=58`, `required=60` e rifiuta di generare predizioni. Al fit 2018 sono disponibili 70 mesi Compact21; questo non giustifica presentare un eventuale backtest dal 2018 come confronto sul 2017–2026.
+La finestra ridotta migliora la dispersione del CAGR del 42,56% e riduce moderatamente il disaccordo delle selezioni. Compromette però la performance: CAGR medio −3,7287 punti (−11,74% relativo), Sharpe medio −11,05%. Tutti i CAGR individuali e tutti gli Sharpe peggiorano. Sul download2 il MaxDD peggiora di 10,0649 punti; il MaxDD medio quasi invariato nasconde questa differenza.
 
-Non sono stati ridotti i 60 mesi, ammessi esempi del 2011, utilizzate etichette immature, inseriti punteggi storici o sostituito il 2017 con liquidità. Nessun modello della baseline è stato nuovamente addestrato.
+**Decisione: mantenere lo storico originale.** I criteri preregistrati di stabilità sono superati, ma falliscono conservazione di almeno95% del CAGR medio, dei singoli CAGR e dello Sharpe medio. La riduzione della sensibilità ai download non compensa il deterioramento economico osservato. Le acquisizioni sono correlate e già esaminate: nessuna prova di validazione futura indipendente.
 
-## Baseline originale recuperata e verificata
+## Correzione della soglia e controlli
 
-Risultati da [run originale 37195399755](https://github.com/AM1975MA/Test/actions/runs/37195399755), verificati dalla [PR #48 / run 37934815636](https://github.com/AM1975MA/Test/actions/runs/37934815636) e nuovamente confrontati con il JSON canonico già presente in Test. Nessuna correzione downvol/MAD e nessuno scambio Ridge/LambdaRank sono inclusi.
+I 60 mesi erano una soglia di esclusione in source_only/models.py, non un requisito matematico XGBoost né una richiesta dell'utente. Con segnali ammessi dal2012 sono disponibili58 mesi Compact21 maturi prima del2017. Dopo l'istruzione “sistema e testa”, il solo controllo di ammissibilità è stato esplicitamente ridotto60→58 nella copia temporanea CI. Tutti i fit annuali2017–2026 sono stati eseguiti. Nessun esempio del2011 o etichetta immatura è stato aggiunto.
 
-Periodo congelato: **2017-02-01 – 2026-07-01**, 2.366 sedute; il 2026 non è un anno completo.
+OHLCV dal2011, riscaldamento2011, training dal2012 per Compact, Tail, Macro ed Extra; MA3 ricostruito sullo stesso storico e verificato dal2012. Parametri dei modelli, feature, universo, allocazione, costi, esecuzione e ambiente numerico corrispondono alla baseline recuperata dalla PR48. Input congelati preservati e hash invariati. Sei test mirati passano; audit causali precedenti sui tre input e revisione del nuovo runner conclusi. La baseline e gli esperimenti già conclusi non sono stati ripetuti.
 
-| Download | CAGR | MaxDD | Sharpe |
-|---|---:|---:|---:|
-| 1 | 29,7534% | −34,8621% | 1,0461 |
-| 2 | 30,8437% | −25,6896% | 1,0870 |
-| 3 | 34,6771% | −36,0975% | 1,1829 |
+Opportunity è un percorso separato inattivo nel benchmark canonico: il suo difetto preesistente di feature target forward resta documentato nel rapporto di fattibilità, non viene corretto né attivato in questo confronto.
 
-CAGR medio **31,7581%**, dispersione massimo–minimo **4,9236 punti percentuali**, deviazione standard della popolazione dei tre CAGR **2,1115 punti percentuali**.
+La precedente conclusione basata sul58/60 è conservata in FEASIBILITY_REPORT_SUPERSEDED.md per tracciabilità ed è superata da questo confronto empirico. Il primo run38176634299 è stato annullato per impostazioni numeriche non allineate; nessun suo risultato è utilizzato.
 
-Disaccordo giornaliero fra almeno due dei tre download: **Top1 1.018/2.366 = 43,0262%**; **coppia Top1/Top2 ordinata 1.812/2.366 = 76,5850%**; **insieme non ordinato dei due ETF 1.585/2.366 = 66,9907%**.
-
-| Coppia download | Top1 | Coppia Top1/Top2 ordinata | Insieme Top2 non ordinato |
-|---|---:|---:|---:|
-| 1–2 | 33,2629% | 61,3271% | 49,0279% |
-| 1–3 | 30,7692% | 66,1031% | 53,9307% |
-| 2–3 | 30,0930% | 57,5232% | 48,7320% |
-
-Il disaccordo medio pairwise del solo ETF in seconda posizione è 56,5793% (artefatto verificato PR #48); il disaccordo medio pairwise Top1 è 31,3750%. Queste definizioni differiscono dalla frazione di date con almeno una divergenza nei tre download. Le tre acquisizioni non costituiscono campioni statistici indipendenti.
-
-**Variante 2011/2012:** CAGR, MaxDD, Sharpe, dispersione e disaccordo Top1/Top2 sul periodo completo sono **non disponibili**, rappresentati da `null` negli artefatti; non sono zero. Nessuna affermazione di miglioramento o peggioramento relativo è giustificata da questo esito.
-
-## Causalità e conservazione degli input
-
-I tre originali sono preservati e verificati con SHA256. Copie separate eliminano le righe pre-2011 conservando esattamente i byte dei valori OHLCV e universo. Tutti i produttori diagnostici ricevono queste copie, anche i riferimenti di mercato e gli input per i cluster MA3.
-
-Su ciascuna acquisizione, ricalcolo da un prefisso terminante il 2016-12-30: uguaglianza esatta sulle date comuni per 125 feature Compact (8.791 righe), 60 Tail (8.791), 18 Extra (8.791), 18 Macro (354), 120 predittori Opportunity non-target (472), 42 MA3 (8.475) e membership MA3 (8.475). Le etichette forward sono escluse dal confronto delle feature e sottoposte separatamente ai limiti di maturazione. Questo test finito non certifica ogni data, corporate action o assenza di survivorship bias.
-
-**Difetto esistente Opportunity:** `kernel.build_opp_panel` include `target_excess_max` e `target_excess_max_rank` tra i predittori selezionati per suffisso. Dipendono da etichette future; la configurazione completa Opportunity è esplicitamente **non certificata come causale**. Il controllo iniziale ha rilevato la dipendenza dal futuro. Il replay canonico verificato `build_tit_r_source_only -> source_only.models -> MA3 Hybrid -> Stage19` non usa questo router. Non è stato corretto o attivato durante l'esperimento, perché cambierebbe algoritmi/feature oltre alla finestra storica.
-
-## Decisione e limiti
-
-**Mantenere lo storico originale per il contratto operativo richiesto.** La finestra 2011/2012 non permette il fit iniziale 2017 con i requisiti V2 invariati. Non viene promossa per un CAGR medio e non esiste un risultato numerico della variante da confrontare. Lo storico originale conserva instabilità significativa: la decisione non afferma che l'abbia risolta.
-
-Per verificare empiricamente l'effetto della storia ridotta sarebbe necessario autorizzare un esperimento diverso: ad esempio valutazione dal 2018, con baseline esattamente riallineata e medesimi costi/stato iniziale, oppure training precedente al 2012. Nessuno di questi cambiamenti è stato introdotto qui.
-
-Ricerca esclusivamente su `AM1975MA/Test`; repository produttivo `AM1975MA/Etf_trader` non modificato, nessun merge o adozione.
-
-Evidenza persistita: `results/SUMMARY.json`, `results/BASELINE_METRICS.csv`, `results/repeat1–3/{RESULT.json,TRAINING_ELIGIBILITY.csv,RAW_WINDOW_MANIFEST.csv}`; `BASELINE_VERIFIED.json`, `PR_RESEARCH_LEDGER.json`, `PREREGISTRATION.md`. Le prove di confine/inclusività, maturazione stretta e allineamento del disaccordo sono passate; revisione indipendente del codice completata.
+Evidenza: full_results/COMPARISON.json, CANDIDATE_METRICS.csv, INDEPENDENT_PATH_CHECK.json, PROVENANCE.json e repeat1–3/RESULT.json; artefatti Actions contengono curve, leader giornalieri e audit dei fit. Baseline: results/SUMMARY.json e BASELINE_VERIFIED.json. [PR71](https://github.com/AM1975MA/Test/pull/71), branch di ricerca dedicato. Ricerca solo AM1975MA/Test; produzione non modificata, nessun merge o adozione.

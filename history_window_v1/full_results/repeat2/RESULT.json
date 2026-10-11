@@ -1,0 +1,49 @@
+{
+  "candidate_count": 149,
+  "sessions": 2366,
+  "start": "2017-02-01",
+  "end": "2026-07-01",
+  "completed_signals": 113,
+  "v2_full_universe": {
+    "cagr": 0.2794695188608803,
+    "maxdd": -0.3575451395882242,
+    "sharpe": 0.9791131938414854,
+    "terminal_equity": 10.113285143597754,
+    "annualized_turnover": 12.945754817767828,
+    "mean_risky_gross": 0.9837637362637363
+  },
+  "equal_weight_buy_hold": {
+    "cagr": 0.10346323983126784,
+    "maxdd": -0.30075291771729884,
+    "sharpe": 0.7397236435226169,
+    "terminal_equity": 2.5202805599209395
+  },
+  "source_only": {
+    "titanium_full_sha256": "b261ae2fc639bd2326fdb3ffcf1a1c163eeba8e965e8ec274b6352d2ee7fc458",
+    "titanium_candidates_sha256": "c1b00bd0dcdf9e825c6555039406bee241d4664a9a3746ea54c82156bff5ac19",
+    "predictions_sha256": "726466f2a6ea4d21139a68e3ff1675edc51b9d32dcc1dca2615e4766b743a30b",
+    "ma3_panel_sha256": "60dd55037a69fcbc514da3e473b062afbb82c4f631ec989b88ae8edf62cc3476",
+    "historical_scores_consumed": false,
+    "historical_paths_consumed": false
+  },
+  "history_experiment": {
+    "raw_start": "2011-01-01",
+    "train_signal_start": "2012-01-01",
+    "minimum_mature_compact21_months": 58,
+    "all_annual_folds": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "original_inputs_unchanged": true,
+    "baseline_training_not_repeated": true,
+    "opportunity": "Inactive in canonical reference; existing separate forward-target defect not modified or activated."
+  }
+}
