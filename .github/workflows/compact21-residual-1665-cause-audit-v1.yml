@@ -1,0 +1,32 @@
+name: COMPACT21_RESIDUAL_1665_CAUSE_AUDIT_V1
+on:
+  push:
+    branches: [research/compact21-residual-missingness-classification-v1]
+    paths: [.github/workflows/compact21-residual-1665-cause-audit-v1.yml, data_quality_audit_v1/residual_1665_classification.py]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  classify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Restore six frozen feature panels without reconstruction
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh run download 38094232042 -R ${{ github.repository }} -n compact21-two-alpha-panels-v1 -D _frozen
+          test -f _frozen/alpha_0.05/repeat_1/TI_COMPACT.parquet
+          test -f _frozen/alpha_1/repeat_3/TI_COMPACT.parquet
+      - name: Inventory residual missing cells and exact feature dependencies
+        run: python data_quality_audit_v1/residual_1665_classification.py --root _frozen --out _audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compact21-residual-1665-causal-dependency-report
+          path: _audit/
+          retention-days: 90
