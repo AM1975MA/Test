@@ -39,6 +39,23 @@ def main():
     source_columns=sorted(cols))
   joined.reset_index().to_csv(out/f"JOINED_LEADERS_ALPHA_{alpha}.csv",index=False)
   joined.loc[disagree].reset_index().to_csv(out/f"DISAGREEMENT_DATES_ALPHA_{alpha}.csv",index=False)
+  # Pairwise comparisons and joint top1/top2 disagreements, not PnL attribution.
+  pair_stats=[]
+  for field in ("top1","top2"):
+   if field not in joined:continue
+   triplet=[field,field+"_2",field+"_3"]
+   if any(c not in joined for c in triplet):continue
+   discord=joined[triplet].nunique(axis=1)>1
+   summary[field+"_disagreement_days"]=int(discord.sum())
+   for x,y in ((0,1),(0,2),(1,2)):
+    changed=joined[triplet[x]].ne(joined[triplet[y]])
+    pair_stats.append(dict(alpha=alpha,field=field,comparison=f"{x+1}-{y+1}",
+      differences=int(changed.sum()),days=len(joined),fraction=float(changed.mean())))
+  pd.DataFrame(pair_stats).to_csv(out/f"PAIRWISE_ALPHA_{alpha}.csv",index=False)
+  # Record dates with both independent repeat 1 vs 2 and 1 vs 3 disagreement for diagnosis.
+  disagreement_details=joined.loc[disagree,[c for c in joined.columns if c.startswith("top")]].copy()
+  disagreement_details.index.name=datecol
+  disagreement_details.reset_index().to_csv(out/f"LEADER_DISAGREEMENT_COMPACT_ALPHA_{alpha}.csv",index=False)
   print("LEADER_DIAGNOSIS",json.dumps(summary))
   (out/f"SUMMARY_ALPHA_{alpha}.json").write_text(json.dumps(summary,indent=2)+"\n")
  print("SCHEMA",json.dumps(spec,indent=2))
