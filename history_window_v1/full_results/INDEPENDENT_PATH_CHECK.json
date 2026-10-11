@@ -1,0 +1,32 @@
+[
+  {
+    "repeat": 1,
+    "sessions": 2366,
+    "recalculated_metrics": {
+      "cagr": 0.29484574568483934,
+      "maxdd": -0.3047506245913436,
+      "sharpe": 1.0059237490593684
+    },
+    "matches_reported_within": 1e-12
+  },
+  {
+    "repeat": 2,
+    "sessions": 2366,
+    "recalculated_metrics": {
+      "cagr": 0.27946951886088034,
+      "maxdd": -0.3575451395882242,
+      "sharpe": 0.9791131938414854
+    },
+    "matches_reported_within": 1e-12
+  },
+  {
+    "repeat": 3,
+    "sessions": 2366,
+    "recalculated_metrics": {
+      "cagr": 0.2665646121182195,
+      "maxdd": -0.3033505621502739,
+      "sharpe": 0.9646414028541864
+    },
+    "matches_reported_within": 1e-12
+  }
+]

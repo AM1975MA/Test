@@ -1,0 +1,19 @@
+{
+  "training_signal_start": "2012-01-01",
+  "minimum_mature_compact21_months": 58,
+  "original_minimum": 60,
+  "maturity_filters_unchanged": true,
+  "hyperparameters_features_costs_execution_unchanged": true,
+  "patches": [
+    {
+      "path": "src/etf_trader/source_only/models.py",
+      "original_text_sha256": "610a5ffa278fa94e9d9312b7cd27361e992efba2da2dd94acfab41cd5a3313d1",
+      "patched_text_sha256": "3f66ff2b2785e0fd76f2c10dfcc9af52c422fbb3cab970f2078419a37b0a6a95"
+    },
+    {
+      "path": "scripts/build_tit_r_source_only.py",
+      "original_text_sha256": "052f60b077c0c4a5ad04254ffef73fbbe4bf27709ab98de35f710f730182d12f",
+      "patched_text_sha256": "44a05ef3acfa79a96f76cea38c0caa1a8e28fffe27d485265e53f8ec6236017f"
+    }
+  ]
+}
