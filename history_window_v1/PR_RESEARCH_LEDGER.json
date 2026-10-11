@@ -1,0 +1,135 @@
+[
+  {
+    "number": 48,
+    "title": "Research recovery: verify nine already-completed Compact21 full replays and model CAGR",
+    "head": "research/compact21-learner-swap-recovery-v1",
+    "sha": "facbdc9c2f488a56abf6a4bf352117810d0c2f9f",
+    "body": "**Read-only recovery; DO NOT MERGE.** Original run 37195399755 completed all nine raw Original149 strategy replays (BASE/RIDGE/LGBM_LAMBDARANK × 3), benchmark and MA3 preflights; original CI blocked on a Git push/rebase operation before independent full aggregation. Recovery uses *only* the immutable original artifacts and exactly the registered `summarize` + `summarize_full` implementations. No training, model, source, risk, CAGR gate, or production changes. Evidence CI: https://github.com/AM1975MA/Test/actions/runs/37934815636. Original149 is development-only, three vintages not independent, no automatic production adoption."
+  },
+  {
+    "number": 51,
+    "title": "Research only: exhaustive frozen input-data census before model tests",
+    "head": "research/etf-input-quality-gate-v1",
+    "sha": "ba1a8ebfd5c223312916cc9239e5f7c7380a663d",
+    "body": "No model training or production changes. Source-only input-data audit on Original149 three consecutive frozen Yahoo acquisitions. Run 37942366260 verifies 447 ticker CSVs and source OHLCV anomalies; run 37942643873 validates 125 Compact+60 Tail original numerical features on 40,230 rows per vintage and identifies 178 value-changing inputs, 14 null-mask-changing downvol derivatives; run 37942985269 audits Extra, Macro and retained raw scores. The present gate is explicitly NOT CERTIFIED: corporate action truth, extreme prices and zero volume bar classification, feature mathematical transformations and as-of temporal leakage, MA3 full panel remain outstanding. Full reproducible CSV/JSON audit artifacts and checkpoint provided. Do not merge or claim CAGR."
+  },
+  {
+    "number": 52,
+    "title": "Research: classify remaining Compact21 missing values against frozen raw histories",
+    "head": "research/compact21-residual-nan-rootcause-v1",
+    "sha": "2f3e74119a6e053e5f5fe9cba6f76ddd0269f128",
+    "body": "Read-only tests on three independent Original149 Yahoo acquisitions. Completed run 38083355019: 3049 current-eligible incomplete rows per vintage and 51814 missing cells, same masks across vintages. Raw-source run 38083480515 confirms every examined NA in mom252 (1634), mom252_ex21 (1634), breakout_pos252 (1572), ma_gap200 (1228), mom126 (740) results from inadequate historical lookback, not gaps in otherwise full raw price windows. Other robust _dev feature families remain unclassified, and no correction was made. Never zero-fill or apply future information. No model fitting, CAGR, or production changes."
+  },
+  {
+    "number": 53,
+    "title": "Research: exact zero-MAD and source-missing cause audit for Compact21 _dev inputs",
+    "head": "research/compact21-mad-nan-audit-v1",
+    "sha": "cb0d205ba8d1164333260a6739f51be141050717",
+    "body": "Data-only GitHub Actions checks 38093280854 and 38093343608 succeeded on three independently reconstructed Original149 source snapshots. Across all 33 Compact21 _dev features, 14,916 missing cells per vintage on currently eligible rows: 13,155 inherit missing base feature, 1,761 are caused by exact zero cross-sectional MAD; none unexplained. Of those 1,761 zero-MAD observations, 1,029 tie the median while 732 have genuine off-median values, so blanket fillna(0) is not acceptable. Detailed CSV and JSON evidence and report committed. No models trained and no Etf_trader production changes. Follow-up: test bounded alternative scales and strict complete-case eligibility in a separately preregistered data-only gate."
+  },
+  {
+    "number": 54,
+    "title": "Research: compare IQR and STD zero-MAD fallback stability without training",
+    "head": "research/compact21-mad-fallback-eval-v1",
+    "sha": "92fa02849506e55d5876831cf7bc1d3c190e3699",
+    "body": "Data-only diagnostics across three independently downvol-cleaned Original149 snapshots, successful GitHub Actions 38093523739. All 1761 MAD-zero per-vintage feature cells have positive fallback IQR and STD; 732 are off-median and must not be filled with zero. Max cross-download normalized deviation for scaled IQR 0.00423189 vs STD 0.000220912; no >0.1 in either policy. No source corrections adopted or model fits. Full CSV and JSON diagnostics archived. Pending near-zero denominator continuity / feature semantics and completeness acceptance."
+  },
+  {
+    "number": 55,
+    "title": "Research: cross-vintage near-zero MAD continuity test for Compact21",
+    "head": "research/compact21-mad-continuity-v1",
+    "sha": "d12e2e90aee812db8fb63615f63d4b99dcc101c5",
+    "body": "Data-only 3-source Original149 test: GitHub run 38093812635 SUCCESS. 0 observed MAD-zero-to-positive transitions across vintages, 1878 positive MAD observations per vintage with ratio <0.1 to STD and 494 robust deviations saturated at ±8. This does not prove continuity of exact-zero-only STD fallback under infinitesimal perturbation; no production feature replacement is approved. Results, raw CSV diagnostics and report stored on branch. No training / no production edits."
+  },
+  {
+    "number": 56,
+    "title": "Research: three-source stabilized MAD/STD denominator grid, data-only",
+    "head": "research/compact21-mad-stabilized-grid-v1",
+    "sha": "ede92201d45e3374dc01c2fa0a4fe32cb87337b8",
+    "body": "Successful run 38093992533 on independent frozen Original149 Compact21 panels, no training. Five preregistered floors alpha=0.05,0.1,0.25,0.5,1 and STD-only. Full complete-case rows 31827→33211 in each vintage, +1384; remaining incomplete rows 1665. Higher alpha improves max pairwise normalized _dev drift 0.1110→0.05994, but modifies up to 1,007,355 previously finite cells per vintage compared to 461 for alpha=.05. Synthetic epsilon perturbations stayed finite. No production edit or candidate adoption; report and CSV/JSON artifacts linked in branch."
+  },
+  {
+    "number": 57,
+    "title": "Research: rebuild and verify all six Compact21 stabilized feature panels",
+    "head": "research/compact21-two-alpha-panels-v1",
+    "sha": "0aa4ea4a6c889150dbb27979def72553df2ce44d",
+    "body": "GitHub Actions run 38094232042 SUCCESS. Rebuilt 3 frozen Original149 Compact21 panels for alpha=.05 and alpha=1.0 (6 parquet panels, 177 MB compressed artifact 11685690897). All six preserve ticker-date keys and all non-_dev columns exactly, with 33,211/40,230 all-feature-complete rows, 34,876 rows admitted by 30/125 current policy, and 1,665 otherwise-eligible incomplete rows per vintage. Cross-source masks identical. Finite _dev cell edits vs baseline: 461 for alpha=.05 and 1,007,355 for alpha=1.0 per vintage. Uploaded CSV row-level missingness inventory and SHA256 outputs. No model fitting or production changes. Remaining detailed causal classification of 1,665 missing rows is required before any promotion."
+  },
+  {
+    "number": 58,
+    "title": "Research: six canonical ETF V2 3-source replays for MAD floors 0.05 and 1.0",
+    "head": "research/v2-mad-alpha-three-source-replay-v1",
+    "sha": "06cbed217c0471f8adcf5be048d8bafe05ebe7d6",
+    "body": "Six end-to-end canonical V2 replay jobs completed successfully (GitHub Actions run 38094477390). Source-only shared downvol cleaned and cs_robust_dev MAD-floor alpha applied in research-only kernel; three unchanged original frozen Yahoo downloads. CAGR α=.05: 33.9966/28.4298/29.9254% (span 5.5669pp). CAGR α=1.0: 30.5329/33.0244/35.4131% (span 4.8802pp). Original V2 span 4.9236pp; gain only 0.0435pp, not material stabilization. Sharpe, drawdown, turnover archived, along with six daily leaders artifacts. No production adoption. Causal ranking/selection and remaining source feature missingness require investigation."
+  },
+  {
+    "number": 59,
+    "title": "Research: Top1/Top2 selection disagreement across six frozen V2 replay artifacts",
+    "head": "research/v2-alpha-leader-drift-diagnosis-v1",
+    "sha": "a62b472f4c96434034fa655a57635b72708850c0",
+    "body": "Read-only analysis of existing six replay artifacts, verified success Actions 38129805814. For 2366 dates, alpha=.05 has 1183 Top1 and 1819 Top2 disagreement dates; alpha=1 has 1066 Top1 and 1777 Top2 disagreement dates across three downloads. Alpha=1 improves Top1 agreement but still differs on 45.05% of dates. Historical CAGR span 4.8802pp vs original baseline 4.9236pp remains only marginal improvement. CSV keyed leader dates, pairwise breakdowns and caveats archived. No model retraining, no PnL attribution yet and no production changes."
+  },
+  {
+    "number": 60,
+    "title": "Research: exact economic impact of ETF leader disagreement using executed portfolio equity paths",
+    "head": "research/v2-alpha-cagr-attribution-v1",
+    "sha": "af45b252ec5a1a87073bce937512625d3bf23195",
+    "body": "Replays same six frozen Original149 V2 configurations as successful run 38094477390, but additionally captures FULL_UNIVERSE_PATH.npz containing executed daily equity, top1/top2 weights, and positions. New deterministic analyzer measures exact pairwise log terminal equity differences and partitions sessions by whether three vintage leader series disagree; importantly reports association rather than claiming causal attribution. GitHub Actions run 38130407167 launched; economic result pending. No production changes. This draft PR remains unpromoted pending verified execution and audit."
+  },
+  {
+    "number": 61,
+    "title": "Research: three independent V2 model fits on byte-identical Original149 input",
+    "head": "research/v2-same-input-training-repeatability-v1",
+    "sha": "b1ec9adaa24a50022ab642f149f555e15b00ad9f",
+    "body": "Fixed-data reproducibility experiment: 3 independent GitHub Actions fits on the exact same frozen Yahoo Original149 repeat1, alpha=1.0 shared MAD/STD definition and downvol cleanup, identical canonical replay runner and package versions. Compare resulting CAGR, Sharpe, max drawdown, daily Top1/Top2 selections, and ensemble prediction SHA256. Workflow run 38132305441 active; results pending. No production Etf_trader edits. This determines whether instability exists without any Yahoo input changes."
+  },
+  {
+    "number": 62,
+    "title": "Research meta-review: deduplicate ETF V2 experimental record PR #1–61",
+    "head": "research/v2-research-evidence-inventory-20261011",
+    "sha": "3828535d379ce25fc2eb9302e6a523373d1f0032",
+    "body": "Read-only versioned evidence ledger covering entire PR sequence 1–61 (detailed 39–61); distinguishes verified completed Actions from PR descriptions, execution-only branches, historic errors/superseded results and still-open source/data-quality certification. Documents prior ablation K12, label-feature factorial, Top1 margins, Ridge/LambdaRank 3x3, MAD tuning, V2 CAGR and deterministic same-source fitting. No training, no production changes. Key priority is to recover exact already-existing model-quality/CAGR matrices from PR #41–48 and classify data-quality gate #51; avoid duplicating model experiments. Caveat: old numerical matrices were not re-extracted and this audit is not represented as exhaustive raw-artifact verification."
+  },
+  {
+    "number": 63,
+    "title": "Research retrospective: recover actual K12, Ridge hybrid, LGBM vs BASE outcomes",
+    "head": "research/v2-historical-results-reconciliation-20261011",
+    "sha": "9e44c249977caf7fa82e8cfd6c977c76769912a7",
+    "body": "Read-only numerical reconciliation from completed historical GitHub Actions run logs: PR #43 K12–K16 16/16 failed advance gate, K12 stability gain offset by Top5 predictive quality loss; PR #47 XGB75–Ridge25 pilot/quality/final gates all failed despite NDCG improvement; PR #48 recovered all 9 full strategy replays BASE (31.758% mean CAGR; 4.924pp spread), Ridge (26.158%; 4.907pp), LGBM LambdaRank (36.965%; 9.208pp), all promotion gates failed. Explicitly separates pre-downvol Original149 model swap and later global downvol/MAD V2 runs. Records unresolved old PR #41/#45/#46 numeric artifact verification and source data quality certification. No training and no production changes."
+  },
+  {
+    "number": 64,
+    "title": "Research: classify residual 1665 incomplete Compact21 rows without duplicate Yahoo audits",
+    "head": "research/compact21-residual-missingness-classification-v1",
+    "sha": "079f63008a869b08514b99a6997d516fe7afb9a1",
+    "body": "Before execution inspected previous PR #51 raw source and external event checks, PR #52 raw-history lookback, PR #53 zero MAD, PR #57 frozen candidate panel reconstruction. New scope only: residual 1665 incomplete Compact21 rows. GitHub Actions SUCCESS 38134983791, reused six frozen panels without retraining. Per vintage: 34,876 eligible, 33,211 complete, 1,665 residual incomplete; 50,053 missing cells across 94 features, including 31,604 derivative cells with missing underlying base and 18,449 base/other cells requiring source-vs-lookback audit. Identical keys/masks across three frozen vintages. Source quality gate remains NOT CERTIFIED. No production changes."
+  },
+  {
+    "number": 65,
+    "title": "Research: source-calendar attribution of remaining Compact21 missing base features",
+    "head": "research/compact21-all-base-raw-coverage-v1",
+    "sha": "0ebc4d33d886a491ad09a23f848f702a20f34a7d",
+    "body": "Nonduplicate read-only extension of prior PR #52. Verified GitHub Actions run 38135219538: on each of three Original149 frozen Yahoo source vintages, 18,449 residual base-feature NaNs are 6,808 confirmed insufficient-history observations in five already certified long-lookback features, and 11,641 other features with finite same-date raw Close but unverified exact formula/lookback. No date-missing or invalid same-day Close, no new retraining, no imputation, no production changes. Source quality gate remains NOT CERTIFIED; detailed per-cell source-age CSV preserved."
+  },
+  {
+    "number": 66,
+    "title": "Research: verify Compact21 residual feature nulls against original formulas",
+    "head": "research/compact21-formula-rootcause-v1",
+    "sha": "3e89545ff39cfa19a62a098e9ed7d40773fc28a9",
+    "body": "Read-only formula-domain audit with reuse of previously frozen Original149 OHLCV and Compact21 α=1 panels. After inspecting prior PR #51/#52/#53/#64/#65 to avoid duplicate work, verify original kernel feature lookback requirements for all base features. GitHub Actions 38136132049 SUCCESS: per vintage, 18,401/18,449 previously absent base-feature cells have insufficient historical bars under formula warmup; 48 have volume-zero/log-volume domain windows requiring precise rolling verification. No imputation, no model fit, no production changes. Does not certify raw corporate actions, all feature numerical outputs, or economic robustness."
+  },
+  {
+    "number": 67,
+    "title": "Research: exact volume-surprise rolling formula closes 48 Compact21 NaN cases",
+    "head": "research/compact21-volume48-exact-replay-v1",
+    "sha": "6f98d276abb900f9c6b5e728c1504064765a814e",
+    "body": "Prechecked prior PR #66 and PR search for duplicate exact volume-surprise null verification. No equivalent completed experiment found. Using frozen Yahoo Original149 acquisitions and frozen Compact21 panels, GitHub Actions run 38136343074 SUCCESS established exactly 48 missing volume_surprise21 rows per acquisition: 33 zero-volume at signal date, 15 rolling 21-day windows with fewer than 15 positive-volume observations; zero unexplained. Combined with PR #66, base feature missingness is now explained by 18,401 history-short cases plus 48 exact volume log-domain cases. No filling, no prices modified, no training, no full V2 certification or production changes."
+  },
+  {
+    "number": 68,
+    "title": "Research: establish 2017 training history retention gate before pruning",
+    "head": "research/v2-history-retention-gate-20261011",
+    "sha": "3efa2873b27f6f23619baeab5566339cae3fa267",
+    "body": "Prechecked previous PR work; no certified total V2 training-history cut-off located. Read-only run 38171032263 uses existing frozen Compact21 feature snapshots and maps pre-2017 ticker/date training-feature availability, with earliest 30-feature-eligible signal 2004-02-27. Source audit shows annual XGB training uses all past eligible mature rows (minimum 60 training months is only a threshold, not a fixed window). Therefore pruning 2004–2016 without fit equivalence would change model behavior. Gate verdict NO_CUTOFF_CERTIFIED; full Tail/MA3/Macro as-of dependency remains to verify. Original prices untouched; no re-fitting, no CAGR, no production changes."
+  }
+]
