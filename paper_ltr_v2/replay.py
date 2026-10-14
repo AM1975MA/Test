@@ -183,13 +183,22 @@ def verify_linkage(candidate_result,panel_path,raw,cache,repeat,prior=None):
             or proof.get('semantic_panel',{}).get('PASS') is not True):
             raise ValueError('Chiusura input riutilizzata non corrispondente')
         semantic=proof['semantic_panel'];reuse=sha(prior)
+        semantic_environment=proof.get('semantic_rebuild_environment')
+        if not semantic_environment:raise ValueError('Profilo della ricostruzione esatta non documentato')
     else:
         semantic=verify_panel_identity(panel,rebuild_compact(raw),FEATURES);reuse=None
+        from numpy._core._multiarray_umath import __cpu_features__
+        semantic_environment=dict(numpy=np.__version__,pandas=pd.__version__,python=sys.version,
+            cpu_features={key:bool(value) for key,value in __cpu_features__.items()},
+            environment={name:os.getenv(name) for name in ('OPENBLAS_CORETYPE','NPY_DISABLE_CPU_FEATURES',
+                'OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS')},
+            exact_semantic_comparison=True)
     fingerprints=verify_training_fingerprints(candidate_result,panel,repeat)
     return dict(PASS=True,repeat=repeat,panel_sha256=panel_sha,baseline_panel_sha256=expected,
                 baseline_benchmark_sha256=sha(ROOT/'compact21_learner_swap_v1/results/BENCHMARK.json'),
                 raw_files_sha256=cache_audit['raw_files_sha256'],source_sha256=source_hashes,
-                semantic_panel=semantic,training_fingerprints=fingerprints,reused_input_closure_sha256=reuse,
+                semantic_panel=semantic,semantic_rebuild_environment=semantic_environment,
+                training_fingerprints=fingerprints,reused_input_closure_sha256=reuse,
                 feature_rebuild_only=True,new_fits_executed=0)
 
 
