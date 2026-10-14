@@ -1,0 +1,72 @@
+name: LINEAR_ANNUAL_OPPORTUNITY_SEPARATE
+on:
+  push:
+    branches: [research/linear-opportunity-20261014]
+    paths: [.github/workflows/linear-opportunity.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: Haswell
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  opportunity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        repeat: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Frozen runtime and causal tests
+        run: |
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'pyarrow==23.0.1' 'scipy==1.17.0' 'numba==0.65.1' 'threadpoolctl==3.6.0'
+          python compact21_stability_v1/source_gate.py
+          python -m unittest discover -s opportunity_v1/tests -v
+      - name: Original frozen inputs and verified annual states
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 38580178650 -R AM1975MA/Test -n listnet-linear-relative-repair -D _annual
+          gh run download 37121749852 -R AM1975MA/Test -n yfinance-repeatability-v1-raw -D _raw
+          gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r${{ matrix.repeat }} -D _base
+      - name: Causal Opportunity fits and separate economic replays
+        run: python opportunity_v1/run.py --raw _raw --annual _annual --baseline _base --repeat ${{ matrix.repeat }} --out _opportunity
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: linear-opportunity-r${{ matrix.repeat }}
+          retention-days: 90
+          path: _opportunity/
+  summary:
+    needs: opportunity
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: linear-opportunity-r*
+          path: _all
+      - run: python opportunity_v1/summarize.py --inputs _all --out _summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: linear-opportunity-summary
+          retention-days: 90
+          path: _summary/
