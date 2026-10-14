@@ -46,7 +46,7 @@ jobs:
             gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r$repeat -D "_bases/r$repeat"
             gh run download 38180179897 -R AM1975MA/Test -n paper-ltr-replay-r$repeat -D "_v1replays/paper-ltr-replay-r$repeat"
           done
-      - name: Riusa audit checkpoint già completato con verifica hash e input
+      - name: Riusa audit checkpoint giÃƒÂ  completato con verifica hash e input
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -56,8 +56,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh run watch 38564721801 -R AM1975MA/Test --exit-status --interval 30
-          gh run download 38564721801 -R AM1975MA/Test -n listnet-exact-historical-linkage -D _reference
+          gh run watch 38565181684 -R AM1975MA/Test --exit-status --interval 30
+          gh run download 38565181684 -R AM1975MA/Test -n listnet-exact-historical-linkage -D _reference
       - name: Chiudi provenienza raw cache feature e calendari
         run: |
           for repeat in 1 2 3; do
@@ -103,7 +103,7 @@ jobs:
           path: _audit
       - name: Nuova ricetta BUDGET300 senza rifit dei controlli
         run: python paper_ltr_v2/run.py --variant BUDGET300 --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --original _original/_candidate --baseline _baseline --diagnostic _audit/AUDIT.json --out _candidate
-      - name: Qualità e gate ricalcolati indipendentemente dai checkpoint
+      - name: QualitÃƒÂ  e gate ricalcolati indipendentemente dai checkpoint
         run: python paper_ltr_v2/summarize.py --candidate _candidate --original _original/_candidate --baseline _baseline --diagnostic _audit/AUDIT.json --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --out _comparison/PREDICTIVE.json
       - name: Replay economico diagnostico BUDGET300 sui tre download
         run: |
@@ -153,7 +153,7 @@ jobs:
           path: _audit
       - name: Nuova ricetta LINEAR senza rifit dei controlli
         run: python paper_ltr_v2/run.py --variant LINEAR --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --original _original/_candidate --baseline _baseline --diagnostic _audit/AUDIT.json --out _candidate
-      - name: Qualità e gate ricalcolati indipendentemente dai checkpoint
+      - name: QualitÃƒÂ  e gate ricalcolati indipendentemente dai checkpoint
         run: python paper_ltr_v2/summarize.py --candidate _candidate --original _original/_candidate --baseline _baseline --diagnostic _audit/AUDIT.json --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --out _comparison/PREDICTIVE.json
       - name: Replay economico diagnostico LINEAR sui tre download
         run: |
