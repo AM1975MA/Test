@@ -1,0 +1,76 @@
+{
+  "source_result_sha256": "65a4c74f12fd52aaeffbabc1cf1a164f39605e8177fc09e2983e5c317ddaa636",
+  "fits_executed": 0,
+  "networks": 90,
+  "stop_reasons": {
+    "patience": 27,
+    "max_epochs": 63
+  },
+  "best_epoch_zero": 0,
+  "best_epoch_min_median_max": [
+    44.0,
+    96.0,
+    100.0
+  ],
+  "validation_relative_improvement_min_median_max": [
+    0.023274654356351288,
+    0.045195717739363914,
+    0.08181466619417394
+  ],
+  "clipped_step_fraction": 0.16323556920774632,
+  "capped_last_ten_epochs": {
+    "train_loss": {
+      "count_improved": 63,
+      "count": 63,
+      "median_relative_improvement": 0.0011056854302423016
+    },
+    "validation_loss": {
+      "count_improved": 52,
+      "count": 63,
+      "median_relative_improvement": 0.00015359081804242208
+    }
+  },
+  "repeat2_queries": {
+    "2017": {
+      "subtrain": 136,
+      "validation": 16
+    },
+    "2018": {
+      "subtrain": 147,
+      "validation": 17
+    },
+    "2019": {
+      "subtrain": 158,
+      "validation": 18
+    },
+    "2020": {
+      "subtrain": 169,
+      "validation": 19
+    },
+    "2021": {
+      "subtrain": 180,
+      "validation": 21
+    },
+    "2022": {
+      "subtrain": 191,
+      "validation": 22
+    },
+    "2023": {
+      "subtrain": 201,
+      "validation": 23
+    },
+    "2024": {
+      "subtrain": 212,
+      "validation": 24
+    },
+    "2025": {
+      "subtrain": 223,
+      "validation": 25
+    },
+    "2026": {
+      "subtrain": 234,
+      "validation": 27
+    }
+  },
+  "interpretation": "Raggiungere il limite di epoche non dimostra underfit n\u00e9 un futuro aumento del CAGR."
+}
