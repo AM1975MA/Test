@@ -1,0 +1,39 @@
+{
+  "PASS": true,
+  "checks": [
+    {
+      "repeat": 1,
+      "scope": "candidate",
+      "max_error": 0.0
+    },
+    {
+      "repeat": 1,
+      "scope": "baseline_control",
+      "max_error": 5.551115123125783e-17
+    },
+    {
+      "repeat": 2,
+      "scope": "candidate",
+      "max_error": 0.0
+    },
+    {
+      "repeat": 2,
+      "scope": "baseline_control",
+      "max_error": 0.0
+    },
+    {
+      "repeat": 3,
+      "scope": "candidate",
+      "max_error": 2.220446049250313e-16
+    },
+    {
+      "repeat": 3,
+      "scope": "baseline_control",
+      "max_error": 2.220446049250313e-16
+    }
+  ],
+  "all_342_states_audit_PASS": true,
+  "cached_january_NPZ_identical": 30,
+  "yearly_return_rows": 90,
+  "new_fits_executed": 0
+}

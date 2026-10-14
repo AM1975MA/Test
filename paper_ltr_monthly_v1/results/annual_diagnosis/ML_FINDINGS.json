@@ -1,0 +1,371 @@
+{
+  "scope": "Diagnosi descrittiva archiviata, nessun fit o nuovo dato",
+  "sources": {
+    "_evidence\\listnet-linear-relative-repair\\_candidate\\RESULT.json": "19d178f977f435eb3433b23f6b16113bb9ff6ea623b079a4742cb04312ee132f",
+    "_evidence\\listnet-linear-relative-repair\\_comparison\\PREDICTIVE.json": "9c337ec7f9e1ef08289970c4e4b88916c831100ca7622e64448dd395b7ef83a5"
+  },
+  "quality_scope": "Compact21 standalone: 12 segnali mensili per anno, media per data dei tre vintage; label 21 giorni; non P&L V2",
+  "years": {
+    "2021": {
+      "training_by_vintage": {
+        "1": {
+          "train_rows": 24893,
+          "subtrain_rows": 21615,
+          "validation_rows": 3129,
+          "purged_rows": 149,
+          "subtrain_queries": 180,
+          "validation_queries": 21,
+          "cutoff": "2021-01-01T00:00:00",
+          "validation_start": "2019-03-29T00:00:00",
+          "max_subtrain_signal_date": "2019-01-31T00:00:00",
+          "max_subtrain_exit_date_21": "2019-03-05T00:00:00",
+          "max_signal_date": "2020-11-30T00:00:00",
+          "max_exit_date_21": "2020-12-31T00:00:00",
+          "maturity_PASS": true,
+          "purge_PASS": true,
+          "train_keys_sha256": "7dab0439e6dbc75191391db18b137743a767788d9e0c459f9aa6675afb563ca1",
+          "subtrain_keys_sha256": "604c2e8b2acbdb6c348886e05323779ed129fe533e63ecc08639cbe759a7c595",
+          "validation_keys_sha256": "5512c3827f93e96c8c2b5e3be2bf5ee03be08e48421b31df8cb6e5fdec14bd20"
+        },
+        "2": {
+          "train_rows": 24893,
+          "subtrain_rows": 21615,
+          "validation_rows": 3129,
+          "purged_rows": 149,
+          "subtrain_queries": 180,
+          "validation_queries": 21,
+          "cutoff": "2021-01-01T00:00:00",
+          "validation_start": "2019-03-29T00:00:00",
+          "max_subtrain_signal_date": "2019-01-31T00:00:00",
+          "max_subtrain_exit_date_21": "2019-03-05T00:00:00",
+          "max_signal_date": "2020-11-30T00:00:00",
+          "max_exit_date_21": "2020-12-31T00:00:00",
+          "maturity_PASS": true,
+          "purge_PASS": true,
+          "train_keys_sha256": "7dab0439e6dbc75191391db18b137743a767788d9e0c459f9aa6675afb563ca1",
+          "subtrain_keys_sha256": "604c2e8b2acbdb6c348886e05323779ed129fe533e63ecc08639cbe759a7c595",
+          "validation_keys_sha256": "5512c3827f93e96c8c2b5e3be2bf5ee03be08e48421b31df8cb6e5fdec14bd20"
+        },
+        "3": {
+          "train_rows": 24893,
+          "subtrain_rows": 21615,
+          "validation_rows": 3129,
+          "purged_rows": 149,
+          "subtrain_queries": 180,
+          "validation_queries": 21,
+          "cutoff": "2021-01-01T00:00:00",
+          "validation_start": "2019-03-29T00:00:00",
+          "max_subtrain_signal_date": "2019-01-31T00:00:00",
+          "max_subtrain_exit_date_21": "2019-03-05T00:00:00",
+          "max_signal_date": "2020-11-30T00:00:00",
+          "max_exit_date_21": "2020-12-31T00:00:00",
+          "maturity_PASS": true,
+          "purge_PASS": true,
+          "train_keys_sha256": "7dab0439e6dbc75191391db18b137743a767788d9e0c459f9aa6675afb563ca1",
+          "subtrain_keys_sha256": "604c2e8b2acbdb6c348886e05323779ed129fe533e63ecc08639cbe759a7c595",
+          "validation_keys_sha256": "5512c3827f93e96c8c2b5e3be2bf5ee03be08e48421b31df8cb6e5fdec14bd20"
+        }
+      },
+      "ranking_stability_native": {
+        "1-2": {
+          "rank_mean_abs": 0.0005930663783913638,
+          "rank_p99_abs": 0.0067114093959732,
+          "mean_daily_spearman": 0.9999749077936997,
+          "top1_disagreement_fraction": 0.0,
+          "top5_jaccard": 1.0
+        },
+        "1-3": {
+          "rank_mean_abs": 0.0004804588381904722,
+          "rank_p99_abs": 0.0067114093959732,
+          "mean_daily_spearman": 0.9999797448455169,
+          "top1_disagreement_fraction": 0.0,
+          "top5_jaccard": 1.0
+        },
+        "2-3": {
+          "rank_mean_abs": 0.0005930663783913639,
+          "rank_p99_abs": 0.0067114093959732,
+          "mean_daily_spearman": 0.9999740008464841,
+          "top1_disagreement_fraction": 0.0,
+          "top5_jaccard": 1.0
+        }
+      },
+      "days_cutoff_since_last_training_exit": 668,
+      "candidate_quality": {
+        "year": 2021,
+        "mature_dates": 12,
+        "top1_realized_percentile": 0.49944071588366895,
+        "ndcg5": 0.550257326054448,
+        "rank_ic": -0.0027230586290988962,
+        "top1_realized_return": 0.0034757930128977987,
+        "top1_hit_topdecile": 0.25
+      },
+      "reference_quality": {
+        "year": 2021,
+        "mature_dates": 12,
+        "top1_realized_percentile": 0.6213646532438478,
+        "ndcg5": 0.5812950678241836,
+        "rank_ic": 0.02138269141624846,
+        "top1_realized_return": 0.049845972984023136,
+        "top1_hit_topdecile": 0.4444444444444444
+      },
+      "candidate_top1_monthly_repeat2": [
+        {
+          "signal_date": "2021-01-29T00:00:00",
+          "selected_ticker": "UNG",
+          "top1_realized_return": 0.035992207701365686,
+          "top1_realized_percentile": 0.6174496644295302
+        },
+        {
+          "signal_date": "2021-02-26T00:00:00",
+          "selected_ticker": "GDX",
+          "top1_realized_return": 0.014911140287765745,
+          "top1_realized_percentile": 0.6912751677852349
+        },
+        {
+          "signal_date": "2021-03-31T00:00:00",
+          "selected_ticker": "TUR",
+          "top1_realized_return": -0.01308020711454938,
+          "top1_realized_percentile": 0.087248322147651
+        },
+        {
+          "signal_date": "2021-04-30T00:00:00",
+          "selected_ticker": "UNG",
+          "top1_realized_return": 0.033175300613054404,
+          "top1_realized_percentile": 0.6845637583892618
+        },
+        {
+          "signal_date": "2021-05-28T00:00:00",
+          "selected_ticker": "KWEB",
+          "top1_realized_return": -0.039814006793238654,
+          "top1_realized_percentile": 0.20134228187919462
+        },
+        {
+          "signal_date": "2021-06-30T00:00:00",
+          "selected_ticker": "XLE",
+          "top1_realized_return": -0.10308545311632944,
+          "top1_realized_percentile": 0.026845637583892617
+        },
+        {
+          "signal_date": "2021-07-30T00:00:00",
+          "selected_ticker": "KWEB",
+          "top1_realized_return": -0.013529456935708284,
+          "top1_realized_percentile": 0.15436241610738255
+        },
+        {
+          "signal_date": "2021-08-31T00:00:00",
+          "selected_ticker": "PALL",
+          "top1_realized_return": -0.21664338275584905,
+          "top1_realized_percentile": 0.006711409395973154
+        },
+        {
+          "signal_date": "2021-09-30T00:00:00",
+          "selected_ticker": "GDXJ",
+          "top1_realized_return": 0.12558286554761522,
+          "top1_realized_percentile": 0.9798657718120806
+        },
+        {
+          "signal_date": "2021-10-29T00:00:00",
+          "selected_ticker": "GDXJ",
+          "top1_realized_return": -0.008741710958511062,
+          "top1_realized_percentile": 0.6510067114093959
+        },
+        {
+          "signal_date": "2021-11-30T00:00:00",
+          "selected_ticker": "PALL",
+          "top1_realized_return": 0.0805303393937975,
+          "top1_realized_percentile": 0.9328859060402684
+        },
+        {
+          "signal_date": "2021-12-31T00:00:00",
+          "selected_ticker": "USL",
+          "top1_realized_return": 0.1464118802853609,
+          "top1_realized_percentile": 0.959731543624161
+        }
+      ]
+    },
+    "2023": {
+      "training_by_vintage": {
+        "1": {
+          "train_rows": 28320,
+          "subtrain_rows": 24744,
+          "validation_rows": 3427,
+          "purged_rows": 149,
+          "subtrain_queries": 201,
+          "validation_queries": 23,
+          "cutoff": "2023-01-01T00:00:00",
+          "validation_start": "2020-12-31T00:00:00",
+          "max_subtrain_signal_date": "2020-10-30T00:00:00",
+          "max_subtrain_exit_date_21": "2020-12-02T00:00:00",
+          "max_signal_date": "2022-10-31T00:00:00",
+          "max_exit_date_21": "2022-12-01T00:00:00",
+          "maturity_PASS": true,
+          "purge_PASS": true,
+          "train_keys_sha256": "4e9c326769bdf16f7efdf18e129e7263111d83962e4303720db4578b64e45142",
+          "subtrain_keys_sha256": "9ade2ff991292bc463a59d6e7ba17e5a01ddda7744884ae1e665568dae6097d5",
+          "validation_keys_sha256": "659f58f596c569ba100fa7b650b66e142ac5500184682c58e777d834d9064827"
+        },
+        "2": {
+          "train_rows": 28320,
+          "subtrain_rows": 24744,
+          "validation_rows": 3427,
+          "purged_rows": 149,
+          "subtrain_queries": 201,
+          "validation_queries": 23,
+          "cutoff": "2023-01-01T00:00:00",
+          "validation_start": "2020-12-31T00:00:00",
+          "max_subtrain_signal_date": "2020-10-30T00:00:00",
+          "max_subtrain_exit_date_21": "2020-12-02T00:00:00",
+          "max_signal_date": "2022-10-31T00:00:00",
+          "max_exit_date_21": "2022-12-01T00:00:00",
+          "maturity_PASS": true,
+          "purge_PASS": true,
+          "train_keys_sha256": "4e9c326769bdf16f7efdf18e129e7263111d83962e4303720db4578b64e45142",
+          "subtrain_keys_sha256": "9ade2ff991292bc463a59d6e7ba17e5a01ddda7744884ae1e665568dae6097d5",
+          "validation_keys_sha256": "659f58f596c569ba100fa7b650b66e142ac5500184682c58e777d834d9064827"
+        },
+        "3": {
+          "train_rows": 28320,
+          "subtrain_rows": 24744,
+          "validation_rows": 3427,
+          "purged_rows": 149,
+          "subtrain_queries": 201,
+          "validation_queries": 23,
+          "cutoff": "2023-01-01T00:00:00",
+          "validation_start": "2020-12-31T00:00:00",
+          "max_subtrain_signal_date": "2020-10-30T00:00:00",
+          "max_subtrain_exit_date_21": "2020-12-02T00:00:00",
+          "max_signal_date": "2022-10-31T00:00:00",
+          "max_exit_date_21": "2022-12-01T00:00:00",
+          "maturity_PASS": true,
+          "purge_PASS": true,
+          "train_keys_sha256": "4e9c326769bdf16f7efdf18e129e7263111d83962e4303720db4578b64e45142",
+          "subtrain_keys_sha256": "9ade2ff991292bc463a59d6e7ba17e5a01ddda7744884ae1e665568dae6097d5",
+          "validation_keys_sha256": "659f58f596c569ba100fa7b650b66e142ac5500184682c58e777d834d9064827"
+        }
+      },
+      "ranking_stability_native": {
+        "1-2": {
+          "rank_mean_abs": 0.0005405161929642808,
+          "rank_p99_abs": 0.0067114093959732,
+          "mean_daily_spearman": 0.999976117056654,
+          "top1_disagreement_fraction": 0.0,
+          "top5_jaccard": 1.0
+        },
+        "1-3": {
+          "rank_mean_abs": 0.0005480233623110072,
+          "rank_p99_abs": 0.0067114093959732,
+          "mean_daily_spearman": 0.9999770240038699,
+          "top1_disagreement_fraction": 0.0,
+          "top5_jaccard": 0.9722222222222222
+        },
+        "2-3": {
+          "rank_mean_abs": 0.0007281954266324338,
+          "rank_p99_abs": 0.0067114093959732,
+          "mean_daily_spearman": 0.9999667452687588,
+          "top1_disagreement_fraction": 0.0,
+          "top5_jaccard": 0.9722222222222222
+        }
+      },
+      "days_cutoff_since_last_training_exit": 760,
+      "candidate_quality": {
+        "year": 2023,
+        "mature_dates": 12,
+        "top1_realized_percentile": 0.44407158836689037,
+        "ndcg5": 0.4473158380181061,
+        "rank_ic": -0.10473980692101499,
+        "top1_realized_return": 0.008747538841510147,
+        "top1_hit_topdecile": 0.3333333333333333
+      },
+      "reference_quality": {
+        "year": 2023,
+        "mature_dates": 12,
+        "top1_realized_percentile": 0.5741983594332587,
+        "ndcg5": 0.5449385829206805,
+        "rank_ic": -0.009652538444484762,
+        "top1_realized_return": 0.01490442569175369,
+        "top1_hit_topdecile": 0.3055555555555555
+      },
+      "candidate_top1_monthly_repeat2": [
+        {
+          "signal_date": "2023-01-31T00:00:00",
+          "selected_ticker": "TUR",
+          "top1_realized_return": 0.08640455929547719,
+          "top1_realized_percentile": 1.0
+        },
+        {
+          "signal_date": "2023-02-28T00:00:00",
+          "selected_ticker": "TUR",
+          "top1_realized_return": -0.07123145675999787,
+          "top1_realized_percentile": 0.04697986577181208
+        },
+        {
+          "signal_date": "2023-03-31T00:00:00",
+          "selected_ticker": "TUR",
+          "top1_realized_return": -0.0827887013410401,
+          "top1_realized_percentile": 0.08053691275167785
+        },
+        {
+          "signal_date": "2023-04-28T00:00:00",
+          "selected_ticker": "KWEB",
+          "top1_realized_return": -0.09938775517991516,
+          "top1_realized_percentile": 0.020134228187919462
+        },
+        {
+          "signal_date": "2023-05-31T00:00:00",
+          "selected_ticker": "GDXJ",
+          "top1_realized_return": -0.04252472040769206,
+          "top1_realized_percentile": 0.020134228187919462
+        },
+        {
+          "signal_date": "2023-06-30T00:00:00",
+          "selected_ticker": "KWEB",
+          "top1_realized_return": 0.09779071752495727,
+          "top1_realized_percentile": 0.9463087248322147
+        },
+        {
+          "signal_date": "2023-07-31T00:00:00",
+          "selected_ticker": "TUR",
+          "top1_realized_return": 0.10756501508409988,
+          "top1_realized_percentile": 1.0
+        },
+        {
+          "signal_date": "2023-08-31T00:00:00",
+          "selected_ticker": "UNG",
+          "top1_realized_return": -0.06777320147477883,
+          "top1_realized_percentile": 0.37583892617449666
+        },
+        {
+          "signal_date": "2023-09-29T00:00:00",
+          "selected_ticker": "KWEB",
+          "top1_realized_return": -0.040689240803467586,
+          "top1_realized_percentile": 0.28187919463087246
+        },
+        {
+          "signal_date": "2023-10-31T00:00:00",
+          "selected_ticker": "TUR",
+          "top1_realized_return": 0.06363088313322307,
+          "top1_realized_percentile": 0.3825503355704698
+        },
+        {
+          "signal_date": "2023-11-30T00:00:00",
+          "selected_ticker": "ARGT",
+          "top1_realized_return": 0.0012219166517486446,
+          "top1_realized_percentile": 0.174496644295302
+        },
+        {
+          "signal_date": "2023-12-29T00:00:00",
+          "selected_ticker": "URA",
+          "top1_realized_return": 0.15275245037550733,
+          "top1_realized_percentile": 1.0
+        }
+      ]
+    }
+  },
+  "code_evidence": {
+    "paper_ltr_v2/learner.py:146-148": "Fit solo sul subtraining; validazione esclusa dalla loss ottimizzata",
+    "paper_ltr_v2/learner.py:155-159": "Validazione solo misurata; full_training_refit=False"
+  },
+  "causal_limit": "La stalezza del training è dimostrata, non è dimostrato che causi il differenziale di rendimento. Le tre revisioni non sono repliche indipendenti.",
+  "proposed_single_test": "Preregistrare LINEAR annuale con refit sul training interamente maturo a ogni cutoff, ricetta/iperparametri e tutti i layer invariati. Rifittare anche imputazione e scaling sullo stesso training causale. Confronto accoppiato su tutto 2017-2026 e tutti tre vintage; 2021/2023 solo sottoperiodi descrittivi. Nessuna ricerca di finestre o iperparametri.",
+  "history_check": "Ricerca locale sul codice e sui report versionati non trova questo specifico full-mature refit LINEAR già eseguito: V1,V2,mensile hanno full_training_refit=False. Da confermare contro PR remote prima di fit."
+}

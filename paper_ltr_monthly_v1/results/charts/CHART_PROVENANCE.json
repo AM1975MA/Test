@@ -1,0 +1,33 @@
+{
+  "sources_sha256": {
+    "_replays/v2replay-LINEAR_MONTHLY-r1/baseline_control/FULL_UNIVERSE_PATH.npz": "71832165ab3d9234dc6a7ebef22782b2030566a4be75f4a553d7382f8b76c18b",
+    "_replays/v2replay-LINEAR_MONTHLY-r2/baseline_control/FULL_UNIVERSE_PATH.npz": "1d414cbbccafea1243d67d0dabe2a12fe05328bda3e6a1dba9b859a49616f177",
+    "_replays/v2replay-LINEAR_MONTHLY-r3/baseline_control/FULL_UNIVERSE_PATH.npz": "0177093f28d0c90fafaa4380e566fe3fabb9b15f4beceea53e651d4b48a83c1a",
+    "_replays/v2replay-LINEAR_NUMERICAL_REPAIR-r1/candidate/FULL_UNIVERSE_PATH.npz": "095ef86bf9aabf087c68d1379bf3e24d3515ae2c7dc2afefa1d786a30fec208e",
+    "_replays/v2replay-LINEAR_NUMERICAL_REPAIR-r2/candidate/FULL_UNIVERSE_PATH.npz": "2b09a57967b5e4abbfe883d030909f68caaa33debf40f49198eceb31d82bfcb1",
+    "_replays/v2replay-LINEAR_NUMERICAL_REPAIR-r3/candidate/FULL_UNIVERSE_PATH.npz": "7d600373a370f9c42ac08c54bd9d4b98a999ef8189b4ea0c8e176ecc2e571fdd",
+    "_replays/v2replay-LINEAR_MONTHLY-r1/candidate/FULL_UNIVERSE_PATH.npz": "719792c828a6218d8d2268f8b97876c3b62fc8df3cc46421c1d5c6eb942cd56c",
+    "_replays/v2replay-LINEAR_MONTHLY-r2/candidate/FULL_UNIVERSE_PATH.npz": "07ecbe48bff91ca6f707504bf4745487227456b0f22e5fb4bd8473ec4b94125a",
+    "_replays/v2replay-LINEAR_MONTHLY-r3/candidate/FULL_UNIVERSE_PATH.npz": "36b61c7ead043ae76d33992def3a0e9a648955d3efe98fec49ad672b9cdc109e"
+  },
+  "plot_source_sha256": "2b5d071e6d8ce7b9f12286ee348e8f51da1d276eadb2315fed3ec1fa29315240",
+  "rows": 90,
+  "strategies": 3,
+  "downloads": 3,
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "metric": "compounded net returns by canonical execution-session year; partial years not annualized",
+  "dispersion": "observed minimum-maximum across three correlated frozen downloads, not a confidence interval",
+  "all_calendars_identical": true,
+  "annual_decomposition_reconciles": true
+}
