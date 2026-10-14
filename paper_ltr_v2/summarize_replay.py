@@ -137,7 +137,7 @@ def summarize(inputs,v1_inputs,variants=('BUDGET300','LINEAR')):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--inputs',required=True);ap.add_argument('--v1-inputs');ap.add_argument('--out',required=True)
-    ap.add_argument('--v1-only',action='store_true');ap.add_argument('--variants',nargs='+',choices=['BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR'])
+    ap.add_argument('--v1-only',action='store_true');ap.add_argument('--variants',nargs='+',choices=['BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR','LINEAR_MONTHLY'])
     args=ap.parse_args()
     if args.v1_only:variants=();v1_inputs=args.inputs
     else:

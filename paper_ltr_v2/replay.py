@@ -133,6 +133,9 @@ def verify_panel_identity(panel, rebuilt, features):
 
 
 def verify_training_fingerprints(result, panel, repeat):
+    if result.get('variant')=='LINEAR_MONTHLY':
+        from paper_ltr_monthly_v1.audit import verify_month_fingerprints
+        return verify_month_fingerprints(result,panel,repeat)
     from paper_ltr_v1.learner import split_training,raw_matrix
     checked={}
     valid=panel[FEATURES].notna().sum(axis=1)>=30
@@ -216,7 +219,7 @@ def main():
     baseline,contract,evidence,audit=verify_cache(cache,raw)
     candidate_path=one(a.candidate,'NATIVE_PREDICTIONS.parquet');candidate_result=json.loads(one(a.candidate,'RESULT.json').read_text())
     if (candidate_result.get('status') not in ('PAPER_LTR_V1_COMPLETE','PAPER_LTR_V2_COMPLETE')
-        or candidate_result.get('variant') not in ('LISTNET_DECILE_64','BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR')
+        or candidate_result.get('variant') not in ('LISTNET_DECILE_64','BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR','LINEAR_MONTHLY')
         or candidate_result.get('ALL_MATURITY_PASS') is not True):raise ValueError('Fit candidato incompleto o contratto diverso')
     if set(candidate_result.get('per_year',{}))!=set(map(str,range(2017,2027))):raise ValueError('Fold candidato incompleti')
     expected_candidate_hash=candidate_result.get('files_sha256',{}).get('NATIVE_PREDICTIONS.parquet')
