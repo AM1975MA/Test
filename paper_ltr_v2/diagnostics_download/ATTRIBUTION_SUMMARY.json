@@ -1,0 +1,782 @@
+{
+  "method": "sum of observed daily log-return differences, derived from stored equity (initial wealth 1)",
+  "common_sessions_all_six": 2366,
+  "all_six_identical_calendars": true,
+  "metrics": {
+    "baseline_control_r1": {
+      "cagr": 0.2975344774660576,
+      "maxdd": -0.3486213376490779,
+      "sharpe": 1.046113520709817,
+      "terminal_equity": 11.536148681359933
+    },
+    "baseline_control_r2": {
+      "cagr": 0.3084370492564604,
+      "maxdd": -0.25689610266686813,
+      "sharpe": 1.0869929498969455,
+      "terminal_equity": 12.478988259917129
+    },
+    "baseline_control_r3": {
+      "cagr": 0.346770790748319,
+      "maxdd": -0.36097505012561093,
+      "sharpe": 1.1829318538970464,
+      "terminal_equity": 16.365303998168837
+    },
+    "candidate_r1": {
+      "cagr": 0.22341571841253813,
+      "maxdd": -0.31707943175303355,
+      "sharpe": 0.7983793400429694,
+      "terminal_equity": 6.6408409876002965
+    },
+    "candidate_r2": {
+      "cagr": 0.20294902393916595,
+      "maxdd": -0.30416029329539607,
+      "sharpe": 0.7536447004401516,
+      "terminal_equity": 5.66803170360408
+    },
+    "candidate_r3": {
+      "cagr": 0.21635997037549984,
+      "maxdd": -0.33290605846528154,
+      "sharpe": 0.7959692787667145,
+      "terminal_equity": 6.289828257431195
+    }
+  },
+  "selection_disagreement_across_downloads": {
+    "baseline_control": {
+      "sessions": 2366,
+      "top1_any_count": 1018,
+      "top1_any_fraction": 0.43026204564666104,
+      "top2_ordered_any_count": 1812,
+      "top2_ordered_any_fraction": 0.7658495350803043,
+      "top2_unordered_any_count": 1585,
+      "top2_unordered_any_fraction": 0.6699070160608622,
+      "pairwise": {
+        "1-2": {
+          "top1_fraction": 0.3326289095519865,
+          "top2_ordered_fraction": 0.6132713440405748
+        },
+        "1-3": {
+          "top1_fraction": 0.3076923076923077,
+          "top2_ordered_fraction": 0.6610312764158918
+        },
+        "2-3": {
+          "top1_fraction": 0.30092983939137785,
+          "top2_ordered_fraction": 0.5752324598478444
+        }
+      },
+      "interpretation": "Sedute correlate con decisioni mensili ripetute; tre revisioni dello stesso mercato."
+    },
+    "candidate": {
+      "sessions": 2366,
+      "top1_any_count": 547,
+      "top1_any_fraction": 0.2311918850380389,
+      "top2_ordered_any_count": 1220,
+      "top2_ordered_any_fraction": 0.5156382079459002,
+      "top2_unordered_any_count": 950,
+      "top2_unordered_any_fraction": 0.4015215553677092,
+      "pairwise": {
+        "1-2": {
+          "top1_fraction": 0.1669484361792054,
+          "top2_ordered_fraction": 0.34573119188503804
+        },
+        "1-3": {
+          "top1_fraction": 0.1530008453085376,
+          "top2_ordered_fraction": 0.41166525781910396
+        },
+        "2-3": {
+          "top1_fraction": 0.17666948436179206,
+          "top2_ordered_fraction": 0.3710904480135249
+        }
+      },
+      "interpretation": "Sedute correlate con decisioni mensili ripetute; tre revisioni dello stesso mercato."
+    }
+  },
+  "input_sha256": {
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r1\\baseline_control\\FULL_UNIVERSE_PATH.npz": "71832165ab3d9234dc6a7ebef22782b2030566a4be75f4a553d7382f8b76c18b",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r1\\baseline_control\\DAILY_LEADERS.csv": "e23dafdfd21dd688aba56ce80885ada463ed7882946dd985346326d2a9d69f58",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r2\\baseline_control\\FULL_UNIVERSE_PATH.npz": "1d414cbbccafea1243d67d0dabe2a12fe05328bda3e6a1dba9b859a49616f177",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r2\\baseline_control\\DAILY_LEADERS.csv": "4970574b6884b2f04ae4768d94bc673a36fefe6c9575777cbdbcf3f8f37595ff",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r3\\baseline_control\\FULL_UNIVERSE_PATH.npz": "0177093f28d0c90fafaa4380e566fe3fabb9b15f4beceea53e651d4b48a83c1a",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r3\\baseline_control\\DAILY_LEADERS.csv": "1c273f0f788a6db8ee96675f1de8cba58c9fff4231bbd96b1d260bb3a42a23d2",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r1\\candidate\\FULL_UNIVERSE_PATH.npz": "a0733842e3477cad2049c3e298b40781e7ed7687c341bcac779e870072e7c3b2",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r1\\candidate\\DAILY_LEADERS.csv": "22b7344b62affaa8fb8e2563f457046b08a49e82275066bf9c9ec0c9a8325100",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r2\\candidate\\FULL_UNIVERSE_PATH.npz": "688a577e5ffa73efef6eac3d74cdd7464847e25b96f4cccd1091762e4456fec5",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r2\\candidate\\DAILY_LEADERS.csv": "f241055500713004b7916fa0ada91f5586ae0f39929d8b47b5836b25c01b6b74",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r3\\candidate\\FULL_UNIVERSE_PATH.npz": "1edd2365cf067c1620fd90914a4d454cb93b31024a5fb4bee489e278367a86c1",
+    "_evidence\\listnet-v2-BUDGET300\\_replays\\v2replay-BUDGET300-r3\\candidate\\DAILY_LEADERS.csv": "e886ca1f39660d60a2d01b897c1471d9a393a9aa4ae7bac6eba17c1899c75258",
+    "paper_ltr_v2/summarize_replay.py": "cb3699090c6155cfe35714169a9f444b6a868c415542a4b141fdb9a7bc375b3c",
+    "vendor/p45/v2_stage19_kernel.py": "329439370cd9cfe9023d2db243b3817002b8472cd5a865a6b3737ba4b723a605",
+    "holdout70/v2_canonical_same_source_compare.py": "bde333ec4118e2d6343e04b463e8ce64e675c741ab0a5fae6a3b82aa0e66b701",
+    "forensics_v1/results/EXECUTION_ABLATION.json": "13f01cc74e3d70e0803592f478eb4ad8f629c00fc24b16ffc2115611f6965392"
+  },
+  "timing_audit": {
+    "source": "vendor/p45/v2_stage19_kernel.py:160-215; holdout70/v2_canonical_same_source_compare.py:246-251",
+    "equity_at_index_k": "marked at next open k+1 after executing targets at open k and stops during k",
+    "leaders_at_index_k": "target allocation consumed at k; no additional execution lag",
+    "interval_label": "date is execution/interval-start date, not ending valuation date",
+    "last_row": "terminal open mark repeated, zero return, d1/d2=-1 may produce spurious CSV last ticker; no economic gap"
+  },
+  "limitations": [
+    "Selection-tuple grouping is an exact partition of portfolio log gaps, not causal ticker P&L attribution.",
+    "Same leaders can have different weight, return inputs, costs or market state; these causes are not identified here.",
+    "No constituent daily returns or parquet features were read; no price/feature/solver causal decomposition.",
+    "Correlated sessions repeat monthly decisions; no independent-sample inference or promotion test.",
+    "No fits, market downloads, or backtests run. Existing equity paths alone provide return evidence."
+  ],
+  "comparisons": {
+    "baseline_minus_budget300_r1": {
+      "total_logwealth_gap": 0.5522468586995519,
+      "disagreement": {
+        "same_top1": {
+          "sessions": 1402,
+          "fraction": 0.5925612848689772
+        },
+        "same_ordered_pair": {
+          "sessions": 1993,
+          "fraction": 0.8423499577345731
+        },
+        "same_unordered_pair": {
+          "sessions": 1803,
+          "fraction": 0.7620456466610313
+        }
+      },
+      "same_pair_partition": [
+        {
+          "same_ordered_pair": false,
+          "log_gap": 0.586084754778458,
+          "sessions": 1993
+        },
+        {
+          "same_ordered_pair": true,
+          "log_gap": -0.033837896078906,
+          "sessions": 373
+        }
+      ],
+      "same_pair_weight_alt_partition": [
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": false,
+          "log_gap": -0.034143499582602,
+          "sessions": 4
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.619357607515985,
+          "sessions": 1819
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": 0.000870646845074,
+          "sessions": 170
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": -0.032858554743779,
+          "sessions": 290
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.000979341335127,
+          "sessions": 83
+        }
+      ],
+      "rebalance_cost_component": {
+        "cost_rate": 0.001,
+        "log_gap": -0.003321297132213759,
+        "remaining_log_gap": 0.5555681558317657,
+        "interpretation": "Only explicit rebalance multiplier 1-cost*T; remaining gap includes market P&L, stops, state, other fees and interactions, not pure gross return."
+      }
+    },
+    "baseline_minus_budget300_r2": {
+      "total_logwealth_gap": 0.7892043754877738,
+      "disagreement": {
+        "same_top1": {
+          "sessions": 1344,
+          "fraction": 0.5680473372781065
+        },
+        "same_ordered_pair": {
+          "sessions": 2010,
+          "fraction": 0.849535080304311
+        },
+        "same_unordered_pair": {
+          "sessions": 1905,
+          "fraction": 0.805156382079459
+        }
+      },
+      "same_pair_partition": [
+        {
+          "same_ordered_pair": false,
+          "log_gap": 0.689241379402534,
+          "sessions": 2010
+        },
+        {
+          "same_ordered_pair": true,
+          "log_gap": 0.09996299608524,
+          "sessions": 356
+        }
+      ],
+      "same_pair_weight_alt_partition": [
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": false,
+          "log_gap": -0.014371457624471,
+          "sessions": 8
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.704755661252944,
+          "sessions": 1814
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.001142824225939,
+          "sessions": 188
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.100399550120319,
+          "sessions": 270
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.00043655403508,
+          "sessions": 86
+        }
+      ],
+      "rebalance_cost_component": {
+        "cost_rate": 0.001,
+        "log_gap": 0.002244430664780474,
+        "remaining_log_gap": 0.7869599448229933,
+        "interpretation": "Only explicit rebalance multiplier 1-cost*T; remaining gap includes market P&L, stops, state, other fees and interactions, not pure gross return."
+      }
+    },
+    "baseline_minus_budget300_r3": {
+      "total_logwealth_gap": 0.9562297176238799,
+      "disagreement": {
+        "same_top1": {
+          "sessions": 1312,
+          "fraction": 0.5545224006762468
+        },
+        "same_ordered_pair": {
+          "sessions": 2002,
+          "fraction": 0.8461538461538461
+        },
+        "same_unordered_pair": {
+          "sessions": 1831,
+          "fraction": 0.7738799661876585
+        }
+      },
+      "same_pair_partition": [
+        {
+          "same_ordered_pair": false,
+          "log_gap": 1.038928441508254,
+          "sessions": 2002
+        },
+        {
+          "same_ordered_pair": true,
+          "log_gap": -0.082698723884374,
+          "sessions": 364
+        }
+      ],
+      "same_pair_weight_alt_partition": [
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": false,
+          "log_gap": -0.072932906907517,
+          "sessions": 6
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 1.159704737990309,
+          "sessions": 1783
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.047843389574538,
+          "sessions": 213
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": -0.065838215691097,
+          "sessions": 202
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.016860508193277,
+          "sessions": 162
+        }
+      ],
+      "rebalance_cost_component": {
+        "cost_rate": 0.001,
+        "log_gap": -0.0040675509377319325,
+        "remaining_log_gap": 0.9602972685616118,
+        "interpretation": "Only explicit rebalance multiplier 1-cost*T; remaining gap includes market P&L, stops, state, other fees and interactions, not pure gross return."
+      }
+    },
+    "baseline_control_r2_minus_r1": {
+      "total_logwealth_gap": 0.0785608218111844,
+      "disagreement": {
+        "same_top1": {
+          "sessions": 787,
+          "fraction": 0.3326289095519865
+        },
+        "same_ordered_pair": {
+          "sessions": 1451,
+          "fraction": 0.6132713440405748
+        },
+        "same_unordered_pair": {
+          "sessions": 1160,
+          "fraction": 0.4902789518174134
+        }
+      },
+      "same_pair_partition": [
+        {
+          "same_ordered_pair": false,
+          "log_gap": 0.050714146657403,
+          "sessions": 1451
+        },
+        {
+          "same_ordered_pair": true,
+          "log_gap": 0.027846675153781,
+          "sessions": 915
+        }
+      ],
+      "same_pair_weight_alt_partition": [
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": false,
+          "log_gap": 0.00115152228084,
+          "sessions": 5
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.049614512647556,
+          "sessions": 1298
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -5.1888270993e-05,
+          "sessions": 148
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.038613149259401,
+          "sessions": 705
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.010766474105619,
+          "sessions": 210
+        }
+      ],
+      "rebalance_cost_component": {
+        "cost_rate": 0.001,
+        "log_gap": -0.00015627140132515403,
+        "remaining_log_gap": 0.07871709321250955,
+        "interpretation": "Only explicit rebalance multiplier 1-cost*T; remaining gap includes market P&L, stops, state, other fees and interactions, not pure gross return."
+      }
+    },
+    "baseline_control_r3_minus_r1": {
+      "total_logwealth_gap": 0.34967801497153506,
+      "disagreement": {
+        "same_top1": {
+          "sessions": 728,
+          "fraction": 0.3076923076923077
+        },
+        "same_ordered_pair": {
+          "sessions": 1564,
+          "fraction": 0.6610312764158918
+        },
+        "same_unordered_pair": {
+          "sessions": 1276,
+          "fraction": 0.5393068469991547
+        }
+      },
+      "same_pair_partition": [
+        {
+          "same_ordered_pair": false,
+          "log_gap": 0.015169656845865,
+          "sessions": 1564
+        },
+        {
+          "same_ordered_pair": true,
+          "log_gap": 0.33450835812567,
+          "sessions": 802
+        }
+      ],
+      "same_pair_weight_alt_partition": [
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": false,
+          "log_gap": -0.016495119667032,
+          "sessions": 4
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.032665162430531,
+          "sessions": 1434
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.001000385917634,
+          "sessions": 126
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.334059158512367,
+          "sessions": 572
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": 0.000449199613303,
+          "sessions": 230
+        }
+      ],
+      "rebalance_cost_component": {
+        "cost_rate": 0.001,
+        "log_gap": -0.002699693185917765,
+        "remaining_log_gap": 0.35237770815745284,
+        "interpretation": "Only explicit rebalance multiplier 1-cost*T; remaining gap includes market P&L, stops, state, other fees and interactions, not pure gross return."
+      }
+    },
+    "baseline_control_r3_minus_r2": {
+      "total_logwealth_gap": 0.27111719316035066,
+      "disagreement": {
+        "same_top1": {
+          "sessions": 712,
+          "fraction": 0.30092983939137785
+        },
+        "same_ordered_pair": {
+          "sessions": 1361,
+          "fraction": 0.5752324598478444
+        },
+        "same_unordered_pair": {
+          "sessions": 1153,
+          "fraction": 0.48732037193575656
+        }
+      },
+      "same_pair_partition": [
+        {
+          "same_ordered_pair": false,
+          "log_gap": 0.059049763216471,
+          "sessions": 1361
+        },
+        {
+          "same_ordered_pair": true,
+          "log_gap": 0.212067429943879,
+          "sessions": 1005
+        }
+      ],
+      "same_pair_weight_alt_partition": [
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": false,
+          "log_gap": -0.004534768735138,
+          "sessions": 3
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.063685800425919,
+          "sessions": 1191
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.000101268474309,
+          "sessions": 167
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.201698688009561,
+          "sessions": 816
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": 0.010368741934319,
+          "sessions": 189
+        }
+      ],
+      "rebalance_cost_component": {
+        "cost_rate": 0.001,
+        "log_gap": -0.0025434217845926115,
+        "remaining_log_gap": 0.27366061494494326,
+        "interpretation": "Only explicit rebalance multiplier 1-cost*T; remaining gap includes market P&L, stops, state, other fees and interactions, not pure gross return."
+      }
+    },
+    "candidate_r2_minus_r1": {
+      "total_logwealth_gap": -0.15839669497703746,
+      "disagreement": {
+        "same_top1": {
+          "sessions": 395,
+          "fraction": 0.1669484361792054
+        },
+        "same_ordered_pair": {
+          "sessions": 818,
+          "fraction": 0.34573119188503804
+        },
+        "same_unordered_pair": {
+          "sessions": 594,
+          "fraction": 0.2510566356720203
+        }
+      },
+      "same_pair_partition": [
+        {
+          "same_ordered_pair": false,
+          "log_gap": -0.185659400564649,
+          "sessions": 818
+        },
+        {
+          "same_ordered_pair": true,
+          "log_gap": 0.027262705587612,
+          "sessions": 1548
+        }
+      ],
+      "same_pair_weight_alt_partition": [
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": -0.185661255716489,
+          "sessions": 734
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": 1.85515184e-06,
+          "sessions": 84
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.03817660625657,
+          "sessions": 1190
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.010913900668958,
+          "sessions": 358
+        }
+      ],
+      "rebalance_cost_component": {
+        "cost_rate": 0.001,
+        "log_gap": -0.005721999198319386,
+        "remaining_log_gap": -0.15267469577871806,
+        "interpretation": "Only explicit rebalance multiplier 1-cost*T; remaining gap includes market P&L, stops, state, other fees and interactions, not pure gross return."
+      }
+    },
+    "candidate_r3_minus_r1": {
+      "total_logwealth_gap": -0.05430484395279289,
+      "disagreement": {
+        "same_top1": {
+          "sessions": 362,
+          "fraction": 0.1530008453085376
+        },
+        "same_ordered_pair": {
+          "sessions": 974,
+          "fraction": 0.41166525781910396
+        },
+        "same_unordered_pair": {
+          "sessions": 824,
+          "fraction": 0.34826711749788675
+        }
+      },
+      "same_pair_partition": [
+        {
+          "same_ordered_pair": false,
+          "log_gap": -0.138855798316854,
+          "sessions": 974
+        },
+        {
+          "same_ordered_pair": true,
+          "log_gap": 0.084550954364061,
+          "sessions": 1392
+        }
+      ],
+      "same_pair_weight_alt_partition": [
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": -0.137624968613678,
+          "sessions": 828
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": false,
+          "log_gap": -0.001280956457527,
+          "sessions": 1
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": 5.0126754351e-05,
+          "sessions": 145
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": false,
+          "log_gap": -0.000592289375112,
+          "sessions": 1
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.095472085902516,
+          "sessions": 1077
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.010328842163343,
+          "sessions": 314
+        }
+      ],
+      "rebalance_cost_component": {
+        "cost_rate": 0.001,
+        "log_gap": -0.001953439380399591,
+        "remaining_log_gap": -0.052351404572393304,
+        "interpretation": "Only explicit rebalance multiplier 1-cost*T; remaining gap includes market P&L, stops, state, other fees and interactions, not pure gross return."
+      }
+    },
+    "candidate_r3_minus_r2": {
+      "total_logwealth_gap": 0.10409185102424458,
+      "disagreement": {
+        "same_top1": {
+          "sessions": 418,
+          "fraction": 0.17666948436179206
+        },
+        "same_ordered_pair": {
+          "sessions": 878,
+          "fraction": 0.3710904480135249
+        },
+        "same_unordered_pair": {
+          "sessions": 605,
+          "fraction": 0.25570583262890956
+        }
+      },
+      "same_pair_partition": [
+        {
+          "same_ordered_pair": false,
+          "log_gap": -0.050121429112327,
+          "sessions": 878
+        },
+        {
+          "same_ordered_pair": true,
+          "log_gap": 0.154213280136571,
+          "sessions": 1488
+        }
+      ],
+      "same_pair_weight_alt_partition": [
+        {
+          "same_ordered_pair": false,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": -0.049320141500917,
+          "sessions": 750
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": false,
+          "log_gap": -0.001280828277807,
+          "sessions": 1
+        },
+        {
+          "same_ordered_pair": false,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": 0.000479540666397,
+          "sessions": 127
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": false,
+          "log_gap": -0.000146560370135,
+          "sessions": 1
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": false,
+          "same_alt_idx": true,
+          "log_gap": 0.154809314117846,
+          "sessions": 1130
+        },
+        {
+          "same_ordered_pair": true,
+          "same_weight1": true,
+          "same_alt_idx": true,
+          "log_gap": -0.00044947361114,
+          "sessions": 357
+        }
+      ],
+      "rebalance_cost_component": {
+        "cost_rate": 0.001,
+        "log_gap": 0.003768559817919794,
+        "remaining_log_gap": 0.10032329120632479,
+        "interpretation": "Only explicit rebalance multiplier 1-cost*T; remaining gap includes market P&L, stops, state, other fees and interactions, not pure gross return."
+      }
+    }
+  }
+}

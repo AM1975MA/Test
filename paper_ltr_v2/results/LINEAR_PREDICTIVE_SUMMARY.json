@@ -1,0 +1,68 @@
+{
+  "variant": "LINEAR_NUMERICAL_REPAIR",
+  "integrity": {
+    "solver_convergence_PASS": true
+  },
+  "checks": {
+    "rank_mad_common_reduction_ge25pct": true,
+    "native_top1_reduction_ge25pct": true,
+    "native_ordered_top2_not_worse": true,
+    "top1_quality_ge95pct": false,
+    "ndcg5_ge95pct": false,
+    "precision5_ge95pct": true
+  },
+  "scientific_screen_PASS": false,
+  "candidate_quality": {
+    "top1_realized_percentile": 0.49587994034302757,
+    "top1_hit_exact": 0.075,
+    "top1_hit_top5": 0.19444444444444442,
+    "top1_hit_topdecile": 0.30277777777777776,
+    "top5_overlap": 0.16477777777777783,
+    "ndcg5": 0.5046310323362347,
+    "ndcg10": 0.5191622105628969,
+    "rank_ic": 0.0020356208557550824,
+    "top1_return_regret": 0.18899755011258187,
+    "top1_return_regret_vs_topdecile_mean": 0.08623731603946139,
+    "top1_realized_return": 0.010283812168188484,
+    "random_top1_realized_percentile": 0.5033557046979865,
+    "random_top1_hit_exact": 0.006711409395973156,
+    "random_top1_hit_top5": 0.03355704697986577,
+    "random_top1_hit_topdecile": 0.10067114093959732,
+    "random_top5_overlap": 0.03355704697986577
+  },
+  "BASE_quality": {
+    "top1_realized_percentile": 0.5752162565249814,
+    "top1_hit_exact": 0.07277777777777779,
+    "top1_hit_top5": 0.19999999999999998,
+    "top1_hit_topdecile": 0.30833333333333335,
+    "top5_overlap": 0.12511111111111112,
+    "ndcg5": 0.5465657248118273,
+    "ndcg10": 0.5566700863795576,
+    "rank_ic": 0.06110867847713486,
+    "top1_return_regret": 0.17339041010172632,
+    "top1_return_regret_vs_topdecile_mean": 0.0706301760286058,
+    "top1_realized_return": 0.02589095217904407,
+    "random_top1_realized_percentile": 0.5033557046979865,
+    "random_top1_hit_exact": 0.006711409395973156,
+    "random_top1_hit_top5": 0.03355704697986577,
+    "random_top1_hit_topdecile": 0.10067114093959732,
+    "random_top5_overlap": 0.03355704697986577
+  },
+  "numerical_repair": {
+    "execution": "LINEAR_RELATIVE_CURVATURE_REPAIR",
+    "original_failed_run": 38565352286,
+    "original_failed_job": 115872018518,
+    "diagnostic_run": 38578561014,
+    "original_failure_retained": true,
+    "separate_protocol_sha256": "6ef4c249f5fd9bbd1a437ae17cf3a34fa9d8ca109785dc6e20470929cac74f79",
+    "repair_source_sha256": "c164797ee3ca1aa8b1e40ba419ad048d2893f04db297a4fe0299e78565d46ed1",
+    "new_portfolio_rule": false,
+    "new_features": false
+  },
+  "evidence_sha256": {
+    "candidate": "19d178f977f435eb3433b23f6b16113bb9ff6ea623b079a4742cb04312ee132f",
+    "original": "65a4c74f12fd52aaeffbabc1cf1a164f39605e8177fc09e2983e5c317ddaa636",
+    "BASE": "f207cc94dc43d7f2738ef7555103b58da6878067c0124a5cd8f8b038c1a61b9a",
+    "diagnostic": "e4f57018d56ee22f7ede4a302e80d4900bde981369debaa541da0e5eb6a76509"
+  }
+}

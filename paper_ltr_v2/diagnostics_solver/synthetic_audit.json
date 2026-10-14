@@ -1,0 +1,153 @@
+{
+  "scope": "Synthetic only; frozen production thresholds and solver; no real fit",
+  "numpy_version": "2.3.5",
+  "source_sha256": {
+    "paper_ltr_v1\\learner.py": "ad44103df50665ddc28dd6bb08ad7d2489c46e6195459aa52a3b8cc31094561c",
+    "paper_ltr_v2\\learner.py": "67f3bc09553b171aeb0d0df8bb3e673f41a4f341e46028b8b52e472cba7de1a8"
+  },
+  "gradient_checks": {
+    "linear_max_abs_error": 2.2837148838661392e-11,
+    "score_max_abs_error": 3.8466722862562364e-11,
+    "minimum_hessian_eigenvalue": 0.16758268781873845
+  },
+  "cases": [
+    {
+      "seed": 0,
+      "success": false,
+      "error": "Lineare non convergente: residuo 1.3162394032933717e-07",
+      "first": [
+        {
+          "iteration": 0,
+          "objective": 2.3025850929940463,
+          "residual": 0.3744406450624344,
+          "pairs": 0,
+          "sy": 1.2137224867908707,
+          "step": 1.0,
+          "slope": -0.746410662277215,
+          "line_search_evaluations": 1,
+          "objective_change": -0.08091461463963734,
+          "step_inf": 0.3744406450624344,
+          "gradient_change_inf": 0.5527548099124786
+        },
+        {
+          "iteration": 1,
+          "objective": 2.221670478354409,
+          "residual": 0.3507482476694154,
+          "pairs": 1,
+          "sy": 0.214761262637754,
+          "step": 1.0,
+          "slope": -0.24799635399896006,
+          "line_search_evaluations": 1,
+          "objective_change": -0.1428228236737925,
+          "step_inf": 0.1300237983191891,
+          "gradient_change_inf": 0.33193564514082224
+        },
+        {
+          "iteration": 2,
+          "objective": 2.0788476546806165,
+          "residual": 0.07555915629017435,
+          "pairs": 2,
+          "sy": 0.020324527427101485,
+          "step": 1.0,
+          "slope": -0.019981379400380195,
+          "line_search_evaluations": 1,
+          "objective_change": -0.0099474631237082,
+          "step_inf": 0.04701408797818468,
+          "gradient_change_inf": 0.09071296404868133
+        }
+      ],
+      "last": [
+        {
+          "iteration": 1996,
+          "objective": 2.0637798694556517,
+          "residual": 1.3188856646978203e-07,
+          "pairs": 10,
+          "sy": 2.5693064163943853e-17,
+          "step": 1.0,
+          "slope": -5.118701694695182e-14,
+          "line_search_evaluations": 1,
+          "objective_change": -5.1514348342607263e-14,
+          "step_inf": 6.58843531675668e-08,
+          "gradient_change_inf": 6.620653294532337e-11
+        },
+        {
+          "iteration": 1997,
+          "objective": 2.0637798694556,
+          "residual": 1.318223599368367e-07,
+          "pairs": 10,
+          "sy": 2.5667278338048755e-17,
+          "step": 1.0,
+          "slope": -5.113564371513616e-14,
+          "line_search_evaluations": 1,
+          "objective_change": -5.10702591327572e-14,
+          "step_inf": 6.585128003999685e-08,
+          "gradient_change_inf": 6.617318920197537e-11
+        },
+        {
+          "iteration": 1998,
+          "objective": 2.063779869455549,
+          "residual": 1.3175618674763473e-07,
+          "pairs": 10,
+          "sy": 2.564151458686493e-17,
+          "step": 1.0,
+          "slope": -5.108432204203778e-14,
+          "line_search_evaluations": 1,
+          "objective_change": -5.062616992290714e-14,
+          "step_inf": 6.581822224738243e-08,
+          "gradient_change_inf": 6.613989549455763e-11
+        },
+        {
+          "iteration": 1999,
+          "objective": 2.0637798694554985,
+          "residual": 1.3169004685214018e-07,
+          "pairs": 10,
+          "sy": 2.5615781468886615e-17,
+          "step": 1.0,
+          "slope": -5.103305188350129e-14,
+          "line_search_evaluations": 1,
+          "objective_change": -5.10702591327572e-14,
+          "step_inf": 6.578518262079225e-08,
+          "gradient_change_inf": 6.610652280301162e-11
+        },
+        {
+          "iteration": 2000,
+          "objective": 2.0637798694554474,
+          "residual": 1.3162394032933717e-07,
+          "pairs": 10
+        }
+      ],
+      "terminal_hessian_min_eigenvalue": 0.0010017349969927457,
+      "strong_convexity_suboptimality_upper_bound": 5.105616324583433e-11,
+      "diagnostic_only_newton_gradient_inf": 7.530450872247907e-14,
+      "diagnostic_only_newton_objective_change": -5.078426568161376e-11,
+      "last_accepted_pair_iteration": 24,
+      "terminal_fixed_metric_local_contraction_radius": 0.9995057482685106,
+      "tail_residual_ratio": 0.9994980142813888,
+      "accepted_pairs": 25,
+      "skipped_pairs": 1975,
+      "zero_steps": 0,
+      "minimum_residual": 1.3162394032933717e-07,
+      "uninstrumented_parity": true
+    }
+  ],
+  "existing_toy_test_frozen_solver": {
+    "solver": {
+      "l2": 0.001,
+      "max_iterations": 2000,
+      "gradient_tolerance": 1e-07,
+      "memory": 10,
+      "armijo": 0.0001,
+      "max_line_search": 50,
+      "bias": false,
+      "solver": "numpy_lbfgs",
+      "dtype": "float64"
+    },
+    "iterations": 8,
+    "evaluations": 9,
+    "initial_objective": 2.0794415416798357,
+    "final_objective": 1.0495623497251894,
+    "gradient_inf_norm": 7.644229811643033e-09,
+    "stationary_PASS": true,
+    "stop_reason": "gradient_tolerance"
+  }
+}

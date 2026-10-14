@@ -1,0 +1,201 @@
+name: PAPER_LTR_V2_AGREED_LINE
+on:
+  push:
+    branches: [research/paper-ltr-feasibility-20261012]
+    paths: [.github/workflows/paper-ltr-v2.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: paper-ltr-v2-${{ github.sha }}
+  cancel-in-progress: false
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: Haswell
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Ambiente numerico congelato e controlli
+        run: |
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1' 'threadpoolctl==3.6.0'
+          python compact21_stability_v1/source_gate.py
+          python -m unittest discover -s paper_ltr_v1/tests -v
+          python -m unittest discover -s paper_ltr_v2/tests -v
+      - name: Recupera esclusivamente artefatti congelati da Test
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 38179662587 -R AM1975MA/Test -n paper-ltr-feasibility -D _original
+          gh run download 37229180477 -R AM1975MA/Test -n predictive-BASE -D _baseline
+          gh run download 37121749852 -R AM1975MA/Test -n yfinance-repeatability-v1-raw -D _raw
+          for repeat in 1 2 3; do
+            gh run download 37150436612 -R AM1975MA/Test -n titanium-internal-fixed-repeat-$repeat -D "_ti/r$repeat"
+            gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r$repeat -D "_bases/r$repeat"
+            gh run download 38180179897 -R AM1975MA/Test -n paper-ltr-replay-r$repeat -D "_v1replays/paper-ltr-replay-r$repeat"
+          done
+      - name: Riusa audit checkpoint giÃƒÂ  completato con verifica hash e input
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 38562284435 -R AM1975MA/Test -n listnet-v2-audit -D _audit
+          python -c "import json; from pathlib import Path; from paper_ltr_v2.run import verify_diagnostic; from paper_ltr_v2.audit import sha; p=Path('_audit/AUDIT.json'); assert sha(p)=='e4f57018d56ee22f7ede4a302e80d4900bde981369debaa541da0e5eb6a76509'; j=verify_diagnostic(p,{str(i):sha(Path('_ti')/('r'+str(i))/'TI_COMPACT.parquet') for i in (1,2,3)},sha('_original/_candidate/RESULT.json')); assert j['baseline_result_sha256']==sha('_baseline/RESULT.json'); print('AUDIT_90_CHECKPOINT_RIUSATO_IDENTICO')"
+      - name: Recupera certificazione esatta sotto profilo storico
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run watch 38565181684 -R AM1975MA/Test --exit-status --interval 30
+          gh run download 38565181684 -R AM1975MA/Test -n listnet-exact-historical-linkage -D _reference
+      - name: Chiudi provenienza raw cache feature e calendari
+        run: |
+          for repeat in 1 2 3; do
+            python paper_ltr_v2/replay.py --audit-only --raw "_raw/_repeat$repeat" --baseline "_bases/r$repeat" --candidate _original/_candidate --repeat "$repeat" --ti-panel "_ti/r$repeat/TI_COMPACT.parquet" --linkage-audit "_reference/linkage-r$repeat/INPUT_LINKAGE.json" --out "_audit/linkage-r$repeat"
+          done
+          python paper_ltr_v2/summarize_replay.py --v1-only --inputs _v1replays --out _audit/ORIGINAL_ECONOMIC.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: listnet-v2-audit
+          retention-days: 90
+          path: _audit/
+  budget:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Ambiente numerico congelato e controlli
+        run: |
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1' 'threadpoolctl==3.6.0'
+          python compact21_stability_v1/source_gate.py
+          python -m unittest discover -s paper_ltr_v1/tests -v
+          python -m unittest discover -s paper_ltr_v2/tests -v
+      - name: Recupera esclusivamente artefatti congelati da Test
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 38179662587 -R AM1975MA/Test -n paper-ltr-feasibility -D _original
+          gh run download 37229180477 -R AM1975MA/Test -n predictive-BASE -D _baseline
+          gh run download 37121749852 -R AM1975MA/Test -n yfinance-repeatability-v1-raw -D _raw
+          for repeat in 1 2 3; do
+            gh run download 37150436612 -R AM1975MA/Test -n titanium-internal-fixed-repeat-$repeat -D "_ti/r$repeat"
+            gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r$repeat -D "_bases/r$repeat"
+            gh run download 38180179897 -R AM1975MA/Test -n paper-ltr-replay-r$repeat -D "_v1replays/paper-ltr-replay-r$repeat"
+          done
+      - uses: actions/download-artifact@v4
+        with:
+          name: listnet-v2-audit
+          path: _audit
+      - name: Nuova ricetta BUDGET300 senza rifit dei controlli
+        run: python paper_ltr_v2/run.py --variant BUDGET300 --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --original _original/_candidate --baseline _baseline --diagnostic _audit/AUDIT.json --out _candidate
+      - name: QualitÃƒÂ  e gate ricalcolati indipendentemente dai checkpoint
+        run: python paper_ltr_v2/summarize.py --candidate _candidate --original _original/_candidate --baseline _baseline --diagnostic _audit/AUDIT.json --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --out _comparison/PREDICTIVE.json
+      - name: Replay economico diagnostico BUDGET300 sui tre download
+        run: |
+          for repeat in 1 2 3; do
+            python paper_ltr_v2/replay.py --raw "_raw/_repeat$repeat" --baseline "_bases/r$repeat" --candidate _candidate --repeat "$repeat" --ti-panel "_ti/r$repeat/TI_COMPACT.parquet" --linkage-audit "_audit/linkage-r$repeat/INPUT_LINKAGE.json" --out "_replays/v2replay-BUDGET300-r$repeat"
+          done
+          python paper_ltr_v2/summarize_replay.py --inputs _replays --v1-inputs _v1replays --variants BUDGET300 --out _comparison/ECONOMIC.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: listnet-v2-BUDGET300
+          retention-days: 90
+          path: |
+            _candidate/
+            _comparison/
+            _replays/
+  linear:
+    needs: [preflight, budget]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Ambiente numerico congelato e controlli
+        run: |
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1' 'threadpoolctl==3.6.0'
+          python compact21_stability_v1/source_gate.py
+          python -m unittest discover -s paper_ltr_v1/tests -v
+          python -m unittest discover -s paper_ltr_v2/tests -v
+      - name: Recupera esclusivamente artefatti congelati da Test
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 38179662587 -R AM1975MA/Test -n paper-ltr-feasibility -D _original
+          gh run download 37229180477 -R AM1975MA/Test -n predictive-BASE -D _baseline
+          gh run download 37121749852 -R AM1975MA/Test -n yfinance-repeatability-v1-raw -D _raw
+          for repeat in 1 2 3; do
+            gh run download 37150436612 -R AM1975MA/Test -n titanium-internal-fixed-repeat-$repeat -D "_ti/r$repeat"
+            gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r$repeat -D "_bases/r$repeat"
+            gh run download 38180179897 -R AM1975MA/Test -n paper-ltr-replay-r$repeat -D "_v1replays/paper-ltr-replay-r$repeat"
+          done
+      - uses: actions/download-artifact@v4
+        with:
+          name: listnet-v2-audit
+          path: _audit
+      - name: Nuova ricetta LINEAR senza rifit dei controlli
+        run: python paper_ltr_v2/run.py --variant LINEAR --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --original _original/_candidate --baseline _baseline --diagnostic _audit/AUDIT.json --out _candidate
+      - name: QualitÃƒÂ  e gate ricalcolati indipendentemente dai checkpoint
+        run: python paper_ltr_v2/summarize.py --candidate _candidate --original _original/_candidate --baseline _baseline --diagnostic _audit/AUDIT.json --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --out _comparison/PREDICTIVE.json
+      - name: Replay economico diagnostico LINEAR sui tre download
+        run: |
+          for repeat in 1 2 3; do
+            python paper_ltr_v2/replay.py --raw "_raw/_repeat$repeat" --baseline "_bases/r$repeat" --candidate _candidate --repeat "$repeat" --ti-panel "_ti/r$repeat/TI_COMPACT.parquet" --linkage-audit "_audit/linkage-r$repeat/INPUT_LINKAGE.json" --out "_replays/v2replay-LINEAR-r$repeat"
+          done
+          python paper_ltr_v2/summarize_replay.py --inputs _replays --v1-inputs _v1replays --variants LINEAR --out _comparison/ECONOMIC.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: listnet-v2-LINEAR
+          retention-days: 90
+          path: |
+            _candidate/
+            _comparison/
+            _replays/
+  summary:
+    needs: [budget, linear]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: listnet-v2-*
+          path: _new
+      - name: Riunisci i sei replay e recupera i controlli originali
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _allreplays
+          cp -r _new/listnet-v2-BUDGET300/_replays/* _allreplays/
+          cp -r _new/listnet-v2-LINEAR/_replays/* _allreplays/
+          for repeat in 1 2 3; do
+            gh run download 38180179897 -R AM1975MA/Test -n paper-ltr-replay-r$repeat -D "_v1replays/paper-ltr-replay-r$repeat"
+          done
+          python paper_ltr_v2/summarize_replay.py --inputs _allreplays --v1-inputs _v1replays --variants BUDGET300 LINEAR --out _results/FINAL_ECONOMIC.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: listnet-v2-final-comparison
+          retention-days: 90
+          path: _results/

@@ -1,0 +1,66 @@
+{
+  "new_fits_executed": 0,
+  "checks": [
+    {
+      "repeat": 1,
+      "scope": "baseline",
+      "differences": {
+        "cagr": 5.551115123125783e-17,
+        "maxdd": 0.0,
+        "sharpe": 0.0
+      },
+      "leader_rows": 2366
+    },
+    {
+      "repeat": 1,
+      "scope": "candidate",
+      "differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0
+      },
+      "leader_rows": 2366
+    },
+    {
+      "repeat": 2,
+      "scope": "baseline",
+      "differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0
+      },
+      "leader_rows": 2366
+    },
+    {
+      "repeat": 2,
+      "scope": "candidate",
+      "differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0
+      },
+      "leader_rows": 2366
+    },
+    {
+      "repeat": 3,
+      "scope": "baseline",
+      "differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 2.220446049250313e-16
+      },
+      "leader_rows": 2366
+    },
+    {
+      "repeat": 3,
+      "scope": "candidate",
+      "differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0
+      },
+      "leader_rows": 2366
+    }
+  ],
+  "PASS": true
+}
