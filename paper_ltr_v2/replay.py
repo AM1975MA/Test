@@ -216,7 +216,7 @@ def main():
     baseline,contract,evidence,audit=verify_cache(cache,raw)
     candidate_path=one(a.candidate,'NATIVE_PREDICTIONS.parquet');candidate_result=json.loads(one(a.candidate,'RESULT.json').read_text())
     if (candidate_result.get('status') not in ('PAPER_LTR_V1_COMPLETE','PAPER_LTR_V2_COMPLETE')
-        or candidate_result.get('variant') not in ('LISTNET_DECILE_64','BUDGET300','LINEAR')
+        or candidate_result.get('variant') not in ('LISTNET_DECILE_64','BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR')
         or candidate_result.get('ALL_MATURITY_PASS') is not True):raise ValueError('Fit candidato incompleto o contratto diverso')
     if set(candidate_result.get('per_year',{}))!=set(map(str,range(2017,2027))):raise ValueError('Fold candidato incompleti')
     expected_candidate_hash=candidate_result.get('files_sha256',{}).get('NATIVE_PREDICTIONS.parquet')
@@ -269,7 +269,7 @@ def main():
         ma3_panel_sha256=sha(panel_path))
     audit['ensemble_unchanged_columns_sha256']=hashlib.sha256(ensemble.drop(columns='BASE').to_csv(index=False,lineterminator='\n').encode()).hexdigest()
     audit['candidate_ensemble_unchanged_columns_sha256']=hashlib.sha256(candidate_ensemble.drop(columns='BASE').to_csv(index=False,lineterminator='\n').encode()).hexdigest()
-    result=dict(status='PAPER_LTR_V2_CACHE_REPLAY_COMPLETE',variant=candidate_result['variant'],repeat=a.repeat,baseline=base_result,
+    result=dict(status='PAPER_LTR_V2_CACHE_REPLAY_COMPLETE',variant=candidate_result['variant'],numerical_repair=candidate_result.get('numerical_repair'),repeat=a.repeat,baseline=base_result,
         candidate=candidate_metrics,audit=audit,production_adoption=False)
     (out/'RESULT.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n')
     print(json.dumps(dict(repeat=a.repeat,baseline=base_result['v2_full_universe'],candidate=candidate_metrics['v2_full_universe']),indent=2),flush=True)

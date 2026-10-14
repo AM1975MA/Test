@@ -79,7 +79,7 @@ def gates(rows,base,disp,base_disp,selection,base_selection):
 
 def summarize(inputs,v1_inputs,variants=('BUDGET300','LINEAR')):
     rows={s:[] for s in ('BASE','LISTNET100',*variants)};leaders={s:[] for s in rows}
-    support=None;verification=[];hashes={};baseline_frames={};baseline_paths={}
+    support=None;verification=[];hashes={};baseline_frames={};baseline_paths={};repair_provenance={}
     def read(root,result,scope,folder,label,repeat):
         nonlocal support
         expected=result[scope]
@@ -105,6 +105,13 @@ def summarize(inputs,v1_inputs,variants=('BUDGET300','LINEAR')):
     for variant in variants:
         for i in (1,2,3):
             root=Path(inputs)/f'v2replay-{variant}-r{i}';result=json.loads((root/'RESULT.json').read_text())
+            if variant=='LINEAR_NUMERICAL_REPAIR':
+                proof=result.get('numerical_repair')
+                if not proof or not proof.get('separate_protocol_sha256') or not proof.get('repair_source_sha256'):
+                    raise ValueError('Provenienza riparazione numerica mancante')
+                if variant in repair_provenance and repair_provenance[variant]!=proof:
+                    raise ValueError('Protocolli riparazione diversi tra acquisizioni')
+                repair_provenance[variant]=proof
             if (result.get('status')!='PAPER_LTR_V2_CACHE_REPLAY_COMPLETE' or result.get('variant')!=variant
                 or result.get('repeat')!=i or result['audit']['baseline_replay']['PASS'] is not True
                 or result['audit']['input_linkage']['PASS'] is not True):raise ValueError('Replay/chiusura input V2 non verificato')
@@ -122,7 +129,7 @@ def summarize(inputs,v1_inputs,variants=('BUDGET300','LINEAR')):
     disp={s:dispersion(rr) for s,rr in rows.items()};select={s:selections(ff) for s,ff in leaders.items()}
     screens={s:gates(rows[s],rows['BASE'],disp[s],disp['BASE'],select[s],select['BASE']) for s in rows if s!='BASE'}
     return dict(status='PAPER_LTR_V2_ECONOMIC_COMPARISON_COMPLETE',variants_evaluated=list(variants),
-        both_new_variants_completed=set(variants)=={'BUDGET300','LINEAR'},metrics=rows,dispersion=disp,
+        both_new_variants_completed=set(variants)=={'BUDGET300','LINEAR'},numerical_repair=repair_provenance,metrics=rows,dispersion=disp,
         selection_disagreement=select,economic_screens=screens,independent_path_metric_verification=verification,
         evidence_sha256=hashes,all_calendars_identical=True,source_fit_repeated=False,production_adoption=False,
         interpretation='Sviluppo retrospettivo: nessuna selezione di ricetta mediante CAGR outer; esiti negativi conservati.')
@@ -130,7 +137,7 @@ def summarize(inputs,v1_inputs,variants=('BUDGET300','LINEAR')):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--inputs',required=True);ap.add_argument('--v1-inputs');ap.add_argument('--out',required=True)
-    ap.add_argument('--v1-only',action='store_true');ap.add_argument('--variants',nargs='+',choices=['BUDGET300','LINEAR'])
+    ap.add_argument('--v1-only',action='store_true');ap.add_argument('--variants',nargs='+',choices=['BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR'])
     args=ap.parse_args()
     if args.v1_only:variants=();v1_inputs=args.inputs
     else:

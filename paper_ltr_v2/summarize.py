@@ -47,7 +47,7 @@ def comparison(candidate_frames,base_frames,truth):
 
 def summarize(candidate,original,baseline,diagnostic,panel_dirs):
     cr,cf=load_artifact(candidate);orr,of=load_artifact(original);br,bf=load_artifact(baseline)
-    if cr.get('variant') not in ('BUDGET300','LINEAR') or cr.get('status')!='PAPER_LTR_V2_COMPLETE':raise ValueError('Variante/stato V2 non valido')
+    if cr.get('variant') not in ('BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR') or cr.get('status')!='PAPER_LTR_V2_COMPLETE':raise ValueError('Variante/stato V2 non valido')
     if orr.get('status')!='PAPER_LTR_V1_COMPLETE' or br.get('status')!='COMPACT21_PREDICTIVE_V2_COMPLETE' or br.get('variant')!='BASE':raise ValueError('Riferimenti non completi')
     if br.get('ALL_DETERMINISM_PASS') is not True or br.get('LEGACY_PARITY_PASS') is not True:raise ValueError('BASE non verificata')
     if any(r.get('input_sha256')!=br['input_sha256'] for r in (cr,orr)):raise ValueError('Input misti')
@@ -72,7 +72,7 @@ def summarize(candidate,original,baseline,diagnostic,panel_dirs):
     return dict(status='PAPER_LTR_V2_FIXED_RECIPE_COMPARISON_COMPLETE',variant=cr['variant'],input_sha256=cr['input_sha256'],
         vs_BASE=vs_base,vs_original_LISTNET=vs_original,budget_diagnostic=bg,integrity=integrity,
         scientific_screen_PASS=all(integrity.values()) and vs_base['descriptive_screen_PASS'] and (bg is None or bg['PASS']),
-        audit_candidate=ca,production_adoption=False,automatic_replay=False,new_fits_executed=0,
+        audit_candidate=ca,numerical_repair=cr.get('numerical_repair'),production_adoption=False,automatic_replay=False,new_fits_executed=0,
         evidence_sha256={k:sha(p) for k,p in [('candidate',Path(candidate)/'RESULT.json'),('original',Path(original)/'RESULT.json'),('BASE',Path(baseline)/'RESULT.json'),('diagnostic',diagnostic)]},
         interpretation='Confronto di due ricette fissate su dati già esposti; non politica nested e non holdout intatto. Replay economici diagnostici autorizzati anche con gate fallito.')
 

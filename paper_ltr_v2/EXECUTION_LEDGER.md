@@ -31,6 +31,8 @@ la baseline del nuovo confronto. La diagnosi dei90 fit è già stata eseguita.
 
 ## Avanzamento
 
+Le voci di partenza sottostanti sono storiche; vedere l'aggiornamento finale.
+
 - Audit implementativo: implementato; 23 test v2 e 16 test v1 verificati.
 - Preregistrazione: scritta prima dei fit; pubblicazione e ripresa 14 ottobre2026.
 - Budget300: non avviato.
@@ -66,3 +68,26 @@ la baseline del nuovo confronto. La diagnosi dei90 fit è già stata eseguita.
 - NF_A/B/C già studiati: non ripetere controller Tail63, rank inertia o sola
   esposizione. Un correttore residuale appreso su vere OOF ListNet21 è un'ipotesi
   differente e successiva; non è stato ancora provato né incluso in questo run.
+
+## Risultati confermati 14 ottobre 2026 e diagnosi successiva
+
+- Run38565352286: BUDGET300 SUCCESS, 63 nuovi fit e27 checkpoint riusati.
+  CAGR r1/r2/r3 22.3416/20.2949/21.6360%, media21.4242%.
+  ListNet100 media22.1135%, BASE31.7581%. BUDGET300 respinto.
+- LINEAR originale FAILED al primo2017/r1: gradinf1.1632278976516936e-7
+  sopra1e-7 dopo2000 iterazioni. Nessun CAGR lineare originario disponibile.
+  Artefatto11897336328 ZIP SHA
+  f729d95ee4c98b332811ac4c0fea3406acbbc0f32aa762206c80666296310d3c.
+- Diagnostica38578561014/job115902048005: fingerprint originali esatti,
+  residuo fallito identico, ultima coppia L-BFGS accettata370,1629 scartate;
+  metrica congelata, contrazione locale.9999514948618062.
+  Artefatto11902432062 ZIP SHA
+  d68863d82d3a164e7b529b0fad4c8b463e7bd1d71b7367dc1a123e1ed7802e5c.
+- Diagnosi contabile senza fit in diagnostics_download: gap BASE r3-r1
+  +.349678 logwealth,95.66% nei giorni con stessa coppia; localizzazione
+  quasi interamente nei572 giorni con weight1 diverso, non prova causale.
+  Riutilizzato studio execution ablation37149788452, non ripetuto.
+- Utente autorizza prosecuzione mirata e contenimento token. Nuova ricetta
+  numerica separata in diagnostics_solver/LINEAR_NUMERICAL_REPAIR_PROTOCOL.md;
+  solo filtro curvatura relativo, stessi gradtol/maxiter/obiettivo/30fold.
+  L'esito originale resta FAILED. Nessun rifit BUDGET300 o controllo.
