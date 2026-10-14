@@ -46,12 +46,22 @@ jobs:
             gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r$repeat -D "_bases/r$repeat"
             gh run download 38180179897 -R AM1975MA/Test -n paper-ltr-replay-r$repeat -D "_v1replays/paper-ltr-replay-r$repeat"
           done
-      - name: Audit checkpoint originali senza nuovi fit
-        run: python paper_ltr_v2/audit.py --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --original _original/_candidate --baseline _baseline --out _audit/AUDIT.json
+      - name: Riusa audit checkpoint già completato con verifica hash e input
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 38562284435 -R AM1975MA/Test -n listnet-v2-audit -D _audit
+          python -c "import json; from pathlib import Path; from paper_ltr_v2.run import verify_diagnostic; from paper_ltr_v2.audit import sha; p=Path('_audit/AUDIT.json'); assert sha(p)=='e4f57018d56ee22f7ede4a302e80d4900bde981369debaa541da0e5eb6a76509'; j=verify_diagnostic(p,{str(i):sha(Path('_ti')/('r'+str(i))/'TI_COMPACT.parquet') for i in (1,2,3)},sha('_original/_candidate/RESULT.json')); assert j['baseline_result_sha256']==sha('_baseline/RESULT.json'); print('AUDIT_90_CHECKPOINT_RIUSATO_IDENTICO')"
+      - name: Recupera certificazione esatta sotto profilo storico
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run watch 38564721801 -R AM1975MA/Test --exit-status --interval 30
+          gh run download 38564721801 -R AM1975MA/Test -n listnet-exact-historical-linkage -D _reference
       - name: Chiudi provenienza raw cache feature e calendari
         run: |
           for repeat in 1 2 3; do
-            python paper_ltr_v2/replay.py --audit-only --raw "_raw/_repeat$repeat" --baseline "_bases/r$repeat" --candidate _original/_candidate --repeat "$repeat" --ti-panel "_ti/r$repeat/TI_COMPACT.parquet" --out "_audit/linkage-r$repeat"
+            python paper_ltr_v2/replay.py --audit-only --raw "_raw/_repeat$repeat" --baseline "_bases/r$repeat" --candidate _original/_candidate --repeat "$repeat" --ti-panel "_ti/r$repeat/TI_COMPACT.parquet" --linkage-audit "_reference/linkage-r$repeat/INPUT_LINKAGE.json" --out "_audit/linkage-r$repeat"
           done
           python paper_ltr_v2/summarize_replay.py --v1-only --inputs _v1replays --out _audit/ORIGINAL_ECONOMIC.json
       - uses: actions/upload-artifact@v4

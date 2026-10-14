@@ -31,8 +31,21 @@ la baseline del nuovo confronto. La diagnosi dei90 fit è già stata eseguita.
 
 ## Avanzamento
 
-- Audit implementativo: implementato; 22 test v2 e 16 test v1 verificati.
+- Audit implementativo: implementato; 23 test v2 e 16 test v1 verificati.
 - Preregistrazione: scritta prima dei fit; pubblicazione e ripresa 14 ottobre2026.
 - Budget300: non avviato.
 - Lineare: non avviato.
 - Replay e decisione: non avviati.
+
+## Ripresa del 14 ottobre2026
+
+- Commit e373189 pubblicato; run38562284435: audit90 checkpoint passato,
+  nuovi fit0, poi confronto raw→TI esatto fallito prima dei fit.
+- Audit conservato11892402901, SHA JSON
+  e4f57018d56ee22f7ede4a302e80d4900bde981369debaa541da0e5eb6a76509.
+- Diagnosi38563762311: stesso host r3, profilo storicoAVX512 esatto;
+  profilo fit conAVX512 disabilitato non esatto. Vedi amendment separato.
+- Certificazione38564721801: acquisizione hostcompatibile al secondo tentativo;
+  confronto esatto sui tre download in esecuzione, nessun fit.
+- Workflow modelli riusa audit90 verificato per hash e attende certificazione
+  storica prima di avviare i fit. Gate esatto e ricette restano invariati.
