@@ -1,0 +1,26 @@
+{
+  "PASS": true,
+  "checks": [
+    {
+      "download": 1,
+      "OFF_max_abs_error": 0.0,
+      "shadow_recomputed_PASS": true,
+      "training_maturity_PASS": true,
+      "router_weight_changed_days": 81
+    },
+    {
+      "download": 2,
+      "OFF_max_abs_error": 0.0,
+      "shadow_recomputed_PASS": true,
+      "training_maturity_PASS": true,
+      "router_weight_changed_days": 82
+    },
+    {
+      "download": 3,
+      "OFF_max_abs_error": 0.0,
+      "shadow_recomputed_PASS": true,
+      "training_maturity_PASS": true,
+      "router_weight_changed_days": 63
+    }
+  ]
+}

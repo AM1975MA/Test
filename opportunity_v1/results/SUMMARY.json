@@ -1,0 +1,83 @@
+{
+  "status": "THREE_FROZEN_DOWNLOADS_COMPLETE",
+  "metrics": {
+    "LINEAR_CONTROL": {
+      "mean_cagr": 0.3165076446019612,
+      "mean_maxdd": -0.284525463157458,
+      "mean_sharpe": 1.0837409406880172,
+      "cagr_span": 0.03201814788344487,
+      "cagr_sd_population": 0.014161119239008662
+    },
+    "OPP_CAP": {
+      "mean_cagr": 0.31651431571422234,
+      "mean_maxdd": -0.2845254631574581,
+      "mean_sharpe": 1.0837617753067292,
+      "cagr_span": 0.03201814788344487,
+      "cagr_sd_population": 0.01416475123923636
+    },
+    "OPP_DIRECT_DIAGNOSTIC": {
+      "mean_cagr": 0.3111815736088665,
+      "mean_maxdd": -0.27670115267580875,
+      "mean_sharpe": 1.0650109964082837,
+      "cagr_span": 0.045131864353431916,
+      "cagr_sd_population": 0.01856249179019512
+    },
+    "OPP_ROUTER_CAUSAL": {
+      "mean_cagr": 0.31235768662048224,
+      "mean_maxdd": -0.2798336316605405,
+      "mean_sharpe": 1.0725609825778881,
+      "cagr_span": 0.02922006053629239,
+      "cagr_sd_population": 0.012776002364792852
+    }
+  },
+  "research_gates": {
+    "OPP_CAP": {
+      "checks": {
+        "mean_cagr": true,
+        "each_cagr": true,
+        "mean_maxdd": true,
+        "each_maxdd": true,
+        "mean_sharpe": true,
+        "cagr_span": true,
+        "at_least_one_improvement": true
+      },
+      "PASS": true
+    },
+    "OPP_ROUTER_CAUSAL": {
+      "checks": {
+        "mean_cagr": false,
+        "each_cagr": false,
+        "mean_maxdd": true,
+        "each_maxdd": true,
+        "mean_sharpe": true,
+        "cagr_span": true,
+        "at_least_one_improvement": true
+      },
+      "PASS": false
+    }
+  },
+  "max_independent_metric_error": 6.661338147750939e-16,
+  "path_sha256": {
+    "_evidence\\opportunity-complete\\r1\\LINEAR_CONTROL\\PATH.npz": "f7886ee4f7d3413e7b28630fe44ae38563d97f754c702df91c45bbe363c10f34",
+    "_evidence\\opportunity-complete\\r1\\OPP_CAP\\PATH.npz": "f7886ee4f7d3413e7b28630fe44ae38563d97f754c702df91c45bbe363c10f34",
+    "_evidence\\opportunity-complete\\r1\\OPP_ROUTER_CAUSAL\\PATH.npz": "2f80ad988d45fa9e79bfaab0cfd2545d5ca5ecdd4edb9f4a43b1e66d420be54f",
+    "_evidence\\opportunity-complete\\r1\\OPP_DIRECT_DIAGNOSTIC\\PATH.npz": "fd3a3fbaf8ecec779686aaff92e0589cab92408dea9edfb057207791a25149a9",
+    "_evidence\\opportunity-complete\\r2\\LINEAR_CONTROL\\PATH.npz": "ff57f5b3965556899de1808d6530164eacfaf2fde5538cc5ba0506248b044f41",
+    "_evidence\\opportunity-complete\\r2\\OPP_CAP\\PATH.npz": "ff57f5b3965556899de1808d6530164eacfaf2fde5538cc5ba0506248b044f41",
+    "_evidence\\opportunity-complete\\r2\\OPP_ROUTER_CAUSAL\\PATH.npz": "e146e9875f88ee2bd9c4e85322ff4c29353e2224e99d51e187291a06c27a92ab",
+    "_evidence\\opportunity-complete\\r2\\OPP_DIRECT_DIAGNOSTIC\\PATH.npz": "6434a80d4e3f98c532ed25626b78eb717a0a1ba0d3b7a734dbe09b68791515d5",
+    "_evidence\\opportunity-complete\\r3\\LINEAR_CONTROL\\PATH.npz": "ce159239ddec1117e72c8810028f9ae1d0a7e8a2f89ae2c5c2315f87da2560b0",
+    "_evidence\\opportunity-complete\\r3\\OPP_CAP\\PATH.npz": "aaaf323a45fc8bfe1087bd4e7e88c9a8d34dc6c8f90396ae56d03f82bece4f25",
+    "_evidence\\opportunity-complete\\r3\\OPP_ROUTER_CAUSAL\\PATH.npz": "45ff328888ce722f2f3f29c6d76eec63b1bb459fec01d53e39a8a22f12451a5c",
+    "_evidence\\opportunity-complete\\r3\\OPP_DIRECT_DIAGNOSTIC\\PATH.npz": "dd6ce163786bbe502588ccc7d1039def8e503639f29870f13f4530e789382731"
+  },
+  "control_parity_all": true,
+  "causal_prefix_all": true,
+  "cap_binding_fractions": [
+    0.0,
+    0.0,
+    0.008030431107354184
+  ],
+  "top1_top2_signals_unchanged": true,
+  "production_adoption": false
+}
