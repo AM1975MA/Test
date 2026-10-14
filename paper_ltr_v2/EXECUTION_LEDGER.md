@@ -91,3 +91,21 @@ Le voci di partenza sottostanti sono storiche; vedere l'aggiornamento finale.
   numerica separata in diagnostics_solver/LINEAR_NUMERICAL_REPAIR_PROTOCOL.md;
   solo filtro curvatura relativo, stessi gradtol/maxiter/obiettivo/30fold.
   L'esito originale resta FAILED. Nessun rifit BUDGET300 o controllo.
+
+## Chiusura nuova esecuzione numerica
+
+- LINEAR_NUMERICAL_REPAIR: run38580178650/job115907692294 SUCCESS,
+  commit e42208599dbc1e98b62fcf80c96f4ce8f71a1c6f.
+- Artefatto11904405387, ZIP SHA
+  4b3ab7c8bc2a8e2ee235628633a793928fc3f94112bb470269bd0d89419ab0a1.
+-30fit riusciti, massimo495iterazioni, massimo residuo9.99575440173981e−8.
+- CAGR29.6646/32.8665/32.4212%, media31.6508%; MaxDD medio−28.4525%.
+  Span3.2018pp, Top1any20.7523%, Top2ordinatoany52.8740%.
+- Schermi predittivo ed economico FAILED: nessuna promozione.
+  Dettaglio in results/VERIFIED_RESULTS_20261014.md.
+- Audit indipendente finale dei gradienti: workflow senza fit, commit8005136.
+  I controlli e BUDGET300 non sono stati rieseguiti.
+- Certificato finale SUCCESS run38609447579/job116008713092:30/30 gradienti
+  ricalcolati sotto1e−7, massimo9.995754402520435e−8, differenza massima
+  rispetto ai dichiarati2.9924e−17. Artefatto11917183387, ZIP SHA
+  49acce3ef4fe7a41a79fb7e0320548a85656e403cb4df7d105d4ab03735f34f0.

@@ -1,0 +1,559 @@
+{
+  "status": "PAPER_LTR_V2_ECONOMIC_COMPARISON_COMPLETE",
+  "variants_evaluated": [
+    "BUDGET300",
+    "LINEAR_NUMERICAL_REPAIR"
+  ],
+  "both_new_variants_completed": false,
+  "numerical_repair": {
+    "LINEAR_NUMERICAL_REPAIR": {
+      "execution": "LINEAR_RELATIVE_CURVATURE_REPAIR",
+      "original_failed_run": 38565352286,
+      "original_failed_job": 115872018518,
+      "diagnostic_run": 38578561014,
+      "original_failure_retained": true,
+      "separate_protocol_sha256": "6ef4c249f5fd9bbd1a437ae17cf3a34fa9d8ca109785dc6e20470929cac74f79",
+      "repair_source_sha256": "c164797ee3ca1aa8b1e40ba419ad048d2893f04db297a4fe0299e78565d46ed1",
+      "new_portfolio_rule": false,
+      "new_features": false
+    }
+  },
+  "metrics": {
+    "BASE": [
+      {
+        "repeat": 1,
+        "cagr": 0.29753447746605766,
+        "maxdd": -0.3486213376490779,
+        "sharpe": 1.046113520709817,
+        "terminal_equity": 11.536148681359933,
+        "annualized_turnover": 12.943838756619677,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 2,
+        "cagr": 0.3084370492564604,
+        "maxdd": -0.25689610266686813,
+        "sharpe": 1.0869929498969455,
+        "terminal_equity": 12.478988259917129,
+        "annualized_turnover": 12.96047576197712,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 3,
+        "cagr": 0.346770790748319,
+        "maxdd": -0.36097505012561093,
+        "sharpe": 1.1829318538970461,
+        "terminal_equity": 16.365303998168837,
+        "annualized_turnover": 13.231319803527736,
+        "mean_risky_gross": 0.9837637362637363
+      }
+    ],
+    "LISTNET100": [
+      {
+        "repeat": 1,
+        "cagr": 0.22859375659324047,
+        "maxdd": -0.3018748241055049,
+        "sharpe": 0.8136757595898749,
+        "terminal_equity": 6.909468354956459,
+        "annualized_turnover": 12.59794889603179,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 2,
+        "cagr": 0.2217412140954304,
+        "maxdd": -0.29532013341341834,
+        "sharpe": 0.8021634820632262,
+        "terminal_equity": 6.55598988942949,
+        "annualized_turnover": 12.780864928405032,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 3,
+        "cagr": 0.21306967572867272,
+        "maxdd": -0.321631270133792,
+        "sharpe": 0.7816447750478435,
+        "terminal_equity": 6.1318843063072555,
+        "annualized_turnover": 12.761715216466666,
+        "mean_risky_gross": 0.9837637362637363
+      }
+    ],
+    "BUDGET300": [
+      {
+        "repeat": 1,
+        "cagr": 0.22341571841253813,
+        "maxdd": -0.31707943175303355,
+        "sharpe": 0.7983793400429694,
+        "terminal_equity": 6.6408409876002965,
+        "annualized_turnover": 12.590492408373759,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 2,
+        "cagr": 0.20294902393916595,
+        "maxdd": -0.30416029329539607,
+        "sharpe": 0.7536447004401516,
+        "terminal_equity": 5.66803170360408,
+        "annualized_turnover": 13.19962048509979,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 3,
+        "cagr": 0.21635997037549984,
+        "maxdd": -0.33290605846528154,
+        "sharpe": 0.7959692787667145,
+        "terminal_equity": 6.289828257431195,
+        "annualized_turnover": 12.798495744021837,
+        "mean_risky_gross": 0.9837637362637363
+      }
+    ],
+    "LINEAR_NUMERICAL_REPAIR": [
+      {
+        "repeat": 1,
+        "cagr": 0.29664649335569276,
+        "maxdd": -0.2870526374508129,
+        "sharpe": 1.0327411481609359,
+        "terminal_equity": 11.46223667471276,
+        "annualized_turnover": 12.688151067223817,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 2,
+        "cagr": 0.3286646412391376,
+        "maxdd": -0.2824275960027851,
+        "sharpe": 1.1160896215912077,
+        "terminal_equity": 14.412299132919028,
+        "annualized_turnover": 12.89739884539774,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 3,
+        "cagr": 0.32421179921105325,
+        "maxdd": -0.28409615601877614,
+        "sharpe": 1.1023920523119073,
+        "terminal_equity": 13.965129845835246,
+        "annualized_turnover": 12.882928843261451,
+        "mean_risky_gross": 0.9837637362637363
+      }
+    ]
+  },
+  "dispersion": {
+    "BASE": {
+      "mean_cagr": 0.31758077249027905,
+      "cagr_span_pp": 4.9236313282261355,
+      "cagr_population_std_pp": 2.111491403944539,
+      "mean_maxdd": -0.32216416348051896,
+      "mean_sharpe": 1.105346108167936
+    },
+    "LISTNET100": {
+      "mean_cagr": 0.22113488213911456,
+      "cagr_span_pp": 1.5524080864567746,
+      "cagr_population_std_pp": 0.6352165011676307,
+      "mean_maxdd": -0.30627540921757174,
+      "mean_sharpe": 0.7991613389003148
+    },
+    "BUDGET300": {
+      "mean_cagr": 0.21424157090906795,
+      "cagr_span_pp": 2.0466694473372185,
+      "cagr_population_std_pp": 0.8488702605664582,
+      "mean_maxdd": -0.3180485945045704,
+      "mean_sharpe": 0.7826644397499453
+    },
+    "LINEAR_NUMERICAL_REPAIR": {
+      "mean_cagr": 0.3165076446019612,
+      "cagr_span_pp": 3.2018147883444814,
+      "cagr_population_std_pp": 1.4161119239008646,
+      "mean_maxdd": -0.284525463157458,
+      "mean_sharpe": 1.083740940688017
+    }
+  },
+  "selection_disagreement": {
+    "BASE": {
+      "sessions": 2366,
+      "top1_any_count": 1018,
+      "top1_any_fraction": 0.43026204564666104,
+      "top2_ordered_any_count": 1812,
+      "top2_ordered_any_fraction": 0.7658495350803043,
+      "top2_unordered_any_count": 1585,
+      "top2_unordered_any_fraction": 0.6699070160608622,
+      "pairwise": {
+        "1-2": {
+          "top1_fraction": 0.3326289095519865,
+          "top2_ordered_fraction": 0.6132713440405748
+        },
+        "1-3": {
+          "top1_fraction": 0.3076923076923077,
+          "top2_ordered_fraction": 0.6610312764158918
+        },
+        "2-3": {
+          "top1_fraction": 0.30092983939137785,
+          "top2_ordered_fraction": 0.5752324598478444
+        }
+      },
+      "interpretation": "Sedute correlate con decisioni mensili ripetute; tre revisioni dello stesso mercato."
+    },
+    "LISTNET100": {
+      "sessions": 2366,
+      "top1_any_count": 568,
+      "top1_any_fraction": 0.2400676246830093,
+      "top2_ordered_any_count": 1200,
+      "top2_ordered_any_fraction": 0.5071851225697379,
+      "top2_unordered_any_count": 885,
+      "top2_unordered_any_fraction": 0.37404902789518174,
+      "pairwise": {
+        "1-2": {
+          "top1_fraction": 0.16779374471682165,
+          "top2_ordered_fraction": 0.30938292476754015
+        },
+        "1-3": {
+          "top1_fraction": 0.1863905325443787,
+          "top2_ordered_fraction": 0.42857142857142855
+        },
+        "2-3": {
+          "top1_fraction": 0.16060862214708369,
+          "top2_ordered_fraction": 0.35545224006762466
+        }
+      },
+      "interpretation": "Sedute correlate con decisioni mensili ripetute; tre revisioni dello stesso mercato."
+    },
+    "BUDGET300": {
+      "sessions": 2366,
+      "top1_any_count": 547,
+      "top1_any_fraction": 0.2311918850380389,
+      "top2_ordered_any_count": 1220,
+      "top2_ordered_any_fraction": 0.5156382079459002,
+      "top2_unordered_any_count": 950,
+      "top2_unordered_any_fraction": 0.4015215553677092,
+      "pairwise": {
+        "1-2": {
+          "top1_fraction": 0.1669484361792054,
+          "top2_ordered_fraction": 0.34573119188503804
+        },
+        "1-3": {
+          "top1_fraction": 0.1530008453085376,
+          "top2_ordered_fraction": 0.41166525781910396
+        },
+        "2-3": {
+          "top1_fraction": 0.17666948436179206,
+          "top2_ordered_fraction": 0.3710904480135249
+        }
+      },
+      "interpretation": "Sedute correlate con decisioni mensili ripetute; tre revisioni dello stesso mercato."
+    },
+    "LINEAR_NUMERICAL_REPAIR": {
+      "sessions": 2366,
+      "top1_any_count": 491,
+      "top1_any_fraction": 0.20752324598478444,
+      "top2_ordered_any_count": 1251,
+      "top2_ordered_any_fraction": 0.5287404902789519,
+      "top2_unordered_any_count": 981,
+      "top2_unordered_any_fraction": 0.4146238377007608,
+      "pairwise": {
+        "1-2": {
+          "top1_fraction": 0.12848689771766694,
+          "top2_ordered_fraction": 0.3245984784446323
+        },
+        "1-3": {
+          "top1_fraction": 0.15638207945900254,
+          "top2_ordered_fraction": 0.4057480980557904
+        },
+        "2-3": {
+          "top1_fraction": 0.14750633981403213,
+          "top2_ordered_fraction": 0.40490278951817416
+        }
+      },
+      "interpretation": "Sedute correlate con decisioni mensili ripetute; tre revisioni dello stesso mercato."
+    }
+  },
+  "economic_screens": {
+    "LISTNET100": {
+      "checks": {
+        "mean_cagr_ge95pct": false,
+        "each_cagr_ge95pct": false,
+        "mean_sharpe_ge95pct": false,
+        "mean_maxdd_within2pp": true,
+        "each_maxdd_within2pp": false,
+        "cagr_span_reduced25pct": true,
+        "top1_disagreement_reduced25pct": true,
+        "top2_ordered_not_worse": true
+      },
+      "economic_screen_PASS": false,
+      "each_source_cagr_dd_sharpe_nondominated": false,
+      "statistical_noninferiority_proven": false,
+      "production_adoption": false
+    },
+    "BUDGET300": {
+      "checks": {
+        "mean_cagr_ge95pct": false,
+        "each_cagr_ge95pct": false,
+        "mean_sharpe_ge95pct": false,
+        "mean_maxdd_within2pp": true,
+        "each_maxdd_within2pp": false,
+        "cagr_span_reduced25pct": true,
+        "top1_disagreement_reduced25pct": true,
+        "top2_ordered_not_worse": true
+      },
+      "economic_screen_PASS": false,
+      "each_source_cagr_dd_sharpe_nondominated": false,
+      "statistical_noninferiority_proven": false,
+      "production_adoption": false
+    },
+    "LINEAR_NUMERICAL_REPAIR": {
+      "checks": {
+        "mean_cagr_ge95pct": true,
+        "each_cagr_ge95pct": false,
+        "mean_sharpe_ge95pct": true,
+        "mean_maxdd_within2pp": true,
+        "each_maxdd_within2pp": false,
+        "cagr_span_reduced25pct": true,
+        "top1_disagreement_reduced25pct": true,
+        "top2_ordered_not_worse": true
+      },
+      "economic_screen_PASS": false,
+      "each_source_cagr_dd_sharpe_nondominated": false,
+      "statistical_noninferiority_proven": false,
+      "production_adoption": false
+    }
+  },
+  "independent_path_metric_verification": [
+    {
+      "repeat": 1,
+      "variant": "BASE",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 1,
+      "variant": "LISTNET100",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 2,
+      "variant": "BASE",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 2,
+      "variant": "LISTNET100",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 3,
+      "variant": "BASE",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 3,
+      "variant": "LISTNET100",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 1,
+      "variant": "BUDGET300_BASE_CONTROL",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 1,
+      "variant": "BUDGET300",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 2,
+      "variant": "BUDGET300_BASE_CONTROL",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 2,
+      "variant": "BUDGET300",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 3,
+      "variant": "BUDGET300_BASE_CONTROL",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 3,
+      "variant": "BUDGET300",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 1,
+      "variant": "LINEAR_NUMERICAL_REPAIR_BASE_CONTROL",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 1,
+      "variant": "LINEAR_NUMERICAL_REPAIR",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 2,
+      "variant": "LINEAR_NUMERICAL_REPAIR_BASE_CONTROL",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 2,
+      "variant": "LINEAR_NUMERICAL_REPAIR",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 3,
+      "variant": "LINEAR_NUMERICAL_REPAIR_BASE_CONTROL",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    },
+    {
+      "repeat": 3,
+      "variant": "LINEAR_NUMERICAL_REPAIR",
+      "absolute_metric_differences": {
+        "cagr": 0.0,
+        "maxdd": 0.0,
+        "sharpe": 0.0,
+        "terminal_equity": 0.0
+      },
+      "leader_npz_dates_exact": true
+    }
+  ],
+  "evidence_sha256": {
+    "BASE/1/NPZ": "71832165ab3d9234dc6a7ebef22782b2030566a4be75f4a553d7382f8b76c18b",
+    "BASE/1/leaders": "e23dafdfd21dd688aba56ce80885ada463ed7882946dd985346326d2a9d69f58",
+    "LISTNET100/1/NPZ": "1e9eb4dc814a15d161d81402d105572e93d9984bcb9da7e768365474eb963994",
+    "LISTNET100/1/leaders": "399a7055b2bf3e1af01dba51e03c6c2d3cef25bb5d0d8556000942b68fa25c31",
+    "BASE/2/NPZ": "1d414cbbccafea1243d67d0dabe2a12fe05328bda3e6a1dba9b859a49616f177",
+    "BASE/2/leaders": "4970574b6884b2f04ae4768d94bc673a36fefe6c9575777cbdbcf3f8f37595ff",
+    "LISTNET100/2/NPZ": "0698f74326d065d8a5e084828546b874b4e9f2e3aa18408a4157e364dd0dda80",
+    "LISTNET100/2/leaders": "fbad9aaf9d26848903d6530b6ec176cf913c529479a68f177025f502046c5482",
+    "BASE/3/NPZ": "0177093f28d0c90fafaa4380e566fe3fabb9b15f4beceea53e651d4b48a83c1a",
+    "BASE/3/leaders": "1c273f0f788a6db8ee96675f1de8cba58c9fff4231bbd96b1d260bb3a42a23d2",
+    "LISTNET100/3/NPZ": "98b4ab388d510fe5f3506087555dd770fd2cc75de9f10dd6b82632793b621662",
+    "LISTNET100/3/leaders": "9372d4d2fecb72c1e4933a83771380f15fd50bfb436ae21b8a7ac3582d1f64e6",
+    "BUDGET300_BASE_CONTROL/1/NPZ": "71832165ab3d9234dc6a7ebef22782b2030566a4be75f4a553d7382f8b76c18b",
+    "BUDGET300_BASE_CONTROL/1/leaders": "e23dafdfd21dd688aba56ce80885ada463ed7882946dd985346326d2a9d69f58",
+    "BUDGET300/1/NPZ": "a0733842e3477cad2049c3e298b40781e7ed7687c341bcac779e870072e7c3b2",
+    "BUDGET300/1/leaders": "22b7344b62affaa8fb8e2563f457046b08a49e82275066bf9c9ec0c9a8325100",
+    "BUDGET300_BASE_CONTROL/2/NPZ": "1d414cbbccafea1243d67d0dabe2a12fe05328bda3e6a1dba9b859a49616f177",
+    "BUDGET300_BASE_CONTROL/2/leaders": "4970574b6884b2f04ae4768d94bc673a36fefe6c9575777cbdbcf3f8f37595ff",
+    "BUDGET300/2/NPZ": "688a577e5ffa73efef6eac3d74cdd7464847e25b96f4cccd1091762e4456fec5",
+    "BUDGET300/2/leaders": "f241055500713004b7916fa0ada91f5586ae0f39929d8b47b5836b25c01b6b74",
+    "BUDGET300_BASE_CONTROL/3/NPZ": "0177093f28d0c90fafaa4380e566fe3fabb9b15f4beceea53e651d4b48a83c1a",
+    "BUDGET300_BASE_CONTROL/3/leaders": "1c273f0f788a6db8ee96675f1de8cba58c9fff4231bbd96b1d260bb3a42a23d2",
+    "BUDGET300/3/NPZ": "1edd2365cf067c1620fd90914a4d454cb93b31024a5fb4bee489e278367a86c1",
+    "BUDGET300/3/leaders": "e886ca1f39660d60a2d01b897c1471d9a393a9aa4ae7bac6eba17c1899c75258",
+    "LINEAR_NUMERICAL_REPAIR_BASE_CONTROL/1/NPZ": "71832165ab3d9234dc6a7ebef22782b2030566a4be75f4a553d7382f8b76c18b",
+    "LINEAR_NUMERICAL_REPAIR_BASE_CONTROL/1/leaders": "e23dafdfd21dd688aba56ce80885ada463ed7882946dd985346326d2a9d69f58",
+    "LINEAR_NUMERICAL_REPAIR/1/NPZ": "095ef86bf9aabf087c68d1379bf3e24d3515ae2c7dc2afefa1d786a30fec208e",
+    "LINEAR_NUMERICAL_REPAIR/1/leaders": "50a52ff88bb24938c86358c47029c81d3221aacbd463c6a9cf8242999716ae77",
+    "LINEAR_NUMERICAL_REPAIR_BASE_CONTROL/2/NPZ": "1d414cbbccafea1243d67d0dabe2a12fe05328bda3e6a1dba9b859a49616f177",
+    "LINEAR_NUMERICAL_REPAIR_BASE_CONTROL/2/leaders": "4970574b6884b2f04ae4768d94bc673a36fefe6c9575777cbdbcf3f8f37595ff",
+    "LINEAR_NUMERICAL_REPAIR/2/NPZ": "2b09a57967b5e4abbfe883d030909f68caaa33debf40f49198eceb31d82bfcb1",
+    "LINEAR_NUMERICAL_REPAIR/2/leaders": "c39cc7bf6cf72f291a016c5e4b7de8471f3e598434f1a5934f91b16795d09c32",
+    "LINEAR_NUMERICAL_REPAIR_BASE_CONTROL/3/NPZ": "0177093f28d0c90fafaa4380e566fe3fabb9b15f4beceea53e651d4b48a83c1a",
+    "LINEAR_NUMERICAL_REPAIR_BASE_CONTROL/3/leaders": "1c273f0f788a6db8ee96675f1de8cba58c9fff4231bbd96b1d260bb3a42a23d2",
+    "LINEAR_NUMERICAL_REPAIR/3/NPZ": "7d600373a370f9c42ac08c54bd9d4b98a999ef8189b4ea0c8e176ecc2e571fdd",
+    "LINEAR_NUMERICAL_REPAIR/3/leaders": "b83fa009348b2265517614c0e6c7c3229679d8f2722353bc160a19e777cd5f66"
+  },
+  "all_calendars_identical": true,
+  "source_fit_repeated": false,
+  "production_adoption": false,
+  "interpretation": "Sviluppo retrospettivo: nessuna selezione di ricetta mediante CAGR outer; esiti negativi conservati."
+}
