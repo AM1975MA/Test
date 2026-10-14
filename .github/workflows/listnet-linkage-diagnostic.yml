@@ -1,0 +1,49 @@
+name: LISTNET_LINKAGE_DIAGNOSTIC_NOFIT
+on:
+  push:
+    branches: [research/paper-ltr-feasibility-20261012]
+    paths: [.github/workflows/listnet-linkage-diagnostic.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: Haswell
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        repeat: [1,2,3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Ambiente congelato, nessun addestramento
+        run: python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'numba==0.65.1' 'threadpoolctl==3.6.0'
+      - name: Recupera i medesimi raw e TI originali
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37121749852 -R AM1975MA/Test -n yfinance-repeatability-v1-raw -D _raw
+          gh run download 37150436612 -R AM1975MA/Test -n titanium-internal-fixed-repeat-${{ matrix.repeat }} -D _ti
+      - name: Misura differenze fra i due profili senza cambiare dati o gate
+        run: python paper_ltr_v2/diagnose_linkage.py --raw _raw/_repeat${{ matrix.repeat }} --ti-panel _ti/TI_COMPACT.parquet --repeat ${{ matrix.repeat }} --out _diagnostic
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: listnet-linkage-diagnostic-r${{ matrix.repeat }}
+          retention-days: 90
+          path: |
+            _diagnostic/**/*.json
+            _diagnostic/**/*.csv
