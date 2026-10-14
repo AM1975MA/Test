@@ -1,0 +1,25 @@
+{
+  "source_sha256": {
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r1\\candidate\\FULL_UNIVERSE_PATH.npz": "095ef86bf9aabf087c68d1379bf3e24d3515ae2c7dc2afefa1d786a30fec208e",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r1\\candidate\\DAILY_LEADERS.csv": "50a52ff88bb24938c86358c47029c81d3221aacbd463c6a9cf8242999716ae77",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r1\\baseline_control\\FULL_UNIVERSE_PATH.npz": "71832165ab3d9234dc6a7ebef22782b2030566a4be75f4a553d7382f8b76c18b",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r1\\baseline_control\\DAILY_LEADERS.csv": "e23dafdfd21dd688aba56ce80885ada463ed7882946dd985346326d2a9d69f58",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r2\\candidate\\FULL_UNIVERSE_PATH.npz": "2b09a57967b5e4abbfe883d030909f68caaa33debf40f49198eceb31d82bfcb1",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r2\\candidate\\DAILY_LEADERS.csv": "c39cc7bf6cf72f291a016c5e4b7de8471f3e598434f1a5934f91b16795d09c32",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r2\\baseline_control\\FULL_UNIVERSE_PATH.npz": "1d414cbbccafea1243d67d0dabe2a12fe05328bda3e6a1dba9b859a49616f177",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r2\\baseline_control\\DAILY_LEADERS.csv": "4970574b6884b2f04ae4768d94bc673a36fefe6c9575777cbdbcf3f8f37595ff",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r3\\candidate\\FULL_UNIVERSE_PATH.npz": "7d600373a370f9c42ac08c54bd9d4b98a999ef8189b4ea0c8e176ecc2e571fdd",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r3\\candidate\\DAILY_LEADERS.csv": "b83fa009348b2265517614c0e6c7c3229679d8f2722353bc160a19e777cd5f66",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r3\\baseline_control\\FULL_UNIVERSE_PATH.npz": "0177093f28d0c90fafaa4380e566fe3fabb9b15f4beceea53e651d4b48a83c1a",
+    "_evidence\\listnet-linear-relative-repair\\_replays\\v2replay-LINEAR_NUMERICAL_REPAIR-r3\\baseline_control\\DAILY_LEADERS.csv": "1c273f0f788a6db8ee96675f1de8cba58c9fff4231bbd96b1d260bb3a42a23d2"
+  },
+  "source": "Verified annual frozen replay; no new fits or replays",
+  "max_error_against_published_annual_returns": 1.6653345369377348e-16,
+  "gap_decomposition": "Additive log wealth difference, not causal attribution or percentage-point contribution",
+  "limitations": [
+    "Top1/Top2 are allocation signals, not complete executed daily holdings",
+    "weight1 is not total risky exposure",
+    "No gross exposure or executed-risk ledger retained in NPZ",
+    "The three downloads are correlated revisions, not independent samples"
+  ]
+}

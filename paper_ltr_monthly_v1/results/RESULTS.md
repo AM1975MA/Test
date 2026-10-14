@@ -1,5 +1,7 @@
 # LINEAR annuale e mensile: risultati verificati
 
+> Rettifica audit successivo 2021/2023: questo replay conserva Compact/Tail/Macro, ensemble MA3 e gestione rischio/esecuzione canonici, ma non invoca Opportunity (ne il router storico ne il cap Opportunity) o il cap shock opzionale. La precedente descrizione conversazionale di tutti i layer attivi era errata. BASE, annuale e mensile condividono la medesima ricetta di replay; i numeri restano invariati. Vedere `annual_diagnosis/REPORT.md` e `RISK_FINDINGS.md`.
+
 ## Decisione
 
 Respingere LINEAR mensile come sostituto dell'annuale: CAGR, MaxDD e Sharpe peggiorano su tutti e tre i download. Conservare l'annuale come riferimento di ricerca LINEAR; nessuna promozione rispetto alla baseline originale o modifica al repository produttivo.
