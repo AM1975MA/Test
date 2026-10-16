@@ -1,0 +1,196 @@
+{
+  "status": "PCA95_THREE_DOWNLOAD_COMPARISON_COMPLETE",
+  "metrics": {
+    "LINEAR_NUMERICAL_REPAIR": [
+      {
+        "repeat": 1,
+        "cagr": 0.29664649335569276,
+        "maxdd": -0.2870526374508129,
+        "sharpe": 1.0327411481609359,
+        "terminal_equity": 11.46223667471276,
+        "annualized_turnover": 12.688151067223817,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 2,
+        "cagr": 0.3286646412391376,
+        "maxdd": -0.2824275960027851,
+        "sharpe": 1.1160896215912077,
+        "terminal_equity": 14.412299132919028,
+        "annualized_turnover": 12.89739884539774,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 3,
+        "cagr": 0.32421179921105325,
+        "maxdd": -0.28409615601877614,
+        "sharpe": 1.1023920523119073,
+        "terminal_equity": 13.965129845835246,
+        "annualized_turnover": 12.882928843261451,
+        "mean_risky_gross": 0.9837637362637363
+      }
+    ],
+    "LINEAR_PCA95": [
+      {
+        "repeat": 1,
+        "cagr": 0.22926474280425893,
+        "maxdd": -0.2870622230139759,
+        "sharpe": 0.8311326394708073,
+        "terminal_equity": 6.944979051109912,
+        "annualized_turnover": 12.995709208748965,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 2,
+        "cagr": 0.18798356580210032,
+        "maxdd": -0.32447206590057476,
+        "sharpe": 0.7196650845985024,
+        "terminal_equity": 5.039492940967313,
+        "annualized_turnover": 12.95513748894087,
+        "mean_risky_gross": 0.9837637362637363
+      },
+      {
+        "repeat": 3,
+        "cagr": 0.18164165734879562,
+        "maxdd": -0.28522553306259757,
+        "sharpe": 0.7095228403463066,
+        "terminal_equity": 4.792488257498365,
+        "annualized_turnover": 12.66931890542289,
+        "mean_risky_gross": 0.9837637362637363
+      }
+    ]
+  },
+  "dispersion": {
+    "LINEAR_NUMERICAL_REPAIR": {
+      "mean_cagr": 0.3165076446019612,
+      "cagr_span_pp": 3.2018147883444814,
+      "cagr_population_std_pp": 1.4161119239008646,
+      "mean_maxdd": -0.284525463157458,
+      "mean_sharpe": 1.083740940688017
+    },
+    "LINEAR_PCA95": {
+      "mean_cagr": 0.1996299886517183,
+      "cagr_span_pp": 4.762308545546332,
+      "cagr_population_std_pp": 2.1114275438964167,
+      "mean_maxdd": -0.2989199406590494,
+      "mean_sharpe": 0.7534401881385387
+    }
+  },
+  "selection_disagreement": {
+    "LINEAR_NUMERICAL_REPAIR": {
+      "sessions": 2366,
+      "top1_any_count": 491,
+      "top1_any_fraction": 0.20752324598478444,
+      "top2_ordered_any_count": 1251,
+      "top2_ordered_any_fraction": 0.5287404902789519,
+      "top2_unordered_any_count": 981,
+      "top2_unordered_any_fraction": 0.4146238377007608,
+      "pairwise": {
+        "1-2": {
+          "top1_fraction": 0.12848689771766694,
+          "top2_ordered_fraction": 0.3245984784446323
+        },
+        "1-3": {
+          "top1_fraction": 0.15638207945900254,
+          "top2_ordered_fraction": 0.4057480980557904
+        },
+        "2-3": {
+          "top1_fraction": 0.14750633981403213,
+          "top2_ordered_fraction": 0.40490278951817416
+        }
+      },
+      "interpretation": "Sedute correlate con decisioni mensili ripetute; tre revisioni dello stesso mercato."
+    },
+    "LINEAR_PCA95": {
+      "sessions": 2366,
+      "top1_any_count": 633,
+      "top1_any_fraction": 0.2675401521555368,
+      "top2_ordered_any_count": 1101,
+      "top2_ordered_any_fraction": 0.46534234995773455,
+      "top2_unordered_any_count": 803,
+      "top2_unordered_any_fraction": 0.3393913778529163,
+      "pairwise": {
+        "1-2": {
+          "top1_fraction": 0.19611158072696533,
+          "top2_ordered_fraction": 0.3605240912933221
+        },
+        "1-3": {
+          "top1_fraction": 0.22189349112426035,
+          "top2_ordered_fraction": 0.4294167371090448
+        },
+        "2-3": {
+          "top1_fraction": 0.13440405748098055,
+          "top2_ordered_fraction": 0.2759932375316991
+        }
+      },
+      "interpretation": "Sedute correlate con decisioni mensili ripetute; tre revisioni dello stesso mercato."
+    }
+  },
+  "annual_reference_gates": {
+    "checks": {
+      "mean_cagr_ge95pct": false,
+      "each_cagr_ge95pct": false,
+      "mean_sharpe_ge95pct": false,
+      "mean_maxdd_within2pp": true,
+      "each_maxdd_within2pp": false,
+      "cagr_span_reduced25pct": false,
+      "top1_disagreement_reduced25pct": false,
+      "top2_ordered_not_worse": true
+    },
+    "economic_screen_PASS": false,
+    "each_source_cagr_dd_sharpe_nondominated": false,
+    "statistical_noninferiority_proven": false,
+    "production_adoption": false
+  },
+  "model_audit_sha256": "d8ddf06ab891bfd103a6ccdc77237453cb96d991ae6be969df87575e7431ae5d",
+  "path_sha256": {
+    "LINEAR_NUMERICAL_REPAIR/1": "095ef86bf9aabf087c68d1379bf3e24d3515ae2c7dc2afefa1d786a30fec208e",
+    "LINEAR_NUMERICAL_REPAIR/2": "2b09a57967b5e4abbfe883d030909f68caaa33debf40f49198eceb31d82bfcb1",
+    "LINEAR_NUMERICAL_REPAIR/3": "7d600373a370f9c42ac08c54bd9d4b98a999ef8189b4ea0c8e176ecc2e571fdd",
+    "LINEAR_PCA95/1": "6c489dbe90fcafff5ee47c18c6d660a2f114ff638ac2c288197894879c558cf8",
+    "LINEAR_PCA95/2": "2d7823c54709e449efa45024c438dad20c8ea7367c3fdacf7095687358e73610",
+    "LINEAR_PCA95/3": "72fa2413b94bd77f6aa66be19cea55ed3b6cd6924adabe35f664f57e8dc03e55"
+  },
+  "maximum_metric_error": 0.0,
+  "production_adoption": false,
+  "predictive_candidate": {
+    "top1_realized_percentile": 0.5003860545227773,
+    "top1_hit_exact": 0.061946902654867256,
+    "top1_hit_top5": 0.18584070796460178,
+    "top1_hit_topdecile": 0.25663716814159293,
+    "top5_overlap": 0.16637168141592923,
+    "ndcg5": 0.5076714050302669,
+    "ndcg10": 0.5170421944052306,
+    "rank_ic": -0.01555485639467347,
+    "top1_return_regret": 0.18814897509045042,
+    "top1_return_regret_vs_topdecile_mean": 0.08953308258742712,
+    "top1_realized_return": 0.003980001255720335,
+    "random_top1_realized_percentile": 0.5033557046979864,
+    "random_top1_hit_exact": 0.006711409395973154,
+    "random_top1_hit_top5": 0.03355704697986578,
+    "random_top1_hit_topdecile": 0.10067114093959731,
+    "random_top5_overlap": 0.03355704697986578
+  },
+  "predictive_reference": {
+    "top1_realized_percentile": 0.5153728890736672,
+    "top1_hit_exact": 0.07964601769911504,
+    "top1_hit_top5": 0.2064896755162242,
+    "top1_hit_topdecile": 0.32153392330383485,
+    "top5_overlap": 0.16755162241887908,
+    "ndcg5": 0.5140509969074991,
+    "ndcg10": 0.5250621503791169,
+    "rank_ic": 0.00308852179375432,
+    "top1_return_regret": 0.17619412127567796,
+    "top1_return_regret_vs_topdecile_mean": 0.07757822877265463,
+    "top1_realized_return": 0.015934855070492814,
+    "random_top1_realized_percentile": 0.5033557046979864,
+    "random_top1_hit_exact": 0.006711409395973154,
+    "random_top1_hit_top5": 0.03355704697986578,
+    "random_top1_hit_topdecile": 0.10067114093959731,
+    "random_top5_overlap": 0.03355704697986578
+  },
+  "predictive_quality_checks": {
+    "top1_realized_percentile": true,
+    "ndcg5": true
+  }
+}
