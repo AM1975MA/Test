@@ -84,7 +84,6 @@ def fit(train,tests,year,repeat,folder,annual):
         details.update(**fp,kind=variant,recipe=dict(params,n_estimators=rounds,seeds=seeds),
                        learned_state_hashes={key:v1.array_hash(v) for key,v in state.items()},
                        fit_matrix_sha256=v1.array_hash(x),validation_matrix_sha256=v1.array_hash(v1.transform(v1.raw_matrix(val),state)),
-                       train_labels_sha256=v1.array_hash(v1.decile_labels(train)),
                        new_seed_fits=3,reused_seeds=0,training_only_transform=True,full_training_refit=False,
                        test_fit_matrix_sha256=[v1.array_hash(t) for t in transformed],
                        transformed_fit_matrix_sha256=v1.array_hash(xx),
