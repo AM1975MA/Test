@@ -45,7 +45,7 @@ def main():
             if not dates.equals(calendar):raise ValueError('Common dates mismatch')
             frame=checked_leaders(folder/'candidate'/'DAILY_LEADERS.csv',dates)
             leader_frames.append(frame)
-            rows.append(dict(repeat=i,**fresh,turnover=float(decl.get('annualized_turnover',np.nan))))
+            rows.append(dict(repeat=i,**fresh,turnover=(float(decl['annualized_turnover']) if 'annualized_turnover' in decl else None)))
             years.append(dict(repeat=i,returns=annual_returns(path)))
         disp=dispersion(rows)
         sel=selections(leader_frames)
