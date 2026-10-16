@@ -1,0 +1,180 @@
+{
+  "all_PASS": true,
+  "records": {
+    "1": {
+      "PASS": true,
+      "years": {
+        "2017": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2018": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2019": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2020": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2021": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2022": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2023": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2024": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2025": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2026": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        }
+      },
+      "raw_only_training": true,
+      "ti_panel_role": "replay_reference_only",
+      "new_fits_executed": 0
+    },
+    "2": {
+      "PASS": true,
+      "years": {
+        "2017": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2018": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2019": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2020": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2021": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2022": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2023": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2024": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2025": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2026": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        }
+      },
+      "raw_only_training": true,
+      "ti_panel_role": "replay_reference_only",
+      "new_fits_executed": 0
+    },
+    "3": {
+      "PASS": true,
+      "years": {
+        "2017": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2018": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2019": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2020": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2021": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2022": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2023": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2024": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2025": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        },
+        "2026": {
+          "raw_training_PASS": true,
+          "maturity_PASS": true,
+          "prediction_reconstruction_PASS": true
+        }
+      },
+      "raw_only_training": true,
+      "ti_panel_role": "replay_reference_only",
+      "new_fits_executed": 0
+    }
+  },
+  "candidate_result_sha256": "5bd962b9052b9461374684b3f8ddcdb4786619249abbffdd8e539c036f90b0ee"
+}
