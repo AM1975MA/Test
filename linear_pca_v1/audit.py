@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from linear_pca_v1.basis import fit_basis
-from linear_pca_v1.core import VARIANT,DISCARDED
+from linear_pca_v1.core import VARIANT,DISCARDED,THRESHOLD
 from paper_ltr_v1 import learner as v1
 from paper_ltr_v1.run import annual_frames
 from paper_ltr_v2.replay import sha
@@ -43,7 +43,7 @@ def main():
                 w=z['w'].copy();beta=z['w_pc'].copy();basis=z['pca_basis'].copy();ev=z['pca_eigenvalues'].copy();k=int(z['pca_components'])
             learned=v1.fit_transform_state(v1.raw_matrix(sub))
             for key in state:np.testing.assert_array_equal(state[key],learned[key])
-            x=v1.transform(v1.raw_matrix(sub),state);q,expected_ev,expected_k=fit_basis(x)
+            x=v1.transform(v1.raw_matrix(sub),state);q,expected_ev,expected_k=fit_basis(x,threshold=THRESHOLD)
             expected_basis=q[:,expected_k:] if DISCARDED else q[:,:expected_k]
             if k!=expected_basis.shape[1]:raise ValueError('PCA dimension mismatch')
             np.testing.assert_allclose(ev,expected_ev,rtol=0,atol=1e-10)

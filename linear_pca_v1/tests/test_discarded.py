@@ -1,8 +1,14 @@
 import unittest
 import numpy as np
-from linear_pca_v1.basis import select_basis
+from linear_pca_v1.basis import select_basis,fit_basis
 
 class DiscardedTest(unittest.TestCase):
+    def test_threshold_sensitivity(self):
+        x=np.diag(np.sqrt([70.,20.,7.,2.,1.]))
+        self.assertEqual(fit_basis(x,threshold=.90)[2],2)
+        self.assertEqual(fit_basis(x,threshold=.95)[2],3)
+        self.assertEqual(fit_basis(x,threshold=.99)[2],4)
+
     def test_complementary_subspaces(self):
         rng=np.random.default_rng(123)
         x=rng.normal(size=(300,10))*np.geomspace(10,.01,10)
