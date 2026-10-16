@@ -1,0 +1,75 @@
+name: CAUSAL_DISPERSION_SWITCH_ZERO_FIT
+on:
+  push:
+    branches: [research/dispersion-switch-20261017]
+    paths: [.github/workflows/dispersion-switch.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: Haswell
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  pca:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Frozen numerical runtime and regression tests
+        run: |
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1' 'threadpoolctl==3.6.0'
+          python -c "from etf_trader.source_only import kernel; print('KERNEL_IMPORT_PASS')"
+          python compact21_stability_v1/source_gate.py
+          python -m unittest discover -s dispersion_gate_v1/tests -v
+          python -m unittest discover -s paper_ltr_v2/tests -v
+      - name: Reuse original frozen panels, raw and completed controls
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 38580178650 -R AM1975MA/Test -n listnet-linear-relative-repair -D _annual
+          gh run download 38971107084 -R AM1975MA/Test -n pca-residual-refit-models -D _residual
+          gh run download 38971107084 -R AM1975MA/Test -n pca-residual-refit-comparison -D _residual_comparison
+          gh run download 37121749852 -R AM1975MA/Test -n yfinance-repeatability-v1-raw -D _raw
+          gh run download 38565352286 -R AM1975MA/Test -n listnet-v2-audit -D _audit
+          for i in 1 2 3; do
+            gh run download 37150436612 -R AM1975MA/Test -n titanium-internal-fixed-repeat-$i -D _ti/r$i
+            gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r$i -D _bases/r$i
+          done
+      - name: Causal dispersion switch and conditional diagnostics - zero fits
+        run: python dispersion_gate_v1/run.py --annual _annual/_candidate --residual _residual --raw _raw --bases _bases --ti _ti --out _switch/_candidate
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dispersion-switch-predictions
+          retention-days: 90
+          path: _switch/_candidate/
+      - name: Verified causal prediction reconstruction audit
+        run: cp _switch/_candidate/AUDIT.json _switch/AUDIT.json
+      - name: Complete frozen portfolio comparison
+        run: |
+          mkdir -p _replays
+          cp -r _annual/_replays/* _replays/
+          cp -r _residual_comparison/_replays/* _replays/
+          for i in 1 2 3; do
+            python paper_ltr_v2/replay.py --raw _raw/_repeat$i --baseline _bases/r$i --candidate _switch/_candidate --repeat $i --ti-panel _ti/r$i/TI_COMPACT.parquet --linkage-audit _audit/linkage-r$i/INPUT_LINKAGE.json --out _replays/v2replay-DISPERSION_SWITCH-r$i
+          done
+          python dispersion_gate_v1/summarize.py --replays _replays --candidate _switch/_candidate --annual _annual/_candidate --audit _switch/AUDIT.json --out _switch/_comparison
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dispersion-switch-comparison
+          retention-days: 90
+          path: |
+            _switch/AUDIT.json
+            _switch/_comparison/
+            _replays/v2replay-DISPERSION_SWITCH-*/
