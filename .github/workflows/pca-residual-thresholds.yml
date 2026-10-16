@@ -9,7 +9,6 @@ permissions:
   actions: read
 env:
   PCA_SUBSPACE: discarded
-  PCA_THRESHOLD: ${{ matrix.threshold }}
   PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
   PYTHONHASHSEED: '0'
   NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
@@ -20,6 +19,8 @@ env:
   NUMEXPR_NUM_THREADS: '1'
 jobs:
   pca:
+    env:
+      PCA_THRESHOLD: ${{ matrix.threshold }}
     strategy:
       fail-fast: false
       matrix:
