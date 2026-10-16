@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from linear_pca_v1.core import fit,VARIANT
+from linear_pca_v1.core import fit,VARIANT,DISCARDED
 from paper_ltr_monthly_v1.run import ANNUAL_SHA,write
 from paper_ltr_v2.replay import sha
 
@@ -38,7 +38,7 @@ def main():
     out.mkdir(parents=True,exist_ok=True)
     result=dict(status='PCA95_RUNNING',variant=VARIANT,per_year={},input_sha256=hashes,
                 annual_reference=dict(result_sha256=ANNUAL_SHA,run=38580178650),baseline=base_audit,
-                preregistration_sha256=sha(Path(__file__).with_name('PREREGISTRATION.md')),
+                preregistration_sha256=sha(Path(__file__).with_name('RESIDUAL_PROTOCOL.md' if DISCARDED else 'PREREGISTRATION.md')),
                 numerical_repair=annual['numerical_repair'],numeric_contract=numeric,new_fits_executed=0,
                 sources={p.relative_to(ROOT).as_posix():sha(p) for p in Path(__file__).parent.glob('*.py')},production_adoption=False)
     (out/'INPUT_CONTRACT.json').write_text(json.dumps(result,indent=2)+'\n')

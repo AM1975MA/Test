@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from linear_pca_v1.basis import fit_basis
+from linear_pca_v1.core import VARIANT,DISCARDED
 from paper_ltr_v1 import learner as v1
 from paper_ltr_v1.run import annual_frames
 from paper_ltr_v2.replay import sha
@@ -16,7 +17,7 @@ def main():
     ap=argparse.ArgumentParser();ap.add_argument('--candidate',required=True);ap.add_argument('--out',required=True)
     for i in (1,2,3):ap.add_argument(f'--r{i}',required=True)
     a=ap.parse_args();root=Path(a.candidate);result=json.loads((root/'RESULT.json').read_text())
-    if result['variant']!='LINEAR_PCA95' or result['status']!='PAPER_LTR_V2_COMPLETE':raise ValueError('Candidate incomplete')
+    if result['variant']!=VARIANT or result['status']!='PAPER_LTR_V2_COMPLETE':raise ValueError('Candidate incomplete')
     panels={}
     for i in (1,2,3):
         path=Path(getattr(a,f'r{i}'))/'TI_COMPACT.parquet'
@@ -43,9 +44,10 @@ def main():
             learned=v1.fit_transform_state(v1.raw_matrix(sub))
             for key in state:np.testing.assert_array_equal(state[key],learned[key])
             x=v1.transform(v1.raw_matrix(sub),state);q,expected_ev,expected_k=fit_basis(x)
-            if k!=expected_k:raise ValueError('PCA dimension mismatch')
+            expected_basis=q[:,expected_k:] if DISCARDED else q[:,:expected_k]
+            if k!=expected_basis.shape[1]:raise ValueError('PCA dimension mismatch')
             np.testing.assert_allclose(ev,expected_ev,rtol=0,atol=1e-10)
-            np.testing.assert_allclose(basis@basis.T,q[:,:k]@q[:,:k].T,rtol=0,atol=1e-10)
+            np.testing.assert_allclose(basis@basis.T,expected_basis@expected_basis.T,rtol=0,atol=1e-10)
             np.testing.assert_allclose(basis.T@basis,np.eye(k),rtol=0,atol=1e-12)
             np.testing.assert_allclose(w,basis@beta,rtol=0,atol=1e-14)
             gradient=independent_gradient(x@basis,beta,v1.decile_labels(sub),v1.query_indices(sub))
@@ -55,10 +57,10 @@ def main():
                 f=table[(table.vintage.astype(int)==i)&(table.signal_date.dt.year==year)].sort_values(v1.KEYS).reset_index(drop=True)
                 pd.testing.assert_frame_equal(f[v1.KEYS],test[v1.KEYS].reset_index(drop=True),check_exact=True)
                 np.testing.assert_allclose(v1.transform(v1.raw_matrix(test),state)@w,f.pred,rtol=0,atol=1e-12)
-            records.append(dict(year=year,repeat=i,components=k,variance_retained=float(ev[:k].sum()/ev.sum()),
+            records.append(dict(year=year,repeat=i,components=k,variance_retained=float((ev[expected_k:] if DISCARDED else ev[:expected_k]).sum()/ev.sum()),
                                 projected_gradient_inf=residual,full_rotation_error=meta['full_rotation_score_max_error'],PASS=True))
     if len(records)!=30:raise ValueError('Missing folds')
-    report=dict(status='PCA95_THIRTY_FOLDS_VERIFIED',all_PASS=True,records=records,
+    report=dict(status=VARIANT+'_THIRTY_FOLDS_VERIFIED',all_PASS=True,records=records,
                 maximum_projected_gradient=max(r['projected_gradient_inf'] for r in records),new_learner_fits=0,
                 candidate_result_sha256=sha(root/'RESULT.json'))
     out=Path(a.out);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(report,indent=2)+'\n')

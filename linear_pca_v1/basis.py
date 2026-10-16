@@ -16,3 +16,9 @@ def fit_basis(x):
     return q,values,k
 
 def project(x,q):return np.asarray(x,dtype=np.float64)@q
+
+def select_basis(x,discarded=False):
+    q,values,k=fit_basis(x)
+    b=q[:,k:] if discarded else q[:,:k]
+    if b.shape[1]==0:raise ValueError('Empty selected subspace')
+    return b,values,k
