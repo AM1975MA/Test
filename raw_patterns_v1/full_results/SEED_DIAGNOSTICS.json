@@ -1,0 +1,64 @@
+{
+  "seed_quality": {
+    "101": {
+      "top1_realized_percentile": 0.520639068717705,
+      "top1_hit_exact": 0.061946902654867256,
+      "top1_hit_top5": 0.1504424778761062,
+      "top1_hit_topdecile": 0.30973451327433627,
+      "top5_overlap": 0.11563421828908556,
+      "ndcg5": 0.5168864662423261,
+      "ndcg10": 0.5241192058296683,
+      "rank_ic": 0.03675633940051592,
+      "top1_return_regret": 0.1799557008497778,
+      "top1_return_regret_vs_topdecile_mean": 0.08133980834675453,
+      "top1_realized_return": 0.012173275496392943,
+      "random_top1_realized_percentile": 0.5033557046979864,
+      "random_top1_hit_exact": 0.006711409395973154,
+      "random_top1_hit_top5": 0.03355704697986578,
+      "random_top1_hit_topdecile": 0.10067114093959731,
+      "random_top5_overlap": 0.03355704697986578
+    },
+    "202": {
+      "top1_realized_percentile": 0.5201441270218369,
+      "top1_hit_exact": 0.07079646017699115,
+      "top1_hit_top5": 0.1976401179941003,
+      "top1_hit_topdecile": 0.2831858407079646,
+      "top5_overlap": 0.14926253687315635,
+      "ndcg5": 0.5207892842112063,
+      "ndcg10": 0.5239562974186702,
+      "rank_ic": 0.02529733527737283,
+      "top1_return_regret": 0.17993728573377168,
+      "top1_return_regret_vs_topdecile_mean": 0.08132139323074834,
+      "top1_realized_return": 0.012191690612399119,
+      "random_top1_realized_percentile": 0.5033557046979864,
+      "random_top1_hit_exact": 0.006711409395973154,
+      "random_top1_hit_top5": 0.03355704697986578,
+      "random_top1_hit_topdecile": 0.10067114093959731,
+      "random_top5_overlap": 0.03355704697986578
+    },
+    "303": {
+      "top1_realized_percentile": 0.4781334758765418,
+      "top1_hit_exact": 0.05309734513274336,
+      "top1_hit_top5": 0.13274336283185842,
+      "top1_hit_topdecile": 0.23893805309734514,
+      "top5_overlap": 0.10442477876106196,
+      "ndcg5": 0.519877737488521,
+      "ndcg10": 0.5256486534924575,
+      "rank_ic": 0.030791804751055567,
+      "top1_return_regret": 0.18906966550088178,
+      "top1_return_regret_vs_topdecile_mean": 0.09045377299785846,
+      "top1_realized_return": 0.003059310845288968,
+      "random_top1_realized_percentile": 0.5033557046979864,
+      "random_top1_hit_exact": 0.006711409395973154,
+      "random_top1_hit_top5": 0.03355704697986578,
+      "random_top1_hit_topdecile": 0.10067114093959731,
+      "random_top5_overlap": 0.03355704697986578
+    }
+  },
+  "seed_top1_any_disagreement": 0.9587020648967551,
+  "seed_top1_any_disagreement_by_download": {
+    "1": 0.9646017699115044,
+    "2": 0.9557522123893806,
+    "3": 0.9557522123893806
+  }
+}
