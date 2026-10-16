@@ -1,0 +1,42 @@
+{
+  "PASS": true,
+  "checks": [
+    {
+      "download": 1,
+      "scope": "candidate",
+      "maximum_metric_error": 0.0,
+      "old_control_all_arrays_PASS": null
+    },
+    {
+      "download": 1,
+      "scope": "baseline",
+      "maximum_metric_error": 5.551115123125783e-17,
+      "old_control_all_arrays_PASS": true
+    },
+    {
+      "download": 2,
+      "scope": "candidate",
+      "maximum_metric_error": 1.1102230246251565e-16,
+      "old_control_all_arrays_PASS": null
+    },
+    {
+      "download": 2,
+      "scope": "baseline",
+      "maximum_metric_error": 2.220446049250313e-16,
+      "old_control_all_arrays_PASS": true
+    },
+    {
+      "download": 3,
+      "scope": "candidate",
+      "maximum_metric_error": 2.7755575615628914e-17,
+      "old_control_all_arrays_PASS": null
+    },
+    {
+      "download": 3,
+      "scope": "baseline",
+      "maximum_metric_error": 2.220446049250313e-16,
+      "old_control_all_arrays_PASS": true
+    }
+  ],
+  "new_fits_executed": 0
+}
