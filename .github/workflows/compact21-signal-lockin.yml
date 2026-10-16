@@ -1,8 +1,8 @@
 name: COMPACT21_SIGNAL_LOCKIN_PLS12
 on:
-  push:
-    branches: [research/compact21-signal-lockin-20261016]
-    paths: [.github/workflows/compact21-signal-lockin.yml]
+  pull_request:
+    branches: [research/linear-pca95-20261016]
+    paths: [.github/workflows/compact21-signal-lockin.yml, 'signal_lockin_v1/**', paper_ltr_v2/replay.py]
   workflow_dispatch:
 permissions:
   contents: read
