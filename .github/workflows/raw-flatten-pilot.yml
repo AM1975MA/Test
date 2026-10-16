@@ -1,0 +1,42 @@
+name: RAW_OHLCV_FLATTEN_BOUNDED_PILOT
+on:
+  push:
+    branches: [research/raw-pattern-pilot-20261016]
+    paths: [.github/workflows/raw-flatten-pilot.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: Haswell
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  flatten:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Minimal frozen numerical runtime and unit tests
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+          python -m unittest discover -s raw_patterns_v1/tests -v
+      - name: Reuse frozen Yahoo CSV archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 37121749852 -R AM1975MA/Test -n yfinance-repeatability-v1-raw -D _raw
+      - name: Fixed pre-2017 Flatten pilot
+        run: python raw_patterns_v1/run.py --raw _raw/_repeat2 --out _flatten
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: raw-flatten-pre2017-pilot
+          retention-days: 90
+          path: _flatten/
