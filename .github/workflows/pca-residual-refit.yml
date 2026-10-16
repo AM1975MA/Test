@@ -45,7 +45,7 @@ jobs:
             gh run download 37150436612 -R AM1975MA/Test -n titanium-internal-fixed-repeat-$i -D _ti/r$i
             gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r$i -D _bases/r$i
           done
-      - name: Discarded PCA directions: zero-start annual refits and full-rotation invariance controls
+      - name: Discarded PCA directions - zero-start annual refits and full-rotation invariance controls
         run: python linear_pca_v1/run.py --r1 _ti/r1 --r2 _ti/r2 --r3 _ti/r3 --annual _annual/_candidate --baseline _baseline --out _pca/_candidate
       - uses: actions/upload-artifact@v4
         if: always()
