@@ -17,16 +17,16 @@ from etf_trader.source_only.raw_io import load_ticker_csv_folder,FIELDS
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def write(path,obj):Path(path).write_text(json.dumps(obj,indent=2,allow_nan=False)+'\n')
 
-def build_panel(mats):
+def build_panel(mats,last_signal='2016-12-31',data_end='2017-04-01'):
     # Slice all matrices BEFORE windows, signals or labels are constructed.
-    mats={k:v.loc[(v.index>='2011-01-01')&(v.index<'2017-04-01')].copy() for k,v in mats.items()}
+    mats={k:v.loc[(v.index>='2011-01-01')&(v.index<data_end)].copy() for k,v in mats.items()}
     dates=mats['Close'].index;tickers=list(mats['Close'].columns)
     monthends=pd.Series(np.arange(len(dates)),index=dates).groupby(dates.to_period('M')).last()
     arrays={t:np.column_stack([mats[k][t].to_numpy(float) for k in FIELDS]) for t in tickers}
     rows=[];local=[];context=[];coverage=[]
     for pos in monthends:
         sd=dates[pos]
-        if sd.year<2012 or sd.year>2016:continue
+        if sd.year<2012 or sd>pd.Timestamp(last_signal):continue
         ix=[];x=[];rejected=[]
         for t in tickers:
             try:z=flatten_views(arrays[t],int(pos))
@@ -36,16 +36,18 @@ def build_panel(mats):
         if len(ix)<100:continue
         x=np.stack(x);c=leave_one_out(x)
         entry=int(pos)+1;exitpos=entry+21
-        if exitpos>=len(dates):raise ValueError('Missing label calendar')
         ret=[]
+        known=exitpos<len(dates)
         for t in ix:
+            if not known:
+                ret.append(np.nan);continue
             prices=arrays[t][[entry,exitpos],0]
             if not np.isfinite(prices).all() or (prices<=0).any():
                 raise ValueError('Invalid future label: never silently filter eligible assets')
             ret.append(prices[1]/prices[0]-1)
         ranks=pd.Series(ret).rank(pct=True,method='average').to_numpy()
         for j,t in enumerate(ix):
-            rows.append(dict(signal_date=sd,ticker=t,exit_date_21=dates[exitpos],target_rank_21=ranks[j],target_ret_21=ret[j]))
+            rows.append(dict(signal_date=sd,ticker=t,exit_date_21=dates[exitpos] if known else pd.NaT,target_rank_21=ranks[j],target_ret_21=ret[j]))
         local.extend(x);context.extend(np.column_stack([x,c]))
     frame=pd.DataFrame(rows)
     if frame.empty:raise ValueError('Empty raw cohort')

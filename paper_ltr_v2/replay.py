@@ -132,7 +132,11 @@ def verify_panel_identity(panel, rebuilt, features):
                 semantic_keys_features_labels_exact=True)
 
 
-def verify_training_fingerprints(result, panel, repeat):
+def verify_training_fingerprints(result, panel, repeat, raw=None):
+    if result.get('variant')=='RAW_FLATTEN_CONTEXT':
+        if raw is None:raise ValueError('Raw neural provenance requires original raw data')
+        from raw_patterns_v1.full import verify_full_fingerprints
+        return verify_full_fingerprints(result,panel,repeat,raw)
     if result.get('variant')=='LINEAR_MONTHLY':
         from paper_ltr_monthly_v1.audit import verify_month_fingerprints
         return verify_month_fingerprints(result,panel,repeat)
@@ -196,7 +200,7 @@ def verify_linkage(candidate_result,panel_path,raw,cache,repeat,prior=None):
             environment={name:os.getenv(name) for name in ('OPENBLAS_CORETYPE','NPY_DISABLE_CPU_FEATURES',
                 'OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS')},
             exact_semantic_comparison=True)
-    fingerprints=verify_training_fingerprints(candidate_result,panel,repeat)
+    fingerprints=verify_training_fingerprints(candidate_result,panel,repeat,raw)
     return dict(PASS=True,repeat=repeat,panel_sha256=panel_sha,baseline_panel_sha256=expected,
                 baseline_benchmark_sha256=sha(ROOT/'compact21_learner_swap_v1/results/BENCHMARK.json'),
                 raw_files_sha256=cache_audit['raw_files_sha256'],source_sha256=source_hashes,
@@ -219,7 +223,7 @@ def main():
     baseline,contract,evidence,audit=verify_cache(cache,raw)
     candidate_path=one(a.candidate,'NATIVE_PREDICTIONS.parquet');candidate_result=json.loads(one(a.candidate,'RESULT.json').read_text())
     if (candidate_result.get('status') not in ('PAPER_LTR_V1_COMPLETE','PAPER_LTR_V2_COMPLETE')
-        or candidate_result.get('variant') not in ('LISTNET_DECILE_64','BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR','LINEAR_MONTHLY','LINEAR_PCA95')
+        or candidate_result.get('variant') not in ('LISTNET_DECILE_64','BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR','LINEAR_MONTHLY','LINEAR_PCA95','LINEAR_PCA_DISCARDED','LINEAR_PCA_DISCARDED90','LINEAR_PCA_DISCARDED99','RAW_FLATTEN_CONTEXT')
         or candidate_result.get('ALL_MATURITY_PASS') is not True):raise ValueError('Fit candidato incompleto o contratto diverso')
     if set(candidate_result.get('per_year',{}))!=set(map(str,range(2017,2027))):raise ValueError('Fold candidato incompleti')
     expected_candidate_hash=candidate_result.get('files_sha256',{}).get('NATIVE_PREDICTIONS.parquet')
