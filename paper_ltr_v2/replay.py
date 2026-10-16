@@ -219,7 +219,7 @@ def main():
     baseline,contract,evidence,audit=verify_cache(cache,raw)
     candidate_path=one(a.candidate,'NATIVE_PREDICTIONS.parquet');candidate_result=json.loads(one(a.candidate,'RESULT.json').read_text())
     if (candidate_result.get('status') not in ('PAPER_LTR_V1_COMPLETE','PAPER_LTR_V2_COMPLETE')
-        or candidate_result.get('variant') not in ('LISTNET_DECILE_64','BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR','LINEAR_MONTHLY','LINEAR_PCA95')
+        or candidate_result.get('variant') not in ('LISTNET_DECILE_64','BUDGET300','LINEAR','LINEAR_NUMERICAL_REPAIR','LINEAR_MONTHLY','LINEAR_PCA95','SIGNAL_PLS12','SIGNAL_PLS12_COHERENCE')
         or candidate_result.get('ALL_MATURITY_PASS') is not True):raise ValueError('Fit candidato incompleto o contratto diverso')
     if set(candidate_result.get('per_year',{}))!=set(map(str,range(2017,2027))):raise ValueError('Fold candidato incompleti')
     expected_candidate_hash=candidate_result.get('files_sha256',{}).get('NATIVE_PREDICTIONS.parquet')
