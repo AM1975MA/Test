@@ -11,7 +11,8 @@ from paper_ltr_v2.diagnostics_solver.verify_linear_stationarity import independe
 from paper_ltr_v2.replay import sha
 
 DISCARDED=os.environ.get('PCA_SUBSPACE','retained')=='discarded'
-VARIANT='LINEAR_PCA_DISCARDED' if DISCARDED else 'LINEAR_PCA95'
+THRESHOLD=float(os.environ.get('PCA_THRESHOLD','.95'))
+VARIANT=('LINEAR_PCA_DISCARDED' if THRESHOLD==.95 else f'LINEAR_PCA_DISCARDED{round(100*THRESHOLD)}') if DISCARDED else 'LINEAR_PCA95'
 
 def fit(train,tests,year,repeat,out,annual_root,annual):
     sub,val,_=v1.split_training(train,year)
@@ -21,7 +22,7 @@ def fit(train,tests,year,repeat,out,annual_root,annual):
     state=v1.fit_transform_state(v1.raw_matrix(sub))
     if any(v1.array_hash(v)!=old['learned_state_hashes'][k] for k,v in state.items()):raise ValueError('Preprocessing changed')
     x=v1.transform(v1.raw_matrix(sub),state);vx=v1.transform(v1.raw_matrix(val),state)
-    q,eigenvalues,cut=fit_basis(x);basis=q[:,cut:] if DISCARDED else q[:,:cut];k=basis.shape[1];z=project(x,basis)
+    q,eigenvalues,cut=fit_basis(x,threshold=THRESHOLD);basis=q[:,cut:] if DISCARDED else q[:,:cut];k=basis.shape[1];z=project(x,basis)
     if k==0:raise ValueError('Empty selected PCA subspace')
     np.testing.assert_allclose(q.T@q,np.eye(125),rtol=0,atol=1e-12)
     covariance=x.T@x/(len(x)-1)
@@ -54,7 +55,7 @@ def fit(train,tests,year,repeat,out,annual_root,annual):
                 prediction_sha256=[v1.array_hash(p) for p in predictions],
                 test_fit_matrix_sha256=[v1.array_hash(t) for t in transformed],new_seed_fits=1,reused_seeds=0,
                 pca_fit_matrix_sha256=v1.array_hash(z),pca_basis_sha256=v1.array_hash(basis),
-                pca_components=k,pca_subspace='discarded' if DISCARDED else 'retained',pca95_boundary= cut,pca_variance_retained=float((eigenvalues[cut:] if DISCARDED else eigenvalues[:cut]).sum()/eigenvalues.sum()),
+                pca_threshold=THRESHOLD,pca_components=k,pca_subspace='discarded' if DISCARDED else 'retained',pca95_boundary= cut,pca_variance_retained=float((eigenvalues[cut:] if DISCARDED else eigenvalues[:cut]).sum()/eigenvalues.sum()),
                 pca_boundary_eigengap=float(eigenvalues[cut-1]-eigenvalues[cut]) if cut<125 else None,
                 full_rotation_score_max_error=rotation_error,full_rotation_invariance_PASS=True,
                 projected_independent_gradient_inf=residual,solver_convergence_PASS=True,
