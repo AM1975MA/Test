@@ -81,6 +81,10 @@ def annual_fold_compact(comp,year,output):
         for seed in SEEDS:
             model=XGBRanker(**opts,random_state=seed)
             model.fit(xtr,y,group=g.tolist(),verbose=False)
+            # Save the actual fitted fresh European ranker for audit and
+            # eventual independent forward freeze, not merely the predictions.
+            output.mkdir(parents=True,exist_ok=True)
+            model.save_model(output/f"EU60_{name}_{year}_seed{seed}.json")
             values.append(model.predict(xte))
         vals=np.mean(np.vstack(values),axis=0)
         if len(vals)!=int(eligible.sum()) or not np.isfinite(vals).all():
