@@ -11,8 +11,8 @@ import numpy as np
 import pandas as pd
 from xgboost import XGBRanker
 
-REPO=Path(__file__).resolve().parents[1]
-ROOT=REPO.parent
+ROOT=Path(__file__).resolve().parents[1]
+REPO=ROOT
 sys.path.insert(0,str(ROOT/"europe120/eu120_retrain"))
 sys.path.insert(0,str(ROOT/"vendor/etf_trader_v2/src"))
 import run_eu120_retrain as eu
