@@ -112,8 +112,13 @@ def calculate_scores(compact,hybrid,calendar,tickers):
         vals[letter]=ranks.to_numpy(float).reshape(len(dates),len(tickers))
     et=b.ET_RANK.to_numpy(float).reshape(len(dates),len(tickers))
     xb=b.XGB_RANK.to_numpy(float).reshape(len(dates),len(tickers))
-    if not np.isfinite(et).all() or not np.isfinite(xb).all():
-        raise ValueError("Incomplete independently retrained 42-feature Hybrid Tail scores")
+    # Some as-of-date EU120 names lack sufficient 42-feature observations.
+    # Keep their Tail scores missing and exclude them from Tail-containing
+    # selection; never invent a favorable rank or use later data to fill it.
+    missing_tail=int(np.count_nonzero(~np.isfinite(et)|~np.isfinite(xb)))
+    if missing_tail:
+        print(json.dumps(dict(nonforecastable_tail_rows=missing_tail,
+            missing_policy="ineligible_for_tail_score")),flush=True)
     h=.6*et+.4*xb
     prev=np.concatenate([h[0:1],h[:-1]],axis=0)
     prev2=np.concatenate([h[0:1],h[0:1],h[:-2]],axis=0)
@@ -128,7 +133,8 @@ def calculate_scores(compact,hybrid,calendar,tickers):
     pm=dict(ET_RANK=et,XGB_RANK=xb)
     if any(x.shape!=(len(dates),len(tickers)) for x in scores.values()):
         raise ValueError("Unexpected score support")
-    if not np.isfinite(scores["H_ONLY"]).all():raise ValueError("Tail-only missing")
+    if np.any(np.isinf(scores["H_ONLY"])):
+        raise ValueError("Invalid infinite Hybrid score")
     return scores,pm
 
 def monthly_quality(score,cal,tickers,full_labels,name):
@@ -186,6 +192,8 @@ def fixed_5050_common_open(score,calendar,tickers,prices):
 def main():
     p=argparse.ArgumentParser()
     for key in ("raw149","out"):p.add_argument("--"+key,required=True)
+    p.add_argument("--cached-refit",default=None,
+        help="Completed training-only artifact from source EU120 run 39063271012")
     args=p.parse_args()
     out=Path(args.out).resolve()
     if out.exists() and any(out.iterdir()):raise ValueError("Fresh output required")
@@ -235,31 +243,66 @@ def main():
         excluded_titanium_only=sorted(str(d.date()) for d in titanium_dates-ma3_dates if FIRST<=d<=LAST))),flush=True)
     if len(signal_idx)<105 or len(signal_idx)>114:
         raise ValueError("Unexpected EU120 common as-of signal dates")
-    models=out/"models";models.mkdir();(models/"hybrid").mkdir()
-    predicted=[];hybrid_preds=[];audits=[]
-    for year in range(2017,2027):
-        pred,audit=annual_fold_compact(labeled_compact,year,models)
-        predicted.append(pred)
-        cutoff=pd.Timestamp(year,1,1)
-        target_dates=signal_idx[signal_idx.year==year]
-        train_only=train_panel[(train_panel.signal_date<cutoff)&(train_panel.exit_date_63<cutoff)]
-        if train_only.empty or not (train_only.exit_date_63<cutoff).all():
-            raise ValueError("MA3 Target63 cutoff missing")
-        hybrid=eu.fit_ma3_one(train_panel,train_panel,cutoff,target_dates,
-            f"EU120_A{year}",models/"hybrid")
-        if hybrid.signal_date.nunique()!=len(target_dates):
-            raise ValueError(f"Missing annual EU120 Hybrid Tail dates {year}")
-        hybrid_preds.append(hybrid)
-        audit.update(ma3_train_rows=int(len(train_only)),ma3_train_months=int(train_only.signal_date.nunique()),
-            ma3_latest_exit=str(train_only.exit_date_63.max().date()),
-            hybrid_test_rows=int(len(hybrid)))
-        audits.append(audit)
-        print("EU120_REFIT_FOLD "+json.dumps(audit),flush=True)
-    cp=pd.concat(predicted,ignore_index=True)
-    hp=pd.concat(hybrid_preds,ignore_index=True)
-    cp.to_parquet(out/"COMPACT_REFITTED.parquet",index=False)
-    hp.to_parquet(out/"HYBRID_REFITTED.parquet",index=False)
-    pd.DataFrame(audits).to_csv(out/"TRAINING_AUDIT.csv",index=False)
+    if args.cached_refit is not None:
+        # The exact same 60 Compact21 XGB and 20 Tail learner annual EU120 fits
+        # completed and their SHA-verifiable forecasts were uploaded by run
+        # 39063271012. Recovery reruns ONLY downstream execution/audit.
+        frozen_fit=Path(args.cached_refit).resolve()
+        cp=pd.read_parquet(frozen_fit/"COMPACT_REFITTED.parquet")
+        hp=pd.read_parquet(frozen_fit/"HYBRID_REFITTED.parquet")
+        training=pd.read_csv(frozen_fit/"TRAINING_AUDIT.csv")
+        if (len(training)!=10 or set(training.year)!=set(range(2017,2027))
+            or not training.lookahead_guard_PASS.astype(bool).all()):
+            raise ValueError("Invalid completed 2017-2026 EU120 training archive")
+        if training.eligible_test_rows.min()<20 or training.train_months.min()<60:
+            raise ValueError("Historical EU120 fit evidence insufficient")
+        for year in range(2017,2027):
+            a=training.loc[training.year.eq(year)].iloc[0]
+            if not (pd.Timestamp(a.latest_training_label_exit)<pd.Timestamp(year,1,1)
+                and pd.Timestamp(a.ma3_latest_exit)<pd.Timestamp(year,1,1)):
+                raise ValueError("Cached annual original label maturity check failed")
+        audits=training.to_dict(orient="records")
+        for col in ("signal_date",):
+            cp[col]=pd.to_datetime(cp[col]);hp[col]=pd.to_datetime(hp[col])
+        if cp.duplicated(["signal_date","ticker"]).any() or hp.duplicated(["signal_date","ticker"]).any():
+            raise ValueError("Untrusted duplicate cached EU120 predictions")
+        if len(cp)<10000 or len(hp)<10000:
+            raise ValueError("Incomplete cached EU120 OOS model forecasts")
+        print(json.dumps(dict(training_model_source_RUN=39063271012,
+            retrained_EU120_Compact_seed_models=60,EU120_annual_ET_XGB_models=20,
+            training_source="hash frozen completed Actions training predictions",
+            compact_predict_sha256=sha(frozen_fit/"COMPACT_REFITTED.parquet"),
+            tail_predict_sha256=sha(frozen_fit/"HYBRID_REFITTED.parquet"),
+            training_audit_sha256=sha(frozen_fit/"TRAINING_AUDIT.csv"))),flush=True)
+        cp.to_parquet(out/"COMPACT_REFITTED.parquet",index=False)
+        hp.to_parquet(out/"HYBRID_REFITTED.parquet",index=False)
+        pd.DataFrame(audits).to_csv(out/"TRAINING_AUDIT.csv",index=False)
+    else:
+        models=out/"models";models.mkdir();(models/"hybrid").mkdir()
+        predicted=[];hybrid_preds=[];audits=[]
+        for year in range(2017,2027):
+            pred,audit=annual_fold_compact(labeled_compact,year,models)
+            predicted.append(pred)
+            cutoff=pd.Timestamp(year,1,1)
+            target_dates=signal_idx[signal_idx.year==year]
+            train_only=train_panel[(train_panel.signal_date<cutoff)&(train_panel.exit_date_63<cutoff)]
+            if train_only.empty or not (train_only.exit_date_63<cutoff).all():
+                raise ValueError("MA3 Target63 cutoff missing")
+            hybrid=eu.fit_ma3_one(train_panel,train_panel,cutoff,target_dates,
+                f"EU120_A{year}",models/"hybrid")
+            if hybrid.signal_date.nunique()!=len(target_dates):
+                raise ValueError(f"Missing annual EU120 Hybrid Tail dates {year}")
+            hybrid_preds.append(hybrid)
+            audit.update(ma3_train_rows=int(len(train_only)),ma3_train_months=int(train_only.signal_date.nunique()),
+                ma3_latest_exit=str(train_only.exit_date_63.max().date()),
+                hybrid_test_rows=int(len(hybrid)))
+            audits.append(audit)
+            print("EU120_REFIT_FOLD "+json.dumps(audit),flush=True)
+        cp=pd.concat(predicted,ignore_index=True)
+        hp=pd.concat(hybrid_preds,ignore_index=True)
+        cp.to_parquet(out/"COMPACT_REFITTED.parquet",index=False)
+        hp.to_parquet(out/"HYBRID_REFITTED.parquet",index=False)
+        pd.DataFrame(audits).to_csv(out/"TRAINING_AUDIT.csv",index=False)
     cand,_,_=load_ticker_csv_folder(raw120)
     refm,_,_=load_ticker_csv_folder(rawref)
     tickers=target.ticker.astype(str).tolist()
@@ -275,7 +318,7 @@ def main():
             max_available=int(np.isfinite(score).sum(axis=1).max()))
         print("EU120_SCORE "+json.dumps(vals),flush=True)
         if vals["min_available"]<5:raise ValueError("Fewer than five eligible ETFs")
-    quality=[];economics=[];annual=[]
+    quality=[];economics=[];annual=[];fixed=[]
     for name,score in scores.items():
         quality.extend(monthly_quality(score,cal,tickers,labeled_compact,name))
         diagnostic=fixed_5050_common_open(score,cal,tickers,cand["Open"].reindex(columns=tickers))
@@ -323,6 +366,7 @@ def main():
         economics=economics,fixed_5050=fixed,
         training_guard_ALL_PASS=all(a["lookahead_guard_PASS"] for a in audits),
         no_model_reused_from_original149=True,
+        training_source_run=39063271012 if args.cached_refit is not None else None,
         no_production_change=True,
         research_historical_not_prospective=True,
         notes="Same EU120 frozen vintage for every policy, no independent new market; common-open audited execution.")
