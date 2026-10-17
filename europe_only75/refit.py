@@ -51,8 +51,20 @@ def annual_fold_compact(comp,year,output):
     if tr.signal_date.nunique()<60 or int(eligible.sum())<20:
         raise ValueError(f"Incomplete EU120 annual Compact21 fit {year}")
     if not (tr.exit_date_21<cutoff).all():raise ValueError("Leaked 21-session label")
+    # In the smaller clean European cohort, very old dates can contain
+    # only one ETF meeting original 30/125 feature eligibility. A ranking
+    # query of one element has no pairwise supervision. Drop that query,
+    # never impute another ETF, and record it in the audit.
+    by_date=tr.groupby("signal_date",sort=True).size()
+    singleton_dates=set(by_date[by_date<2].index)
+    if singleton_dates:
+        print(json.dumps(dict(year=year,
+            dropped_singleton_train_dates=len(singleton_dates),
+            dropped_singleton_train_rows=int(by_date[by_date<2].sum()))),flush=True)
+        tr=tr[~tr.signal_date.isin(singleton_dates)].reset_index(drop=True)
     g=tr.groupby("signal_date",sort=True).size().to_numpy(int)
-    if len(tr)!=g.sum() or any(n<2 for n in g):raise ValueError("Invalid training query structure")
+    if len(tr)!=g.sum() or any(n<2 for n in g) or len(g)<60:
+        raise ValueError("EUROPE60 insufficient genuine multi-ETF label-mature training queries")
     xtr=feature_matrix(tr);xte=feature_matrix(te.loc[eligible].copy())
     ranklabel=np.clip(np.rint(tr.target_rank_pct.to_numpy(float)*100),0,100).astype(int)
     # Reproduce the frozen RETURN_RANK_NDCG graded target exactly.
