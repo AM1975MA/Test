@@ -1,0 +1,26 @@
+# EU120 Compact21 / Return-Rank / Hybrid Tail fresh training — frozen protocol
+Registered **2026-10-17** before any run outcomes. Research-only; do not merge/promote.
+
+## Universe and data
+- Exactly 120 distinct EU120 instruments in the immutable `data/eu120/raw_ticker_csv` and frozen `manifest.json`, originally imported from artifact `eu120-frozen-20260701`, GitHub run **36597035280**, provenance `PROVENANCE.json`. This is a *European-exposure* universe, **not** a verified 120 EUR-quoted universe. The frozen selection used prices through 2026-07-01: **point-in-time universe integrity fails**. Thus this is NOT independent prospective validation even though ticker intersection with Original149 is zero. No network data download.
+- Original149 frozen raw `etf-trader-raw-149` (GitHub run 36551650325) supplies **ONLY** the external risk/market benchmark symbols SPY, HYG, IEF, BIL, SHV and SPY macro context; no original149 ETF is a candidate or model training row.
+- Audited EU120 prior work: `europe120/eu120_retrain/build_ma3_panel_causal.py` provides as-of-signal membership and features; `europe120/eu120_retrain/replay_audited.py` handles 228 days with no complete common cross-market open, defers rebalance/stops to next shared actual open, warms risk and V6 from previous close history. **Never quote legacy unsynchronized economic replay results**.
+- Single frozen EU120 OHLCV vintage; do not invent 3 independent source revisions. Training period pre-2017 through 2026. Signal cohort Jan 2017–Jun 2026; out-of-sample annual expanding folds from January 1 of each year, future holding exit strictly earlier than train cutoff; all target labels exclude unknown future.
+
+## Five precommitted frozen variants (all models FIT ANEW on EU120)
+1. `B_ONLY` Compact21 BASE, original XGBoost 125 features, native NaN, `rank:pairwise`, 360 rounds, depth4, learning rate .035, original regularization, three seeds 101/202/303. Per-date score = percentile of mean model output. No Tail model agreement risk vote.
+2. `R_ONLY` Compact21 RETURN_RANK_NDCG same 125 features, rows, seeds, rounds/complexity. `rank:ndcg`, linear gain, topk=5, graded relevance 0–15 computed solely from historical within-date future 21-session return median and (q90−q10) spread (clipped). No Tail model agreement vote.
+3. `H_ONLY` original MA3 Hybrid Tail (42 frozen features, ExtraTrees and XGBoost, one annual expanding model of each). Original target .45*P21^1.5 + .35*P42^1.5 +.20*P63^1.5 with target label exit strictly before cutoff; out-of-sample cross-sectional rank ET(.60)+XGB(.40), lag smoothing .40/.30/.30 and power1.10. No Compact21 or Titanium contribution.
+4. `B_H` .475*B percentile + .525*H smooth/power, no Titanium Ridge or macro bonus.
+5. `R_H` .475*Return-Rank percentile + .525*H smooth/power, no Titanium Ridge or macro bonus.
+
+Important: 42-feature MA3 annual model and future labels are independently retrained EU120; neither 149 model parameters nor 149 predictions reused. The original learned 70/30 Titanium Ridge Tail remains intentionally **off** for all five; no extra optimization. In all arms, same missing-feature eligibility (min 30/125 Compact), and missing score = ineligible, never favorably imputed. Hybrid Tail itself has frozen model-specific availability; prevent lookahead. Risk agreement vote is silenced only for the B_ONLY and R_ONLY signals as no Tail is participating. Use the same original common-open audited EU120 replay execution, transaction cost, risk, stop, V6 and risk references for all 5 arms. No after-seeing-results tuning.
+
+## Falsification and reporting
+- Key hard gates: exactly same 120 ticker membership, hashes, source OHLCV, signal and execution calendar, no overlap Original149 training candidates, complete causal 2017–2026 10-annual-fold prediction and label exit cutoffs, no ETF with undefined score selected, all model train rows from frozen EU120 (except market SPY as reference feature context only); no missing labels leaked across train dates.
+- Diagnostic monthly 21-session actually realized Top1 return, regret vs average of top 10% ex post (among mature observable EU120), Top1 exact hit/Top5 and Top5 overlap, number of eligible names per month and 21-day mature cohorts. Outcomes never used to generate signals.
+- Economic outcome: 5 full original120 audited replay paths, mean CAGR/MaxDD/Sharpe/turnover on identical common-open calendar, annual returns 2017–2026; compare especially H_ONLY versus R_H and B_H vs R_H. Also simple top-two equal 50/50 next-common-open monthly return, 10bp turnover cost, no dynamic risk as a separate explanatory benchmark, if common-open monthly dates are valid.
+- Stage R vs B training parity: same sample keys and within-date feature matrices, same seeds and hypothesis budget; target recipe only differs. Verify no post-entry outcomes in training.
+- Both **data freshness** and universe membership selected after 2017 historical start prevent interpretation as investment-grade backtest. Only future frozen real-time universe and prospective observations can certify predictive profitability. No production adoption.
+
+Write `RESULT.json`, `PREDICTIONS.parquet`, `TRAINING_AUDIT.csv`, `MONTHLY_QUALITY.csv`, `ECONOMICS.csv`, `ANNUAL_RETURN.csv`, source SHA ledger and full equity paths. No skipped training folds silently treated as success.
