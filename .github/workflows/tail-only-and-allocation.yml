@@ -1,0 +1,55 @@
+name: TAIL_ONLY_SELECTION_WEIGHT_ABLATION
+on:
+  pull_request:
+    branches: [research/compact21-tail-factorial-20261017]
+    paths: [.github/workflows/tail-only-and-allocation.yml, 'tail_only_allocation_v1/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: Haswell
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  tail-mechanism:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Recreate numerical environment, unit tests and source integrity
+        run: |
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1' 'threadpoolctl==3.6.0'
+          python -m py_compile tail_only_allocation_v1/*.py
+          python -m unittest discover -s tail_only_allocation_v1/tests -v
+          python compact21_stability_v1/source_gate.py
+      - name: Fetch immutable certified 8-arm replays, raw sources and forecast records
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39058118631 -R AM1975MA/Test -n compact21-tail-factorial-full -D _original
+          gh run download 37121749852 -R AM1975MA/Test -n yfinance-repeatability-v1-raw -D _raw
+          gh run download 39031200131 -R AM1975MA/Test -n compact21-return-predictive -D _rank
+          for i in 1 2 3; do
+            gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r$i -D _cache/r$i
+          done
+      - name: Execute 27 original149 source-reconciled daily V2 counterfactuals
+        run: |
+          python tail_only_allocation_v1/run.py --original _original --raw _raw --cache _cache --rank _rank --out _tail_only
+      - name: Recompute all paths and isolate selection vs borrowed weight/risk
+        run: |
+          python tail_only_allocation_v1/summarize.py --root _tail_only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tail-only-allocation-counterfactual-full
+          retention-days: 90
+          path: _tail_only/
