@@ -221,10 +221,20 @@ def main():
     labeled_compact,labeled_tail,_,_=eu.add_train_labels(compact,tail,cand_mats,dates)
     for col in ("signal_date","exit_date_21"):
         labeled_compact[col]=pd.to_datetime(labeled_compact[col])
-    signal_days=sorted(set(labeled_compact.signal_date))
-    signal_days=[d for d in signal_days if FIRST<=pd.Timestamp(d)<=LAST]
+    # EU market month-end is not always the US month-end: use only signal
+    # dates observed in BOTH independent causal feature engines as-of that day.
+    # This intersection depends exclusively on the input calendar, not outcomes.
+    titanium_dates=set(pd.to_datetime(labeled_compact.signal_date))
+    ma3_dates=set(pd.to_datetime(train_panel.signal_date))
+    signal_days=sorted(d for d in titanium_dates & ma3_dates if FIRST<=pd.Timestamp(d)<=LAST)
     signal_idx=pd.DatetimeIndex(signal_days)
-    if len(signal_idx)<110 or len(signal_idx)>114:raise ValueError("Unexpected EU120 annual walk-forward decision dates")
+    print(json.dumps(dict(signal_alignment="intersection_as_of_only",
+        monthends_titanium=len([d for d in titanium_dates if FIRST<=d<=LAST]),
+        monthends_ma3=len([d for d in ma3_dates if FIRST<=d<=LAST]),
+        common=len(signal_idx),
+        excluded_titanium_only=sorted(str(d.date()) for d in titanium_dates-ma3_dates if FIRST<=d<=LAST))),flush=True)
+    if len(signal_idx)<105 or len(signal_idx)>114:
+        raise ValueError("Unexpected EU120 common as-of signal dates")
     models=out/"models";models.mkdir();(models/"hybrid").mkdir()
     predicted=[];hybrid_preds=[];audits=[]
     for year in range(2017,2027):
@@ -303,7 +313,7 @@ def main():
         original149_candidate_overlap=0,
         annual_fold_count=10,compact_seed_models_fit=60,
         hybrid_annual_model_fits=20,
-        completed_months=len(cal),
+        completed_months=len(cal),common_asof_signal_months=len(signal_idx),
         source_frozen_manifest_sha256=sha(frozen/"manifest.json"),
         original_frozen_provenance_sha256=sha(frozen/"PROVENANCE.json"),
         eu120_universe_sha256=sha(frozen/"raw_ticker_csv/universe.csv"),
