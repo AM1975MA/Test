@@ -160,6 +160,29 @@ def monthly_quality(score,cal,tickers,full_labels,name):
         rows.append(row)
     return rows
 
+def fixed_5050_common_open(score,calendar,tickers,prices):
+    equity=1.;last_weights={};months=0
+    dates=pd.DatetimeIndex(calendar.signal_date)
+    for m,row in enumerate(calendar.itertuples(index=False)):
+        selected=[tickers[j] for j in np.argsort(
+            -np.where(np.isfinite(score[m]),score[m],-1e6),kind="stable")[:2]]
+        if not all(np.isfinite(score[m,tickers.index(t)]) for t in selected):
+            raise ValueError("50/50 selected an ineligible ETF")
+        start=pd.Timestamp(row.entry_date);end=pd.Timestamp(row.exit_date)
+        if start not in prices.index or end not in prices.index:
+            raise ValueError("No synchronized open for 50/50 monthly ETF basket")
+        opening=prices.loc[start,selected].to_numpy(float)
+        closing=prices.loc[end,selected].to_numpy(float)
+        if not np.isfinite(opening).all() or not np.isfinite(closing).all() or np.any(opening<=0):
+            raise ValueError("Missing frozen common open for top-two trade")
+        w={str(t):.5 for t in selected}
+        turnover=.5*sum(abs(w.get(t,0)-last_weights.get(t,0)) for t in set(w)|set(last_weights))
+        equity*=float(np.mean(closing/opening))*(1.-0.001*turnover)
+        last_weights=w;months+=1
+    if months!=len(dates):raise ValueError("Incomplete simple fixed portfolio")
+    return dict(terminal_equity=float(equity),periods=months,
+        cagr=float(equity**(12/months)-1),turnover_fee_one_way=.001)
+
 def main():
     p=argparse.ArgumentParser()
     for key in ("raw149","out"):p.add_argument("--"+key,required=True)
@@ -202,7 +225,7 @@ def main():
     signal_days=[d for d in signal_days if FIRST<=pd.Timestamp(d)<=LAST]
     signal_idx=pd.DatetimeIndex(signal_days)
     if len(signal_idx)<110 or len(signal_idx)>114:raise ValueError("Unexpected EU120 annual walk-forward decision dates")
-    models=out/"models";models.mkdir()
+    models=out/"models";models.mkdir();(models/"hybrid").mkdir()
     predicted=[];hybrid_preds=[];audits=[]
     for year in range(2017,2027):
         pred,audit=annual_fold_compact(labeled_compact,year,models)
@@ -245,6 +268,8 @@ def main():
     quality=[];economics=[];annual=[]
     for name,score in scores.items():
         quality.extend(monthly_quality(score,cal,tickers,labeled_compact,name))
+        diagnostic=fixed_5050_common_open(score,cal,tickers,cand["Open"].reindex(columns=tickers))
+        fixed.append(dict(variant=name,**diagnostic))
         original_daily_state=au.m.daily_state
         try:
             if name.endswith("_ONLY") and name!="H_ONLY":
@@ -269,6 +294,7 @@ def main():
             max_eligible=int(np.isfinite(score).sum(axis=1).max())))
         print("EU120_AUDITED_V2 "+json.dumps(economics[-1]),flush=True)
     pd.DataFrame(quality).to_csv(out/"MONTHLY_QUALITY.csv",index=False)
+    pd.DataFrame(fixed).to_csv(out/"FIXED_5050.csv",index=False)
     pd.DataFrame(annual).to_csv(out/"ANNUAL_RETURN.csv",index=False)
     pd.DataFrame(economics).to_csv(out/"ECONOMICS.csv",index=False)
     outcome=dict(status="EU120_REFITTED_5_POLICY_COMMON_OPEN_COMPLETE",
@@ -284,7 +310,7 @@ def main():
         source_reference_run=36551650325,
         original_source=36597035280,
         end_cutoff=str(CUTOFF.date()),variants=VARIANTS,
-        economics=economics,
+        economics=economics,fixed_5050=fixed,
         training_guard_ALL_PASS=all(a["lookahead_guard_PASS"] for a in audits),
         no_model_reused_from_original149=True,
         no_production_change=True,
