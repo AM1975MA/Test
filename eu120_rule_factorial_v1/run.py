@@ -73,8 +73,7 @@ def rule_replay(score,pm,calendar,candidates,refs,tickers,weight_mode,margin_gat
     active=(trace["d1"]>=0)
     if int(active.sum())<2000:raise ValueError("Unusually little invested time")
     # Margin boost in risk-on; gated boost in risk-off, never confuse the two.
-    from vendor.p45 import v2_highcagr24 as highcagr
-    threshold=float(highcagr.TOP1_MARGIN)
+    threshold=float(au.m.highcagr24.TOP1_MARGIN)
     boost=active&(trace["post_conf_weight"]>trace["raw_weight"]+1e-12)
     trigger_on=active&(risk>=.999)&(fed_margin>=threshold)
     trigger_off=active&(risk<.999)&(fed_margin>=threshold)&trace["applied_agreement"]
@@ -182,9 +181,16 @@ def main():
                     raise ValueError("R historical baseline drift in "+field)
         if w=="F" and margin==0 and agree==1:
             old="H_HALF" if sel=="H" else "R_HALF"
-            strict_npz_parity(archive,prior/(old+".npz"))
-        if (sel,w,margin,agree)==("H","D",1,1) or (sel,w,margin,agree)==("R","D",1,1):
-            pass
+            with np.load(archive,allow_pickle=False) as a, np.load(prior/(old+".npz"),allow_pickle=False) as b:
+                for key in ("equity","turnover","dates"):
+                    x,y=a[key],b[key]
+                    if x.shape!=y.shape:
+                        raise ValueError("Previous six-arm fixed 50/50 shape drift: "+key)
+                    if np.issubdtype(x.dtype,np.number):
+                        if not np.allclose(x,y,atol=1e-12,rtol=0,equal_nan=True):
+                            raise ValueError("Previous six-arm fixed 50/50 drift: "+key)
+                    elif not np.array_equal(x,y):
+                        raise ValueError("Previous six-arm fixed 50/50 calendar drift")
         drift=np.diff(np.log(np.r_[1.,equity]))
         independently=au.m.metrics(equity)
         for field in ("cagr","maxdd","sharpe","terminal_equity"):
