@@ -242,7 +242,7 @@ def main():
         shutil.copyfile(frozen/"raw_ticker_csv"/(ticker+".csv"),raw120/(ticker+".csv"))
     eu.download_folder(refs,rawref)
     e=os.environ.copy();e["PYTHONPATH"]=str(ROOT/"vendor/etf_trader_v2/src")
-    subprocess.run([sys.executable,str(ROOT/"europe120/eu120_retrain/build_ma3_panel_causal.py"),
+    subprocess.run([sys.executable,str(ROOT/"europe_only75/build_ma3_euro60.py"),
                     "--data",str(raw120),"--output",str(paneldir)],
                    cwd=ROOT/"vendor/etf_trader_v2",env=e,check=True)
     train_panel=pd.read_pickle(paneldir/"RAW_FEATURE_PANEL.pkl")
@@ -392,6 +392,7 @@ def main():
         source_europe_only_whitelist_sha256=sha(strict_root/"UNIVERSE_EUROPE_ONLY.csv"),
         euro_listed_universe_sha256=sha(strict_root/"UNIVERSE_EUR_LISTED_60.csv"),
         source_europe_only_geography_audit_sha256=sha(strict_root/"GEOGRAPHY_AUDIT.csv"),
+        MA3_cluster_adaptation="7 total clusters: 6 dynamic min8, 1 European sovereign min7; original 8 cluster model mathematically invalid for 60 ETFs",
         point_in_time_universe_integrity="FAIL_original120_ex_post_2026_07_01_selection",
         eur_quoted_universe_verified=False,
         original149_candidate_overlap=0,
