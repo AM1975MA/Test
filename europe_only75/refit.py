@@ -206,18 +206,19 @@ def main():
     strict_root=ROOT/"europe_only75"
     manifest=json.loads((frozen/"manifest.json").read_text())
     universe=pd.read_csv(frozen/"raw_ticker_csv/universe.csv")
-    target=pd.read_csv(strict_root/"UNIVERSE_EUROPE_ONLY.csv")
+    target=pd.read_csv(strict_root/"UNIVERSE_EUR_LISTED_60.csv")
     audit_geo=pd.read_csv(strict_root/"GEOGRAPHY_AUDIT.csv")
     strict_manifest=json.loads((strict_root/"MANIFEST.json").read_text())
     if (manifest.get("selected_count")!=120 or len(universe)!=120 or
-        len(target)!=75 or len(audit_geo)!=120 or
+        len(target)!=60 or len(audit_geo)!=120 or
         strict_manifest.get("retained_count")!=75 or strict_manifest.get("excluded_count")!=45):
         raise ValueError("Original120 to Europe-only75 source roster mismatch")
-    if (len(set(target.ticker))!=75 or not set(target.ticker).issubset(set(universe.ticker)) or
-        set(audit_geo.query("decision=='KEEP'").ticker)!=set(target.ticker) or
-        set(audit_geo.query("decision=='EXCLUDE'").ticker)!=set(universe.ticker)-set(target.ticker)):
+    if (len(set(target.ticker))!=60 or not set(target.ticker).issubset(set(universe.ticker)) or
+        not set(target.ticker).issubset(set(audit_geo.query("decision=='KEEP'").ticker)) or
+        set(audit_geo.query("decision=='EXCLUDE'").ticker)!=(set(universe.ticker)-set(audit_geo.query("decision=='KEEP'").ticker))):
         raise ValueError("Europe-only75 whitelist or exclusions changed")
-    if not all(str(c).startswith("EU_") for c in target.macro_category):
+    if (not all(str(c).startswith("EU_") for c in target.macro_category)
+        or not all(str(t).endswith((".DE",".MI",".AS",".PA",".MC")) for t in target.ticker)):
         raise ValueError("Non-European source category still present")
     if strict_manifest["source_eu120_manifest_sha256"]!=sha(frozen/"manifest.json"):
         raise ValueError("Frozen source provenance differs from Europe-only75 registry")
@@ -381,9 +382,11 @@ def main():
     pd.DataFrame(annual).to_csv(out/"ANNUAL_RETURN.csv",index=False)
     pd.DataFrame(economics).to_csv(out/"ECONOMICS.csv",index=False)
     outcome=dict(status="EU120_REFITTED_5_POLICY_COMMON_OPEN_COMPLETE",
-        universe_count=75,excluded_from_original120=45,
+        universe_count=60,broader_europe_only_tickers=75,geographically_excluded_from_original120=45,
+        european_non_euro_trading_lines_separate=15,
         source_europe_only_manifest_sha256=sha(strict_root/"MANIFEST.json"),
         source_europe_only_whitelist_sha256=sha(strict_root/"UNIVERSE_EUROPE_ONLY.csv"),
+        euro_listed_universe_sha256=sha(strict_root/"UNIVERSE_EUR_LISTED_60.csv"),
         source_europe_only_geography_audit_sha256=sha(strict_root/"GEOGRAPHY_AUDIT.csv"),
         point_in_time_universe_integrity="FAIL_original120_ex_post_2026_07_01_selection",
         eur_quoted_universe_verified=False,
@@ -414,7 +417,7 @@ def main():
         training_source_run=39063271012 if args.cached_refit is not None else None,
         no_production_change=True,
         research_historical_not_prospective=True,
-        notes="Same EU120 frozen vintage for every policy, no independent new market; common-open audited execution.")
+        notes="EU60 euro-traded candidates with strictly European underlying exposure, original 15 other Europe-only lines excluded from economics due FX; 120 source frozen vintage, not independent prospect.")
     (out/"RESULT.json").write_text(json.dumps(outcome,indent=2,allow_nan=False)+"\n")
     print(json.dumps({key:outcome[key] for key in ("status","economics","training_guard_ALL_PASS")},indent=2),flush=True)
 
