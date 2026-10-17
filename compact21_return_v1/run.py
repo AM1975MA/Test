@@ -79,8 +79,8 @@ def main():
         frame=pd.read_parquet(file)
         for col in ("signal_date","exit_date_21"):frame[col]=pd.to_datetime(frame[col])
         panels[i]=frame
-    control,controls=verified_baseline(a.baseline,hashes,panels)
-    base={name:controls[name] for name in ("NATIVE_PREDICTIONS.parquet","COMMON_PREDICTIONS.parquet")}
+    control,baseline_audit=verified_baseline(a.baseline,hashes,panels)
+    base={name:pd.read_parquet(Path(a.baseline)/name) for name in ("NATIVE_PREDICTIONS.parquet","COMMON_PREDICTIONS.parquet")}
     out=Path(a.out)
     if out.exists() and any(out.iterdir()):raise ValueError("Output exists")
     out.mkdir(parents=True)
