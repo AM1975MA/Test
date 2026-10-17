@@ -23,7 +23,9 @@ def aligned(a,b):
     if not aa.equals(bb) or aa.duplicated().any():raise ValueError("Coverage mismatch")
 def load_titanium(source,learner,tail_on,baseline_cache):
     p=Path(source)/("baseline_control" if learner=="BASE" else "candidate")
-    # Canonical BASE replay stores raw annual evidence only in its immutable cache.\n    annual_path=one(baseline_cache,"ANNUAL_PREDICTIONS.csv") if learner=="BASE" else (p/"ANNUAL_PREDICTIONS.csv")\n    annual=read_frame(annual_path)
+    # Retrieve original annual predictions from the certified baseline cache.
+    annual_path=one(baseline_cache,"ANNUAL_PREDICTIONS.csv") if learner=="BASE" else p/"ANNUAL_PREDICTIONS.csv"
+    annual=read_frame(annual_path)
     tit=read_frame(p/"TIT_R_SOURCE_ONLY.csv")
     aligned(annual,tit)
     if not tail_on:
