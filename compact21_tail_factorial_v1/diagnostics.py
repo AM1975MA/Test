@@ -25,3 +25,21 @@ def monthly_quality(score,cal,tickers,labels):
     if len(out)!=114 or sum(x["mature"] for x in out)!=113:
         raise ValueError("Unexpected monthly maturity coverage")
     return out
+
+def fixed_5050(cal,scores,tickers,opens):
+    nav=1.;previous={};count=0
+    for m,row in enumerate(cal.itertuples(index=False)):
+        start=pd.Timestamp(row.entry_date);end=pd.Timestamp(row.exit_date)
+        if start not in opens.index or end not in opens.index:continue
+        selected=[tickers[j] for j in np.argsort(-scores[m],kind="stable")[:2]]
+        growth=(opens.loc[end,selected]/opens.loc[start,selected]).to_numpy(float)
+        if not np.isfinite(growth).all() or (growth<=0).any():
+            raise ValueError("Bad open price")
+        weights={ticker:.5 for ticker in selected}
+        turnover=.5*sum(abs(weights.get(t,0.)-previous.get(t,0.))
+                       for t in (set(weights)|set(previous)))
+        nav*=float(growth.mean())*(1.-.001*turnover)
+        previous=weights;count+=1
+    if count<100:raise ValueError("Insufficient fixed comparator months")
+    return dict(cagr=float(nav**(12/count)-1.),months=count,
+                terminal_equity=float(nav),cost_one_way=.001)
