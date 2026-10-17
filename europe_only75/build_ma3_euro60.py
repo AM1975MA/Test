@@ -32,6 +32,15 @@ def europe_six_dynamic_mapping(members_temp,previous_members,centers,*,n_dynamic
     return native_mapping(members_temp,previous_members,centers,n_dynamic_clusters=6)
 
 a4.persistent_cluster_mapping=europe_six_dynamic_mapping
-print("EUROPE_ONLY_CLUSTER_ADAPTATION: 6 x >=8 dynamic + 1 x >=7 euro sovereign",flush=True)
+native_balance=a4.balanced_kmeans_assignment
+
+def europe_scaled_capacity(z,n_clusters,seed,max_iter=20,*,min_cluster_size=7,max_cluster_size=30):
+    if n_clusters!=6:
+        raise ValueError("EUROPE60 six dynamic clusters required")
+    return native_balance(z,n_clusters,seed,max_iter,
+        min_cluster_size=7,max_cluster_size=30)
+
+a4.balanced_kmeans_assignment=europe_scaled_capacity
+print("EUROPE_ONLY_CLUSTER_ADAPTATION: 6 x >=7 dynamic + 1 x >=7 euro sovereign",flush=True)
 sys.path.insert(0,str(REPO/"europe120/eu120_retrain"))
 runpy.run_path(str(LEGACY),run_name="__main__")
