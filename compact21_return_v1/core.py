@@ -33,7 +33,8 @@ def prepare_targets(train, variant):
     if variant not in VARIANTS:raise ValueError(variant)
     if not {"signal_date","fwd_ret_21","target_rank_21","exit_date_21"}.issubset(train):
         raise ValueError("Missing true 21-session forward return training labels")
-    if train.duplicated(list(KEYS)).any() or not train.sort_values(list(KEYS))[list(KEYS)].reset_index(drop=True).equals(train[list(KEYS]].reset_index(drop=True)):
+    ordered=train.sort_values(list(KEYS)).reset_index(drop=True)
+    if train.duplicated(list(KEYS)).any() or not train[list(KEYS)].reset_index(drop=True).equals(ordered[list(KEYS)]):
         raise ValueError("Queries must be ordered")
     r=train.fwd_ret_21.to_numpy(float)
     if not np.isfinite(r).all():raise ValueError("Nonfinite mature future return")
