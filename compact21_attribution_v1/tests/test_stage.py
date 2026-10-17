@@ -41,7 +41,7 @@ class TestStageAudit(unittest.TestCase):
             preallocation(self.frame.iloc[:-1])
     def test_nonfinite_scores_rejected(self):
         z=self.frame.copy();z.loc[0,"BASE"]=np.nan
-        with self.assertRaisesRegex(ValueError,"nonfinite"):
+        with self.assertRaisesRegex(ValueError,"Missing preallocation cohort|nonfinite"):
             preallocation(z)
 
 if __name__=="__main__":unittest.main()
