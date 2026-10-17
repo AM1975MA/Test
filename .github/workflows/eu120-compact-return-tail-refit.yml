@@ -52,9 +52,17 @@ jobs:
           assert (Path('_ref149')/'etf_trader_raw'/'universe.csv').exists()
           print('EU120_FROZEN_SOURCE_AND_REFERENCE_GATE_PASS')
           PY
-      - name: Refit EU120 125-feature BASE and Return NDCG plus 42-feature MA3 Hybrid, compare five policies
+      - name: Retrieve complete already-refitted EU120 60 Compact XGB plus 20 MA3 Hybrid model forecasts
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          python eu120_compact_return_tail_v1/run.py --raw149 _ref149 --out _eu120
+          gh run download 39063271012 -R AM1975MA/Test -n eu120-compact-return-tail-refit-full -D _completed_refit
+          test -f _completed_refit/COMPACT_REFITTED.parquet
+          test -f _completed_refit/HYBRID_REFITTED.parquet
+          test -f _completed_refit/TRAINING_AUDIT.csv
+      - name: Audit ten completed EU120 annual model fits and run five common-open economic replays
+        run: |
+          python eu120_compact_return_tail_v1/run.py --raw149 _ref149 --cached-refit _completed_refit --out _eu120
       - uses: actions/upload-artifact@v4
         if: always()
         with:
