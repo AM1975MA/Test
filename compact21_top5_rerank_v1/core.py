@@ -62,4 +62,7 @@ def rerank(base,layer):
             only_top5_permutation=True,score_multiset_preserved=True))
     result=a.drop(columns=["pred","_layer_pred"]).rename(columns={"_output":"pred"})
     result=result[base.columns.to_list()].copy()
+    # Replayer uses integer vintage (1,2,3). Restore source-native schema;
+    # string normalization above is only for deterministic cross-archive joins.
+    result["vintage"]=result["vintage"].astype(base["vintage"].dtype)
     return result,group_audit
