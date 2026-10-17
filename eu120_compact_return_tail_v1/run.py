@@ -356,7 +356,7 @@ def main():
     eligible_by_date=quality_df.pivot(index="signal_date",columns="variant",values="mature")
     if not set(VARIANTS).issubset(eligible_by_date.columns):
         raise ValueError("Not all five research policies supplied maturity observations")
-    common_mature=eligible_by_date[VARIANTS].all(axis=1)
+    common_mature=eligible_by_date[list(VARIANTS)].all(axis=1)
     eligible_dates=set(common_mature[common_mature].index)
     quality_df["common_quality_date"]=quality_df.signal_date.isin(eligible_dates)
     if len(eligible_dates)<70:
