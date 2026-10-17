@@ -69,7 +69,8 @@ def run(opts):
             destination=output/policy/f"r{vintage}"
             state=write_state(destination,raw,tickers,r_tit,ens,panel)
             outcome=run_replay(compare,state,selected,borrowed,
-                force_equal_weight=weights=="HALF",ma3_agreement=agreement)
+                force_equal_weight=weights=="HALF",ma3_agreement=agreement,
+                monthly_dates=cal.signal_date)
             path=state["base"]/"FULL_UNIVERSE_PATH.npz"
             met,dates=metrics(path)
             for key in ("cagr","maxdd","sharpe","terminal_equity"):
