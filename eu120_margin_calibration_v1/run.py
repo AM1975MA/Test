@@ -258,7 +258,7 @@ def main():
         policies=results,
         paired_R_minus_H_margin_calibration=dict(
             high_low_spread_diff=float(observed),
-            95pct_year_cluster_bootstrap_CI=[
+            year_cluster_bootstrap_95pct_CI=[
                 float(np.percentile(delta,2.5)),float(np.percentile(delta,97.5))]),
         labels_used_only_in_expost_assessment=True,
         measurement="Top1 ETF raw adjusted next-common-open monthly return minus Top2 ETF return; not a V2 realized net return.",
