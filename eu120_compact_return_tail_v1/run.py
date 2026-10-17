@@ -149,12 +149,16 @@ def monthly_quality(score,cal,tickers,full_labels,name):
         row=dict(variant=name,signal_date=str(signal.date()),selected_top1=selection[0],
             eligible_ETFs=int(np.isfinite(score[index]).sum()))
         ex=g.loc[selection[0],"exit_date_21"]
-        mature=pd.notna(ex) and pd.Timestamp(ex)<=CUTOFF
-        row["mature"]=bool(mature)
+        realized=g.fwd_ret_21.dropna().astype(float)
+        # A 21-session *calendar* exit can exist while actual future open
+        # prices/adjustments are unavailable for the selected ETF. In that
+        # case the result is censored, not a zero return and not an ex-post miss.
+        # Exclude only from predictive evaluation, never from portfolio trades.
+        mature=(pd.notna(ex) and pd.Timestamp(ex)<=CUTOFF
+            and len(realized)>=30 and all(t in realized.index for t in selection)
+            and np.isfinite(realized.loc[selection]).all())
+        row.update(mature=bool(mature),observed_future_tickers=len(realized))
         if mature:
-            realized=g.fwd_ret_21.dropna().astype(float)
-            if not np.isfinite(realized.loc[selection]).all() or len(realized)<20:
-                raise ValueError("Mature EU120 target incomplete")
             actual_best=realized.nlargest(5)
             x=float(realized.loc[selection[0]])
             row.update(chosen_return_21d=x,
@@ -346,7 +350,18 @@ def main():
             sessions=len(ds),signals=len(cal),min_eligible=int(np.isfinite(score).sum(axis=1).min()),
             max_eligible=int(np.isfinite(score).sum(axis=1).max())))
         print("EU120_AUDITED_V2 "+json.dumps(economics[-1]),flush=True)
-    pd.DataFrame(quality).to_csv(out/"MONTHLY_QUALITY.csv",index=False)
+    quality_df=pd.DataFrame(quality)
+    # All learner comparisons must use identical observed future months:
+    # intersection is a metric mask *after* all scores and executions are fixed.
+    eligible_by_date=quality_df.pivot(index="signal_date",columns="variant",values="mature")
+    if not set(VARIANTS).issubset(eligible_by_date.columns):
+        raise ValueError("Not all five research policies supplied maturity observations")
+    common_mature=eligible_by_date[VARIANTS].all(axis=1)
+    eligible_dates=set(common_mature[common_mature].index)
+    quality_df["common_quality_date"]=quality_df.signal_date.isin(eligible_dates)
+    if len(eligible_dates)<70:
+        raise ValueError("Insufficient matched observable 21-session EU120 future dates")
+    quality_df.to_csv(out/"MONTHLY_QUALITY.csv",index=False)
     pd.DataFrame(fixed).to_csv(out/"FIXED_5050.csv",index=False)
     pd.DataFrame(annual).to_csv(out/"ANNUAL_RETURN.csv",index=False)
     pd.DataFrame(economics).to_csv(out/"ECONOMICS.csv",index=False)
@@ -364,6 +379,17 @@ def main():
         original_source=36597035280,
         end_cutoff=str(CUTOFF.date()),variants=VARIANTS,
         economics=economics,fixed_5050=fixed,
+        common_mature_quality_months=int(len(eligible_dates)),
+        predictive_common={
+            name:dict(mean_21d_future_return=float(quality_df.loc[
+                quality_df.variant.eq(name)&quality_df.common_quality_date,"chosen_return_21d"].mean()),
+                mean_regret_to_topdecile=float(quality_df.loc[
+                quality_df.variant.eq(name)&quality_df.common_quality_date,"regret_to_topdecile"].mean()),
+                exact_best_hit=float(quality_df.loc[
+                quality_df.variant.eq(name)&quality_df.common_quality_date,"exact_best_hit"].mean()),
+                top5_hit=float(quality_df.loc[
+                quality_df.variant.eq(name)&quality_df.common_quality_date,"top5_hit"].mean()))
+            for name in VARIANTS},
         training_guard_ALL_PASS=all(a["lookahead_guard_PASS"] for a in audits),
         no_model_reused_from_original149=True,
         training_source_run=39063271012 if args.cached_refit is not None else None,
