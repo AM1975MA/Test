@@ -43,7 +43,8 @@ class TestTailOnly(unittest.TestCase):
         olds=(Compare.stage19.score_matrix,Compare.stage19.confidence_weights,
               Compare.producer.allocations_from_score)
         with self.assertRaisesRegex(RuntimeError,"synthetic abort"):
-            run_replay(Compare,{},np.ones((114,149)),ma3_agreement=False)
+            run_replay(Compare,{},np.ones((114,149)),ma3_agreement=False,
+                monthly_dates=pd.date_range("2017-01-31",periods=114,freq="ME"))
         self.assertIs(Compare.stage19.score_matrix,olds[0])
         self.assertIs(Compare.stage19.confidence_weights,olds[1])
         self.assertIs(Compare.producer.allocations_from_score,olds[2])
