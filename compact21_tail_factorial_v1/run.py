@@ -36,7 +36,7 @@ def main():
         panel_path=one(Path(a.cache)/f"r{vintage}","RAW_FEATURE_PANEL.pkl")
         for learner,t_on,h_on in ARMS:
             name=arm_name(learner,t_on,h_on)
-            tit=load_titanium(src,learner,t_on)
+            tit=load_titanium(src,learner,t_on,Path(a.cache)/f'r{vintage}')
             ensemble=load_ensemble(src,tit)
             cal=tit[["signal_date","entry_date","exit_date"]].drop_duplicates().sort_values("signal_date").reset_index(drop=True)
             if len(cal)!=114:raise ValueError("Missing monthly decisions")
