@@ -31,6 +31,13 @@ class TestTop5Rerank(unittest.TestCase):
             self.assertEqual(sorted(g.pred),list(range(1,11)))
         self.assertEqual(len(proof),2)
         self.assertTrue(all(x["top1_changed"] for x in proof))
+    def test_int_vintage_schema_required_by_original_V2_replayer(self):
+        base,layer=self.panel()
+        base["vintage"]=1
+        layer["vintage"]=1
+        out,_=rerank(base,layer)
+        self.assertTrue(pd.api.types.is_integer_dtype(out["vintage"].dtype))
+        self.assertTrue(out.vintage.eq(1).all())
     def test_reject_changed_coverage(self):
         base,layer=self.panel()
         with self.assertRaisesRegex(ValueError,"coverage"):
