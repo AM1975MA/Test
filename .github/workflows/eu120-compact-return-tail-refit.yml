@@ -1,0 +1,81 @@
+name: EU120_COMPACT21_RETURN_NDCG_HYBRID_REFIT
+on:
+  pull_request:
+    branches: [research/tail-only-and-allocation-ablation-20261017]
+    paths: [.github/workflows/eu120-compact-return-tail-refit.yml, 'eu120_compact_return_tail_v1/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}:${{ github.workspace }}/europe120/eu120_retrain
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: Haswell
+  OMP_NUM_THREADS: '2'
+  OPENBLAS_NUM_THREADS: '2'
+  MKL_NUM_THREADS: '2'
+  NUMEXPR_NUM_THREADS: '2'
+jobs:
+  refit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Set frozen numerical runtime and check refit source
+        run: |
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'numba==0.65.1' 'threadpoolctl==3.6.0' 'matplotlib==3.10.8'
+          python -m py_compile eu120_compact_return_tail_v1/run.py
+          python compact21_stability_v1/source_gate.py
+      - name: Retrieve only original149 immutable market/risk reference series
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _ref149
+      - name: Verify that frozen EU120 membership and prices are unchanged
+        run: |
+          python - <<'PY'
+          import csv,json,hashlib
+          from pathlib import Path
+          root=Path('data/eu120');r=root/'raw_ticker_csv'
+          m=json.loads((root/'manifest.json').read_text())
+          u=list(csv.DictReader((r/'universe.csv').open()))
+          p=json.loads((root/'PROVENANCE.json').read_text())
+          assert m['selected_count']==120 and m['original149_overlap']==0
+          assert len(u)==len({x['ticker'] for x in u})==120
+          assert all((r/(x['ticker']+'.csv')).is_file() for x in u)
+          assert int(p['source_run'])==36597035280
+          assert p['source_manifest_sha256']==hashlib.sha256((root/'manifest.json').read_bytes()).hexdigest()
+          assert (Path('_ref149')/'etf_trader_raw'/'universe.csv').exists()
+          print('EU120_FROZEN_SOURCE_AND_REFERENCE_GATE_PASS')
+          PY
+      - name: Retrieve complete already-refitted EU120 60 Compact XGB plus 20 MA3 Hybrid model forecasts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39063271012 -R AM1975MA/Test -n eu120-compact-return-tail-refit-full -D _completed_refit
+          test -f _completed_refit/COMPACT_REFITTED.parquet
+          test -f _completed_refit/HYBRID_REFITTED.parquet
+          test -f _completed_refit/TRAINING_AUDIT.csv
+      - name: Audit ten completed EU120 annual model fits and run five common-open economic replays
+        run: |
+          python eu120_compact_return_tail_v1/run.py --raw149 _ref149 --cached-refit _completed_refit --out _eu120
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eu120-compact-return-tail-refit-full
+          retention-days: 90
+          path: |
+            _eu120/PROTOCOL_COPY.md
+            _eu120/RESULT.json
+            _eu120/TRAINING_AUDIT.csv
+            _eu120/COMPACT_REFITTED.parquet
+            _eu120/HYBRID_REFITTED.parquet
+            _eu120/MONTHLY_QUALITY.csv
+            _eu120/ECONOMICS.csv
+            _eu120/FIXED_5050.csv
+            _eu120/ANNUAL_RETURN.csv
+            _eu120/*_EQUITY.npz
