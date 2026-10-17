@@ -1,21 +1,34 @@
 """Exact original V2 economic replay with scoped, explicitly recorded interventions."""
 from __future__ import annotations
 import numpy as np
+import pandas as pd
 
 def run_replay(compare,state,selection_score,weight_score=None,
-               force_equal_weight=False,ma3_agreement=True):
+               force_equal_weight=False,ma3_agreement=True,monthly_dates=None):
     """All cost/risk/V6/equity internals remain in original replay_full_universe."""
     if weight_score is None:weight_score=selection_score
+    if monthly_dates is None:raise ValueError("Original full 114-month calendar required")
+    original_dates=pd.DatetimeIndex(monthly_dates)
+    if len(original_dates)!=114 or selection_score.shape[0]!=114:
+        raise ValueError("Wrong frozen monthly source support")
+    active={}
+    def month_slice(matrix,cal):
+        index=original_dates.get_indexer(pd.DatetimeIndex(cal.signal_date))
+        if (index<0).any() or len(index)<100:
+            raise ValueError("Simulator calendar cannot be aligned to frozen forecasts")
+        return matrix[index,:]
     original_score=compare.stage19.score_matrix
     original_alloc=compare.producer.allocations_from_score
     original_weights=compare.stage19.confidence_weights
     try:
         def selected_score(_p,cal,tickers):
-            if selection_score.shape!=(len(cal),len(tickers)):
+            active["selection"]=month_slice(selection_score,cal)
+            active["weight"]=month_slice(weight_score,cal)
+            if active["selection"].shape!=(len(cal),len(tickers)):
                 raise ValueError("Selection score not aligned")
-            return selection_score
+            return active["selection"]
         def selected_alloc(_score,cal,dates,basket,basket_valid,*,continuous=True):
-            choices=original_alloc(selection_score,cal,dates,basket,basket_valid,continuous=continuous)
+            choices=original_alloc(active['selection'],cal,dates,basket,basket_valid,continuous=continuous)
             if force_equal_weight:
                 weighting=compare.producer.AllocationResult(
                     d1=choices.d1,d2=choices.d2,
@@ -24,7 +37,7 @@ def run_replay(compare,state,selection_score,weight_score=None,
             elif weight_score is selection_score:
                 weighting=choices
             else:
-                weighting=original_alloc(weight_score,cal,dates,basket,basket_valid,continuous=continuous)
+                weighting=original_alloc(active['weight'],cal,dates,basket,basket_valid,continuous=continuous)
             if choices.d1.shape!=weighting.weight1.shape or not np.isfinite(weighting.weight1).all():
                 raise ValueError("Counterfactual daily allocations misaligned")
             return compare.producer.AllocationResult(
