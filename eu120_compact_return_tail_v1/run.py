@@ -187,7 +187,7 @@ def main():
     p=argparse.ArgumentParser()
     for key in ("raw149","out"):p.add_argument("--"+key,required=True)
     args=p.parse_args()
-    out=Path(args.out)
+    out=Path(args.out).resolve()
     if out.exists() and any(out.iterdir()):raise ValueError("Fresh output required")
     out.mkdir(parents=True)
     frozen=ROOT/"data/eu120"
@@ -206,7 +206,7 @@ def main():
     scratch=out/"working"
     raw120=scratch/"raw120";rawref=scratch/"rawref";paneldir=scratch/"ma3_panel"
     os.environ["FROZEN_EU120_ROOT"]=str(frozen)
-    os.environ["FROZEN_149_ROOT"]=str(Path(args.raw149))
+    os.environ["FROZEN_149_ROOT"]=str(Path(args.raw149).resolve())
     eu.download_folder(target,raw120)
     eu.download_folder(refs,rawref)
     e=os.environ.copy();e["PYTHONPATH"]=str(ROOT/"vendor/etf_trader_v2/src")
