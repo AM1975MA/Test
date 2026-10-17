@@ -1,0 +1,28 @@
+# COMPACT21_RETURN_AWARE_V1 — frozen preregistration
+
+Research branch `research/compact21-return-aware-20261017` in `AM1975MA/Test`. **No merge, no production intervention, no new Yahoo download.** Scope is ONLY the 125-feature Compact21 objective and labels; original PnL ensemble, source-only kernel, Tail, Macro, Compact63, MA3, return normalization, allocation, cost, stop, feedback, execution remain unchanged.
+
+Original149 3 correlated historical acquisitions (raw snapshots from run 37121749852, compact panels 37150436612), 2017–2026 annual expanding walk-forward training; future outcomes mature by 2026-07-01; train labels at each Jan 1 must have exit_date_21 < Jan 1. Keep exact native >=30-of-125 eligibility, original 125 features/NaN policy, identical training rows, one model per source per year and random seed, score averaging. Original `BASE` XGBRanker `rank:pairwise` with 360 rounds, 4 max_depth, learning_rate=.035, subsample=.85, colsample=.8, min_child_weight=8, reg_lambda=8, reg_alpha=.1, histogram, seeds 101/202/303 remains the **unchanged archived source verified control**. BASE not refitted; hash-checked native/common predictions. The new models have original training rows and base tree complexity/seed/round budget, but the objective has to change by design.
+
+## Fixed alternatives (two new independent tests, no tuning)
+
+1. `RETURN_RANK_NDCG`: use XGBoost native `rank:ndcg` with `ndcg_exp_gain=False`, `lambdarank_pair_method=topk`, `lambdarank_num_pair_per_sample=5`, `eval_metric=ndcg@5`. Within each *historical training date*, calculate each ETF next-open 21-trading-session forward return `r`; `median = median(r)`, `spread = max(q90(r)-q10(r), 1e-6)`, and target gain `round(7.5 + 7.5 * clip((r-median)/spread,-1,+1))`, integer 0–15. This is **return-gap-aware ordinal relevance**, not direct cash-regret minimization; the differences between gain labels and NDCG swaps adjust the pairwise ranking gradients. The cap reduces dependence on a few episodic winners. Inference uses none of these return statistics.
+
+2. `RETURN_REG_PSEUDOHUBER`: XGBoost native `reg:pseudohubererror`, `huber_slope=.10`, `eval_metric=mae`. For each historical training date, target is `clip(r - median(r), -.25, +.25)` in decimal return units. Outputs are unconstrained predicted 21-session relative returns and are ordered descending as ranking scores. No target normalization of held-out features or inference; median targets are not features. Same original XGB depth/regularization/round/seed as control.
+
+Original mature training label source is `fwd_ret_21`, from D+1 adjusted open to exit open after 21 sessions; never use recent immature dates. No synthetic extra features, no hyperparameter search.
+
+## Expected execution budget and validation
+2 challengers x 10 annual years x 3 original acquisitions x 3 seeds = **180 new seed fits**. Same verified 3×year cohort and inference rows as archived BASE; 114 monthly decision dates, 113 with mature exits for primary scoring. Pin numeric environment from PR84, separate XGB process per seed. Synthetic tests reject unknown labels, establish gain monotonicity and regression location invariance. Verify source and input hashes and prediction coverage against BASE exactly, and preserved **future 21-session targets** across all models.
+
+Predictive diagnostics (average within vintage on each date, then equally weight mature dates): 
+- **Primary:** signed `top1_return_regret_vs_topdecile_mean` (top-decile average forward return minus return of chosen ETF, lower is better). This can be negative when selected ETF outperforms top-decile mean; retain sign. Do NOT clip it after scoring.
+- **Secondary**: exact best ex post `top1_return_regret` (best next-21-day return minus selected return), selected `top1_realized_return`, Top1 hit exact/top5/topdecile, NDCG5, RankIC, overlap Top5, disagreement between three Yahoo acquisitions on identical inputs.
+- Pairwise 3/6/12-calendar-month moving-block exploratory bootstrap with 1000 draws and the same fixed seed. Vintages from same market are correlated, not 3 independent experiments.
+- Diagnostic per-year, per-source and year-2021/year-2023 cohort analysis. Retain complete negative results.
+
+**Development-screen before looking at full-strategy CAGR:** candidate's primary date-mean topdecile regret is strictly lower than BASE and 3-month paired-bootstrap 95% upper bound on `candidate-BASE` is below 0; ex-post-max regret not worse; Top1-hit-top5 decrease at most 1pp; NDCG5 decrease at most .01; three per-vintage primary regret scores individually no worse than corresponding BASE. Predeclare all, treat unavailable CI as failed. No result from this recycled historical market certifies independent profitability.
+
+**Full portfolio diagnostics unconditional for both variants:** six canonical V2 source-only cached replays, 149 ETFs, all 2366 trading sessions, exact BASE parity and unchanged Tail/MA3/macro/allocation risk. Report CAGR, MaxDD, Sharpe, source CAGR span, source day-level Top1 differences and annual returns. Portfolio-screen (separate from predictive) requires mean CAGR >=.95 BASE, MaxDD no worse than BASE by >2 absolute percentage points, mean Sharpe >=.95 BASE and daily Top1 disagreement <=BASE; these are descriptive hurdles, not statistical guarantee. No tuning, promotion, winner selection or production changes based on reused 2017–2026 economics.
+
+The two predictive endpoints and economic screens assess competing formulations, not causal strategy profitability; *new prospective monthly observations* beyond the frozen era are still required for actual deployment.
