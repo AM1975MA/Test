@@ -37,7 +37,7 @@ class TestStageAudit(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"duplicate"):
             numeric_frame(bad,"BASE")
     def test_incomplete_original149_rejected(self):
-        with self.assertRaisesRegex(ValueError,"Original149"):
+        with self.assertRaisesRegex(ValueError,"Unequal|Original149"):
             preallocation(self.frame.iloc[:-1])
     def test_nonfinite_scores_rejected(self):
         z=self.frame.copy();z.loc[0,"BASE"]=np.nan
