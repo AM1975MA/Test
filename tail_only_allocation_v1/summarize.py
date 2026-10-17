@@ -37,8 +37,11 @@ def main():
                 d1=z["d1"][0].astype(int)
                 d2=z["d2"][0].astype(int)
                 wg=z["weight1"][0].astype(float)
-                if len(d1)!=2366 or np.any((d1<0)|(d1>=149)) or np.any((d2<0)|(d2>=149)):
+                if (len(d1)!=2366 or np.any((d1<-1)|(d1>=149)) or np.any((d2<-1)|(d2>=149))
+                    or np.any((d1==-1)!=(d2==-1))):
                     raise ValueError("Unexpected original149 daily holdings")
+                if np.count_nonzero(d1==-1)>1:
+                    raise ValueError("Unexpected unallocated trading dates")
                 if calendar is None:calendar=dates
                 elif not calendar.equals(dates):raise ValueError("Different daily markets")
                 by_vintage.append(d1)
