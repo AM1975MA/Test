@@ -1,0 +1,24 @@
+name: OASIS_OPPORTUNITY_SWITCH_CONTRACT_TESTS
+on:
+  push:
+    branches:
+      - research/opportunity-crisis-switching-20261018
+    paths:
+      - 'oasis/**'
+      - '.github/workflows/oasis-contract.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  impulse-control-unit-properties:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Test synthetic opportunity, crisis and multiple-testing barriers
+        run: |
+          python -m unittest -v oasis.test_switch_contract
+          python -m py_compile oasis/switch_contract.py oasis/test_switch_contract.py
