@@ -221,7 +221,8 @@ def run(out):
           "monthly_block_log":logs.tolist()}
         print("M0_CLAIRVOYANT_DELAY "+str(d)+" "+json.dumps(lagged[str(d)]["score"]),flush=True)
     passive={}
-    for key,path in static_benchmarks(price,names,days).items():
+    for key,full_path in static_benchmarks(price,names,days).items():
+        path=full_path[:112*21+1]
         monthlog=np.log(path[np.arange(0,112*21+1,21)][1:]/path[np.arange(0,112*21+1,21)][:-1])
         passive[key]=metrics(path,monthlog,
            dict(switches=0,fee_sides=2 if key=="BUY_HOLD_60SPY_40AGG" else 1,total_log_fee_drag=math.log1p(FEE)),days)
@@ -307,7 +308,7 @@ def run(out):
     for delay,info in lagged.items():
         path,_,_=simulate(chosen["ORACLE_FUTURE_WINNER"],price,names,delay=int(delay))
         priceseries["ORACLE_DELAY_"+delay]=path
-    for name,arr in static_benchmarks(price,names,days).items():priceseries[name]=arr
+    for name,arr in static_benchmarks(price,names,days).items():priceseries[name]=arr[:112*21+1]
     priceseries.to_csv(out/"MATCHED_DAILY_OPEN_CURVES.csv",index=False)
     (out/"RESULT.json").write_text(json.dumps(report,indent=2,allow_nan=False)+"\n")
     print("ORIGINAL149_M0_SCIENCE_RESULT "+json.dumps(report,allow_nan=False),flush=True)
