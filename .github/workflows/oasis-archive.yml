@@ -1,0 +1,97 @@
+name: OASIS_PERMANENT_ARCHIVE_AND_DIAGNOSTICS
+on:
+  push:
+    branches:
+      - research/opportunity-crisis-switching-20261018
+    paths:
+      - '.github/workflows/oasis-archive.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Restore successful, audited V1 daily ledger
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39124068263 -R AM1975MA/Test -n oasis-daily-opportunity-crisis-v1 -D _v1
+          test -f _v1/RESULT.json
+          test -f _v1/P0_MONTHLY_GREEDY.csv
+          test -f _v1/P3_OASIS_CRISIS_ACTIVE.csv
+          test -f _v1/P6_DAILY_ECONOMIC_HYSTERESIS_ONLY_CHANGEP.csv
+      - name: Archive seven 2389-day ledgers and generate independent per-state scientific audit
+        run: |
+          mkdir -p oasis/results/frozen_daily
+          cp _v1/*.csv oasis/results/frozen_daily/
+          cp _v1/RESULT.json oasis/results/frozen_daily/RESULT.json
+          python - <<'PY'
+          from pathlib import Path
+          from collections import defaultdict
+          import csv,json,math
+          root=Path("oasis/results/frozen_daily")
+          files=sorted(root.glob("P*.csv"))
+          result=json.loads((root/"RESULT.json").read_text())
+          assert len(files)==7 and result["periods_open"]==2389
+          policies={}
+          for p in files:
+              rows=list(csv.DictReader(p.open()))
+              assert len(rows)==2389
+              assert all(float(z["wealth"])>0 for z in rows)
+              assert len(set(z["day"] for z in rows))==2389
+              policies[p.stem]=rows
+          def daily_log(rows):
+              x=[float(z["wealth"]) for z in rows]
+              return [math.log(x[i]/x[i-1]) for i in range(1,len(x))]
+          controls={}
+          for key,target in (("hysteresis_vs_monthly","P2_DAILY_ECONOMIC_HYSTERESIS"),
+                             ("active_crisis_vs_hysteresis","P3_OASIS_CRISIS_ACTIVE"),
+                             ("crisis_only_vs_monthly","P4_MONTHLY_GREEDY_CRISIS"),
+                             ("greedy_daily_vs_monthly","P1_DAILY_GREEDY")):
+              comparator=({"hysteresis_vs_monthly":"P0_MONTHLY_GREEDY",
+                "active_crisis_vs_hysteresis":"P2_DAILY_ECONOMIC_HYSTERESIS",
+                "crisis_only_vs_monthly":"P0_MONTHLY_GREEDY",
+                "greedy_daily_vs_monthly":"P0_MONTHLY_GREEDY"})[key]
+              rows=policies[target]
+              deltas=[a-b for a,b in zip(daily_log(rows),daily_log(policies[comparator]))]
+              group=defaultdict(list)
+              for i,delta in enumerate(deltas,start=1):
+                  group[rows[i]["regime"]].append(delta)
+              controls[key]={"target":target,"reference":comparator,
+                 "total_relative_log_wealth":float(sum(deltas)),
+                 "by_regime":{s:{"n_days":len(v),"cumulative_excess_log":sum(v),
+                     "mean_daily_excess_log":sum(v)/len(v)} for s,v in group.items()}}
+          p2=policies["P2_DAILY_ECONOMIC_HYSTERESIS"]
+          p3=policies["P3_OASIS_CRISIS_ACTIVE"]
+          p6=policies["P6_DAILY_ECONOMIC_HYSTERESIS_ONLY_CHANGEP"]
+          exact_p2_p6=all(abs(float(a["wealth"])-float(b["wealth"]))<1e-12
+                             for a,b in zip(p2,p6))
+          risk_days=sum(int(z["crisis"]=="True") for z in p3)
+          diagnostic={"status":"OASIS_V1_FORENSIC_AUDIT_COMPLETED",
+            "prior_study_run":39124068263,
+            "historical_PIT_survivorship_bias":True,
+            "matched_open_calendar":True,
+            "n_trade_days":2389,
+            "arms":len(policies),
+            "crisis_days":risk_days,
+            "economic_switches_in_crisis":sum(z["crisis"]=="True" and z["name_switch"]=="1" for z in p2),
+            "economic_switches_in_noncrisis":sum(z["crisis"]!="True" and z["name_switch"]=="1" for z in p2),
+            "p2_vs_p6_exact_same_wealth":exact_p2_p6,
+            "incremental_per_state":controls}
+          (root/"DIAGNOSTIC_V1.json").write_text(json.dumps(diagnostic,indent=2)+"\n")
+          print("OASIS_FORENSIC_RESULT",json.dumps(diagnostic))
+          PY
+          (cd oasis/results/frozen_daily && sha256sum *.csv RESULT.json DIAGNOSTIC_V1.json > SHA256_MANIFEST.txt)
+          (cd oasis/results/frozen_daily && sha256sum -c SHA256_MANIFEST.txt)
+      - name: Commit archived immutable evidence to research branch
+        run: |
+          git config user.name "ETF-OASIS-Research-Archivist"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis/results/frozen_daily
+          git commit -m "Archive seven completed OASIS daily 2389-session ledgers, market regimes, forensic test and hashes"
+          git push origin HEAD:refs/heads/research/opportunity-crisis-switching-20261018
