@@ -1,0 +1,44 @@
+name: ETF_HYSTERESIS_MARKET_INTERACTION_H7
+on:
+  push:
+    branches:
+      - research/scientific-coordinator-20261018
+    paths:
+      - 'interaction_tests/**'
+      - '.github/workflows/etf-h7-interaction.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  interaction:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Numeric dependencies
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+          python -m py_compile interaction_tests/h7.py
+      - name: Retrieve original immutable research ledger and market states
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39089621741 -R AM1975MA/Test -n scientific-etf-coordinator-eur60-v1 -D _parent
+          test -f _parent/MONTHLY_STATES.json
+          test -f _parent/MONTHLY_LEDGER.csv
+      - name: Replay H5 x regime and H5 static-90 counterfactual
+        run: |
+          python interaction_tests/h7.py --parent _parent --out _interaction
+      - name: Preserve all results and monthly path
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eur60-hysteresis-regime-h7-v1
+          retention-days: 90
+          path: |
+            _interaction/RESULT.json
+            _interaction/MONTHLY_LEDGER.csv
