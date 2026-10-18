@@ -1,0 +1,196 @@
+{
+  "status": "INTERACTION_EXPLORE_COMPLETED",
+  "post_selection_hypothesis": true,
+  "selection_from_parent_untouched": true,
+  "parent_run": 39089621741,
+  "parent_parity": true,
+  "months": 113,
+  "market_flag_months": 16,
+  "metrics": {
+    "H0": {
+      "cagr": 0.09978039091271906,
+      "terminal_wealth": 2.4488634490712133,
+      "monthly_maxdd": -0.2664408818133718,
+      "monthly_sharpe": 0.4906162899555866,
+      "monthly_es5": -0.11210144038382341,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "annualized_turnover": 8.495575221238937,
+      "subperiods": {
+        "2017_2020": {
+          "months": 48,
+          "cagr": 0.10953452830899435
+        },
+        "2021_2023": {
+          "months": 36,
+          "cagr": 0.08444019678860792
+        },
+        "2024_2026": {
+          "months": 29,
+          "cagr": 0.10288822703604228
+        }
+      }
+    },
+    "H5": {
+      "cagr": 0.14088803144356388,
+      "terminal_wealth": 3.4597002864382564,
+      "monthly_maxdd": -0.27925682432484267,
+      "monthly_sharpe": 0.691290339646872,
+      "monthly_es5": -0.1084265148204454,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "annualized_turnover": 6.47787610619469,
+      "subperiods": {
+        "2017_2020": {
+          "months": 48,
+          "cagr": 0.10299278327559813
+        },
+        "2021_2023": {
+          "months": 36,
+          "cagr": 0.13773654644052669
+        },
+        "2024_2026": {
+          "months": 29,
+          "cagr": 0.21064350453325287
+        }
+      }
+    },
+    "H3": {
+      "cagr": 0.09414727156712188,
+      "terminal_wealth": 2.3332625533858877,
+      "monthly_maxdd": -0.20733480721753073,
+      "monthly_sharpe": 0.5174650019524456,
+      "monthly_es5": -0.09683925843727216,
+      "mean_equity_exposure": 0.9292035398230089,
+      "cash_months": 16,
+      "annualized_turnover": 8.36283185840708,
+      "subperiods": {
+        "2017_2020": {
+          "months": 48,
+          "cagr": 0.1194186994536588
+        },
+        "2021_2023": {
+          "months": 36,
+          "cagr": 0.05455598417436658
+        },
+        "2024_2026": {
+          "months": 29,
+          "cagr": 0.10288822703604228
+        }
+      }
+    },
+    "H7_HYSTERESIS_REGIME": {
+      "cagr": 0.13423094964064108,
+      "terminal_wealth": 3.2742039791045667,
+      "monthly_maxdd": -0.22118338641133417,
+      "monthly_sharpe": 0.7451868156985737,
+      "monthly_es5": -0.09283800691380291,
+      "mean_equity_exposure": 0.9292035398230089,
+      "cash_months": 16,
+      "annualized_turnover": 6.610619469026549,
+      "subperiods": {
+        "2017_2020": {
+          "months": 48,
+          "cagr": 0.107582479749464
+        },
+        "2021_2023": {
+          "months": 36,
+          "cagr": 0.11086065530474998
+        },
+        "2024_2026": {
+          "months": 29,
+          "cagr": 0.21064350453325287
+        }
+      }
+    },
+    "H8_HYSTERESIS_STATIC90": {
+      "cagr": 0.12783988700356463,
+      "terminal_wealth": 3.104536842548692,
+      "monthly_maxdd": -0.25275034832378984,
+      "monthly_sharpe": 0.7003214934779224,
+      "monthly_es5": -0.09758872087720666,
+      "mean_equity_exposure": 0.9000000000000002,
+      "cash_months": 113,
+      "annualized_turnover": 5.8300884955752235,
+      "subperiods": {
+        "2017_2020": {
+          "months": 48,
+          "cagr": 0.09481656494960333
+        },
+        "2021_2023": {
+          "months": 36,
+          "cagr": 0.12478685547421953
+        },
+        "2024_2026": {
+          "months": 29,
+          "cagr": 0.18869552254893307
+        }
+      }
+    }
+  },
+  "paired_bootstrap": {
+    "H7_HYSTERESIS_REGIME": {
+      "vs_H5": {
+        "monthly_log_difference": -0.0004876741873718212,
+        "ci95": [
+          -0.002584415128083566,
+          0.0016859723723955519
+        ],
+        "positive_month_share": 0.061946902654867256
+      },
+      "vs_H0": {
+        "monthly_log_difference": 0.0025703607180863628,
+        "ci95": [
+          -0.001803614927715816,
+          0.006683372953668033
+        ],
+        "positive_month_share": 0.2743362831858407
+      }
+    },
+    "H8_HYSTERESIS_STATIC90": {
+      "vs_H5": {
+        "monthly_log_difference": -0.0009585612715261426,
+        "ci95": [
+          -0.0016560432997024777,
+          -0.0002399380087286063
+        ],
+        "positive_month_share": 0.37168141592920356
+      },
+      "vs_H0": {
+        "monthly_log_difference": 0.0020994736339320415,
+        "ci95": [
+          -0.0008981092590127897,
+          0.005243389371049806
+        ],
+        "positive_month_share": 0.415929203539823
+      }
+    }
+  },
+  "data_survivorship_bias": true,
+  "independent_holdout": false,
+  "real_money_eligibility": false,
+  "workflow_run": "https://github.com/AM1975MA/Test/actions/runs/39090132221",
+  "artifacts": {
+    "artifacts": [
+      {
+        "id": 12122561485,
+        "name": "eur60-hysteresis-regime-h7-v1",
+        "size_in_bytes": 11088,
+        "url": "https://api.github.com/repos/AM1975MA/Test/actions/artifacts/12122561485",
+        "archive_download_url": "https://api.github.com/repos/AM1975MA/Test/actions/artifacts/12122561485/zip",
+        "expired": false,
+        "created_at": "2026-10-18T02:27:33Z",
+        "expires_at": "2027-01-16T02:27:13Z",
+        "updated_at": "2026-10-18T02:27:33Z",
+        "digest": "sha256:fcc9720eeded0fe888b85aa1378743e117f252ebfe81c2b6da6109f0c52c6040",
+        "workflow_run": {
+          "id": 39090132221,
+          "repository_id": 1045875140,
+          "head_repository_id": 1045875140,
+          "head_branch": "research/scientific-coordinator-20261018",
+          "head_sha": "726ad097e1eb6290db31a380a19f2bc1c5bf4754"
+        }
+      }
+    ]
+  }
+}
