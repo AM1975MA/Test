@@ -1,0 +1,331 @@
+{
+  "status": "INDEPENDENT_STOCHASTIC_COMPLETED",
+  "months": 113,
+  "ETFs": 60,
+  "baseline_old_ml_cagr": 0.09978039091271884,
+  "baseline_old_hysteresis_regime_cagr": 0.13423094964064108,
+  "old_model_scores_read": false,
+  "old_model_training_invoked": false,
+  "expert_returns_matured_by_signal_close": true,
+  "synthetic_future_mutation_pass": true,
+  "source_manifest_sha256": "fcf7f6f551ebdff3a71856f0b41bf7fa94041b2388a8f32f79aab917a7634cea",
+  "metrics": {
+    "D0_BROAD_LOWVOL": {
+      "cagr": 0.014825670728749074,
+      "terminal_wealth": 1.1486457290856533,
+      "monthly_maxdd": -0.18901173880191358,
+      "monthly_sharpe": 0.24449865916549016,
+      "annual_turnover": 0.5769252130322113,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "mean_number_etfs": 10,
+      "worst_month": -0.05949152634626986,
+      "tail_es5_monthly": -0.04355471931628021,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.03799489475638884
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": -0.0365123295362334
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.04268171523185371
+        }
+      }
+    },
+    "D1_ROBUST_STATE": {
+      "cagr": 0.09185988173014192,
+      "terminal_wealth": 2.287731539334565,
+      "monthly_maxdd": -0.20433441742695213,
+      "monthly_sharpe": 0.748272676796591,
+      "annual_turnover": 5.180830061612762,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "mean_number_etfs": 5,
+      "worst_month": -0.09799282261472364,
+      "tail_es5_monthly": -0.06621266910398681,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.002462389416397759
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.09625412846040882
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.2514297518253512
+        }
+      }
+    },
+    "D2_LOG_GROWTH": {
+      "cagr": 0.032019468385498184,
+      "terminal_wealth": 1.3455328279248746,
+      "monthly_maxdd": -0.38764906119657083,
+      "monthly_sharpe": 0.22231619105096256,
+      "annual_turnover": 4.668217809282293,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "mean_number_etfs": 8,
+      "worst_month": -0.22580203879932503,
+      "tail_es5_monthly": -0.09704141335346748,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": -0.06814231535262383
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.03202537271620254
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.2220031773124269
+        }
+      }
+    },
+    "D3_CONTRARIAN": {
+      "cagr": 0.03360718729214507,
+      "terminal_wealth": 1.3651524475310006,
+      "monthly_maxdd": -0.26191593318140016,
+      "monthly_sharpe": 0.2325183600902255,
+      "annual_turnover": 9.726494730697413,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "mean_number_etfs": 8,
+      "worst_month": -0.1909759959952626,
+      "tail_es5_monthly": -0.09354252835194149,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.009961351966717436
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.05630013590510141
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.0454007572081212
+        }
+      }
+    },
+    "D4_ENTROPIC_CORRELATION": {
+      "cagr": 0.04362920430451078,
+      "terminal_wealth": 1.4950083073913265,
+      "monthly_maxdd": -0.27863384195516794,
+      "monthly_sharpe": 0.33029246481197133,
+      "annual_turnover": 4.983947887768028,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "mean_number_etfs": 8,
+      "worst_month": -0.18440572300124047,
+      "tail_es5_monthly": -0.08765726598440914,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": -0.032400569194281914
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.02839995780892446
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.2046055050481408
+        }
+      }
+    },
+    "D5_STUDENT_T_SCENARIO": {
+      "cagr": 0.03493974470780126,
+      "terminal_wealth": 1.3818159444018963,
+      "monthly_maxdd": -0.364658656889974,
+      "monthly_sharpe": 0.2461150134029249,
+      "annual_turnover": 5.3876678267409845,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "mean_number_etfs": 7.256637168141593,
+      "worst_month": -0.2259008059457036,
+      "tail_es5_monthly": -0.09571178049512352,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": -0.0625992756336291
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.019360478361279965
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.24236117269672275
+        }
+      }
+    },
+    "D6_HEDGE_GAME": {
+      "cagr": 0.0530435337117825,
+      "terminal_wealth": 1.626932619137307,
+      "monthly_maxdd": -0.20899174113520635,
+      "monthly_sharpe": 0.4822032548154281,
+      "annual_turnover": 4.164764601241625,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "mean_number_etfs": 23.115044247787612,
+      "worst_month": -0.14484192972136334,
+      "tail_es5_monthly": -0.07130413914448712,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": -0.007229437398359906
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.03826593657885735
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.18150001512727987
+        }
+      }
+    },
+    "D7_HEDGE_REGIME": {
+      "cagr": 0.056727979427465325,
+      "terminal_wealth": 1.6813321926968472,
+      "monthly_maxdd": -0.17677133324772742,
+      "monthly_sharpe": 0.6364928067870154,
+      "annual_turnover": 4.343914392324337,
+      "mean_equity_exposure": 0.9292035398230089,
+      "cash_months": 16,
+      "mean_number_etfs": 23.115044247787612,
+      "worst_month": -0.07283769345230251,
+      "tail_es5_monthly": -0.0533597605686005,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.01017686557829034
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.025664262483421796
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.18150001512727987
+        }
+      }
+    },
+    "D8_UNIFORM_EXPERTS": {
+      "cagr": 0.04577853064313708,
+      "terminal_wealth": 1.5242541267651566,
+      "monthly_maxdd": -0.2101312500081416,
+      "monthly_sharpe": 0.4220145385601173,
+      "annual_turnover": 4.023538017326519,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "mean_number_etfs": 23.115044247787612,
+      "worst_month": -0.14331895734013866,
+      "tail_es5_monthly": -0.07181685674351795,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": -0.00733545774245925
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.03688989626185357
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.1521528610084375
+        }
+      }
+    }
+  },
+  "paired_12month_ci_against_D0": {
+    "D1_ROBUST_STATE": {
+      "monthly_log_diff": 0.006097142574165611,
+      "ci95": [
+        0.00049868486958309,
+        0.011622407166881434
+      ]
+    },
+    "D2_LOG_GROWTH": {
+      "monthly_log_diff": 0.0014000572358456216,
+      "ci95": [
+        -0.00590388455958101,
+        0.008253646718253703
+      ]
+    },
+    "D3_CONTRARIAN": {
+      "monthly_log_diff": 0.0015281635754689931,
+      "ci95": [
+        -0.0033548057721127685,
+        0.006088993074638858
+      ]
+    },
+    "D4_ENTROPIC_CORRELATION": {
+      "monthly_log_diff": 0.002332284443052987,
+      "ci95": [
+        -0.003202064499364251,
+        0.007453635727584848
+      ]
+    },
+    "D5_STUDENT_T_SCENARIO": {
+      "monthly_log_diff": 0.0016355302152565709,
+      "ci95": [
+        -0.005836508955640753,
+        0.008365715821625114
+      ]
+    },
+    "D6_HEDGE_GAME": {
+      "monthly_log_diff": 0.0030806441739699977,
+      "ci95": [
+        -0.0013552485991906503,
+        0.007879796064200561
+      ]
+    },
+    "D7_HEDGE_REGIME": {
+      "monthly_log_diff": 0.0033717064555464226,
+      "ci95": [
+        -0.00028909043522383797,
+        0.007385908368291174
+      ]
+    },
+    "D8_UNIFORM_EXPERTS": {
+      "monthly_log_diff": 0.002503730722685201,
+      "ci95": [
+        -0.001627165561608556,
+        0.0067918912531852406
+      ]
+    }
+  },
+  "regime_months": 16,
+  "scenario_choice_counts": {
+    "D0_BROAD_LOWVOL": 0,
+    "D1_ROBUST_STATE": 28,
+    "D2_LOG_GROWTH": 43,
+    "D3_CONTRARIAN": 1,
+    "D4_ENTROPIC_CORRELATION": 41
+  },
+  "expert_maturity_updates": 111,
+  "risks": [
+    "hindsight_selected_surviving_EUR60",
+    "not_PIT_verified",
+    "no_FX_or_cash_carry",
+    "not_independent_future_holdout"
+  ],
+  "decision": "HISTORICAL_EXPLORATION_ONLY",
+  "workflow": "https://github.com/AM1975MA/Test/actions/runs/39119879600",
+  "artifact": [
+    {
+      "id": 12133573969,
+      "name": "independent-stochastic-ergodic-eu60-v1",
+      "sha256": "sha256:e5fa4bc3f7931a60800fc5c2ba5d6eb7a1465d56467ce7854a7e77b0142b4589",
+      "expires_at": "2027-01-16T10:35:49Z"
+    }
+  ]
+}
