@@ -56,7 +56,7 @@ def features(close,sd):
         rev=-(np.log(recent[-1]/recent[-22]))/(rv+1e-8)
         rev+=.25*np.log(recent[-1]/recent[-127])/(rv+1e-8)
         state_mu,pv,ov=robust_kalman_score(history[t],sd)
-        state_score=state_mu/math.sqrt(max(pv+ov,1e-8)) if np.isfinite(state_mu+pv+ov) else float("nan")
+        state_score=state_mu/math.sqrt(max(pv+ov,1e-8)) if np.isfinite(state_mu+pv+ov) else float(mu_daily*21./max(rv,.002))
         out[t]={"vol":float(rv),"growth":float(g),"reverse":float(rev),
                 "kalman":float(state_score),"daily_mu":float(mu_daily),
                 "ret":returns[t].dropna().tail(252)}
@@ -152,7 +152,7 @@ def synthetic_no_future_test():
     dates=pd.bdate_range("2013-01-02",periods=1500)
     m=np.arange(len(dates))
     x=pd.DataFrame({f"x{i}":np.exp(np.cumsum(.0001+.004*np.sin(m/(13+i))))
-                    for i in range(12)},index=dates)
+                    for i in range(24)},index=dates)
     sd=dates[1200];f,ret,e=features(x,sd)
     af=expert_allocations(f,ret)
     y=x.copy();y.loc[y.index>sd]*=12.35
