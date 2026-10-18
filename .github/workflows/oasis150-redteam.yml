@@ -1,0 +1,109 @@
+name: OASIS_150_SCIENTIFIC_RED_TEAM
+on:
+  push:
+    branches:
+      - research/oasis150-root-cause-20261018
+    paths:
+      - 'oasis150/rootcause/**'
+      - '.github/workflows/oasis150-redteam.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+jobs:
+  independent-review:
+    strategy:
+      fail-fast: false
+      matrix:
+        role: [data, signal, risk, execution]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install statistical runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0'
+          python -m py_compile oasis150/rootcause/auditors.py
+      - name: Run independent specialist audit
+        run: |
+          python oasis150/rootcause/auditors.py --role ${{ matrix.role }} --out _audit
+      - name: Preserve role's evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: oasis150-redteam-${{ matrix.role }}
+          retention-days: 90
+          path: _audit/*.json
+  scientific-coordinator:
+    needs: [independent-review]
+    if: ${{ always() && needs.independent-review.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: oasis150-redteam-*
+          merge-multiple: true
+          path: _audit
+      - name: Aggregate findings and block unproven performance claims
+        run: |
+          mkdir -p oasis150/rootcause/results
+          cp _audit/*_AUDIT.json oasis150/rootcause/results/
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("oasis150/rootcause/results")
+          names=("DATA","SIGNAL","RISK","EXECUTION")
+          audits={n:json.loads((p/(n+"_AUDIT.json")).read_text()) for n in names}
+          assert all(v["original_run_id"]==39132785483 for v in audits.values())
+          assert audits["DATA"]["selected_count"]==150
+          assert audits["RISK"]["by_policy"]["P3_OASIS_CRISIS_ACTIVE"]["maxdd"]<-.5
+          assert audits["EXECUTION"]["matched_days"]==2366
+          s=audits["SIGNAL"]["regimes_every_21_days_nonoverlap_stride"]
+          out=dict(status="FOUR_SPECIALIST_AUDITS_COMPLETED",
+              evidence_source_run=39132785483,
+              model_frozen_no_parameter_retuning=True,
+              deployed_trade_allowed=False,
+              independent_llm_agents_instantiated=False,
+              roles_completed=list(audits),
+              data_PIT_gate="FAIL",
+              risk_capital_preservation_gate="FAIL",
+              signal_calibration_gate="FAIL_OR_UNVERIFIED",
+              execution_live_fill_gate="FAIL_UNVERIFIED",
+              primary_facts={
+                "etfs":150,
+                "P3_daily_maxdd":audits["RISK"]["by_policy"]["P3_OASIS_CRISIS_ACTIVE"]["maxdd"],
+                "P3_minus_P4_excess_log":
+                  audits["EXECUTION"]["net_growth_differences_vs_controls"]["P3_minus_P4"],
+                "nonoverlapping_21day_spearman_by_regime":{
+                   k:{"n":v.get("rho_21",{}).get("n"),
+                       "mean":v.get("rho_21",{}).get("mean")} for k,v in s.items()}},
+              research_plan={
+                "R0":"Fix fund point-in-time, ISIN, FX, venue, dividend, slippage and broker fill proof first",
+                "R1":"Target paired NET switch advantage and calibrated predictive uncertainty, not absolute ETF rank",
+                "R2":"Factor analysis must be class-conditional, separate cash/bonds/equities/commodities and holding-specific tails",
+                "R3":"Daily online deterioration/recovery hazards vs strict naive EWMA/CUSUM baselines",
+                "R4":"Constrained dynamic risk budget, expected shortfall and drawdown controls tested exposure-matched",
+                "R5":"Optimize impulse-control no-trade decision using opportunity duration and real execution fees",
+                "R6":"Promote only after prequential proper scoring + independent PIT universe and forward live-paper sample"})
+          (p/"SCIENTIFIC_COORDINATOR_DECISION.json").write_text(json.dumps(out,indent=2)+"\n")
+          print("OASIS_REDTEAM_DECISION "+json.dumps(out))
+          PY
+          (cd oasis150/rootcause/results && sha256sum *_AUDIT.json SCIENTIFIC_COORDINATOR_DECISION.json > SHA256_MANIFEST.txt)
+          (cd oasis150/rootcause/results && sha256sum -c SHA256_MANIFEST.txt)
+      - name: Commit auditable findings and coordinator veto to isolated branch
+        run: |
+          git config user.name "OASIS-Scientific-RedTeam"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis150/rootcause/results
+          git commit -m "Freeze four independent forensic OASIS150 reviews and scientific coordinator decision"
+          git push origin HEAD:refs/heads/research/oasis150-root-cause-20261018
