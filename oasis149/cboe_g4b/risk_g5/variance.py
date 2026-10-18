@@ -217,7 +217,7 @@ def main():
     output=dict(status="ORIGINAL149_CBOE_G5_RISK_VARIANCE_COMPLETED",
         original149_exact_SHA=sha(SRC/"universe.csv"),
         mapped_groups=MAPPED,unmapped_group=BONDS,
-        21_session_forward_open_to_open_RV_definition="sum of 21 squared open-to-open log returns",
+        forward_21session_open_to_open_RV_definition="sum of 21 squared open-to-open log returns",
         n_orig_149_etfs=149,n_anchors=64,n_positions=384,n_mapped_positions=320,
         no_switches_or_returns_optimized=True,
         risk_model_only_not_alpha=True,
