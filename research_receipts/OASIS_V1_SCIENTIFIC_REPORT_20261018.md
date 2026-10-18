@@ -7,7 +7,7 @@
 - Model and conditions: `oasis/observers.py`, `oasis/switch_contract.py`; daily portfolio engine: `oasis/daily_backtest.py`; unit tests `oasis/test_daily_engine.py`, `oasis/test_switch_contract.py`.
 - Executed Actions: initial `39123868147` (failed integrity gate on sparse data); `39123924683` (completed initial); `39124068263` (fee-fair daily-greedy fix); **`39124549957` (final corrected incumbent-missing-close semantics; SUCCESS)**.
 - Audited permanent archived source: `oasis/results/frozen_daily_corrected/`. SHA256 ledger manifest `SHA256_MANIFEST.txt`, full 7 daily portfolios `P*.csv`, `MARKET_STATES.csv`, `RESULT.json`, `DIAGNOSTIC_CORRECTED.json`.
-- Crisis opportunity diagnostic Action [39124433434](https://github.com/AM1975MA/Test/actions/runs/39124433434), file `research_extensions/oasis_crisis/RESULT.json`. This diagnostic was run on the previous completed selector before missing-close fix; its *pure score cross-sectional correlation* and as-of state classification are unchanged by the execution fix, but its reported switch win/loss examples refer to the SUPERSEDED earlier portfolio. Do not mix its actual-switch figures with corrected results.
+- **Corrected portfolio** crisis opportunity audit: [GitHub Action 39124886975](https://github.com/AM1975MA/Test/actions/runs/39124886975), file `research_extensions/oasis_crisis/RESULT.json`. This independent ex-post diagnostic uses the exact authoritative corrected daily portfolio. It examines 48 executed one-for-one switches with available 21-session forward quotations, plus per-day as-of-state cross-sectional rank correlation.
 - Final archive Action: [39124744355](https://github.com/AM1975MA/Test/actions/runs/39124744355) SUCCESS.
 
 ## What V1 actually implements — and what it does not
@@ -48,7 +48,7 @@ The factor-adjusted signal itself was unchanged by the missing-incumbent fix. Ac
 - SHOCK -.0372 (81 days)
 - CONTINUATION **-.1791** (61 days)
 - RECOVERY +.0071 (193 days).
-Thus score has essentially no positive rank predictive validity in ordinary markets and appears anti-correlated in sustained crises on this sample. This goes directly against the intended opportunity-discovery mechanism. The ex-post daily correlations are not independent samples or valid p-values; do not infer universal negative predictive power.
+Thus score has essentially no positive rank predictive validity in ordinary markets and appears anti-correlated in sustained crises on this sample. This goes directly against the intended opportunity-discovery mechanism. The ex-post daily correlations are not independent samples or valid p-values; do not infer universal negative predictive power. In the corrected 48 one-for-one switch audit, subsequent 21-session NEW-minus-SOLD mean relative log return was +0.00462 over 41 BREATHING switches, -0.02835 for 2 CONTINUATION switches, -0.02648 for 4 RECOVERY switches, and +0.01173 for 1 SHOCK switch. These tiny crisis group sizes do NOT license statistical conclusions. Only three switches were made in 146 systemic SHOCK/CONTINUATION sessions.
 
 Correct next research direction is **conditional relative residual return forecasting calibrated by regime**, not more hysteresis tuning on EUR60. In a downturn, latent resilience/leadership transitions and recovery hazard must be separately modeled. Test proper prequential predictive log scores/coverage and actual economically valuable relative switching with an independent PIT fund set before modifying cash/threshold controls.
 
