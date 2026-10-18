@@ -1,0 +1,3 @@
+Canonical rerun trigger.
+Production downside volatility: sqrt(mean(min(log_return, 0)^2) * 252).
+Model specification unchanged: 360 trees, seeds 101/202/303, 500 baskets.
