@@ -1,0 +1,87 @@
+name: OASIS_CORRECTED_DAILY_ARCHIVE
+on:
+  push:
+    branches:
+      - research/opportunity-crisis-switching-20261018
+    paths:
+      - '.github/workflows/oasis-archive-corrected.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Read validated anti-stale-close OASIS daily run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39124549957 -R AM1975MA/Test -n oasis-daily-opportunity-crisis-v1 -D _corrected
+          test -f _corrected/P2_DAILY_ECONOMIC_HYSTERESIS.csv
+          test -f _corrected/P3_OASIS_CRISIS_ACTIVE.csv
+          test -f _corrected/RESULT.json
+      - name: Archive seven daily ledgers and calculate marginal value of crisis management
+        run: |
+          mkdir -p oasis/results/frozen_daily_corrected
+          cp _corrected/*.csv oasis/results/frozen_daily_corrected/
+          cp _corrected/RESULT.json oasis/results/frozen_daily_corrected/RESULT.json
+          python - <<'PY'
+          import csv,json,math
+          from pathlib import Path
+          from collections import defaultdict
+          root=Path("oasis/results/frozen_daily_corrected")
+          z=json.loads((root/"RESULT.json").read_text())
+          assert z["status"]=="OASIS_DAILY_RESEARCH_COMPLETED"
+          assert z["metrics"]["P3_OASIS_CRISIS_ACTIVE"]["n_name_switches"]==49
+          policies={}
+          for f in root.glob("P*.csv"):
+              rows=list(csv.DictReader(f.open()))
+              assert len(rows)==2389, f.name
+              policies[f.stem]=rows
+          assert len(policies)==7
+          def increment(rows):
+              w=[float(x["wealth"]) for x in rows]
+              return [math.log(w[j]/w[j-1]) for j in range(1,len(w))]
+          contrasts={}
+          for name,t,p in [
+             ("economic_switcher_vs_monthly","P2_DAILY_ECONOMIC_HYSTERESIS","P0_MONTHLY_GREEDY"),
+             ("crisis_overlay_on_switcher","P3_OASIS_CRISIS_ACTIVE","P2_DAILY_ECONOMIC_HYSTERESIS"),
+             ("crisis_overlay_on_monthly","P4_MONTHLY_GREEDY_CRISIS","P0_MONTHLY_GREEDY"),
+             ("complete_oasis_vs_monthly","P3_OASIS_CRISIS_ACTIVE","P0_MONTHLY_GREEDY")]:
+              rr=policies[t];deltas=[x-y for x,y in zip(increment(rr),increment(policies[p]))]
+              bins=defaultdict(list)
+              for j,delta in enumerate(deltas,start=1):
+                  bins[rr[j]["regime"]].append(delta)
+              contrasts[name]=dict(cumulative_log_excess=sum(deltas),
+                  by_regime={k:dict(days=len(v),cumulative_log_excess=sum(v),
+                     average_daily_log_excess=sum(v)/len(v)) for k,v in bins.items()})
+          p2=policies["P2_DAILY_ECONOMIC_HYSTERESIS"]
+          p6=policies["P6_DAILY_ECONOMIC_HYSTERESIS_ONLY_CHANGEP"]
+          same=all(abs(float(a["wealth"])-float(b["wealth"]))<=1e-12 for a,b in zip(p2,p6))
+          diag=dict(status="OASIS_CORRECTED_POST_TEST_FORENSIC",run=39124549957,
+              regime_day_counts={k:sum(z["regime"]==k for z in p2) for k in
+                ("BREATHING","SHOCK","CONTINUATION","RECOVERY")},
+              economic_switches_in_stress=sum(x["name_switch"]=="1" and
+                x["crisis"]=="True" for x in p2),
+              economic_switches_outside_stress=sum(x["name_switch"]=="1" and
+                x["crisis"]!="True" for x in p2),
+              economic_switches=49,
+              changepoint_veto_has_no_effect=same,
+              paired_state_attribution=contrasts,
+              source_archive_only=True,no_independent_holdout=True)
+          (root/"DIAGNOSTIC_CORRECTED.json").write_text(json.dumps(diag,indent=2)+"\n")
+          print("OASIS_CORRECTED_DIAG "+json.dumps(diag))
+          PY
+          (cd oasis/results/frozen_daily_corrected && sha256sum *.csv RESULT.json DIAGNOSTIC_CORRECTED.json > SHA256_MANIFEST.txt)
+          (cd oasis/results/frozen_daily_corrected && sha256sum -c SHA256_MANIFEST.txt)
+      - name: Save permanent corrected-source evidence
+        run: |
+          git config user.name "OASIS-Science-Archivist"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis/results/frozen_daily_corrected
+          git commit -m "Archive corrected OASIS 2389-session daily results and crisis-conditional economic attribution"
+          git push origin HEAD:refs/heads/research/opportunity-crisis-switching-20261018
