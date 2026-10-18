@@ -9,7 +9,7 @@ import pandas as pd
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT))
 from oasis.observers import prepare
-BASE=ROOT/"oasis/results/frozen_daily"
+BASE=ROOT/"oasis/results/frozen_daily_corrected"
 RAW=ROOT/"data/eu120/raw_ticker_csv"
 
 def sha(x):return hashlib.sha256(Path(x).read_bytes()).hexdigest()
@@ -103,7 +103,7 @@ def main():
         switches_without_complete_forward_quotes=missed,
         multi_or_nonstandard_changes=ambiguous,
         source_roster_sha256=sha(ROOT/"europe_only75/UNIVERSE_EUR_LISTED_60.csv"),
-        prior_frozen_run_id=39124068263,
+        prior_frozen_run_id=39124549957,
         limitation=["overlapping_5_21day_labels","retrospective_survivor_cohort",
            "best_expost_quantile_not_achievable",
            "quote_volume_and_currency_unverified",
