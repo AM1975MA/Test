@@ -10,7 +10,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from oasis149.canonical import load_149,sha,SRC
-from oasis_v2.g2.risk_portfolio import execute_targets
 from research_reset.m0.experiment import simulate as oracle_sim,STRIDE,FEE,SEED
 ROOT=Path(__file__).resolve().parents[2]
 ORIGIN=ROOT/"research_reset/m0/results"
@@ -67,6 +66,34 @@ def trial_surrogates(lists,dates,vol,cat,members,kind,rng):
         prev_orig=current
     return out,float(np.mean(diffvol))
 
+def rebalance_exact(shares,cash,weights,quotes):
+    """Self-financing exact all-in target net of bilateral 10bp trade costs.
+
+    Solve final net wealth W' = initial W - fee * L1(trade target W'w
+    minus observed previous holdings), with zero cash and no leverage.
+    Keeping unchanged equal holdings at constant prices incurs ZERO fees.
+    """
+    union=set(shares)|set(weights)
+    before=float(cash+sum(q*float(quotes[t]) for t,q in shares.items()))
+    if before<=0 or not math.isfinite(before):raise AssertionError("invalid capital")
+    current={t:float(shares.get(t,0))*float(quotes[t]) for t in union}
+    if abs(sum(weights.values())-1)>1e-10:raise AssertionError("target not all invested")
+    w=before
+    for _ in range(80):
+        turnover=sum(abs(w*weights.get(t,0.)-current[t]) for t in union)
+        new=before-FEE*turnover
+        if abs(new-w)<1e-14:
+            w=new
+            break
+        w=new
+    if w<=0:raise AssertionError("ruined by fees")
+    targets={t:w*weight/float(quotes[t]) for t,weight in weights.items()}
+    sell=sum(max(0.,current[t]-w*weights.get(t,0.)) for t in union)
+    buy=sum(max(0.,w*weights.get(t,0.)-current[t]) for t in union)
+    cash_after=cash+sell*(1-FEE)-buy*(1+FEE)
+    if abs(cash_after)>1e-9:raise AssertionError("trade not self financing")
+    return targets,0.,sell+buy,before-w,int(sell+buy>1e-12)
+
 def portfolio(lists,price,names,days):
     """One real share/cash portfolio, 5 equal target allocations, monthly rebalance."""
     ix={ticker:i for i,ticker in enumerate(names)}
@@ -78,7 +105,7 @@ def portfolio(lists,price,names,days):
         marks={z:float(price[t,ix[z]]) for z in set(shares)|set(selection)}
         pre=cash+sum(q*marks[name] for name,q in shares.items())
         weights={z:1/5 for z in selection}
-        shares,cash,turn,cost,orders=execute_targets(shares,cash,weights,marks)
+        shares,cash,turn,cost,orders=rebalance_exact(shares,cash,weights,marks)
         traded+=turn;nominal_fees+=cost;rebals+=int(turn>1e-12)
         post=cash+sum(q*marks[name] for name,q in shares.items())
         if post>pre+1e-9:raise AssertionError("money minted in rebalance")
@@ -214,7 +241,7 @@ def run(out):
           "Hindsight best-within-five uses future returns, untradeable",
           "Historical Yahoo adjusted opens not broker executable, EUR venue and real spreads not verified",
           "Nominal gross daily marks of single-active horizon without intraday peak-to-trough",
-          "Top5 equal weight and null share engine both approximate free cash after buffered 10bp fills"])
+          "Top5 and null portfolios are fully invested at each rebalance with exact self-financing 10bp fee solve"])
     pd.DataFrame(placebo).to_csv(dest/"VOL_AND_CATEGORY_MATCHED_500_PLACEBOS.csv",index=False)
     pd.DataFrame({"date":days[:DAYS+1], "top5_equal_shares":obs_path,
                   "future_best_within_past_top5_NOT_TRADABLE":oracle_path}).to_csv(
