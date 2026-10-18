@@ -1,0 +1,121 @@
+ticker,macro_category,decision,reason
+IEUR,EU_BROAD,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+IEV,EU_BROAD,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+SPEU,EU_BROAD,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+HEU.PA,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+EZU,EU_BROAD,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+HEZU,EU_BROAD,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+CSSX5E.MI,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+CSX5.AS,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+CSX5.L,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+FEZ,EU_BROAD,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+SXRT.DE,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+VEUR.SW,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+DBEU,EU_BROAD,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+FDD,EU_BROAD,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+EXSA.DE,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+SC0E.DE,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+IMEU.L,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+IMEU.AS,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+IQQY.DE,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+IMEU.MI,EU_BROAD,KEEP,Europe / Eurozone equity index UCITS
+0BYJ.MU,EU_SECTOR,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+EUFN,EU_SECTOR,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+EXV1.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXV2.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXV3.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXV4.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXV6.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXV7.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXV8.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXV9.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXH1.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXH2.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXH3.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXH4.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXH5.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXH6.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXH8.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXH9.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+EXH7.DE,EU_SECTOR,KEEP,STOXX Europe 600 sector-specific UCITS
+FEUZ,EU_SECTOR,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+DAX,EU_COUNTRY,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+EFNL,EU_COUNTRY,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+GREK,EU_COUNTRY,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+EDEN,EU_COUNTRY,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+CMB1.L,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+CSMIB.MI,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+SXRY.DE,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+BBVAI.MC,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+IAEX.AS,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+ISF.L,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+ISF.MI,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+C40.PA,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+EXS1.DE,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+SXR7.DE,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+CSEMU.MI,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+CSSMI.SW,EU_COUNTRY,KEEP,Single European country or eurozone equity index
+IQQH.DE,EU_COUNTRY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+IQQW.DE,EU_COUNTRY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+NORW,EU_COUNTRY,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+FGM,EU_COUNTRY,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+IEUS,EU_FACTOR,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+CES1.L,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+CSEMUS.MI,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+SXRJ.DE,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+DFE,EU_FACTOR,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+EUDG,EU_FACTOR,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+IEVL.L,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+CEMS.DE,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+IEFV.L,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+IEVL.MI,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+IEFQ.L,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+IEQU.MI,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+CEMQ.DE,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+MVEU.L,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+MVEU.MI,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+EUN0.DE,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+IMV.L,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+HEDJ,EU_FACTOR,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+FEP,EU_FACTOR,EXCLUDE,US-domiciled non-UCITS even when underlying equities are European; exclude from strict European UCITS investability
+ZPRX.DE,EU_FACTOR,KEEP,European regional equity factor/small-cap mandate
+SEGA.L,EU_SOVEREIGN,KEEP,Eurozone sovereign bonds only (issuer geographic restriction)
+EUNH.DE,EU_SOVEREIGN,KEEP,Eurozone sovereign bonds only (issuer geographic restriction)
+IEGA.AS,EU_SOVEREIGN,KEEP,Eurozone sovereign bonds only (issuer geographic restriction)
+SEGA.MI,EU_SOVEREIGN,KEEP,Eurozone sovereign bonds only (issuer geographic restriction)
+IBGM.MI,EU_SOVEREIGN,KEEP,Eurozone sovereign bonds only (issuer geographic restriction)
+IBCM.DE,EU_SOVEREIGN,KEEP,Eurozone sovereign bonds only (issuer geographic restriction)
+IBGM.AS,EU_SOVEREIGN,KEEP,Eurozone sovereign bonds only (issuer geographic restriction)
+ICOV.MI,EU_SOVEREIGN,EXCLUDE,EUR denomination does NOT ensure only European underlying debt issuers; strict geography not proven
+IUS6.DE,EU_SOVEREIGN,EXCLUDE,EUR denomination does NOT ensure only European underlying debt issuers; strict geography not proven
+ERNE.L,EU_SOVEREIGN,EXCLUDE,EUR denomination does NOT ensure only European underlying debt issuers; strict geography not proven
+ERNE.MI,EU_SOVEREIGN,EXCLUDE,EUR denomination does NOT ensure only European underlying debt issuers; strict geography not proven
+IS3M.DE,EU_SOVEREIGN,EXCLUDE,EUR denomination does NOT ensure only European underlying debt issuers; strict geography not proven
+ERNE.AS,EU_SOVEREIGN,EXCLUDE,EUR denomination does NOT ensure only European underlying debt issuers; strict geography not proven
+SXRQ.DE,EU_SOVEREIGN,KEEP,Eurozone sovereign bonds only (issuer geographic restriction)
+CE01.L,EU_SOVEREIGN,KEEP,Eurozone sovereign bonds only (issuer geographic restriction)
+IEBB.MI,EU_SOVEREIGN,EXCLUDE,EUR denomination does NOT ensure only European underlying debt issuers; strict geography not proven
+IS06.DE,EU_SOVEREIGN,EXCLUDE,EUR denomination does NOT ensure only European underlying debt issuers; strict geography not proven
+IEAC.L,EU_SOVEREIGN,EXCLUDE,EUR denomination does NOT ensure only European underlying debt issuers; strict geography not proven
+IDTL.L,EU_SOVEREIGN,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+SEMB.L,EU_SOVEREIGN,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+IPRP.AS,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+IQQP.DE,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+ZPRP.DE,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+D5BK.DE,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+XDER.MI,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+XDER.L,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+SC0Z.DE,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+EXI5.DE,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+EPRE.MI,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+EUNL.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+SXR8.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+EXS3.DE,EU_PROPERTY,KEEP,European listed property / Germany/Europe equity index
+EUNM.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+IS3N.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+IUSQ.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+XDWD.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+ZPRG.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+ZPRV.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+SPY5.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)
+4GLD.DE,EU_PROPERTY,EXCLUDE,Non-Europe-specific underlying index (global / US / emerging markets / commodities)

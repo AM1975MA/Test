@@ -1,0 +1,22 @@
+{
+  "schema": "EUROPE_ONLY75_V1",
+  "creation_date": "2026-10-17",
+  "source_eu120_run": 36597035280,
+  "source_eu120_manifest_sha256": "fcf7f6f551ebdff3a71856f0b41bf7fa94041b2388a8f32f79aab917a7634cea",
+  "source_universe": "data/eu120/raw_ticker_csv/universe.csv",
+  "original_count": 120,
+  "retained_count": 75,
+  "excluded_count": 45,
+  "geography": "European underlying companies / Eurozone sovereign issuers; European UCITS/listing, not simply quoted in EUR",
+  "data_source": "Original EU120 frozen 2004-01-01 to 2026-07-01 (no refresh)",
+  "non_euro_quoted_potential": true,
+  "duplicate_fund_share_classes_potential": true,
+  "performance_used_for_curation": false,
+  "source_preserved": true,
+  "excluded_unknown_rule": "If documentation does not prove exclusive European underlying issuers, exclude",
+  "source_selection_bias": "Original120 names selected ex-post to July 2026; not independent point-in-time universe",
+  "candidate_paths": [
+    "europe_only75/UNIVERSE_EUROPE_ONLY.csv",
+    "europe_only75/GEOGRAPHY_AUDIT.csv"
+  ]
+}
