@@ -241,7 +241,7 @@ def main():
         end=pd.Timestamp(a.study_end)
         if not start<end:
             raise AssertionError("Nonpositive evaluation interval")
-    if a.min_open_count<max(5,int(.6*a.expect_count)):
+    if a.min_open_count<max(5,int((.6 if a.expect_count>60 else .5)*a.expect_count)):
         raise AssertionError("min-open-count inadequate for joint-price evaluation")
     source=out/"_raw";source.mkdir()
     roster[["ticker","macro_category"]].to_csv(source/"universe.csv",index=False)
