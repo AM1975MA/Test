@@ -33,7 +33,7 @@ All above have 113 months, as-of EUR60 survivor cohort, monthly common opening e
 **Critical weakness:** D1 CAGR by evaluated historical slice was **0.25%** (2017–20), **9.63%** (2021–23), **25.14%** (2024–26); an apparent overall robust Sharpe hides extreme timing dependence. D1 beats D0 by bootstrap but D0 has very low economic return and is not an alpha standard. Older R_H fixed50/50 = **9.978% CAGR**, prior H7 research = **13.423% CAGR**, from the *same mineable historical cohort*. Novel strategy does **not** outperform H7 in CAGR.
 
 ## Second-stage predeclared after seeing D1 success (post-selection exploratory)
-[Protocol](../../independent_stochastic/H10_BAYESIAN_RISK_PROTOCOL.md) and [Action 39120298645](https://github.com/AM1975MA/Test/actions/runs/39120298645).
+[Protocol](../independent_stochastic/H10_BAYESIAN_RISK_PROTOCOL.md) and [Action 39120298645](https://github.com/AM1975MA/Test/actions/runs/39120298645).
 Frozen D1 securities and weights every month: altered **risk exposure only**, no reranking, no fit to realized labels.
 | Risk envelope | CAGR | Monthly MaxDD | Sharpe | Defensive months |
 |---|---:|---:|---:|---:|
