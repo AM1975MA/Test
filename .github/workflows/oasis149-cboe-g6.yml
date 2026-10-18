@@ -1,0 +1,73 @@
+name: OASIS149_G6_EWMA_RISK_ONLY_PORTFOLIO_MATCHED
+on:
+  push:
+    branches:
+      - research/oasis149-cboe-impliedvol-g4b-20261018
+    paths:
+      - 'oasis149/cboe_g4b/risk_g6/PROTOCOL_FROZEN.md'
+      - 'oasis149/cboe_g4b/risk_g6/ewma_allocation.py'
+      - 'oasis149/cboe_g4b/risk_g6/test_ewma.py'
+      - '.github/workflows/oasis149-cboe-g6.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  risk-only-reallocation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Minimal scientific dependencies
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+          python -m py_compile oasis149/cboe_g4b/risk_g6/ewma_allocation.py
+      - name: Verify causal as-of EWMA and no new ETF selection
+        run: |
+          python -m unittest -v oasis149.cboe_g4b.risk_g6.test_ewma oasis_v2.g2.test_risk
+      - name: Recreate reference and compare only monthly risk weights
+        run: |
+          python -m oasis149.cboe_g4b.risk_g6.ewma_allocation --out _g6
+      - name: Validate exact R3 economics and original149 portfolio design
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_g6/RESULT.json").read_text())
+          assert d["status"]=="ORIGINAL149_EWMA_G6_MATCHED_PORTFOLIO_COMPLETED"
+          assert d["original149_exact"]==149
+          assert d["original_R3_replay_parity_error"]<1e-8
+          assert d["only_weights_changed_at_same_114_monthly_opens"]
+          assert d["no_new_ETF_selection"] and d["no_G1_or_G4_failed_alpha_used"]
+          print("OASIS149_EWMA_G6_ECONOMIC_GATE",d["preregistered_economic_gate"])
+          PY
+      - name: Persist seven-source compatible matched ledger and immutable receipt
+        run: |
+          mkdir -p oasis149/cboe_g4b/risk_g6/results
+          cp _g6/*.json _g6/*.csv oasis149/cboe_g4b/risk_g6/results/
+          (cd oasis149/cboe_g4b/risk_g6/results && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          (cd oasis149/cboe_g4b/risk_g6/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "OASIS149-Risk-Weighting-Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis149/cboe_g4b/risk_g6/results
+          git commit -m "Archive fully matched original149 EWMA126 vs 63d inverse-vol investment risk ablation, 2366 observations, strict parity"
+          git push origin HEAD:refs/heads/research/oasis149-cboe-impliedvol-g4b-20261018
+      - name: Retain research record in Action logs even if rejected
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oasis149-g6-ewma-risk-only-matched-economic-control
+          retention-days: 90
+          path: |
+            _g6/*.csv
+            _g6/*.json
