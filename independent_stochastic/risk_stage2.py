@@ -8,7 +8,9 @@ import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT),str(ROOT/"vendor/etf_trader_v2/src"),str(ROOT/"europe120/eu120_retrain")]
 from etf_trader.source_only.raw_io import load_ticker_csv_folder
-from scientific_lab.models import daily_asof
+def daily_asof(close,signal):
+    h=close.loc[:signal]
+    return np.log(h/h.shift()).replace([np.inf,-np.inf],np.nan)
 
 FEE=.001
 EXPECTED_D1=.09185988173014192
