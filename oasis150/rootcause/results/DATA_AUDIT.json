@@ -1,0 +1,64 @@
+{
+  "status": "DATA_GATE_BLOCK_PIT_AND_LIQUIDITY",
+  "selected_count": 150,
+  "pool_count": 219,
+  "complete_adjusted_ohlcv_claim": true,
+  "missing_open_or_close_study": 0,
+  "zero_volume_count": 0,
+  "suspicious_abs_daily_log_changes_gt25pct_count": 7,
+  "top_extreme_log_jumps": [
+    {
+      "ticker": "SLV",
+      "date": "2026-01-30",
+      "close_to_close_log_return": -0.33603656642343366
+    },
+    {
+      "ticker": "USO",
+      "date": "2020-03-09",
+      "close_to_close_log_return": -0.2918909444026281
+    },
+    {
+      "ticker": "USO",
+      "date": "2020-04-21",
+      "close_to_close_log_return": -0.2885713769998179
+    },
+    {
+      "ticker": "UNG",
+      "date": "2026-02-02",
+      "close_to_close_log_return": -0.2857116209108021
+    },
+    {
+      "ticker": "REM",
+      "date": "2020-03-18",
+      "close_to_close_log_return": -0.2654489001620938
+    },
+    {
+      "ticker": "EWZ",
+      "date": "2020-03-16",
+      "close_to_close_log_return": -0.26257049922765424
+    },
+    {
+      "ticker": "GDX",
+      "date": "2020-03-18",
+      "close_to_close_log_return": -0.25907557331594205
+    }
+  ],
+  "full_period_study_rows": 2366,
+  "whole_panel_coverage_selection_hindsight": true,
+  "source_currency_and_ISIN_missing": true,
+  "actual_bid_ask_missing": true,
+  "category_count": {
+    "C01_US_BROAD_STYLE": 24,
+    "C02_US_SECTOR_THEME": 35,
+    "C03_DEVELOPED_GLOBAL": 28,
+    "C04_EMERGING": 20,
+    "C05_BONDS_CASH_CREDIT": 21,
+    "C06_REAL_ASSETS": 22
+  },
+  "policy_held_instrument_day_count": 4732,
+  "source_digest": "523bba5f3300f968e793edcff10081f6563707e73d633dfba371ec89857a42b2",
+  "agent_role": "DATA_AGENT",
+  "original_run_id": 39132785483,
+  "source_sha256": "6867340172dcb3915493a74f85f394048215428c6210519fe29d87c6c36205e2",
+  "research_only": true
+}

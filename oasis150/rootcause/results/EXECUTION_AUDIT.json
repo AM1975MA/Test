@@ -1,0 +1,159 @@
+{
+  "status": "EXECUTION_CONSISTENT_COSTED_BUT_NOT_BROKER_VALIDATED",
+  "matched_days": 2366,
+  "ledger_costs_confirmed": true,
+  "arms": {
+    "P0_MONTHLY_GREEDY": {
+      "total_trades": 114,
+      "name_switches": 101,
+      "cash_weight_avg": 0.0016231286072869366,
+      "annual_mean_trading_notional_over_current_wealth": 16.69211408840134,
+      "fee_money": 0.2781828098678627,
+      "annual_fee_drag_estimated_non_compounded_log": 0.016692114088400177,
+      "blocked_orders": 0,
+      "stale_held_day_count": 0,
+      "invalid_negative_cash": 0,
+      "observed_crisis_selling_sessions": 7,
+      "total_log_growth_first_to_last": 0.7534415943197158,
+      "states_with_switches": {
+        "BREATHING": 88,
+        "RECOVERY": 6,
+        "CONTINUATION": 4,
+        "SHOCK": 3
+      },
+      "average_held_etfs": 2.0
+    },
+    "P2_DAILY_ECONOMIC_HYSTERESIS": {
+      "total_trades": 58,
+      "name_switches": 57,
+      "cash_weight_avg": 0.0019088981096726833,
+      "annual_mean_trading_notional_over_current_wealth": 6.212722829126168,
+      "fee_money": 0.0927250139335174,
+      "annual_fee_drag_estimated_non_compounded_log": 0.006212722829125605,
+      "blocked_orders": 0,
+      "stale_held_day_count": 0,
+      "invalid_negative_cash": 0,
+      "observed_crisis_selling_sessions": 3,
+      "total_log_growth_first_to_last": 0.7673880915743481,
+      "states_with_switches": {
+        "BREATHING": 49,
+        "RECOVERY": 5,
+        "SHOCK": 2,
+        "CONTINUATION": 1
+      },
+      "average_held_etfs": 2.0
+    },
+    "P3_OASIS_CRISIS_ACTIVE": {
+      "total_trades": 132,
+      "name_switches": 57,
+      "cash_weight_avg": 0.03231653509193,
+      "annual_mean_trading_notional_over_current_wealth": 9.9955166802381,
+      "fee_money": 0.17149063876377799,
+      "annual_fee_drag_estimated_non_compounded_log": 0.00999551668023724,
+      "blocked_orders": 0,
+      "stale_held_day_count": 0,
+      "invalid_negative_cash": 0,
+      "observed_crisis_selling_sessions": 40,
+      "total_log_growth_first_to_last": 0.9110863973622522,
+      "states_with_switches": {
+        "BREATHING": 49,
+        "RECOVERY": 5,
+        "SHOCK": 2,
+        "CONTINUATION": 1
+      },
+      "average_held_etfs": 2.0
+    },
+    "P4_MONTHLY_GREEDY_CRISIS": {
+      "total_trades": 185,
+      "name_switches": 101,
+      "cash_weight_avg": 0.032291681462563414,
+      "annual_mean_trading_notional_over_current_wealth": 19.944972400050823,
+      "fee_money": 0.3684708580666751,
+      "annual_fee_drag_estimated_non_compounded_log": 0.019944972400049343,
+      "blocked_orders": 0,
+      "stale_held_day_count": 0,
+      "invalid_negative_cash": 0,
+      "observed_crisis_selling_sessions": 41,
+      "total_log_growth_first_to_last": 0.9011611462703771,
+      "states_with_switches": {
+        "BREATHING": 88,
+        "RECOVERY": 6,
+        "CONTINUATION": 4,
+        "SHOCK": 3
+      },
+      "average_held_etfs": 2.0
+    },
+    "P1_DAILY_GREEDY": {
+      "total_trades": 778,
+      "name_switches": 777,
+      "cash_weight_avg": 0.0019238546928741268,
+      "annual_mean_trading_notional_over_current_wealth": 87.70074973244833,
+      "fee_money": 0.8491585699918881,
+      "annual_fee_drag_estimated_non_compounded_log": 0.08770074973243892,
+      "blocked_orders": 0,
+      "stale_held_day_count": 0,
+      "invalid_negative_cash": 0,
+      "observed_crisis_selling_sessions": 48,
+      "total_log_growth_first_to_last": 0.474483253658649,
+      "states_with_switches": {
+        "BREATHING": 676,
+        "RECOVERY": 53,
+        "SHOCK": 35,
+        "CONTINUATION": 13
+      },
+      "average_held_etfs": 2.0
+    },
+    "P5_DAILY_TOP5_HYSTERESIS": {
+      "total_trades": 273,
+      "name_switches": 272,
+      "cash_weight_avg": 0.0018897267329361883,
+      "annual_mean_trading_notional_over_current_wealth": 30.974473185740024,
+      "fee_money": 0.3231683063700829,
+      "annual_fee_drag_estimated_non_compounded_log": 0.030974473185736588,
+      "blocked_orders": 0,
+      "stale_held_day_count": 0,
+      "invalid_negative_cash": 0,
+      "observed_crisis_selling_sessions": 17,
+      "total_log_growth_first_to_last": 0.5799926452053896,
+      "states_with_switches": {
+        "BREATHING": 241,
+        "RECOVERY": 14,
+        "SHOCK": 12,
+        "CONTINUATION": 5
+      },
+      "average_held_etfs": 2.0
+    },
+    "P6_DAILY_ECONOMIC_HYSTERESIS_ONLY_CHANGEP": {
+      "total_trades": 57,
+      "name_switches": 56,
+      "cash_weight_avg": 0.0019073056742909286,
+      "annual_mean_trading_notional_over_current_wealth": 6.1038041395857165,
+      "fee_money": 0.0918787428109512,
+      "annual_fee_drag_estimated_non_compounded_log": 0.0061038041395852114,
+      "blocked_orders": 0,
+      "stale_held_day_count": 0,
+      "invalid_negative_cash": 0,
+      "observed_crisis_selling_sessions": 3,
+      "total_log_growth_first_to_last": 0.8193975002420903,
+      "states_with_switches": {
+        "BREATHING": 48,
+        "RECOVERY": 5,
+        "SHOCK": 2,
+        "CONTINUATION": 1
+      },
+      "average_held_etfs": 2.0
+    }
+  },
+  "net_growth_differences_vs_controls": {
+    "P3_minus_P0": 0.15764480304253636,
+    "P3_minus_P4": 0.009925251091875031,
+    "P3_minus_P2": 0.1436983057879041
+  },
+  "assigned_adjusted_open_prices_are_not_verified_executable_spreads": true,
+  "benchmark_reference": "same 150 ETF source and calendar only",
+  "historical_study_cannot_rank_orig_eur60_strategies": true,
+  "agent_role": "EXECUTION_AGENT",
+  "original_run_id": 39132785483,
+  "source_sha256": "6867340172dcb3915493a74f85f394048215428c6210519fe29d87c6c36205e2",
+  "research_only": true
+}

@@ -1,0 +1,49 @@
+{
+  "status": "FOUR_SPECIALIST_AUDITS_COMPLETED",
+  "evidence_source_run": 39132785483,
+  "model_frozen_no_parameter_retuning": true,
+  "deployed_trade_allowed": false,
+  "independent_llm_agents_instantiated": false,
+  "roles_completed": [
+    "DATA",
+    "SIGNAL",
+    "RISK",
+    "EXECUTION"
+  ],
+  "data_PIT_gate": "FAIL",
+  "risk_capital_preservation_gate": "FAIL",
+  "signal_calibration_gate": "FAIL_OR_UNVERIFIED",
+  "execution_live_fill_gate": "FAIL_UNVERIFIED",
+  "primary_facts": {
+    "etfs": 150,
+    "P3_daily_maxdd": -0.5905854835213404,
+    "P3_minus_P4_excess_log": 0.009925251091875031,
+    "nonoverlapping_21day_spearman_by_regime": {
+      "BREATHING": {
+        "n": 96,
+        "mean": 0.014240562844883564
+      },
+      "SHOCK": {
+        "n": 7,
+        "mean": 0.1197767905068275
+      },
+      "CONTINUATION": {
+        "n": 2,
+        "mean": -0.1715573949514506
+      },
+      "RECOVERY": {
+        "n": 7,
+        "mean": -0.26203635298279876
+      }
+    }
+  },
+  "research_plan": {
+    "R0": "Fix fund point-in-time, ISIN, FX, venue, dividend, slippage and broker fill proof first",
+    "R1": "Target paired NET switch advantage and calibrated predictive uncertainty, not absolute ETF rank",
+    "R2": "Factor analysis must be class-conditional, separate cash/bonds/equities/commodities and holding-specific tails",
+    "R3": "Daily online deterioration/recovery hazards vs strict naive EWMA/CUSUM baselines",
+    "R4": "Constrained dynamic risk budget, expected shortfall and drawdown controls tested exposure-matched",
+    "R5": "Optimize impulse-control no-trade decision using opportunity duration and real execution fees",
+    "R6": "Promote only after prequential proper scoring + independent PIT universe and forward live-paper sample"
+  }
+}

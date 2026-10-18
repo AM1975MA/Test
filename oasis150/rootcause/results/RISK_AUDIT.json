@@ -1,0 +1,502 @@
+{
+  "status": "TAIL_CONTROL_INSUFFICIENT",
+  "source_run": 39132785483,
+  "by_policy": {
+    "P0_MONTHLY_GREEDY": {
+      "maxdd": -0.44953012917060386,
+      "from_peak": "2021-10-05",
+      "trough": "2025-04-25",
+      "drawdown_sessions": 892,
+      "drawdown_stress_days": 55,
+      "drawdown_risk_off_fraction": 0.0,
+      "drawdown_mean_exposure": 0.9984645673817729,
+      "trough_holdings": "UNG;GDX",
+      "worst_10_return_days": [
+        {
+          "day": "2020-03-16",
+          "log_return": -0.1462268094616264,
+          "regime": "SHOCK",
+          "held": "TAN;SMH",
+          "exposure": 0.9985931640555856
+        },
+        {
+          "day": "2026-04-08",
+          "log_return": -0.14515391918244847,
+          "regime": "RECOVERY",
+          "held": "USO;DBE",
+          "exposure": 0.9989517628318167
+        },
+        {
+          "day": "2020-03-12",
+          "log_return": -0.12222957725337122,
+          "regime": "SHOCK",
+          "held": "TAN;SMH",
+          "exposure": 0.9987519277657694
+        },
+        {
+          "day": "2026-01-30",
+          "log_return": -0.11874564093294326,
+          "regime": "BREATHING",
+          "held": "SLV;XBI",
+          "exposure": 0.9975688508955076
+        },
+        {
+          "day": "2026-02-02",
+          "log_return": -0.111822015650763,
+          "regime": "BREATHING",
+          "held": "SLV;UNG",
+          "exposure": 0.9980042666918216
+        },
+        {
+          "day": "2020-03-09",
+          "log_return": -0.10772687236589945,
+          "regime": "SHOCK",
+          "held": "TAN;SMH",
+          "exposure": 0.99888659620955
+        },
+        {
+          "day": "2026-02-05",
+          "log_return": -0.09867719198486724,
+          "regime": "BREATHING",
+          "held": "SLV;UNG",
+          "exposure": 0.9979088253734544
+        },
+        {
+          "day": "2026-03-03",
+          "log_return": -0.09600241731823322,
+          "regime": "BREATHING",
+          "held": "SLV;EWY",
+          "exposure": 0.9978039284040756
+        },
+        {
+          "day": "2022-05-09",
+          "log_return": -0.07991907136452447,
+          "regime": "CONTINUATION",
+          "held": "UNG;XME",
+          "exposure": 0.9979838660119026
+        },
+        {
+          "day": "2026-03-19",
+          "log_return": -0.07684351493442954,
+          "regime": "CONTINUATION",
+          "held": "SLV;EWY",
+          "exposure": 0.9975881210805492
+        }
+      ],
+      "fraction_of_10_worst_days_crisis": 0.5,
+      "all_days_risk_off_share": 0.0,
+      "time_underwater_fraction": 0.9556213017751479,
+      "longest_underwater_streak": 1070,
+      "holding_day_counts": {
+        "USO;DBE": 82,
+        "SLV;TAN": 64,
+        "TAN;GDX": 63,
+        "GDX;XME": 44,
+        "SLV;EDV": 43,
+        "GDX;XBI": 43,
+        "UNG;DBO": 42,
+        "SLV;XBI": 42,
+        "SMH;SOXX": 42,
+        "KRE;KBE": 42
+      }
+    },
+    "P2_DAILY_ECONOMIC_HYSTERESIS": {
+      "maxdd": -0.6181851201222512,
+      "from_peak": "2022-06-08",
+      "trough": "2025-04-07",
+      "drawdown_sessions": 709,
+      "drawdown_stress_days": 15,
+      "drawdown_risk_off_fraction": 0.0,
+      "drawdown_mean_exposure": 0.9979984789056401,
+      "trough_holdings": "EWO;FXI",
+      "worst_10_return_days": [
+        {
+          "day": "2026-01-30",
+          "log_return": -0.17669555660587344,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9987133807748404
+        },
+        {
+          "day": "2026-02-05",
+          "log_return": -0.135539257226842,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9984711426055656
+        },
+        {
+          "day": "2026-02-02",
+          "log_return": -0.1319860394043385,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9985318485948526
+        },
+        {
+          "day": "2024-08-05",
+          "log_return": -0.11059246699091796,
+          "regime": "BREATHING",
+          "held": "SMH;REZ",
+          "exposure": 0.9980047015193814
+        },
+        {
+          "day": "2024-08-02",
+          "log_return": -0.0917539875867488,
+          "regime": "BREATHING",
+          "held": "SMH;DXJ",
+          "exposure": 0.9979559399319738
+        },
+        {
+          "day": "2020-03-12",
+          "log_return": -0.08680652166764452,
+          "regime": "SHOCK",
+          "held": "EDV;TAN",
+          "exposure": 0.9977840166246792
+        },
+        {
+          "day": "2026-03-03",
+          "log_return": -0.08508332811512809,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9986227904724244
+        },
+        {
+          "day": "2022-09-23",
+          "log_return": -0.08460771863448391,
+          "regime": "BREATHING",
+          "held": "UNG;TAN",
+          "exposure": 0.9977767416360246
+        },
+        {
+          "day": "2022-06-09",
+          "log_return": -0.08309064334908878,
+          "regime": "RECOVERY",
+          "held": "XLE;UNG",
+          "exposure": 0.9978601198443438
+        },
+        {
+          "day": "2021-11-30",
+          "log_return": -0.0706419440848246,
+          "regime": "BREATHING",
+          "held": "DBO;UNG",
+          "exposure": 0.9980939919595098
+        }
+      ],
+      "fraction_of_10_worst_days_crisis": 0.1,
+      "all_days_risk_off_share": 0.0,
+      "time_underwater_fraction": 0.963229078613694,
+      "longest_underwater_streak": 909,
+      "holding_day_counts": {
+        "EDV;GDX": 153,
+        "USO;FDN": 136,
+        "DBO;UNG": 125,
+        "DBO;USO": 114,
+        "EWO;GDX": 108,
+        "EDV;TAN": 103,
+        "SMH;DXJ": 95,
+        "TAN;SLV": 85,
+        "USO;XLE": 83,
+        "GDX;SLV": 83
+      }
+    },
+    "P3_OASIS_CRISIS_ACTIVE": {
+      "maxdd": -0.5905854835213404,
+      "from_peak": "2022-08-26",
+      "trough": "2025-04-07",
+      "drawdown_sessions": 654,
+      "drawdown_stress_days": 11,
+      "drawdown_risk_off_fraction": 0.016793893129770993,
+      "drawdown_mean_exposure": 0.9896382460068813,
+      "trough_holdings": "EWO;FXI",
+      "worst_10_return_days": [
+        {
+          "day": "2026-01-30",
+          "log_return": -0.17669555656788583,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9987133805406012
+        },
+        {
+          "day": "2026-02-05",
+          "log_return": -0.13553925719151527,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.998471142327292
+        },
+        {
+          "day": "2026-02-02",
+          "log_return": -0.13198603937124664,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9985318483276124
+        },
+        {
+          "day": "2024-08-05",
+          "log_return": -0.11059246699091818,
+          "regime": "BREATHING",
+          "held": "SMH;REZ",
+          "exposure": 0.9980047015193814
+        },
+        {
+          "day": "2024-08-02",
+          "log_return": -0.09175398758674846,
+          "regime": "BREATHING",
+          "held": "SMH;DXJ",
+          "exposure": 0.9979559399319738
+        },
+        {
+          "day": "2026-03-03",
+          "log_return": -0.08508332809465036,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9986227902217152
+        },
+        {
+          "day": "2022-09-23",
+          "log_return": -0.08381266597887471,
+          "regime": "BREATHING",
+          "held": "UNG;TAN",
+          "exposure": 0.9970597497516496
+        },
+        {
+          "day": "2022-06-09",
+          "log_return": -0.08308838556082243,
+          "regime": "RECOVERY",
+          "held": "XLE;UNG",
+          "exposure": 0.9978318633523312
+        },
+        {
+          "day": "2021-11-30",
+          "log_return": -0.07064194408482494,
+          "regime": "BREATHING",
+          "held": "DBO;UNG",
+          "exposure": 0.9980939919595098
+        },
+        {
+          "day": "2017-03-22",
+          "log_return": -0.06688335899917726,
+          "regime": "BREATHING",
+          "held": "KRE;KBE",
+          "exposure": 0.997877611549869
+        }
+      ],
+      "fraction_of_10_worst_days_crisis": 0.0,
+      "all_days_risk_off_share": 0.060016906170752324,
+      "time_underwater_fraction": 0.9606931530008453,
+      "longest_underwater_streak": 854,
+      "holding_day_counts": {
+        "EDV;GDX": 153,
+        "USO;FDN": 136,
+        "DBO;UNG": 125,
+        "DBO;USO": 114,
+        "EWO;GDX": 108,
+        "EDV;TAN": 103,
+        "SMH;DXJ": 95,
+        "TAN;SLV": 85,
+        "USO;XLE": 83,
+        "GDX;SLV": 83
+      }
+    },
+    "P4_MONTHLY_GREEDY_CRISIS": {
+      "maxdd": -0.46087178785784355,
+      "from_peak": "2026-01-29",
+      "trough": "2026-07-01",
+      "drawdown_sessions": 105,
+      "drawdown_stress_days": 8,
+      "drawdown_risk_off_fraction": 0.07547169811320754,
+      "drawdown_mean_exposure": 0.9597866145840475,
+      "trough_holdings": "SOXX;XSD",
+      "worst_10_return_days": [
+        {
+          "day": "2026-04-08",
+          "log_return": -0.14431227859481344,
+          "regime": "RECOVERY",
+          "held": "USO;DBE",
+          "exposure": 0.9971199955913528
+        },
+        {
+          "day": "2026-01-30",
+          "log_return": -0.11874564093294326,
+          "regime": "BREATHING",
+          "held": "SLV;XBI",
+          "exposure": 0.9975688508955076
+        },
+        {
+          "day": "2026-02-02",
+          "log_return": -0.11182201565076277,
+          "regime": "BREATHING",
+          "held": "SLV;UNG",
+          "exposure": 0.998004266691822
+        },
+        {
+          "day": "2026-02-05",
+          "log_return": -0.09867719198486746,
+          "regime": "BREATHING",
+          "held": "SLV;UNG",
+          "exposure": 0.9979088253734544
+        },
+        {
+          "day": "2026-03-03",
+          "log_return": -0.09600241731823322,
+          "regime": "BREATHING",
+          "held": "SLV;EWY",
+          "exposure": 0.9978039284040758
+        },
+        {
+          "day": "2026-03-19",
+          "log_return": -0.07734272315266044,
+          "regime": "CONTINUATION",
+          "held": "SLV;EWY",
+          "exposure": 0.4987534062030861
+        },
+        {
+          "day": "2022-06-09",
+          "log_return": -0.07575023878613507,
+          "regime": "RECOVERY",
+          "held": "UNG;DBE",
+          "exposure": 0.998056046075229
+        },
+        {
+          "day": "2024-08-02",
+          "log_return": -0.07368942612256091,
+          "regime": "BREATHING",
+          "held": "KBE;KRE",
+          "exposure": 0.9989267314445424
+        },
+        {
+          "day": "2026-04-17",
+          "log_return": -0.07292951007640291,
+          "regime": "RECOVERY",
+          "held": "USO;DBE",
+          "exposure": 0.997043403069931
+        },
+        {
+          "day": "2021-11-30",
+          "log_return": -0.07063775803635053,
+          "regime": "BREATHING",
+          "held": "UNG;DBO",
+          "exposure": 0.9976465384057503
+        }
+      ],
+      "fraction_of_10_worst_days_crisis": 0.1,
+      "all_days_risk_off_share": 0.060016906170752324,
+      "time_underwater_fraction": 0.9518174133558749,
+      "longest_underwater_streak": 887,
+      "holding_day_counts": {
+        "USO;DBE": 82,
+        "SLV;TAN": 64,
+        "TAN;GDX": 63,
+        "GDX;XME": 44,
+        "SLV;EDV": 43,
+        "GDX;XBI": 43,
+        "UNG;DBO": 42,
+        "SLV;XBI": 42,
+        "SMH;SOXX": 42,
+        "KRE;KBE": 42
+      }
+    },
+    "P6_DAILY_ECONOMIC_HYSTERESIS_ONLY_CHANGEP": {
+      "maxdd": -0.5976403012547126,
+      "from_peak": "2022-06-08",
+      "trough": "2025-04-07",
+      "drawdown_sessions": 709,
+      "drawdown_stress_days": 15,
+      "drawdown_risk_off_fraction": 0.0,
+      "drawdown_mean_exposure": 0.9980020080974681,
+      "trough_holdings": "EWO;FXI",
+      "worst_10_return_days": [
+        {
+          "day": "2026-01-30",
+          "log_return": -0.17669555660587388,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9987133807748404
+        },
+        {
+          "day": "2026-02-05",
+          "log_return": -0.135539257226842,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9984711426055654
+        },
+        {
+          "day": "2026-02-02",
+          "log_return": -0.1319860394043384,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9985318485948526
+        },
+        {
+          "day": "2024-08-05",
+          "log_return": -0.11059246699091818,
+          "regime": "BREATHING",
+          "held": "SMH;REZ",
+          "exposure": 0.9980047015193814
+        },
+        {
+          "day": "2024-08-02",
+          "log_return": -0.09175398758674846,
+          "regime": "BREATHING",
+          "held": "SMH;DXJ",
+          "exposure": 0.9979559399319736
+        },
+        {
+          "day": "2020-03-12",
+          "log_return": -0.08680652166764452,
+          "regime": "SHOCK",
+          "held": "EDV;TAN",
+          "exposure": 0.9977840166246792
+        },
+        {
+          "day": "2026-03-03",
+          "log_return": -0.08508332811512798,
+          "regime": "BREATHING",
+          "held": "GDX;SLV",
+          "exposure": 0.9986227904724244
+        },
+        {
+          "day": "2022-09-23",
+          "log_return": -0.08460771863448402,
+          "regime": "BREATHING",
+          "held": "UNG;TAN",
+          "exposure": 0.9977767416360246
+        },
+        {
+          "day": "2022-06-09",
+          "log_return": -0.08309064334908878,
+          "regime": "RECOVERY",
+          "held": "XLE;UNG",
+          "exposure": 0.997860119844344
+        },
+        {
+          "day": "2021-11-30",
+          "log_return": -0.07064194408482494,
+          "regime": "BREATHING",
+          "held": "DBO;UNG",
+          "exposure": 0.9980939919595097
+        }
+      ],
+      "fraction_of_10_worst_days_crisis": 0.1,
+      "all_days_risk_off_share": 0.0,
+      "time_underwater_fraction": 0.9628064243448858,
+      "longest_underwater_streak": 908,
+      "holding_day_counts": {
+        "EDV;GDX": 153,
+        "USO;FDN": 136,
+        "DBO;UNG": 125,
+        "DBO;USO": 114,
+        "EWO;GDX": 108,
+        "EDV;TAN": 104,
+        "SMH;DXJ": 95,
+        "TAN;SLV": 84,
+        "GDX;SLV": 83,
+        "USO;XLE": 83
+      }
+    }
+  },
+  "structural_risk": "2 concentrated positions, no per-holding conditional ES; broad market flag risk-off ~142 days of 2366",
+  "group_agnostic_market_proxy": true,
+  "agent_role": "RISK_AGENT",
+  "original_run_id": 39132785483,
+  "source_sha256": "6867340172dcb3915493a74f85f394048215428c6210519fe29d87c6c36205e2",
+  "research_only": true
+}
