@@ -1,0 +1,328 @@
+{
+  "status": "OASIS_DAILY_RESEARCH_COMPLETED",
+  "periods_open": 2389,
+  "date_start": "2017-02-01",
+  "date_end": "2026-07-01",
+  "tickers": 60,
+  "fees_one_way": 0.001,
+  "portfolio_mark": "daily_open_with_5_day_missing_quote_valuation_only",
+  "strategy_eligibility": "asof_close_with_last_253_history",
+  "source_manifest_sha256": "fcf7f6f551ebdff3a71856f0b41bf7fa94041b2388a8f32f79aab917a7634cea",
+  "roster_sha256": "a93571a0bea07dc11359193294b959f40c9888494bba4911e8ae16bf7291f82f",
+  "benchmark_old_ml_predictions_used": false,
+  "metrics": {
+    "P0_MONTHLY_GREEDY": {
+      "n_days": 2389,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 1.9120342471725473,
+      "cagr": 0.07142205679645097,
+      "daily_maxdd": -0.3323086803583559,
+      "daily_sharpe": 0.3718811125517159,
+      "daily_es5": -0.028968352885362304,
+      "mean_cash": 0.0018088787539868414,
+      "mean_exposure": 0.9981911212460134,
+      "n_rebalances": 114,
+      "n_name_switches": 97,
+      "total_bought_sold_notional": 166.56047701943635,
+      "total_fee_fraction_start_wealth": 0.1665604770194269,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 3,
+      "crisis_evaluation_days": 146,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 990,
+          "cagr": 0.05487585964364605
+        },
+        "2021_2023": {
+          "n": 767,
+          "cagr": 0.02205577011469395
+        },
+        "2024_2026": {
+          "n": 632,
+          "cagr": 0.16093963751702023
+        }
+      }
+    },
+    "P1_DAILY_GREEDY": {
+      "n_days": 2389,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 0.5215590099853766,
+      "cagr": -0.06673737339579133,
+      "daily_maxdd": -0.6607339583662616,
+      "daily_sharpe": -0.3751042989612765,
+      "daily_es5": -0.029120028052018455,
+      "mean_cash": 0.0018895857357038716,
+      "mean_exposure": 0.998110414264296,
+      "n_rebalances": 890,
+      "n_name_switches": 889,
+      "total_bought_sold_notional": 638.9739974007414,
+      "total_fee_fraction_start_wealth": 0.638973997400707,
+      "blocked_orders": 3,
+      "partial_buys": 1,
+      "held_quote_gaps": 3,
+      "crisis_evaluation_days": 146,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 990,
+          "cagr": -0.09189464789548796
+        },
+        "2021_2023": {
+          "n": 767,
+          "cagr": -0.1580918075314175
+        },
+        "2024_2026": {
+          "n": 632,
+          "cagr": 0.09551972244439066
+        }
+      }
+    },
+    "P2_DAILY_ECONOMIC_HYSTERESIS": {
+      "n_days": 2389,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 1.655098214412006,
+      "cagr": 0.05511656183762481,
+      "daily_maxdd": -0.3340241820339438,
+      "daily_sharpe": 0.2910135885301085,
+      "daily_es5": -0.029045813468053103,
+      "mean_cash": 0.0018019555101809193,
+      "mean_exposure": 0.9981980444898189,
+      "n_rebalances": 82,
+      "n_name_switches": 81,
+      "total_bought_sold_notional": 109.18237003422246,
+      "total_fee_fraction_start_wealth": 0.10918237003421571,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 2,
+      "crisis_evaluation_days": 146,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 990,
+          "cagr": -0.00026259548699325563
+        },
+        "2021_2023": {
+          "n": 767,
+          "cagr": -0.00676814473213927
+        },
+        "2024_2026": {
+          "n": 632,
+          "cagr": 0.228415427390676
+        }
+      }
+    },
+    "P3_OASIS_CRISIS_ACTIVE": {
+      "n_days": 2389,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 1.7486897370718562,
+      "cagr": 0.061302343533178316,
+      "daily_maxdd": -0.34263204261812275,
+      "daily_sharpe": 0.3671664139779979,
+      "daily_es5": -0.02544575523189352,
+      "mean_cash": 0.032836972559088004,
+      "mean_exposure": 0.9671630274409122,
+      "n_rebalances": 156,
+      "n_name_switches": 81,
+      "total_bought_sold_notional": 150.35704876348046,
+      "total_fee_fraction_start_wealth": 0.15035704876347222,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 2,
+      "crisis_evaluation_days": 146,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 990,
+          "cagr": 0.029846987458332475
+        },
+        "2021_2023": {
+          "n": 767,
+          "cagr": -0.0025651590025050908
+        },
+        "2024_2026": {
+          "n": 632,
+          "cagr": 0.1926989156747303
+        }
+      }
+    },
+    "P4_MONTHLY_GREEDY_CRISIS": {
+      "n_days": 2389,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 2.0246638171743756,
+      "cagr": 0.07795880246869191,
+      "daily_maxdd": -0.2510583961443319,
+      "daily_sharpe": 0.45420664483329926,
+      "daily_es5": -0.025445943662697226,
+      "mean_cash": 0.032700501787700925,
+      "mean_exposure": 0.9672994982122992,
+      "n_rebalances": 185,
+      "n_name_switches": 97,
+      "total_bought_sold_notional": 221.12431798127204,
+      "total_fee_fraction_start_wealth": 0.22112431798125942,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 3,
+      "crisis_evaluation_days": 146,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 990,
+          "cagr": 0.08434286553909565
+        },
+        "2021_2023": {
+          "n": 767,
+          "cagr": 0.023757985190309805
+        },
+        "2024_2026": {
+          "n": 632,
+          "cagr": 0.13541898973806976
+        }
+      }
+    },
+    "P5_DAILY_TOP5_HYSTERESIS": {
+      "n_days": 2389,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 1.30226110502964,
+      "cagr": 0.02857271970442765,
+      "daily_maxdd": -0.33783373961495955,
+      "daily_sharpe": 0.15377935031442638,
+      "daily_es5": -0.028888860849996888,
+      "mean_cash": 0.00186325734702761,
+      "mean_exposure": 0.9981367426529723,
+      "n_rebalances": 302,
+      "n_name_switches": 301,
+      "total_bought_sold_notional": 359.40824016772234,
+      "total_fee_fraction_start_wealth": 0.3594082401677028,
+      "blocked_orders": 2,
+      "partial_buys": 1,
+      "held_quote_gaps": 2,
+      "crisis_evaluation_days": 146,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 990,
+          "cagr": 0.006657389566820493
+        },
+        "2021_2023": {
+          "n": 767,
+          "cagr": -0.05470388065549081
+        },
+        "2024_2026": {
+          "n": 632,
+          "cagr": 0.18028278061615288
+        }
+      }
+    },
+    "P6_DAILY_ECONOMIC_HYSTERESIS_ONLY_CHANGEP": {
+      "n_days": 2389,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 1.655098214412006,
+      "cagr": 0.05511656183762481,
+      "daily_maxdd": -0.3340241820339438,
+      "daily_sharpe": 0.2910135885301085,
+      "daily_es5": -0.029045813468053103,
+      "mean_cash": 0.0018019555101809193,
+      "mean_exposure": 0.9981980444898189,
+      "n_rebalances": 82,
+      "n_name_switches": 81,
+      "total_bought_sold_notional": 109.18237003422246,
+      "total_fee_fraction_start_wealth": 0.10918237003421571,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 2,
+      "crisis_evaluation_days": 146,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 990,
+          "cagr": -0.00026259548699325563
+        },
+        "2021_2023": {
+          "n": 767,
+          "cagr": -0.00676814473213927
+        },
+        "2024_2026": {
+          "n": 632,
+          "cagr": 0.228415427390676
+        }
+      }
+    }
+  },
+  "paired_12month_bootstrap": {
+    "P1_DAILY_GREEDY": {
+      "mean_monthly_log_gain": -0.011395619147178276,
+      "ci95": [
+        -0.016208325019959568,
+        -0.007023262947907106
+      ],
+      "n": 114
+    },
+    "P2_DAILY_ECONOMIC_HYSTERESIS": {
+      "mean_monthly_log_gain": -0.0012658541670709633,
+      "ci95": [
+        -0.00582151566536552,
+        0.0035061202706774767
+      ],
+      "n": 114
+    },
+    "P3_OASIS_CRISIS_ACTIVE": {
+      "mean_monthly_log_gain": -0.0007833415819278969,
+      "ci95": [
+        -0.005353633977996104,
+        0.003978976710604933
+      ],
+      "n": 114
+    },
+    "P4_MONTHLY_GREEDY_CRISIS": {
+      "mean_monthly_log_gain": 0.0005020696876858,
+      "ci95": [
+        -0.001454804619831319,
+        0.0031465676086788407
+      ],
+      "n": 114
+    },
+    "P5_DAILY_TOP5_HYSTERESIS": {
+      "mean_monthly_log_gain": -0.003368997026244572,
+      "ci95": [
+        -0.006355194540823028,
+        0.00010414392873579114
+      ],
+      "n": 114
+    },
+    "P6_DAILY_ECONOMIC_HYSTERESIS_ONLY_CHANGEP": {
+      "mean_monthly_log_gain": -0.0012658541670709633,
+      "ci95": [
+        -0.0059592038380046645,
+        0.0034294004132673886
+      ],
+      "n": 114
+    }
+  },
+  "daily_system_states": {
+    "BREATHING": 2047,
+    "RECOVERY": 196,
+    "SHOCK": 83,
+    "CONTINUATION": 63
+  },
+  "audits": {
+    "min_days": 2389,
+    "equal_endpoints": true,
+    "zero_production_changes": true,
+    "no_old_ml_scores_read": true,
+    "next_open_execution_invariants": true,
+    "data_open_volume_zero_observations": 4189,
+    "eligible_asof_first": 56,
+    "eligible_asof_last": 58
+  },
+  "cohort_2026_survivorship_bias": true,
+  "no_PIT_listing_ISIN_quote_currency_validation": true,
+  "no_real_spreads_slippage_volume_liquidity_validation": true,
+  "independent_forward_holdout": false,
+  "conclusion": "EXPLORATORY_NOT_LIVE_READY",
+  "workflow_run": "https://github.com/AM1975MA/Test/actions/runs/39124068263",
+  "data_artifact_id": 12134504294,
+  "matched_daily_ledger": true,
+  "source_commit": "4001c1590dacdc7953707b1a1e3df9a6b16d1ba6"
+}
