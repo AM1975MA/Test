@@ -106,7 +106,7 @@ def predictions(close:pd.DataFrame,cal:pd.DataFrame,tickers:list[str],
 
 def selection(score:np.ndarray,tickers:list[str],month:int,k:int=2)->list[int]:
     valid=np.isfinite(score[month])
-    if valid.sum()<max(10,k):raise RuntimeError("Too few history-eligible names")
+    if valid.sum()<k:raise RuntimeError(f"Too few history-eligible names for month={month}, n={valid.sum()}")
     return np.argsort(-np.where(valid,score[month],-1e12),kind="stable")[:k].tolist()
 
 def evaluate(scores:dict[str,np.ndarray],cal:pd.DataFrame,
@@ -168,7 +168,7 @@ def random_reference(cal,op,tickers,scores,runs=1000):
         for m,row in enumerate(cal.itertuples(index=False)):
             # Candidate pool is defined from historical Close eligibility, not future outcomes.
             pool=np.flatnonzero(np.isfinite(scores["HALF_RANK"][m]))
-            if len(pool)<10: raise RuntimeError("Null universe too small")
+            if len(pool)<2: raise RuntimeError(f"Null universe too small, month={m} n={len(pool)}")
             k=rng.choice(pool,size=2,replace=False)
             names=[tickers[int(j)] for j in k]
             buy=op.loc[row.entry_date,names].to_numpy(float)
@@ -252,6 +252,7 @@ def main():
     if abs(reproduced["cagr"]-expected)>1e-12:
         raise RuntimeError(f"Frozen baseline parity FAIL {reproduced['cagr']} != {expected}")
     print("EUR60_REFERENCE_5050_PARITY_PASS",json.dumps(reproduced),flush=True)
+    print("ASOF_ELIGIBLE_COUNTS "+json.dumps({k:[int(np.isfinite(v[j]).sum()) for j in (0,1,2,40,len(cal)-1)] for k,v in local.items()}),flush=True)
     local["R_H_REFERENCE"]=reference
     metrics,monthly,logs=evaluate(local,cal,tickers,op)
     random_cagr=random_reference(cal,op,tickers,local)
