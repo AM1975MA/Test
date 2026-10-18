@@ -1,0 +1,59 @@
+name: OASIS_V2_G2_TRANSFER_69_OTHER_ETFS
+on:
+  push:
+    branches:
+      - research/oasis-v2-paired-forecast-g1-20261018
+    paths:
+      - 'oasis_v2/g2/transfer69.py'
+      - 'oasis_v2/g2/TRANSFER69_PROTOCOL_FROZEN.md'
+      - '.github/workflows/oasis-v2-g2-69.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  transfer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Minimal deterministic numerical runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+          python -m py_compile oasis_v2/g2/risk_portfolio.py oasis_v2/g2/transfer69.py
+      - name: Repeat money-conservation regression tests
+        run: |
+          python -m unittest -v oasis_v2.g2.test_risk
+      - name: Run unaltered six-class risk design on all other 69 ETFs
+        run: |
+          python -m oasis_v2.g2.transfer69 --out _g2_69
+      - name: Strictly validate 69 member universe and independent parity
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path("_g2_69/RESULT.json").read_text())
+          assert v["status"]=="G2_69_OUT_OF_ROSTER_TRANSFER_COMPLETED"
+          assert v["n_excluded"]==69 and v["n_days"]==2366
+          assert v["original_P0_reference_parity_error"]<1e-8
+          assert len(v["group_member_counts"])==6
+          assert len(v["metrics"])==7
+          print("G2_69_TRANSFER_GATE",v["preregistered_diversification_gate"])
+          PY
+      - name: Preserve complete 69 ETF daily ledgers and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oasis-v2-g2-69-etf-transfer-v1
+          retention-days: 90
+          path: |
+            _g2_69/RESULT.json
+            _g2_69/R*.csv
