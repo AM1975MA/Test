@@ -4,7 +4,9 @@ on:
     branches:
       - research/oasis149-cboe-impliedvol-g4b-20261018
     paths:
-      - 'oasis149/cboe_g4b/**'
+      - 'oasis149/cboe_g4b/experiment.py'
+      - 'oasis149/cboe_g4b/test_asof.py'
+      - 'oasis149/cboe_g4b/PROTOCOL_FROZEN.md'
       - '.github/workflows/oasis149-cboe-g4b.yml'
   workflow_dispatch:
 permissions:
