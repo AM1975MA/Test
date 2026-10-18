@@ -1,0 +1,74 @@
+name: ORIGINAL149_BEST_TICKER_PREDICTIVE_TOURNAMENT
+on:
+  push:
+    branches:
+      - research/149-predictive-ticker-tournament-20261019
+    paths:
+      - 'research_reset/predict149/PREREGISTERED_TOURNAMENT.md'
+      - 'research_reset/predict149/tournament.py'
+      - 'research_reset/predict149/test_tournament.py'
+      - '.github/workflows/predict-original149-tournament.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  six-scientific-predictors:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install reproducible scientific packages
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/tournament.py research_reset/predict149/test_tournament.py
+      - name: Prove as-of causal features, no-fee-churn and roster hashes
+        run: |
+          python -m unittest -v research_reset.predict149.test_tournament
+      - name: Prequential six-model forecast of best future ETF names
+        run: |
+          python -m research_reset.predict149.tournament --out _predict149
+      - name: Forensic quality checks, not profit-selected approval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_predict149/RESULT.json").read_text())
+          assert d["status"]=="EXACT149_BEST_TICKER_FORECAST_TOURNAMENT_COMPLETE"
+          assert d["universe_size"]==149 and d["all_149_tickers_preserved"]
+          assert d["training_label_maturity_verified"]
+          assert d["no_independent_holdout"] and d["no_backtest_hyperparameter_tuning"]
+          assert len(d["tested_models"])==6
+          assert 60<=d["n_21day_eval_anchors"]<=70
+          print("PREDICT149_STATISTICAL_AND_CAUSAL_GATES",d["candidate_economic_and_statistical_gates"])
+          PY
+      - name: Commit all predictions, future outcomes and cost-matched wealth curves
+        run: |
+          mkdir -p research_reset/predict149/results
+          cp _predict149/*.csv _predict149/*.json research_reset/predict149/results/
+          (cd research_reset/predict149/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-Predictive-Science-Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/results
+          git commit -m "Archive exactly 149 causally matured top-ETF rank/return forecasts, top5 cost-aware wealth and full multiple-model null gates"
+          git push origin HEAD:refs/heads/research/149-predictive-ticker-tournament-20261019
+      - name: Preserve evidence artifact even for failed model tests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exact149-predictive-best-ticker-tournament-v1
+          retention-days: 90
+          path: |
+            _predict149/*.csv
+            _predict149/*.json
