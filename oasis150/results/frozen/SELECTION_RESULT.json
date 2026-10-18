@@ -1,0 +1,51 @@
+{
+  "status": "TOP150_FROZEN_BY_PRICE_COVERAGE",
+  "selected_count": 150,
+  "pool_size": 219,
+  "source_groups": {
+    "original149": {
+      "manifest_sha256": "7f8a9618cf2fefbf1ee0a485570460549e9b622d992022e49cc6ce9038f4ea4b",
+      "roster_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+      "declared_count": 149
+    },
+    "holdout70": {
+      "manifest_sha256": "307ed7e5e07ebe033699bd99e2b86b2edb32d7961faa6f802d65076dcfb3dd62",
+      "roster_sha256": "cd80afb77ad52b465a9f8cab8db82404f48afcceec086693d512e4c9095c8e26",
+      "declared_count": 70
+    }
+  },
+  "period": [
+    "2017-02-01",
+    "2026-07-01"
+  ],
+  "selection_only_quality_not_performance": true,
+  "uses_future_data_completeness": true,
+  "point_in_time_universe": false,
+  "sources_are_same_price_adjustment_convention": true,
+  "universe_sha256": "523bba5f3300f968e793edcff10081f6563707e73d633dfba371ec89857a42b2",
+  "census_sha256": "94b1275fbcc36574070a07935b4edbdd5e6d073242d7e1e5167307fb5bf5af3d",
+  "stats": {
+    "min_valid_study": 2366,
+    "max_valid_study": 2366,
+    "median_valid_study": 2366,
+    "zero_volume_total": 0,
+    "selected_group_counts": {
+      "original149": 105,
+      "holdout70": 45
+    },
+    "selected_nonzero_volume_min": 2366,
+    "excluded_due_to_quality": {}
+  },
+  "top10_by_coverage": [
+    "AGG",
+    "DIA",
+    "EEM",
+    "EFA",
+    "EPP",
+    "EWA",
+    "EWC",
+    "EWD",
+    "EWG",
+    "EWH"
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "status": "OASIS_150_FORENSIC_ARCHIVED",
+  "action_run": 39132785483,
+  "session_count": 2366,
+  "selected_count": 150,
+  "selected_sources": {
+    "original149": 105,
+    "holdout70": 45
+  },
+  "selected_groups": {
+    "C05_BONDS_CASH_CREDIT": 21,
+    "C01_US_BROAD_STYLE": 24,
+    "C04_EMERGING": 20,
+    "C03_DEVELOPED_GLOBAL": 28,
+    "C02_US_SECTOR_THEME": 35,
+    "C06_REAL_ASSETS": 22
+  },
+  "asof_regime_counts": {
+    "BREATHING": 2062,
+    "SHOCK": 79,
+    "RECOVERY": 162,
+    "CONTINUATION": 63
+  },
+  "contrasts": {
+    "economic_hysteresis_on_same_score": {
+      "target": "P2_DAILY_ECONOMIC_HYSTERESIS",
+      "control": "P0_MONTHLY_GREEDY",
+      "total_excess_log_wealth": 0.013946497254633195,
+      "by_regime": {
+        "BREATHING": {
+          "sessions": 2061,
+          "excess_log_wealth": -0.2492453729047555,
+          "mean_excess_daily_log": -0.00012093419354912931
+        },
+        "SHOCK": {
+          "sessions": 79,
+          "excess_log_wealth": 0.13640938686842416,
+          "mean_excess_daily_log": 0.0017267010996003058
+        },
+        "RECOVERY": {
+          "sessions": 162,
+          "excess_log_wealth": 0.18113696958938277,
+          "mean_excess_daily_log": 0.00111812944190977
+        },
+        "CONTINUATION": {
+          "sessions": 63,
+          "excess_log_wealth": -0.0543544862984182,
+          "mean_excess_daily_log": -0.0008627696237844159
+        }
+      }
+    },
+    "crisis_added_to_economic_hysteresis": {
+      "target": "P3_OASIS_CRISIS_ACTIVE",
+      "control": "P2_DAILY_ECONOMIC_HYSTERESIS",
+      "total_excess_log_wealth": 0.14369830578790446,
+      "by_regime": {
+        "BREATHING": {
+          "sessions": 2061,
+          "excess_log_wealth": 0.04322849802875862,
+          "mean_excess_daily_log": 2.0974525972226405e-05
+        },
+        "SHOCK": {
+          "sessions": 79,
+          "excess_log_wealth": 0.06039866053143264,
+          "mean_excess_daily_log": 0.0007645400067269954
+        },
+        "RECOVERY": {
+          "sessions": 162,
+          "excess_log_wealth": 0.004510420214862744,
+          "mean_excess_daily_log": 2.7842100091745336e-05
+        },
+        "CONTINUATION": {
+          "sessions": 63,
+          "excess_log_wealth": 0.03556072701285046,
+          "mean_excess_daily_log": 0.0005644559843309597
+        }
+      }
+    },
+    "crisis_added_to_monthly_selector": {
+      "target": "P4_MONTHLY_GREEDY_CRISIS",
+      "control": "P0_MONTHLY_GREEDY",
+      "total_excess_log_wealth": 0.14771955195066333,
+      "by_regime": {
+        "BREATHING": {
+          "sessions": 2061,
+          "excess_log_wealth": -0.04770823084979371,
+          "mean_excess_daily_log": -2.3148098422995495e-05
+        },
+        "SHOCK": {
+          "sessions": 79,
+          "excess_log_wealth": 0.18667323165263264,
+          "mean_excess_daily_log": 0.002362952299400413
+        },
+        "RECOVERY": {
+          "sessions": 162,
+          "excess_log_wealth": -0.012430993406785438,
+          "mean_excess_daily_log": -7.673452720237925e-05
+        },
+        "CONTINUATION": {
+          "sessions": 63,
+          "excess_log_wealth": 0.02118554455460984,
+          "mean_excess_daily_log": 0.000336278484993807
+        }
+      }
+    },
+    "active_switching_increment_after_crisis_control": {
+      "target": "P3_OASIS_CRISIS_ACTIVE",
+      "control": "P4_MONTHLY_GREEDY_CRISIS",
+      "total_excess_log_wealth": 0.009925251091874292,
+      "by_regime": {
+        "BREATHING": {
+          "sessions": 2061,
+          "excess_log_wealth": -0.15830864402620318,
+          "mean_excess_daily_log": -7.681156915390741e-05
+        },
+        "SHOCK": {
+          "sessions": 79,
+          "excess_log_wealth": 0.010134815747224146,
+          "mean_excess_daily_log": 0.00012828880692688791
+        },
+        "RECOVERY": {
+          "sessions": 162,
+          "excess_log_wealth": 0.1980783832110309,
+          "mean_excess_daily_log": 0.0012227060692038946
+        },
+        "CONTINUATION": {
+          "sessions": 63,
+          "excess_log_wealth": -0.03997930384017758,
+          "mean_excess_daily_log": -0.0006345921244472632
+        }
+      }
+    },
+    "complete_oasis_vs_monthly": {
+      "target": "P3_OASIS_CRISIS_ACTIVE",
+      "control": "P0_MONTHLY_GREEDY",
+      "total_excess_log_wealth": 0.15764480304253758,
+      "by_regime": {
+        "BREATHING": {
+          "sessions": 2061,
+          "excess_log_wealth": -0.20601687487599687,
+          "mean_excess_daily_log": -9.995966757690289e-05
+        },
+        "SHOCK": {
+          "sessions": 79,
+          "excess_log_wealth": 0.19680804739985677,
+          "mean_excess_daily_log": 0.002491241106327301
+        },
+        "RECOVERY": {
+          "sessions": 162,
+          "excess_log_wealth": 0.18564738980424547,
+          "mean_excess_daily_log": 0.0011459715420015153
+        },
+        "CONTINUATION": {
+          "sessions": 63,
+          "excess_log_wealth": -0.018793759285567747,
+          "mean_excess_daily_log": -0.0002983136394534563
+        }
+      }
+    }
+  },
+  "drawdown_event_and_holdings": {
+    "P0_MONTHLY_GREEDY": {
+      "daily_maxdd": -0.449530129170604,
+      "peak_date": "2021-10-05",
+      "trough_date": "2025-04-25",
+      "trough_holdings": "UNG;GDX",
+      "crisis_at_trough": "RECOVERY"
+    },
+    "P2_DAILY_ECONOMIC_HYSTERESIS": {
+      "daily_maxdd": -0.6181851201222512,
+      "peak_date": "2022-06-08",
+      "trough_date": "2025-04-07",
+      "trough_holdings": "EWO;FXI",
+      "crisis_at_trough": "SHOCK"
+    },
+    "P3_OASIS_CRISIS_ACTIVE": {
+      "daily_maxdd": -0.5905854835213404,
+      "peak_date": "2022-08-26",
+      "trough_date": "2025-04-07",
+      "trough_holdings": "EWO;FXI",
+      "crisis_at_trough": "SHOCK"
+    },
+    "P4_MONTHLY_GREEDY_CRISIS": {
+      "daily_maxdd": -0.46087178785784355,
+      "peak_date": "2026-01-29",
+      "trough_date": "2026-07-01",
+      "trough_holdings": "SOXX;XSD",
+      "crisis_at_trough": "BREATHING"
+    }
+  },
+  "n_active_risk_days": 142,
+  "full_sample_used_to_select_history_complete_survivors": true,
+  "not_point_in_time": true,
+  "currency_fx_spreads_not_audited": true
+}

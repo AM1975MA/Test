@@ -1,0 +1,327 @@
+{
+  "status": "OASIS_DAILY_RESEARCH_COMPLETED",
+  "periods_open": 2366,
+  "date_start": "2017-02-01",
+  "date_end": "2026-07-01",
+  "tickers": 150,
+  "fees_one_way": 0.001,
+  "portfolio_mark": "daily_open_with_5_day_missing_quote_valuation_only",
+  "strategy_eligibility": "asof_close_with_last_253_history",
+  "source_manifest_sha256": "fcf7f6f551ebdff3a71856f0b41bf7fa94041b2388a8f32f79aab917a7634cea",
+  "roster_sha256": "8e2d8e8e2cbec74ae71cdf7195e85218422dd59f2b40b7aa15342bbe82b19d0a",
+  "benchmark_old_ml_predictions_used": false,
+  "metrics": {
+    "P0_MONTHLY_GREEDY": {
+      "n_days": 2366,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 2.1221804791290837,
+      "cagr": 0.083360994162343,
+      "daily_maxdd": -0.449530129170604,
+      "daily_sharpe": 0.251950700973742,
+      "daily_es5": -0.04840584711674795,
+      "mean_cash": 0.0016231286072869858,
+      "mean_exposure": 0.998376871392713,
+      "n_rebalances": 114,
+      "n_name_switches": 101,
+      "total_bought_sold_notional": 278.1828098678808,
+      "total_fee_fraction_start_wealth": 0.2781828098678678,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 0,
+      "crisis_evaluation_days": 142,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 987,
+          "cagr": 0.21944107416256342
+        },
+        "2021_2023": {
+          "n": 753,
+          "cagr": -0.036591367271729625
+        },
+        "2024_2026": {
+          "n": 626,
+          "cagr": 0.031440609639782124
+        }
+      }
+    },
+    "P1_DAILY_GREEDY": {
+      "n_days": 2366,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 1.6055811003392,
+      "cagr": 0.051716232276534324,
+      "daily_maxdd": -0.6239565025150162,
+      "daily_sharpe": 0.15559629499107616,
+      "daily_es5": -0.049613174698063006,
+      "mean_cash": 0.0019238546928741765,
+      "mean_exposure": 0.9980761453071259,
+      "n_rebalances": 778,
+      "n_name_switches": 777,
+      "total_bought_sold_notional": 849.1585699919781,
+      "total_fee_fraction_start_wealth": 0.8491585699919255,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 0,
+      "crisis_evaluation_days": 142,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 987,
+          "cagr": 0.0827793516597417
+        },
+        "2021_2023": {
+          "n": 753,
+          "cagr": -0.11250375803541501
+        },
+        "2024_2026": {
+          "n": 626,
+          "cagr": 0.22330379556244084
+        }
+      }
+    },
+    "P2_DAILY_ECONOMIC_HYSTERESIS": {
+      "n_days": 2366,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 2.151984813298524,
+      "cagr": 0.08496782776611411,
+      "daily_maxdd": -0.6181851201222512,
+      "daily_sharpe": 0.26444575039450713,
+      "daily_es5": -0.04757891020209219,
+      "mean_cash": 0.0019088981096727323,
+      "mean_exposure": 0.9980911018903275,
+      "n_rebalances": 58,
+      "n_name_switches": 57,
+      "total_bought_sold_notional": 92.72501393352533,
+      "total_fee_fraction_start_wealth": 0.0927250139335204,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 0,
+      "crisis_evaluation_days": 142,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 987,
+          "cagr": 0.21666057704733555
+        },
+        "2021_2023": {
+          "n": 753,
+          "cagr": -0.07612140021808889
+        },
+        "2024_2026": {
+          "n": 626,
+          "cagr": 0.087858528649577
+        }
+      }
+    },
+    "P3_OASIS_CRISIS_ACTIVE": {
+      "n_days": 2366,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 2.4845433772266157,
+      "cagr": 0.10166332803009248,
+      "daily_maxdd": -0.5905854835213404,
+      "daily_sharpe": 0.32538038082560755,
+      "daily_es5": -0.04490160865764568,
+      "mean_cash": 0.03231653509193005,
+      "mean_exposure": 0.9676834649080701,
+      "n_rebalances": 132,
+      "n_name_switches": 57,
+      "total_bought_sold_notional": 171.49063876378978,
+      "total_fee_fraction_start_wealth": 0.17149063876378423,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 0,
+      "crisis_evaluation_days": 142,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 987,
+          "cagr": 0.25131890427884374
+        },
+        "2021_2023": {
+          "n": 753,
+          "cagr": -0.03816942840206572
+        },
+        "2024_2026": {
+          "n": 626,
+          "cagr": 0.05089434541714177
+        }
+      }
+    },
+    "P4_MONTHLY_GREEDY_CRISIS": {
+      "n_days": 2366,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 2.4600056334285423,
+      "cagr": 0.10050195410644691,
+      "daily_maxdd": -0.46087178785784355,
+      "daily_sharpe": 0.3222252127971712,
+      "daily_es5": -0.04475375258925148,
+      "mean_cash": 0.032291681462563455,
+      "mean_exposure": 0.9677083185374367,
+      "n_rebalances": 185,
+      "n_name_switches": 101,
+      "total_bought_sold_notional": 368.4708580667019,
+      "total_fee_fraction_start_wealth": 0.3684708580666839,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 0,
+      "crisis_evaluation_days": 142,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 987,
+          "cagr": 0.24849945788683447
+        },
+        "2021_2023": {
+          "n": 753,
+          "cagr": -0.015741152018439064
+        },
+        "2024_2026": {
+          "n": 626,
+          "cagr": 0.02803272192543549
+        }
+      }
+    },
+    "P5_DAILY_TOP5_HYSTERESIS": {
+      "n_days": 2366,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 1.784244611607438,
+      "cagr": 0.06357494156728816,
+      "daily_maxdd": -0.5921270755179925,
+      "daily_sharpe": 0.19731482353611957,
+      "daily_es5": -0.0478057917040034,
+      "mean_cash": 0.0018897267329362369,
+      "mean_exposure": 0.9981102732670637,
+      "n_rebalances": 273,
+      "n_name_switches": 272,
+      "total_bought_sold_notional": 323.168306370118,
+      "total_fee_fraction_start_wealth": 0.3231683063700971,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 0,
+      "crisis_evaluation_days": 142,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 987,
+          "cagr": 0.09140483619456297
+        },
+        "2021_2023": {
+          "n": 753,
+          "cagr": -0.06256836953414202
+        },
+        "2024_2026": {
+          "n": 626,
+          "cagr": 0.1826062570385365
+        }
+      }
+    },
+    "P6_DAILY_ECONOMIC_HYSTERESIS_ONLY_CHANGEP": {
+      "n_days": 2366,
+      "date_first": "2017-02-01 00:00:00",
+      "date_last": "2026-07-01 00:00:00",
+      "terminal_wealth": 2.266869928711457,
+      "cagr": 0.09098109082513983,
+      "daily_maxdd": -0.5976403012547125,
+      "daily_sharpe": 0.2825250960837059,
+      "daily_es5": -0.0475987646958254,
+      "mean_cash": 0.001907305674290978,
+      "mean_exposure": 0.998092694325709,
+      "n_rebalances": 57,
+      "n_name_switches": 56,
+      "total_bought_sold_notional": 91.87874281095787,
+      "total_fee_fraction_start_wealth": 0.0918787428109541,
+      "blocked_orders": 0,
+      "partial_buys": 0,
+      "held_quote_gaps": 0,
+      "crisis_evaluation_days": 142,
+      "slice_cagr": {
+        "2017_2020": {
+          "n": 987,
+          "cagr": 0.2165358293762587
+        },
+        "2021_2023": {
+          "n": 753,
+          "cagr": -0.07612140047502558
+        },
+        "2024_2026": {
+          "n": 626,
+          "cagr": 0.11095970801503174
+        }
+      }
+    }
+  },
+  "paired_12month_bootstrap": {
+    "P1_DAILY_GREEDY": {
+      "mean_monthly_log_gain": -0.002447002988254969,
+      "ci95": [
+        -0.013394784473983182,
+        0.009734373709009668
+      ],
+      "n": 114
+    },
+    "P2_DAILY_ECONOMIC_HYSTERESIS": {
+      "mean_monthly_log_gain": 0.0001223376952160744,
+      "ci95": [
+        -0.008388774846924133,
+        0.008200398522021967
+      ],
+      "n": 114
+    },
+    "P3_OASIS_CRISIS_ACTIVE": {
+      "mean_monthly_log_gain": 0.0013828491494959345,
+      "ci95": [
+        -0.006917823054529036,
+        0.01055563076039522
+      ],
+      "n": 114
+    },
+    "P4_MONTHLY_GREEDY_CRISIS": {
+      "mean_monthly_log_gain": 0.0012957855434268567,
+      "ci95": [
+        -0.0007239700098165138,
+        0.0037156640018991827
+      ],
+      "n": 114
+    },
+    "P5_DAILY_TOP5_HYSTERESIS": {
+      "mean_monthly_log_gain": -0.0015214820097747882,
+      "ci95": [
+        -0.011128553520988278,
+        0.009506017156360225
+      ],
+      "n": 114
+    },
+    "P6_DAILY_ECONOMIC_HYSTERESIS_ONLY_CHANGEP": {
+      "mean_monthly_log_gain": 0.0005785605782664454,
+      "ci95": [
+        -0.007361757052917374,
+        0.008800349727177385
+      ],
+      "n": 114
+    }
+  },
+  "daily_system_states": {
+    "BREATHING": 2062,
+    "RECOVERY": 162,
+    "SHOCK": 79,
+    "CONTINUATION": 63
+  },
+  "audits": {
+    "min_days": 2366,
+    "equal_endpoints": true,
+    "zero_production_changes": true,
+    "no_old_ml_scores_read": true,
+    "next_open_execution_invariants": true,
+    "selected_ticker_count": 150,
+    "roster_sha256": "8e2d8e8e2cbec74ae71cdf7195e85218422dd59f2b40b7aa15342bbe82b19d0a",
+    "joint_min_quotes": 120,
+    "data_open_volume_zero_observations": 0,
+    "eligible_asof_first": 148,
+    "eligible_asof_last": 148
+  },
+  "cohort_2026_survivorship_bias": true,
+  "no_PIT_listing_ISIN_quote_currency_validation": true,
+  "no_real_spreads_slippage_volume_liquidity_validation": true,
+  "independent_forward_holdout": false,
+  "conclusion": "EXPLORATORY_NOT_LIVE_READY"
+}
