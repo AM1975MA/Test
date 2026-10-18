@@ -86,8 +86,16 @@ def switch_names(observed,index,held,age,policy,cp5=0.):
     if policy=="P5_DAILY_TOP5_HYSTERESIS":
         prior=[t for t in held if t in ordered[:5]]
         return (prior+[t for t in ordered if t not in prior])[:2],"TOP5"
-    if not held or len(held)!=2 or any(t not in ordered for t in held):
-        return ordered[:2],"BOOTSTRAP_OR_MISSING"
+    if not held:
+        return ordered[:2],"INITIAL_ENTRY"
+    if len(held)!=2:
+        # Partial fill recovery: preserve existing holdings; fill only vacancies.
+        return (list(held)+[t for t in ordered if t not in held])[:2],"FILL_MISSING_POSITION"
+    if any(t not in ordered for t in held):
+        # A stale/missing as-of Close must not be interpreted as a rank loss.
+        # Retain until an observed close proves a material opportunity change.
+        # Missing *execution* Open is independently handled as an unfilled order.
+        return list(held),"INCUMBENT_CLOSE_MISSING_HOLD"
     chosen=list(held)
     # Only one economically significant substitution per session.
     incumbent=min(chosen,key=lambda t:float(observed["score"].iloc[index][t]))
