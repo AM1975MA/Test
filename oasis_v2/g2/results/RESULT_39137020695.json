@@ -1,0 +1,186 @@
+{
+  "status": "G2_PORTFOLIO_SPECIFIC_RISK_COMPLETED",
+  "G1_information_gate": "FAIL_DO_NOT_TRADE_PAIRED_MODEL",
+  "G2_survival_exploratory_pass": true,
+  "strict_R0_daily_parity_max_error": 3.552713678800501e-15,
+  "G2_after_observing_V1_failure": true,
+  "did_not_read_old_ML_predictions": true,
+  "model_alpha_score_unmodified": true,
+  "original_source_reference_run": 39132785483,
+  "n_study_days": 2366,
+  "number_of_funds": 150,
+  "cohort_point_in_time_verified": false,
+  "metrics": {
+    "R0_TWO_REFERENCE": {
+      "cagr": 0.08336099416234322,
+      "end_wealth": 2.122180479129085,
+      "daily_maxdd": -0.44953012917060364,
+      "daily_sharpe": 0.25195070097374217,
+      "daily_es5": -0.048405847116747974,
+      "daily_worst": -0.1360382737332271,
+      "exposure_mean": 0.998376871392713,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 16.69211408840134,
+      "fee_paid_initial_units": 0.2781828098678639,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 2,
+      "actual_risk_series_21d_loss_max": 0
+    },
+    "R1_TOP6_EQUAL": {
+      "cagr": 0.11366626735774199,
+      "end_wealth": 2.7512599869162546,
+      "daily_maxdd": -0.3585062112770373,
+      "daily_sharpe": 0.4571046519988205,
+      "daily_es5": -0.03637877038789322,
+      "daily_worst": -0.09888664301454334,
+      "exposure_mean": 0.9980984349631964,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 13.230479844053951,
+      "fee_paid_initial_units": 0.20492647826153176,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6,
+      "actual_risk_series_21d_loss_max": 0
+    },
+    "R2_ONE_PER_GROUP_EQUAL": {
+      "cagr": 0.10696774066724268,
+      "end_wealth": 2.59942029517377,
+      "daily_maxdd": -0.282472124960764,
+      "daily_sharpe": 0.6391745251342266,
+      "daily_es5": -0.02490422120895461,
+      "daily_worst": -0.08412706174593557,
+      "exposure_mean": 0.9981509596762536,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 13.89824019518131,
+      "fee_paid_initial_units": 0.19983548728855516,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6,
+      "actual_risk_series_21d_loss_max": 0
+    },
+    "R3_GROUP_INV_VOL": {
+      "cagr": 0.09544487393672263,
+      "end_wealth": 2.3556641945075585,
+      "daily_maxdd": -0.24250195967781096,
+      "daily_sharpe": 0.6780006385531582,
+      "daily_es5": -0.02085582512373862,
+      "daily_worst": -0.07404065238952297,
+      "exposure_mean": 0.9981924720328664,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 14.414949594329105,
+      "fee_paid_initial_units": 0.20289746057756464,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6,
+      "actual_risk_series_21d_loss_max": 0
+    },
+    "R4_GROUP_INV_VOL_STATIC75": {
+      "cagr": 0.07234416330535476,
+      "end_wealth": 1.9280561332407775,
+      "daily_maxdd": -0.18510686336380722,
+      "daily_sharpe": 0.695888066976269,
+      "daily_es5": -0.015598168195340753,
+      "daily_worst": -0.05429070792542837,
+      "exposure_mean": 0.7491705426356039,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 10.810271534534715,
+      "fee_paid_initial_units": 0.13788035638332374,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6,
+      "actual_risk_series_21d_loss_max": 0
+    },
+    "R5_GROUP_INV_VOL_T5ES": {
+      "cagr": 0.08538009397746693,
+      "end_wealth": 2.159691778723839,
+      "daily_maxdd": -0.24058255822229035,
+      "daily_sharpe": 0.6250721813538854,
+      "daily_es5": -0.020392988441339955,
+      "daily_worst": -0.07404065238952297,
+      "exposure_mean": 0.9801458963368025,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 15.833739689487858,
+      "fee_paid_initial_units": 0.20741481340537904,
+      "n_action_days": 305,
+      "n_risk_interventions": 191,
+      "holdings_count_avg": 6,
+      "actual_risk_series_21d_loss_max": 0.14560007913683629
+    },
+    "R6_TWO_T5ES": {
+      "cagr": 0.07681536324680849,
+      "end_wealth": 2.004545195723572,
+      "daily_maxdd": -0.27204345695875776,
+      "daily_sharpe": 0.4031917654941883,
+      "daily_es5": -0.026729561144287865,
+      "daily_worst": -0.06626265645785247,
+      "exposure_mean": 0.7102158182182191,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 22.88055471363152,
+      "fee_paid_initial_units": 0.3231732743084095,
+      "n_action_days": 1340,
+      "n_risk_interventions": 1226,
+      "holdings_count_avg": 2,
+      "actual_risk_series_21d_loss_max": 0.3058106194336677
+    }
+  },
+  "monthly_paired_bootstrap": {
+    "R1_TOP6_EQUAL": {
+      "mean_monthly_log_excess": 0.0022773236474147875,
+      "ci95": [
+        -0.004611000689498886,
+        0.008715257818515077
+      ],
+      "n_months": 114
+    },
+    "R2_ONE_PER_GROUP_EQUAL": {
+      "mean_monthly_log_excess": 0.0017793365681588464,
+      "ci95": [
+        -0.009213080267397632,
+        0.011385851132661173
+      ],
+      "n_months": 114
+    },
+    "R3_GROUP_INV_VOL": {
+      "mean_monthly_log_excess": 0.0009156020665391249,
+      "ci95": [
+        -0.010245546835180737,
+        0.011726569772539903
+      ],
+      "n_months": 114
+    },
+    "R4_GROUP_INV_VOL_STATIC75": {
+      "mean_monthly_log_excess": -0.0008436951523195503,
+      "ci95": [
+        -0.012541948176955468,
+        0.009881269876035206
+      ],
+      "n_months": 114
+    },
+    "R5_GROUP_INV_VOL_T5ES": {
+      "mean_monthly_log_excess": 0.00015369674102033324,
+      "ci95": [
+        -0.011947581927786232,
+        0.011353578378915773
+      ],
+      "n_months": 114
+    },
+    "R6_TWO_T5ES": {
+      "mean_monthly_log_excess": -0.0005002396201523052,
+      "ci95": [
+        -0.008053888230305868,
+        0.005731859012630589
+      ],
+      "n_months": 114
+    }
+  },
+  "full_source_manifest_sha256": "523bba5f3300f968e793edcff10081f6563707e73d633dfba371ec89857a42b2",
+  "caveats": [
+    "conditional risk Student-t is a stylized scenario, not a certified safety guarantee",
+    "no independent PIT holdout",
+    "0 percent zero-yield EUR cash is hypothetical",
+    "underlying quote currency, fee/spread/market impact not verified"
+  ],
+  "workflow_url": "https://github.com/AM1975MA/Test/actions/runs/39137020695",
+  "source_sha": "8e324acc24432ba5f1dffca58f076d38dad46087"
+}
