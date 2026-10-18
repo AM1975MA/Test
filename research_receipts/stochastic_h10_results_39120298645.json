@@ -1,0 +1,173 @@
+{
+  "status": "BAYESIAN_REGIME_AND_T5_TAIL_COMPLETED",
+  "post_selection": true,
+  "source_run": 39119879600,
+  "uses_old_ml_predictions": false,
+  "causal_asof": true,
+  "months": 113,
+  "baseline_parity": true,
+  "metrics": {
+    "C0_D1_FULL": {
+      "cagr": 0.09185988173014215,
+      "terminal_wealth": 2.2877315393345685,
+      "monthly_maxdd": -0.2043344174269517,
+      "monthly_sharpe": 0.7482726767965934,
+      "monthly_es5": -0.06621266910398677,
+      "annual_turnover": 5.180830061612762,
+      "mean_equity_exposure": 1,
+      "cash_months": 0,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.002462389416397981
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.09625412846040904
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.25142975182535143
+        }
+      }
+    },
+    "C1_D1_STATIC90": {
+      "cagr": 0.08300532384742154,
+      "terminal_wealth": 2.1188720732080055,
+      "monthly_maxdd": -0.18508218427895606,
+      "monthly_sharpe": 0.7542809080679758,
+      "monthly_es5": -0.059594002990897066,
+      "annual_turnover": 4.6627470554514865,
+      "mean_equity_exposure": 0.9000000000000002,
+      "cash_months": 113,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.0027019082687045337
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.08729505261351167
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.22427608585106729
+        }
+      }
+    },
+    "C2_D1_HMM": {
+      "cagr": 0.09291329024226225,
+      "terminal_wealth": 2.308600272646736,
+      "monthly_maxdd": -0.19113682183755576,
+      "monthly_sharpe": 0.7800643364637916,
+      "monthly_es5": -0.06402347057831444,
+      "annual_turnover": 5.312602565896251,
+      "mean_equity_exposure": 0.9734513274336283,
+      "cash_months": 6,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.013140394278761791
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.08415258978117013
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.25142975182535143
+        }
+      }
+    },
+    "C3_D1_T5_CVAR": {
+      "cagr": 0.09182168249195133,
+      "terminal_wealth": 2.286977964981739,
+      "monthly_maxdd": -0.2043344174269517,
+      "monthly_sharpe": 0.7489378623899936,
+      "monthly_es5": -0.06615730297130118,
+      "annual_turnover": 5.20741307187672,
+      "mean_equity_exposure": 0.9965437039254169,
+      "cash_months": 6,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.0022721330070714085
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.09641118762032885
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.25142975182535143
+        }
+      }
+    },
+    "C4_D1_HMM_T5": {
+      "cagr": 0.09287505415007269,
+      "terminal_wealth": 2.3078398241734397,
+      "monthly_maxdd": -0.19113682183755587,
+      "monthly_sharpe": 0.7808246863499078,
+      "monthly_es5": -0.06396810444562885,
+      "annual_turnover": 5.339185576160208,
+      "mean_equity_exposure": 0.9699950313590452,
+      "cash_months": 12,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.012948111300772558
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.0843079151665489
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.25142975182535143
+        }
+      }
+    }
+  },
+  "paired_ci": {
+    "C1_D1_STATIC90": {
+      "monthly_log_excess": -0.0006785559846560764,
+      "ci95": [
+        -0.0013047281306336838,
+        -0.00003382413423092031
+      ]
+    },
+    "C2_D1_HMM": {
+      "monthly_log_excess": 0.00008035987497962991,
+      "ci95": [
+        -0.0007642277967287656,
+        0.0011147437833429704
+      ]
+    },
+    "C3_D1_T5_CVAR": {
+      "monthly_log_excess": -0.0000029155073722535986,
+      "ci95": [
+        -0.00004904555152637212,
+        0.000046552387538348327
+      ]
+    },
+    "C4_D1_HMM_T5": {
+      "monthly_log_excess": 0.00007744436760737634,
+      "ci95": [
+        -0.0008551404129126963,
+        0.001088053928665003
+      ]
+    }
+  },
+  "high_regime_months": 6,
+  "tail_risk_reduction_months": 6,
+  "point_in_time_universe": false,
+  "independent_forward_validation": false,
+  "workflow": "https://github.com/AM1975MA/Test/actions/runs/39120298645",
+  "artifacts": [
+    {
+      "id": 12133916669,
+      "name": "independent-stochastic-bayesian-risk-h10-v1",
+      "sha": "sha256:ac600c6fae41c9600928ffe592cabef123f53012766b73fa28b8c71b57f07e84"
+    }
+  ]
+}
