@@ -185,7 +185,7 @@ def risk_audit():
           drawdown_risk_off_fraction=float((cash>.30).mean()),
           drawdown_mean_exposure=float(pday.risky_weight.mean()),
           trough_holdings=str(d.names.iloc[j]),
-          10_worst_return_days=[dict(day=str(d.day.iloc[x].date()),
+          worst_10_return_days=[dict(day=str(d.day.iloc[x].date()),
             log_return=float(daily_log[x-1]),regime=str(d.regime.iloc[x]),
             held=str(d.names.iloc[x]),exposure=float(d.risky_weight.iloc[x]))
             for x in largest_losses],
