@@ -1,0 +1,100 @@
+{
+  "status": "ORIGINAL149_M0B_TOP5_ENRICHMENT_FALSIFIER_COMPLETED",
+  "preregistration_after_observing_M0": true,
+  "true_independent_holdout": false,
+  "original149_exact": true,
+  "source_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "n_monthlike_blocks": 112,
+  "n_placebo_runs_each": 250,
+  "total_placebo_runs": 500,
+  "correct_future_label_NOT_available_at_selection": true,
+  "same_group_every_selected_slot": true,
+  "exact_original_name_retention_count_matched_every_block": true,
+  "matched_volatility_nearest_eight_asof": true,
+  "observed_top5_future_winner_hits": 15,
+  "observed_top5_equal_shares": {
+    "cagr": 0.02071136380033356,
+    "terminal_multiple": 1.2114045445703772,
+    "daily_open_MaxDD": -0.6479176388843337,
+    "worst5pct_ES_daily": -0.04167766252408526,
+    "trade_days": 112,
+    "total_abs_traded_notional_initial_units": 156.57898123736945,
+    "total_nominal_fees_initial_units": 0.15657898123736957
+  },
+  "class_and_vol_conditional_placebos": {
+    "category_only": {
+      "count": 250,
+      "hit_count_median": 6.0,
+      "hit_count_05": 3.0,
+      "hit_count_95": 11.0,
+      "original_hit_count": 15,
+      "fraction_null_hit_count_below_original": 1.0,
+      "empirical_rank_hit_geq_original": 0.00398406374501992,
+      "avg_abs_log_vol_mismatch": 0.49122935669288476,
+      "cagr_median": 0.05497920819789981,
+      "cagr_05": 0.0058038536592462725,
+      "cagr_95": 0.09649372839839122,
+      "original_cagr": 0.02071136380033356,
+      "fraction_null_cagr_below_original": 0.116,
+      "median_daily_open_MaxDD": -0.3612907420615256,
+      "original_daily_open_MaxDD": -0.6479176388843337,
+      "median_nominal_fees": 0.17365690560721203,
+      "original_nominal_fees": 0.15657898123736957,
+      "median_trade_days": 112.0,
+      "original_trade_days": 112
+    },
+    "category_and_vol": {
+      "count": 250,
+      "hit_count_median": 10.0,
+      "hit_count_05": 6.0,
+      "hit_count_95": 15.0,
+      "original_hit_count": 15,
+      "fraction_null_hit_count_below_original": 0.916,
+      "empirical_rank_hit_geq_original": 0.08764940239043825,
+      "avg_abs_log_vol_mismatch": 0.20722809064885755,
+      "cagr_median": 0.05376958269251564,
+      "cagr_05": 0.006827689110188384,
+      "cagr_95": 0.10458441101501981,
+      "original_cagr": 0.02071136380033356,
+      "fraction_null_cagr_below_original": 0.136,
+      "median_daily_open_MaxDD": -0.420636172993907,
+      "original_daily_open_MaxDD": -0.6479176388843337,
+      "median_nominal_fees": 0.1768498698119243,
+      "original_nominal_fees": 0.15657898123736957,
+      "median_trade_days": 112.0,
+      "original_trade_days": 112
+    }
+  },
+  "untradeable_future_best_within_actual_past_top5": {
+    "cagr": 1.4837275110436137,
+    "terminal_multiple": 4969.248684793879,
+    "daily_open_maxdd": -0.24625592524242024,
+    "executed_switches": 90,
+    "disclaimer": "uses full next21d future return even within shortlist, no deployable alpha"
+  },
+  "passive_context_spy_agg": {
+    "cagr": 0.11197119619454043,
+    "terminal_wealth_multiple": 2.6990810725076626,
+    "daily_open_maxdd": -0.23549074239715684,
+    "sharpe_daily_log": 0.8412806835575335,
+    "expected_shortfall_worst5pct_daily": -0.019520480847910946,
+    "net_block_mean_log": 0.008874204213372204,
+    "net_block_positive_fraction": 0.6785714285714286,
+    "fees": {
+      "switches": 0,
+      "fee_sides": 2,
+      "total_log_fee_drag": 0.0009995003330835331
+    }
+  },
+  "go_future_predictive_top5_research_preregistered_gate": false,
+  "original149_dataset_survivorship_biased": true,
+  "caveats": [
+    "150, 69 or EUR60 panels NOT substituted for canonical original149",
+    "M0b formulated after M0 results, not independent discovery",
+    "Shortlist risk-matched placebo only matches 63d vol and broad category, not options skew or factor covariance",
+    "Hindsight best-within-five uses future returns, untradeable",
+    "Historical Yahoo adjusted opens not broker executable, EUR venue and real spreads not verified",
+    "Nominal gross daily marks of single-active horizon without intraday peak-to-trough",
+    "Top5 and null portfolios are fully invested at each rebalance with exact self-financing 10bp fee solve"
+  ]
+}
