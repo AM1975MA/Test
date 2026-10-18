@@ -211,27 +211,45 @@ def paired_monthly_bootstrap(ledger,reference="P0_MONTHLY_GREEDY",reps=1500):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument("--oracle",required=True)
+    parser.add_argument("--oracle",required=False)
     parser.add_argument("--out",required=True)
+    parser.add_argument("--universe",default=str(UNIVERSE))
+    parser.add_argument("--source-dir",default=str(SOURCE))
+    parser.add_argument("--study-start",default=None)
+    parser.add_argument("--study-end",default=None)
+    parser.add_argument("--expect-count",type=int,default=60)
+    parser.add_argument("--min-open-count",type=int,default=30)
     a=parser.parse_args()
     out=Path(a.out);out.mkdir(parents=True,exist_ok=False)
-    roster=pd.read_csv(UNIVERSE)
+    universe_path=Path(a.universe)
+    source_root=Path(a.source_dir)
+    roster=pd.read_csv(universe_path)
     tickers=roster.ticker.astype(str).tolist()
-    if len(tickers)!=60 or len(set(tickers))!=60:
-        raise AssertionError("retrospective EUR60 roster has changed")
-    oracle=json.loads((Path(a.oracle)/"RESULT.json").read_text())
-    if oracle["compared_months"]!=113 or oracle["source_60_EUR_names_sha256"]!=sha(UNIVERSE):
-        raise AssertionError("oracle calendar or EUR60 hash drift")
-    cal=pd.read_csv(Path(a.oracle)/"MONTHLY_ORACLE_113.csv",
-        parse_dates=["signal_date","entry_date","exit_date"])
-    start=pd.Timestamp(cal.entry_date.iloc[0]);end=pd.Timestamp(cal.exit_date.iloc[-1])
+    if len(tickers)!=a.expect_count or len(set(tickers))!=a.expect_count:
+        raise AssertionError("Expected frozen ETF universe member count changed")
+    if a.oracle is not None:
+        oracle=json.loads((Path(a.oracle)/"RESULT.json").read_text())
+        if oracle["compared_months"]!=113 or oracle["source_60_EUR_names_sha256"]!=sha(universe_path):
+            raise AssertionError("original EUR60 oracle calendar or roster drift")
+        cal=pd.read_csv(Path(a.oracle)/"MONTHLY_ORACLE_113.csv",
+            parse_dates=["signal_date","entry_date","exit_date"])
+        start=pd.Timestamp(cal.entry_date.iloc[0]);end=pd.Timestamp(cal.exit_date.iloc[-1])
+    else:
+        if not (a.study_start and a.study_end):
+            raise ValueError("Custom universe requires frozen study-start and study-end")
+        start=pd.Timestamp(a.study_start)
+        end=pd.Timestamp(a.study_end)
+        if not start<end:
+            raise AssertionError("Nonpositive evaluation interval")
+    if a.min_open_count<max(5,int(.6*a.expect_count)):
+        raise AssertionError("min-open-count inadequate for joint-price evaluation")
     source=out/"_raw";source.mkdir()
-    roster.to_csv(source/"universe.csv",index=False)
-    for t in tickers:shutil.copyfile(SOURCE/(t+".csv"),source/(t+".csv"))
+    roster[["ticker","macro_category"]].to_csv(source/"universe.csv",index=False)
+    for t in tickers:shutil.copyfile(source_root/(t+".csv"),source/(t+".csv"))
     mats,_,_=load_ticker_csv_folder(source)
     opens=mats["Open"].reindex(columns=tickers).astype(float)
     close=mats["Close"].reindex(columns=tickers).astype(float)
-    valid=(opens.notna().sum(axis=1)>=30)&(close.notna().sum(axis=1)>=30)
+    valid=(opens.notna().sum(axis=1)>=a.min_open_count)&(close.notna().sum(axis=1)>=a.min_open_count)
     calendar=opens.index[valid]
     indices=np.flatnonzero((calendar>=start)&(calendar<=end))
     if len(indices)<1500:raise AssertionError(f"Insufficient joint open dates {len(indices)}")
@@ -256,23 +274,25 @@ def main():
         print("OASIS_ARM",arm,json.dumps(m),flush=True)
     ledger=pd.concat(allrows,ignore_index=True)
     ci=paired_monthly_bootstrap(ledger)
-    prev=ledger[ledger.policy==ARMS[0]]
     sanity={"min_days":int(min(x["n_days"] for x in metrics.values())),
         "equal_endpoints":len(set((z["date_first"],z["date_last"]) for z in metrics.values()))==1,
         "zero_production_changes":True,
         "no_old_ml_scores_read":True,
         "next_open_execution_invariants":True,
+        "selected_ticker_count":len(tickers),
+        "roster_sha256":sha(universe_path),
+        "joint_min_quotes":a.min_open_count,
         "data_open_volume_zero_observations":int((mats["Volume"].reindex(columns=tickers)
                 .reindex(index=dates).fillna(-1)==0).to_numpy().sum()),
         "eligible_asof_first":int(observed["eligible"].loc[signals[0]].sum()),
         "eligible_asof_last":int(observed["eligible"].loc[signals[-1]].sum())}
     if not sanity["equal_endpoints"]:raise AssertionError("arm unequal endpoints")
     output=dict(status="OASIS_DAILY_RESEARCH_COMPLETED",periods_open=int(len(dates)),
-        date_start=str(start.date()),date_end=str(end.date()),tickers=60,
+        date_start=str(start.date()),date_end=str(end.date()),tickers=len(tickers),
         fees_one_way=FEE,portfolio_mark="daily_open_with_5_day_missing_quote_valuation_only",
         strategy_eligibility="asof_close_with_last_253_history",
         source_manifest_sha256=sha(ROOT/"data/eu120/manifest.json"),
-        roster_sha256=sha(UNIVERSE),
+        roster_sha256=sha(universe_path),
         benchmark_old_ml_predictions_used=False,
         metrics=metrics,paired_12month_bootstrap=ci,
         daily_system_states=states.loc[signals].state.value_counts().to_dict(),
