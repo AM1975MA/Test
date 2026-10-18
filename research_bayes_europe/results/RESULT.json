@@ -1,0 +1,129 @@
+{
+  "github_workflow_run_url": "https://github.com/AM1975MA/Test/actions/runs/39087987551",
+  "github_artifact_id": 12121249486,
+  "artifact_sha256": "289f1d1dc8f95546e2298753f5cf15a12dc1b07e3e7b89129597ca196858fe2d",
+  "status": "STOCHASTIC_EUR60_COMPLETED",
+  "source_pr": "europe-only75",
+  "months": 113,
+  "universe_size": 60,
+  "no_new_download": true,
+  "no_xgb_fit": true,
+  "reference_parity": true,
+  "reference_cagr": 0.09978039091271884,
+  "retrospective_lookahead_universe_bias": true,
+  "no_production_change": true,
+  "metrics": [
+    {
+      "policy": "MOM_12_6_SKIP1",
+      "periods": 113,
+      "terminal_wealth": 0.9881197554615895,
+      "cagr": -0.0012683678891215466,
+      "monthly_maxdd": -0.41855020619030814,
+      "monthly_sharpe": -0.00798665230284351,
+      "mean_monthly_log_return": -0.00010576441237380222,
+      "monthly_median_net_return": 0.0008483529791076805,
+      "mean_monthly_turnover": 0.48672566371681414,
+      "annualized_turnover": 5.840707964601769,
+      "top1_stability": 0.41964285714285715,
+      "mean_chosen_top1_forward_return": 0.0013110833748378391,
+      "mean_regret_to_expost_best": 0.07290359480947742,
+      "hit_exact_best_rate": 0.02654867256637168
+    },
+    {
+      "policy": "ROBUST_KALMAN",
+      "periods": 113,
+      "terminal_wealth": 1.8490492639417537,
+      "cagr": 0.06745238371945694,
+      "monthly_maxdd": -0.23820967152886996,
+      "monthly_sharpe": 0.5884837614123788,
+      "mean_monthly_log_return": 0.0054395716425635595,
+      "monthly_median_net_return": 0.0063354090598357615,
+      "mean_monthly_turnover": 0.5176991150442478,
+      "annualized_turnover": 6.212389380530974,
+      "top1_stability": 0.4375,
+      "mean_chosen_top1_forward_return": 0.005337823185590881,
+      "mean_regret_to_expost_best": 0.06887685499872438,
+      "hit_exact_best_rate": 0.008849557522123894
+    },
+    {
+      "policy": "HALF_RANK",
+      "periods": 113,
+      "terminal_wealth": 2.086977229308821,
+      "cagr": 0.08126235838354767,
+      "monthly_maxdd": -0.3471535808429579,
+      "monthly_sharpe": 0.5354370357981522,
+      "mean_monthly_log_return": 0.006510767409793426,
+      "monthly_median_net_return": 0.010204825665381279,
+      "mean_monthly_turnover": 0.5398230088495575,
+      "annualized_turnover": 6.47787610619469,
+      "top1_stability": 0.4107142857142857,
+      "mean_chosen_top1_forward_return": 0.008574185009859098,
+      "mean_regret_to_expost_best": 0.06564049317445617,
+      "hit_exact_best_rate": 0.008849557522123894
+    },
+    {
+      "policy": "R_H_REFERENCE",
+      "periods": 113,
+      "terminal_wealth": 2.448863449071208,
+      "cagr": 0.09978039091271884,
+      "monthly_maxdd": -0.266440881813372,
+      "monthly_sharpe": 0.490616289955585,
+      "mean_monthly_log_return": 0.0079258762706569,
+      "monthly_median_net_return": 0.010576785967928437,
+      "mean_monthly_turnover": 0.7079646017699115,
+      "annualized_turnover": 8.495575221238937,
+      "top1_stability": 0.21428571428571427,
+      "mean_chosen_top1_forward_return": 0.009823024890699004,
+      "mean_regret_to_expost_best": 0.06439165329361625,
+      "hit_exact_best_rate": 0.07079646017699115
+    }
+  ],
+  "random_null": {
+    "n": 1000,
+    "mean_cagr": 0.061871074122008096,
+    "q05_q50_q95": [
+      0.025237140527040867,
+      0.06221191783883662,
+      0.0999150796877583
+    ],
+    "percentile_of_candidate": {
+      "MOM_12_6_SKIP1": 0.001,
+      "ROBUST_KALMAN": 0.603,
+      "HALF_RANK": 0.808,
+      "R_H_REFERENCE": 0.949
+    }
+  },
+  "paired_12m_bootstrap": {
+    "MOM_12_6_SKIP1": {
+      "mean_monthly_log_excess": -0.008031640683030705,
+      "ci95_monthly_log_excess": [
+        -0.014969988558948938,
+        0.00004277633283177546
+      ],
+      "beats_model_months": 43,
+      "n": 113
+    },
+    "ROBUST_KALMAN": {
+      "mean_monthly_log_excess": -0.0024863046280933386,
+      "ci95_monthly_log_excess": [
+        -0.008116576326717835,
+        0.003183973607059569
+      ],
+      "beats_model_months": 54,
+      "n": 113
+    },
+    "HALF_RANK": {
+      "mean_monthly_log_excess": -0.0014151088608634716,
+      "ci95_monthly_log_excess": [
+        -0.009100157602357214,
+        0.006308682028726109
+      ],
+      "beats_model_months": 56,
+      "n": 113
+    }
+  },
+  "source_manifest_sha256": "fcf7f6f551ebdff3a71856f0b41bf7fa94041b2388a8f32f79aab917a7634cea",
+  "source_refit_run": 39071370480,
+  "source_oracle_run": 39084898663,
+  "model": "Student-t(5) robust approximate 2-speed Kalman, category shrink, no tuning"
+}
