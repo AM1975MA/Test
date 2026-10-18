@@ -39,13 +39,15 @@ def get_series(series,out):
     table.columns=[str(x).strip().upper() for x in table.columns]
     if "DATE" not in table:
         raise AssertionError("CBOE date header changed "+series+" "+str(list(table)))
-    if "CLOSE" not in table:
+    value_column=("CLOSE" if "CLOSE" in table else
+                  series if series in table else None)
+    if value_column is None:
         raise AssertionError("CBOE historical close header changed "+series+" "+str(list(table)))
     date=pd.to_datetime(table["DATE"],format="%m/%d/%Y",errors="coerce")
     if date.isna().any():
         # Historical source may switch date format; do not silently discard.
         raise AssertionError("Unrecognized CBOE date format "+series)
-    values=pd.to_numeric(table["CLOSE"],errors="coerce")
+    values=pd.to_numeric(table[value_column],errors="coerce")
     if date.duplicated().any():
         raise AssertionError("Duplicate CBOE dates "+series)
     frame=pd.DataFrame({"observation_date":date,"value":values})
