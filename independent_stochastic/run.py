@@ -8,11 +8,12 @@ import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT),str(ROOT/"vendor/etf_trader_v2/src"),str(ROOT/"europe120/eu120_retrain")]
 from etf_trader.source_only.raw_io import load_ticker_csv_folder
-from paper_ltr_v2.replay import sha
+def sha(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 from independent_stochastic.experts import (
     ARMS,BASE,SEED,features,expert_allocations,stochastic_scenario_choose,
-    weighted_mix,softmax_experts,market,synthetic_no_future_test)
-from scientific_lab.models import daily_asof
+    weighted_mix,softmax_experts,synthetic_no_future_test)
+from independent_stochastic.physics import daily_asof,common_market_filter
 
 FEE=.001
 CAGR_OLD_RH=.09978039091271884
@@ -144,7 +145,7 @@ def main():
         coeff=softmax_experts(expert_state)
         hedge=weighted_mix(base,coeff)
         naive=weighted_mix(base,{k:1/len(BASE) for k in BASE})
-        gate=market(daily)["flag"]
+        gate=common_market_filter(daily)["flag"]
         reg={t:float(v*(.5 if gate else 1.)) for t,v in hedge.items()}
         arms={**base,"D5_STUDENT_T_SCENARIO":base[chosen],
               "D6_HEDGE_GAME":hedge,"D7_HEDGE_REGIME":reg,
