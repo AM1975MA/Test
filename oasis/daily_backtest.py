@@ -147,7 +147,9 @@ def simulate(arm,observed,states,opens,dates,signal_index,volume=None):
         if len(intended)!=2:raise AssertionError("bad selector")
         do_trade=(not held or set(held)!=set(intended)
                   or last_scale is None or abs(last_scale-target_scale)>1e-12
-                  or (arm=="P1_DAILY_GREEDY")
+                  # A daily scanner does NOT mechanically rebalance when
+                  # its selected names have not changed; otherwise the
+                  # benchmark gets a gratuitous trading-cost handicap.
                   or (arm in ("P0_MONTHLY_GREEDY","P4_MONTHLY_GREEDY_CRISIS") and new_month))
         before=set(held)
         cost=0.;traded=0.;blocks=0;partials=0
