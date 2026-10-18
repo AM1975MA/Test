@@ -1,0 +1,80 @@
+{
+  "status": "COMPARISON_ARCHIVED_BOTH_SURVIVOR_BIASED_COHORTS",
+  "original_run150": 39137020695,
+  "transfer_run69": 39137733489,
+  "strong_concentration_reduction_repeatable_in_both_historical_cohorts": true,
+  "evidence_of_independent_predictive_alpha": false,
+  "g1_gate": "FAIL",
+  "n150": 150,
+  "n_other": 69,
+  "passive_context_60_40": {
+    "cagr": 0.11389262153260038,
+    "daily_maxdd": -0.23549074239715684,
+    "terminal_multiple": 2.7592775538586847,
+    "note": "Passive adjusted opens; no interim rebalancing; cost parity not proved"
+  },
+  "comparisons": {
+    "R0_TWO_REFERENCE": {
+      "top150_CAGR": 0.08336099416234322,
+      "top150_daily_MaxDD": -0.44953012917060364,
+      "excluded69_CAGR": -0.00280690616061563,
+      "excluded69_daily_MaxDD": -0.6437299685723168,
+      "top150_ES5": -0.048405847116747974,
+      "excluded69_ES5": -0.04830448937306825
+    },
+    "R1_TOP6_EQUAL": {
+      "top150_CAGR": 0.11366626735774199,
+      "top150_daily_MaxDD": -0.3585062112770373,
+      "excluded69_CAGR": 0.14009881364810917,
+      "excluded69_daily_MaxDD": -0.3337531997683203,
+      "top150_ES5": -0.03637877038789322,
+      "excluded69_ES5": -0.032226737028343055
+    },
+    "R2_ONE_PER_GROUP_EQUAL": {
+      "top150_CAGR": 0.10696774066724268,
+      "top150_daily_MaxDD": -0.282472124960764,
+      "excluded69_CAGR": 0.09020630592407186,
+      "excluded69_daily_MaxDD": -0.2822962181987364,
+      "top150_ES5": -0.02490422120895461,
+      "excluded69_ES5": -0.02472686611270199
+    },
+    "R3_GROUP_INV_VOL": {
+      "top150_CAGR": 0.09544487393672263,
+      "top150_daily_MaxDD": -0.24250195967781096,
+      "excluded69_CAGR": 0.09748233810048146,
+      "excluded69_daily_MaxDD": -0.2550523756186548,
+      "top150_ES5": -0.02085582512373862,
+      "excluded69_ES5": -0.020653386004328325
+    },
+    "R4_GROUP_INV_VOL_STATIC75": {
+      "top150_CAGR": 0.07234416330535476,
+      "top150_daily_MaxDD": -0.18510686336380722,
+      "excluded69_CAGR": 0.07357796452281384,
+      "excluded69_daily_MaxDD": -0.19453949216679045,
+      "top150_ES5": -0.015598168195340753,
+      "excluded69_ES5": -0.01545363869246104
+    },
+    "R5_GROUP_INV_VOL_T5ES": {
+      "top150_CAGR": 0.08538009397746693,
+      "top150_daily_MaxDD": -0.24058255822229035,
+      "excluded69_CAGR": 0.08638120910012104,
+      "excluded69_daily_MaxDD": -0.24722904126664003,
+      "top150_ES5": -0.020392988441339955,
+      "excluded69_ES5": -0.01952916681159984
+    },
+    "R6_TWO_T5ES": {
+      "top150_CAGR": 0.07681536324680849,
+      "top150_daily_MaxDD": -0.27204345695875776,
+      "excluded69_CAGR": 0.00959733276776098,
+      "excluded69_daily_MaxDD": -0.4177959590911392,
+      "top150_ES5": -0.026729561144287865,
+      "excluded69_ES5": -0.02857444118633219
+    }
+  },
+  "caveats": [
+    "Both ETF cohorts are retrospectively surviving and pre-explored",
+    "No real EUR investable implementation proved",
+    "No equity alpha under proper scoring",
+    "No prospective holdout"
+  ]
+}
