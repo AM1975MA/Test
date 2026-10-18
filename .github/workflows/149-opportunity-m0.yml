@@ -1,0 +1,76 @@
+name: ETF_149_FIRST_PRINCIPLES_M0_OPPORTUNITY_TEST
+on:
+  push:
+    branches:
+      - research/149-opportunity-physics-m0-20261019
+    paths:
+      - 'research_reset/m0/PREREGISTRATION.md'
+      - 'research_reset/m0/experiment.py'
+      - 'research_reset/m0/test_m0.py'
+      - '.github/workflows/149-opportunity-m0.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  scientific-opportunity-physics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Deterministic numerical runtime and exact syntax
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0'
+          python -m py_compile research_reset/m0/experiment.py research_reset/m0/test_m0.py
+      - name: Check fees, no double spending, decision latency and placebo matching
+        run: |
+          python -m unittest -v research_reset.m0.test_m0
+      - name: Run pre-registered opportunity geometry experiment on exact 149
+        run: |
+          python -m research_reset.m0.experiment --out _m0
+      - name: Detect source, chrono, orphan dates, causal skill and explicit hindsight flags
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("_m0/RESULT.json").read_text())
+          assert x["status"]=="ORIGINAL149_M0_OPPORTUNITY_PHYSICS_COMPLETED"
+          assert x["exact_original149"] and x["n_research_etfs"]==149
+          assert x["n_signal_blocks"]==112
+          assert x["scientific_diagnostics"]["matched_null"]["n"]==250
+          assert x["hindsight_overall_oracle_not_tradeable"]
+          assert x["hindsight_delay_oracle_not_tradeable"]
+          assert x["forecast_prices_available_at_prior_close"]
+          assert len(x["oracle_delays"])==5
+          print("M0_SOURCE_AND_SCIENCE_ASSERTIONS_PASSED")
+          PY
+      - name: Archive all day-by-day wealth paths, opportunity labels, null paths and scientific verdict
+        run: |
+          mkdir -p research_reset/m0/results
+          cp _m0/*.csv _m0/*.json research_reset/m0/results/
+          (cd research_reset/m0/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/m0/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-Scientific-Falsifier"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/m0/results
+          git commit -m "Archive M0 149 ETF clairvoyant opportunity limits, delayed-execution loss and turnover/class-matched causal placebo"
+          git push origin HEAD:refs/heads/research/149-opportunity-physics-m0-20261019
+      - name: Keep full numeric artifacts even when job fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m0-first-principles-etf149-economic-opportunity-v1
+          retention-days: 90
+          path: |
+            _m0/*.csv
+            _m0/*.json
