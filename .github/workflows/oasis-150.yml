@@ -1,0 +1,79 @@
+name: OASIS_TOP150_DATA_COMPLETENESS_REPLAY
+on:
+  push:
+    branches:
+      - research/oasis150-coverage-20261018
+    paths:
+      - 'oasis150/**'
+      - 'oasis/daily_backtest.py'
+      - '.github/workflows/oasis-150.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  coverage-selected-150:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install minimal frozen numeric runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+          python -m py_compile oasis150/select_universe.py oasis/daily_backtest.py oasis/observers.py
+      - name: Gate and freeze 150/219 price-coverage-only historical ETF roster
+        run: |
+          python oasis150/select_universe.py --out _universe150
+          test -f _universe150/OASIS_TOP150.csv
+          test -f _universe150/FULL_219_QUALITY_CENSUS.csv
+          test -f _universe150/SELECTION_RESULT.json
+      - name: Verify independent causal OASIS signal and execution regression tests
+        run: |
+          python -m unittest -v oasis.test_switch_contract oasis.test_daily_engine
+      - name: Execute seven matched OASIS controls on 150 complete ETF histories
+        run: |
+          python oasis/daily_backtest.py \
+            --universe _universe150/selected_raw/universe.csv \
+            --source-dir _universe150/selected_raw \
+            --study-start 2017-02-01 \
+            --study-end 2026-07-01 \
+            --expect-count 150 \
+            --min-open-count 120 \
+            --out _oasis150_test
+      - name: Verify 150-source completed receipt and no legacy rank signals
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("_universe150/SELECTION_RESULT.json").read_text())
+          b=json.loads(Path("_oasis150_test/RESULT.json").read_text())
+          assert a["selected_count"]==150 and a["pool_size"]==219
+          assert b["status"]=="OASIS_DAILY_RESEARCH_COMPLETED"
+          assert b["tickers"]==150
+          assert b["audits"]["selected_ticker_count"]==150
+          assert b["audits"]["equal_endpoints"] and b["benchmark_old_ml_predictions_used"] is False
+          assert b["audits"]["roster_sha256"]
+          print("OASIS_150_INTEGRITY_PASS",a["stats"],b["metrics"]["P3_OASIS_CRISIS_ACTIVE"])
+          PY
+      - name: Retain selected-universe provenance and all seven daily ledgers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oasis-150-full-coverage-v1
+          retention-days: 90
+          path: |
+            _universe150/OASIS_TOP150.csv
+            _universe150/FULL_219_QUALITY_CENSUS.csv
+            _universe150/SELECTION_RESULT.json
+            _oasis150_test/RESULT.json
+            _oasis150_test/P*.csv
+            _oasis150_test/MARKET_STATES.csv
