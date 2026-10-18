@@ -22,8 +22,8 @@ class M0Tests(unittest.TestCase):
         self.assertEqual(f["switches"],1)
         self.assertEqual(f["fee_sides"],3)
     def test_clairvoyant_execution_delay_is_delayed_exactly(self):
-        self.prices[1:,"AAA"]=12.
-        self.prices[1:,"SPY"]=105.
+        self.prices[1:,self.names.index("AAA")]=12.
+        self.prices[1:,self.names.index("SPY")]=105.
         picks=["AAA"]*112
         direct,_,_=simulate(picks,self.prices,self.names,0)
         late,_,_=simulate(picks,self.prices,self.names,3)
@@ -44,7 +44,7 @@ class M0Tests(unittest.TestCase):
         import pandas as pd
         base=pd.Series({"AAA":.10,"BBB":-.2,"CCC":.05})
         chosen=choose_rank(base)
-        future_prices=pd.Series({"AAA":1e6,"BBB":.01,"CCC":2e5})
+        future_prices=pd.Series({"AAA":1.,"BBB":.01,"CCC":2e5})
         self.assertEqual(choose_rank(base),chosen)
         self.assertNotEqual(choose_rank(future_prices),chosen)
 if __name__=="__main__":unittest.main()
