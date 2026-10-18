@@ -1,0 +1,157 @@
+{
+  "status": "ADVERSARIAL_A7_FINISHED",
+  "source_run": 39089621741,
+  "fee_cost_stress": {
+    "fee_sensitivity": {
+      "0.0": {
+        "base": 0.10916749548186666,
+        "hyst": 0.14830548034622693,
+        "cagr_gap_percentage_points": 3.9137984864360265
+      },
+      "0.001": {
+        "base": 0.09978039091271906,
+        "hyst": 0.14088803144356388,
+        "cagr_gap_percentage_points": 4.110764053084481
+      },
+      "0.005": {
+        "base": 0.06294211754616108,
+        "hyst": 0.11163741693610185,
+        "cagr_gap_percentage_points": 4.869529938994077
+      },
+      "0.01": {
+        "base": 0.01845627356482371,
+        "hyst": 0.07600192716524745,
+        "cagr_gap_percentage_points": 5.754565360042374
+      }
+    },
+    "annual_attribution": {
+      "2017": {
+        "months": 12,
+        "monthly_log_delta_sum": -0.018897361090983028,
+        "annualized_relative_growth": -0.01871992540948908
+      },
+      "2018": {
+        "months": 12,
+        "monthly_log_delta_sum": 0.028007152579362937,
+        "annualized_relative_growth": 0.028403040129480583
+      },
+      "2019": {
+        "months": 12,
+        "monthly_log_delta_sum": -0.015638137206156234,
+        "annualized_relative_growth": -0.015516496442289696
+      },
+      "2020": {
+        "months": 12,
+        "monthly_log_delta_sum": -0.017125198577388742,
+        "annualized_relative_growth": -0.01697939585086372
+      },
+      "2021": {
+        "months": 12,
+        "monthly_log_delta_sum": 0.08187774679417784,
+        "annualized_relative_growth": 0.08532311748821653
+      },
+      "2022": {
+        "months": 12,
+        "monthly_log_delta_sum": -0.04592215942830494,
+        "annualized_relative_growth": -0.044883693903507105
+      },
+      "2023": {
+        "months": 12,
+        "monthly_log_delta_sum": 0.10797510349356902,
+        "annualized_relative_growth": 0.1140200098348707
+      },
+      "2024": {
+        "months": 12,
+        "monthly_log_delta_sum": 0.020488386048892842,
+        "annualized_relative_growth": 0.020699713817784016
+      },
+      "2025": {
+        "months": 12,
+        "monthly_log_delta_sum": 0.07692562732454727,
+        "annualized_relative_growth": 0.07996175376071912
+      },
+      "2026": {
+        "months": 5,
+        "monthly_log_delta_sum": 0.12786678437905796,
+        "annualized_relative_growth": 0.3591782409237114
+      }
+    },
+    "leave_one_year_out_ann_relative_advantage": {
+      "2017": 0.04425281535331682,
+      "2018": 0.03844957436964225,
+      "2019": 0.043848522897642184,
+      "2020": 0.04403296693149317,
+      "2021": 0.0318242377529665,
+      "2022": 0.04761116110840691,
+      "2023": 0.028629840013439267,
+      "2024": 0.0393776553671934,
+      "2025": 0.03243151146332823,
+      "2026": 0.024482806947288216
+    },
+    "months_benefiting": 26,
+    "months_hurt": 19,
+    "zero_effect_months": 68,
+    "top3_month_positive_log_gains": 0.27434081531261584,
+    "total_log_gains": 0.3455579443167749,
+    "worst3_month_negative_log_deltas": -0.08415649129974487,
+    "month_log_delta_std": 0.01790325387220977
+  },
+  "score_jitter_robustness": {
+    "unperturbed_base_cagr": 0.09978039091271884,
+    "unperturbed_hysteresis_cagr": 0.14088803144356365,
+    "perturbation_fraction_score_std": {
+      "0.001": {
+        "n": 30,
+        "hysteresis_cagr_median": 0.14088803144356365,
+        "hysteresis_cagr_min": 0.13807386567281665,
+        "hysteresis_cagr_max": 0.14088803144356365,
+        "gap_pp_p05_p50_p95": [
+          3.829347476009781,
+          4.110764053084481,
+          4.293315337130776
+        ],
+        "fraction_hysteresis_beats_perturbed_base": 1
+      },
+      "0.01": {
+        "n": 30,
+        "hysteresis_cagr_median": 0.14285301734283484,
+        "hysteresis_cagr_min": 0.13686032217949462,
+        "hysteresis_cagr_max": 0.15549059475302762,
+        "gap_pp_p05_p50_p95": [
+          3.520505996281209,
+          4.507574259591529,
+          5.2956898828906125
+        ],
+        "fraction_hysteresis_beats_perturbed_base": 1
+      }
+    },
+    "scope": "score-jitter-only; NOT Yahoo vintage/OHLC data revisions"
+  },
+  "hindsight_selected_universe": true,
+  "untouched_forward_holdout": false,
+  "deployable_edge_proven": false,
+  "workflow": "https://github.com/AM1975MA/Test/actions/runs/39089923977",
+  "artifacts": {
+    "artifacts": [
+      {
+        "id": 12122401748,
+        "name": "eur60-hysteresis-adversarial-v1",
+        "size_in_bytes": 1462,
+        "url": "https://api.github.com/repos/AM1975MA/Test/actions/artifacts/12122401748",
+        "archive_download_url": "https://api.github.com/repos/AM1975MA/Test/actions/artifacts/12122401748/zip",
+        "expired": false,
+        "created_at": "2026-10-18T02:24:15Z",
+        "expires_at": "2027-01-16T02:23:42Z",
+        "updated_at": "2026-10-18T02:24:15Z",
+        "digest": "sha256:d541e45a604c5784a1362441b869a0457dde9c6349d32184312b13744b8b5eb7",
+        "workflow_run": {
+          "id": 39089923977,
+          "repository_id": 1045875140,
+          "head_repository_id": 1045875140,
+          "head_branch": "research/scientific-coordinator-20261018",
+          "head_sha": "afc12c023f294542ed1130f4ef2db81bacd2a746"
+        }
+      }
+    ]
+  }
+}
