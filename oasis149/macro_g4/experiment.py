@@ -23,9 +23,13 @@ PIT_PROOF=False
 
 def get_series(series,out):
     url=BASE+series
-    resp=requests.get(url,timeout=60,headers={"User-Agent":"OASIS149-Scientific-Research/1.0"})
-    resp.raise_for_status()
-    raw=resp.content
+    # FRED's graph CSV endpoint responded to the stable browser-like
+    # urllib request in the independently completed provider probe.
+    # Requests' research-labelled UA timed out. No source/methodology change.
+    from urllib.request import Request,urlopen
+    request=Request(url,headers={"User-Agent":"Mozilla/5.0 (ETF academic reproducibility check)"})
+    with urlopen(request,timeout=30) as response:
+        raw=response.read()
     if len(raw)<15000:raise AssertionError(f"FRED returned too little historical data: {series}: {len(raw)}")
     parsed=pd.read_csv(io.BytesIO(raw))
     dates=parsed.columns[0]
