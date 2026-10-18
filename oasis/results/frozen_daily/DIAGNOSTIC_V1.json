@@ -1,0 +1,122 @@
+{
+  "status": "OASIS_V1_FORENSIC_AUDIT_COMPLETED",
+  "prior_study_run": 39124068263,
+  "historical_PIT_survivorship_bias": true,
+  "matched_open_calendar": true,
+  "n_trade_days": 2389,
+  "arms": 7,
+  "crisis_days": 146,
+  "economic_switches_in_crisis": 9,
+  "economic_switches_in_noncrisis": 72,
+  "p2_vs_p6_exact_same_wealth": true,
+  "incremental_per_state": {
+    "hysteresis_vs_monthly": {
+      "target": "P2_DAILY_ECONOMIC_HYSTERESIS",
+      "reference": "P0_MONTHLY_GREEDY",
+      "total_relative_log_wealth": -0.14430737504609228,
+      "by_regime": {
+        "BREATHING": {
+          "n_days": 2046,
+          "cumulative_excess_log": -0.05390179705731675,
+          "mean_daily_excess_log": -2.6344964348639663e-05
+        },
+        "SHOCK": {
+          "n_days": 83,
+          "cumulative_excess_log": -0.010370904250941788,
+          "mean_daily_excess_log": -0.0001249506536258047
+        },
+        "RECOVERY": {
+          "n_days": 196,
+          "cumulative_excess_log": -0.02126477709422059,
+          "mean_daily_excess_log": -0.00010849376068479894
+        },
+        "CONTINUATION": {
+          "n_days": 63,
+          "cumulative_excess_log": -0.05876989664361316,
+          "mean_daily_excess_log": -0.000932855502279574
+        }
+      }
+    },
+    "active_crisis_vs_hysteresis": {
+      "target": "P3_OASIS_CRISIS_ACTIVE",
+      "reference": "P2_DAILY_ECONOMIC_HYSTERESIS",
+      "total_relative_log_wealth": 0.055006434706314264,
+      "by_regime": {
+        "BREATHING": {
+          "n_days": 2046,
+          "cumulative_excess_log": -0.02400165966843661,
+          "mean_daily_excess_log": -1.1731016455736369e-05
+        },
+        "SHOCK": {
+          "n_days": 83,
+          "cumulative_excess_log": 0.1865067645459934,
+          "mean_daily_excess_log": 0.0022470694523613662
+        },
+        "RECOVERY": {
+          "n_days": 196,
+          "cumulative_excess_log": -0.026874133530211397,
+          "mean_daily_excess_log": -0.00013711292617454794
+        },
+        "CONTINUATION": {
+          "n_days": 63,
+          "cumulative_excess_log": -0.08062453664103114,
+          "mean_daily_excess_log": -0.0012797545498576372
+        }
+      }
+    },
+    "crisis_only_vs_monthly": {
+      "target": "P4_MONTHLY_GREEDY_CRISIS",
+      "reference": "P0_MONTHLY_GREEDY",
+      "total_relative_log_wealth": 0.05723594439618104,
+      "by_regime": {
+        "BREATHING": {
+          "n_days": 2046,
+          "cumulative_excess_log": -0.01793587003693261,
+          "mean_daily_excess_log": -8.766309890973905e-06
+        },
+        "SHOCK": {
+          "n_days": 83,
+          "cumulative_excess_log": 0.1815466904184077,
+          "mean_daily_excess_log": 0.0021873095231133457
+        },
+        "RECOVERY": {
+          "n_days": 196,
+          "cumulative_excess_log": -0.021827222575424528,
+          "mean_daily_excess_log": -0.00011136338048685983
+        },
+        "CONTINUATION": {
+          "n_days": 63,
+          "cumulative_excess_log": -0.08454765340986953,
+          "mean_daily_excess_log": -0.0013420262446011035
+        }
+      }
+    },
+    "greedy_daily_vs_monthly": {
+      "target": "P1_DAILY_GREEDY",
+      "reference": "P0_MONTHLY_GREEDY",
+      "total_relative_log_wealth": -1.2991005827783235,
+      "by_regime": {
+        "BREATHING": {
+          "n_days": 2046,
+          "cumulative_excess_log": -1.0775796948913634,
+          "mean_daily_excess_log": -0.0005266762927132764
+        },
+        "SHOCK": {
+          "n_days": 83,
+          "cumulative_excess_log": -0.014924073846502217,
+          "mean_daily_excess_log": -0.00017980811863255682
+        },
+        "RECOVERY": {
+          "n_days": 196,
+          "cumulative_excess_log": -0.1750165827023768,
+          "mean_daily_excess_log": -0.0008929417484815142
+        },
+        "CONTINUATION": {
+          "n_days": 63,
+          "cumulative_excess_log": -0.03158023133808111,
+          "mean_daily_excess_log": -0.0005012735133028748
+        }
+      }
+    }
+  }
+}
