@@ -1,13 +1,13 @@
 # OASIS V1 failed: four-agent scientific root cause, and OASIS V2 research direction
-Date: 2026-10-18. Branch: \`research/oasis150-root-cause-20261018\`. Status **STOP V1 TRADING RESEARCH / REBUILD CORE SIGNAL & RISK**.
+Date: 2026-10-18. Branch: `research/oasis150-root-cause-20261018`. Status **STOP V1 TRADING RESEARCH / REBUILD CORE SIGNAL & RISK**.
 
 ## Traceable reviews actually run
-Four independently executed deterministic quantitative audit jobs (DATA_AGENT, SIGNAL_AGENT, RISK_AGENT, EXECUTION_AGENT), followed by the coordinator's gate verdict. GitHub Actions [39133850072](https://github.com/AM1975MA/Test/actions/runs/39133850072). Each archived \`oasis150/rootcause/results/{DATA,SIGNAL,RISK,EXECUTION}_AUDIT.json\` and \`SCIENTIFIC_COORDINATOR_DECISION.json\`, with hashes. The GitHub \`.github/agents\` profiles were **consulted as review responsibilities**, but NO parallel independent LLM agent conversations were instantiated. Do not misrepresent executed Python auditors as LLM experts.
+Four independently executed deterministic quantitative audit jobs (DATA_AGENT, SIGNAL_AGENT, RISK_AGENT, EXECUTION_AGENT), followed by the coordinator's gate verdict. GitHub Actions [39133850072](https://github.com/AM1975MA/Test/actions/runs/39133850072). Each archived `oasis150/rootcause/results/{DATA,SIGNAL,RISK,EXECUTION}_AUDIT.json` and `SCIENTIFIC_COORDINATOR_DECISION.json`, with hashes. The GitHub `.github/agents` profiles were **consulted as review responsibilities**, but NO parallel independent LLM agent conversations were instantiated. Do not misrepresent executed Python auditors as LLM experts.
 
-The seven OASIS trade arms themselves are immutable, full 2366-day ledgers archived under \`oasis150/results/frozen\`, successful originating [39132785483](https://github.com/AM1975MA/Test/actions/runs/39132785483). No model parameter tuned after seeing performance. All tests are retrospective and cannot establish deployable performance.
+The seven OASIS trade arms themselves are immutable, full 2366-day ledgers archived under `oasis150/results/frozen`, successful originating [39132785483](https://github.com/AM1975MA/Test/actions/runs/39132785483). No model parameter tuned after seeing performance. All tests are retrospective and cannot establish deployable performance.
 
 ## Severity 1: Information failure, BEFORE decision layer
-- Original signal \`oasis/observers.py\` computes fixed one-sided 21/63/126d factor-adjusted trailing momentum with historical realized-volatility penalty. This is a score **heuristic**, not a calibrated forecast of relative expected NET gains.
+- Original signal `oasis/observers.py` computes fixed one-sided 21/63/126d factor-adjusted trailing momentum with historical realized-volatility penalty. This is a score **heuristic**, not a calibrated forecast of relative expected NET gains.
 - Mean cross-sectional Spearman (as-of score vs subsequent 21-session executable next-Open/next-Open gross log payoff), taking every 21st day to limit overlapping forward labels:
   - BREATHING **+0.01424** across **96** nonoverlapping sampled dates.
   - SHOCK **+0.1198** across **7** dates — too few for a stable finding.
@@ -16,14 +16,14 @@ The seven OASIS trade arms themselves are immutable, full 2366-day ledgers archi
 - For 96 BREATHING points, the score's Top2 mean gross next-21d log return was **−0.00292** (−0.292 percentage log points) **relative to contemporaneous cross-sectional median**. This is directional evidence against exploitable long-only excess payoffs on the easiest subset, not a statistical proof of negative alpha.
 - The score does NOT generalize obviously within asset classes either; small held-out group sample + correlated ETFs make naive Spearman unreliable. Report group details in SIGNAL_AUDIT.
 - **Economic switch quality (direct decision diagnostic):** 49 one-for-one switches in BREATHING with 21-day realized NEW-minus-SOLD log gain **−0.00335** on average; just **42.9%** positive. 2 SHOCK switches **−0.2021** average log disadvantage; 5 RECOVERY switches **−0.0448** average, each tiny subset. Gross, **before** switch transaction costs. Both “noisy score” and “switch as if forecast credible” are failures.
-- A z-score from historical paired *return variance* is not a valid standard error for the model's forecast. Existing code's Bonferroni-adjusted "credible lower bound" is not credible in the statistical sense until residual out-of-sample calibration validates it. More mathematics on an uninformative \`score\` cannot manufacture net alpha.
+- A z-score from historical paired *return variance* is not a valid standard error for the model's forecast. Existing code's Bonferroni-adjusted "credible lower bound" is not credible in the statistical sense until residual out-of-sample calibration validates it. More mathematics on an uninformative `score` cannot manufacture net alpha.
 
 **ROOT CAUSE:** no proven point-in-time conditional ranking skill, calibrated *paired* utility distribution or ability to distinguish transient bounce from durable relative growth. OASIS attempted optimal decisions without a trustworthy information layer.
 
 ## Severity 1: Risk engine detects the wrong target
-- \`P3_OASIS_CRISIS_ACTIVE\` max daily sampled DD **−59.06%**, from 2022-08-26 peak to 2025-04-07 trough = **654 trading sessions**.
-- Within this episode, system recognized market systemic crisis on only **11 sessions**. Its mean portfolio risky exposure stayed **98.96%**, and risky exposure was materially reduced on **1.68% of the drawdown window**. Trough held \`EWO;FXI\`.
-- **None of P3's ten worst daily portfolio log returns were classified as market crisis**. Major one-day losses occurred when holdings included GDX/SLV, SMH/REZ, SMH/DXJ, UNG/TAN, even though the aggregate market proxy was labeled \`BREATHING\`.
+- `P3_OASIS_CRISIS_ACTIVE` max daily sampled DD **−59.06%**, from 2022-08-26 peak to 2025-04-07 trough = **654 trading sessions**.
+- Within this episode, system recognized market systemic crisis on only **11 sessions**. Its mean portfolio risky exposure stayed **98.96%**, and risky exposure was materially reduced on **1.68% of the drawdown window**. Trough held `EWO;FXI`.
+- **None of P3's ten worst daily portfolio log returns were classified as market crisis**. Major one-day losses occurred when holdings included GDX/SLV, SMH/REZ, SMH/DXJ, UNG/TAN, even though the aggregate market proxy was labeled `BREATHING`.
 - Current risk gate uses aggregate breadth, common proxy's 21d momentum and a coarse volatility HMM. It does **not** estimate conditional expected-shortfall of ACTUAL held positions, concentration, idiosyncratic deteriorations, adverse price jumps or synchronized downside correlation. All portfolio risk is allowed in ostensibly ordinary markets. Two ETF weights ~50% each, fully risky almost always.
 
 **ROOT CAUSE:** conflation of systemic stress detection with the actual portfolio survival budget. A stock/bond/commodity equal-weight proxy may classify a commodity-specific crash as noncrisis; a two-ETF book can then suffer enormous losses at maximum allocation.
@@ -59,8 +59,8 @@ The seven OASIS trade arms themselves are immutable, full 2366-day ledgers archi
 **G1: Information and signal validity FIRST (no portfolio backtest before passing).**
 - Predict **paired net relative log growth** for candidate i versus currently held j over predeclared 5 / 21 session horizons, conditional on actual group factor and state; NOT next absolute winning ETF and not a single 150-wide momentum sort.
 - Represent paired forecast as calibrated predictive distribution:
-  \`P_t(Delta log W_ij(h) > spread+fees+FX)\`,
-  \`E_t[Delta log W_ij(h) - costs]\`, conditional tail quantile and uncertainty.
+  `P_t(Delta log W_ij(h) > spread+fees+FX)`,
+  `E_t[Delta log W_ij(h) - costs]`, conditional tail quantile and uncertainty.
 - Start with three falsifiable models: (a) zero-alpha / shrinkage-no-change, (b) simple conditional residual trend 21/63 days, (c) robust hierarchical Student-t latent drift and state-space *conditional model*; add complexity only after prequential proper log score, event Brier score, empirical interval coverage and realized economic paired switch advantage beat plain controls. Asset group-specific common factors; no single equity/bond/oil beta.
 - Hierarchical shrinkage across assets/market states to prevent fitting separate rich models on 2 independent continuation crises. Event alerts based on sequential innovation calibrated on training data; data-adaptive FDR/e-process optional ONLY after proper calibration.
 - Economic opportunity duration is modeled via survival/competing risks once there are sufficient events, not guessed from momentum slope.
@@ -79,7 +79,7 @@ The seven OASIS trade arms themselves are immutable, full 2366-day ledgers archi
 - Regular observation can be daily; trades only at feasible next market open when economic gain clears rigorously tested decision hurdle. Event-level evaluation around shocks/recoveries, not multiple overlapping label rows.
 
 **G4: Impulse control / dynamic hysteresis LAST.**
-- With accepted calibrated \`Delta Q_{i,j}(h)\`, solve sequential accept/hold/reduce/rotate decision with crossing cost (commission+bid-ask+tax if relevant), expected survival of opportunity, epistemic uncertainty penalty and position-specific ES budget.
+- With accepted calibrated `Delta Q_{i,j}(h)`, solve sequential accept/hold/reduce/rotate decision with crossing cost (commission+bid-ask+tax if relevant), expected survival of opportunity, epistemic uncertainty penalty and position-specific ES budget.
 - Mathematical analogy: metastability/no-trade region from optimal switching with transaction costs is appropriate; thermodynamic entropy is *only* a proxy for correlation concentration, not market “temperature”.
 - Do not set thresholds by V1 CAGR. Set them by predeclared acceptable false-switch incidence and cost recovery in training, and validate on fresh data.
 
