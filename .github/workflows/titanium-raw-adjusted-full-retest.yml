@@ -1,0 +1,97 @@
+name: Titanium Raw-Adjusted Full Retest
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  full:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {tag: production, sub: 0.85, col: 0.80}
+          - {tag: sample070, sub: 0.70, col: 0.70}
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen-compatible stack
+        run: pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 joblib==1.5.3 pyarrow matplotlib numba
+      - name: Download immutable package and raw-adjusted matrices
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9053946155/zip -o immutable_outer.zip
+          mkdir immutable_outer && unzip -q immutable_outer.zip -d immutable_outer
+          inner=$(find immutable_outer -name 'TITANIUM_IMMUTABLE_REGENERATION.zip' -print -quit); test -n "$inner"
+          mkdir immutable && unzip -q "$inner" -d immutable
+          root=$(find immutable -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_REGENERATED' -print -quit); test -n "$root"
+          cp -a "$root" RAWPKG
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9091584313/zip -o raw_outer.zip
+          mkdir raw_outer && unzip -q raw_outer.zip -d raw_outer
+          rawzip=$(find raw_outer -name 'TITANIUM_RAW_ADJUSTED_DATA_PARITY.zip' -print -quit); test -n "$rawzip"
+          mkdir raw && unzip -q "$rawzip" -d raw
+          for f in OPEN HIGH LOW CLOSE VOLUME; do cp "raw/DATA_PARITY/RAW_ACTIONS_ADJ_${f}.parquet" "RAWPKG/${f}.parquet"; done
+      - name: Reconstruct exact source modules
+        run: |
+          mkdir -p upstream/gzpayload upstream/reconstruction
+          for f in gz_00.b64 gz_01.b64 gz_02.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-source-faithful-20260803/gzpayload/$f" -o "upstream/gzpayload/$f"; done
+          cat upstream/gzpayload/gz_*.b64 | base64 -d | gzip -dc > upstream/base.py
+          echo '76b5da95c865a069d967189d61b1c8df3338eacc5a0e8941e8ee7025c42caf60  upstream/base.py' | sha256sum -c -
+          for f in rv5_00.b64 rv5_01.b64 rv5_02.b64 rv5_04.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-reconstruction-v5-20260803/reconstruction/$f" -o "upstream/reconstruction/$f"; done
+          for f in rv5_03a.b64 rv5_03b.b64 rv5_03c.b64 rv5_03d.b64; do curl -fsSL "https://raw.githubusercontent.com/AM1975MA/Test/titanium-reconstruction-v5-20260803/reconstruction/$f" -o "upstream/reconstruction/$f"; done
+          cat upstream/reconstruction/rv5_00.b64 upstream/reconstruction/rv5_01.b64 upstream/reconstruction/rv5_02.b64 upstream/reconstruction/rv5_03a.b64 upstream/reconstruction/rv5_03b.b64 upstream/reconstruction/rv5_03c.b64 upstream/reconstruction/rv5_03d.b64 upstream/reconstruction/rv5_04.b64 | base64 -d | gzip -dc > upstream/v5.py
+          echo 'ba99f9ce08d96e6b56567d44bf18b5caa7a76ccf13a7d44546e6d1416d79d65a  upstream/v5.py' | sha256sum -c -
+      - name: Set Compact sampling candidate
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('upstream/base.py');s=p.read_text()
+          sub=float('${{ matrix.sub }}'); col=float('${{ matrix.col }}')
+          s,n1=re.subn(r"'subsample'\s*:\s*0\.85",f"'subsample': {sub}",s,count=1)
+          s,n2=re.subn(r"'colsample_bytree'\s*:\s*0\.8",f"'colsample_bytree': {col}",s,count=1)
+          if n1!=1 or n2!=1: raise SystemExit(f'patch failed sub={n1} col={n2}')
+          p.write_text(s)
+          print('sampling',sub,col)
+          PY
+      - name: Full 500-basket retrain on raw-adjusted OHLC
+        run: |
+          set +e
+          python RAWPKG/IMMUTABLE_RUNNER.py --base-module upstream/base.py --v5-module upstream/v5.py --data-dir RAWPKG --output 'RAW_${{ matrix.tag }}' --n-estimators 360 --n-baskets 500
+          rc=$?
+          set -e
+          echo "runner rc=$rc"
+          test -f 'RAW_${{ matrix.tag }}/BASKET_RESULTS_500.csv'
+          test -f 'RAW_${{ matrix.tag }}/TARGET_ARRAYS_500.npz'
+          test -f 'RAW_${{ matrix.tag }}/TITANIUM_CONCENTRATION_FRONTIER_PATHS.npz'
+          test -f 'RAW_${{ matrix.tag }}/GLOBAL_SCORECARD.csv'
+      - name: Apply literal frozen execution
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/AM1975MA/Test/titanium-exact-frozen-execution-20260811/forensics/exact_frozen_execution_probe.py -o exact_frozen_execution_probe.py
+          python exact_frozen_execution_probe.py --package 'RAW_${{ matrix.tag }}' --output 'RAW_${{ matrix.tag }}_EXACT_EXEC'
+      - name: Print summary
+        run: |
+          python - <<'PY'
+          import pandas as pd
+          b=pd.read_csv('RAW_${{ matrix.tag }}/BASKET_RESULTS_500.csv')
+          e=pd.read_csv('RAW_${{ matrix.tag }}_EXACT_EXEC/SUMMARY.csv')
+          g=pd.read_csv('RAW_${{ matrix.tag }}/GLOBAL_SCORECARD.csv')
+          print('CURRENT EXECUTION')
+          print(b.groupby('strategy').cagr.agg(['mean','median']).to_string())
+          print('EXACT FROZEN EXECUTION')
+          print(e.to_string(index=False))
+          print('GLOBAL')
+          print(g.to_string(index=False))
+          PY
+      - name: Archive
+        run: zip -r 'TITANIUM_RAW_${{ matrix.tag }}_FULL.zip' 'RAW_${{ matrix.tag }}' 'RAW_${{ matrix.tag }}_EXACT_EXEC'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 'TITANIUM_RAW_${{ matrix.tag }}_FULL'
+          path: 'TITANIUM_RAW_${{ matrix.tag }}_FULL.zip'
+          retention-days: 7
