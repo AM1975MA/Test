@@ -1,0 +1,51 @@
+name: ETF_RESEARCH_PERMANENT_ARCHIVE
+on:
+  push:
+    branches:
+      - research/scientific-coordinator-20261018
+    paths:
+      - '.github/workflows/etf-research-archive.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Retrieve frozen run inputs, ledgers and states
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39087987551 -R AM1975MA/Test -n europe60-stochastic-state-space-v1 -D _stoch
+          gh run download 39084898663 -R AM1975MA/Test -n europe-only-eur60-hindsight-oracle -D _oracle
+          gh run download 39089621741 -R AM1975MA/Test -n scientific-etf-coordinator-eur60-v1 -D _coordinator
+          gh run download 39090132221 -R AM1975MA/Test -n eur60-hysteresis-regime-h7-v1 -D _h7
+          test -f _stoch/MONTHLY_SCORES.csv
+          test -f _oracle/MONTHLY_ORACLE_113.csv
+          test -f _coordinator/MONTHLY_LEDGER.csv
+          test -f _h7/MONTHLY_LEDGER.csv
+      - name: Archive original row-level experiments in research branch, never default
+        run: |
+          mkdir -p research_receipts/frozen_inputs
+          cp _stoch/MONTHLY_SCORES.csv research_receipts/frozen_inputs/EUR60_SCORES_113x60.csv
+          cp _oracle/MONTHLY_ORACLE_113.csv research_receipts/frozen_inputs/EUR60_CALENDAR_113.csv
+          cp _coordinator/MONTHLY_LEDGER.csv research_receipts/frozen_inputs/SCIENTIFIC_MONTHLY_LEDGER.csv
+          cp _coordinator/MONTHLY_STATES.json research_receipts/frozen_inputs/SCIENTIFIC_ASOF_STATES.json
+          cp _coordinator/RISK_FORECAST_AUDIT.csv research_receipts/frozen_inputs/SCIENTIFIC_RISK_FORECAST_AUDIT.csv
+          cp _h7/MONTHLY_LEDGER.csv research_receipts/frozen_inputs/H7_MONTHLY_LEDGER.csv
+          cp _h7/RESULT.json research_receipts/frozen_inputs/H7_RESULTS.json
+          (cd research_receipts/frozen_inputs && sha256sum EUR60_SCORES_113x60.csv EUR60_CALENDAR_113.csv SCIENTIFIC_MONTHLY_LEDGER.csv SCIENTIFIC_ASOF_STATES.json SCIENTIFIC_RISK_FORECAST_AUDIT.csv H7_MONTHLY_LEDGER.csv H7_RESULTS.json > FILE_SHA256.txt)
+          git config user.name "ETF-Research-Archivist"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_receipts/frozen_inputs
+          git commit -m "Persist complete frozen 113-month ETF science inputs, decisions and outcome ledgers"
+          git push origin HEAD:refs/heads/research/scientific-coordinator-20261018
+      - name: Verify durable Git tree
+        run: |
+          test -s research_receipts/frozen_inputs/EUR60_SCORES_113x60.csv
+          test -s research_receipts/frozen_inputs/H7_MONTHLY_LEDGER.csv
+          (cd research_receipts/frozen_inputs && sha256sum -c FILE_SHA256.txt)
