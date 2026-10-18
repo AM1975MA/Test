@@ -1,0 +1,38 @@
+name: OASIS149_MACRO_PROVIDER_CONNECTIVITY
+on:
+  push:
+    branches:
+      - research/oasis149-macro-asof-g4-20261018
+    paths:
+      - '.github/workflows/oasis149-provider-probe.yml'
+permissions:
+  contents: read
+jobs:
+  test-authoritative-endpoints:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check independent source download reachability before changing scientific inputs
+        run: |
+          python - <<'PY'
+          import urllib.request,json,time
+          sources={
+           "CBOE_VIX":"https://cdn-api.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+           "TREASURY":"https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/all/all?_format=csv&page=&type=daily_treasury_yield_curve",
+           "STLOUIS_FRED":"https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
+           "FRED_MD":"https://files.stlouisfed.org/files/htdocs/fred-md/monthly/2026-06.csv"
+          }
+          results={}
+          for name,url in sources.items():
+            t=time.time()
+            try:
+              req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (ETF academic reproducibility check)"})
+              with urllib.request.urlopen(req,timeout=12) as r:
+                data=r.read(4096)
+                results[name]=dict(ok=True,status=r.status,bytes_sample=len(data),
+                   first=data[:110].decode("utf-8","replace"),sec=round(time.time()-t,2))
+            except Exception as e:
+              results[name]=dict(ok=False,error=str(e)[:250],sec=round(time.time()-t,2))
+            print("EXTERNAL_PROVIDER_PROBE "+json.dumps({name:results[name]}),flush=True)
+          PY
