@@ -1,0 +1,290 @@
+{
+  "status": "COMPLETED_EUR60_RESEARCH_ONLY",
+  "coordinator": "A0",
+  "specialists": [
+    "A1_PIT",
+    "A2_EXECUTION",
+    "A3_RANKING",
+    "A4_BAYES",
+    "A5_COMPLEXITY",
+    "A6_CONTROL",
+    "A7_ADVERSARIAL"
+  ],
+  "source_runs": [
+    39071370480,
+    39084898663,
+    39087987551
+  ],
+  "reference_parity_pass": true,
+  "synthetic_no_lookahead_pass": true,
+  "historical_months": 113,
+  "universe_size": 60,
+  "old_reference_cagr": 0.09978039091271884,
+  "metrics": {
+    "H0_RH_5050": {
+      "months": 113,
+      "cagr": 0.09978039091271884,
+      "terminal_wealth": 2.448863449071208,
+      "monthly_maxdd": -0.266440881813372,
+      "monthly_sharpe": 0.490616289955585,
+      "annual_turnover": 8.495575221238937,
+      "mean_exposure": 1,
+      "cash_months": 0,
+      "monthly_es5": -0.11210144038382346,
+      "worst_month": -0.18410026033201876,
+      "selection_match_baseline": 1,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.1095345283089939
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.08444019678860726
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.10288822703604228
+        }
+      }
+    },
+    "H1_HIST_INV_VOL": {
+      "months": 113,
+      "cagr": 0.09722504368967799,
+      "terminal_wealth": 2.395803993649721,
+      "monthly_maxdd": -0.2612807570719706,
+      "monthly_sharpe": 0.48348689989382787,
+      "annual_turnover": 8.823402890207284,
+      "mean_exposure": 1,
+      "cash_months": 0,
+      "monthly_es5": -0.11280023756984793,
+      "worst_month": -0.18619063875697017,
+      "selection_match_baseline": 1,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.10395568453108694
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.09036125384368421
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.09466901317711951
+        }
+      }
+    },
+    "H2_KALMAN_UNCERTAINTY": {
+      "months": 113,
+      "cagr": 0.09252715181115967,
+      "terminal_wealth": 2.3009309393239694,
+      "monthly_maxdd": -0.26912713699717516,
+      "monthly_sharpe": 0.45687577701106774,
+      "annual_turnover": 8.797302184178443,
+      "mean_exposure": 1,
+      "cash_months": 0,
+      "monthly_es5": -0.11335319857079146,
+      "worst_month": -0.18779640258417074,
+      "selection_match_baseline": 1,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.09915670049862713
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.08184415951838075
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.09491678305619922
+        }
+      }
+    },
+    "H3_MARKET_REGIME": {
+      "months": 113,
+      "cagr": 0.09414727156712166,
+      "terminal_wealth": 2.3332625533858815,
+      "monthly_maxdd": -0.20733480721753106,
+      "monthly_sharpe": 0.5174650019524442,
+      "annual_turnover": 8.36283185840708,
+      "mean_exposure": 0.9292035398230089,
+      "cash_months": 16,
+      "monthly_es5": -0.0968392584372722,
+      "worst_month": -0.13031484500637258,
+      "selection_match_baseline": 1,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.11941869945365857
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.05455598417436658
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.10288822703604228
+        }
+      }
+    },
+    "H4_EIGEN_ENTROPY_GATE": {
+      "months": 113,
+      "cagr": 0.058652725126034255,
+      "terminal_wealth": 1.7103919533107546,
+      "monthly_maxdd": -0.20733480721753117,
+      "monthly_sharpe": 0.35083325322791986,
+      "annual_turnover": 8.415929203539823,
+      "mean_exposure": 0.8008849557522124,
+      "cash_months": 45,
+      "monthly_es5": -0.0968392584372722,
+      "worst_month": -0.13031484500637258,
+      "selection_match_baseline": 1,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.0968049143289571
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.017569165996337732
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.04867906402228517
+        }
+      }
+    },
+    "H5_RANK_HYSTERESIS": {
+      "months": 113,
+      "cagr": 0.14088803144356365,
+      "terminal_wealth": 3.4597002864382533,
+      "monthly_maxdd": -0.2792568243248428,
+      "monthly_sharpe": 0.6912903396468708,
+      "annual_turnover": 6.47787610619469,
+      "mean_exposure": 1,
+      "cash_months": 0,
+      "monthly_es5": -0.10842651482044541,
+      "worst_month": -0.18410026033201876,
+      "selection_match_baseline": 0.5398230088495575,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.10299278327559791
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.13773654644052646
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.21064350453325242
+        }
+      }
+    },
+    "H6_KALMAN_AND_REGIME": {
+      "months": 113,
+      "cagr": 0.08600996404786021,
+      "terminal_wealth": 2.1748787156595406,
+      "monthly_maxdd": -0.21082826781690245,
+      "monthly_sharpe": 0.47391309722333097,
+      "annual_turnover": 8.626376321517618,
+      "mean_exposure": 0.9292035398230089,
+      "cash_months": 16,
+      "monthly_es5": -0.09777194418850528,
+      "worst_month": -0.1349232859946965,
+      "selection_match_baseline": 1,
+      "slices": {
+        "2017_2020": {
+          "n": 48,
+          "cagr": 0.10994166366846492
+        },
+        "2021_2023": {
+          "n": 36,
+          "cagr": 0.04798355699200285
+        },
+        "2024_2026": {
+          "n": 29,
+          "cagr": 0.09491678305619922
+        }
+      }
+    }
+  },
+  "paired_bootstrap_12m": {
+    "H1_HIST_INV_VOL": {
+      "mean_monthly_log_difference": -0.00019385086135103688,
+      "ci95": [
+        -0.001144365436024784,
+        0.0007583514013453033
+      ],
+      "rate_months_positive": 0.40707964601769914
+    },
+    "H2_KALMAN_UNCERTAINTY": {
+      "mean_monthly_log_difference": -0.0005514178877258267,
+      "ci95": [
+        -0.0013454151583634463,
+        0.0002848056261860226
+      ],
+      "rate_months_positive": 0.4690265486725664
+    },
+    "H3_MARKET_REGIME": {
+      "mean_monthly_log_difference": -0.0004279335656664824,
+      "ci95": [
+        -0.0024791405197059193,
+        0.0017089189475609518
+      ],
+      "rate_months_positive": 0.061946902654867256
+    },
+    "H4_EIGEN_ENTROPY_GATE": {
+      "mean_monthly_log_difference": -0.0031761191316141066,
+      "ci95": [
+        -0.005555794349477377,
+        -0.0006360653592489513
+      ],
+      "rate_months_positive": 0.1415929203539823
+    },
+    "H5_RANK_HYSTERESIS": {
+      "mean_monthly_log_difference": 0.0030580349054581883,
+      "ci95": [
+        -0.00013595369650616144,
+        0.006420764088942227
+      ],
+      "rate_months_positive": 0.23008849557522124
+    },
+    "H6_KALMAN_AND_REGIME": {
+      "mean_monthly_log_difference": -0.0010500098983499578,
+      "ci95": [
+        -0.003258573568771307,
+        0.001416463461027433
+      ],
+      "rate_months_positive": 0.4690265486725664
+    }
+  },
+  "risk_observer_descriptive_predictive_skill": {
+    "historic_vol": {
+      "n": 226,
+      "future_abs_return_spearman": 0.29211856587787355
+    },
+    "kalman_unc": {
+      "n": 226,
+      "future_abs_return_spearman": 0.2314810338778215
+    }
+  },
+  "market_regime_gate_months": 16,
+  "entropy_gate_months": 45,
+  "data_manifest_sha256": "fcf7f6f551ebdff3a71856f0b41bf7fa94041b2388a8f32f79aab917a7634cea",
+  "forward_untouched_holdout": false,
+  "production_unchanged": true,
+  "caveats": [
+    "retrospective_survivorship_selected_europe60",
+    "unverified_PIT_ticker_and_ISIN_listing",
+    "unverified_EUR_cash_and_market_proxy",
+    "repeated_exploration_same_2017_2026_panel"
+  ],
+  "decision": "ANALYTICAL_EVIDENCE_ONLY_NOT_DEPLOYABLE",
+  "workflow_run": "https://github.com/AM1975MA/Test/actions/runs/39089621741",
+  "artifact_id": 12122152929,
+  "artifact_sha256": "cea8031e4118055c7098ef7791caa056b573af02bc6cde9ae0b6cf02a4273181",
+  "scientific_protocol": "scientific_lab/AGENTS_AND_PROTOCOL.md"
+}
