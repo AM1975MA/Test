@@ -1,0 +1,354 @@
+{
+  "status": "CANONICAL149_G1_PREQUENTIAL_COMPLETED",
+  "G1_PREDICTIVE_GATE": "FAIL",
+  "true_independent_holdout": false,
+  "source_roster_is_exact_original149": true,
+  "n_funds": 149,
+  "n_anchor_dates": 64,
+  "n_pair_predictions": 5120,
+  "predicted_event": "new_21session_return > incumbent_21session_return + 30bps_log",
+  "no_legacy_LM_or_future_returns_as_features": true,
+  "conditional_held_uses_original149_P3_shadow": true,
+  "asof_label_maturity_verified": true,
+  "by_task": {
+    "challenge": {
+      "H0_PRIOR": {
+        "n": 1024,
+        "brier": 0.2494909132286031,
+        "log_loss": 0.6921474004656678,
+        "auc": 0.40616737379327306,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.4524170437147209,
+        "calibration_gap": 0.004614206285279088
+      },
+      "H1_RAW_TREND": {
+        "n": 1024,
+        "brier": 0.2495233054152866,
+        "log_loss": 0.6922091419696452,
+        "auc": 0.4594401401955359,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.46370586768752586,
+        "calibration_gap": 0.006674617687525863
+      },
+      "H2_GROUP_RESIDUAL": {
+        "n": 1024,
+        "brier": 0.24950707222366264,
+        "log_loss": 0.6935764738846271,
+        "auc": 0.5420701900018448,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.4549107631345798,
+        "calibration_gap": 0.0021204868654202125
+      },
+      "H3_HIERARCHICAL_REGIME": {
+        "n": 1024,
+        "brier": 0.25436303231767393,
+        "log_loss": 0.7021151243204493,
+        "auc": 0.4880518661993482,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.4572409270733411,
+        "calibration_gap": 0.00020967707334107466
+      },
+      "H4_STUDENT_T": {
+        "n": 1024,
+        "brier": 0.25399975974073324,
+        "log_loss": 0.7013888640738777,
+        "auc": 0.4932477095246879,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.5008445152018157,
+        "calibration_gap": 0.04381326520181572
+      }
+    },
+    "probe": {
+      "H0_PRIOR": {
+        "n": 4096,
+        "brier": 0.24920994745395467,
+        "log_loss": 0.6915669303187697,
+        "auc": 0.48295648678524766,
+        "observed_frequency": 0.47021484375,
+        "average_prediction": 0.46574719202393394,
+        "calibration_gap": 0.0044676517260660575
+      },
+      "H1_RAW_TREND": {
+        "n": 4096,
+        "brier": 0.2495156541051618,
+        "log_loss": 0.6921852597269575,
+        "auc": 0.4855640256303506,
+        "observed_frequency": 0.47021484375,
+        "average_prediction": 0.46338861651092844,
+        "calibration_gap": 0.006826227239071558
+      },
+      "H2_GROUP_RESIDUAL": {
+        "n": 4096,
+        "brier": 0.2504043109852645,
+        "log_loss": 0.6940604959295458,
+        "auc": 0.4992680802599404,
+        "observed_frequency": 0.47021484375,
+        "average_prediction": 0.46359424661597365,
+        "calibration_gap": 0.006620597134026351
+      },
+      "H3_HIERARCHICAL_REGIME": {
+        "n": 4096,
+        "brier": 0.2510706976190952,
+        "log_loss": 0.6958725471411957,
+        "auc": 0.5101482980892086,
+        "observed_frequency": 0.47021484375,
+        "average_prediction": 0.4627605703638584,
+        "calibration_gap": 0.007454273386141574
+      },
+      "H4_STUDENT_T": {
+        "n": 4096,
+        "brier": 0.2509488346408404,
+        "log_loss": 0.6948239063307574,
+        "auc": 0.5106076919763987,
+        "observed_frequency": 0.47021484375,
+        "average_prediction": 0.46802632620500273,
+        "calibration_gap": 0.0021885175449972705
+      }
+    }
+  },
+  "by_era": {
+    "challenge": {
+      "2021_2023": {
+        "H0_PRIOR": {
+          "n": 560,
+          "brier": 0.25432221360852836,
+          "log_loss": 0.7018376145865275,
+          "auc": 0.4460887544511238,
+          "observed_frequency": 0.5125,
+          "average_prediction": 0.4505663354552774,
+          "calibration_gap": 0.061933664544722544
+        },
+        "H1_RAW_TREND": {
+          "n": 560,
+          "brier": 0.25458479604384254,
+          "log_loss": 0.7023731309017044,
+          "auc": 0.4484180163622672,
+          "observed_frequency": 0.5125,
+          "average_prediction": 0.45935304892456436,
+          "calibration_gap": 0.0531469510754356
+        },
+        "H2_GROUP_RESIDUAL": {
+          "n": 560,
+          "brier": 0.2518039487464681,
+          "log_loss": 0.6969948475286917,
+          "auc": 0.5479955584485201,
+          "observed_frequency": 0.5125,
+          "average_prediction": 0.4579171114106242,
+          "calibration_gap": 0.054582888589375766
+        },
+        "H3_HIERARCHICAL_REGIME": {
+          "n": 560,
+          "brier": 0.2587312442346823,
+          "log_loss": 0.7097030332453104,
+          "auc": 0.48515015762402525,
+          "observed_frequency": 0.5125,
+          "average_prediction": 0.44756729941170537,
+          "calibration_gap": 0.06493270058829459
+        },
+        "H4_STUDENT_T": {
+          "n": 560,
+          "brier": 0.2512199756731855,
+          "log_loss": 0.6958797153547024,
+          "auc": 0.5235925514671159,
+          "observed_frequency": 0.5125,
+          "average_prediction": 0.4988431533590972,
+          "calibration_gap": 0.013656846640902776
+        }
+      },
+      "2024_2026": {
+        "H0_PRIOR": {
+          "n": 464,
+          "brier": 0.24366003345972775,
+          "log_loss": 0.6804523144577337,
+          "auc": 0.39535950647170215,
+          "observed_frequency": 0.3900862068965517,
+          "average_prediction": 0.4546506571312906,
+          "calibration_gap": 0.06456445023473889
+        },
+        "H1_RAW_TREND": {
+          "n": 464,
+          "brier": 0.2434146098290985,
+          "log_loss": 0.6799422587757807,
+          "auc": 0.5292153915233392,
+          "observed_frequency": 0.3900862068965517,
+          "average_prediction": 0.46895926964282414,
+          "calibration_gap": 0.07887306274627243
+        },
+        "H2_GROUP_RESIDUAL": {
+          "n": 464,
+          "brier": 0.2467349798685525,
+          "log_loss": 0.6894508505211011,
+          "auc": 0.541241239287039,
+          "observed_frequency": 0.3900862068965517,
+          "average_prediction": 0.45128241176694,
+          "calibration_gap": 0.06119620487038829
+        },
+        "H3_HIERARCHICAL_REGIME": {
+          "n": 464,
+          "brier": 0.24909105241783616,
+          "log_loss": 0.6929573032042375,
+          "auc": 0.529234914003475,
+          "observed_frequency": 0.3900862068965517,
+          "average_prediction": 0.4689159949408326,
+          "calibration_gap": 0.07882978804428087
+        },
+        "H4_STUDENT_T": {
+          "n": 464,
+          "brier": 0.25735467154639435,
+          "log_loss": 0.708037836665986,
+          "auc": 0.4549518770864651,
+          "observed_frequency": 0.3900862068965517,
+          "average_prediction": 0.5032599519085449,
+          "calibration_gap": 0.11317374501199318
+        }
+      }
+    },
+    "probe": {
+      "2021_2023": {
+        "H0_PRIOR": {
+          "n": 2240,
+          "brier": 0.2495121236331196,
+          "log_loss": 0.6921722488894251,
+          "auc": 0.48271032033703365,
+          "observed_frequency": 0.4745535714285714,
+          "average_prediction": 0.4666687521054739,
+          "calibration_gap": 0.00788481932309748
+        },
+        "H1_RAW_TREND": {
+          "n": 2240,
+          "brier": 0.24998334517625745,
+          "log_loss": 0.6931238757734262,
+          "auc": 0.4775139051960954,
+          "observed_frequency": 0.4745535714285714,
+          "average_prediction": 0.4646079207915349,
+          "calibration_gap": 0.009945650637036507
+        },
+        "H2_GROUP_RESIDUAL": {
+          "n": 2240,
+          "brier": 0.25069013190849915,
+          "log_loss": 0.6945420735581506,
+          "auc": 0.5022159595444514,
+          "observed_frequency": 0.4745535714285714,
+          "average_prediction": 0.465151417417219,
+          "calibration_gap": 0.009402154011352415
+        },
+        "H3_HIERARCHICAL_REGIME": {
+          "n": 2240,
+          "brier": 0.2512205887588627,
+          "log_loss": 0.6961189071624674,
+          "auc": 0.5062362576539523,
+          "observed_frequency": 0.4745535714285714,
+          "average_prediction": 0.46411214134296314,
+          "calibration_gap": 0.010441430085608272
+        },
+        "H4_STUDENT_T": {
+          "n": 2240,
+          "brier": 0.2520125824700526,
+          "log_loss": 0.696942671701858,
+          "auc": 0.4992746678858107,
+          "observed_frequency": 0.4745535714285714,
+          "average_prediction": 0.46998824914662,
+          "calibration_gap": 0.0045653222819513894
+        }
+      },
+      "2024_2026": {
+        "H0_PRIOR": {
+          "n": 1856,
+          "brier": 0.24884525206530728,
+          "log_loss": 0.6908363734231514,
+          "auc": 0.4728155022585678,
+          "observed_frequency": 0.46497844827586204,
+          "average_prediction": 0.4646349643393166,
+          "calibration_gap": 0.0003434839365454301
+        },
+        "H1_RAW_TREND": {
+          "n": 1856,
+          "brier": 0.2489511993641843,
+          "log_loss": 0.6910524472570818,
+          "auc": 0.49441221808744645,
+          "observed_frequency": 0.46497844827586204,
+          "average_prediction": 0.4619170423791619,
+          "calibration_gap": 0.00306140589670012
+        },
+        "H2_GROUP_RESIDUAL": {
+          "n": 1856,
+          "brier": 0.2500593546986019,
+          "log_loss": 0.693479281550195,
+          "auc": 0.4943573729898396,
+          "observed_frequency": 0.46497844827586204,
+          "average_prediction": 0.4617149025455051,
+          "calibration_gap": 0.0032635457303569204
+        },
+        "H3_HIERARCHICAL_REGIME": {
+          "n": 1856,
+          "brier": 0.25088979451937565,
+          "log_loss": 0.6955752160810403,
+          "auc": 0.5150783176324656,
+          "observed_frequency": 0.46497844827586204,
+          "average_prediction": 0.4611293640097666,
+          "calibration_gap": 0.003849084266095426
+        },
+        "H4_STUDENT_T": {
+          "n": 1856,
+          "brier": 0.2496650010538602,
+          "log_loss": 0.6922667757104636,
+          "auc": 0.523622483689418,
+          "observed_frequency": 0.46497844827586204,
+          "average_prediction": 0.4656584881720164,
+          "calibration_gap": 0.0006800398961543386
+        }
+      }
+    }
+  },
+  "block_anchor_ci": {
+    "H1_RAW_TREND": {
+      "mean_brier_reduction_vs_null": -3.239218668352889e-05,
+      "ci95": [
+        -0.0029214075573370927,
+        0.003088256005265649
+      ],
+      "n_anchors": 64,
+      "frac_anchors_improved": 0.484375
+    },
+    "H2_GROUP_RESIDUAL": {
+      "mean_brier_reduction_vs_null": -1.6158995059509674e-05,
+      "ci95": [
+        -0.0073610896695352895,
+        0.007214730800957731
+      ],
+      "n_anchors": 64,
+      "frac_anchors_improved": 0.5625
+    },
+    "H3_HIERARCHICAL_REGIME": {
+      "mean_brier_reduction_vs_null": -0.004872119089070825,
+      "ci95": [
+        -0.015819689383032565,
+        0.005944219549281444
+      ],
+      "n_anchors": 64,
+      "frac_anchors_improved": 0.453125
+    },
+    "H4_STUDENT_T": {
+      "mean_brier_reduction_vs_null": -0.0045088465121301356,
+      "ci95": [
+        -0.014456299373523222,
+        0.005108167150590965
+      ],
+      "n_anchors": 64,
+      "frac_anchors_improved": 0.484375
+    }
+  },
+  "H2_shadow_actions": {
+    "n": 0,
+    "mean_net_relative_log": null,
+    "share_win": null,
+    "decisions": []
+  },
+  "original149_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "notes": [
+    "Previously mined original149! No prospective superiority claims",
+    "Pair outcome labels within anchor correlated",
+    "Score proxy not a validated EUR risk adjusted investment"
+  ],
+  "research_decision": "BLOCK_PORTFOLIO_FROM_G1_UNLESS_PROPER_SCORE_GATE_PASSES"
+}

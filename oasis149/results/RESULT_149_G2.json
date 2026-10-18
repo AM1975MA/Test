@@ -1,0 +1,350 @@
+{
+  "status": "CANONICAL149_G2_RISK_EVALUATION_COMPLETED",
+  "n_funds": 149,
+  "n_days": 2366,
+  "asof_source": "/home/runner/work/Test/Test/evidence_v1/data/original149",
+  "source_roster_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "source_verified_149": true,
+  "two_independent_simulators_P0_parity_error": 4.440892098500626e-16,
+  "failed_G1_forecaster_not_used": true,
+  "same_OASIS_price_score_no_rank_retraining": true,
+  "no_parameter_tuning": true,
+  "risks": {
+    "R0_TWO_REFERENCE": {
+      "cagr": 0.010971515553706679,
+      "end_wealth": 1.1070315222747271,
+      "daily_maxdd": -0.6039702908951436,
+      "daily_sharpe": 0.030394172124706714,
+      "daily_es5": -0.05425783941358295,
+      "daily_worst": -0.18329318822277335,
+      "exposure_mean": 0.9983549964868187,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 16.436359891861667,
+      "fee_paid_initial_units": 0.1997555789388279,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 2.0,
+      "actual_risk_series_21d_loss_max": 0.0
+    },
+    "R1_TOP6_EQUAL": {
+      "cagr": 0.08518456269272145,
+      "end_wealth": 2.156033418093969,
+      "daily_maxdd": -0.3967005314450378,
+      "daily_sharpe": 0.31937282082947444,
+      "daily_es5": -0.03919731895841079,
+      "daily_worst": -0.1252694353903822,
+      "exposure_mean": 0.9980682017987424,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 12.908665079157432,
+      "fee_paid_initial_units": 0.17715207658289167,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6.0,
+      "actual_risk_series_21d_loss_max": 0.0
+    },
+    "R2_ONE_PER_GROUP_EQUAL": {
+      "cagr": 0.07429201865940938,
+      "end_wealth": 1.960775543788459,
+      "daily_maxdd": -0.324534601081403,
+      "daily_sharpe": 0.4196602290077747,
+      "daily_es5": -0.026638158164522818,
+      "daily_worst": -0.10101105428340203,
+      "exposure_mean": 0.9982063642352291,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 14.595450306870436,
+      "fee_paid_initial_units": 0.19194482936478874,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6.0,
+      "actual_risk_series_21d_loss_max": 0.0
+    },
+    "R3_GROUP_INV_VOL": {
+      "cagr": 0.07061810967414517,
+      "end_wealth": 1.8985762029472215,
+      "daily_maxdd": -0.30158766501736534,
+      "daily_sharpe": 0.48123901738689334,
+      "daily_es5": -0.02198056041377417,
+      "daily_worst": -0.08328617796532986,
+      "exposure_mean": 0.998245985555704,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 15.090158898847397,
+      "fee_paid_initial_units": 0.20356803681247304,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6.0,
+      "actual_risk_series_21d_loss_max": 0.0
+    },
+    "R4_GROUP_INV_VOL_STATIC75": {
+      "cagr": 0.05414803224518949,
+      "end_wealth": 1.6412663058416672,
+      "daily_maxdd": -0.2324816427591272,
+      "daily_sharpe": 0.49907152752087847,
+      "daily_es5": -0.01644270488805013,
+      "daily_worst": -0.06190294639491953,
+      "exposure_mean": 0.748924100356214,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 11.316310211735189,
+      "fee_paid_initial_units": 0.14012677362378123,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6.0,
+      "actual_risk_series_21d_loss_max": 0.0
+    },
+    "R5_GROUP_INV_VOL_T5ES": {
+      "cagr": 0.05885966359947714,
+      "end_wealth": 1.711181219247857,
+      "daily_maxdd": -0.2954357207899413,
+      "daily_sharpe": 0.42657171453881476,
+      "daily_es5": -0.020951594982712853,
+      "daily_worst": -0.08328617796532986,
+      "exposure_mean": 0.9725624579703407,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 16.640361518045758,
+      "fee_paid_initial_units": 0.20660349633866726,
+      "n_action_days": 317,
+      "n_risk_interventions": 203,
+      "holdings_count_avg": 6.0,
+      "actual_risk_series_21d_loss_max": 0.15232534393195943
+    },
+    "R6_TWO_T5ES": {
+      "cagr": 0.04158908099680225,
+      "end_wealth": 1.4658687409730784,
+      "daily_maxdd": -0.3494074986364656,
+      "daily_sharpe": 0.21277431465274974,
+      "daily_es5": -0.027837317407515196,
+      "daily_worst": -0.0747914209441915,
+      "exposure_mean": 0.6709196449378702,
+      "days_20pct_or_less": 21,
+      "annual_traded_notional": 22.4449986014957,
+      "fee_paid_initial_units": 0.2747002344216968,
+      "n_action_days": 1385,
+      "n_risk_interventions": 1271,
+      "holdings_count_avg": 2.0,
+      "actual_risk_series_21d_loss_max": 0.460900210767846
+    }
+  },
+  "by_era": {
+    "R0_TWO_REFERENCE": {
+      "2017_2020": {
+        "n_days": 987,
+        "annualized_log_return": 0.1403198251324971,
+        "annualized_compound_return": 0.15064174416329656,
+        "drawdown_rebased": -0.5087566576841678
+      },
+      "2021_2023": {
+        "n_days": 753,
+        "annualized_log_return": -0.06832852930295702,
+        "annualized_compound_return": -0.06604640795240335,
+        "drawdown_rebased": -0.4815745267152616
+      },
+      "2024_2026": {
+        "n_days": 626,
+        "annualized_log_return": -0.09771408436013194,
+        "annualized_compound_return": -0.09309183408283916,
+        "drawdown_rebased": -0.5053152997823597
+      }
+    },
+    "R1_TOP6_EQUAL": {
+      "2017_2020": {
+        "n_days": 987,
+        "annualized_log_return": 0.14079760006586362,
+        "annualized_compound_return": 0.15119162329471547,
+        "drawdown_rebased": -0.3559820794912738
+      },
+      "2021_2023": {
+        "n_days": 753,
+        "annualized_log_return": -0.04774843543619646,
+        "annualized_compound_return": -0.04662640807516649,
+        "drawdown_rebased": -0.33928617464485045
+      },
+      "2024_2026": {
+        "n_days": 626,
+        "annualized_log_return": 0.14511627916750364,
+        "annualized_compound_return": 0.1561740014024724,
+        "drawdown_rebased": -0.2155292740484993
+      }
+    },
+    "R2_ONE_PER_GROUP_EQUAL": {
+      "2017_2020": {
+        "n_days": 987,
+        "annualized_log_return": 0.10410383303701387,
+        "annualized_compound_return": 0.10971567408236282,
+        "drawdown_rebased": -0.324534601081403
+      },
+      "2021_2023": {
+        "n_days": 753,
+        "annualized_log_return": -0.005153603979203508,
+        "annualized_compound_return": -0.005140346945826879,
+        "drawdown_rebased": -0.3187014233110169
+      },
+      "2024_2026": {
+        "n_days": 626,
+        "annualized_log_return": 0.11351957266511845,
+        "annualized_compound_return": 0.12021381424765831,
+        "drawdown_rebased": -0.16321631489059008
+      }
+    },
+    "R3_GROUP_INV_VOL": {
+      "2017_2020": {
+        "n_days": 987,
+        "annualized_log_return": 0.11523841326167217,
+        "annualized_compound_return": 0.12214093896404576,
+        "drawdown_rebased": -0.2719431702452887
+      },
+      "2021_2023": {
+        "n_days": 753,
+        "annualized_log_return": -0.019663944930191687,
+        "annualized_compound_return": -0.01947187060506672,
+        "drawdown_rebased": -0.30158766501736534
+      },
+      "2024_2026": {
+        "n_days": 626,
+        "annualized_log_return": 0.10044133595615928,
+        "annualized_compound_return": 0.10565877738650498,
+        "drawdown_rebased": -0.1565080171975307
+      }
+    },
+    "R4_GROUP_INV_VOL_STATIC75": {
+      "2017_2020": {
+        "n_days": 987,
+        "annualized_log_return": 0.08807806365692511,
+        "annualized_compound_return": 0.09207336994166049,
+        "drawdown_rebased": -0.20767138909732707
+      },
+      "2021_2023": {
+        "n_days": 753,
+        "annualized_log_return": -0.012782959399944316,
+        "annualized_compound_return": -0.012701604395960464,
+        "drawdown_rebased": -0.2324816427591272
+      },
+      "2024_2026": {
+        "n_days": 626,
+        "annualized_log_return": 0.07626035358554377,
+        "annualized_compound_return": 0.07924352250350086,
+        "drawdown_rebased": -0.11870908898441768
+      }
+    },
+    "R5_GROUP_INV_VOL_T5ES": {
+      "2017_2020": {
+        "n_days": 987,
+        "annualized_log_return": 0.08720724629071593,
+        "annualized_compound_return": 0.09112278743788749,
+        "drawdown_rebased": -0.26139436475213984
+      },
+      "2021_2023": {
+        "n_days": 753,
+        "annualized_log_return": -0.017490793336849074,
+        "annualized_compound_return": -0.017338717345152355,
+        "drawdown_rebased": -0.2954357207899413
+      },
+      "2024_2026": {
+        "n_days": 626,
+        "annualized_log_return": 0.1001896654562662,
+        "annualized_compound_return": 0.105380550701482,
+        "drawdown_rebased": -0.15650801719753082
+      }
+    },
+    "R6_TWO_T5ES": {
+      "2017_2020": {
+        "n_days": 987,
+        "annualized_log_return": 0.08214544475088337,
+        "annualized_compound_return": 0.08561369516092254,
+        "drawdown_rebased": -0.25694454219158236
+      },
+      "2021_2023": {
+        "n_days": 753,
+        "annualized_log_return": 0.03546979966750767,
+        "annualized_compound_return": 0.0361063568990887,
+        "drawdown_rebased": -0.21875630998403361
+      },
+      "2024_2026": {
+        "n_days": 626,
+        "annualized_log_return": -0.017829072151274727,
+        "annualized_compound_return": -0.017671074620948857,
+        "drawdown_rebased": -0.2159843752025622
+      }
+    }
+  },
+  "paired_12month_bootstrap": {
+    "R1_TOP6_EQUAL": {
+      "mean_monthly_log_excess": 0.005847263370551494,
+      "ci95": [
+        -0.003759680162055423,
+        0.014820640932287677
+      ],
+      "n_months": 114
+    },
+    "R2_ONE_PER_GROUP_EQUAL": {
+      "mean_monthly_log_excess": 0.005014543437355584,
+      "ci95": [
+        -0.0065383329197034445,
+        0.015371615442737657
+      ],
+      "n_months": 114
+    },
+    "R3_GROUP_INV_VOL": {
+      "mean_monthly_log_excess": 0.004731772891749737,
+      "ci95": [
+        -0.007608929889401391,
+        0.016806452012663613
+      ],
+      "n_months": 114
+    },
+    "R4_GROUP_INV_VOL_STATIC75": {
+      "mean_monthly_log_excess": 0.003452074412230996,
+      "ci95": [
+        -0.0093870868771522,
+        0.015425769593986819
+      ],
+      "n_months": 114
+    },
+    "R5_GROUP_INV_VOL_T5ES": {
+      "mean_monthly_log_excess": 0.003820191007056062,
+      "ci95": [
+        -0.010246071905531234,
+        0.01674918998731254
+      ],
+      "n_months": 114
+    },
+    "R6_TWO_T5ES": {
+      "mean_monthly_log_excess": 0.002462755705961145,
+      "ci95": [
+        -0.007007062582816268,
+        0.011016954017313438
+      ],
+      "n_months": 114
+    }
+  },
+  "passive_context_not_fee_matched": {
+    "SPY": {
+      "cagr": 0.15249771558186387,
+      "maxdd": -0.3204897463558568,
+      "terminal_multiple": 3.8021799483839946,
+      "cost_match": "passive buy-hold gross context, NOT cost matched"
+    },
+    "AGG": {
+      "cagr": 0.019105043134848287,
+      "maxdd": -0.18766952904658174,
+      "terminal_multiple": 1.19492396207072,
+      "cost_match": "passive buy-hold gross context, NOT cost matched"
+    },
+    "SPY60_AGG40": {
+      "cagr": 0.11389262153260038,
+      "maxdd": -0.23549074239715662,
+      "terminal_multiple": 2.7592775538586847,
+      "cost_match": "passive buy-hold gross context, NOT cost matched"
+    }
+  },
+  "historical_exploratory_risk_gate": {
+    "R1_TOP6_EQUAL": true,
+    "R2_ONE_PER_GROUP_EQUAL": true,
+    "R3_GROUP_INV_VOL": true
+  },
+  "no_unseen_future_holdout": true,
+  "warnings": [
+    "Original149 repeatedly studied and subject to survivorship",
+    "Dividend-adjusted historical open not actual broker trade quote",
+    "SPY/AGG passive context not cost matched, all in USD not EUR",
+    "No actual bid ask, liquidity, tax or spread verification"
+  ]
+}

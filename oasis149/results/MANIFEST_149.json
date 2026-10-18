@@ -1,0 +1,38 @@
+{
+  "status": "OASIS_CANONICAL_ORIGINAL149_VERIFIED",
+  "source": "evidence_v1/data/original149/universe.csv",
+  "member_count": 149,
+  "unique_names": 149,
+  "period": [
+    "2017-02-01",
+    "2026-07-01"
+  ],
+  "n_shared_days": 2366,
+  "six_categories": {
+    "C01_US_BROAD_STYLE": 25,
+    "C02_US_SECTOR_THEME": 25,
+    "C03_DEVELOPED_GLOBAL": 25,
+    "C05_BONDS_CASH_CREDIT": 25,
+    "C06_REAL_ASSETS": 25,
+    "C04_EMERGING": 24
+  },
+  "asof_next_open": true,
+  "full_original_roster_used_without_ranking": true,
+  "roster_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "manifest_sha256": "7f8a9618cf2fefbf1ee0a485570460549e9b622d992022e49cc6ce9038f4ea4b",
+  "historical_universe_survivorship_bias": true,
+  "quality_zero_volume_total": 24,
+  "quality_invalid_ohlc_total": 0,
+  "P0_P3_source_only_reference": {
+    "P0": {
+      "cagr": 0.010971515553706679,
+      "maxdd": -0.6039702908951436,
+      "name_switches": 104
+    },
+    "P3": {
+      "cagr": 0.04766685736605947,
+      "maxdd": -0.6355299149392721,
+      "name_switches": 58
+    }
+  }
+}

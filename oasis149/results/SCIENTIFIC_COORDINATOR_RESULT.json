@@ -1,0 +1,203 @@
+{
+  "status": "CANONICAL149_COORDINATOR_COMPLETED",
+  "original149_source_only": true,
+  "independent_prospective_holdout": false,
+  "G0_data_hashes": "PASS",
+  "G1_predictive_gate": "FAIL",
+  "G2_matched_risk_gates": {
+    "R1_TOP6_EQUAL": true,
+    "R2_ONE_PER_GROUP_EQUAL": true,
+    "R3_GROUP_INV_VOL": true
+  },
+  "baseline_daily_parity": 4.440892098500626e-16,
+  "G1_eligible_for_investment": false,
+  "original149_results": {
+    "G1": {
+      "H0_PRIOR": {
+        "n": 1024,
+        "brier": 0.2494909132286031,
+        "log_loss": 0.6921474004656678,
+        "auc": 0.40616737379327306,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.4524170437147209,
+        "calibration_gap": 0.004614206285279088
+      },
+      "H1_RAW_TREND": {
+        "n": 1024,
+        "brier": 0.2495233054152866,
+        "log_loss": 0.6922091419696452,
+        "auc": 0.4594401401955359,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.46370586768752586,
+        "calibration_gap": 0.006674617687525863
+      },
+      "H2_GROUP_RESIDUAL": {
+        "n": 1024,
+        "brier": 0.24950707222366264,
+        "log_loss": 0.6935764738846271,
+        "auc": 0.5420701900018448,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.4549107631345798,
+        "calibration_gap": 0.0021204868654202125
+      },
+      "H3_HIERARCHICAL_REGIME": {
+        "n": 1024,
+        "brier": 0.25436303231767393,
+        "log_loss": 0.7021151243204493,
+        "auc": 0.4880518661993482,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.4572409270733411,
+        "calibration_gap": 0.00020967707334107466
+      },
+      "H4_STUDENT_T": {
+        "n": 1024,
+        "brier": 0.25399975974073324,
+        "log_loss": 0.7013888640738777,
+        "auc": 0.4932477095246879,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.5008445152018157,
+        "calibration_gap": 0.04381326520181572
+      }
+    },
+    "G2": {
+      "R0_TWO_REFERENCE": {
+        "cagr": 0.010971515553706679,
+        "end_wealth": 1.1070315222747271,
+        "daily_maxdd": -0.6039702908951436,
+        "daily_sharpe": 0.030394172124706714,
+        "daily_es5": -0.05425783941358295,
+        "daily_worst": -0.18329318822277335,
+        "exposure_mean": 0.9983549964868187,
+        "days_20pct_or_less": 0,
+        "annual_traded_notional": 16.436359891861667,
+        "fee_paid_initial_units": 0.1997555789388279,
+        "n_action_days": 114,
+        "n_risk_interventions": 0,
+        "holdings_count_avg": 2.0,
+        "actual_risk_series_21d_loss_max": 0.0
+      },
+      "R1_TOP6_EQUAL": {
+        "cagr": 0.08518456269272145,
+        "end_wealth": 2.156033418093969,
+        "daily_maxdd": -0.3967005314450378,
+        "daily_sharpe": 0.31937282082947444,
+        "daily_es5": -0.03919731895841079,
+        "daily_worst": -0.1252694353903822,
+        "exposure_mean": 0.9980682017987424,
+        "days_20pct_or_less": 0,
+        "annual_traded_notional": 12.908665079157432,
+        "fee_paid_initial_units": 0.17715207658289167,
+        "n_action_days": 114,
+        "n_risk_interventions": 0,
+        "holdings_count_avg": 6.0,
+        "actual_risk_series_21d_loss_max": 0.0
+      },
+      "R2_ONE_PER_GROUP_EQUAL": {
+        "cagr": 0.07429201865940938,
+        "end_wealth": 1.960775543788459,
+        "daily_maxdd": -0.324534601081403,
+        "daily_sharpe": 0.4196602290077747,
+        "daily_es5": -0.026638158164522818,
+        "daily_worst": -0.10101105428340203,
+        "exposure_mean": 0.9982063642352291,
+        "days_20pct_or_less": 0,
+        "annual_traded_notional": 14.595450306870436,
+        "fee_paid_initial_units": 0.19194482936478874,
+        "n_action_days": 114,
+        "n_risk_interventions": 0,
+        "holdings_count_avg": 6.0,
+        "actual_risk_series_21d_loss_max": 0.0
+      },
+      "R3_GROUP_INV_VOL": {
+        "cagr": 0.07061810967414517,
+        "end_wealth": 1.8985762029472215,
+        "daily_maxdd": -0.30158766501736534,
+        "daily_sharpe": 0.48123901738689334,
+        "daily_es5": -0.02198056041377417,
+        "daily_worst": -0.08328617796532986,
+        "exposure_mean": 0.998245985555704,
+        "days_20pct_or_less": 0,
+        "annual_traded_notional": 15.090158898847397,
+        "fee_paid_initial_units": 0.20356803681247304,
+        "n_action_days": 114,
+        "n_risk_interventions": 0,
+        "holdings_count_avg": 6.0,
+        "actual_risk_series_21d_loss_max": 0.0
+      },
+      "R4_GROUP_INV_VOL_STATIC75": {
+        "cagr": 0.05414803224518949,
+        "end_wealth": 1.6412663058416672,
+        "daily_maxdd": -0.2324816427591272,
+        "daily_sharpe": 0.49907152752087847,
+        "daily_es5": -0.01644270488805013,
+        "daily_worst": -0.06190294639491953,
+        "exposure_mean": 0.748924100356214,
+        "days_20pct_or_less": 0,
+        "annual_traded_notional": 11.316310211735189,
+        "fee_paid_initial_units": 0.14012677362378123,
+        "n_action_days": 114,
+        "n_risk_interventions": 0,
+        "holdings_count_avg": 6.0,
+        "actual_risk_series_21d_loss_max": 0.0
+      },
+      "R5_GROUP_INV_VOL_T5ES": {
+        "cagr": 0.05885966359947714,
+        "end_wealth": 1.711181219247857,
+        "daily_maxdd": -0.2954357207899413,
+        "daily_sharpe": 0.42657171453881476,
+        "daily_es5": -0.020951594982712853,
+        "daily_worst": -0.08328617796532986,
+        "exposure_mean": 0.9725624579703407,
+        "days_20pct_or_less": 0,
+        "annual_traded_notional": 16.640361518045758,
+        "fee_paid_initial_units": 0.20660349633866726,
+        "n_action_days": 317,
+        "n_risk_interventions": 203,
+        "holdings_count_avg": 6.0,
+        "actual_risk_series_21d_loss_max": 0.15232534393195943
+      },
+      "R6_TWO_T5ES": {
+        "cagr": 0.04158908099680225,
+        "end_wealth": 1.4658687409730784,
+        "daily_maxdd": -0.3494074986364656,
+        "daily_sharpe": 0.21277431465274974,
+        "daily_es5": -0.027837317407515196,
+        "daily_worst": -0.0747914209441915,
+        "exposure_mean": 0.6709196449378702,
+        "days_20pct_or_less": 21,
+        "annual_traded_notional": 22.4449986014957,
+        "fee_paid_initial_units": 0.2747002344216968,
+        "n_action_days": 1385,
+        "n_risk_interventions": 1271,
+        "holdings_count_avg": 2.0,
+        "actual_risk_series_21d_loss_max": 0.460900210767846
+      }
+    }
+  },
+  "passive_context": {
+    "SPY": {
+      "cagr": 0.15249771558186387,
+      "maxdd": -0.3204897463558568,
+      "terminal_multiple": 3.8021799483839946,
+      "cost_match": "passive buy-hold gross context, NOT cost matched"
+    },
+    "AGG": {
+      "cagr": 0.019105043134848287,
+      "maxdd": -0.18766952904658174,
+      "terminal_multiple": 1.19492396207072,
+      "cost_match": "passive buy-hold gross context, NOT cost matched"
+    },
+    "SPY60_AGG40": {
+      "cagr": 0.11389262153260038,
+      "maxdd": -0.23549074239715662,
+      "terminal_multiple": 2.7592775538586847,
+      "cost_match": "passive buy-hold gross context, NOT cost matched"
+    }
+  },
+  "caveats": [
+    "original149 already heavily studied, not an unseen holdout",
+    "Yahoo adjusted Open not verified executable quotes",
+    "Macro group labels not fund-level PIT data",
+    "Failed forecast must NOT control live trades"
+  ]
+}
