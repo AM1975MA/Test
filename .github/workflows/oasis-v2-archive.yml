@@ -1,0 +1,131 @@
+name: OASIS_V2_PERMANENT_RESEARCH_RECEIPTS
+on:
+  push:
+    branches:
+      - research/oasis-v2-paired-forecast-g1-20261018
+    paths:
+      - '.github/workflows/oasis-v2-archive.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  audit-and-archive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install audited numerical environment
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Restore final source run artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39136487959 -R AM1975MA/Test -n oasis-v2-g1-prequential-paired-v1 -D _g1
+          gh run download 39137020695 -R AM1975MA/Test -n oasis-v2-g2-risk-survival-v1 -D _g2
+          G1=$(dirname "$(find _g1 -name PREDICTIONS_FULL.csv -print -quit)")
+          G2=$(dirname "$(find _g2 -name R0_TWO_REFERENCE.csv -print -quit)")
+          test -s "$G1/RESULT.json"
+          test -s "$G2/RESULT.json"
+          mkdir -p oasis_v2/receipts/frozen
+          cp "$G1/PREDICTIONS_FULL.csv" oasis_v2/receipts/frozen/G1_PREDICTIONS_FULL.csv
+          cp "$G1/RESULT.json" oasis_v2/receipts/frozen/G1_RESULT.json
+          cp "$G2"/R*.csv oasis_v2/receipts/frozen/
+          cp "$G2/RESULT.json" oasis_v2/receipts/frozen/G2_RESULT.json
+      - name: Investigate chronological regime stability and passive opportunity cost
+        run: |
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          import numpy as np
+          import pandas as pd
+          base=Path("oasis_v2/receipts/frozen")
+          g1=json.loads((base/"G1_RESULT.json").read_text())
+          g2=json.loads((base/"G2_RESULT.json").read_text())
+          assert g1["status"]=="PAIRED_PREQUENTIAL_G1_COMPLETED"
+          assert g1["gate_G1_primary"]=="FAIL"
+          assert g2["status"]=="G2_PORTFOLIO_SPECIFIC_RISK_COMPLETED"
+          assert g2["strict_R0_daily_parity_max_error"]<1e-8
+          pred=pd.read_csv(base/"G1_PREDICTIONS_FULL.csv")
+          assert len(pred)==g1["pair_rows"]==5120
+          frames={}
+          for p in base.glob("R*.csv"):
+              frame=pd.read_csv(p,parse_dates=["day"])
+              assert len(frame)==2366
+              frames[p.stem]=frame
+          assert len(frames)==7
+          first=frames["R0_TWO_REFERENCE"]
+          assert all(x.day.equals(first.day) for x in frames.values())
+          states={}
+          yearly={}
+          for arm,d in frames.items():
+              w=d.wealth.to_numpy(float)
+              lr=np.diff(np.log(w),prepend=np.log(w[0]))
+              year=d.day.dt.year
+              eras={}
+              yearly[arm]={}
+              for key,mask in [
+                  ("2017_2020",year<=2020),
+                  ("2021_2023",year.between(2021,2023)),
+                  ("2024_2026",year>=2024)]:
+                  ix=np.flatnonzero(mask.to_numpy())
+                  segment=lr[ix]
+                  months=len(ix)/21.
+                  ew=w[ix]
+                  eras[key]=dict(n_days=len(ix),
+                      annualized_return=float(np.exp(252*np.mean(segment))-1),
+                      maxdd_rebased=float(np.min(ew/np.maximum.accumulate(ew)-1)),
+                      mean_exposure=float(d.exposure.iloc[ix].mean()))
+              for yr in sorted(year.unique()):
+                  monthly=lr[year.to_numpy()==yr]
+                  yearly[arm][str(yr)]=float(np.sum(monthly))
+              states[arm]=eras
+          def passive(keyweights):
+              q={}
+              for name in keyweights:
+                  f=pd.read_csv("evidence_v1/data/original149/"+name+".csv",parse_dates=["date"])
+                  f=f.set_index("date")
+                  px=f.Open.reindex(first.day).to_numpy(float)
+                  assert np.isfinite(px).all() and np.min(px)>0
+                  q[name]=px/px[0]
+              v=sum(weight*q[name] for name,weight in keyweights.items())
+              days=(first.day.iloc[-1]-first.day.iloc[0]).days/365.25
+              return dict(cagr=float((v[-1]/v[0])**(1/days)-1),
+                 daily_maxdd=float(np.min(v/np.maximum.accumulate(v)-1)),
+                 terminal_multiple=float(v[-1]/v[0]),
+                 note="Passive adjusted opens; no interim rebalancing; cost parity not proved")
+          passive_reference={
+            "SPY_100_BH":passive({"SPY":1.}),
+            "AGG_100_BH":passive({"AGG":1.}),
+            "SPY_60_AGG_40_BH":passive({"SPY":.6,"AGG":.4})}
+          report=dict(status="V2_SCIENTIFIC_PERMANENT_POST_RESULT_AUDIT",
+            primary_G1_gate=g1["gate_G1_primary"],
+            G2_R0_parity_error=g2["strict_R0_daily_parity_max_error"],
+            historical_burned_dataset=True,
+            risk_strategy_eras=states,
+            historical_yearly_log_returns=yearly,
+            passive_context=passive_reference,
+            original_g1_run=39136487959,
+            original_g2_run=39137020695,
+            conclusion="RISK_DIVERSIFICATION_RESEARCH_CANDIDATE_ONLY",
+            warnings=["not PIT verified","USD vs EUR currency mismatched",
+                     "simple passive context cost not matched",
+                     "existing data repeatedly used for choices",
+                     "G1 failed incremental forecast skill"])
+          (base/"POST_RESULT_AUDIT.json").write_text(json.dumps(report,indent=2)+"\n")
+          print("OASIS_V2_POST_RESULT_AUDIT "+json.dumps(report))
+          PY
+          (cd oasis_v2/receipts/frozen && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd oasis_v2/receipts/frozen && sha256sum -c SHA256_MANIFEST.txt)
+      - name: Commit complete causal labels and seven matched original-risk ledgers
+        run: |
+          git config user.name "OASIS-V2-Research-Archivist"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis_v2/receipts/frozen
+          git commit -m "Archive complete OASIS V2 G1 paired predictions, G2 daily risk curves and independent era/passive forensic audit"
+          git push origin HEAD:refs/heads/research/oasis-v2-paired-forecast-g1-20261018
