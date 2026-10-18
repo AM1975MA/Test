@@ -74,7 +74,13 @@ def observe_innovation(observed,index,name):
 def switch_names(observed,index,held,age,policy,cp5=0.):
     """Pure as-of selector; held age measured in completed execution sessions."""
     ordered=ranks(observed,index)
-    if len(ordered)<5:raise ValueError("fewer than 5 eligible as-of instruments")
+    if len(ordered)<5:
+        # A sparse as-of price panel on a cross-exchange holiday is NOT a
+        # forecast that the missing ETFs suddenly became unattractive.
+        # Retain existing holdings; never backfill with future prices.
+        if held:return list(held),"SPARSE_ASOF_UNIVERSE_HOLD"
+        if len(ordered)>=2:return ordered[:2],"SPARSE_ASOF_BOOTSTRAP"
+        raise ValueError("fewer than two as-of eligible instruments")
     if policy=="P1_DAILY_GREEDY":
         return ordered[:2],"GREEDY"
     if policy=="P5_DAILY_TOP5_HYSTERESIS":
