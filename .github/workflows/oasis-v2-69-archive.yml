@@ -1,0 +1,76 @@
+name: OASIS_V2_G2_69_PERMANENT_ARCHIVE
+on:
+  push:
+    branches:
+      - research/oasis-v2-paired-forecast-g1-20261018
+    paths:
+      - '.github/workflows/oasis-v2-69-archive.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download immutable 69-ETF Action output
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39137733489 -R AM1975MA/Test -n oasis-v2-g2-69-etf-transfer-v1 -D _transfer
+          SOURCE=$(dirname "$(find _transfer -name R0_TWO_REFERENCE.csv -print -quit)")
+          test -s "$SOURCE/RESULT.json"
+          mkdir -p oasis_v2/receipts/transfer69
+          cp "$SOURCE"/R*.csv oasis_v2/receipts/transfer69/
+          cp "$SOURCE/RESULT.json" oasis_v2/receipts/transfer69/RESULT.json
+      - name: Verify both source cohorts and freeze matched comparison
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          base=Path("oasis_v2/receipts")
+          a=json.loads((base/"frozen/G2_RESULT.json").read_text())
+          b=json.loads((base/"transfer69/RESULT.json").read_text())
+          c=json.loads((base/"frozen/POST_RESULT_AUDIT.json").read_text())
+          assert a["n_study_days"]==b["n_days"]==2366
+          assert b["original_P0_reference_parity_error"]<1e-8
+          assert b["n_excluded"]==69
+          assert len(set(b["roster_69_names"]))==69
+          assert all(b["preregistered_diversification_gate"].values())
+          assert c["primary_G1_gate"]=="FAIL"
+          table={}
+          for key in ("R0_TWO_REFERENCE","R1_TOP6_EQUAL","R2_ONE_PER_GROUP_EQUAL",
+                      "R3_GROUP_INV_VOL","R4_GROUP_INV_VOL_STATIC75",
+                      "R5_GROUP_INV_VOL_T5ES","R6_TWO_T5ES"):
+             n=a["metrics"][key];o=b["metrics"][key]
+             table[key]={
+               "top150_CAGR":n["cagr"],"top150_daily_MaxDD":n["daily_maxdd"],
+               "excluded69_CAGR":o["cagr"],"excluded69_daily_MaxDD":o["daily_maxdd"],
+               "top150_ES5":n["daily_es5"],"excluded69_ES5":o["daily_es5"]}
+          obj=dict(status="COMPARISON_ARCHIVED_BOTH_SURVIVOR_BIASED_COHORTS",
+             original_run150=39137020695,transfer_run69=39137733489,
+             strong_concentration_reduction_repeatable_in_both_historical_cohorts=True,
+             evidence_of_independent_predictive_alpha=False,
+             g1_gate="FAIL",n150=150,n_other=69,
+             passive_context_60_40=c["passive_context"]["SPY_60_AGG_40_BH"],
+             comparisons=table,
+             caveats=["Both ETF cohorts are retrospectively surviving and pre-explored",
+                      "No real EUR investable implementation proved",
+                      "No equity alpha under proper scoring",
+                      "No prospective holdout"])
+          (base/"transfer69/COMPARISON_150_69.json").write_text(
+              json.dumps(obj,indent=2)+"\n")
+          print("G2_150_69_FINAL_COMPARISON "+json.dumps(obj))
+          PY
+          (cd oasis_v2/receipts/transfer69 && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd oasis_v2/receipts/transfer69 && sha256sum -c SHA256_MANIFEST.txt)
+      - name: Commit complete transfer ledgers and cross-cohort scientific report
+        run: |
+          git config user.name "OASIS-Research-Archivist"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis_v2/receipts/transfer69
+          git commit -m "Archive 69 ETF independent-of-roster G2 risk transfer, 7 daily paths, 150-vs-69 scientific comparison"
+          git push origin HEAD:refs/heads/research/oasis-v2-paired-forecast-g1-20261018
