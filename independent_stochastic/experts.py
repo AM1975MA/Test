@@ -3,8 +3,7 @@ from __future__ import annotations
 import math
 import numpy as np
 import pandas as pd
-from research_bayes_europe.experiment import robust_kalman_score
-from scientific_lab.models import daily_asof,market
+from independent_stochastic.physics import (robust_latent_drift,daily_asof,common_market_filter)
 SEED=20261018
 BASE=("D0_BROAD_LOWVOL","D1_ROBUST_STATE","D2_LOG_GROWTH",
       "D3_CONTRARIAN","D4_ENTROPIC_CORRELATION")
@@ -55,7 +54,7 @@ def features(close,sd):
         g=21.*mu_daily-.5*21*np.var(clipped[-126:],ddof=1)-uncertainty
         rev=-(np.log(recent[-1]/recent[-22]))/(rv+1e-8)
         rev+=.25*np.log(recent[-1]/recent[-127])/(rv+1e-8)
-        state_mu,pv,ov=robust_kalman_score(history[t],sd)
+        state_mu,pv,ov=robust_latent_drift(history[t],sd)
         state_score=state_mu/math.sqrt(max(pv+ov,1e-8)) if np.isfinite(state_mu+pv+ov) else float(mu_daily*21./max(rv,.002))
         out[t]={"vol":float(rv),"growth":float(g),"reverse":float(rev),
                 "kalman":float(state_score),"daily_mu":float(mu_daily),
