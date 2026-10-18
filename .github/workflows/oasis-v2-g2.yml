@@ -1,0 +1,58 @@
+name: OASIS_V2_G2_PORTFOLIO_SURVIVAL
+on:
+  push:
+    branches:
+      - research/oasis-v2-paired-forecast-g1-20261018
+    paths:
+      - 'oasis_v2/g2/**'
+      - '.github/workflows/oasis-v2-g2.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  asof-portfolio-survival:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Small numerical runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+          python -m py_compile oasis_v2/g2/risk_portfolio.py oasis_v2/g2/test_risk.py
+      - name: Validate share/cash, tail and capped risk invariants
+        run: |
+          python -m unittest -v oasis_v2.g2.test_risk
+      - name: Evaluate seven pre-registered exposure-only ablations
+        run: |
+          python -m oasis_v2.g2.risk_portfolio --out _g2
+      - name: Prove exact original P0 parity and causal G1 firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("_g2/RESULT.json").read_text())
+          assert x["status"]=="G2_PORTFOLIO_SPECIFIC_RISK_COMPLETED"
+          assert x["strict_R0_daily_parity_max_error"]<1e-8
+          assert x["G1_information_gate"].startswith("FAIL_")
+          assert x["model_alpha_score_unmodified"]
+          assert x["n_study_days"]==2366
+          print("G2_STUDY_SUCCESS risk_gate",x["G2_survival_exploratory_pass"])
+          PY
+      - name: Preserve all seven reconciled risk paths
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oasis-v2-g2-risk-survival-v1
+          retention-days: 90
+          path: |
+            _g2/RESULT.json
+            _g2/R*.csv
