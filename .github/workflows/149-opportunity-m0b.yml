@@ -1,0 +1,74 @@
+name: ETF149_M0B_RISK_MATCHED_TAIL_SCREEN_FALSIFIER
+on:
+  push:
+    branches:
+      - research/149-opportunity-physics-m0-20261019
+    paths:
+      - 'research_reset/m0b/PREREGISTRATION_AFTER_M0.md'
+      - 'research_reset/m0b/enrichment.py'
+      - 'research_reset/m0b/test_m0b.py'
+      - '.github/workflows/149-opportunity-m0b.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  rare-event-top5-falsifier:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Deterministic numerical runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0'
+          python -m py_compile research_reset/m0b/enrichment.py research_reset/m0b/test_m0b.py
+      - name: Prove matching exact turnover, as-of vol, money conservation, no fee churn
+        run: |
+          python -m unittest -v research_reset.m0b.test_m0b research_reset.m0.test_m0
+      - name: Test future winner enrichment vs exact category and volatility matched null on 149
+        run: |
+          python -m research_reset.m0b.enrichment --out _m0b
+      - name: Ensure sample and retrospective uncertainty are not misrepresented
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_m0b/RESULT.json").read_text())
+          assert d["status"]=="ORIGINAL149_M0B_TOP5_ENRICHMENT_FALSIFIER_COMPLETED"
+          assert d["original149_exact"] and d["n_monthlike_blocks"]==112
+          assert d["total_placebo_runs"]==500 and d["n_placebo_runs_each"]==250
+          assert d["preregistration_after_observing_M0"]
+          assert d["exact_original_name_retention_count_matched_every_block"]
+          assert d["correct_future_label_NOT_available_at_selection"]
+          print("M0B_CONDITIONAL_NULL_AND_ACCOUNTING_PASS")
+          PY
+      - name: Archive conditional-null trials and strict research decision permanently
+        run: |
+          mkdir -p research_reset/m0b/results
+          cp _m0b/*.csv _m0b/*.json research_reset/m0b/results/
+          (cd research_reset/m0b/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/m0b/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-Scientific-Falsifier"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/m0b/results
+          git commit -m "Archive M0b ETF149 as-of class/volatility exact-turnover matched 500 null portfolios and winner-screening posthoc verdict"
+          git push origin HEAD:refs/heads/research/149-opportunity-physics-m0-20261019
+      - name: Preserve research outputs even for rejected scientific hypotheses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m0b-conditional-extremal-enrichment-etf149-500-trials
+          retention-days: 90
+          path: |
+            _m0b/*.csv
+            _m0b/*.json
