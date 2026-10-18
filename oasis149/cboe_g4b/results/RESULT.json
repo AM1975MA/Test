@@ -5,7 +5,7 @@
   "source_G0_SHA": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
   "macros": {
     "status": "OFFICIAL_CBOE_FIVE_IMPLIED_VOL_HISTORY_OBSERVED",
-    "retrieved_utc": "2026-10-18T16:58:02.331625+00:00",
+    "retrieved_utc": "2026-10-18T17:02:28.859615+00:00",
     "source_historical_revision_proof_missing": true,
     "actual_asof_lag_calendar_days": 7,
     "source_template": "https://cdn-api.cboe.com/api/global/us_indices/daily_prices/{INDEX}_History.csv",

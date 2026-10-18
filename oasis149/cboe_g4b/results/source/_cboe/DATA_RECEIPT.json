@@ -1,0 +1,45 @@
+{
+  "status": "OFFICIAL_CBOE_FIVE_IMPLIED_VOL_HISTORY_OBSERVED",
+  "retrieved_utc": "2026-10-18T17:02:28.859615+00:00",
+  "source_historical_revision_proof_missing": true,
+  "actual_asof_lag_calendar_days": 7,
+  "source_template": "https://cdn-api.cboe.com/api/global/us_indices/daily_prices/{INDEX}_History.csv",
+  "observed_through_inclusive": "2026-07-31",
+  "series": {
+    "VIX": {
+      "n": 3195,
+      "start": "2014-01-02",
+      "end": "2026-07-31",
+      "sha256": "67e4c31bb14e03cab1c9c6bdec335b84a6454af7629bf4ce055b455cacd7e2af",
+      "raw_sha256": "a9742d4deab98f7644bda10df92db0b6afbca17ccc8b64139c52ad2ca0963d42"
+    },
+    "VVIX": {
+      "n": 3163,
+      "start": "2014-01-02",
+      "end": "2026-07-31",
+      "sha256": "816a29dcbc3990f43f9a576480e1de5c28a6b3b1b923424c78136b15b6ef4c6a",
+      "raw_sha256": "03feb6fd03631eb31048adfe7aa25aa3d3f7639cd197045a0f1f43edfcc3896b"
+    },
+    "OVX": {
+      "n": 3161,
+      "start": "2014-01-02",
+      "end": "2026-07-31",
+      "sha256": "64a97e2d305147a7d75bece9285a24fb9708662866ceb23c9a802ac71fa1c3f5",
+      "raw_sha256": "eca8660614883c9560fb7960776353056cf2d71ce3593c0db8fa1058831a0e28"
+    },
+    "GVZ": {
+      "n": 3161,
+      "start": "2014-01-02",
+      "end": "2026-07-31",
+      "sha256": "e3b5cf161fc9ab0139c62c64e595bd8ceb67dc20c6a7cbe42ab951f85648882a",
+      "raw_sha256": "73acf58fd316f2b8d35e157dbf1de5fe8a20ce92ea5d3c5ccffedabf629b47d9"
+    },
+    "VXEEM": {
+      "n": 3159,
+      "start": "2014-01-02",
+      "end": "2026-07-31",
+      "sha256": "0beac090579bb0ff011604b37a7e04616066fdda24db7491f9e1b1cce8cc1bfd",
+      "raw_sha256": "c91b14496799483fa7325e835fea13309260fee7466a2687ec664d8153d488cf"
+    }
+  }
+}
