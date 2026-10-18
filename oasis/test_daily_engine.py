@@ -44,6 +44,24 @@ class TestOASIS(unittest.TestCase):
         self.assertEqual(len(updated),2)
         self.assertEqual(len(set(updated)),2)
         self.assertTrue(all(t in self.p.columns for t in updated))
+    def test_missing_incumbent_is_not_an_alpha_exit(self):
+        original=prepare(self.p)
+        k=650
+        previous=ranks(original,k)[:2]
+        broken=dict(original)
+        broken["score"]=original["score"].copy()
+        broken["score"].loc[self.p.index[k],previous[0]]=np.nan
+        chosen,reason=switch_names(broken,k,previous,
+            {previous[0]:30,previous[1]:30},"P2")
+        self.assertEqual(chosen,previous)
+        self.assertEqual(reason,"INCUMBENT_CLOSE_MISSING_HOLD")
+    def test_partial_position_preserved(self):
+        original=prepare(self.p);k=650
+        keep=ranks(original,k)[10]
+        chosen,reason=switch_names(original,k,[keep],{keep:10},"P2")
+        self.assertIn(keep,chosen)
+        self.assertEqual(len(chosen),2)
+        self.assertEqual(reason,"FILL_MISSING_POSITION")
     def test_bocpd_posteriors_normalize(self):
         a=ChangePointObserver()
         for z in [0.,.25,-.1]*30+[-4.,-3.]:
