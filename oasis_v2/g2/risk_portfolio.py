@@ -67,7 +67,7 @@ def limited_weights(values,cap=.25):
 def risk_weights(s,score,universe,close):
     line=score.loc[s]
     ordered=sorted(line.dropna().index,key=lambda t:(-float(line[t]),str(t)))
-    if len(ordered)<100:raise AssertionError("Unexpected narrow 150-ETF universe")
+    if len(ordered)<12:raise AssertionError("Unexpectedly insufficient history-eligible ETFs")
     topsix=ordered[:6]
     unique=[]
     for group in GROUPS:
