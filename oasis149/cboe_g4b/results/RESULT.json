@@ -1,0 +1,357 @@
+{
+  "status": "ORIGINAL149_CBOE_G4B_EXPLORATORY_COMPLETE",
+  "experiment_period": "2021-01 to 2026-07",
+  "original_149_exact": true,
+  "source_G0_SHA": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "macros": {
+    "status": "OFFICIAL_CBOE_FIVE_IMPLIED_VOL_HISTORY_OBSERVED",
+    "retrieved_utc": "2026-10-18T16:58:02.331625+00:00",
+    "source_historical_revision_proof_missing": true,
+    "actual_asof_lag_calendar_days": 7,
+    "source_template": "https://cdn-api.cboe.com/api/global/us_indices/daily_prices/{INDEX}_History.csv",
+    "observed_through_inclusive": "2026-07-31",
+    "series": {
+      "VIX": {
+        "n": 3195,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "67e4c31bb14e03cab1c9c6bdec335b84a6454af7629bf4ce055b455cacd7e2af",
+        "raw_sha256": "a9742d4deab98f7644bda10df92db0b6afbca17ccc8b64139c52ad2ca0963d42"
+      },
+      "VVIX": {
+        "n": 3163,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "816a29dcbc3990f43f9a576480e1de5c28a6b3b1b923424c78136b15b6ef4c6a",
+        "raw_sha256": "03feb6fd03631eb31048adfe7aa25aa3d3f7639cd197045a0f1f43edfcc3896b"
+      },
+      "OVX": {
+        "n": 3161,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "64a97e2d305147a7d75bece9285a24fb9708662866ceb23c9a802ac71fa1c3f5",
+        "raw_sha256": "eca8660614883c9560fb7960776353056cf2d71ce3593c0db8fa1058831a0e28"
+      },
+      "GVZ": {
+        "n": 3161,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "e3b5cf161fc9ab0139c62c64e595bd8ceb67dc20c6a7cbe42ab951f85648882a",
+        "raw_sha256": "73acf58fd316f2b8d35e157dbf1de5fe8a20ce92ea5d3c5ccffedabf629b47d9"
+      },
+      "VXEEM": {
+        "n": 3159,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "0beac090579bb0ff011604b37a7e04616066fdda24db7491f9e1b1cce8cc1bfd",
+        "raw_sha256": "c91b14496799483fa7325e835fea13309260fee7466a2687ec664d8153d488cf"
+      }
+    }
+  },
+  "CBOE_HISTORICAL_VINTAGE_VALIDATED": false,
+  "macro_lag_calendar_days": 7,
+  "model_parameters_frozen_before_result": true,
+  "no_trading_policy_simulated": true,
+  "no_training_on_unmatured_forward_labels": true,
+  "independent_prospective_holdout": false,
+  "frozen_21session_anchor_count": 64,
+  "paired_rows": 5120,
+  "G4b_score_gate": "FAIL",
+  "proper_scores": {
+    "challenge": {
+      "H0_PRIOR": {
+        "n": 1024,
+        "brier": 0.2494909132286031,
+        "log_loss": 0.6921474004656678,
+        "auc": 0.40616737379327306,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.4524170437147209,
+        "calibration_gap": 0.004614206285279088
+      },
+      "H2_PRICE_GROUP": {
+        "n": 1024,
+        "brier": 0.24950707222336413,
+        "log_loss": 0.6935764738842869,
+        "auc": 0.5420701900018448,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.454910763135629,
+        "calibration_gap": 0.002120486864370996
+      },
+      "H5_CBOE_VOL_CONDITIONAL": {
+        "n": 1024,
+        "brier": 0.2570257740574719,
+        "log_loss": 0.7086929543562768,
+        "auc": 0.486068837237902,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.453312771551009,
+        "calibration_gap": 0.0037184784489909806
+      },
+      "H6_CBOE_VOL_COMPACT": {
+        "n": 1024,
+        "brier": 0.2496877386973705,
+        "log_loss": 0.6937000300814207,
+        "auc": 0.5269745741868044,
+        "observed_frequency": 0.45703125,
+        "average_prediction": 0.4522625418955779,
+        "calibration_gap": 0.0047687081044220925
+      }
+    },
+    "probe": {
+      "H0_PRIOR": {
+        "n": 4096,
+        "brier": 0.24920994745395467,
+        "log_loss": 0.6915669303187697,
+        "auc": 0.48295648678524766,
+        "observed_frequency": 0.47021484375,
+        "average_prediction": 0.46574719202393394,
+        "calibration_gap": 0.0044676517260660575
+      },
+      "H2_PRICE_GROUP": {
+        "n": 4096,
+        "brier": 0.250404310985302,
+        "log_loss": 0.6940604959296357,
+        "auc": 0.4992680802599404,
+        "observed_frequency": 0.47021484375,
+        "average_prediction": 0.4635942466158446,
+        "calibration_gap": 0.006620597134155415
+      },
+      "H5_CBOE_VOL_CONDITIONAL": {
+        "n": 4096,
+        "brier": 0.2514213810242445,
+        "log_loss": 0.6962326456217275,
+        "auc": 0.5100913523886089,
+        "observed_frequency": 0.47021484375,
+        "average_prediction": 0.4637173765388565,
+        "calibration_gap": 0.006497467211143526
+      },
+      "H6_CBOE_VOL_COMPACT": {
+        "n": 4096,
+        "brier": 0.25082313512219184,
+        "log_loss": 0.6948908828769728,
+        "auc": 0.4949201085318058,
+        "observed_frequency": 0.47021484375,
+        "average_prediction": 0.4609261060844041,
+        "calibration_gap": 0.009288737665595903
+      }
+    }
+  },
+  "era_scores": {
+    "challenge": {
+      "2021_2023": {
+        "H0_PRIOR": {
+          "n": 560,
+          "brier": 0.25432221360852836,
+          "log_loss": 0.7018376145865275,
+          "auc": 0.4460887544511238,
+          "observed_frequency": 0.5125,
+          "average_prediction": 0.4505663354552774,
+          "calibration_gap": 0.061933664544722544
+        },
+        "H2_PRICE_GROUP": {
+          "n": 560,
+          "brier": 0.25180394874493217,
+          "log_loss": 0.6969948475255612,
+          "auc": 0.5479955584485201,
+          "observed_frequency": 0.5125,
+          "average_prediction": 0.45791711141301833,
+          "calibration_gap": 0.054582888586981626
+        },
+        "H5_CBOE_VOL_CONDITIONAL": {
+          "n": 560,
+          "brier": 0.2710376104188833,
+          "log_loss": 0.736811742405294,
+          "auc": 0.42275146456331125,
+          "observed_frequency": 0.5125,
+          "average_prediction": 0.45116594124153997,
+          "calibration_gap": 0.061334058758459986
+        },
+        "H6_CBOE_VOL_COMPACT": {
+          "n": 560,
+          "brier": 0.25482694520776505,
+          "log_loss": 0.7030068253022239,
+          "auc": 0.4947097037689372,
+          "observed_frequency": 0.5125,
+          "average_prediction": 0.45857754240979187,
+          "calibration_gap": 0.053922457590208084
+        }
+      },
+      "2024_2026": {
+        "H0_PRIOR": {
+          "n": 464,
+          "brier": 0.24366003345972775,
+          "log_loss": 0.6804523144577337,
+          "auc": 0.39535950647170215,
+          "observed_frequency": 0.3900862068965517,
+          "average_prediction": 0.4546506571312906,
+          "calibration_gap": 0.06456445023473889
+        },
+        "H2_PRICE_GROUP": {
+          "n": 464,
+          "brier": 0.2467349798697475,
+          "log_loss": 0.6894508505241281,
+          "auc": 0.541241239287039,
+          "observed_frequency": 0.3900862068965517,
+          "average_prediction": 0.451282411766366,
+          "calibration_gap": 0.06119620486981431
+        },
+        "H5_CBOE_VOL_CONDITIONAL": {
+          "n": 464,
+          "brier": 0.24011493706956163,
+          "log_loss": 0.6747564860212559,
+          "auc": 0.582492239814146,
+          "observed_frequency": 0.3900862068965517,
+          "average_prediction": 0.45590377364864393,
+          "calibration_gap": 0.06581756675209222
+        },
+        "H6_CBOE_VOL_COMPACT": {
+          "n": 464,
+          "brier": 0.243485248081377,
+          "log_loss": 0.6824676910218305,
+          "auc": 0.5539894188157664,
+          "observed_frequency": 0.3900862068965517,
+          "average_prediction": 0.44464098955083686,
+          "calibration_gap": 0.05455478265428515
+        }
+      }
+    },
+    "probe": {
+      "2021_2023": {
+        "H0_PRIOR": {
+          "n": 2240,
+          "brier": 0.2495121236331196,
+          "log_loss": 0.6921722488894251,
+          "auc": 0.48271032033703365,
+          "observed_frequency": 0.4745535714285714,
+          "average_prediction": 0.4666687521054739,
+          "calibration_gap": 0.00788481932309748
+        },
+        "H2_PRICE_GROUP": {
+          "n": 2240,
+          "brier": 0.25069013190842987,
+          "log_loss": 0.6945420735580151,
+          "auc": 0.5022159595444514,
+          "observed_frequency": 0.4745535714285714,
+          "average_prediction": 0.4651514174169812,
+          "calibration_gap": 0.009402154011590225
+        },
+        "H5_CBOE_VOL_CONDITIONAL": {
+          "n": 2240,
+          "brier": 0.25153239857470583,
+          "log_loss": 0.6964449978584453,
+          "auc": 0.5147939777053289,
+          "observed_frequency": 0.4745535714285714,
+          "average_prediction": 0.46905324014761435,
+          "calibration_gap": 0.00550033128095706
+        },
+        "H6_CBOE_VOL_COMPACT": {
+          "n": 2240,
+          "brier": 0.2506591703887043,
+          "log_loss": 0.6944549280964334,
+          "auc": 0.5010114686396766,
+          "observed_frequency": 0.4745535714285714,
+          "average_prediction": 0.46694888591731354,
+          "calibration_gap": 0.007604685511257869
+        }
+      },
+      "2024_2026": {
+        "H0_PRIOR": {
+          "n": 1856,
+          "brier": 0.24884525206530728,
+          "log_loss": 0.6908363734231514,
+          "auc": 0.4728155022585678,
+          "observed_frequency": 0.46497844827586204,
+          "average_prediction": 0.4646349643393166,
+          "calibration_gap": 0.0003434839365454301
+        },
+        "H2_PRICE_GROUP": {
+          "n": 1856,
+          "brier": 0.2500593546987684,
+          "log_loss": 0.6934792815505574,
+          "auc": 0.4943573729898396,
+          "observed_frequency": 0.46497844827586204,
+          "average_prediction": 0.46171490254550734,
+          "calibration_gap": 0.0032635457303547
+        },
+        "H5_CBOE_VOL_CONDITIONAL": {
+          "n": 1856,
+          "brier": 0.2512873943254118,
+          "log_loss": 0.6959763584394819,
+          "auc": 0.5031897675384702,
+          "observed_frequency": 0.46497844827586204,
+          "average_prediction": 0.4572775411489764,
+          "calibration_gap": 0.007700907126885648
+        },
+        "H6_CBOE_VOL_COMPACT": {
+          "n": 1856,
+          "brier": 0.2510210235936424,
+          "log_loss": 0.6954170351983132,
+          "auc": 0.486090933171832,
+          "observed_frequency": 0.46497844827586204,
+          "average_prediction": 0.4536572338722721,
+          "calibration_gap": 0.011321214403589963
+        }
+      }
+    }
+  },
+  "paired_anchor_bootstrap": {
+    "H2_PRICE_GROUP": {
+      "paired_mean_brier_improvement": -1.6158994761037056e-05,
+      "95pct_circular_block_CI": [
+        -0.007466398487969217,
+        0.006921427005482072
+      ],
+      "n_nonoverlapping_anchors": 64
+    },
+    "H5_CBOE_VOL_CONDITIONAL": {
+      "paired_mean_brier_improvement": -0.007534860828868794,
+      "95pct_circular_block_CI": [
+        -0.017188506252195895,
+        0.003226495684509129
+      ],
+      "n_nonoverlapping_anchors": 64
+    },
+    "H6_CBOE_VOL_COMPACT": {
+      "paired_mean_brier_improvement": -0.00019682546876737417,
+      "95pct_circular_block_CI": [
+        -0.007183278099556164,
+        0.006701883062829293
+      ],
+      "n_nonoverlapping_anchors": 64
+    }
+  },
+  "H5_shadow": {
+    "n": 3,
+    "n_winning": 2,
+    "mean_net_log": 0.00046628090360856245,
+    "decisions": [
+      {
+        "anchor": 1512,
+        "candidate": "XRT",
+        "held": "TUR",
+        "net_return_log": -0.18727349575943697,
+        "prob": 0.6744166606013375
+      },
+      {
+        "anchor": 1533,
+        "candidate": "ITA",
+        "held": "TUR",
+        "net_return_log": 0.05863042133137518,
+        "prob": 0.6636797449657797
+      },
+      {
+        "anchor": 2331,
+        "candidate": "SOXX",
+        "held": "USO",
+        "net_return_log": 0.13004191713888746,
+        "prob": 0.6807571811006062
+      }
+    ]
+  },
+  "limitations": [
+    "CBOE published historical index values, not independently verified PIT vintage despite 7 day lag",
+    "original149 cohort already heavily mined",
+    "shared holdings/challenger outcomes within anchor correlated",
+    "Yahoo adjustment does not prove open fills and real spreads",
+    "group exposures labels static across sample; ETF inception/delisting not PIT"
+  ]
+}
