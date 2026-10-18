@@ -16,7 +16,7 @@ from sklearn.linear_model import LogisticRegression
 from oasis149.canonical import load_149,sha,SRC
 from oasis_v2.g1.pairwise import make_dataset,summarize, GROUPS, COST
 SERIES=("VIXCLS","DGS2","DGS10","BAMLH0A0HYM2")
-BASE="https://fred.stlouisfed.org/graph/fredgraph.csv?id="
+BASE="https://fred.stlouisfed.org/graph/fredgraph.csv?cosd=2014-01-01&coed=2026-07-31&id="
 EVAL_START=pd.Timestamp("2021-01-01")
 SEED=20261018
 PIT_PROOF=False
