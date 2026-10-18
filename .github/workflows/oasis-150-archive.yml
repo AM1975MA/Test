@@ -21,6 +21,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh run download 39132785483 -R AM1975MA/Test -n oasis-150-full-coverage-v1 -D _oasis150
+          # With two artifact source roots, upload-artifact preserves both
+          # source paths under the common workspace root. Normalize here.
+          if test -f _oasis150/_universe150/OASIS_TOP150.csv; then
+            cp _oasis150/_universe150/*.csv _oasis150/
+            cp _oasis150/_universe150/*.json _oasis150/
+            cp _oasis150/_oasis150_test/*.csv _oasis150/
+            cp _oasis150/_oasis150_test/RESULT.json _oasis150/
+          fi
           test -f _oasis150/OASIS_TOP150.csv
           test -f _oasis150/FULL_219_QUALITY_CENSUS.csv
           test -f _oasis150/SELECTION_RESULT.json
