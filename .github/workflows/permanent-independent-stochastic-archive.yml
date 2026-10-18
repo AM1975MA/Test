@@ -1,0 +1,45 @@
+name: PERMANENT_INDEPENDENT_STOCHASTIC_ARCHIVE
+on:
+  push:
+    branches:
+      - research/independent-stochastic-ergodic-20261018
+    paths:
+      - '.github/workflows/permanent-independent-stochastic-archive.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Load exact no-ML model replay and Bayesian risk outputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39120438390 -R AM1975MA/Test -n independent-stochastic-ergodic-eu60-v1 -D _new
+          gh run download 39120298645 -R AM1975MA/Test -n independent-stochastic-bayesian-risk-h10-v1 -D _risk
+          test -f _new/MONTHLY_LEDGER.csv
+          test -f _new/MONTHLY_SIGNALS.json
+          test -f _risk/PROBABILITY_AND_TAIL_RISK.csv
+      - name: Commit exact original input-output receipts and file hashes to research branch
+        run: |
+          mkdir -p research_receipts/stochastic_archive
+          cp _new/RESULT.json research_receipts/stochastic_archive/INDEPENDENT_PRICE_ONLY_RESULTS.json
+          cp _new/MONTHLY_LEDGER.csv research_receipts/stochastic_archive/INDEPENDENT_MONTHLY_LEDGER.csv
+          cp _new/MONTHLY_SIGNALS.json research_receipts/stochastic_archive/INDEPENDENT_MONTHLY_STATES.json
+          cp _risk/RESULT.json research_receipts/stochastic_archive/HMM_AND_T5_RESULTS.json
+          cp _risk/MONTHLY_LEDGER.csv research_receipts/stochastic_archive/HMM_AND_T5_LEDGER.csv
+          cp _risk/PROBABILITY_AND_TAIL_RISK.csv research_receipts/stochastic_archive/HMM_AND_T5_PROBABILITIES.csv
+          (cd research_receipts/stochastic_archive && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          git config user.name "ETF-Research-Archivist"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_receipts/stochastic_archive
+          git commit -m "Freeze completely independent stochastic EUR60 ledgers, probabilities and SHA256 digests"
+          git push origin HEAD:refs/heads/research/independent-stochastic-ergodic-20261018
+      - name: Check archive integrity
+        run: |
+          (cd research_receipts/stochastic_archive && sha256sum -c SHA256_MANIFEST.txt)
