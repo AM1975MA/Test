@@ -19,10 +19,10 @@ jobs:
             'https://fred.stlouisfed.org/graph/fredgraph.csv?cosd=2014-01-01&coed=2026-07-31&id=VIXCLS' \
             'https://cdn-api.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv'; do
             echo "TRANSPORT_SOURCE_URL=$url"
-            curl -L --compressed --max-time 14 --connect-timeout 5 \
+            curl -L --http1.1 --compressed --max-time 14 --connect-timeout 5 \
               --retry 0 -A 'Mozilla/5.0 (ETF scientific replication)' \
               --silent --show-error \
-              -w 'TRANSPORT_RESULT http=%{http_code} downloaded=%{size_download} length=%{download_content_length} time=%{time_total}\n' \
+              -w 'TRANSPORT_RESULT http=%{http_code} downloaded=%{size_download} time=%{time_total}\n' \
               -o /tmp/oasis_probe.csv "$url"
             echo "TRANSPORT_BYTES=$(wc -c < /tmp/oasis_probe.csv)"
             head -c 90 /tmp/oasis_probe.csv; echo ''
