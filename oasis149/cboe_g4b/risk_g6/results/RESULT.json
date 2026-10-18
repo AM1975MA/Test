@@ -1,0 +1,98 @@
+{
+  "status": "ORIGINAL149_EWMA_G6_MATCHED_PORTFOLIO_COMPLETED",
+  "original149_exact": 149,
+  "source_roster_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "original_R3_replay_parity_error": 4.440892098500626e-16,
+  "n_study_days": 2366,
+  "no_new_ETF_selection": true,
+  "no_G1_or_G4_failed_alpha_used": true,
+  "only_weights_changed_at_same_114_monthly_opens": true,
+  "fixed_weight_cap_25pct": true,
+  "ewma_decay_predeclared": 0.97,
+  "under_volatility_forecast_G5_accepted_as_risk_observer_only": true,
+  "metrics": {
+    "R3_63DAY_INV_VOL": {
+      "cagr": 0.07061810967414517,
+      "end_wealth": 1.8985762029472215,
+      "daily_maxdd": -0.30158766501736534,
+      "daily_sharpe": 0.48123901738689334,
+      "daily_es5": -0.02198056041377417,
+      "daily_worst": -0.08328617796532986,
+      "exposure_mean": 0.998245985555704,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 15.090158898847397,
+      "fee_paid_initial_units": 0.20356803681247304,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6.0,
+      "actual_risk_series_21d_loss_max": 0.0
+    },
+    "R7_EWMA126_INV_VOL": {
+      "cagr": 0.07722851095016425,
+      "end_wealth": 2.011793198621139,
+      "daily_maxdd": -0.2881004418757629,
+      "daily_sharpe": 0.5256722769806721,
+      "daily_es5": -0.021903214994073238,
+      "daily_worst": -0.08332196642232946,
+      "exposure_mean": 0.9982479903552681,
+      "days_20pct_or_less": 0,
+      "annual_traded_notional": 15.112219104068878,
+      "fee_paid_initial_units": 0.20973797628415936,
+      "n_action_days": 114,
+      "n_risk_interventions": 0,
+      "holdings_count_avg": 6.0,
+      "actual_risk_series_21d_loss_max": 0.0
+    }
+  },
+  "by_era": {
+    "R3_63DAY_INV_VOL": {
+      "2017_2020": {
+        "n_days": 987,
+        "annualized_compound_return": 0.12214093896404576,
+        "drawdown_rebased": -0.2719431702452887
+      },
+      "2021_2023": {
+        "n_days": 753,
+        "annualized_compound_return": -0.01947187060506672,
+        "drawdown_rebased": -0.30158766501736534
+      },
+      "2024_2026": {
+        "n_days": 626,
+        "annualized_compound_return": 0.10565877738650498,
+        "drawdown_rebased": -0.1565080171975307
+      }
+    },
+    "R7_EWMA126_INV_VOL": {
+      "2017_2020": {
+        "n_days": 987,
+        "annualized_compound_return": 0.12725067243389354,
+        "drawdown_rebased": -0.2715932414281613
+      },
+      "2021_2023": {
+        "n_days": 753,
+        "annualized_compound_return": -0.011257727843772547,
+        "drawdown_rebased": -0.2881004418757629
+      },
+      "2024_2026": {
+        "n_days": 626,
+        "annualized_compound_return": 0.1124449433206145,
+        "drawdown_rebased": -0.1554159373224412
+      }
+    }
+  },
+  "bootstrap_12month_monthly_log": {
+    "R7_EWMA126_INV_VOL": {
+      "mean_monthly_log_excess": 0.0005080896893204303,
+      "ci95": [
+        0.0001249626671247368,
+        0.0009184628756509636
+      ],
+      "n_months": 114
+    }
+  },
+  "preregistered_economic_gate": true,
+  "source_already_hindsight_biased": true,
+  "no_broker_spread_or_EUR_implementation": true,
+  "historical_repeatedly_mined": true,
+  "conclusion": "RISK_WEIGHTING_DIAGNOSTIC_NOT_NEW_ALPHA"
+}
