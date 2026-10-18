@@ -1,0 +1,450 @@
+{
+  "status": "ORIGINAL149_CBOE_G5_RISK_VARIANCE_COMPLETED",
+  "original149_exact_SHA": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "mapped_groups": [
+    "C01_US_BROAD_STYLE",
+    "C02_US_SECTOR_THEME",
+    "C03_DEVELOPED_GLOBAL",
+    "C04_EMERGING",
+    "C06_REAL_ASSETS"
+  ],
+  "unmapped_group": "C05_BONDS_CASH_CREDIT",
+  "forward_21session_open_to_open_RV_definition": "sum of 21 squared open-to-open log returns",
+  "n_orig_149_etfs": 149,
+  "n_anchors": 64,
+  "n_positions": 384,
+  "n_mapped_positions": 320,
+  "no_switches_or_returns_optimized": true,
+  "risk_model_only_not_alpha": true,
+  "source_option_data": {
+    "status": "OFFICIAL_CBOE_FIVE_IMPLIED_VOL_HISTORY_OBSERVED",
+    "retrieved_utc": "2026-10-18T16:58:02.331625+00:00",
+    "source_historical_revision_proof_missing": true,
+    "actual_asof_lag_calendar_days": 7,
+    "source_template": "https://cdn-api.cboe.com/api/global/us_indices/daily_prices/{INDEX}_History.csv",
+    "observed_through_inclusive": "2026-07-31",
+    "series": {
+      "VIX": {
+        "n": 3195,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "67e4c31bb14e03cab1c9c6bdec335b84a6454af7629bf4ce055b455cacd7e2af",
+        "raw_sha256": "a9742d4deab98f7644bda10df92db0b6afbca17ccc8b64139c52ad2ca0963d42"
+      },
+      "VVIX": {
+        "n": 3163,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "816a29dcbc3990f43f9a576480e1de5c28a6b3b1b923424c78136b15b6ef4c6a",
+        "raw_sha256": "03feb6fd03631eb31048adfe7aa25aa3d3f7639cd197045a0f1f43edfcc3896b"
+      },
+      "OVX": {
+        "n": 3161,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "64a97e2d305147a7d75bece9285a24fb9708662866ceb23c9a802ac71fa1c3f5",
+        "raw_sha256": "eca8660614883c9560fb7960776353056cf2d71ce3593c0db8fa1058831a0e28"
+      },
+      "GVZ": {
+        "n": 3161,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "e3b5cf161fc9ab0139c62c64e595bd8ceb67dc20c6a7cbe42ab951f85648882a",
+        "raw_sha256": "73acf58fd316f2b8d35e157dbf1de5fe8a20ce92ea5d3c5ccffedabf629b47d9"
+      },
+      "VXEEM": {
+        "n": 3159,
+        "start": "2014-01-02",
+        "end": "2026-07-31",
+        "sha256": "0beac090579bb0ff011604b37a7e04616066fdda24db7491f9e1b1cce8cc1bfd",
+        "raw_sha256": "c91b14496799483fa7325e835fea13309260fee7466a2687ec664d8153d488cf"
+      }
+    }
+  },
+  "source_vintage_not_PIT_verified": true,
+  "score_mapped": {
+    "K0_LAST63": {
+      "n": 320,
+      "QLIKE": 0.2862623129090283,
+      "log_RV_MSE": 0.4924251247411041,
+      "mean_predicted_RV21": 0.007971789313100264,
+      "mean_realized_RV21": 0.008532315329555737,
+      "mean_predicted_over_actual": 0.9343055202714058,
+      "QLIKE_median": 0.0903060861446715
+    },
+    "K1_EWMA126": {
+      "n": 320,
+      "QLIKE": 0.2543786440481818,
+      "log_RV_MSE": 0.4408695586100886,
+      "mean_predicted_RV21": 0.00806097574688445,
+      "mean_realized_RV21": 0.008532315329555737,
+      "mean_predicted_over_actual": 0.9447583024693686,
+      "QLIKE_median": 0.09389180480134796
+    },
+    "K2_CBOE_CALIBRATED": {
+      "n": 320,
+      "QLIKE": 0.5582335523427624,
+      "log_RV_MSE": 0.8635397961320755,
+      "mean_predicted_RV21": 0.005502494410885507,
+      "mean_realized_RV21": 0.008532315329555737,
+      "mean_predicted_over_actual": 0.6449004986753124,
+      "QLIKE_median": 0.18625904063771437
+    },
+    "K3_LOG_BLEND": {
+      "n": 320,
+      "QLIKE": 0.31411605610850335,
+      "log_RV_MSE": 0.5136824766122795,
+      "mean_predicted_RV21": 0.006156052377929004,
+      "mean_realized_RV21": 0.008532315329555737,
+      "mean_predicted_over_actual": 0.7214984608696522,
+      "QLIKE_median": 0.11888151474172648
+    }
+  },
+  "score_by_era": {
+    "2021_2023": {
+      "K0_LAST63": {
+        "n": 175,
+        "QLIKE": 0.20655472533046568,
+        "log_RV_MSE": 0.38423826626442,
+        "mean_predicted_RV21": 0.008121735305584103,
+        "mean_realized_RV21": 0.008526809403391261,
+        "mean_predicted_over_actual": 0.9524940597773824,
+        "QLIKE_median": 0.07604605031644462
+      },
+      "K1_EWMA126": {
+        "n": 175,
+        "QLIKE": 0.18204627572150986,
+        "log_RV_MSE": 0.35185959612692586,
+        "mean_predicted_RV21": 0.008055745487807537,
+        "mean_realized_RV21": 0.008526809403391261,
+        "mean_predicted_over_actual": 0.9447549612875862,
+        "QLIKE_median": 0.06539079477541332
+      },
+      "K2_CBOE_CALIBRATED": {
+        "n": 175,
+        "QLIKE": 0.4488312794368263,
+        "log_RV_MSE": 0.7975023746352131,
+        "mean_predicted_RV21": 0.005715373756097549,
+        "mean_realized_RV21": 0.008526809403391261,
+        "mean_predicted_over_actual": 0.6702828086933016,
+        "QLIKE_median": 0.20057462514382207
+      },
+      "K3_LOG_BLEND": {
+        "n": 175,
+        "QLIKE": 0.22892044604046718,
+        "log_RV_MSE": 0.4271604320003792,
+        "mean_predicted_RV21": 0.006298614118242955,
+        "mean_realized_RV21": 0.008526809403391261,
+        "mean_predicted_over_actual": 0.7386835825998275,
+        "QLIKE_median": 0.09765441428603916
+      }
+    },
+    "2024_2026": {
+      "K0_LAST63": {
+        "n": 145,
+        "QLIKE": 0.38246112550384526,
+        "log_RV_MSE": 0.6229954711784813,
+        "mean_predicted_RV21": 0.007790820011826665,
+        "mean_realized_RV21": 0.008538960412857689,
+        "mean_predicted_over_actual": 0.9123850720862344,
+        "QLIKE_median": 0.10458168602344431
+      },
+      "K1_EWMA126": {
+        "n": 145,
+        "QLIKE": 0.34167632995968233,
+        "log_RV_MSE": 0.5482953754001126,
+        "mean_predicted_RV21": 0.008067288128528997,
+        "mean_realized_RV21": 0.008538960412857689,
+        "mean_predicted_over_actual": 0.9447623291919163,
+        "QLIKE_median": 0.12516304387815702
+      },
+      "K2_CBOE_CALIBRATED": {
+        "n": 145,
+        "QLIKE": 0.6902707782637197,
+        "log_RV_MSE": 0.9432401324213919,
+        "mean_predicted_RV21": 0.005245571063215801,
+        "mean_realized_RV21": 0.008538960412857689,
+        "mean_predicted_over_actual": 0.6143102684159526,
+        "QLIKE_median": 0.15032998136498232
+      },
+      "K3_LOG_BLEND": {
+        "n": 145,
+        "QLIKE": 0.41693834412165054,
+        "log_RV_MSE": 0.6181056339025041,
+        "mean_predicted_RV21": 0.005983995105136303,
+        "mean_realized_RV21": 0.008538960412857689,
+        "mean_predicted_over_actual": 0.7007873108447484,
+        "QLIKE_median": 0.13341741021280162
+      }
+    }
+  },
+  "score_by_group": {
+    "C01_US_BROAD_STYLE": {
+      "K0_LAST63": {
+        "n": 64,
+        "QLIKE": 0.26939293859105395,
+        "log_RV_MSE": 0.5316491621505786,
+        "mean_predicted_RV21": 0.0026629269476374706,
+        "mean_realized_RV21": 0.002961533021459269,
+        "mean_predicted_over_actual": 0.8991717898608259,
+        "QLIKE_median": 0.08178322579323971
+      },
+      "K1_EWMA126": {
+        "n": 64,
+        "QLIKE": 0.2537611202799892,
+        "log_RV_MSE": 0.4798919172015147,
+        "mean_predicted_RV21": 0.002671472085183168,
+        "mean_realized_RV21": 0.002961533021459269,
+        "mean_predicted_over_actual": 0.9020571662803287,
+        "QLIKE_median": 0.09465005213182764
+      },
+      "K2_CBOE_CALIBRATED": {
+        "n": 64,
+        "QLIKE": 0.5828298812137214,
+        "log_RV_MSE": 0.8874426434215141,
+        "mean_predicted_RV21": 0.002246719831686084,
+        "mean_realized_RV21": 0.002961533021459269,
+        "mean_predicted_over_actual": 0.7586340639818471,
+        "QLIKE_median": 0.2022849882034813
+      },
+      "K3_LOG_BLEND": {
+        "n": 64,
+        "QLIKE": 0.3429947243999465,
+        "log_RV_MSE": 0.5605922422410312,
+        "mean_predicted_RV21": 0.002257700239814255,
+        "mean_realized_RV21": 0.002961533021459269,
+        "mean_predicted_over_actual": 0.7623417410695604,
+        "QLIKE_median": 0.1142344545958246
+      }
+    },
+    "C02_US_SECTOR_THEME": {
+      "K0_LAST63": {
+        "n": 64,
+        "QLIKE": 0.32519598437069347,
+        "log_RV_MSE": 0.5450660324886202,
+        "mean_predicted_RV21": 0.007555720441873401,
+        "mean_realized_RV21": 0.007659425113346419,
+        "mean_predicted_over_actual": 0.9864605149944851,
+        "QLIKE_median": 0.09156850723836074
+      },
+      "K1_EWMA126": {
+        "n": 64,
+        "QLIKE": 0.29578927663851423,
+        "log_RV_MSE": 0.4959927021280759,
+        "mean_predicted_RV21": 0.007799836320885878,
+        "mean_realized_RV21": 0.007659425113346419,
+        "mean_predicted_over_actual": 1.0183318206603775,
+        "QLIKE_median": 0.10060347584227136
+      },
+      "K2_CBOE_CALIBRATED": {
+        "n": 64,
+        "QLIKE": 0.5240445302501017,
+        "log_RV_MSE": 0.7281635839296834,
+        "mean_predicted_RV21": 0.005989400111103287,
+        "mean_realized_RV21": 0.007659425113346419,
+        "mean_predicted_over_actual": 0.781964706550477,
+        "QLIKE_median": 0.1238842882551463
+      },
+      "K3_LOG_BLEND": {
+        "n": 64,
+        "QLIKE": 0.3105737390579304,
+        "log_RV_MSE": 0.5001807017791463,
+        "mean_predicted_RV21": 0.00635641685847171,
+        "mean_realized_RV21": 0.007659425113346419,
+        "mean_predicted_over_actual": 0.8298817162394813,
+        "QLIKE_median": 0.10096356378010529
+      }
+    },
+    "C03_DEVELOPED_GLOBAL": {
+      "K0_LAST63": {
+        "n": 64,
+        "QLIKE": 0.26840084354383364,
+        "log_RV_MSE": 0.46458966980368277,
+        "mean_predicted_RV21": 0.0037037949423972386,
+        "mean_realized_RV21": 0.003896614507538145,
+        "mean_predicted_over_actual": 0.9505161301514713,
+        "QLIKE_median": 0.1009863974186318
+      },
+      "K1_EWMA126": {
+        "n": 64,
+        "QLIKE": 0.22699777295041074,
+        "log_RV_MSE": 0.410061874061845,
+        "mean_predicted_RV21": 0.003693809432356308,
+        "mean_realized_RV21": 0.003896614507538145,
+        "mean_predicted_over_actual": 0.9479535184223374,
+        "QLIKE_median": 0.11179315771226972
+      },
+      "K2_CBOE_CALIBRATED": {
+        "n": 64,
+        "QLIKE": 0.35275992651730503,
+        "log_RV_MSE": 0.6081708583072778,
+        "mean_predicted_RV21": 0.0030311802182180665,
+        "mean_realized_RV21": 0.003896614507538145,
+        "mean_predicted_over_actual": 0.7779009733588315,
+        "QLIKE_median": 0.17595759129149924
+      },
+      "K3_LOG_BLEND": {
+        "n": 64,
+        "QLIKE": 0.23003053175345714,
+        "log_RV_MSE": 0.41772269653575556,
+        "mean_predicted_RV21": 0.0031624485693326184,
+        "mean_realized_RV21": 0.003896614507538145,
+        "mean_predicted_over_actual": 0.8115887684590674,
+        "QLIKE_median": 0.12175896972140832
+      }
+    },
+    "C04_EMERGING": {
+      "K0_LAST63": {
+        "n": 64,
+        "QLIKE": 0.23910078722972833,
+        "log_RV_MSE": 0.46789436561553877,
+        "mean_predicted_RV21": 0.007886174000832236,
+        "mean_realized_RV21": 0.0073837428683239305,
+        "mean_predicted_over_actual": 1.0680455890011722,
+        "QLIKE_median": 0.09078008312429531
+      },
+      "K1_EWMA126": {
+        "n": 64,
+        "QLIKE": 0.1955484087451495,
+        "log_RV_MSE": 0.3935744546668887,
+        "mean_predicted_RV21": 0.007986813996979602,
+        "mean_realized_RV21": 0.0073837428683239305,
+        "mean_predicted_over_actual": 1.081675532234855,
+        "QLIKE_median": 0.08667478227579162
+      },
+      "K2_CBOE_CALIBRATED": {
+        "n": 64,
+        "QLIKE": 0.4546680779288931,
+        "log_RV_MSE": 0.7980055927757542,
+        "mean_predicted_RV21": 0.0049967352524593195,
+        "mean_realized_RV21": 0.0073837428683239305,
+        "mean_predicted_over_actual": 0.6767211889101917,
+        "QLIKE_median": 0.18042074979442957
+      },
+      "K3_LOG_BLEND": {
+        "n": 64,
+        "QLIKE": 0.23886731650182935,
+        "log_RV_MSE": 0.4351221537105026,
+        "mean_predicted_RV21": 0.005768276423428468,
+        "mean_realized_RV21": 0.0073837428683239305,
+        "mean_predicted_over_actual": 0.781213068533877,
+        "QLIKE_median": 0.09841352584695162
+      }
+    },
+    "C05_BONDS_CASH_CREDIT": {
+      "K0_LAST63": {
+        "n": 64,
+        "QLIKE": 0.5143391514211744,
+        "log_RV_MSE": 0.5869270919446818,
+        "mean_predicted_RV21": 0.0007191848848827994,
+        "mean_realized_RV21": 0.0006550918114465885,
+        "mean_predicted_over_actual": 1.097838306503449,
+        "QLIKE_median": 0.07280458180836369
+      },
+      "K1_EWMA126": {
+        "n": 64,
+        "QLIKE": 0.5547955950754951,
+        "log_RV_MSE": 0.6006874822641579,
+        "mean_predicted_RV21": 0.0007232779567805183,
+        "mean_realized_RV21": 0.0006550918114465885,
+        "mean_predicted_over_actual": 1.1040863954372435,
+        "QLIKE_median": 0.08482315953895703
+      },
+      "K2_CBOE_CALIBRATED": {
+        "n": 0,
+        "QLIKE": null,
+        "log_RV_MSE": null,
+        "mean_predicted_RV21": null,
+        "mean_realized_RV21": null,
+        "mean_predicted_over_actual": null,
+        "QLIKE_median": null
+      },
+      "K3_LOG_BLEND": {
+        "n": 0,
+        "QLIKE": null,
+        "log_RV_MSE": null,
+        "mean_predicted_RV21": null,
+        "mean_realized_RV21": null,
+        "mean_predicted_over_actual": null,
+        "QLIKE_median": null
+      }
+    },
+    "C06_REAL_ASSETS": {
+      "K0_LAST63": {
+        "n": 64,
+        "QLIKE": 0.3292210108098321,
+        "log_RV_MSE": 0.4529263936471,
+        "mean_predicted_RV21": 0.01805033023276098,
+        "mean_realized_RV21": 0.020760261137110915,
+        "mean_predicted_over_actual": 0.8694654712456541,
+        "QLIKE_median": 0.0810842395658814
+      },
+      "K1_EWMA126": {
+        "n": 64,
+        "QLIKE": 0.29979664162684516,
+        "log_RV_MSE": 0.424826844992119,
+        "mean_predicted_RV21": 0.018152946899017287,
+        "mean_realized_RV21": 0.020760261137110915,
+        "mean_predicted_over_actual": 0.8744084084071173,
+        "QLIKE_median": 0.07272015975174573
+      },
+      "K2_CBOE_CALIBRATED": {
+        "n": 64,
+        "QLIKE": 0.8768653458037906,
+        "log_RV_MSE": 1.2959163022261477,
+        "mean_predicted_RV21": 0.011248436640960778,
+        "mean_realized_RV21": 0.020760261137110915,
+        "mean_predicted_over_actual": 0.5418253925936,
+        "QLIKE_median": 0.26918941190981915
+      },
+      "K3_LOG_BLEND": {
+        "n": 64,
+        "QLIKE": 0.4481139688293537,
+        "log_RV_MSE": 0.6547945887949621,
+        "mean_predicted_RV21": 0.013235419798597962,
+        "mean_realized_RV21": 0.020760261137110915,
+        "mean_predicted_over_actual": 0.6375362868118459,
+        "QLIKE_median": 0.1667298741484785
+      }
+    }
+  },
+  "circular_3_anchor_bootstrap": {
+    "K1_EWMA126": {
+      "n_nonoverlapping_anchors": 64,
+      "improvement_QLIKE_vs_K0": 0.03188366886084653,
+      "ci95": [
+        0.016087274380818497,
+        0.05025937642245285
+      ]
+    },
+    "K2_CBOE_CALIBRATED": {
+      "n_nonoverlapping_anchors": 64,
+      "improvement_QLIKE_vs_K0": -0.271971239433734,
+      "ci95": [
+        -0.3981537309988116,
+        -0.15691044002340868
+      ]
+    },
+    "K3_LOG_BLEND": {
+      "n_nonoverlapping_anchors": 64,
+      "improvement_QLIKE_vs_K0": -0.027853743199475103,
+      "ci95": [
+        -0.07977894027779134,
+        0.019650077923196035
+      ]
+    }
+  },
+  "preregistered_gates": {
+    "K2_CBOE_CALIBRATED": false,
+    "K3_LOG_BLEND": false
+  },
+  "limitations": [
+    "Already-mined 149 universe",
+    "64 anchors not 320 independent time experiments",
+    "6 categories overlap economically and contain leverage/strategy risks",
+    "Option IV at 30d includes risk premium, not statistically direct RV forecast",
+    "No group-matched implied-vol for bonds; K2/K3 exclude bond",
+    "Source historical as-of vintages and broker fills unverified",
+    "Risk variance calibration is not portfolio tail or drawdown prediction"
+  ]
+}
