@@ -1,0 +1,376 @@
+{
+  "status": "PAIRED_PREQUENTIAL_G1_COMPLETED",
+  "gate_G1_primary": "FAIL",
+  "need_full_PIT_and_forward": "YES",
+  "candidate_etfs": 150,
+  "anchors_evaluated": 64,
+  "pair_rows": 5120,
+  "past_data_source": 39132785483,
+  "first_eval_anchor": "2021-02-02",
+  "last_eval_anchor": "2026-05-11",
+  "statistical_unit": "chronological_nonoverlapping_21-session_anchor",
+  "asof_matured_label_invariant": true,
+  "ever_read_old_LM_predictions": false,
+  "hypotheses_frozen_before_evaluation": true,
+  "model_paired_economic_horizon_sessions": 21,
+  "model_all_in_one_cost_hurdle_log": 0.003,
+  "uses_retrospective_survivor_universe": true,
+  "independent_test_data": false,
+  "scored_by_task": {
+    "challenge": {
+      "H0_PRIOR": {
+        "n": 1024,
+        "brier": 0.24725191047187728,
+        "log_loss": 0.6876736456356356,
+        "auc": 0.404389880952381,
+        "observed_frequency": 0.4375,
+        "average_prediction": 0.434020321355028,
+        "calibration_gap": 0.0034796786449720063
+      },
+      "H1_RAW_TREND": {
+        "n": 1024,
+        "brier": 0.2479796026691823,
+        "log_loss": 0.689096581025828,
+        "auc": 0.4920286148313492,
+        "observed_frequency": 0.4375,
+        "average_prediction": 0.4641489662416698,
+        "calibration_gap": 0.02664896624166979
+      },
+      "H2_GROUP_RESIDUAL": {
+        "n": 1024,
+        "brier": 0.2485486432455249,
+        "log_loss": 0.6925330777878372,
+        "auc": 0.5403684585813492,
+        "observed_frequency": 0.4375,
+        "average_prediction": 0.44730510828236647,
+        "calibration_gap": 0.00980510828236647
+      },
+      "H3_HIERARCHICAL_REGIME": {
+        "n": 1024,
+        "brier": 0.25554949984648323,
+        "log_loss": 0.7074861952536338,
+        "auc": 0.5080992683531746,
+        "observed_frequency": 0.4375,
+        "average_prediction": 0.45312324724947906,
+        "calibration_gap": 0.015623247249479055
+      },
+      "H4_STUDENT_T": {
+        "n": 1024,
+        "brier": 0.2534425447949497,
+        "log_loss": 0.7002181069287028,
+        "auc": 0.4936058407738095,
+        "observed_frequency": 0.4375,
+        "average_prediction": 0.49898809983574033,
+        "calibration_gap": 0.06148809983574033
+      }
+    },
+    "probe": {
+      "H0_PRIOR": {
+        "n": 4096,
+        "brier": 0.24910591323565293,
+        "log_loss": 0.6913600940215177,
+        "auc": 0.4925676691693316,
+        "observed_frequency": 0.46728515625,
+        "average_prediction": 0.45551795853821697,
+        "calibration_gap": 0.011767197711783028
+      },
+      "H1_RAW_TREND": {
+        "n": 4096,
+        "brier": 0.24932389399718746,
+        "log_loss": 0.6918043175437878,
+        "auc": 0.5027828140758385,
+        "observed_frequency": 0.46728515625,
+        "average_prediction": 0.44871088263498915,
+        "calibration_gap": 0.01857427361501085
+      },
+      "H2_GROUP_RESIDUAL": {
+        "n": 4096,
+        "brier": 0.25094872301863985,
+        "log_loss": 0.6953129348127227,
+        "auc": 0.49775617357557367,
+        "observed_frequency": 0.46728515625,
+        "average_prediction": 0.4496830076961912,
+        "calibration_gap": 0.017602148553808816
+      },
+      "H3_HIERARCHICAL_REGIME": {
+        "n": 4096,
+        "brier": 0.2515584226323938,
+        "log_loss": 0.696900756148569,
+        "auc": 0.5117135832550352,
+        "observed_frequency": 0.46728515625,
+        "average_prediction": 0.44829631449858137,
+        "calibration_gap": 0.018988841751418628
+      },
+      "H4_STUDENT_T": {
+        "n": 4096,
+        "brier": 0.24974515640481143,
+        "log_loss": 0.6927007819836306,
+        "auc": 0.5249083649159505,
+        "observed_frequency": 0.46728515625,
+        "average_prediction": 0.46689235390113837,
+        "calibration_gap": 0.0003928023488616317
+      }
+    }
+  },
+  "era_slices": {
+    "challenge": {
+      "2021_2023": {
+        "H0_PRIOR": {
+          "n": 560,
+          "brier": 0.25051296279604596,
+          "log_loss": 0.6942386289315157,
+          "auc": 0.431656383483626,
+          "observed_frequency": 0.4625,
+          "average_prediction": 0.43225936585880426,
+          "calibration_gap": 0.030240634141195766
+        },
+        "H1_RAW_TREND": {
+          "n": 560,
+          "brier": 0.2497122403693455,
+          "log_loss": 0.6925683778154672,
+          "auc": 0.5019818109519106,
+          "observed_frequency": 0.4625,
+          "average_prediction": 0.4632230776393683,
+          "calibration_gap": 0.0007230776393682969
+        },
+        "H2_GROUP_RESIDUAL": {
+          "n": 560,
+          "brier": 0.24449128919490792,
+          "log_loss": 0.6824015550719099,
+          "auc": 0.5832681281186265,
+          "observed_frequency": 0.4625,
+          "average_prediction": 0.45554910899804196,
+          "calibration_gap": 0.006950891001958059
+        },
+        "H3_HIERARCHICAL_REGIME": {
+          "n": 560,
+          "brier": 0.259631422485392,
+          "log_loss": 0.715220181523224,
+          "auc": 0.5111532985287138,
+          "observed_frequency": 0.4625,
+          "average_prediction": 0.458673665366006,
+          "calibration_gap": 0.0038263346339940107
+        },
+        "H4_STUDENT_T": {
+          "n": 560,
+          "brier": 0.25174535260426406,
+          "log_loss": 0.6968330816918672,
+          "auc": 0.5069844405392577,
+          "observed_frequency": 0.4625,
+          "average_prediction": 0.49835529929049205,
+          "calibration_gap": 0.035855299290492026
+        }
+      },
+      "2024_2026": {
+        "H0_PRIOR": {
+          "n": 464,
+          "brier": 0.24331615766684608,
+          "log_loss": 0.6797503899337112,
+          "auc": 0.3717845117845118,
+          "observed_frequency": 0.4073275862068966,
+          "average_prediction": 0.43614561247116,
+          "calibration_gap": 0.02881802626426344
+        },
+        "H1_RAW_TREND": {
+          "n": 464,
+          "brier": 0.245888488203468,
+          "log_loss": 0.6849064814521256,
+          "auc": 0.49733525733525735,
+          "observed_frequency": 0.4073275862068966,
+          "average_prediction": 0.4652664180030681,
+          "calibration_gap": 0.05793883179617154
+        },
+        "H2_GROUP_RESIDUAL": {
+          "n": 464,
+          "brier": 0.2534454498583384,
+          "log_loss": 0.7047607776174046,
+          "auc": 0.466050986050986,
+          "observed_frequency": 0.4073275862068966,
+          "average_prediction": 0.4373554522462063,
+          "calibration_gap": 0.030027866039309736
+        },
+        "H3_HIERARCHICAL_REGIME": {
+          "n": 464,
+          "brier": 0.25062304148917963,
+          "log_loss": 0.6981520738937835,
+          "auc": 0.5001250601250601,
+          "observed_frequency": 0.4073275862068966,
+          "average_prediction": 0.4464244667640156,
+          "calibration_gap": 0.03909688055711902
+        },
+        "H4_STUDENT_T": {
+          "n": 464,
+          "brier": 0.2554908801975013,
+          "log_loss": 0.7043034822145389,
+          "auc": 0.47357383357383354,
+          "observed_frequency": 0.4073275862068966,
+          "average_prediction": 0.4997518246317295,
+          "calibration_gap": 0.09242423842483294
+        }
+      }
+    },
+    "probe": {
+      "2021_2023": {
+        "H0_PRIOR": {
+          "n": 2240,
+          "brier": 0.24944932486666674,
+          "log_loss": 0.6920494420090884,
+          "auc": 0.497542486504475,
+          "observed_frequency": 0.4705357142857143,
+          "average_prediction": 0.4529953283894825,
+          "calibration_gap": 0.017540385896231803
+        },
+        "H1_RAW_TREND": {
+          "n": 2240,
+          "brier": 0.24974728863961687,
+          "log_loss": 0.6926543114225444,
+          "auc": 0.5040886560793061,
+          "observed_frequency": 0.4705357142857143,
+          "average_prediction": 0.44677323690804605,
+          "calibration_gap": 0.023762477377668234
+        },
+        "H2_GROUP_RESIDUAL": {
+          "n": 2240,
+          "brier": 0.25232641332031774,
+          "log_loss": 0.6980343459661169,
+          "auc": 0.48137345565436096,
+          "observed_frequency": 0.4705357142857143,
+          "average_prediction": 0.4480514577486691,
+          "calibration_gap": 0.022484256537045166
+        },
+        "H3_HIERARCHICAL_REGIME": {
+          "n": 2240,
+          "brier": 0.2534080824543062,
+          "log_loss": 0.7007397730872067,
+          "auc": 0.49621213333290665,
+          "observed_frequency": 0.4705357142857143,
+          "average_prediction": 0.44603175424182046,
+          "calibration_gap": 0.024503960043893824
+        },
+        "H4_STUDENT_T": {
+          "n": 2240,
+          "brier": 0.25149599656954685,
+          "log_loss": 0.6964691436551309,
+          "auc": 0.5127459513425128,
+          "observed_frequency": 0.4705357142857143,
+          "average_prediction": 0.4689456297518045,
+          "calibration_gap": 0.0015900845339097969
+        }
+      },
+      "2024_2026": {
+        "H0_PRIOR": {
+          "n": 1856,
+          "brier": 0.2486914509223604,
+          "log_loss": 0.6905281223123805,
+          "auc": 0.48879237881759596,
+          "observed_frequency": 0.46336206896551724,
+          "average_prediction": 0.458562512166,
+          "calibration_gap": 0.004799556799517213
+        },
+        "H1_RAW_TREND": {
+          "n": 1856,
+          "brier": 0.24881290046322088,
+          "log_loss": 0.6907784628625299,
+          "auc": 0.5038736340711684,
+          "observed_frequency": 0.46336206896551724,
+          "average_prediction": 0.4510494205812999,
+          "calibration_gap": 0.012312648384217362
+        },
+        "H2_GROUP_RESIDUAL": {
+          "n": 1856,
+          "brier": 0.249285993344201,
+          "log_loss": 0.6920284730758678,
+          "auc": 0.5199215466517232,
+          "observed_frequency": 0.46336206896551724,
+          "average_prediction": 0.4516521197018214,
+          "calibration_gap": 0.01170994926369584
+        },
+        "H3_HIERARCHICAL_REGIME": {
+          "n": 1856,
+          "brier": 0.24932607457146497,
+          "log_loss": 0.6922674598433164,
+          "auc": 0.533405715886803,
+          "observed_frequency": 0.46336206896551724,
+          "average_prediction": 0.45102940446363765,
+          "calibration_gap": 0.012332664501879587
+        },
+        "H4_STUDENT_T": {
+          "n": 1856,
+          "brier": 0.24763207344737212,
+          "log_loss": 0.6881527592766474,
+          "auc": 0.5391741384141217,
+          "observed_frequency": 0.46336206896551724,
+          "average_prediction": 0.46441426235723093,
+          "calibration_gap": 0.001052193391713696
+        }
+      }
+    }
+  },
+  "primary_challenge_bootstrap": {
+    "H1_RAW_TREND": {
+      "mean_brier_reduction_vs_null": -0.0007276921973049886,
+      "ci95": [
+        -0.006427771505598942,
+        0.004932001753632523
+      ],
+      "n_anchors": 64,
+      "frac_anchors_improved": 0.40625
+    },
+    "H2_GROUP_RESIDUAL": {
+      "mean_brier_reduction_vs_null": -0.00129673277364761,
+      "ci95": [
+        -0.011833638260114679,
+        0.008568291111346975
+      ],
+      "n_anchors": 64,
+      "frac_anchors_improved": 0.5
+    },
+    "H3_HIERARCHICAL_REGIME": {
+      "mean_brier_reduction_vs_null": -0.00829758937460599,
+      "ci95": [
+        -0.0197033931725087,
+        0.0032864280056544223
+      ],
+      "n_anchors": 64,
+      "frac_anchors_improved": 0.390625
+    },
+    "H4_STUDENT_T": {
+      "mean_brier_reduction_vs_null": -0.006190634323072448,
+      "ci95": [
+        -0.017670924496613602,
+        0.004731761728823931
+      ],
+      "n_anchors": 64,
+      "frac_anchors_improved": 0.390625
+    }
+  },
+  "shadow_H2_acceptance": {
+    "n": 1,
+    "net_relative_log_mean": 0.3187278677192091,
+    "net_relative_log_median": 0.3187278677192091,
+    "fraction_profitable": 1,
+    "worst_log_relative": 0.3187278677192091,
+    "actions": [
+      {
+        "anchor": 1302,
+        "signal": "2022-04-01",
+        "held": "USO",
+        "challenger": "UNG",
+        "p": 0.7408778911043943,
+        "p_null": 0.4375,
+        "realized_net_relative_log": 0.3187278677192091
+      }
+    ]
+  },
+  "source_roster_sha256": "523bba5f3300f968e793edcff10081f6563707e73d633dfba371ec89857a42b2",
+  "source_daily_portfolio_sha256": "57a0179ee6c1d7ec3c1d6c4824961216308a54cd6e17c287a67e7b62d831a2af",
+  "caveats": [
+    "PIT/survivorship",
+    "same previously mined ETF sample",
+    "shared pair labels dependent within anchor",
+    "unknown spreads",
+    "no live buy/sell",
+    "no real prospective holdout"
+  ],
+  "run_url": "https://github.com/AM1975MA/Test/actions/runs/39136487959"
+}
