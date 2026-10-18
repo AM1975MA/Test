@@ -1,0 +1,113 @@
+name: OASIS_150_PERMANENT_RESEARCH_ARCHIVE
+on:
+  push:
+    branches:
+      - research/oasis150-coverage-20261018
+    paths:
+      - '.github/workflows/oasis-150-archive.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  freeze-and-diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download successful quality-frozen full 150 ETF experiment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39132785483 -R AM1975MA/Test -n oasis-150-full-coverage-v1 -D _oasis150
+          test -f _oasis150/OASIS_TOP150.csv
+          test -f _oasis150/FULL_219_QUALITY_CENSUS.csv
+          test -f _oasis150/SELECTION_RESULT.json
+          test -f _oasis150/RESULT.json
+          test -f _oasis150/P3_OASIS_CRISIS_ACTIVE.csv
+      - name: Archive complete daily paths, hashes and independent causal attribution
+        run: |
+          mkdir -p oasis150/results/frozen
+          cp _oasis150/*.csv oasis150/results/frozen/
+          cp _oasis150/RESULT.json oasis150/results/frozen/RESULT.json
+          cp _oasis150/SELECTION_RESULT.json oasis150/results/frozen/SELECTION_RESULT.json
+          python - <<'PY'
+          from pathlib import Path
+          from collections import defaultdict,Counter
+          import csv,json,math
+          root=Path("oasis150/results/frozen")
+          selected=list(csv.DictReader((root/"OASIS_TOP150.csv").open()))
+          census=list(csv.DictReader((root/"FULL_219_QUALITY_CENSUS.csv").open()))
+          result=json.loads((root/"RESULT.json").read_text())
+          source=json.loads((root/"SELECTION_RESULT.json").read_text())
+          assert len(selected)==150 and len(census)==219
+          assert source["selected_count"]==result["tickers"]==150
+          assert result["status"]=="OASIS_DAILY_RESEARCH_COMPLETED"
+          assert source["selection_only_quality_not_performance"]
+          assert source["stats"]["zero_volume_total"]==0
+          policies={}
+          for path in root.glob("P*.csv"):
+              data=list(csv.DictReader(path.open()))
+              assert len(data)==2366 and all(float(z["wealth"])>0 for z in data)
+              assert len(set(z["day"] for z in data))==2366
+              policies[path.stem]=data
+          assert len(policies)==7
+          def logs(x):
+              w=[float(p["wealth"]) for p in x]
+              return [math.log(w[i]/w[i-1]) for i in range(1,len(w))]
+          contrasts={}
+          for label,target,control in (
+              ("economic_hysteresis_on_same_score","P2_DAILY_ECONOMIC_HYSTERESIS","P0_MONTHLY_GREEDY"),
+              ("crisis_added_to_economic_hysteresis","P3_OASIS_CRISIS_ACTIVE","P2_DAILY_ECONOMIC_HYSTERESIS"),
+              ("crisis_added_to_monthly_selector","P4_MONTHLY_GREEDY_CRISIS","P0_MONTHLY_GREEDY"),
+              ("active_switching_increment_after_crisis_control","P3_OASIS_CRISIS_ACTIVE","P4_MONTHLY_GREEDY_CRISIS"),
+              ("complete_oasis_vs_monthly","P3_OASIS_CRISIS_ACTIVE","P0_MONTHLY_GREEDY")):
+              r=policies[target]
+              delta=[a-b for a,b in zip(logs(r),logs(policies[control]))]
+              by=defaultdict(list)
+              for i,x in enumerate(delta,start=1):by[r[i]["regime"]].append(x)
+              contrasts[label]={"target":target,"control":control,
+                  "total_excess_log_wealth":float(sum(delta)),
+                  "by_regime":{k:{"sessions":len(v),"excess_log_wealth":float(sum(v)),
+                    "mean_excess_daily_log":float(sum(v)/len(v))} for k,v in by.items()}}
+          periods={}
+          for arm in ("P0_MONTHLY_GREEDY","P2_DAILY_ECONOMIC_HYSTERESIS",
+                  "P3_OASIS_CRISIS_ACTIVE","P4_MONTHLY_GREEDY_CRISIS"):
+              data=policies[arm]
+              peak=1.;peak_i=0; worst_dd=0.; trough_i=0;prev=0
+              for i,row in enumerate(data):
+                  wealth=float(row["wealth"])
+                  if wealth>peak:peak=wealth;peak_i=i
+                  dd=wealth/peak-1
+                  if dd<worst_dd:worst_dd=dd;trough_i=i;prev=peak_i
+              periods[arm]={"daily_maxdd":worst_dd,
+                  "peak_date":data[prev]["day"],"trough_date":data[trough_i]["day"],
+                  "trough_holdings":data[trough_i]["names"],
+                  "crisis_at_trough":data[trough_i]["regime"]}
+          p3=policies["P3_OASIS_CRISIS_ACTIVE"]
+          diag={"status":"OASIS_150_FORENSIC_ARCHIVED",
+             "action_run":39132785483,
+             "session_count":2366,
+             "selected_count":150,
+             "selected_sources":dict(Counter(x["source"] for x in selected)),
+             "selected_groups":dict(Counter(x["macro_category"] for x in selected)),
+             "asof_regime_counts":dict(Counter(x["regime"] for x in p3)),
+             "contrasts":contrasts,
+             "drawdown_event_and_holdings":periods,
+             "n_active_risk_days":sum(x["crisis"]=="True" for x in p3),
+             "full_sample_used_to_select_history_complete_survivors":True,
+             "not_point_in_time":True,
+             "currency_fx_spreads_not_audited":True}
+          (root/"DIAGNOSTIC.json").write_text(json.dumps(diag,indent=2)+"\n")
+          print("OASIS_150_RESEARCH_DIAGNOSTIC "+json.dumps(diag))
+          PY
+          (cd oasis150/results/frozen && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd oasis150/results/frozen && sha256sum -c SHA256_MANIFEST.txt)
+      - name: Permanently commit 150 ETF selection plus seven actual daily ledgers
+        run: |
+          git config user.name "OASIS-150-Research-Archivist"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis150/results/frozen
+          git commit -m "Preserve complete coverage-selected top150 OASIS daily results, source universe, crisis attribution and SHA256 audit"
+          git push origin HEAD:refs/heads/research/oasis150-coverage-20261018
