@@ -155,6 +155,11 @@ def scores(frame):
     results={}
     for key in MODELS:
         x=frame[frame[key].notna()]
+        if x.empty:
+            results[key]={"n":0,"QLIKE":None,"log_RV_MSE":None,
+                "mean_predicted_RV21":None,"mean_realized_RV21":None,
+                "mean_predicted_over_actual":None,"QLIKE_median":None}
+            continue
         q=qlike(x.realized_RV21,x[key])
         logs=np.log(np.maximum(x.realized_RV21,1e-12)/np.maximum(x[key],1e-12))
         results[key]={"n":len(x),"QLIKE":float(np.mean(q)),
