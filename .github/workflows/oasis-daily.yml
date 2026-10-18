@@ -1,0 +1,54 @@
+name: OASIS_DAILY_OPPORTUNITY_AND_CRISIS_V1
+on:
+  push:
+    branches:
+      - research/opportunity-crisis-switching-20261018
+    paths:
+      - 'oasis/**'
+      - '.github/workflows/oasis-daily.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  oasis-daily:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Numeric dependencies and static syntax test
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+          python -m py_compile oasis/switch_contract.py oasis/observers.py oasis/daily_backtest.py oasis/test_daily_engine.py
+      - name: Validate as-of observations, execution and economic switching
+        run: |
+          python -m unittest -v oasis.test_switch_contract oasis.test_daily_engine
+      - name: Load original frozen EUR60 calendar only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39084898663 -R AM1975MA/Test -n europe-only-eur60-hindsight-oracle -D _oracle
+          test -f _oracle/MONTHLY_ORACLE_113.csv
+          test -f _oracle/RESULT.json
+      - name: Run seven independent matched daily-open portfolio policies
+        run: |
+          python oasis/daily_backtest.py --oracle _oracle --out _oasis
+      - name: Retain full experiment with each daily ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oasis-daily-opportunity-crisis-v1
+          retention-days: 90
+          path: |
+            _oasis/RESULT.json
+            _oasis/P*.csv
+            _oasis/MARKET_STATES.csv
