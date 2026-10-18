@@ -1,0 +1,3166 @@
+[
+  {
+    "signal_date": "2017-01-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.007227045145474297,
+      "D1_ROBUST_STATE": 0.01038167436047289,
+      "D2_LOG_GROWTH": 0.014059384111997092,
+      "D3_CONTRARIAN": 0.007673120519495343,
+      "D4_ENTROPIC_CORRELATION": 0.01457915281834568
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2,
+      "D1_ROBUST_STATE": 0.2,
+      "D2_LOG_GROWTH": 0.2,
+      "D3_CONTRARIAN": 0.2,
+      "D4_ENTROPIC_CORRELATION": 0.2
+    },
+    "expert_shadow_matured_count": 0,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.0,
+      "D1_ROBUST_STATE": 0.0,
+      "D2_LOG_GROWTH": 0.0,
+      "D3_CONTRARIAN": 0.0,
+      "D4_ENTROPIC_CORRELATION": 0.0
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-02-28",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.007915655231002149,
+      "D1_ROBUST_STATE": -0.00785342500131812,
+      "D2_LOG_GROWTH": 0.002510809825678373,
+      "D3_CONTRARIAN": -0.0004391836848676092,
+      "D4_ENTROPIC_CORRELATION": 0.0017531679993755482
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2,
+      "D1_ROBUST_STATE": 0.2,
+      "D2_LOG_GROWTH": 0.2,
+      "D3_CONTRARIAN": 0.2,
+      "D4_ENTROPIC_CORRELATION": 0.2
+    },
+    "expert_shadow_matured_count": 0,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.0,
+      "D1_ROBUST_STATE": 0.0,
+      "D2_LOG_GROWTH": 0.0,
+      "D3_CONTRARIAN": 0.0,
+      "D4_ENTROPIC_CORRELATION": 0.0
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-03-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.005068565104935548,
+      "D1_ROBUST_STATE": 0.006859908338916133,
+      "D2_LOG_GROWTH": 0.012378365928014619,
+      "D3_CONTRARIAN": 0.008370726664048365,
+      "D4_ENTROPIC_CORRELATION": 0.01312338656819167
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.1987475021789165,
+      "D1_ROBUST_STATE": 0.2067868675221189,
+      "D2_LOG_GROWTH": 0.19398120063017402,
+      "D3_CONTRARIAN": 0.20645584006022166,
+      "D4_ENTROPIC_CORRELATION": 0.194028589608569
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.001176048071891686,
+      "D1_ROBUST_STATE": 0.006754642235644929,
+      "D2_LOG_GROWTH": -0.006030835152403158,
+      "D3_CONTRARIAN": 0.006434222756604758,
+      "D4_ENTROPIC_CORRELATION": -0.005981981767954831
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-04-28",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.002421910535285378,
+      "D1_ROBUST_STATE": 0.008601414751449564,
+      "D2_LOG_GROWTH": 0.017733716182565293,
+      "D3_CONTRARIAN": 0.009747636202370607,
+      "D4_ENTROPIC_CORRELATION": 0.017060460136630356
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.18137934203996398,
+      "D1_ROBUST_STATE": 0.2121061975108507,
+      "D2_LOG_GROWTH": 0.1988615396362958,
+      "D3_CONTRARIAN": 0.2087243637230457,
+      "D4_ENTROPIC_CORRELATION": 0.19892855708984397
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.01925174316477278,
+      "D1_ROBUST_STATE": 0.012047542917682532,
+      "D2_LOG_GROWTH": -0.0008481128959123216,
+      "D3_CONTRARIAN": 0.008833036272569487,
+      "D4_ENTROPIC_CORRELATION": -0.0007807231295668925
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-05-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0014580356643665413,
+      "D1_ROBUST_STATE": 0.013952023767430953,
+      "D2_LOG_GROWTH": 0.018954917211736422,
+      "D3_CONTRARIAN": 0.015781846233824347,
+      "D4_ENTROPIC_CORRELATION": 0.020034820407592222
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.17580205051409717,
+      "D1_ROBUST_STATE": 0.21732714803443978,
+      "D2_LOG_GROWTH": 0.19869997125754896,
+      "D3_CONTRARIAN": 0.2055221037258084,
+      "D4_ENTROPIC_CORRELATION": 0.2026487264681056
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.025311715159054893,
+      "D1_ROBUST_STATE": 0.01709731760165481,
+      "D2_LOG_GROWTH": -0.0008242439951556841,
+      "D3_CONTRARIAN": 0.005927272796107646,
+      "D4_ENTROPIC_CORRELATION": 0.0031113687564481365
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-06-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0037089486131797996,
+      "D1_ROBUST_STATE": 0.007660179056460131,
+      "D2_LOG_GROWTH": 0.017329194368501964,
+      "D3_CONTRARIAN": 0.00652222174566879,
+      "D4_ENTROPIC_CORRELATION": 0.016718002551146513
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.1722439302348096,
+      "D1_ROBUST_STATE": 0.2109620181154803,
+      "D2_LOG_GROWTH": 0.20172848948630837,
+      "D3_CONTRARIAN": 0.21092483256080607,
+      "D4_ENTROPIC_CORRELATION": 0.2041407296025956
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.029330621549763757,
+      "D1_ROBUST_STATE": 0.011222665886748875,
+      "D2_LOG_GROWTH": 0.002271580582366369,
+      "D3_CONTRARIAN": 0.011187409462225656,
+      "D4_ENTROPIC_CORRELATION": 0.0046489656184228595
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-07-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.00220245718435458,
+      "D1_ROBUST_STATE": 0.0073956928550518615,
+      "D2_LOG_GROWTH": 0.014953175963442816,
+      "D3_CONTRARIAN": 0.0008081416973325147,
+      "D4_ENTROPIC_CORRELATION": 0.014273414130608578
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.18720381140273212,
+      "D1_ROBUST_STATE": 0.20846954637501156,
+      "D2_LOG_GROWTH": 0.19824116371232553,
+      "D3_CONTRARIAN": 0.20629845457001172,
+      "D4_ENTROPIC_CORRELATION": 0.19978702393991912
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.013082456410379136,
+      "D1_ROBUST_STATE": 0.008436552814803561,
+      "D2_LOG_GROWTH": -0.001625183572458281,
+      "D3_CONTRARIAN": 0.00634274458517076,
+      "D4_ENTROPIC_CORRELATION": -7.165741713690069e-05
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-08-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.004504442498264277,
+      "D1_ROBUST_STATE": 0.006190961091166591,
+      "D2_LOG_GROWTH": 0.008392028474441789,
+      "D3_CONTRARIAN": -0.0018141562136413907,
+      "D4_ENTROPIC_CORRELATION": 0.007805978837457029
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.18975923334002792,
+      "D1_ROBUST_STATE": 0.20990329289537726,
+      "D2_LOG_GROWTH": 0.20307750828913038,
+      "D3_CONTRARIAN": 0.19867547317044046,
+      "D4_ENTROPIC_CORRELATION": 0.198584492305024
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.01040390805575903,
+      "D1_ROBUST_STATE": 0.009774259740799145,
+      "D2_LOG_GROWTH": 0.003162420895459249,
+      "D3_CONTRARIAN": -0.001220582094048719,
+      "D4_ENTROPIC_CORRELATION": -0.0013121904864506406
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-09-29",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.003179284509644699,
+      "D1_ROBUST_STATE": 0.011069643271319604,
+      "D2_LOG_GROWTH": 0.014516990027346865,
+      "D3_CONTRARIAN": -0.004273368437124055,
+      "D4_ENTROPIC_CORRELATION": 0.014516990027346865
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2037901988847841,
+      "D1_ROBUST_STATE": 0.19823233766160786,
+      "D2_LOG_GROWTH": 0.20015026658084045,
+      "D3_CONTRARIAN": 0.20608022314653557,
+      "D4_ENTROPIC_CORRELATION": 0.19174697372623212
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.0038165498037606334,
+      "D1_ROBUST_STATE": -0.0017137026952606747,
+      "D2_LOG_GROWTH": 0.0002120277121763891,
+      "D3_CONTRARIAN": 0.00605144938968288,
+      "D4_ENTROPIC_CORRELATION": -0.008366324210359223
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-10-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0023331334286598917,
+      "D1_ROBUST_STATE": 0.007117869060610854,
+      "D2_LOG_GROWTH": 0.010208101477355055,
+      "D3_CONTRARIAN": 0.0034108529516196774,
+      "D4_ENTROPIC_CORRELATION": 0.009555405257681674
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.1775992719160069,
+      "D1_ROBUST_STATE": 0.21181704103771964,
+      "D2_LOG_GROWTH": 0.20933545175746845,
+      "D3_CONTRARIAN": 0.21043633680682686,
+      "D4_ENTROPIC_CORRELATION": 0.19081189848197802
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.023280529971196506,
+      "D1_ROBUST_STATE": 0.011958101450884571,
+      "D2_LOG_GROWTH": 0.00960112335515717,
+      "D3_CONTRARIAN": 0.010650157714582907,
+      "D4_ENTROPIC_CORRELATION": -0.008928852549428143
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-11-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0015786448766097545,
+      "D1_ROBUST_STATE": 0.004378282265510163,
+      "D2_LOG_GROWTH": 0.00584727320574541,
+      "D3_CONTRARIAN": 0.0016823968244367284,
+      "D4_ENTROPIC_CORRELATION": 0.006062783194188716
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.17636286562831116,
+      "D1_ROBUST_STATE": 0.21780348763368576,
+      "D2_LOG_GROWTH": 0.209247368698746,
+      "D3_CONTRARIAN": 0.20555673422125004,
+      "D4_ENTROPIC_CORRELATION": 0.191029543818007
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.02460344367527585,
+      "D1_ROBUST_STATE": 0.017606479180813157,
+      "D2_LOG_GROWTH": 0.009591261379410077,
+      "D3_CONTRARIAN": 0.006032249458390752,
+      "D4_ENTROPIC_CORRELATION": -0.008626546343338143
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2017-12-29",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0013393493035846835,
+      "D1_ROBUST_STATE": 0.0060099345373265944,
+      "D2_LOG_GROWTH": 0.0089630541653997,
+      "D3_CONTRARIAN": -0.0017055218743359797,
+      "D4_ENTROPIC_CORRELATION": 0.008690978348427122
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.19321490760030166,
+      "D1_ROBUST_STATE": 0.20590068389126193,
+      "D2_LOG_GROWTH": 0.20413132929757202,
+      "D3_CONTRARIAN": 0.2099703850664739,
+      "D4_ENTROPIC_CORRELATION": 0.18678269414439058
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.0067143018848320225,
+      "D1_ROBUST_STATE": 0.006003869156612093,
+      "D2_LOG_GROWTH": 0.004277793612203519,
+      "D3_CONTRARIAN": 0.009918381512342374,
+      "D4_ENTROPIC_CORRELATION": -0.013485742396325974
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2018-01-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0013528124892316323,
+      "D1_ROBUST_STATE": 0.008362263818062118,
+      "D2_LOG_GROWTH": 0.00942539572283027,
+      "D3_CONTRARIAN": 0.0010424835990962555,
+      "D4_ENTROPIC_CORRELATION": 0.008617388247040407
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.18901580743926702,
+      "D1_ROBUST_STATE": 0.21061932949950446,
+      "D2_LOG_GROWTH": 0.2034601472287989,
+      "D3_CONTRARIAN": 0.20724347955023667,
+      "D4_ENTROPIC_CORRELATION": 0.18966123628219297
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.011093351114273014,
+      "D1_ROBUST_STATE": 0.010550994821652589,
+      "D2_LOG_GROWTH": 0.00363454892244211,
+      "D3_CONTRARIAN": 0.007319385476409932,
+      "D4_ENTROPIC_CORRELATION": -0.010411578106231625
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2018-02-28",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0038900594551120925,
+      "D1_ROBUST_STATE": 0.0013063364433122887,
+      "D2_LOG_GROWTH": 0.000910241998421616,
+      "D3_CONTRARIAN": -0.0057005473028225355,
+      "D4_ENTROPIC_CORRELATION": 0.0010440854833232468
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.17522639917142255,
+      "D1_ROBUST_STATE": 0.22084484841082017,
+      "D2_LOG_GROWTH": 0.2058759200577628,
+      "D3_CONTRARIAN": 0.18974929660595577,
+      "D4_ENTROPIC_CORRELATION": 0.20830353575403873
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.025804748457658847,
+      "D1_ROBUST_STATE": 0.020471564387658493,
+      "D2_LOG_GROWTH": 0.006434213571553856,
+      "D3_CONTRARIAN": -0.009879776064852722,
+      "D4_ENTROPIC_CORRELATION": 0.008778746563299215
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2018-03-29",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0025167649489536642,
+      "D1_ROBUST_STATE": -0.0008504174108591302,
+      "D2_LOG_GROWTH": -0.0003980324085735977,
+      "D3_CONTRARIAN": -0.01617659078309282,
+      "D4_ENTROPIC_CORRELATION": -0.0009327494287692199
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.202051568683265,
+      "D1_ROBUST_STATE": 0.2124572824675729,
+      "D2_LOG_GROWTH": 0.19730920688956888,
+      "D3_CONTRARIAN": 0.1877542688890448,
+      "D4_ENTROPIC_CORRELATION": 0.20042767307054846
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.002199652966560779,
+      "D1_ROBUST_STATE": 0.012243250795191389,
+      "D2_LOG_GROWTH": -0.002550522828247234,
+      "D3_CONTRARIAN": -0.012478132604131907,
+      "D4_ENTROPIC_CORRELATION": 0.0005857516706269453
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2018-04-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.00325358251331121,
+      "D1_ROBUST_STATE": -0.0023829572519631385,
+      "D2_LOG_GROWTH": 0.0006003277053191035,
+      "D3_CONTRARIAN": -0.0018973648141590515,
+      "D4_ENTROPIC_CORRELATION": 0.0008456292171264601
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.23284090891544615,
+      "D1_ROBUST_STATE": 0.2091184700412971,
+      "D2_LOG_GROWTH": 0.18968319519592952,
+      "D3_CONTRARIAN": 0.17887875441198317,
+      "D4_ENTROPIC_CORRELATION": 0.18947867143534397
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.03128723161787275,
+      "D1_ROBUST_STATE": 0.009796333152290764,
+      "D2_LOG_GROWTH": -0.00971279622099978,
+      "D3_CONTRARIAN": -0.021442208245938125,
+      "D4_ENTROPIC_CORRELATION": -0.009928560303225639
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2018-05-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.005483287002117286,
+      "D1_ROBUST_STATE": 0.0018587121902252294,
+      "D2_LOG_GROWTH": 0.002704020701692617,
+      "D3_CONTRARIAN": -0.012556211688702329,
+      "D4_ENTROPIC_CORRELATION": 0.0020257374548174954
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.22023720879228556,
+      "D1_ROBUST_STATE": 0.1882067440687214,
+      "D2_LOG_GROWTH": 0.17404782062153265,
+      "D3_CONTRARIAN": 0.22832467709662546,
+      "D4_ENTROPIC_CORRELATION": 0.189183549420835
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.020338530091442597,
+      "D1_ROBUST_STATE": -0.011094295144270166,
+      "D2_LOG_GROWTH": -0.026736488840211133,
+      "D3_CONTRARIAN": 0.02755122030702238,
+      "D4_ENTROPIC_CORRELATION": -0.010058966413983716
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2018-06-29",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.003358022835076727,
+      "D1_ROBUST_STATE": 0.00020301595796677976,
+      "D2_LOG_GROWTH": 0.0008101915063394451,
+      "D3_CONTRARIAN": -0.005355748056061739,
+      "D4_ENTROPIC_CORRELATION": 0.0017966082066196913
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.22240267512131087,
+      "D1_ROBUST_STATE": 0.18126136743587865,
+      "D2_LOG_GROWTH": 0.178191022965969,
+      "D3_CONTRARIAN": 0.22741777912873729,
+      "D4_ENTROPIC_CORRELATION": 0.1907271553481042
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.022301182131470566,
+      "D1_ROBUST_STATE": -0.018608734282825085,
+      "D2_LOG_GROWTH": -0.022025508495024118,
+      "D3_CONTRARIAN": 0.0267610165146983,
+      "D4_ENTROPIC_CORRELATION": -0.008427955868319691
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2018-07-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.002224086062568191,
+      "D1_ROBUST_STATE": -0.004091241293180478,
+      "D2_LOG_GROWTH": -0.0018755754747606453,
+      "D3_CONTRARIAN": -0.0020409869026223526,
+      "D4_ENTROPIC_CORRELATION": -0.0001737230408720066
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2399389726460735,
+      "D1_ROBUST_STATE": 0.17105290998311645,
+      "D2_LOG_GROWTH": 0.1800290620293702,
+      "D3_CONTRARIAN": 0.2179379962132297,
+      "D4_ENTROPIC_CORRELATION": 0.19104105912821
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.037989929945684286,
+      "D1_ROBUST_STATE": -0.02969240737755674,
+      "D2_LOG_GROWTH": -0.019463333412208725,
+      "D3_CONTRARIAN": 0.018755128131223514,
+      "D4_ENTROPIC_CORRELATION": -0.007589317287142355
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2018-08-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0010332681292213458,
+      "D1_ROBUST_STATE": 0.007643118858565907,
+      "D2_LOG_GROWTH": 0.00986579131749868,
+      "D3_CONTRARIAN": 0.001905462179898201,
+      "D4_ENTROPIC_CORRELATION": 0.00984196847039678
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.21783175860620163,
+      "D1_ROBUST_STATE": 0.1830447259976269,
+      "D2_LOG_GROWTH": 0.18572460279560393,
+      "D3_CONTRARIAN": 0.22275769266965706,
+      "D4_ENTROPIC_CORRELATION": 0.19064121993091057
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.017776750197658186,
+      "D1_ROBUST_STATE": -0.01702174739956843,
+      "D2_LOG_GROWTH": -0.014114863593986872,
+      "D3_CONTRARIAN": 0.02224906728228963,
+      "D4_ENTROPIC_CORRELATION": -0.00888920648639254
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2018-09-28",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.004205163478130129,
+      "D1_ROBUST_STATE": 0.004576436519273071,
+      "D2_LOG_GROWTH": 0.004549953716189591,
+      "D3_CONTRARIAN": -0.0051501739010051855,
+      "D4_ENTROPIC_CORRELATION": 0.0043772450298727094
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.22314693900956886,
+      "D1_ROBUST_STATE": 0.1789007129737851,
+      "D2_LOG_GROWTH": 0.18419692203656235,
+      "D3_CONTRARIAN": 0.22360489086342766,
+      "D4_ENTROPIC_CORRELATION": 0.19015053511665594
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.022831553707993873,
+      "D1_ROBUST_STATE": -0.021368345885321403,
+      "D2_LOG_GROWTH": -0.015533458294235844,
+      "D3_CONTRARIAN": 0.0232415818118649,
+      "D4_ENTROPIC_CORRELATION": -0.009171331340301549
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2018-10-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0075785325978009665,
+      "D1_ROBUST_STATE": -0.009825310991581052,
+      "D2_LOG_GROWTH": -0.006384222918359816,
+      "D3_CONTRARIAN": -0.02007778767256816,
+      "D4_ENTROPIC_CORRELATION": -0.006507075757672579
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.22507418155116016,
+      "D1_ROBUST_STATE": 0.17102958060120874,
+      "D2_LOG_GROWTH": 0.17690255082691014,
+      "D3_CONTRARIAN": 0.2363533836420946,
+      "D4_ENTROPIC_CORRELATION": 0.19064030337862636
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.02530272515577458,
+      "D1_ROBUST_STATE": -0.02961597807129536,
+      "D2_LOG_GROWTH": -0.022863479442171195,
+      "D3_CONTRARIAN": 0.03508233110015958,
+      "D4_ENTROPIC_CORRELATION": -0.007905598742467638
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2018-11-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0038539464673905278,
+      "D1_ROBUST_STATE": -0.005189710145183676,
+      "D2_LOG_GROWTH": -0.0017595896292430116,
+      "D3_CONTRARIAN": -0.024065580632278576,
+      "D4_ENTROPIC_CORRELATION": -0.0037569522656192953
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.26092693867321765,
+      "D1_ROBUST_STATE": 0.15930390113404008,
+      "D2_LOG_GROWTH": 0.16418741835749925,
+      "D3_CONTRARIAN": 0.23548433089293158,
+      "D4_ENTROPIC_CORRELATION": 0.18009741094231138
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.05719988922061217,
+      "D1_ROBUST_STATE": -0.04148545754659487,
+      "D2_LOG_GROWTH": -0.035446484676646364,
+      "D3_CONTRARIAN": 0.03668067643583082,
+      "D4_ENTROPIC_CORRELATION": -0.016948623433201783
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2018-12-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.004714162207605747,
+      "D1_ROBUST_STATE": -0.0022348425261333326,
+      "D2_LOG_GROWTH": -0.0022166491305699266,
+      "D3_CONTRARIAN": -0.027930076378136697,
+      "D4_ENTROPIC_CORRELATION": -0.005814228136695917
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2597599895218236,
+      "D1_ROBUST_STATE": 0.16284334813806542,
+      "D2_LOG_GROWTH": 0.16737820330008663,
+      "D3_CONTRARIAN": 0.2243031831682313,
+      "D4_ENTROPIC_CORRELATION": 0.18571527587179296
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.05555097456869683,
+      "D1_ROBUST_STATE": -0.03784290605659474,
+      "D2_LOG_GROWTH": -0.032349454464587535,
+      "D3_CONTRARIAN": 0.026199083675634182,
+      "D4_ENTROPIC_CORRELATION": -0.011557697723148751
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2019-01-31",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.001590186667229417,
+      "D1_ROBUST_STATE": 0.0022589019746835914,
+      "D2_LOG_GROWTH": 0.0018148096966824289,
+      "D3_CONTRARIAN": -0.00010536607630537866,
+      "D4_ENTROPIC_CORRELATION": -0.00023524228084487381
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.29140659338941993,
+      "D1_ROBUST_STATE": 0.14925313754695257,
+      "D2_LOG_GROWTH": 0.20126591632594576,
+      "D3_CONTRARIAN": 0.1700688281750709,
+      "D4_ENTROPIC_CORRELATION": 0.1880055245626108
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.08063730922595444,
+      "D1_ROBUST_STATE": -0.05317783996544482,
+      "D2_LOG_GROWTH": 0.0066188053072435,
+      "D3_CONTRARIAN": -0.027065949447836198,
+      "D4_ENTROPIC_CORRELATION": -0.007012325119916937
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-02-28",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0004232616540770732,
+      "D1_ROBUST_STATE": 0.0022522225840043504,
+      "D2_LOG_GROWTH": 0.0024491876847841133,
+      "D3_CONTRARIAN": -0.0005883655744501758,
+      "D4_ENTROPIC_CORRELATION": 0.0019774898703904835
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2700997573152978,
+      "D1_ROBUST_STATE": 0.13285632180113852,
+      "D2_LOG_GROWTH": 0.183246779506191,
+      "D3_CONTRARIAN": 0.22702605341701704,
+      "D4_ENTROPIC_CORRELATION": 0.18677108796035558
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.06560459614874331,
+      "D1_ROBUST_STATE": -0.07630002489470707,
+      "D2_LOG_GROWTH": -0.011986923052171958,
+      "D3_CONTRARIAN": 0.03085928042054118,
+      "D4_ENTROPIC_CORRELATION": -0.008176928622405499
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-03-29",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0029417033399786125,
+      "D1_ROBUST_STATE": 0.004234260571632531,
+      "D2_LOG_GROWTH": 0.006717863928054035,
+      "D3_CONTRARIAN": -0.005834345427440523,
+      "D4_ENTROPIC_CORRELATION": 0.007513917681509537
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.27446031375242164,
+      "D1_ROBUST_STATE": 0.13356279426147893,
+      "D2_LOG_GROWTH": 0.18137878110630945,
+      "D3_CONTRARIAN": 0.22137197443404236,
+      "D4_ENTROPIC_CORRELATION": 0.1892261364457476
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.0688512073620745,
+      "D1_ROBUST_STATE": -0.07519578018835768,
+      "D2_LOG_GROWTH": -0.013992615861407454,
+      "D3_CONTRARIAN": 0.025858758332731567,
+      "D4_ENTROPIC_CORRELATION": -0.005521569645040971
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-04-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.002612459826577944,
+      "D1_ROBUST_STATE": 0.006853326787754531,
+      "D2_LOG_GROWTH": 0.01076851119425306,
+      "D3_CONTRARIAN": 0.0017602764027074874,
+      "D4_ENTROPIC_CORRELATION": 0.010409101971543298
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.271622545224446,
+      "D1_ROBUST_STATE": 0.1379518722674953,
+      "D2_LOG_GROWTH": 0.18071612585062405,
+      "D3_CONTRARIAN": 0.21849499544185724,
+      "D4_ENTROPIC_CORRELATION": 0.19121446121557747
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.0661465022218265,
+      "D1_ROBUST_STATE": -0.06935520348250275,
+      "D2_LOG_GROWTH": -0.015350691085960311,
+      "D3_CONTRARIAN": 0.022616444012038165,
+      "D4_ENTROPIC_CORRELATION": -0.004057051665401639
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-05-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.004726119067745071,
+      "D1_ROBUST_STATE": 0.0065111741314937115,
+      "D2_LOG_GROWTH": 0.007129189558071762,
+      "D3_CONTRARIAN": -0.010315073003145436,
+      "D4_ENTROPIC_CORRELATION": 0.0073839283684978795
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.26136697468013903,
+      "D1_ROBUST_STATE": 0.13864864227720894,
+      "D2_LOG_GROWTH": 0.17498415098537973,
+      "D3_CONTRARIAN": 0.24002253193771947,
+      "D4_ENTROPIC_CORRELATION": 0.18497770011955286
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.05864381394577115,
+      "D1_ROBUST_STATE": -0.0681526807490292,
+      "D2_LOG_GROWTH": -0.021602195857505488,
+      "D3_CONTRARIAN": 0.041605283739440106,
+      "D4_ENTROPIC_CORRELATION": -0.0104942210786766
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-06-28",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.006740075493701672,
+      "D1_ROBUST_STATE": 0.008919714367571715,
+      "D2_LOG_GROWTH": 0.01644370073624064,
+      "D3_CONTRARIAN": 0.0011167927045640392,
+      "D4_ENTROPIC_CORRELATION": 0.017044875471817197
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2837409560293068,
+      "D1_ROBUST_STATE": 0.13217241082130782,
+      "D2_LOG_GROWTH": 0.15568415517624168,
+      "D3_CONTRARIAN": 0.263137179134591,
+      "D4_ENTROPIC_CORRELATION": 0.16526529883855257
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.07920330861185142,
+      "D1_ROBUST_STATE": -0.07358758785881693,
+      "D2_LOG_GROWTH": -0.04084316872550964,
+      "D3_CONTRARIAN": 0.06412606753175734,
+      "D4_ENTROPIC_CORRELATION": -0.0288986195592822
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-07-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.008622610146933132,
+      "D1_ROBUST_STATE": 0.01038551801459908,
+      "D2_LOG_GROWTH": 0.010666108787445606,
+      "D3_CONTRARIAN": 0.0036223990601582934,
+      "D4_ENTROPIC_CORRELATION": 0.010886609835173876
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2615776211250326,
+      "D1_ROBUST_STATE": 0.1241795395449928,
+      "D2_LOG_GROWTH": 0.14905604716431514,
+      "D3_CONTRARIAN": 0.30437959843997586,
+      "D4_ENTROPIC_CORRELATION": 0.16080719372568353
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.06569567104148263,
+      "D1_ROBUST_STATE": -0.0833048593185296,
+      "D2_LOG_GROWTH": -0.0467860647752573,
+      "D3_CONTRARIAN": 0.0960045773951049,
+      "D4_ENTROPIC_CORRELATION": -0.03160932434280066
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-08-30",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.010830521684843575,
+      "D1_ROBUST_STATE": 0.01279138438785396,
+      "D2_LOG_GROWTH": 0.012686013744369113,
+      "D3_CONTRARIAN": -0.00536866674548304,
+      "D4_ENTROPIC_CORRELATION": 0.00899471743701609
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.26075998953321317,
+      "D1_ROBUST_STATE": 0.13237668616719053,
+      "D2_LOG_GROWTH": 0.1436072263404405,
+      "D3_CONTRARIAN": 0.3038467866751366,
+      "D4_ENTROPIC_CORRELATION": 0.15940931128401922
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.06454677334308896,
+      "D1_ROBUST_STATE": -0.07104299911079798,
+      "D2_LOG_GROWTH": -0.054756911829671046,
+      "D3_CONTRARIAN": 0.09513140919168162,
+      "D4_ENTROPIC_CORRELATION": -0.03387827159430158
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-09-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.009053663283640613,
+      "D1_ROBUST_STATE": 0.009316542413278468,
+      "D2_LOG_GROWTH": 0.012478252625402324,
+      "D3_CONTRARIAN": 0.01059335543002821,
+      "D4_ENTROPIC_CORRELATION": 0.010945434919294669
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.273360987097836,
+      "D1_ROBUST_STATE": 0.14269382193985167,
+      "D2_LOG_GROWTH": 0.14415801149521654,
+      "D3_CONTRARIAN": 0.27709143641838957,
+      "D4_ENTROPIC_CORRELATION": 0.16269574304870624
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.07181328996171683,
+      "D1_ROBUST_STATE": -0.0582051078944198,
+      "D2_LOG_GROWTH": -0.056163353788583864,
+      "D3_CONTRARIAN": 0.07452415562358129,
+      "D4_ENTROPIC_CORRELATION": -0.03196898390229448
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-10-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.008723400209582068,
+      "D1_ROBUST_STATE": 0.011748326994559277,
+      "D2_LOG_GROWTH": 0.011606475630603059,
+      "D3_CONTRARIAN": 0.007413507363519204,
+      "D4_ENTROPIC_CORRELATION": 0.011849440090068827
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.254650933162402,
+      "D1_ROBUST_STATE": 0.13165834436016846,
+      "D2_LOG_GROWTH": 0.13540342601291575,
+      "D3_CONTRARIAN": 0.3111256953335457,
+      "D4_ENTROPIC_CORRELATION": 0.16716160113096803
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.06047791719192581,
+      "D1_ROBUST_STATE": -0.07145877300202946,
+      "D2_LOG_GROWTH": -0.06584909375888241,
+      "D3_CONTRARIAN": 0.1005385727463613,
+      "D4_ENTROPIC_CORRELATION": -0.02370862317737523
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-11-29",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.006173979310732336,
+      "D1_ROBUST_STATE": 0.013721320770919044,
+      "D2_LOG_GROWTH": 0.015860401773794046,
+      "D3_CONTRARIAN": 0.005116683761885088,
+      "D4_ENTROPIC_CORRELATION": 0.015990555927604483
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2581151669924068,
+      "D1_ROBUST_STATE": 0.13296697049789047,
+      "D2_LOG_GROWTH": 0.1366076435693369,
+      "D3_CONTRARIAN": 0.2998907198528523,
+      "D4_ENTROPIC_CORRELATION": 0.17241949908751342
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.06212244890581412,
+      "D1_ROBUST_STATE": -0.07053857384517323,
+      "D2_LOG_GROWTH": -0.06513614461232081,
+      "D3_CONTRARIAN": 0.09212490333063214,
+      "D4_ENTROPIC_CORRELATION": -0.01857263377895224
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2019-12-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0026607640775607538,
+      "D1_ROBUST_STATE": 0.017316123445937758,
+      "D2_LOG_GROWTH": 0.020475946788914255,
+      "D3_CONTRARIAN": 0.0015578321553170586,
+      "D4_ENTROPIC_CORRELATION": 0.021349653370114186
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2466882658307347,
+      "D1_ROBUST_STATE": 0.13811952955285062,
+      "D2_LOG_GROWTH": 0.1515740381379424,
+      "D3_CONTRARIAN": 0.27998008572625455,
+      "D4_ENTROPIC_CORRELATION": 0.1836380807522178
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.04942491249952275,
+      "D1_ROBUST_STATE": -0.06657628578742918,
+      "D2_LOG_GROWTH": -0.04798533784459264,
+      "D3_CONTRARIAN": 0.07474351657121409,
+      "D4_ENTROPIC_CORRELATION": -0.009606805438715048
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-01-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0035558213795621697,
+      "D1_ROBUST_STATE": 0.01729675306493117,
+      "D2_LOG_GROWTH": 0.019556904345122875,
+      "D3_CONTRARIAN": 0.0011603209700719328,
+      "D4_ENTROPIC_CORRELATION": 0.020526374025857105
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.22690339391313283,
+      "D1_ROBUST_STATE": 0.15583743867776953,
+      "D2_LOG_GROWTH": 0.16417786014744226,
+      "D3_CONTRARIAN": 0.25430082618104444,
+      "D4_ENTROPIC_CORRELATION": 0.19878048108061094
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.028704584531642298,
+      "D1_ROBUST_STATE": -0.04643760451886249,
+      "D2_LOG_GROWTH": -0.03601021470106662,
+      "D3_CONTRARIAN": 0.05150329890052916,
+      "D4_ENTROPIC_CORRELATION": 0.0022399357877576215
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-02-28",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.001635138234451813,
+      "D1_ROBUST_STATE": 0.004056671682338809,
+      "D2_LOG_GROWTH": 0.00853677972255252,
+      "D3_CONTRARIAN": -0.008965642538266469,
+      "D4_ENTROPIC_CORRELATION": 0.008092711833674526
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.23898852378531546,
+      "D1_ROBUST_STATE": 0.13533629350499757,
+      "D2_LOG_GROWTH": 0.16671195956041285,
+      "D3_CONTRARIAN": 0.2501150639530617,
+      "D4_ENTROPIC_CORRELATION": 0.2088481591962125
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.04072413255201757,
+      "D1_ROBUST_STATE": -0.07300642529996611,
+      "D2_LOG_GROWTH": -0.03130546803733204,
+      "D3_CONTRARIAN": 0.049825239481079836,
+      "D4_ENTROPIC_CORRELATION": 0.013762521304200706
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2020-03-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.009534757013848765,
+      "D1_ROBUST_STATE": -0.008315819721283604,
+      "D2_LOG_GROWTH": -0.007027604426402802,
+      "D3_CONTRARIAN": -0.047424024749726824,
+      "D4_ENTROPIC_CORRELATION": -0.007168586434379047
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.287004763027342,
+      "D1_ROBUST_STATE": 0.1349201935977908,
+      "D2_LOG_GROWTH": 0.161442727497895,
+      "D3_CONTRARIAN": 0.2133756780873028,
+      "D4_ENTROPIC_CORRELATION": 0.2032566377896694
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.07886550338411491,
+      "D1_ROBUST_STATE": -0.07209756990299475,
+      "D2_LOG_GROWTH": -0.03620416866885391,
+      "D3_CONTRARIAN": 0.01957661288153624,
+      "D4_ENTROPIC_CORRELATION": 0.009859622306197455
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2020-04-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0054722702902189994,
+      "D1_ROBUST_STATE": -0.02003445719838836,
+      "D2_LOG_GROWTH": -0.003983260837450014,
+      "D3_CONTRARIAN": -0.004836858162530673,
+      "D4_ENTROPIC_CORRELATION": -0.0036634178170375517
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.42942286712152095,
+      "D1_ROBUST_STATE": 0.19231160510852519,
+      "D2_LOG_GROWTH": 0.08888821446969514,
+      "D3_CONTRARIAN": 0.14517229365831102,
+      "D4_ENTROPIC_CORRELATION": 0.1442050196419478
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.18216458736909402,
+      "D1_ROBUST_STATE": 0.021499559782201305,
+      "D2_LOG_GROWTH": -0.13284792755081926,
+      "D3_CONTRARIAN": -0.034739586336660966,
+      "D4_ENTROPIC_CORRELATION": -0.03607663326381516
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-05-29",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.005213804737609119,
+      "D1_ROBUST_STATE": -0.011445816112413075,
+      "D2_LOG_GROWTH": -0.0034169720432580953,
+      "D3_CONTRARIAN": -0.022242409043804968,
+      "D4_ENTROPIC_CORRELATION": -0.002970507197921808
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.40154787545067927,
+      "D1_ROBUST_STATE": 0.2036526823311588,
+      "D2_LOG_GROWTH": 0.08387102313198545,
+      "D3_CONTRARIAN": 0.17062585996249935,
+      "D4_ENTROPIC_CORRELATION": 0.14030255912367723
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.16609345809821469,
+      "D1_ROBUST_STATE": 0.030311305605878212,
+      "D2_LOG_GROWTH": -0.14711585946283787,
+      "D3_CONTRARIAN": -0.005077254251689185,
+      "D4_ENTROPIC_CORRELATION": -0.04421164998956593
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-06-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.005512773945851271,
+      "D1_ROBUST_STATE": -0.021598830076187778,
+      "D2_LOG_GROWTH": -0.00370472860072649,
+      "D3_CONTRARIAN": -0.007743966277344543,
+      "D4_ENTROPIC_CORRELATION": -0.002971636890047052
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.3656097633273878,
+      "D1_ROBUST_STATE": 0.2638705151986976,
+      "D2_LOG_GROWTH": 0.07979965354070331,
+      "D3_CONTRARIAN": 0.156878797273545,
+      "D4_ENTROPIC_CORRELATION": 0.1338412706596662
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.14796641751595452,
+      "D1_ROBUST_STATE": 0.08274481070114852,
+      "D2_LOG_GROWTH": -0.1564430587472262,
+      "D3_CONTRARIAN": -0.021252188253280267,
+      "D4_ENTROPIC_CORRELATION": -0.05301598121659662
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-07-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.006016478628468671,
+      "D1_ROBUST_STATE": -0.014851528076743226,
+      "D2_LOG_GROWTH": -0.0045505097088421025,
+      "D3_CONTRARIAN": -0.030776372463985714,
+      "D4_ENTROPIC_CORRELATION": -0.0041004984818131494
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.3601461969589199,
+      "D1_ROBUST_STATE": 0.2643545937111724,
+      "D2_LOG_GROWTH": 0.0829534792756084,
+      "D3_CONTRARIAN": 0.15617669957755567,
+      "D4_ENTROPIC_CORRELATION": 0.1363690304767437
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.14336464642421345,
+      "D1_ROBUST_STATE": 0.08152090807159978,
+      "D2_LOG_GROWTH": -0.1502813719095427,
+      "D3_CONTRARIAN": -0.023739752743000185,
+      "D4_ENTROPIC_CORRELATION": -0.05086442984327042
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-08-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0071602361807533875,
+      "D1_ROBUST_STATE": -0.003626891551357983,
+      "D2_LOG_GROWTH": 0.001014788455608884,
+      "D3_CONTRARIAN": -0.006755842209824114,
+      "D4_ENTROPIC_CORRELATION": 0.0013075915715481093
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.3501949674398297,
+      "D1_ROBUST_STATE": 0.2731809874633717,
+      "D2_LOG_GROWTH": 0.08523462367168427,
+      "D3_CONTRARIAN": 0.1532521064093071,
+      "D4_ENTROPIC_CORRELATION": 0.1381373150158073
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.13672341539063043,
+      "D1_ROBUST_STATE": 0.08705231220062234,
+      "D2_LOG_GROWTH": -0.14589304797117011,
+      "D3_CONTRARIAN": -0.028557730523960316,
+      "D4_ENTROPIC_CORRELATION": -0.04932494909612244
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-09-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.002284394439779405,
+      "D1_ROBUST_STATE": 0.0032500967578654445,
+      "D2_LOG_GROWTH": 0.004201987905548033,
+      "D3_CONTRARIAN": -0.0011812868730111392,
+      "D4_ENTROPIC_CORRELATION": 0.003809309406443532
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.3235072675121531,
+      "D1_ROBUST_STATE": 0.2917177777537891,
+      "D2_LOG_GROWTH": 0.08162305341626551,
+      "D3_CONTRARIAN": 0.1715670454232452,
+      "D4_ENTROPIC_CORRELATION": 0.13158485589454713
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.12057446779687757,
+      "D1_ROBUST_STATE": 0.09988751607684059,
+      "D2_LOG_GROWTH": -0.15484750010803264,
+      "D3_CONTRARIAN": -0.006275022868548327,
+      "D4_ENTROPIC_CORRELATION": -0.05933946089713729
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-10-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.003165233291121346,
+      "D1_ROBUST_STATE": 3.7454434479866064e-05,
+      "D2_LOG_GROWTH": 0.000974620042415495,
+      "D3_CONTRARIAN": -0.01432173577216899,
+      "D4_ENTROPIC_CORRELATION": 0.0009346876608824718
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.3317932250815524,
+      "D1_ROBUST_STATE": 0.2689623202949906,
+      "D2_LOG_GROWTH": 0.08476889479428358,
+      "D3_CONTRARIAN": 0.17933501810168323,
+      "D4_ENTROPIC_CORRELATION": 0.13514054172749
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.12351907669072858,
+      "D1_ROBUST_STATE": 0.08153094422497625,
+      "D2_LOG_GROWTH": -0.14939758131526196,
+      "D3_CONTRARIAN": 0.00046781813112730004,
+      "D4_ENTROPIC_CORRELATION": -0.05612025773157031
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-11-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0024917243959362346,
+      "D1_ROBUST_STATE": -0.0069374091499601965,
+      "D2_LOG_GROWTH": -0.00038596390373610344,
+      "D3_CONTRARIAN": -0.0021795819425599106,
+      "D4_ENTROPIC_CORRELATION": -0.00038596390373610344
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.404226597667481,
+      "D1_ROBUST_STATE": 0.2409929490091266,
+      "D2_LOG_GROWTH": 0.07759656693086285,
+      "D3_CONTRARIAN": 0.151953729082819,
+      "D4_ENTROPIC_CORRELATION": 0.12523015730971057
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.17271528797494734,
+      "D1_ROBUST_STATE": 0.06927370193490584,
+      "D2_LOG_GROWTH": -0.15737519610714368,
+      "D3_CONTRARIAN": -0.022964621118091014,
+      "D4_ENTROPIC_CORRELATION": -0.06164917268461864
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2020-12-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0016992562980226518,
+      "D1_ROBUST_STATE": -0.008112086310258178,
+      "D2_LOG_GROWTH": 0.00041445234456280423,
+      "D3_CONTRARIAN": -0.0009179133356559409,
+      "D4_ENTROPIC_CORRELATION": 0.0019174431604698687
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.3369545565772546,
+      "D1_ROBUST_STATE": 0.2298337762150704,
+      "D2_LOG_GROWTH": 0.0672048520021936,
+      "D3_CONTRARIAN": 0.24638354993986128,
+      "D4_ENTROPIC_CORRELATION": 0.1196232652656201
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.13373814793235245,
+      "D1_ROBUST_STATE": 0.05721980017726988,
+      "D2_LOG_GROWTH": -0.18870237746198693,
+      "D3_CONTRARIAN": 0.07112642663536768,
+      "D4_ENTROPIC_CORRELATION": -0.07338199728300321
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-01-29",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.005066330172862293,
+      "D1_ROBUST_STATE": -0.0028836680897895107,
+      "D2_LOG_GROWTH": 0.00030951033921409283,
+      "D3_CONTRARIAN": -0.01865695464179615,
+      "D4_ENTROPIC_CORRELATION": 0.0009736568630911962
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.3219869429389643,
+      "D1_ROBUST_STATE": 0.25317272444413774,
+      "D2_LOG_GROWTH": 0.07004763311245625,
+      "D3_CONTRARIAN": 0.2321180915823238,
+      "D4_ENTROPIC_CORRELATION": 0.12267460792211793
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.12232059564393732,
+      "D1_ROBUST_STATE": 0.07423278889589952,
+      "D2_LOG_GROWTH": -0.18274650659118236,
+      "D3_CONTRARIAN": 0.05686764819587712,
+      "D4_ENTROPIC_CORRELATION": -0.0706745261445317
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-02-26",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.008422943309149838,
+      "D1_ROBUST_STATE": 0.0030013639977855364,
+      "D2_LOG_GROWTH": 0.006866183875477322,
+      "D3_CONTRARIAN": -0.008277285818682631,
+      "D4_ENTROPIC_CORRELATION": 0.008013475969952078
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.31933419425140114,
+      "D1_ROBUST_STATE": 0.24563146133416192,
+      "D2_LOG_GROWTH": 0.07553427694783296,
+      "D3_CONTRARIAN": 0.22953057269216715,
+      "D4_ENTROPIC_CORRELATION": 0.12996949477443703
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.11732791593303743,
+      "D1_ROBUST_STATE": 0.0648467364688329,
+      "D2_LOG_GROWTH": -0.17100241061640162,
+      "D3_CONTRARIAN": 0.05128752587075675,
+      "D4_ENTROPIC_CORRELATION": -0.06245976765622555
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-03-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0025204818732381135,
+      "D1_ROBUST_STATE": 0.03189861963221004,
+      "D2_LOG_GROWTH": 0.03768901609245374,
+      "D3_CONTRARIAN": 0.032033978136729785,
+      "D4_ENTROPIC_CORRELATION": 0.03716439398197807
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.26390142996854776,
+      "D1_ROBUST_STATE": 0.26639874467118196,
+      "D2_LOG_GROWTH": 0.08968582565724975,
+      "D3_CONTRARIAN": 0.23740433688660645,
+      "D4_ENTROPIC_CORRELATION": 0.14260966281641413
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.07164478668490909,
+      "D1_ROBUST_STATE": 0.07352849955795739,
+      "D2_LOG_GROWTH": -0.14420779830407415,
+      "D3_CONTRARIAN": 0.050482604321142016,
+      "D4_ENTROPIC_CORRELATION": -0.05144809225993441
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-04-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0009329622597259147,
+      "D1_ROBUST_STATE": 0.04070312651529251,
+      "D2_LOG_GROWTH": 0.044437041508512076,
+      "D3_CONTRARIAN": 0.03771586949234711,
+      "D4_ENTROPIC_CORRELATION": 0.04217216192502421
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2454001179675625,
+      "D1_ROBUST_STATE": 0.28653662711835604,
+      "D2_LOG_GROWTH": 0.09922583381964248,
+      "D3_CONTRARIAN": 0.21386995594364752,
+      "D4_ENTROPIC_CORRELATION": 0.1549674651507915
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.05390847752993823,
+      "D1_ROBUST_STATE": 0.08490374919723191,
+      "D2_LOG_GROWTH": -0.12718984467728495,
+      "D3_CONTRARIAN": 0.026404104491852796,
+      "D4_ENTROPIC_CORRELATION": -0.03802648654173808
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-05-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.003857670860961375,
+      "D1_ROBUST_STATE": 0.01926828200313825,
+      "D2_LOG_GROWTH": 0.021380432882533683,
+      "D3_CONTRARIAN": 0.018775289196371916,
+      "D4_ENTROPIC_CORRELATION": 0.019924873872885596
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2202990855169129,
+      "D1_ROBUST_STATE": 0.29086952495471646,
+      "D2_LOG_GROWTH": 0.10567379091382875,
+      "D3_CONTRARIAN": 0.22229562242100487,
+      "D4_ENTROPIC_CORRELATION": 0.16086197619353693
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.030486314885210315,
+      "D1_ROBUST_STATE": 0.08606405409569459,
+      "D2_LOG_GROWTH": -0.11643952469180799,
+      "D3_CONTRARIAN": 0.032290720054032676,
+      "D4_ENTROPIC_CORRELATION": -0.03240156434312971
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-06-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.004018278447497017,
+      "D1_ROBUST_STATE": 0.00934622338791015,
+      "D2_LOG_GROWTH": 0.015901837892037418,
+      "D3_CONTRARIAN": 0.011818026414574129,
+      "D4_ENTROPIC_CORRELATION": 0.016310708686413204
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.19669457438137922,
+      "D1_ROBUST_STATE": 0.3006387673224366,
+      "D2_LOG_GROWTH": 0.1083888069535236,
+      "D3_CONTRARIAN": 0.23476712496325872,
+      "D4_ENTROPIC_CORRELATION": 0.1595107263794018
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.008170762788719855,
+      "D1_ROBUST_STATE": 0.09302222152475309,
+      "D2_LOG_GROWTH": -0.11101470021338934,
+      "D3_CONTRARIAN": 0.043559147472617146,
+      "D4_ENTROPIC_CORRELATION": -0.033737431572700885
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-07-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0007963737083486876,
+      "D1_ROBUST_STATE": 0.016822456195307298,
+      "D2_LOG_GROWTH": 0.017831056461391735,
+      "D3_CONTRARIAN": 0.0073964295131148956,
+      "D4_ENTROPIC_CORRELATION": 0.018342836334688434
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2099746921704201,
+      "D1_ROBUST_STATE": 0.29364065388215715,
+      "D2_LOG_GROWTH": 0.10452637405904068,
+      "D3_CONTRARIAN": 0.23607955621671714,
+      "D4_ENTROPIC_CORRELATION": 0.15577872367166493
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.02174185799287771,
+      "D1_ROBUST_STATE": 0.08881580680784525,
+      "D2_LOG_GROWTH": -0.11776765942298152,
+      "D3_CONTRARIAN": 0.045178226163188076,
+      "D4_ENTROPIC_CORRELATION": -0.037968231540929626
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-08-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.003612306008916222,
+      "D1_ROBUST_STATE": 0.021058810664728755,
+      "D2_LOG_GROWTH": 0.024646498655340653,
+      "D3_CONTRARIAN": 0.00744433628987366,
+      "D4_ENTROPIC_CORRELATION": 0.02458786397540007
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.21258235891635477,
+      "D1_ROBUST_STATE": 0.2935834882013144,
+      "D2_LOG_GROWTH": 0.10697876766535999,
+      "D3_CONTRARIAN": 0.2295246882125135,
+      "D4_ENTROPIC_CORRELATION": 0.15733069700445737
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.02352659850886218,
+      "D1_ROBUST_STATE": 0.08809311279153685,
+      "D2_LOG_GROWTH": -0.11381322207348205,
+      "D3_CONTRARIAN": 0.038862821104163475,
+      "D4_ENTROPIC_CORRELATION": -0.0366693103310806
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-09-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.002043604757828625,
+      "D1_ROBUST_STATE": 0.00841700385545141,
+      "D2_LOG_GROWTH": 0.010049116547360534,
+      "D3_CONTRARIAN": 0.0008146541037819593,
+      "D4_ENTROPIC_CORRELATION": 0.011311208816789434
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.19643141716489626,
+      "D1_ROBUST_STATE": 0.3063307751433353,
+      "D2_LOG_GROWTH": 0.11490640392218866,
+      "D3_CONTRARIAN": 0.21686820001575946,
+      "D4_ENTROPIC_CORRELATION": 0.16546320375382034
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.006577254420175057,
+      "D1_ROBUST_STATE": 0.09544768128543146,
+      "D2_LOG_GROWTH": -0.10066183163559696,
+      "D3_CONTRARIAN": 0.026372543918180648,
+      "D4_ENTROPIC_CORRELATION": -0.027735647988190344
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-10-29",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0008225512307882331,
+      "D1_ROBUST_STATE": 0.010737927601813179,
+      "D2_LOG_GROWTH": 0.01685019301317103,
+      "D3_CONTRARIAN": -0.0056292728973266854,
+      "D4_ENTROPIC_CORRELATION": 0.018201352601216907
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.22589662454649967,
+      "D1_ROBUST_STATE": 0.2805410118531335,
+      "D2_LOG_GROWTH": 0.10859601374711146,
+      "D3_CONTRARIAN": 0.23078447479904368,
+      "D4_ENTROPIC_CORRELATION": 0.15418187505421166
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.03505352485942439,
+      "D1_ROBUST_STATE": 0.0783820134543204,
+      "D2_LOG_GROWTH": -0.11143503116403433,
+      "D3_CONTRARIAN": 0.03933488173018121,
+      "D4_ENTROPIC_CORRELATION": -0.0413353888798918
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-11-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.00029483480515249275,
+      "D1_ROBUST_STATE": 0.004314840668882621,
+      "D2_LOG_GROWTH": 0.007593371022459388,
+      "D3_CONTRARIAN": -0.005641407861821697,
+      "D4_ENTROPIC_CORRELATION": 0.006749938014031752
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.1808135209432115,
+      "D1_ROBUST_STATE": 0.3002707472696479,
+      "D2_LOG_GROWTH": 0.1165018805728767,
+      "D3_CONTRARIAN": 0.2373640388076059,
+      "D4_ENTROPIC_CORRELATION": 0.16504981240665806
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.009942774808596663,
+      "D1_ROBUST_STATE": 0.09150089107443135,
+      "D2_LOG_GROWTH": -0.09785453761017884,
+      "D3_CONTRARIAN": 0.044482977638181286,
+      "D4_ENTROPIC_CORRELATION": -0.02818655629383727
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2021-12-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.003185416245244166,
+      "D1_ROBUST_STATE": 0.008028683190897844,
+      "D2_LOG_GROWTH": 0.009359811314904189,
+      "D3_CONTRARIAN": -0.0069205849961162585,
+      "D4_ENTROPIC_CORRELATION": 0.009590877442518717
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.19678411660685466,
+      "D1_ROBUST_STATE": 0.2926756381892053,
+      "D2_LOG_GROWTH": 0.10371911336920657,
+      "D3_CONTRARIAN": 0.2606127703375567,
+      "D4_ENTROPIC_CORRELATION": 0.14620836149717686
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.010384372642947014,
+      "D1_ROBUST_STATE": 0.0897759098108749,
+      "D2_LOG_GROWTH": -0.11769979950493445,
+      "D3_CONTRARIAN": 0.0665700514479935,
+      "D4_ENTROPIC_CORRELATION": -0.049030534396881084
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2022-01-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.008176401987828458,
+      "D1_ROBUST_STATE": 0.0008411955248048812,
+      "D2_LOG_GROWTH": 0.006291388611204769,
+      "D3_CONTRARIAN": -0.005532858668115027,
+      "D4_ENTROPIC_CORRELATION": 0.006017830326995199
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.16788572854374073,
+      "D1_ROBUST_STATE": 0.2937572091432032,
+      "D2_LOG_GROWTH": 0.11072136773769832,
+      "D3_CONTRARIAN": 0.2725616896802017,
+      "D4_ENTROPIC_CORRELATION": 0.155074004895156
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.02193614541813795,
+      "D1_ROBUST_STATE": 0.08995786381986033,
+      "D2_LOG_GROWTH": -0.10518948858133668,
+      "D3_CONTRARIAN": 0.07498013696155693,
+      "D4_ENTROPIC_CORRELATION": -0.03781236678194274
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2022-02-28",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.011226086443647088,
+      "D1_ROBUST_STATE": -0.001657436145230118,
+      "D2_LOG_GROWTH": -0.0009472311922427153,
+      "D3_CONTRARIAN": -0.011122660682331559,
+      "D4_ENTROPIC_CORRELATION": -0.000560776029010522
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.1832013490453451,
+      "D1_ROBUST_STATE": 0.2669051065530383,
+      "D2_LOG_GROWTH": 0.10445567893765957,
+      "D3_CONTRARIAN": 0.30187350313077066,
+      "D4_ENTROPIC_CORRELATION": 0.14356436233318634
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.0028041719991287947,
+      "D1_ROBUST_STATE": 0.0724573026133834,
+      "D2_LOG_GROWTH": -0.1151687639106499,
+      "D3_CONTRARIAN": 0.09708027796566614,
+      "D4_ENTROPIC_CORRELATION": -0.051564644669270965
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2022-03-31",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.012951332724372872,
+      "D1_ROBUST_STATE": 0.0036103107699059084,
+      "D2_LOG_GROWTH": 0.001707292329390512,
+      "D3_CONTRARIAN": -0.01765541287705565,
+      "D4_ENTROPIC_CORRELATION": 0.003251438491886104
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.196230968397305,
+      "D1_ROBUST_STATE": 0.2759392986872745,
+      "D2_LOG_GROWTH": 0.09743344443663685,
+      "D3_CONTRARIAN": 0.2920850350981082,
+      "D4_ENTROPIC_CORRELATION": 0.1383112533806754
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.012450699556286204,
+      "D1_ROBUST_STATE": 0.08062840627537968,
+      "D2_LOG_GROWTH": -0.12757387082198393,
+      "D3_CONTRARIAN": 0.09200121962068078,
+      "D4_ENTROPIC_CORRELATION": -0.05750645463036283
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2022-04-29",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.01642150918405791,
+      "D1_ROBUST_STATE": -0.002551916580892014,
+      "D2_LOG_GROWTH": -0.0034201655547061835,
+      "D3_CONTRARIAN": -0.03143037756072829,
+      "D4_ENTROPIC_CORRELATION": -0.003420165554705911
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.17260272868193946,
+      "D1_ROBUST_STATE": 0.31543422423148687,
+      "D2_LOG_GROWTH": 0.10099947084938252,
+      "D3_CONTRARIAN": 0.2571396874459528,
+      "D4_ENTROPIC_CORRELATION": 0.15382388879123843
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.014020917703964754,
+      "D1_ROBUST_STATE": 0.10657060057588344,
+      "D2_LOG_GROWTH": -0.12119637972258011,
+      "D3_CONTRARIAN": 0.06570445836569716,
+      "D4_ENTROPIC_CORRELATION": -0.03705776151503582
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2022-05-31",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.022078580518688586,
+      "D1_ROBUST_STATE": -0.0015168209884455141,
+      "D2_LOG_GROWTH": -0.003453846886955368,
+      "D3_CONTRARIAN": -0.013531547944294373,
+      "D4_ENTROPIC_CORRELATION": -0.002799218283641866
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.16055366708790786,
+      "D1_ROBUST_STATE": 0.3307845522808246,
+      "D2_LOG_GROWTH": 0.1086884961291647,
+      "D3_CONTRARIAN": 0.22820090678226201,
+      "D4_ENTROPIC_CORRELATION": 0.17177237771984077
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.0300734721189804,
+      "D1_ROBUST_STATE": 0.1144943284685075,
+      "D2_LOG_GROWTH": -0.10810193290112159,
+      "D3_CONTRARIAN": 0.040246157879163594,
+      "D4_ENTROPIC_CORRELATION": -0.016565081327569203
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2022-06-30",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.02716006422795313,
+      "D1_ROBUST_STATE": -0.017998441270958836,
+      "D2_LOG_GROWTH": -0.0209911935759672,
+      "D3_CONTRARIAN": -0.04185382756931432,
+      "D4_ENTROPIC_CORRELATION": -0.020586693293714976
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.15287800505471033,
+      "D1_ROBUST_STATE": 0.3473190748286544,
+      "D2_LOG_GROWTH": 0.1137029461632983,
+      "D3_CONTRARIAN": 0.20862639266553828,
+      "D4_ENTROPIC_CORRELATION": 0.17747358128779875
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.03938556032029943,
+      "D1_ROBUST_STATE": 0.12473516581796831,
+      "D2_LOG_GROWTH": -0.09859574804168886,
+      "D3_CONTRARIAN": 0.022795401010596766,
+      "D4_ENTROPIC_CORRELATION": -0.009549258466576884
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2022-07-29",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.020695966914246154,
+      "D1_ROBUST_STATE": -0.01448556833489591,
+      "D2_LOG_GROWTH": -0.012141160560769138,
+      "D3_CONTRARIAN": -0.020866208865166665,
+      "D4_ENTROPIC_CORRELATION": -0.011538529981547778
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.2066499353865677,
+      "D1_ROBUST_STATE": 0.30619144078837396,
+      "D2_LOG_GROWTH": 0.10653408360674121,
+      "D3_CONTRARIAN": 0.21636008829940476,
+      "D4_ENTROPIC_CORRELATION": 0.1642644519189124
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.018120307182733872,
+      "D1_ROBUST_STATE": 0.09675716748996811,
+      "D2_LOG_GROWTH": -0.11439194491149747,
+      "D3_CONTRARIAN": 0.027303880548665407,
+      "D4_ENTROPIC_CORRELATION": -0.027789410309870005
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2022-08-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.025986176120429146,
+      "D1_ROBUST_STATE": -0.012839485080925766,
+      "D2_LOG_GROWTH": -0.011073843872642463,
+      "D3_CONTRARIAN": -0.020327675481069868,
+      "D4_ENTROPIC_CORRELATION": -0.011125521558122376
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.19961166289695953,
+      "D1_ROBUST_STATE": 0.3019761426108336,
+      "D2_LOG_GROWTH": 0.10255952463513747,
+      "D3_CONTRARIAN": 0.2376818394328905,
+      "D4_ENTROPIC_CORRELATION": 0.15817083042417884
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.012403807008959288,
+      "D1_ROBUST_STATE": 0.09519865156079557,
+      "D2_LOG_GROWTH": -0.12078228006084121,
+      "D3_CONTRARIAN": 0.04731564235330949,
+      "D4_ENTROPIC_CORRELATION": -0.03413582086222325
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2022-09-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.03128439868481841,
+      "D1_ROBUST_STATE": -0.0364370440638069,
+      "D2_LOG_GROWTH": -0.026007858213226875,
+      "D3_CONTRARIAN": -0.04089095139480288,
+      "D4_ENTROPIC_CORRELATION": -0.026970775550791897
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.1854801524420822,
+      "D1_ROBUST_STATE": 0.30897028688511274,
+      "D2_LOG_GROWTH": 0.10148621757273454,
+      "D3_CONTRARIAN": 0.24960521118072831,
+      "D4_ENTROPIC_CORRELATION": 0.1544581319193422
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.0008472069090243867,
+      "D1_ROBUST_STATE": 0.101212239475893,
+      "D2_LOG_GROWTH": -0.12145218282914211,
+      "D3_CONTRARIAN": 0.05853931969167766,
+      "D4_ENTROPIC_CORRELATION": -0.03745216942940424
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2022-10-31",
+    "n_eligible": 60,
+    "scenario_selected": "D3_CONTRARIAN",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.02310708147902607,
+      "D1_ROBUST_STATE": -0.024740976532496937,
+      "D2_LOG_GROWTH": -0.022389084022241098,
+      "D3_CONTRARIAN": -0.02229539451182286,
+      "D4_ENTROPIC_CORRELATION": -0.022389084022241098
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.20001454433649193,
+      "D1_ROBUST_STATE": 0.31121727355913265,
+      "D2_LOG_GROWTH": 0.09821622280485011,
+      "D3_CONTRARIAN": 0.2448795076519188,
+      "D4_ENTROPIC_CORRELATION": 0.14567245164760653
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": 0.015350829534332137,
+      "D1_ROBUST_STATE": 0.10377107182889803,
+      "D2_LOG_GROWTH": -0.12689290690397978,
+      "D3_CONTRARIAN": 0.05582606923032404,
+      "D4_ENTROPIC_CORRELATION": -0.048055063689574545
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2022-11-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.021715529616549833,
+      "D1_ROBUST_STATE": -0.017360733748408633,
+      "D2_LOG_GROWTH": -0.01480984899190751,
+      "D3_CONTRARIAN": -0.04006860870345816,
+      "D4_ENTROPIC_CORRELATION": -0.013573725521243666
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.16823539927467912,
+      "D1_ROBUST_STATE": 0.36143744363587693,
+      "D2_LOG_GROWTH": 0.08755013792426554,
+      "D3_CONTRARIAN": 0.24682823613846636,
+      "D4_ENTROPIC_CORRELATION": 0.13594878302671215
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.01127259154820346,
+      "D1_ROBUST_STATE": 0.14167236748326498,
+      "D2_LOG_GROWTH": -0.14190310169001216,
+      "D3_CONTRARIAN": 0.0653931103836323,
+      "D4_ENTROPIC_CORRELATION": -0.0538897846286818
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2022-12-30",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.02648222618045379,
+      "D1_ROBUST_STATE": -0.007296180636987768,
+      "D2_LOG_GROWTH": -0.010870476002540768,
+      "D3_CONTRARIAN": -0.018120648513825388,
+      "D4_ENTROPIC_CORRELATION": -0.01189155403377224
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.14675559275336894,
+      "D1_ROBUST_STATE": 0.3915756080685209,
+      "D2_LOG_GROWTH": 0.09333196117263967,
+      "D3_CONTRARIAN": 0.22520651725925958,
+      "D4_ENTROPIC_CORRELATION": 0.14313032074621088
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.03728161373678868,
+      "D1_ROBUST_STATE": 0.15900039668417681,
+      "D2_LOG_GROWTH": -0.12780280495001944,
+      "D3_CONTRARIAN": 0.04836823965954305,
+      "D4_ENTROPIC_CORRELATION": -0.042284217656911885
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-01-31",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.02420290779276981,
+      "D1_ROBUST_STATE": 0.0026287772433397673,
+      "D2_LOG_GROWTH": 0.0017846141935761832,
+      "D3_CONTRARIAN": -0.00679298935217162,
+      "D4_ENTROPIC_CORRELATION": 0.001409568201170313
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.13511875548774566,
+      "D1_ROBUST_STATE": 0.4003187035132659,
+      "D2_LOG_GROWTH": 0.09488796719359023,
+      "D3_CONTRARIAN": 0.22392750773355993,
+      "D4_ENTROPIC_CORRELATION": 0.14574706607183818
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.05254146847778096,
+      "D1_ROBUST_STATE": 0.16467991684471675,
+      "D2_LOG_GROWTH": -0.12323290028702102,
+      "D3_CONTRARIAN": 0.04849219377270709,
+      "D4_ENTROPIC_CORRELATION": -0.037397741852622
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-02-28",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.020227135752994486,
+      "D1_ROBUST_STATE": 0.02325379345130518,
+      "D2_LOG_GROWTH": 0.022175009241529132,
+      "D3_CONTRARIAN": 0.01028846560723359,
+      "D4_ENTROPIC_CORRELATION": 0.020982163828227915
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.11114413574859672,
+      "D1_ROBUST_STATE": 0.40043110529360915,
+      "D2_LOG_GROWTH": 0.1030897551936405,
+      "D3_CONTRARIAN": 0.23164399127910168,
+      "D4_ENTROPIC_CORRELATION": 0.15369101248505193
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.09059904314710512,
+      "D1_ROBUST_STATE": 0.16574372700299805,
+      "D2_LOG_GROWTH": -0.10564461530750272,
+      "D3_CONTRARIAN": 0.0562757155556433,
+      "D4_ENTROPIC_CORRELATION": -0.02577578410403364
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-03-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.012984163881786255,
+      "D1_ROBUST_STATE": -0.005154296476341026,
+      "D2_LOG_GROWTH": 0.000517044045330965,
+      "D3_CONTRARIAN": -0.01106166625951085,
+      "D4_ENTROPIC_CORRELATION": 0.0019367584301895574
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.09332825890190435,
+      "D1_ROBUST_STATE": 0.4174263595922451,
+      "D2_LOG_GROWTH": 0.109214857275397,
+      "D3_CONTRARIAN": 0.21779055169282593,
+      "D4_ENTROPIC_CORRELATION": 0.16223997253762742
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.12222175431153359,
+      "D1_ROBUST_STATE": 0.1773752857701194,
+      "D2_LOG_GROWTH": -0.09078292119620358,
+      "D3_CONTRARIAN": 0.04726042264558596,
+      "D4_ENTROPIC_CORRELATION": -0.011631032907968292
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-04-28",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.008702859758682478,
+      "D1_ROBUST_STATE": 0.006670042480580083,
+      "D2_LOG_GROWTH": 0.01383755996013867,
+      "D3_CONTRARIAN": -0.0015404306608667326,
+      "D4_ENTROPIC_CORRELATION": 0.014859467059827509
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.12291430315640219,
+      "D1_ROBUST_STATE": 0.3715240579606213,
+      "D2_LOG_GROWTH": 0.11502843174168044,
+      "D3_CONTRARIAN": 0.2308439203893442,
+      "D4_ENTROPIC_CORRELATION": 0.15968928675195188
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.07727260690574436,
+      "D1_ROBUST_STATE": 0.14395263925362944,
+      "D2_LOG_GROWTH": -0.09053421888580242,
+      "D3_CONTRARIAN": 0.04877827761450543,
+      "D4_ENTROPIC_CORRELATION": -0.024924091076588203
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-05-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.012148629881570934,
+      "D1_ROBUST_STATE": -0.004454438261074739,
+      "D2_LOG_GROWTH": 0.0009972641277447647,
+      "D3_CONTRARIAN": -0.007288792503812532,
+      "D4_ENTROPIC_CORRELATION": -2.7082596133071776e-05
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.11638750101268559,
+      "D1_ROBUST_STATE": 0.3768270567169927,
+      "D2_LOG_GROWTH": 0.11639709138801274,
+      "D3_CONTRARIAN": 0.22862090975197388,
+      "D4_ENTROPIC_CORRELATION": 0.1617674411303351
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.0871727306048507,
+      "D1_ROBUST_STATE": 0.147799508751623,
+      "D2_LOG_GROWTH": -0.08715625120604914,
+      "D3_CONTRARIAN": 0.04785528259382225,
+      "D4_ENTROPIC_CORRELATION": -0.02132580953454552
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-06-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.005425042834380891,
+      "D1_ROBUST_STATE": 0.010709445303960218,
+      "D2_LOG_GROWTH": 0.01941361999302471,
+      "D3_CONTRARIAN": -0.000493107485205167,
+      "D4_ENTROPIC_CORRELATION": 0.018614280201883646
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.12719002043205122,
+      "D1_ROBUST_STATE": 0.35920608276149907,
+      "D2_LOG_GROWTH": 0.11224545202392247,
+      "D3_CONTRARIAN": 0.2462677440360898,
+      "D4_ENTROPIC_CORRELATION": 0.1550907007464374
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.0708913983081346,
+      "D1_ROBUST_STATE": 0.13675141736598057,
+      "D2_LOG_GROWTH": -0.09589023486702712,
+      "D3_CONTRARIAN": 0.061256030161910224,
+      "D4_ENTROPIC_CORRELATION": -0.03122581435272915
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-07-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.008034536132504743,
+      "D1_ROBUST_STATE": 0.010442920772525038,
+      "D2_LOG_GROWTH": 0.011170684133728275,
+      "D3_CONTRARIAN": 0.0043792066354835105,
+      "D4_ENTROPIC_CORRELATION": 0.011170684133728275
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.1211279116359083,
+      "D1_ROBUST_STATE": 0.3356789200543785,
+      "D2_LOG_GROWTH": 0.13205409406015514,
+      "D3_CONTRARIAN": 0.24259853818466007,
+      "D4_ENTROPIC_CORRELATION": 0.16854053606489797
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.08522250316831793,
+      "D1_ROBUST_STATE": 0.11863909679550741,
+      "D2_LOG_GROWTH": -0.06794959638229565,
+      "D3_CONTRARIAN": 0.053689669366946885,
+      "D4_ENTROPIC_CORRELATION": -0.01915666661184077
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-08-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.009486760886253375,
+      "D1_ROBUST_STATE": 0.0008867345897405062,
+      "D2_LOG_GROWTH": 0.0036349079712189457,
+      "D3_CONTRARIAN": -0.004014270934972736,
+      "D4_ENTROPIC_CORRELATION": 0.0038388570054220003
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.11443424865914491,
+      "D1_ROBUST_STATE": 0.3518274649263129,
+      "D2_LOG_GROWTH": 0.135710213819665,
+      "D3_CONTRARIAN": 0.22410356547564175,
+      "D4_ENTROPIC_CORRELATION": 0.1739245071192354
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.09537562869251802,
+      "D1_ROBUST_STATE": 0.12925246899551368,
+      "D2_LOG_GROWTH": -0.061271344468026186,
+      "D3_CONTRARIAN": 0.03904594737685505,
+      "D4_ENTROPIC_CORRELATION": -0.011651443211824592
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-09-29",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.009857234474951047,
+      "D1_ROBUST_STATE": 0.0077158498939382284,
+      "D2_LOG_GROWTH": 0.0059787418912342636,
+      "D3_CONTRARIAN": -0.010527980887930678,
+      "D4_ENTROPIC_CORRELATION": 0.005039360784964533
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.13129493784675855,
+      "D1_ROBUST_STATE": 0.3451980383720944,
+      "D2_LOG_GROWTH": 0.13465926490100377,
+      "D3_CONTRARIAN": 0.21766734521555298,
+      "D4_ENTROPIC_CORRELATION": 0.17118041366459041
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.07051068015593312,
+      "D1_ROBUST_STATE": 0.12282372987270579,
+      "D2_LOG_GROWTH": -0.06545040061395677,
+      "D3_CONTRARIAN": 0.03059366614676014,
+      "D4_ENTROPIC_CORRELATION": -0.017456315249576106
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2023-10-31",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.011985930378509958,
+      "D1_ROBUST_STATE": -0.003923898723195917,
+      "D2_LOG_GROWTH": -0.007314678710175891,
+      "D3_CONTRARIAN": -0.01873387469277328,
+      "D4_ENTROPIC_CORRELATION": -0.00718887916069722
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.1248650657923424,
+      "D1_ROBUST_STATE": 0.3721642660419634,
+      "D2_LOG_GROWTH": 0.13096745488341627,
+      "D3_CONTRARIAN": 0.20704305130194628,
+      "D4_ENTROPIC_CORRELATION": 0.16496016198033156
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.07695920869247636,
+      "D1_ROBUST_STATE": 0.14146112162739036,
+      "D2_LOG_GROWTH": -0.06741617354414797,
+      "D3_CONTRARIAN": 0.024179404978615357,
+      "D4_ENTROPIC_CORRELATION": -0.021265144369381435
+    },
+    "risk_gate": true
+  },
+  {
+    "signal_date": "2023-11-30",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.007945655776190205,
+      "D1_ROBUST_STATE": 0.004333399557327602,
+      "D2_LOG_GROWTH": 0.0031339775973000315,
+      "D3_CONTRARIAN": -0.007654308745794288,
+      "D4_ENTROPIC_CORRELATION": 0.001216581577510924
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.13821296061710103,
+      "D1_ROBUST_STATE": 0.3647570758675226,
+      "D2_LOG_GROWTH": 0.12217273815681473,
+      "D3_CONTRARIAN": 0.22000046457577532,
+      "D4_ENTROPIC_CORRELATION": 0.15485676078278635
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.05702459943469566,
+      "D1_ROBUST_STATE": 0.13706258014612002,
+      "D2_LOG_GROWTH": -0.08169655117346916,
+      "D3_CONTRARIAN": 0.03594219446970205,
+      "D4_ENTROPIC_CORRELATION": -0.03428362400765731
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2023-12-29",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0024466306394673705,
+      "D1_ROBUST_STATE": 0.00901184813157373,
+      "D2_LOG_GROWTH": 0.008840749576063074,
+      "D3_CONTRARIAN": 0.0012787400124797705,
+      "D4_ENTROPIC_CORRELATION": 0.008933666188676484
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.12230244611929234,
+      "D1_ROBUST_STATE": 0.34886023657337434,
+      "D2_LOG_GROWTH": 0.12699689622691987,
+      "D3_CONTRARIAN": 0.24843436166074945,
+      "D4_ENTROPIC_CORRELATION": 0.15340605941966415
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.08084451632973039,
+      "D1_ROBUST_STATE": 0.12879034972105824,
+      "D2_LOG_GROWTH": -0.07331139562306607,
+      "D3_CONTRARIAN": 0.06089180946855206,
+      "D4_ENTROPIC_CORRELATION": -0.03552624723681388
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-01-31",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0005983746235360662,
+      "D1_ROBUST_STATE": 0.004703403690784692,
+      "D2_LOG_GROWTH": 0.0037297990663238945,
+      "D3_CONTRARIAN": -0.009526977227815203,
+      "D4_ENTROPIC_CORRELATION": 0.004053596834119028
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.12470179132312162,
+      "D1_ROBUST_STATE": 0.3401473681379849,
+      "D2_LOG_GROWTH": 0.13663676758883384,
+      "D3_CONTRARIAN": 0.24187049154021242,
+      "D4_ENTROPIC_CORRELATION": 0.15664358140984733
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.0794151851457024,
+      "D1_ROBUST_STATE": 0.12127556320631953,
+      "D2_LOG_GROWTH": -0.06113501400338156,
+      "D3_CONTRARIAN": 0.053080256122170336,
+      "D4_ENTROPIC_CORRELATION": -0.03380562017940594
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-02-29",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0011665064273160448,
+      "D1_ROBUST_STATE": 0.014002932780729525,
+      "D2_LOG_GROWTH": 0.01445568066455026,
+      "D3_CONTRARIAN": -0.010526367320345741,
+      "D4_ENTROPIC_CORRELATION": 0.013161316114673598
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.12923794673086775,
+      "D1_ROBUST_STATE": 0.33386337320228887,
+      "D2_LOG_GROWTH": 0.13547097302499625,
+      "D3_CONTRARIAN": 0.25197863186654273,
+      "D4_ENTROPIC_CORRELATION": 0.14944907517530445
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.07236672876560349,
+      "D1_ROBUST_STATE": 0.11744858992369811,
+      "D2_LOG_GROWTH": -0.06294630024948944,
+      "D3_CONTRARIAN": 0.06117107846699746,
+      "D4_ENTROPIC_CORRELATION": -0.04330663937560268
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-03-28",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.002431230604844672,
+      "D1_ROBUST_STATE": 0.022439506676966977,
+      "D2_LOG_GROWTH": 0.02232948190832543,
+      "D3_CONTRARIAN": 0.010492705822447925,
+      "D4_ENTROPIC_CORRELATION": 0.02232948190832543
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.11228559863731306,
+      "D1_ROBUST_STATE": 0.38214722631925424,
+      "D2_LOG_GROWTH": 0.1517221508989539,
+      "D3_CONTRARIAN": 0.18902052842350534,
+      "D4_ENTROPIC_CORRELATION": 0.16482449572097344
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.09721645016093833,
+      "D1_ROBUST_STATE": 0.1477356158675537,
+      "D2_LOG_GROWTH": -0.037015394148828845,
+      "D3_CONTRARIAN": 0.006945552185654784,
+      "D4_ENTROPIC_CORRELATION": -0.020449323743441383
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-04-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0019277442055389352,
+      "D1_ROBUST_STATE": 0.02282955326154892,
+      "D2_LOG_GROWTH": 0.023388749076123844,
+      "D3_CONTRARIAN": 0.01548423615042412,
+      "D4_ENTROPIC_CORRELATION": 0.023926883501693842
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.09922357732196886,
+      "D1_ROBUST_STATE": 0.37659370628429917,
+      "D2_LOG_GROWTH": 0.14965146927540016,
+      "D3_CONTRARIAN": 0.21128547951592974,
+      "D4_ENTROPIC_CORRELATION": 0.16324576760240192
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.1199376143306535,
+      "D1_ROBUST_STATE": 0.14682063436504503,
+      "D2_LOG_GROWTH": -0.037750935998376964,
+      "D3_CONTRARIAN": 0.031229294037176912,
+      "D4_ENTROPIC_CORRELATION": -0.02036137807319156
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-05-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0010500219569592514,
+      "D1_ROBUST_STATE": 0.023208234496382662,
+      "D2_LOG_GROWTH": 0.025498123577464622,
+      "D3_CONTRARIAN": 0.003500087343446007,
+      "D4_ENTROPIC_CORRELATION": 0.024128086362869196
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.10567253660449265,
+      "D1_ROBUST_STATE": 0.39313106790542407,
+      "D2_LOG_GROWTH": 0.1462672881708616,
+      "D3_CONTRARIAN": 0.19579335720529942,
+      "D4_ENTROPIC_CORRELATION": 0.15913575011392225
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.10660064104291782,
+      "D1_ROBUST_STATE": 0.1561589644092437,
+      "D2_LOG_GROWTH": -0.041582510300373826,
+      "D3_CONTRARIAN": 0.01674231254989684,
+      "D4_ENTROPIC_CORRELATION": -0.024718125615848994
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-06-28",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0030060544653385617,
+      "D1_ROBUST_STATE": 0.01637641759579569,
+      "D2_LOG_GROWTH": 0.01546229206848789,
+      "D3_CONTRARIAN": 0.0014576413113895795,
+      "D4_ENTROPIC_CORRELATION": 0.014417540205121905
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.09153083438649189,
+      "D1_ROBUST_STATE": 0.3889870980656897,
+      "D2_LOG_GROWTH": 0.15217891898787167,
+      "D3_CONTRARIAN": 0.200776911365914,
+      "D4_ENTROPIC_CORRELATION": 0.16652623719403276
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.13356987062792042,
+      "D1_ROBUST_STATE": 0.15580418393164397,
+      "D2_LOG_GROWTH": -0.031893665854128644,
+      "D3_CONTRARIAN": 0.0235338282970141,
+      "D4_ENTROPIC_CORRELATION": -0.013874475746609133
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-07-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0009340276358773768,
+      "D1_ROBUST_STATE": 0.014547427595856869,
+      "D2_LOG_GROWTH": 0.016646472149264565,
+      "D3_CONTRARIAN": 0.005463579650587871,
+      "D4_ENTROPIC_CORRELATION": 0.016243771707649565
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.09803231891955208,
+      "D1_ROBUST_STATE": 0.3851392181968097,
+      "D2_LOG_GROWTH": 0.14731313222024583,
+      "D3_CONTRARIAN": 0.20624534198216476,
+      "D4_ENTROPIC_CORRELATION": 0.16326998868122772
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.1211779261467113,
+      "D1_ROBUST_STATE": 0.15248360693995305,
+      "D2_LOG_GROWTH": -0.039725273509758456,
+      "D3_CONTRARIAN": 0.02757592014008619,
+      "D4_ENTROPIC_CORRELATION": -0.019156327423569604
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-08-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0034632149142058586,
+      "D1_ROBUST_STATE": 0.012746458608348145,
+      "D2_LOG_GROWTH": 0.014579445568886226,
+      "D3_CONTRARIAN": 0.0015804659769828987,
+      "D4_ENTROPIC_CORRELATION": 0.015295558583201396
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.10898299740922375,
+      "D1_ROBUST_STATE": 0.3829413673680404,
+      "D2_LOG_GROWTH": 0.1407075192092747,
+      "D3_CONTRARIAN": 0.20266403869949176,
+      "D4_ENTROPIC_CORRELATION": 0.16470407731396927
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.10181991123851383,
+      "D1_ROBUST_STATE": 0.14951809009329664,
+      "D2_LOG_GROWTH": -0.05072160701203961,
+      "D3_CONTRARIAN": 0.02225163741751314,
+      "D4_ENTROPIC_CORRELATION": -0.019228209260256448
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-09-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.006168074796669321,
+      "D1_ROBUST_STATE": 0.014649468112849891,
+      "D2_LOG_GROWTH": 0.015449514039895718,
+      "D3_CONTRARIAN": 0.007609966247144406,
+      "D4_ENTROPIC_CORRELATION": 0.018359680502893553
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.10592307609137576,
+      "D1_ROBUST_STATE": 0.3869699345592833,
+      "D2_LOG_GROWTH": 0.14750696821584594,
+      "D3_CONTRARIAN": 0.19165070600985812,
+      "D4_ENTROPIC_CORRELATION": 0.16794931512363703
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.10722826394161199,
+      "D1_ROBUST_STATE": 0.15189850968226584,
+      "D2_LOG_GROWTH": -0.040995807263582866,
+      "D3_CONTRARIAN": 0.011364004509313172,
+      "D4_ENTROPIC_CORRELATION": -0.015038442986384248
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-10-31",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0012173417928799364,
+      "D1_ROBUST_STATE": 0.008075251817939354,
+      "D2_LOG_GROWTH": 0.007892673701674522,
+      "D3_CONTRARIAN": -0.0028441588546906167,
+      "D4_ENTROPIC_CORRELATION": 0.006729533610852636
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.1115070320437034,
+      "D1_ROBUST_STATE": 0.3524505320247822,
+      "D2_LOG_GROWTH": 0.1593384040175297,
+      "D3_CONTRARIAN": 0.19844869714525298,
+      "D4_ENTROPIC_CORRELATION": 0.17825533476873168
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.10213350082489685,
+      "D1_ROBUST_STATE": 0.12803102340610248,
+      "D2_LOG_GROWTH": -0.030744978599549316,
+      "D3_CONTRARIAN": 0.013155090672267649,
+      "D4_ENTROPIC_CORRELATION": -0.008307634653924041
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-11-29",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0032850205665245335,
+      "D1_ROBUST_STATE": 0.008537178294080927,
+      "D2_LOG_GROWTH": 0.007451026993967972,
+      "D3_CONTRARIAN": -0.002975092418904873,
+      "D4_ENTROPIC_CORRELATION": 0.007639018134182933
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.12343984036730439,
+      "D1_ROBUST_STATE": 0.3781009842306008,
+      "D2_LOG_GROWTH": 0.1319362399664917,
+      "D3_CONTRARIAN": 0.20565036025509428,
+      "D4_ENTROPIC_CORRELATION": 0.1608725751805087
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.07845017877923041,
+      "D1_ROBUST_STATE": 0.14543130104799923,
+      "D2_LOG_GROWTH": -0.06513720668337229,
+      "D3_CONTRARIAN": 0.023634527542572482,
+      "D4_ENTROPIC_CORRELATION": -0.025478443127969097
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2024-12-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0007999781275116687,
+      "D1_ROBUST_STATE": 0.004260945533484289,
+      "D2_LOG_GROWTH": 0.004426295732552753,
+      "D3_CONTRARIAN": 0.0004591724247604257,
+      "D4_ENTROPIC_CORRELATION": 0.005158064629470567
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.12920906463890433,
+      "D1_ROBUST_STATE": 0.3700770454308974,
+      "D2_LOG_GROWTH": 0.1335641591049675,
+      "D3_CONTRARIAN": 0.2016496385629033,
+      "D4_ENTROPIC_CORRELATION": 0.16550009226232762
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.07112278625930367,
+      "D1_ROBUST_STATE": 0.13933310698555243,
+      "D2_LOG_GROWTH": -0.06449274499770302,
+      "D3_CONTRARIAN": 0.017897209798358134,
+      "D4_ENTROPIC_CORRELATION": -0.02161478552690397
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-01-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0002779461294446805,
+      "D1_ROBUST_STATE": 0.020614559600672218,
+      "D2_LOG_GROWTH": 0.02184220049167994,
+      "D3_CONTRARIAN": -0.0030181596976839274,
+      "D4_ENTROPIC_CORRELATION": 0.02184220049167994
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.12455122407089926,
+      "D1_ROBUST_STATE": 0.354724626954628,
+      "D2_LOG_GROWTH": 0.13684331063695415,
+      "D3_CONTRARIAN": 0.21664078996355063,
+      "D4_ENTROPIC_CORRELATION": 0.1672400483739681
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.0795592358603709,
+      "D1_ROBUST_STATE": 0.12976570816731564,
+      "D2_LOG_GROWTH": -0.06073533912087981,
+      "D3_CONTRARIAN": 0.031145477448423185,
+      "D4_ENTROPIC_CORRELATION": -0.0206166106344882
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-02-28",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0012793364004567657,
+      "D1_ROBUST_STATE": 0.020817227405049613,
+      "D2_LOG_GROWTH": 0.02010782598522852,
+      "D3_CONTRARIAN": 0.00392024956587449,
+      "D4_ENTROPIC_CORRELATION": 0.019860596109394373
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.11260605201593586,
+      "D1_ROBUST_STATE": 0.3808205288580754,
+      "D2_LOG_GROWTH": 0.14776704475650765,
+      "D3_CONTRARIAN": 0.18600418081530595,
+      "D4_ENTROPIC_CORRELATION": 0.17280219355417523
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.09681200303024262,
+      "D1_ROBUST_STATE": 0.14687454678935796,
+      "D2_LOG_GROWTH": -0.04246369311180436,
+      "D3_CONTRARIAN": 0.0035627347257035924,
+      "D4_ENTROPIC_CORRELATION": -0.011161585373014635
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-03-31",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0038000032975833388,
+      "D1_ROBUST_STATE": 0.014686268384124892,
+      "D2_LOG_GROWTH": 0.00931042304173775,
+      "D3_CONTRARIAN": -0.0075748467550442716,
+      "D4_ENTROPIC_CORRELATION": 0.009919336687615325
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.0931400707337051,
+      "D1_ROBUST_STATE": 0.4195627184190231,
+      "D2_LOG_GROWTH": 0.15837832865543833,
+      "D3_CONTRARIAN": 0.14458281321000038,
+      "D4_ENTROPIC_CORRELATION": 0.18433606898183308
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.12633578756061498,
+      "D1_ROBUST_STATE": 0.17468591749902976,
+      "D2_LOG_GROWTH": -0.020159355762955473,
+      "D3_CONTRARIAN": -0.038386197919915835,
+      "D4_ENTROPIC_CORRELATION": 0.010195423744456457
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-04-30",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.000800698026671951,
+      "D1_ROBUST_STATE": 0.014420214903258071,
+      "D2_LOG_GROWTH": 0.01214057207754402,
+      "D3_CONTRARIAN": -0.0071901982285514365,
+      "D4_ENTROPIC_CORRELATION": 0.010408492287186606
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.0959095175472562,
+      "D1_ROBUST_STATE": 0.42575612123173784,
+      "D2_LOG_GROWTH": 0.16918138745251696,
+      "D3_CONTRARIAN": 0.11369974354599398,
+      "D4_ENTROPIC_CORRELATION": 0.195453230222495
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.11760398053727009,
+      "D1_ROBUST_STATE": 0.18048831456345482,
+      "D2_LOG_GROWTH": -0.00409073725253236,
+      "D3_CONTRARIAN": -0.08357279578529567,
+      "D4_ENTROPIC_CORRELATION": 0.024779199011643244
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-05-30",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0011585819448947368,
+      "D1_ROBUST_STATE": 0.019772508855641992,
+      "D2_LOG_GROWTH": 0.01786145067869331,
+      "D3_CONTRARIAN": 0.004145883627996627,
+      "D4_ENTROPIC_CORRELATION": 0.01786145067869304
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.10121254816712805,
+      "D1_ROBUST_STATE": 0.42781568859847086,
+      "D2_LOG_GROWTH": 0.1707590377057992,
+      "D3_CONTRARIAN": 0.10719020043847835,
+      "D4_ENTROPIC_CORRELATION": 0.19302252509012352
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.10669866586486554,
+      "D1_ROBUST_STATE": 0.18159527929582944,
+      "D2_LOG_GROWTH": -0.002092529144858072,
+      "D3_CONTRARIAN": -0.09522224831987783,
+      "D4_ENTROPIC_CORRELATION": 0.02241816403377196
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-06-30",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0005722887579096714,
+      "D1_ROBUST_STATE": 0.015449418230660431,
+      "D2_LOG_GROWTH": 0.01333270588863767,
+      "D3_CONTRARIAN": 0.0011007074954888499,
+      "D4_ENTROPIC_CORRELATION": 0.013656864141044748
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.08903131439580726,
+      "D1_ROBUST_STATE": 0.43014015127658267,
+      "D2_LOG_GROWTH": 0.17348047402948258,
+      "D3_CONTRARIAN": 0.11828986881558592,
+      "D4_ENTROPIC_CORRELATION": 0.18905819148254158
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.13117666027658959,
+      "D1_ROBUST_STATE": 0.18384792648179546,
+      "D2_LOG_GROWTH": 0.0022387190123033945,
+      "D3_CONTRARIAN": -0.07434666576501318,
+      "D4_ENTROPIC_CORRELATION": 0.019436680547503887
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-07-31",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0052907331664027515,
+      "D1_ROBUST_STATE": 0.01088195171641476,
+      "D2_LOG_GROWTH": 0.009739146678207912,
+      "D3_CONTRARIAN": -0.009171963860815976,
+      "D4_ENTROPIC_CORRELATION": 0.009526343476356428
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.09225231386126774,
+      "D1_ROBUST_STATE": 0.41735953665672787,
+      "D2_LOG_GROWTH": 0.17700477131134132,
+      "D3_CONTRARIAN": 0.12103597273301334,
+      "D4_ENTROPIC_CORRELATION": 0.19234740543764983
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.12669624855738515,
+      "D1_ROBUST_STATE": 0.17518788812740654,
+      "D2_LOG_GROWTH": 0.0036336161743578213,
+      "D3_CONTRARIAN": -0.0723841622345126,
+      "D4_ENTROPIC_CORRELATION": 0.020258906490133344
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-08-29",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.004112646612310294,
+      "D1_ROBUST_STATE": 0.009016103098144681,
+      "D2_LOG_GROWTH": 0.010536872150659318,
+      "D3_CONTRARIAN": 0.00029709795180329467,
+      "D4_ENTROPIC_CORRELATION": 0.009575114141066324
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.09030613087976434,
+      "D1_ROBUST_STATE": 0.41330220492643793,
+      "D2_LOG_GROWTH": 0.18506120635615697,
+      "D3_CONTRARIAN": 0.11593728531625823,
+      "D4_ENTROPIC_CORRELATION": 0.19539317252138266
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.1304042984098979,
+      "D1_ROBUST_STATE": 0.17379044233888158,
+      "D2_LOG_GROWTH": 0.013091954158163102,
+      "D3_CONTRARIAN": -0.08043548873165937,
+      "D4_ENTROPIC_CORRELATION": 0.02395739064451257
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-09-30",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.006264111153862205,
+      "D1_ROBUST_STATE": 0.004704098292896664,
+      "D2_LOG_GROWTH": 0.0030363428574349933,
+      "D3_CONTRARIAN": -0.00927513567256074,
+      "D4_ENTROPIC_CORRELATION": 0.004539261351875443
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.08373903947419599,
+      "D1_ROBUST_STATE": 0.42993798457063986,
+      "D2_LOG_GROWTH": 0.183503094415289,
+      "D3_CONTRARIAN": 0.11138225448470794,
+      "D4_ENTROPIC_CORRELATION": 0.19143762705516718
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.1413032565545384,
+      "D1_ROBUST_STATE": 0.18588388067887857,
+      "D2_LOG_GROWTH": 0.015601991537506063,
+      "D3_CONTRARIAN": -0.08425071072571673,
+      "D4_ENTROPIC_CORRELATION": 0.02406809506387047
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-10-31",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0036644484622531197,
+      "D1_ROBUST_STATE": 0.011758186642298371,
+      "D2_LOG_GROWTH": 0.012333319341951528,
+      "D3_CONTRARIAN": 0.002798739629316499,
+      "D4_ENTROPIC_CORRELATION": 0.01329798230347761
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.08213386552390646,
+      "D1_ROBUST_STATE": 0.422949558074779,
+      "D2_LOG_GROWTH": 0.19094838562583058,
+      "D3_CONTRARIAN": 0.11103911144823517,
+      "D4_ENTROPIC_CORRELATION": 0.1929290793272488
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.14552238176884,
+      "D1_ROBUST_STATE": 0.18225811849560333,
+      "D2_LOG_GROWTH": 0.023208165558864378,
+      "D3_CONTRARIAN": -0.08521596735364424,
+      "D4_ENTROPIC_CORRELATION": 0.025272065068016495
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-11-28",
+    "n_eligible": 60,
+    "scenario_selected": "D1_ROBUST_STATE",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0035537155860854274,
+      "D1_ROBUST_STATE": 0.016721339313611323,
+      "D2_LOG_GROWTH": 0.014890937151578972,
+      "D3_CONTRARIAN": -0.0029826067698663986,
+      "D4_ENTROPIC_CORRELATION": 0.013909546156854405
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.08137439590138427,
+      "D1_ROBUST_STATE": 0.4210323507836558,
+      "D2_LOG_GROWTH": 0.19027622346330908,
+      "D3_CONTRARIAN": 0.10677654821700479,
+      "D4_ENTROPIC_CORRELATION": 0.20054048163464597
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.14666792945265586,
+      "D1_ROBUST_STATE": 0.1820618698642198,
+      "D2_LOG_GROWTH": 0.023215299996252322,
+      "D3_CONTRARIAN": -0.09233240153901857,
+      "D4_ENTROPIC_CORRELATION": 0.03372316113120229
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2025-12-31",
+    "n_eligible": 58,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.003559037295834077,
+      "D1_ROBUST_STATE": 0.014458162168825239,
+      "D2_LOG_GROWTH": 0.0178773338508947,
+      "D3_CONTRARIAN": -0.0018803714379071437,
+      "D4_ENTROPIC_CORRELATION": 0.013872965725300885
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.07769531907760018,
+      "D1_ROBUST_STATE": 0.4208600495036121,
+      "D2_LOG_GROWTH": 0.19729714757778813,
+      "D3_CONTRARIAN": 0.10553915355849822,
+      "D4_ENTROPIC_CORRELATION": 0.19860833028250133
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.1546499186227464,
+      "D1_ROBUST_STATE": 0.18325114985885457,
+      "D2_LOG_GROWTH": 0.03173327009971472,
+      "D3_CONTRARIAN": -0.09339251945942588,
+      "D4_ENTROPIC_CORRELATION": 0.033058018123603
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2026-01-30",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.0003652192869827639,
+      "D1_ROBUST_STATE": 0.02068737117590947,
+      "D2_LOG_GROWTH": 0.028181600887024406,
+      "D3_CONTRARIAN": 0.00022160917508223278,
+      "D4_ENTROPIC_CORRELATION": 0.024531812347553857
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.06086476250257222,
+      "D1_ROBUST_STATE": 0.42293082856667424,
+      "D2_LOG_GROWTH": 0.20893586786706458,
+      "D3_CONTRARIAN": 0.10662178345680971,
+      "D4_ENTROPIC_CORRELATION": 0.2006467576068793
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.1970180875494702,
+      "D1_ROBUST_STATE": 0.1906927614524349,
+      "D2_LOG_GROWTH": 0.04965650400002466,
+      "D3_CONTRARIAN": -0.08489139881694388,
+      "D4_ENTROPIC_CORRELATION": 0.0415602209139545
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2026-02-27",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": 0.00344679256712234,
+      "D1_ROBUST_STATE": 0.022342140974052037,
+      "D2_LOG_GROWTH": 0.028859312200472415,
+      "D3_CONTRARIAN": 0.004617425317249727,
+      "D4_ENTROPIC_CORRELATION": 0.025260071268235925
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.059016203688581785,
+      "D1_ROBUST_STATE": 0.40685681827451997,
+      "D2_LOG_GROWTH": 0.22624733181000659,
+      "D3_CONTRARIAN": 0.10425146342989612,
+      "D4_ENTROPIC_CORRELATION": 0.20362818279699557
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.20327774123608064,
+      "D1_ROBUST_STATE": 0.18285211490531916,
+      "D2_LOG_GROWTH": 0.0654856076472474,
+      "D3_CONTRARIAN": -0.08947897057841746,
+      "D4_ENTROPIC_CORRELATION": 0.04441898926193155
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2026-03-31",
+    "n_eligible": 60,
+    "scenario_selected": "D2_LOG_GROWTH",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0019511091057537405,
+      "D1_ROBUST_STATE": 0.025797443227754374,
+      "D2_LOG_GROWTH": 0.026551788356326097,
+      "D3_CONTRARIAN": -0.0026709715898745544,
+      "D4_ENTROPIC_CORRELATION": 0.025083879276439278
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.05922846351377727,
+      "D1_ROBUST_STATE": 0.3808401364462008,
+      "D2_LOG_GROWTH": 0.2516491865217659,
+      "D3_CONTRARIAN": 0.08679631241202662,
+      "D4_ENTROPIC_CORRELATION": 0.2214859011062294
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.20034919420710787,
+      "D1_ROBUST_STATE": 0.17184629954396796,
+      "D2_LOG_GROWTH": 0.08897756013293334,
+      "D3_CONTRARIAN": -0.12391681258862446,
+      "D4_ENTROPIC_CORRELATION": 0.063442147118831
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2026-04-30",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.00681980682702402,
+      "D1_ROBUST_STATE": 0.021664004980188716,
+      "D2_LOG_GROWTH": 0.02714970572798171,
+      "D3_CONTRARIAN": 0.015862728890308486,
+      "D4_ENTROPIC_CORRELATION": 0.027256573048338745
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.05841037406354519,
+      "D1_ROBUST_STATE": 0.3820213586701249,
+      "D2_LOG_GROWTH": 0.2544830931618452,
+      "D3_CONTRARIAN": 0.08084698871641942,
+      "D4_ENTROPIC_CORRELATION": 0.2242381853880653
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.20080016112100899,
+      "D1_ROBUST_STATE": 0.17479644041093562,
+      "D2_LOG_GROWTH": 0.0935480168923882,
+      "D3_CONTRARIAN": -0.13578719554433347,
+      "D4_ENTROPIC_CORRELATION": 0.06824289936201863
+    },
+    "risk_gate": false
+  },
+  {
+    "signal_date": "2026-05-29",
+    "n_eligible": 60,
+    "scenario_selected": "D4_ENTROPIC_CORRELATION",
+    "scenario_utility": {
+      "D0_BROAD_LOWVOL": -0.0022815138602325816,
+      "D1_ROBUST_STATE": 0.022199398005099416,
+      "D2_LOG_GROWTH": 0.026847381198527896,
+      "D3_CONTRARIAN": 0.014562278920638048,
+      "D4_ENTROPIC_CORRELATION": 0.027295149458908607
+    },
+    "expert_online_weights": {
+      "D0_BROAD_LOWVOL": 0.05392570520009716,
+      "D1_ROBUST_STATE": 0.3714116804292323,
+      "D2_LOG_GROWTH": 0.264404110363496,
+      "D3_CONTRARIAN": 0.08164615363721833,
+      "D4_ENTROPIC_CORRELATION": 0.22861235036995617
+    },
+    "expert_shadow_matured_count": 1,
+    "expert_online_log_evidence": {
+      "D0_BROAD_LOWVOL": -0.215151326397921,
+      "D1_ROBUST_STATE": 0.17078943930985815,
+      "D2_LOG_GROWTH": 0.10282295045147496,
+      "D3_CONTRARIAN": -0.13219383824604855,
+      "D4_ENTROPIC_CORRELATION": 0.07373277488263649
+    },
+    "risk_gate": false
+  }
+]
