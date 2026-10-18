@@ -1,0 +1,30 @@
+name: OASIS149_TEST_MACRO_STREAM_TRANSPORT
+on:
+  push:
+    branches:
+      - research/oasis149-macro-asof-g4-20261018
+    paths:
+      - '.github/workflows/oasis149-stream-transport.yml'
+permissions:
+  contents: read
+jobs:
+  source-transport-diagnostics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - name: Test full official data transfer as streaming/compressed (not a model test)
+        run: |
+          set +e
+          for url in \
+            'https://fred.stlouisfed.org/graph/fredgraph.csv?cosd=2014-01-01&coed=2026-07-31&id=VIXCLS' \
+            'https://cdn-api.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv'; do
+            echo "TRANSPORT_SOURCE_URL=$url"
+            curl -L --compressed --max-time 14 --connect-timeout 5 \
+              --retry 0 -A 'Mozilla/5.0 (ETF scientific replication)' \
+              --silent --show-error \
+              -w 'TRANSPORT_RESULT http=%{http_code} downloaded=%{size_download} length=%{download_content_length} time=%{time_total}\n' \
+              -o /tmp/oasis_probe.csv "$url"
+            echo "TRANSPORT_BYTES=$(wc -c < /tmp/oasis_probe.csv)"
+            head -c 90 /tmp/oasis_probe.csv; echo ''
+          done
+          exit 0
