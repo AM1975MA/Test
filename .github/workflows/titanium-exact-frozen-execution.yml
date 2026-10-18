@@ -1,0 +1,38 @@
+name: Titanium Exact Frozen Execution Probe
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact dependencies
+        run: pip install numpy==2.3.5 pandas==2.2.3 pyarrow numba
+      - name: Download best full 360-tree package
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -L --fail -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AM1975MA/Test/actions/artifacts/9053946155/zip -o outer.zip
+          mkdir outer && unzip -q outer.zip -d outer
+          inner=$(find outer -name 'TITANIUM_IMMUTABLE_REGENERATION.zip' -print -quit); test -n "$inner"
+          mkdir pkg && unzip -q "$inner" -d pkg
+          root=$(find pkg -type d -name 'METEOR_TITANIUM_V2_OPPORTUNITY_V3_LIVE_PACKAGE_REGENERATED' -print -quit); test -n "$root"
+          echo "PKG=$root" >> "$GITHUB_ENV"
+      - name: Run literal frozen simulator
+        run: python forensics/exact_frozen_execution_probe.py --package "$PKG" --output EXACT_FROZEN_EXECUTION
+      - name: Archive
+        run: zip -r TITANIUM_EXACT_FROZEN_EXECUTION.zip EXACT_FROZEN_EXECUTION
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TITANIUM_EXACT_FROZEN_EXECUTION
+          path: TITANIUM_EXACT_FROZEN_EXECUTION.zip
+          retention-days: 7
