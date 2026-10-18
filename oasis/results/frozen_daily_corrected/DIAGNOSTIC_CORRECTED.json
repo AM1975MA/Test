@@ -1,0 +1,118 @@
+{
+  "status": "OASIS_CORRECTED_POST_TEST_FORENSIC",
+  "run": 39124549957,
+  "regime_day_counts": {
+    "BREATHING": 2047,
+    "SHOCK": 83,
+    "CONTINUATION": 63,
+    "RECOVERY": 196
+  },
+  "economic_switches_in_stress": 3,
+  "economic_switches_outside_stress": 46,
+  "economic_switches": 49,
+  "changepoint_veto_has_no_effect": true,
+  "paired_state_attribution": {
+    "economic_switcher_vs_monthly": {
+      "cumulative_log_excess": 0.10751842742503835,
+      "by_regime": {
+        "BREATHING": {
+          "days": 2046,
+          "cumulative_log_excess": 0.19261647756145925,
+          "average_daily_log_excess": 9.414295090980413e-05
+        },
+        "SHOCK": {
+          "days": 83,
+          "cumulative_log_excess": 0.03731404488239177,
+          "average_daily_log_excess": 0.000449566805811949
+        },
+        "RECOVERY": {
+          "days": 196,
+          "cumulative_log_excess": -0.08667904507518545,
+          "average_daily_log_excess": -0.0004422400258938033
+        },
+        "CONTINUATION": {
+          "days": 63,
+          "cumulative_log_excess": -0.0357330499436272,
+          "average_daily_log_excess": -0.0005671912689464635
+        }
+      }
+    },
+    "crisis_overlay_on_switcher": {
+      "cumulative_log_excess": 0.030224523656635555,
+      "by_regime": {
+        "BREATHING": {
+          "days": 2046,
+          "cumulative_log_excess": -0.015549837342527042,
+          "average_daily_log_excess": -7.600116003190148e-06
+        },
+        "SHOCK": {
+          "days": 83,
+          "cumulative_log_excess": 0.1604439659853375,
+          "average_daily_log_excess": 0.0019330598311486445
+        },
+        "RECOVERY": {
+          "days": 196,
+          "cumulative_log_excess": -0.020416859656430288,
+          "average_daily_log_excess": -0.00010416765130831779
+        },
+        "CONTINUATION": {
+          "days": 63,
+          "cumulative_log_excess": -0.0942527453297446,
+          "average_daily_log_excess": -0.0014960753226943588
+        }
+      }
+    },
+    "crisis_overlay_on_monthly": {
+      "cumulative_log_excess": 0.05723594439618104,
+      "by_regime": {
+        "BREATHING": {
+          "days": 2046,
+          "cumulative_log_excess": -0.01793587003693261,
+          "average_daily_log_excess": -8.766309890973905e-06
+        },
+        "SHOCK": {
+          "days": 83,
+          "cumulative_log_excess": 0.1815466904184077,
+          "average_daily_log_excess": 0.0021873095231133457
+        },
+        "RECOVERY": {
+          "days": 196,
+          "cumulative_log_excess": -0.021827222575424528,
+          "average_daily_log_excess": -0.00011136338048685983
+        },
+        "CONTINUATION": {
+          "days": 63,
+          "cumulative_log_excess": -0.08454765340986953,
+          "average_daily_log_excess": -0.0013420262446011035
+        }
+      }
+    },
+    "complete_oasis_vs_monthly": {
+      "cumulative_log_excess": 0.1377429510816739,
+      "by_regime": {
+        "BREATHING": {
+          "days": 2046,
+          "cumulative_log_excess": 0.1770666402189322,
+          "average_daily_log_excess": 8.654283490661398e-05
+        },
+        "SHOCK": {
+          "days": 83,
+          "cumulative_log_excess": 0.19775801086772926,
+          "average_daily_log_excess": 0.0023826266369605933
+        },
+        "RECOVERY": {
+          "days": 196,
+          "cumulative_log_excess": -0.10709590473161576,
+          "average_daily_log_excess": -0.0005464076772021213
+        },
+        "CONTINUATION": {
+          "days": 63,
+          "cumulative_log_excess": -0.1299857952733718,
+          "average_daily_log_excess": -0.0020632665916408225
+        }
+      }
+    }
+  },
+  "source_archive_only": true,
+  "no_independent_holdout": true
+}
