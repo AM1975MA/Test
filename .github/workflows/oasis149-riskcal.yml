@@ -1,0 +1,62 @@
+name: OASIS149_G3_REAL_CRISIS_VS_NORMAL_BREATHING
+on:
+  push:
+    branches:
+      - research/oasis149-canonical-rebuild-20261018
+    paths:
+      - 'oasis149/riskcal/run.py'
+      - 'oasis149/riskcal/test_riskcal.py'
+      - 'oasis149/riskcal/PROTOCOL_FROZEN.md'
+      - '.github/workflows/oasis149-riskcal.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  risk-probability-specialist:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONHASHSEED: '0'
+      PYTHONPATH: ${{ github.workspace }}
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Statistical runtime and syntax verification
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0'
+          python -m py_compile oasis149/riskcal/run.py oasis149/riskcal/test_riskcal.py
+      - name: Prove risk estimates do not use future market prices
+        run: |
+          python -m unittest -v oasis149.riskcal.test_riskcal
+      - name: Score 21-day crisis probabilities on the actual 149 portfolios
+        run: |
+          python -m oasis149.riskcal.run --out _riskcal
+      - name: Stop on invalid chronology or fabricated events
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_riskcal/RESULT_149_G3.json").read_text())
+          assert d["status"]=="OASIS149_G3_PREQUENTIAL_RISK_COMPLETED"
+          assert d["n_forecast_rows"]>=110
+          assert d["verified_future_label_not_available_at_signal"]
+          assert d["no_risk_trades_generated"]
+          print("RISK_PROBABILITY_GATES",d["gates"])
+          PY
+      - name: Preserve full risk forecasts, labels and source evidence in repo
+        run: |
+          mkdir -p oasis149/riskcal/results
+          cp _riskcal/RESULT_149_G3.json _riskcal/RISK_FORECASTS_149.csv oasis149/riskcal/results/
+          (cd oasis149/riskcal/results && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          (cd oasis149/riskcal/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "OASIS149-RiskCalibration"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis149/riskcal/results
+          git commit -m "Audit original149 holding-specific severe 21d loss probabilities, false alerts and prequential calibration"
+          git push origin HEAD:refs/heads/research/oasis149-canonical-rebuild-20261018
