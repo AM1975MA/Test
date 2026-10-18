@@ -1,0 +1,81 @@
+name: OASIS149_G4_NEW_INFORMATION_MACRO_CAUSAL
+on:
+  push:
+    branches:
+      - research/oasis149-macro-asof-g4-20261018
+    paths:
+      - 'oasis149/macro_g4/**'
+      - '.github/workflows/oasis149-macro-g4.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  independent-data-and-information:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install lean auditable scientific packages
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'requests==2.32.5'
+          python -m py_compile oasis149/macro_g4/experiment.py oasis149/macro_g4/test_asof.py
+      - name: Prove future macro data cannot change past signal
+        run: |
+          python -m unittest -v oasis149.macro_g4.test_asof oasis_v2.g1.test_pairwise
+      - name: Fetch original external Fed economic variables and freeze hashes
+        run: |
+          python -m oasis149.macro_g4.experiment --download --out _fred
+      - name: Causal future label, market release fence and 149 pairwise probability test
+        run: |
+          python -m oasis149.macro_g4.experiment --source _fred --out _macro_g4
+      - name: Audit success without disguising a failed predictive model
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_macro_g4/RESULT.json").read_text())
+          assert d["status"]=="ORIGINAL149_MACRO_G4_EXPLORATORY_COMPLETE"
+          assert d["original_149_exact"] and d["paired_rows"]==5120
+          assert d["frozen_21session_anchor_count"]==64
+          assert d["macros"]["no_genuine_alfred_vintage_data"]
+          assert d["no_training_on_unmatured_forward_labels"]
+          assert d["independent_prospective_holdout"] is False
+          print("G4_INFORMATION_GATE",d["G4_score_gate"])
+          print("G4_LIVE_VETO",d["FRED_REALTIME_VINTAGE_VALIDATED"])
+          PY
+      - name: Archive source data and pairwise as-of predictions permanently
+        run: |
+          mkdir -p oasis149/macro_g4/results/fred
+          cp _fred/*.csv oasis149/macro_g4/results/fred/
+          cp _fred/DATA_RECEIPT.json oasis149/macro_g4/results/
+          cp _macro_g4/*.csv _macro_g4/*.json oasis149/macro_g4/results/
+          (cd oasis149/macro_g4/results && sha256sum *.csv *.json fred/*.csv > SHA256_MANIFEST.txt)
+          (cd oasis149/macro_g4/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "OASIS149-NewInformation-Forensic"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis149/macro_g4/results
+          git commit -m "Archive original149 macro-data revision-flagged FRED sources, as-of G4 predictions and strict proper-score veto"
+          git push origin HEAD:refs/heads/research/oasis149-macro-asof-g4-20261018
+      - name: Retain full source and diagnostic evidence even on failed Actions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oasis149-g4-macro-source-and-paired-evaluation
+          retention-days: 90
+          path: |
+            _fred/*.csv
+            _fred/*.json
+            _macro_g4/*.csv
+            _macro_g4/*.json
