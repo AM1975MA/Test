@@ -4,7 +4,9 @@ on:
     branches:
       - research/oasis149-cboe-impliedvol-g4b-20261018
     paths:
-      - 'oasis149/cboe_g4b/risk_g5/**'
+      - 'oasis149/cboe_g4b/risk_g5/variance.py'
+      - 'oasis149/cboe_g4b/risk_g5/test_variance.py'
+      - 'oasis149/cboe_g4b/risk_g5/PROTOCOL_FROZEN.md'
       - '.github/workflows/oasis149-cboe-g5.yml'
   workflow_dispatch:
 permissions:
