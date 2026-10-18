@@ -7,9 +7,6 @@ import numpy as np
 import pandas as pd
 from oasis149.canonical import load_149,sha,SRC
 from oasis.observers import prepare
-from oasis_v2.g1.pairwise import (
-    make_dataset,run_predictions,summarize as proper_score,
-    bootstrap_anchor_brier,shadow_accepts,VARIANTS)
 from oasis_v2.g2.risk_portfolio import ARMS,simulate as g2_simulate, \
     summarize as risk_summary,paired_month_bootstraps
 ROOT=Path(__file__).resolve().parents[1]
@@ -30,6 +27,9 @@ def env(inputs):
     return roster,O,C,V,p0,p3,status
 
 def g1(inp,out):
+    from oasis_v2.g1.pairwise import (
+        make_dataset,run_predictions,summarize as proper_score,
+        bootstrap_anchor_brier,shadow_accepts,VARIANTS)
     out=Path(out);out.mkdir(parents=True,exist_ok=False)
     roster,O,C,V,p0,p3,status=env(inp)
     ds=make_dataset(roster,C,O,p3)
