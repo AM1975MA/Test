@@ -1,0 +1,47 @@
+name: ETF_HYSTERESIS_ADVERSARIAL
+on:
+  push:
+    branches:
+      - research/scientific-coordinator-20261018
+    paths:
+      - 'adversarial_tests/**'
+      - '.github/workflows/etf-adversarial.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}/europe120/eu120_retrain:${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+jobs:
+  auditor:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install deterministic IO and numeric runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+          python -m py_compile adversarial_tests/hysteresis_stress.py
+      - name: Restore frozen scores calendar and previous experimental ledger
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39089621741 -R AM1975MA/Test -n scientific-etf-coordinator-eur60-v1 -D _ledger
+          gh run download 39087987551 -R AM1975MA/Test -n europe60-stochastic-state-space-v1 -D _stoch
+          gh run download 39084898663 -R AM1975MA/Test -n europe-only-eur60-hindsight-oracle -D _oracle
+      - name: Challenge frozen hysteresis without retuning
+        run: |
+          python adversarial_tests/hysteresis_stress.py --ledger _ledger --stoch _stoch --oracle _oracle --out _audit
+      - name: Preserve adversarial audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eur60-hysteresis-adversarial-v1
+          retention-days: 90
+          path: _audit/RESULT.json
