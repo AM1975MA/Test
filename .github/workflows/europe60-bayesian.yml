@@ -1,0 +1,54 @@
+name: EUROPE60_STOCHASTIC_STATE_SPACE_V1
+on:
+  push:
+    branches:
+      - research/europe60-bayesian-state-space-20261018
+    paths:
+      - 'research_bayes_europe/**'
+      - '.github/workflows/europe60-bayesian.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}/europe120/eu120_retrain:${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  stochastic-eur60:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Pin source-compatible frozen runtime
+        run: |
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'numba==0.65.1' 'threadpoolctl==3.6.0'
+          python -m py_compile research_bayes_europe/experiment.py
+      - name: Retrieve frozen EUR60 model and oracle calendar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39071370480 -R AM1975MA/Test -n europe-only-eur60-full-refit -D _source_refit
+          gh run download 39084898663 -R AM1975MA/Test -n europe-only-eur60-hindsight-oracle -D _source_oracle
+          test -f _source_refit/COMPACT_REFITTED.parquet
+          test -f _source_refit/HYBRID_REFITTED.parquet
+          test -f _source_oracle/MONTHLY_ORACLE_113.csv
+      - name: Run unoptimized frozen stochastic vs momentum study
+        run: |
+          python research_bayes_europe/experiment.py --refit _source_refit --oracle _source_oracle --out _stochastic
+      - name: Preserve predictions and outcomes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: europe60-stochastic-state-space-v1
+          retention-days: 90
+          path: |
+            _stochastic/RESULT.json
+            _stochastic/MONTHLY_SCORES.csv
+            _stochastic/MONTHLY_TRADES.csv
+            _stochastic/STRATEGY_SUMMARY.csv
