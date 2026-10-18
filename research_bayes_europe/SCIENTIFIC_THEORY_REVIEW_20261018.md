@@ -1,6 +1,6 @@
 # SCIENTIFIC MODEL DESIGN — physics, information, games, stochastic control
 **2026-10-18 / exploratory research decision, NO NEW PERFORMANCE CLAIM.**
-Parent: [HYPOTHESIS_KALMAN_RISK_OBSERVER.md](../HYPOTHESIS_KALMAN_RISK_OBSERVER.md). Historical observation source: [RESULT.json](../results/RESULT.json), certified [Action 39087987551](https://github.com/AM1975MA/Test/actions/runs/39087987551). Original \`etf_trader\` and existing data unchanged.
+Parent: [HYPOTHESIS_KALMAN_RISK_OBSERVER.md](HYPOTHESIS_KALMAN_RISK_OBSERVER.md). Historical observation source: [RESULT.json](results/RESULT.json), certified [Action 39087987551](https://github.com/AM1975MA/Test/actions/runs/39087987551). Original \`etf_trader\` and existing data unchanged.
 
 ## 0. Problem formulation and physical analogies
 The problem is **not** "find a magical formula for tomorrow's price." It is a **partially observed, time-varying stochastic control problem with adaptive interacting agents**.
