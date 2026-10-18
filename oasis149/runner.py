@@ -85,7 +85,7 @@ def passive(quotes,dates,weights):
     if any(not np.isfinite(x).all() or np.min(x)<=0 for x in p.values()):
         raise AssertionError("passive missing open")
     wealth=sum(weight*p[name]/p[name][0] for name,weight in weights.items())
-    years=(dates[-1]-dates[0]).days/365.25
+    years=(dates.iloc[-1]-dates.iloc[0]).days/365.25
     return {"cagr":float(wealth[-1]**(1/years)-1),
          "maxdd":float(np.min(wealth/np.maximum.accumulate(wealth)-1)),
          "terminal_multiple":float(wealth[-1]),
