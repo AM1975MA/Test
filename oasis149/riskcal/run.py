@@ -30,7 +30,7 @@ def make_risk_forecast(C,signal,names,index):
     sigma=max(float(np.std(logrets,ddof=1)),1e-5)*math.sqrt(H)
     gauss=float(ndtr(THRESHOLD/sigma))
     # K2: correlated Student-t common-tail shocks with a fixed shrunk covariance
-    sample=np.cov(data,rowvar=False)
+    sample=np.atleast_2d(np.cov(data,rowvar=False))
     cov=.65*sample+.35*np.diag(np.diag(sample))
     chol=np.linalg.cholesky(cov+np.eye(n)*1e-10)
     rng=np.random.default_rng(20261018+index+307*n)
