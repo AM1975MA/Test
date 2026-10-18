@@ -1,0 +1,192 @@
+name: OASIS_CANONICAL_ORIGINAL149_CAUSAL_RESEARCH
+on:
+  push:
+    branches:
+      - research/oasis149-canonical-rebuild-20261018
+    paths:
+      - 'oasis149/PROTOCOL_PREREGISTERED.md'
+      - 'oasis149/canonical.py'
+      - 'oasis149/runner.py'
+      - 'oasis149/__init__.py'
+      - '.github/workflows/oasis149.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  source-agent:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install lean audited Python numerical libraries
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile oasis149/canonical.py oasis149/runner.py
+      - name: Freeze exact original149, 149 SHA, chronology and two independent reference portfolios
+        run: |
+          python -m oasis149.canonical --out _original149
+      - name: Source provenance and calendar gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("_original149/MANIFEST_149.json").read_text())
+          assert x["member_count"]==149 and x["n_shared_days"]==2366
+          assert x["full_original_roster_used_without_ranking"] and x["asof_next_open"]
+          assert len(x["six_categories"])==6
+          print("G0_SOURCE_PASS",x)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oasis149-canonical-g0
+          retention-days: 90
+          path: |
+            _original149/MANIFEST_149.json
+            _original149/ALL_149_DATA_QUALITY.csv
+            _original149/CALENDAR.csv
+            _original149/P0_149_REFERENCE.csv
+            _original149/P3_149_SHADOW.csv
+  information-agent:
+    needs: [source-agent]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: oasis149-canonical-g0
+          path: _input
+      - name: Install statistical proper-score runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+      - name: Independently check causal future-quote invariants
+        run: |
+          python -m unittest -v oasis_v2.g1.test_pairwise
+      - name: Evaluate actual original149 paired economic forecast (no trades)
+        run: |
+          python -m oasis149.runner --stage g1 --input _input --out _g1
+      - name: Gate future data and persist even failure of forecast
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_g1/RESULT_149_G1.json").read_text())
+          assert d["status"]=="CANONICAL149_G1_PREQUENTIAL_COMPLETED"
+          assert d["n_funds"]==149 and d["asof_label_maturity_verified"]
+          print("G1_ORIGINAL149_GATE",d["G1_PREDICTIVE_GATE"],"Brier",d["by_task"]["challenge"])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oasis149-canonical-g1
+          retention-days: 90
+          path: |
+            _g1/RESULT_149_G1.json
+            _g1/PREDICTIONS_149.csv
+  risk-agent:
+    needs: [source-agent]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: oasis149-canonical-g0
+          path: _input
+      - name: Install minimal audited runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0'
+      - name: Test capital conservation and no leverage
+        run: |
+          python -m unittest -v oasis_v2.g2.test_risk
+      - name: Seven matched portfolio risk counterfactuals on EXACT 149
+        run: |
+          python -m oasis149.runner --stage g2 --input _input --out _g2
+      - name: Enforce historical P0 parity, no alpha leakage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_g2/RESULT_149_G2.json").read_text())
+          assert d["status"]=="CANONICAL149_G2_RISK_EVALUATION_COMPLETED"
+          assert d["n_funds"]==149
+          assert d["two_independent_simulators_P0_parity_error"]<1e-8
+          assert d["failed_G1_forecaster_not_used"]
+          print("G2_ORIGINAL149_AUDIT",d["historical_exploratory_risk_gate"])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oasis149-canonical-g2
+          retention-days: 90
+          path: |
+            _g2/RESULT_149_G2.json
+            _g2/R*.csv
+  coordinator:
+    needs: [source-agent,information-agent,risk-agent]
+    if: ${{ always() && needs.source-agent.result == 'success' && needs.information-agent.result == 'success' && needs.risk-agent.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: oasis149-canonical-*
+          path: _evidence
+      - name: Commit evidence and coordinator judgement, no optimizer
+        run: |
+          mkdir -p oasis149/results
+          cp _evidence/oasis149-canonical-g0/* oasis149/results/
+          cp _evidence/oasis149-canonical-g1/* oasis149/results/
+          cp _evidence/oasis149-canonical-g2/* oasis149/results/
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("oasis149/results")
+          d=json.loads((p/"MANIFEST_149.json").read_text())
+          x=json.loads((p/"RESULT_149_G1.json").read_text())
+          r=json.loads((p/"RESULT_149_G2.json").read_text())
+          assert d["member_count"]==x["n_funds"]==r["n_funds"]==149
+          assert r["two_independent_simulators_P0_parity_error"]<1e-8
+          decision=dict(
+            status="CANONICAL149_COORDINATOR_COMPLETED",
+            original149_source_only=True,independent_prospective_holdout=False,
+            G0_data_hashes="PASS",
+            G1_predictive_gate=x["G1_PREDICTIVE_GATE"],
+            G2_matched_risk_gates=r["historical_exploratory_risk_gate"],
+            baseline_daily_parity=r["two_independent_simulators_P0_parity_error"],
+            G1_eligible_for_investment=bool(x["G1_PREDICTIVE_GATE"]=="PASS_EXPLORATORY") and False,
+            original149_results={"G1":x["by_task"]["challenge"],"G2":r["risks"]},
+            passive_context=r["passive_context_not_fee_matched"],
+            caveats=["original149 already heavily studied, not an unseen holdout",
+              "Yahoo adjusted Open not verified executable quotes",
+              "Macro group labels not fund-level PIT data",
+              "Failed forecast must NOT control live trades"])
+          (p/"SCIENTIFIC_COORDINATOR_RESULT.json").write_text(json.dumps(decision,indent=2)+"\n")
+          print("OASIS149_COORDINATOR_RESULT "+json.dumps(decision))
+          PY
+          (cd oasis149/results && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          (cd oasis149/results && sha256sum -c SHA256_MANIFEST.txt)
+      - name: Archive complete canonical research in isolated branch
+        run: |
+          git config user.name "OASIS149-Science-Archivist"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add oasis149/results
+          git commit -m "Freeze original149 exact-source G0, five-model G1 predictions and seven-arm G2 daily results"
+          git push origin HEAD:refs/heads/research/oasis149-canonical-rebuild-20261018
