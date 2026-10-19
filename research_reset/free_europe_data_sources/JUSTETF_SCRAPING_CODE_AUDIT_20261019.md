@@ -1,0 +1,21 @@
+# druzsan/justetf-scraping: review tecnico per ETF europei (19 ottobre 2026)
+
+Repository esaminato: https://github.com/druzsan/justetf-scraping . MIT si applica al CODICE, non concede licenza o permesso di scraping automatico dei DATI di justETF. Ultimo commit letto: 53cca6aa del 1 agosto 2026. Issue aperte: #27 (HTTP 403), #20 (ticker multipli stesso ISIN), #38 (problemi sessione/chart), #43 (quote gettex timeout), #55 (holdings obbligazionari).
+
+## Funzioni reali, verificate nel codice su GitHub
+- load_overview(): catalogo ETF per ISIN, ticker, domicilio, valuta BASE fondo, data di lancio, TER, indice, filtri strategia, regione Europe e mercati XETR, XMIL, XPAR, XAMS. L'overview è una fotografia OGGI, non una ricostruzione membri 2017. La regione dell'indice deve essere separata dal domicilio del fondo. La valuta del fondo non equivale alla valuta di negoziazione.
+- get_etf_overview(isin): profilo HTML, indice, emittente, patrimonio, TER, focus, paese/settore/holding correnti via Wicket/AJAX, possibile Gettex live opzionale. I pesi per paese correnti NON possono filtrare il roster 2017 senza lookahead.
+- load_chart(isin,currency=EUR): da charts.py endpoint /api/etfs/{isin}/performance-chart con valuesType=MARKET_VALUE, reduceData=false, feature DIVIDENDS. Serie a UNA quotazione giornaliera per ISIN, senza Open/High/Low/Volume e senza borsa storica. Ricostruzione prezzo, dividendi, dividends-added, dividends-reinvested. EUR è conversione economica in euro, non il codice di quotazione EUR/Xetra. Due ticker stesso ISIN danno una sola serie.
+- Esempio README del grafico include sabati e domeniche senza trade; occorre normalizzare il calendario e verificare giorni stale prima di usare i rendimenti, mai considerare sab/dom sedute. unclosed=True include giornata corrente non conclusa e non è utilizzabile come target giornaliero maturato.
+- load_live_quote e websocket sono solo gettex ed EUR, non storico bid/ask né eseguibilità al prossimo Open Xetra.
+
+## Origine del dato: NON un altro OHLCV
+JustETF documenta nel suo articolo ufficiale https://www.justetf.com/it/news/etf/evitare-i-tranelli-della-performance-degli-etf.html che utilizza NAV quando possibile e per colmare le giornate mancanti usa prezzi di chiusura di borsa. Quindi nemmeno la parola MARKET_VALUE garantisce una quotazione exchange-specific. I dati NAV/close misti possono confermare valore economico e smascherare Yahoo stale senza giustificare un acquisto all'Open. Controllare valuta, data/ora, ex-dividend e data di stacco, correzioni retroattive e curve total return. Notare inoltre che la terza parte ricostruisce da sé il reinvestimento dividendi: QA indipendente necessaria.
+
+## Termini d'uso e permessi
+Termini ufficiali di justETF §3.1: https://www.justetf.com/nl-be/agreement.html?agreementId=393491 — vietano tra le altre cose "using programs to carry out automated price inquiries". La versione italiana è https://www.justetf.com/en-be/agreement.html?agreementId=393407 . Endpoint non ufficiale + codice MIT ≠ autorizzazione per ingestion massiva automatica, scraping di quotazioni o redistribuzione commerciale. NON ho effettuato richieste automatiche al loro endpoint o scraping dei dati in questa verifica. Qualsiasi feed futuro richiede permesso esplicito del titolare/licenziante o un canale/contratto compatibile. Non aggirare CAPTCHA e limiti.
+
+## Decisione sull'uso in Test
+ALTO potenziale per mappare e deduplicare ISIN, identificare universo UCITS e indice, classificare settori/paesi ATTUALI; potenziale curva storica di riferimento economico/NAV con dividendi solo SE acquisita con modalità consentite. NON è sostitutiva di Yahoo per 2017-2026 trading Open/High/Low/Close/Volume, spread, market venue o calendario e NON valida da sola la portability F3/H1.
+
+Priorità: prova di matching manuale/licenziata su ETF europei ad elevato numero di giorni di Volume=0 nel Yahoo precedente, confrontando Close aggiustato vs serie economica NAV con EUR coerente, ritorni giornalieri e anomalie >1%, 2%, 5%; controllare per ISIN duplicati listings .MI e .DE, nome indice, launch date; depositare solo aggregati se licenza non permette ridistribuzione prezzi. Sorgenti yfinance già archiviate nei 30 settoriali e 21 alternative rimangono intatte. Nessun modello riaddestrato.
