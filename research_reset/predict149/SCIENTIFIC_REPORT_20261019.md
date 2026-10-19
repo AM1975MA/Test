@@ -1,0 +1,48 @@
+# Best-ticker prediction on the original 149 — Scientific assessment and forecast-only next priorities
+19 October 2026 | Branch `research/149-predictive-ticker-tournament-20261019` | Production `etf_trader` untouched.
+
+## Mandate and target
+The user explicitly clarified: **first identify the best possible model to predict the best FUTURE tickers**, BEFORE portfolio optimization/switching. Ambitious portfolio target CAGR >=30% net annually, not a result obtained or to be engineered ex post. These experiments are an isolated exploration of the **exact 149 original US ETFs** (roster SHA `7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6`), 64 chronological independent 21-market-session decision anchors from 2021-02-02 to 2026-05-11, initially trained on historical labels which matured before each as-of Close, next-Open execution and an assumed 10bp nominal fee per side. These particular 2017–26 histories are extensively mined, survivor-biased and USD adjusted prices are not verified broker bids/asks. No claim of unbiased new live alpha.
+
+## P149: six frozen and mathematically distinct predictors
+Action success [39178819061](https://github.com/AM1975MA/Test/actions/runs/39178819061). Sources, 9,536 individual ETF predictions, 64-anchor score files and five-share costed wealth are preserved under `research_reset/predict149/results/`.
+- N0 past63 momentum: mean cross-sectional Spearman −.0253, future maximum winner predicted inside top5 **8/64**, CAGR **−6.22%**, MaxDD daily −64.30%.
+- N1 previous5 reversal: Spearman +.0342, future winner 6/64, CAGR **6.74%**, MaxDD −42.74%.
+- N2 pooled Ridge future return *excess over a passive 60/40*: **Spearman +.06318** with three-anchor block bootstrap 95% CI **[+.00488,+.12417]** in this repeatedly mined sample; future winner 6/64, CAGR **7.03%**, MaxDD −43.19%. Statistically weak relative ordering is NOT economically good selection.
+- N3 nonlinear small HistGradientBoostingRegressor: Spearman +.0522, future winner 6/64, CAGR **−2.01%**, MaxDD −51.64%.
+- **N4 nonlinear future top15 CLASSIFIER:** Spearman −.0165 for entire 149 ranking, but future absolute winner in predicted Top5 **19/64**; event-probability Brier **.08560**, vs constant random 15/149 Brier **.09054**, logloss .29965 vs .32656; nominal 5-share CAGR **16.70%**, daily MaxDD −34.01%, daily ES5 −4.53%. This is a promising top-TAIL identification statistic, **not a general future return forecast**.
+- N5 hierarchical group/residual Ridge: Spearman −.0341, winner 5/64, CAGR 3.20%, MaxDD −35.95%.
+- Passive USD context SAME eval period: buy/hold SPY **14.33%** CAGR, −26.29% DD; SPY/AGG 60/40 **9.49%** CAGR, −22.71% DD (not exactly equal fee convention).
+- The N4 observed Top5 hit enrichment is **regime unstable**: 2021–23, 5 of 35 future best winners, mean forward Top5 relative excess −1.30% log per 21 sessions; 2024–26, 14 of 29 winners, +2.29% log per 21 sessions. Concentration among risk classes extremely high (avg only ~1.92 distinct macro categories out of five instruments).
+
+## P149B: did N4 actually learn upside, or just tail volatility?
+Action success [39179357048](https://github.com/AM1975MA/Test/actions/runs/39179357048). Sources, 9,536 as-of forecasts, 500 group/vol/identical-survival count matched 5-share placebo wealth paths archived under `research_reset/predict149/conditional_validation/results`.
+- Novel **N6 logistic trained only on contemporaneous historical volatility, downside volatility and 6 macro-group dummies**: **19/64** future monthly best tickers in Top5, **same as N4**; CAGR 11.10%, DD −36.17%, precision@10 29.53% vs N4 24.53%.
+- Naive prior63 realized-volatility ranking alone also catches **19/64** best future ETF among five (CAGR 6.14%, DD −36.36%). This reveals that a large portion of absolute future winner-hit capacity is due to selection of risky high-variance ETFs, not forward alpha.
+- N4 event Brier only ~.000194 better than N6 risk-only, bootstrap block 95% CI **[−.000628,+.001041]**: **NOT statistically distinguishable**. 2021–23 N4 Brier is actually *worse* than N6. Strict gate FAIL.
+- 250 category-only N4 matched placebos: median top1 hits 4 (95th percentile 8); median CAGR 7.49%, DD −28.90%.
+- 250 category+lagged63-vol N4 matched placebos: median top1 hits 7 (95th 11.55); N4 19 remains rare among as-of matched permutations, but these are **post-selection retrospective conditional randomization** and cannot establish independently forecastable economic alpha. Placebo median CAGR **11.49%** (95th percentile 19.13%), placebo median DD **−30.18%** versus N4 DD **−34.01%**, and median ES5 **−3.47%** vs N4 **−4.53%**. N4 fails risk and 30% net target.
+
+## T149C: new two-tailed asymmetry model (up vs down separately)
+Action success [39179837396](https://github.com/AM1975MA/Test/actions/runs/39179837396). Sources, 9,536 dual-tail as-of forecast records, full costed wealth and every monthly model top5 under `research_reset/predict149/two_tails/results`.
+- Keep N4 upside P(top15), **fit separate identical fixed small nonlinear model** for P(bottom15) from strictly matured preceding labels. Downside classifier Brier **.08447**, historical 15/149 prior **.09054**; logloss .29408 vs .32656. This is a calibrated-risk diagnostic, not proof of positive expected return.
+- T149C_ASYMMETRIC_EDGE = P(top15)−P(bottom15), **net CAGR 16.14%, daily DD −24.82%, ES5 −3.46%**, Sharpe daily .606. Hit actual monthly future BEST ticker only **3/64** rather than N4's 19/64; instead avoids selecting as many eventual bottom15 ETF returns: **15.0%** of its selected ETF-months were future bottom15 vs N4's **28.13%**.
+- T149C_TAIL_DIRECTION = (P(top15)+.005)/(P(top15)+P(bottom15)+.010), CAGR 9.25%, DD −27.31%, ES5 −2.99%; best-ticker hits 1/64, a defensive regime rather than winner predictor.
+- Benchmark USD SPY 14.33% and DD −26.29%, 60/40 9.49% DD −22.71%. The asymmetry portfolio looks good historically versus SPY in this sample but its 30% CAGR target is not met, it results from post-hoc model design on the same historical development panel, and its risk profile remains imperfect vs 60/40.
+- Paired circular 3-anchor block bootstrap asymmetry vs N4 monthly net log improvement mean **−.0004015**, 95% CI **[−.01542,+.01542]**, indistinguishable from N4; its predeclared gate that required CAGR increase as well as DD decrease FAILS. The 2021–23 gross expected relative mean is only +.00056 log per 21 days, very small. No claim of scientific validation or deployment.
+
+## Actual conceptual advance and best future ticker objective
+We now know which of three prediction targets was most informative **descriptively**, with no proof of independent alpha:
+- Whole-universe future-return ranking: Ridge Spearman +.063 with other models weaker, insufficient economically.
+- Top absolute right-tail return among 149: nonlinear classifier, detects eventual 19/64 absolute winners, but *risk-only predictors do as well*; right-tail alone is structurally volatility-biased.
+- **Separately modeling right and left tails and subtracting them:** can reduce downside materially in the sample while sacrificing exact monthly winner recall. **This is the first experimentally supported path to researching asymmetric opportunities**, not another parameter of past Top5 momentum.
+
+A next-generation forecaster should predict a conditional FUTURE DISTRIBUTION of BENCHMARK-RELATIVE ECONOMIC UTILITY, NOT merely P(raw best absolute winner). Research specification for new **not-yet-built** D1 model, without suggesting observed alpha:
+- A 3-head distributional forecaster: P(relative economic gain > realistic all-in cost + risk premium), P(relative loss > severe risk threshold), and expected **positive payoff magnitude/duration** across precommitted multiple horizons 5/21/63 sessions. Separation between incidence and tail severity is necessary to prevent accidental high-volatility trophy winners.
+- Force input information as-of, including real factor ontology: sector exposures, real asset underlying spot/futures roll, fund ISIN, domicile, duration, credit spread, liquidity, emerging FX; avoid six generic C06 groups as an economic proxy. Do not re-tune the same 149 development window to obtain 30% CAGR.
+- Compare against volatility+asset category NULL and passive value before any special optimizer; same 149 returns are mined. Acquire unobserved fresh PIT data (including new/delisted ETFs), real EUR trading prices/costs, frozen prospective months. Orthogonal information sources might include earnings/fundamentals, fund inflows, term structure, availability-verified macro vintage, news timestamped pre-signal, but cannot claim information advantage before actual verification.
+- A strategy should be considered only if it can **reliably** forecast positive net utility and survives exposure/volatility matched chance outcomes, not if a classifier finds record high monthly prices after the fact.
+- Only after trustworthy skill: separate portfolio construction and switch-control; no 30% CAGR guaranteed, and no leverage/short/option enhancement merely to hit that number.
+
+## Objective scientific disposition
+P149 baseline predictive tournament completed, P149B false-positive risk check completed, T149C upside/downside risk tradeoff completed, all source + predictions + receipts SHA-archived. **None of the hypotheses meets the full pre-registered promotion gate.** This prevents another false 'winning alpha' claim. The strongest historical asymmetric profile is T149C 16.14% CAGR, -24.82% DD, but NOT evidence of a validated strategy. 30% CAGR was not obtained. Preserve it as a research reference and move **information acquisition and genuine prospective validation** ahead of further tuning.
