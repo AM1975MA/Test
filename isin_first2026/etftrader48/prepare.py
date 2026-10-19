@@ -92,6 +92,25 @@ def run(out):
               derived_2015_2026_rows=len(z),first_date=str(z.date.min().date()),
               last_date=str(z.date.max().date()),adjusted_envelope_rows=n,
               source_quote_grade=item.decision,derived_sha256=sha(p)))
+    # No fills or invented sessions: model labels and risk simulator only see
+    # sessions in which ALL 48 separate exchange venues actually published a
+    # valid Open and Close. This is the same strict common-Open policy as the
+    # previously completed F3/H1 evaluation, applied before model fitting.
+    common=None
+    for row in details:
+        ds=set(pd.read_csv(inp/(row["ticker"]+".csv"),usecols=["date"]).date)
+        common=ds if common is None else common.intersection(ds)
+    assert common and len(common)>2400
+    assert sum("2015" in x or "2016" in x for x in common)>=252
+    assert sum("2021"<=x[:4]<="2026" for x in common)>1200
+    for row in details:
+        p=inp/(row["ticker"]+".csv")
+        z=pd.read_csv(p)
+        z=z[z.date.isin(common)].copy().sort_values("date")
+        assert len(z)==len(common)
+        z.to_csv(p,index=False,float_format="%.16g")
+        row["common_venue_original_daily_rows"]=len(z)
+        row["derived_sha256"]=sha(p)
     pd.DataFrame(details).to_csv(out/"SOURCE_AND_OHLC_REPAIR_AUDIT.csv",index=False)
     # Risk-only reference: exact European EUR high yield listed price
     # not part of 48 investable ETF universe. Never expose as basket member.
@@ -102,6 +121,9 @@ def run(out):
     result=dict(status="EU48_PORT_FULL_SOURCE_INPUTS_PREPARED",n_tickers=48,
          n_unique_isin=48,category_counts={str(k):int(v) for k,v in categories.value_counts().items()},
          raw_source_unmodified=True,derived_high_low_envelope_rows=corrected,
+         shared_EU48_original_quote_sessions=len(common),
+         shared_EU48_pre2017_sessions=sum(x<"2017-01-31" for x in common),
+         non_observed_calendar_dates_NEVER_filled=True,
          derived_corp_HY_non_europe_issuer_risk_only=True,
          risk_ref_euro_HY="IHYG.MI",risk_ref_equity="IMEU.AS",
          risk_ref_euro_gov="EUNH.DE",defensive1="IBCA.DE",
