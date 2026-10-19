@@ -1,0 +1,73 @@
+name: ETF149_SIGNED_F3_POSTHOC_CONDITIONAL_FALSIFIER
+on:
+  push:
+    branches:
+      - research/149-signed-value-predictor-20261019
+    paths:
+      - 'research_reset/predict149/signed_value/stress/PREREGISTERED_AFTER_F3.md'
+      - 'research_reset/predict149/signed_value/stress/run.py'
+      - 'research_reset/predict149/signed_value/stress/test_run.py'
+      - '.github/workflows/149-signed-value-f3-stress.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  risk-matched-independent-stress-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Deterministic statistical dependency and syntax validation
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/signed_value/stress/run.py research_reset/predict149/signed_value/stress/test_run.py
+      - name: Check correct paired block bootstrap and no self-financing error
+        run: |
+          python -m unittest -v research_reset.predict149.signed_value.stress.test_run research_reset.m0b.test_m0b
+      - name: Run matched risk/category placebo 500 times without training or new signals
+        run: |
+          python -m research_reset.predict149.signed_value.stress.run --out _f3stress
+      - name: Explicit scientific gate may fail while Action completes
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_f3stress/RESULT.json").read_text())
+          assert d["status"]=="EXACT149_SIGNED_F3_CONDITIONAL_FALSIFICATION_COMPLETE"
+          assert d["n_test_monthlike_anchors"]==64 and d["n_test_original_etfs"]==149
+          assert d["no_training_or_refit_during_stress"]
+          assert d["posthoc_observing_previous_F3_20pct_before_design"]
+          assert d["placebo_total"]==500
+          print("F3_STRICT_RESEARCH_TRANSFER_GATE",d["preregistered_strict_economic_transfer_gate"])
+          PY
+      - name: Preserve full 500 placebo paths, pair differences and result with hashes
+        run: |
+          mkdir -p research_reset/predict149/signed_value/stress/results
+          cp _f3stress/*.json _f3stress/*.csv research_reset/predict149/signed_value/stress/results/
+          (cd research_reset/predict149/signed_value/stress/results && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/signed_value/stress/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-Adversarial-Scientific-Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/signed_value/stress/results
+          git commit -m "Archive 149 original signed F3 500 matched category and 63d-vol placebo research falsifier, strict metric and after-discovery caveat"
+          git push origin HEAD:refs/heads/research/149-signed-value-predictor-20261019
+      - name: Upload original evidence regardless of PASS or FAIL
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-signed-value-f3-posthoc-500-controls
+          retention-days: 90
+          path: |
+            _f3stress/*.json
+            _f3stress/*.csv
