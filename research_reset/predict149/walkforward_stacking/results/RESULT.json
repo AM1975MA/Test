@@ -1,0 +1,246 @@
+{
+  "status": "EXACT149_WALK_FORWARD_TWO_FROZEN_EXPERT_TICKER_STACKING_COMPLETE",
+  "original_etfs": 149,
+  "n_prior_frozen_prequential_signal_rows": 9536,
+  "source_roster_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "n_evaluation_21day_anchors": 64,
+  "n_prequential_real_meta_months": 51,
+  "n_meta_test_ticker_rows": 7599,
+  "original_f3_h1_h3_5050_equity_parity": true,
+  "no_current_or_previous_incomplete_period_labels": true,
+  "quarterly_models_fitted_on_matured_prequential_predictions_only": true,
+  "model_input_features": [
+    "f3_rank",
+    "h1_rank",
+    "rank_mean",
+    "rank_disagreement",
+    "v63_rank",
+    "asof_quantile_width_rank",
+    "g0",
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5"
+  ],
+  "model_results": {
+    "F3": {
+      "fee_notional": 0.15444598994696845,
+      "absolute_gross_traded_initial_dollars": 154.445989946968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.20019785988909722,
+      "wealth_final": 2.65185438801071,
+      "maxdd_daily_open": -0.2973714609803775,
+      "sharpe_daily_log": 0.6930182026665771,
+      "es5_daily": -0.03701818959091073,
+      "daily_vol_annualized": 0.2641323112738675
+    },
+    "H1": {
+      "fee_notional": 0.15864875781051924,
+      "absolute_gross_traded_initial_dollars": 158.64875781051853,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.2462472500995334,
+      "wealth_final": 3.2435870594915803,
+      "maxdd_daily_open": -0.33773827205497897,
+      "sharpe_daily_log": 0.7933290373800225,
+      "es5_daily": -0.04111998355488715,
+      "daily_vol_annualized": 0.2783395853199773
+    },
+    "H3": {
+      "fee_notional": 0.1601748399243429,
+      "absolute_gross_traded_initial_dollars": 160.17483992434276,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.2352595719255739,
+      "wealth_final": 3.0935024188491496,
+      "maxdd_daily_open": -0.2878282294625688,
+      "sharpe_daily_log": 0.7585791136115128,
+      "es5_daily": -0.04137431443292011,
+      "daily_vol_annualized": 0.2793800766674111
+    },
+    "STATIC_F3_H1_50": {
+      "fee_notional": 0.15155562833653902,
+      "absolute_gross_traded_initial_dollars": 151.55562833653968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23215134965968853,
+      "wealth_final": 3.052086994452834,
+      "maxdd_daily_open": -0.24844218622336645,
+      "sharpe_daily_log": 0.886921856171717,
+      "es5_daily": -0.033023285234276945,
+      "daily_vol_annualized": 0.23610277282133796
+    },
+    "EQUAL_RANK_TOP5": {
+      "fee_notional": 0.14685248714925103,
+      "absolute_gross_traded_initial_dollars": 146.85248714925103,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.14657019069208288,
+      "wealth_final": 2.0765631895889123,
+      "maxdd_daily_open": -0.24602536180308177,
+      "sharpe_daily_log": 0.5272440896162054,
+      "es5_daily": -0.037319807907169836,
+      "daily_vol_annualized": 0.2602140530775557
+    },
+    "K1_SIGNED_TAIL_HEADS": {
+      "fee_notional": 0.13964578527745297,
+      "absolute_gross_traded_initial_dollars": 139.64578527745323,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.921875,
+      "cagr": 0.1306027455319798,
+      "wealth_final": 1.926468192051462,
+      "maxdd_daily_open": -0.2597509795042632,
+      "sharpe_daily_log": 0.5681831523188592,
+      "es5_daily": -0.03191160679327701,
+      "daily_vol_annualized": 0.21670648975269136
+    },
+    "K2_SIGNED_MEAN_GBDT": {
+      "fee_notional": 0.12468082677255754,
+      "absolute_gross_traded_initial_dollars": 124.68082677255723,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.921875,
+      "cagr": 0.12894251337743645,
+      "wealth_final": 1.9113824034984452,
+      "maxdd_daily_open": -0.3232478005524635,
+      "sharpe_daily_log": 0.49392851674044463,
+      "es5_daily": -0.03620228154370647,
+      "daily_vol_annualized": 0.2463006652545162
+    },
+    "K3_GRADED_LAMBDARANK": {
+      "fee_notional": 0.12271491592209138,
+      "absolute_gross_traded_initial_dollars": 122.71491592209189,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.921875,
+      "cagr": 0.1985388497501488,
+      "wealth_final": 2.6323031331779614,
+      "maxdd_daily_open": -0.347136119630605,
+      "sharpe_daily_log": 0.6274511580698465,
+      "es5_daily": -0.04250175207364156,
+      "daily_vol_annualized": 0.2895221405533807
+    },
+    "K4_PREDICTED_BASKET_GATE": {
+      "fee_notional": 0.15155562833653902,
+      "absolute_gross_traded_initial_dollars": 151.55562833653968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23215134965968853,
+      "wealth_final": 3.052086994452834,
+      "maxdd_daily_open": -0.24844218622336645,
+      "sharpe_daily_log": 0.886921856171717,
+      "es5_daily": -0.033023285234276945,
+      "daily_vol_annualized": 0.23610277282133796
+    }
+  },
+  "post_warmup_proper_score_vs_online_prior": {
+    "MSE_signed": {
+      "mean": 1.7255083310349385e-06,
+      "ci95": [
+        -3.688081986963819e-05,
+        4.2734817262443675e-05
+      ],
+      "n": 51
+    },
+    "Brier_up": {
+      "mean": 0.005811761600709727,
+      "ci95": [
+        0.0021704510380347835,
+        0.009293803495692221
+      ],
+      "n": 51
+    },
+    "Brier_down": {
+      "mean": 0.005303109846777703,
+      "ci95": [
+        0.003005466765374459,
+        0.0077766002942524755
+      ],
+      "n": 51
+    },
+    "Logloss_up": {
+      "mean": 0.018228507754605414,
+      "ci95": [
+        0.0054746380430785125,
+        0.030045749787972816
+      ],
+      "n": 51
+    },
+    "Logloss_down": {
+      "mean": 0.024820330128207405,
+      "ci95": [
+        0.014623671848705002,
+        0.03546656962742947
+      ],
+      "n": 51
+    },
+    "mean_MSE": 0.002382873772285484,
+    "null_MSE": 0.0023845992806165194
+  },
+  "paired_monthly_gains_vs_5050": {
+    "K1_SIGNED_TAIL_HEADS": {
+      "paired_monthly_log_gain": {
+        "mean": -0.007189644420195963,
+        "ci95": [
+          -0.013639598350021659,
+          -0.0010810482550572956
+        ]
+      },
+      "positive_months": 22,
+      "early_2021_2023": -0.005394833379739864,
+      "later_2024_2026": -0.009355795675918842
+    },
+    "K2_SIGNED_MEAN_GBDT": {
+      "paired_monthly_log_gain": {
+        "mean": -0.007312482271386856,
+        "ci95": [
+          -0.014787128604276632,
+          -0.0002152601083006341
+        ]
+      },
+      "positive_months": 21,
+      "early_2021_2023": -0.010318719601797057,
+      "later_2024_2026": -0.003684264803650407
+    },
+    "K3_GRADED_LAMBDARANK": {
+      "paired_monthly_log_gain": {
+        "mean": -0.0023119755950758874,
+        "ci95": [
+          -0.01360446145026762,
+          0.008121869989784631
+        ]
+      },
+      "positive_months": 20,
+      "early_2021_2023": 0.00037519003109833963,
+      "later_2024_2026": -0.005555106523217195
+    },
+    "K4_PREDICTED_BASKET_GATE": {
+      "paired_monthly_log_gain": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "positive_months": 0,
+      "early_2021_2023": 0.0,
+      "later_2024_2026": 0.0
+    }
+  },
+  "preregistered_strict_joint_science_gates": {
+    "K1_SIGNED_TAIL_HEADS": false,
+    "K2_SIGNED_MEAN_GBDT": false,
+    "K3_GRADED_LAMBDARANK": false,
+    "K4_PREDICTED_BASKET_GATE": false
+  },
+  "exploratory_no_new_pit_source_or_untouched_149_horizon": true,
+  "no_live_strategy_promotion": true,
+  "cautions": [
+    "149 same-date ETF labels correlated; effective n dates far below 7599 independent scenarios",
+    "F3 and H1 base forecasts reuse original149 prices; stacking data 2021-2026 repeatedly mined",
+    "Active ranker may chase volatility, no guaranteed signed economic value",
+    "Top5 share-costed 10bp per side from retrospective adjusted US ETF Open and no EU dealer spreads",
+    "Warmup held static original 50:50; economic returns over full 64 anchors",
+    "Model selection based on ex-post 30% CAGR would be invalid"
+  ]
+}
