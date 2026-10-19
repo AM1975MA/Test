@@ -147,17 +147,23 @@ def trend126_weights(weights, closes, signal):
 def buffer_expert(scores, expert, old, orig):
     """Original pre-signal ranking only. Retain top10 previous members close to rank5."""
     assert scores.index.is_unique and len(scores)==149
-    ordered=scores.sort_values(ascending=False,kind="mergesort")
-    assert set(orig)==set(ordered.head(5).index)
+    # The frozen source used default quicksort. Ties at rank 5 must
+    # preserve archive-selected names, rather than change old holdings.
+    assert len(orig)==5 and len(set(orig))==5
+    priority={t:i for i,t in enumerate(orig)}
+    ordered=sorted(scores.index,key=lambda t:(
+        -float(scores[t]),0 if t in priority else 1,priority.get(t,149),str(t)))
+    if set(orig)!=set(ordered[:5]):
+        raise AssertionError("Archive rank and current prices disagree")
     if not old:
         return list(orig)
     std=float(scores.std(ddof=1))
-    fifth=float(ordered.iloc[4])
-    top10=set(ordered.index[:10])
+    fifth=float(scores[ordered[4]])
+    top10=set(ordered[:10])
     retained=[t for t in old if t in top10 and float(scores[t])>=fifth-.15*std]
     retained=sorted(retained,key=lambda t:(-float(scores[t]),t))[:5]
     chosen=list(retained)
-    for t in ordered.index:
+    for t in ordered:
         if len(chosen)==5:break
         if t not in chosen:chosen.append(t)
     assert len(set(chosen))==5
