@@ -1,0 +1,76 @@
+name: ORIGINAL149_PREQUENTIAL_F3_H1_LEARNED_STACKING
+on:
+  push:
+    branches:
+      - research/149-walkforward-two-expert-stacking-20261019
+    paths:
+      - 'research_reset/predict149/walkforward_stacking/PREREGISTERED.md'
+      - 'research_reset/predict149/walkforward_stacking/run.py'
+      - 'research_reset/predict149/walkforward_stacking/test_run.py'
+      - '.github/workflows/149-walkforward-expert-stacking.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  frozen149-two-expert-supervised-crosssectional-stacking:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Pinned as-of HGB/logistic/LightGBM ranking dependencies
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'lightgbm==4.6.0'
+          python -m py_compile research_reset/predict149/walkforward_stacking/run.py research_reset/predict149/walkforward_stacking/test_run.py
+      - name: Prove no incomplete-month labels or target-derived ranking features
+        run: |
+          python -m unittest -v research_reset.predict149.walkforward_stacking.test_run
+      - name: Real walkforward out-of-base-sample 149-ETF stacking on frozen F3/H1
+        run: |
+          python -m research_reset.predict149.walkforward_stacking.run --out _T149K
+      - name: Reject incoherent original ETF membership, leaks or fee accounting
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_T149K/RESULT.json").read_text())
+          assert d["status"]=="EXACT149_WALK_FORWARD_TWO_FROZEN_EXPERT_TICKER_STACKING_COMPLETE"
+          assert d["original_etfs"]==149
+          assert d["n_evaluation_21day_anchors"]==64 and d["n_meta_test_ticker_rows"]==51*149
+          assert d["n_prequential_real_meta_months"]==51
+          assert d["original_f3_h1_h3_5050_equity_parity"]
+          assert d["no_current_or_previous_incomplete_period_labels"]
+          assert d["quarterly_models_fitted_on_matured_prequential_predictions_only"]
+          assert len(d["preregistered_strict_joint_science_gates"])==4
+          print("T149K_PROPER_AND_COSTED_FORECAST_SCIENCE_GATES",d["preregistered_strict_joint_science_gates"])
+          PY
+      - name: Permanently archive all full-prediction, group-scored and share-level net PnL evidence
+        run: |
+          mkdir -p research_reset/predict149/walkforward_stacking/results
+          cp _T149K/*.csv _T149K/*.json research_reset/predict149/walkforward_stacking/results/
+          (cd research_reset/predict149/walkforward_stacking/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/walkforward_stacking/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-Supervised-F3H1-MetaResearch"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/walkforward_stacking/results
+          git commit -m "Archive walk-forward 149 ticker two-expert stacked signed/quantile learning, 51 true monthly OOF targets, full 10bp costed risk and strict gates"
+          git push origin HEAD:refs/heads/research/149-walkforward-two-expert-stacking-20261019
+      - name: Retain evidence even when scientific models fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-two-expert-learned-stacking-chronology-and-portfolio
+          retention-days: 90
+          path: |
+            _T149K/*.csv
+            _T149K/*.json
