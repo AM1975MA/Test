@@ -1,0 +1,155 @@
+{
+  "status": "FOUR_INDEPENDENT_F3H1_RISK_ABLATIONS_COMPLETE",
+  "original149_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "yahoo_factor_proxy_sha256": "91bb4cdc3d4704196f2951bc96131063befba33bd4ffb5222ab0ca49a67f35d3",
+  "original_149": 149,
+  "investable_periods": 64,
+  "daily_open_wealth_points": 1345,
+  "frozen_original_F3_H1_exact_parity": 1.3322676295501878e-14,
+  "historical_US_survivor_universe_reused": true,
+  "third_party_factors_not_true_point_in_time": true,
+  "policies": {
+    "B0_STATIC_F3_H1": {
+      "fee_notional": 0.15155562833653946,
+      "absolute_gross_traded_initial_dollars": 151.55562833654008,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "mean_invested_fraction": 1.0,
+      "minimum_invested_fraction": 1.0,
+      "cagr": 0.23215134965968942,
+      "wealth_final": 3.0520869944528455,
+      "maxdd_daily_open": -0.24844218622336633,
+      "sharpe_daily_log": 0.8869218561717201,
+      "es5_daily": -0.033023285234276945,
+      "daily_vol_annualized": 0.23610277282133788,
+      "max_underwater_sessions": 343
+    },
+    "R1_FACTOR_BALANCE": {
+      "fee_notional": 0.1468881508248594,
+      "absolute_gross_traded_initial_dollars": 146.88815082485968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "mean_invested_fraction": 1.0,
+      "minimum_invested_fraction": 0.9999999999999999,
+      "cagr": 0.21987793616630769,
+      "wealth_final": 2.892929550883398,
+      "maxdd_daily_open": -0.27131844127790095,
+      "sharpe_daily_log": 0.8370735490505667,
+      "es5_daily": -0.03321235570893537,
+      "daily_vol_annualized": 0.23816661085025043,
+      "max_underwater_sessions": 354
+    },
+    "R2_VOL20": {
+      "fee_notional": 0.14247304785019577,
+      "absolute_gross_traded_initial_dollars": 142.4730478501962,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "mean_invested_fraction": 0.9475444590015207,
+      "minimum_invested_fraction": 0.6515229420167785,
+      "cagr": 0.21874069447872957,
+      "wealth_final": 2.8785306926001626,
+      "maxdd_daily_open": -0.23504479266876643,
+      "sharpe_daily_log": 0.9110695249593953,
+      "es5_daily": -0.030491353598529326,
+      "daily_vol_annualized": 0.2177961160874613,
+      "max_underwater_sessions": 342
+    },
+    "R3_TREND126": {
+      "fee_notional": 0.12784350710041237,
+      "absolute_gross_traded_initial_dollars": 127.8435071004126,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "mean_invested_fraction": 0.8984375,
+      "minimum_invested_fraction": 0.5,
+      "cagr": 0.19292155471652528,
+      "wealth_final": 2.5669721598780386,
+      "maxdd_daily_open": -0.21989943550091495,
+      "sharpe_daily_log": 0.8715586060312878,
+      "es5_daily": -0.029277371605352112,
+      "daily_vol_annualized": 0.20302562348654146,
+      "max_underwater_sessions": 350
+    },
+    "R4_BUFFER_RANK": {
+      "fee_notional": 0.14357149935984148,
+      "absolute_gross_traded_initial_dollars": 143.57149935984293,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.46875,
+      "mean_invested_fraction": 1.0,
+      "minimum_invested_fraction": 1.0,
+      "cagr": 0.23488747399481213,
+      "wealth_final": 3.0885204695850628,
+      "maxdd_daily_open": -0.2508326353050807,
+      "sharpe_daily_log": 0.8953820067477778,
+      "es5_daily": -0.03310068024737518,
+      "daily_vol_annualized": 0.23635686827746347,
+      "max_underwater_sessions": 345
+    }
+  },
+  "paired_tests": {
+    "R1_FACTOR_BALANCE": {
+      "net_21session_log_gain": {
+        "mean": -0.0008368116090188837,
+        "ci95": [
+          -0.0033934459724516584,
+          0.0015611371600048858
+        ]
+      },
+      "earlier_2021_2023_mean": -0.0019100680418510407,
+      "later_2024_2026_mean": 0.00045849787888199614,
+      "maxdd_improvement_percentage_points": -2.287625505453461,
+      "es5_improvement_percentage_points": -0.01890704746584232,
+      "preregistered_joint_GO": false
+    },
+    "R2_VOL20": {
+      "net_21session_log_gain": {
+        "mean": -0.0009147754580155207,
+        "ci95": [
+          -0.0032265041334859513,
+          0.0010314384965853013
+        ]
+      },
+      "earlier_2021_2023_mean": -0.00021152981092938117,
+      "later_2024_2026_mean": -0.0017635202044987927,
+      "maxdd_improvement_percentage_points": 1.3397393554599901,
+      "es5_improvement_percentage_points": 0.2531931635747619,
+      "preregistered_joint_GO": false
+    },
+    "R3_TREND126": {
+      "net_21session_log_gain": {
+        "mean": -0.0027046650102856493,
+        "ci95": [
+          -0.007086297398658135,
+          0.0006745695821114671
+        ]
+      },
+      "earlier_2021_2023_mean": -0.0026202221703619044,
+      "later_2024_2026_mean": -0.00280657878260741,
+      "maxdd_improvement_percentage_points": 2.854275072245138,
+      "es5_improvement_percentage_points": 0.37459136289248324,
+      "preregistered_joint_GO": false
+    },
+    "R4_BUFFER_RANK": {
+      "net_21session_log_gain": {
+        "mean": 0.00018541479240870653,
+        "ci95": [
+          -0.0008509137198275933,
+          0.0013630474162600792
+        ]
+      },
+      "earlier_2021_2023_mean": 0.0007689163523089002,
+      "later_2024_2026_mean": -0.0005188112281604927,
+      "maxdd_improvement_percentage_points": -0.23904490817143742,
+      "es5_improvement_percentage_points": -0.007739501309823871,
+      "preregistered_joint_GO": false
+    }
+  },
+  "all_strict_gates_passed": [],
+  "no_deployment": true,
+  "limitations": [
+    "Original 149 US ETF survivor cohort, not EUR trading roster",
+    "Yahoo historical Close updated and not vendor-vintage PIT",
+    "No broker spreads, dividend cash management, live FX or taxes",
+    "Historical dates 2021-2026 extensively mined across prior models",
+    "Zero-interest idle cash; turnover charged on actual ETF trades only"
+  ]
+}

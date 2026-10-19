@@ -1,0 +1,75 @@
+{
+  "source": "yfinance Yahoo historical quoted Close",
+  "retrieved_utc": "2026-10-19 17:22:44.745372+00:00",
+  "request_start": "2016-05-01",
+  "request_end_exclusive": "2026-07-03",
+  "factors": {
+    "SPY": {
+      "source": "Yahoo yfinance",
+      "first": "2016-05-02",
+      "last": "2026-07-02",
+      "observations": 2557,
+      "auto_adjust": false,
+      "price_field": "Close"
+    },
+    "TLT": {
+      "source": "Yahoo yfinance",
+      "first": "2016-05-02",
+      "last": "2026-07-02",
+      "observations": 2557,
+      "auto_adjust": false,
+      "price_field": "Close"
+    },
+    "GLD": {
+      "source": "Yahoo yfinance",
+      "first": "2016-05-02",
+      "last": "2026-07-02",
+      "observations": 2557,
+      "auto_adjust": false,
+      "price_field": "Close"
+    },
+    "USO": {
+      "source": "Yahoo yfinance",
+      "first": "2016-05-02",
+      "last": "2026-07-02",
+      "observations": 2557,
+      "auto_adjust": false,
+      "price_field": "Close"
+    },
+    "HYG": {
+      "source": "Yahoo yfinance",
+      "first": "2016-05-02",
+      "last": "2026-07-02",
+      "observations": 2557,
+      "auto_adjust": false,
+      "price_field": "Close"
+    },
+    "UUP": {
+      "source": "Yahoo yfinance",
+      "first": "2016-05-02",
+      "last": "2026-07-02",
+      "observations": 2557,
+      "auto_adjust": false,
+      "price_field": "Close"
+    },
+    "VNQ": {
+      "source": "Yahoo yfinance",
+      "first": "2016-05-02",
+      "last": "2026-07-02",
+      "observations": 2557,
+      "auto_adjust": false,
+      "price_field": "Close"
+    },
+    "XLE": {
+      "source": "Yahoo yfinance",
+      "first": "2016-05-02",
+      "last": "2026-07-02",
+      "observations": 2557,
+      "auto_adjust": false,
+      "price_field": "Close"
+    }
+  },
+  "sha256": "91bb4cdc3d4704196f2951bc96131063befba33bd4ffb5222ab0ca49a67f35d3",
+  "point_in_time_vintage": false,
+  "no_trade_on_proxy": true
+}
