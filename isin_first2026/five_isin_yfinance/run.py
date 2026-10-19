@@ -22,9 +22,9 @@ def run(outdir):
     (out/"yahoo_unmodified").mkdir()
     (out/"yahoo_adjusted").mkdir()
     candidates=pd.read_csv(HERE/"CATALOG.csv").fillna("")
-    assert len(candidates)==16 and candidates.isin.nunique()==5
+    assert len(candidates)==16 and candidates["isin"].nunique()==5
     assert candidates.yahoo_ticker.nunique()==len(candidates)
-    assert candidates.isin.map(check_isin).all()
+    assert candidates["isin"].map(check_isin).all()
     official,master_meta=download_xetra()
     raw_rows=[];ys={}
     for i,r in enumerate(candidates.itertuples(index=False),start=1):
@@ -148,7 +148,7 @@ def run(outdir):
     outinfo=dict(status="JUSTETF_HUMAN_PUBLIC_ISIN_TO_YFINANCE_PILOT_COMPLETE",
        source_discovery="Public search-accessible justETF ETF profiles and listing tables ONLY",
        no_automated_justETF_scraping=True,source_xetra=master_meta,
-       isin_examples=candidates.isin.nunique(),ticker_candidates=len(candidates),
+       isin_examples=candidates["isin"].nunique(),ticker_candidates=len(candidates),
        isins_europe_only=sorted(candidates.loc[
            candidates.underlying_geo=="EUROPE_ONLY","isin"].unique().tolist()),
        isins_global_excluded=sorted(candidates.loc[
