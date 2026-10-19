@@ -1,0 +1,86 @@
+name: EU48_CAUSAL_ADAPTIVE_PREDICTIVE_RANK_EXACT_ORIGINAL_US_SPY_ETF_TRADER_V2
+on:
+  push:
+    branches:
+      - research/eu48-predictive-skill-free-ranking-20261019
+    paths:
+      - '.github/workflows/eu48-adapt4-source-v2-replay.yml'
+      - 'isin_first2026/predict48/replay_v2.py'
+      - 'isin_first2026/predict48/PREREGISTERED_V2_INTEGRATION.md'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  europe48-adapt4-genuine-etf-trader-v2-full-source-risk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned original V2 source numerical dependencies
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'lightgbm==4.6.0' 'numba==0.63.1' 'xgboost==3.1.3'
+          python -m py_compile isin_first2026/predict48/replay_v2.py
+      - name: Restore historical original USA market factor source SPY HYG IEF
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _ORIGINAL_US149
+          for t in SPY HYG IEF; do test -f "_ORIGINAL_US149/etf_trader_raw/$t.csv"; done
+      - name: Reconstruct only existing quote data and exact same 48 unique ISIN adjusted vendor OHLC
+        run: python -m isin_first2026.v2_unrestricted48.prepare --out _EU48V2_PREP
+      - name: Reconcile original V2 and test causal adaptive 4-expert prediction across full authentic original EU versus US macro and stop/none
+        run: |
+          python -u -m isin_first2026.predict48.replay_v2 --prep _EU48V2_PREP --us _ORIGINAL_US149 --fx europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv --out _V2_ADAPT_FINAL
+      - name: Hard verify original V2 risk EU and US 48-fund price parities plus complete source score checksum and no-leak
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,pandas as pd
+          p=Path("_V2_ADAPT_FINAL")
+          d=json.loads((p/"RESULT.json").read_text())
+          assert d['status']=="EU48_CAUSAL_ADAPT4_REPLAY_IN_SOURCE_V2_WITH_ORIGINAL_US_SPY_HYG_IEF_COMPLETE"
+          assert d['n_legal_europe_funds']==48 and d['n_american_candidates']==0
+          assert d['n_months']==65 and d['n_daily_common_Europe_opens']==1374
+          assert d['original_MA3_EU_source_V2_daily_parity_1e11']
+          assert d['original_MA3_original_US_macro_reference_risk_CAGR_and_DD_parity_1e10']
+          assert d['only_predictive_score_replaced_new_ADAPT4_from_asof_online_frozen']
+          assert len(d['all_exact_costed_economic_metrics'])==16
+          a=pd.read_csv(p/"SOURCE_ETFTRADER_V2_ALL_MONTHLY_LEADERS_AND_INTERVENTIONS.csv")
+          assert a.groupby(['score','state']).size().eq(65).all()
+          assert a.top1_legal_isin.str.len().eq(12).all()
+          b=pd.read_csv(p/"SOURCE_ETFTRADER_V2_DAILY_OPEN_EUR_NAV_US_AND_EU_RISK.csv")
+          assert len(b)==1374 and b.notna().all(axis=None)
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+              digest,path=line.split("  ",1)
+              assert hashlib.sha256((p/path).read_bytes()).hexdigest()==digest
+          print('ETF_TRADER_SOURCE_V2_EU48_ADAPTIVE_RANKING_PARITY_PASS',json.dumps(d),flush=True)
+          PY
+      - name: Archive original source V2 full V2 economic integration of EU48 adaptive forecasting on Test ONLY
+        run: |
+          mkdir -p isin_first2026/predict48/v2_integration_results
+          cp -a _V2_ADAPT_FINAL/. isin_first2026/predict48/v2_integration_results/
+          git config user.name "EU48_CAUSAL_PREDICTIVE_ETFTRADER_V2_INTEGRATION"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/predict48/v2_integration_results
+          git commit -m "Archive 48-Europe-candidates causal predictor ETF Trainer V2 with genuine SPY HYG IEF macro original reference stop and no-stop matched economic controls"
+          git pull --rebase origin research/eu48-predictive-skill-free-ranking-20261019
+          git push origin HEAD:refs/heads/research/eu48-predictive-skill-free-ranking-20261019
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CAUSAL_48_ETF_RANK_ADAPT4_FULL_ORIGINAL_V2_RISK_STOPS
+          retention-days: 90
+          path: _V2_ADAPT_FINAL/
