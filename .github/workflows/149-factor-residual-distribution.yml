@@ -1,0 +1,74 @@
+name: ETF149_DYNAMIC_FACTOR_RESIDUAL_DISTRIBUTIONAL_H
+on:
+  push:
+    branches:
+      - research/149-factor-residual-distributional-20261019
+    paths:
+      - 'research_reset/predict149/factor_residual/PREREGISTERED.md'
+      - 'research_reset/predict149/factor_residual/run.py'
+      - 'research_reset/predict149/factor_residual/test_run.py'
+      - '.github/workflows/149-factor-residual-distribution.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  exact149-factor-premium-vs-idiosyncratic-quantile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned statistical and risk forecasting runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'lightgbm==4.6.0'
+          python -m py_compile research_reset/predict149/factor_residual/run.py research_reset/predict149/factor_residual/test_run.py
+      - name: Prove previous-close as-of 10-factor exposures and no future-price leakage
+        run: |
+          python -m unittest -v research_reset.predict149.factor_residual.test_run
+      - name: Train matured factor forecasts and residual quantiles chronologically, 64 anchor tests
+        run: |
+          python -m research_reset.predict149.factor_residual.run --out _t149h
+      - name: Validate exact F3 replay, no future factor leakage and strict unchanged 149 sample
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_t149h/RESULT.json").read_text())
+          assert d["status"]=="ORIGINAL149_FACTOR_RESIDUAL_DISTRIBUTIONAL_EXPERIMENT_COMPLETE"
+          assert d["n_original_etfs"]==149 and d["n_eval_anchors"]==64
+          assert d["n_eval_ticker_rows"]==9536
+          assert d["quarterly_training_matured_only"] and d["original_F3_frozen_economic_parity"]
+          assert d["no_realized_future_factors_used_at_prediction"]
+          assert len(d["per_model_evaluation"])==7
+          print("T149H_CONDITIONAL_FACTOR_RESIDUAL_GATE",d["preregistered_mandatory_skill_and_economic_gates"])
+          PY
+      - name: Archive independent risk exposures, proper residual quantiles and ETF economic controls permanently
+        run: |
+          mkdir -p research_reset/predict149/factor_residual/results
+          cp _t149h/*.csv _t149h/*.json research_reset/predict149/factor_residual/results/
+          (cd research_reset/predict149/factor_residual/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/factor_residual/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "Original149-FactorResidual-Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/factor_residual/results
+          git commit -m "Archive frozen 149 factor and signed residual quantile research: complete as-of beta forecasts, benchmark comparisons and strict gates"
+          git push origin HEAD:refs/heads/research/149-factor-residual-distributional-20261019
+      - name: Retain entire numerical source evidence even if theory falsified
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-factor-premium-plus-residual-quantile-predictor
+          retention-days: 90
+          path: |
+            _t149h/*.csv
+            _t149h/*.json
