@@ -1,0 +1,26 @@
+us149_sector_etf,eu_sector_proxy_ticker,us_sector_theme,proxy_fidelity,restriction
+PPA,EXH4.DE,Aerospace and defense,BROAD_PROXY,European industrials; no pure EU aerospace/defense fund proven
+SMH,EXV3.DE,Semiconductors,BROAD_PROXY,European tech proxy only; NOT euro-only semiconductors
+SOXX,EXV3.DE,Semiconductors,BROAD_PROXY,Same broad tech ISIN as SMH proxy; do not duplicate
+IGV,EXV3.DE,Software,BROAD_PROXY,Tech broad not pure software
+IHI,EXV4.DE,Medical devices,BROAD_PROXY,Health care broad not equipment-only
+KBE,EXV1.DE,Banks,SECTOR_CLOSE,STOXX 600 Banks sector
+HACK,EXV3.DE,Cybersecurity,BROAD_PROXY,Tech broad only
+IYT,EXH4.DE,Transportation,BROAD_PROXY,Industrials broad only
+KRE,EXV1.DE,Regional banks,BROAD_PROXY,Europe banks not regionals
+IBB,EXV4.DE,Biotechnology,BROAD_PROXY,Health care broad not pure biotech
+ICLN,EXH9.DE,Clean energy,BROAD_PROXY,Utilities broad not exclusively renewables
+ITA,EXH4.DE,Aerospace defense,BROAD_PROXY,Industrials broad not aerospace only
+FDN,EXV3.DE,Internet,BROAD_PROXY,Technology broad not pure internet
+TAN,EXH9.DE,Solar energy,BROAD_PROXY,Utilities broad not pure solar
+XBI,EXV4.DE,Biotechnology,BROAD_PROXY,Health broad not pure biotech
+XLK,EXV3.DE,Technology,SECTOR_CLOSE,STOXX Europe 600 technology
+XLF,EXH2.DE,Financial services,SECTOR_CLOSE,STOXX Europe financial services; banks and insurance separate
+XLE,EXH1.DE,Energy,SECTOR_CLOSE,STOXX Europe oil and gas, not whole mixed energy
+XLV,EXV4.DE,Healthcare,SECTOR_CLOSE,STOXX Europe 600 Healthcare
+XLI,EXH4.DE,Industrials,SECTOR_CLOSE,STOXX Europe industrial goods/services
+XLY,EXV9.DE,Discretionary,BROAD_PROXY,Travel/leisure only; additionally automobiles and retail ETFs
+XLP,EXH3.DE,Consumer staples,BROAD_PROXY,Food/beverage subset; broader SPDR may serve if quote quality good
+XLU,EXH9.DE,Utilities,SECTOR_CLOSE,STOXX Europe utilities
+XLB,EXV6.DE,Materials,BROAD_PROXY,Basic resources; complement Chemicals and Construction
+XRT,EXH8.DE,Retail,SECTOR_CLOSE,STOXX Europe Retail
