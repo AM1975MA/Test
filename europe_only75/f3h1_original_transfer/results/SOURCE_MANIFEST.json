@@ -1,0 +1,13 @@
+{
+  "ticker": "EURUSD=X",
+  "vendor": "Yahoo yfinance",
+  "source_url": "https://finance.yahoo.com/quote/EURUSD=X/",
+  "start": "2015-01-01",
+  "end": "2026-07-07",
+  "row_count": 2996,
+  "asof_rule": "US market close & EURUSD one calendar day lag at EU signal",
+  "latest_retrieval": "2026-10-19 17:53:31.565032+00:00",
+  "sha256": "ab7feed8bed4b5b329fee355343b418bf42a79a71800f0702814b5cf2924a71c",
+  "point_in_time_vintage": false,
+  "portfolio_EUR_currency_verified": false
+}

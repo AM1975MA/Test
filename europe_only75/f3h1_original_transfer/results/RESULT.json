@@ -1,0 +1,198 @@
+{
+  "status": "EUROPE60_ORIGINAL_F3_H1_H3_WALKFORWARD_AND_MATCHED_RH_COMPLETE",
+  "n_europeonly_EUR_candidate_etfs": 60,
+  "n_annual_eu_source_RH_folds": 10,
+  "n_eu_calendar_months_total": 113,
+  "n_retained_asof_feature_label_blocks": 112,
+  "n_eval_months": 65,
+  "eval_begin": "2021-01-29",
+  "eval_end": "2026-07-01",
+  "daily_open_evaluations": 1331,
+  "no_US_149_ETF_portfolio_positions": true,
+  "original_19_plus_6_F3_features": true,
+  "original_10_factor_H1_beta": true,
+  "original_quantile_lightgbm_parameters": true,
+  "training_quarterly_asof_strict": true,
+  "legacy_EUR60_RH_50_50_approx_fee_parity": {
+    "archived_approx_equity": 2.448863449071208,
+    "reconstructed_approx_equity": 2.448863449071206,
+    "absolute_error": 2.220446049250313e-15,
+    "archived_cagr": 0.0997803909127188
+  },
+  "original_20261019_real_share_RH_parity": 4.440892098500626e-16,
+  "all_policy_results": {
+    "RH_EUROPE_CONTROL": {
+      "cagr": 0.08312164044616455,
+      "terminal_capital": 1.5402938916867763,
+      "maxdd_daily_open": -0.2569536744992509,
+      "sharpe_daily_log": 0.39501350875825086,
+      "es5_daily": -0.02987970070832659,
+      "ann_vol": 0.20768135236315316,
+      "fee_notional": 0.12053844130802227,
+      "gross_turnover": 120.53844130802148,
+      "position_count_mean": 2.0,
+      "n_sessions": 1331
+    },
+    "F3_EUROPE_REFIT": {
+      "cagr": -0.016320989149899434,
+      "terminal_capital": 0.9148227764352088,
+      "maxdd_daily_open": -0.3560936549847423,
+      "sharpe_daily_log": -0.09746027106746016,
+      "es5_daily": -0.025763846370752793,
+      "ann_vol": 0.17113127509655945,
+      "fee_notional": 0.10175009971620164,
+      "gross_turnover": 101.7500997162017,
+      "position_count_mean": 5.0,
+      "n_sessions": 1331
+    },
+    "H1_EUROPE_REFIT": {
+      "cagr": 0.044092075252155416,
+      "terminal_capital": 1.2629227212824032,
+      "maxdd_daily_open": -0.3314595758989759,
+      "sharpe_daily_log": 0.25510824280745337,
+      "es5_daily": -0.0268058359668536,
+      "ann_vol": 0.17411419466072514,
+      "fee_notional": 0.09149769085364579,
+      "gross_turnover": 91.49769085364547,
+      "position_count_mean": 5.0,
+      "n_sessions": 1331
+    },
+    "H3_EUROPE_REFIT": {
+      "cagr": 0.07585422514434348,
+      "terminal_capital": 1.4852030683662132,
+      "maxdd_daily_open": -0.24442677754420306,
+      "sharpe_daily_log": 0.430681578757298,
+      "es5_daily": -0.025635319322266384,
+      "ann_vol": 0.17445831090720965,
+      "fee_notional": 0.10717384937846308,
+      "gross_turnover": 107.17384937846393,
+      "position_count_mean": 5.0,
+      "n_sessions": 1331
+    },
+    "F3_H1_50_EUROPE": {
+      "cagr": 0.016673930657521208,
+      "terminal_capital": 1.0935858464605928,
+      "maxdd_daily_open": -0.3233943073808969,
+      "sharpe_daily_log": 0.1063279234668196,
+      "es5_daily": -0.02507756647814003,
+      "ann_vol": 0.1612002317998193,
+      "fee_notional": 0.09057830205959971,
+      "gross_turnover": 90.5783020595997,
+      "position_count_mean": 9.63076923076923,
+      "n_sessions": 1331
+    }
+  },
+  "paired_vs_RH": {
+    "F3_EUROPE_REFIT": {
+      "vs_euro_RH": {
+        "mean": -0.00801535625227997,
+        "CI95": [
+          -0.01674829328257899,
+          0.0005306510017074945
+        ]
+      },
+      "earlier_2021_2023": -0.00937450744654453,
+      "later_2024_2026": -0.006328134080089485,
+      "dd_improvement_pp": -9.913998048549145,
+      "es5_improvement_pp": 0.41158543375737977
+    },
+    "H1_EUROPE_REFIT": {
+      "vs_euro_RH": {
+        "mean": -0.003054532032500046,
+        "CI95": [
+          -0.010924677260595747,
+          0.004859967184390834
+        ]
+      },
+      "earlier_2021_2023": -0.012164325708653133,
+      "later_2024_2026": 0.00825417735858654,
+      "dd_improvement_pp": -7.450590139972501,
+      "es5_improvement_pp": 0.30738647414729897
+    },
+    "H3_EUROPE_REFIT": {
+      "vs_euro_RH": {
+        "mean": -0.0005603342722384793,
+        "CI95": [
+          -0.008557660175699727,
+          0.007096382218432881
+        ]
+      },
+      "earlier_2021_2023": -0.005534934676344982,
+      "later_2024_2026": 0.005615031746652351,
+      "dd_improvement_pp": 1.2526896955047828,
+      "es5_improvement_pp": 0.42443813860602064
+    },
+    "F3_H1_50_EUROPE": {
+      "vs_euro_RH": {
+        "mean": -0.00526940265824222,
+        "CI95": [
+          -0.012835878217455361,
+          0.0017901936905677842
+        ]
+      },
+      "earlier_2021_2023": -0.010496310214370733,
+      "later_2024_2026": 0.0012191722390207632,
+      "dd_improvement_pp": -6.644063288164603,
+      "es5_improvement_pp": 0.48021342301865605
+    }
+  },
+  "full_universe_directional_skill": {
+    "F3_EUROPE_REFIT": {
+      "crosssection_spearman": {
+        "mean": -0.08241030965773173,
+        "CI95": [
+          -0.14578462778976148,
+          -0.017485723690991797
+        ]
+      },
+      "chosen5_future_relative_log": -0.00826196357180752
+    },
+    "H1_EUROPE_REFIT": {
+      "crosssection_spearman": {
+        "mean": 0.03451682133575106,
+        "CI95": [
+          -0.03551763477870915,
+          0.1014601968642346
+        ]
+      },
+      "chosen5_future_relative_log": -0.0035235390759189938
+    },
+    "H3_EUROPE_REFIT": {
+      "crosssection_spearman": {
+        "mean": 0.006363217225182671,
+        "CI95": [
+          -0.06195125126523405,
+          0.0743469033844652
+        ]
+      },
+      "chosen5_future_relative_log": -0.0010533764169613248
+    }
+  },
+  "original_F3_quantile_pinball": {
+    "model_q10": 0.007791121400334652,
+    "prior_q10": 0.007822587928854041,
+    "model_q90": 0.007094391062350263,
+    "prior_q90": 0.007024601528301987
+  },
+  "original_H1_factor_next21_MSE": {
+    "factor_model": 0.002205696885331963,
+    "matured_null": 0.0019733959776041137
+  },
+  "F3_H1_50_strict_scientific_GO": false,
+  "reference_fx_sha": "ab7feed8bed4b5b329fee355343b418bf42a79a71800f0702814b5cf2924a71c",
+  "usa_factor_prices_use_prior_calendar_day": true,
+  "original149_us_cohort_trained_models_used": false,
+  "model_60_target_EUR_labels_only": true,
+  "static_eur60_source_roster_sha": "a93571a0bea07dc11359193294b959f40c9888494bba4911e8ae16bf7291f82f",
+  "historical_curation_survivorship_not_PIT": true,
+  "EU_EUR_trade_and_ISIN_not_individually_verified": true,
+  "no_etf_trader_production_changes": true,
+  "caveats": [
+    "EU60 comprises 2026 known survivors, backtesting reused 2017\u20132026 dates",
+    "Imported 11 US ETF factor proxies converted at lagged EURUSD prior US closing for conservative EU clock",
+    "Original USA F3/H1 algorithms retrained on Europe; predictions not original USA-trained weights",
+    "European monthly periods are variable 19-23 sessions, unlike original US exactly21",
+    "Euro adjusted ETF OHLC not live executable broker quotes; missing spreads, trading FX, taxes",
+    "FX Yahoo download historical vintage not real PIT, currency/ISIN venue requires further audits"
+  ]
+}
