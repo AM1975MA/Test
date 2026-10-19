@@ -1,0 +1,159 @@
+{
+  "status": "ORIGINAL149_K1_AS_RISK_OVERLAY_NOT_SELECTOR_TEST_COMPLETE",
+  "original149_source_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "n_149": 149,
+  "n_evaluation_21session_blocks": 64,
+  "n_model_ready_blocks": 51,
+  "original_F3_H1_top5_tickers_unchanged": true,
+  "legacy_5050_and_H3_share_level_equity_parity": true,
+  "models_frozen_no_refit": true,
+  "only_asof_K1_P_DOWN5_risk_forecasts_used": true,
+  "model_probabilities_on_existing_held_ETFs": {
+    "test_months": 51,
+    "selected_8_to_10_held_etfs_per_month": 483,
+    "mean_predicted_minus_prior_brier_gain": 0.0019006995448039242,
+    "3anchor_bootstrap_CI95": [
+      -0.0032268890730279697,
+      0.007276574782529903
+    ],
+    "mean_predicted_down_probability": 0.14657502661046934,
+    "realized_event_rate": 0.15113871635610765
+  },
+  "policies": {
+    "STATIC_F3_H1_50": {
+      "fee_notional": 0.15155562833653902,
+      "absolute_gross_traded_initial_dollars": 151.55562833653968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23215134965968853,
+      "wealth_final": 3.052086994452834,
+      "maxdd_daily_open": -0.24844218622336645,
+      "sharpe_daily_log": 0.886921856171717,
+      "es5_daily": -0.033023285234276945,
+      "daily_vol_annualized": 0.23610277282133796
+    },
+    "L1_K1_WITHIN": {
+      "fee_notional": 0.15408224128662995,
+      "absolute_gross_traded_initial_dollars": 154.08224128663053,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.2257118254349777,
+      "wealth_final": 2.9677175175115678,
+      "maxdd_daily_open": -0.25344717101435477,
+      "sharpe_daily_log": 0.8727138078274208,
+      "es5_daily": -0.032813737060432245,
+      "daily_vol_annualized": 0.23392390394107504
+    },
+    "L2_K1_BETWEEN": {
+      "fee_notional": 0.157664105974041,
+      "absolute_gross_traded_initial_dollars": 157.6641059740416,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23418044880954003,
+      "wealth_final": 3.0790722160511006,
+      "maxdd_daily_open": -0.24356842970254067,
+      "sharpe_daily_log": 0.8970349653225305,
+      "es5_daily": -0.03285273252686991,
+      "daily_vol_annualized": 0.23528092554213595
+    },
+    "L3_K1_TWO_LEVELS": {
+      "fee_notional": 0.15807167571498548,
+      "absolute_gross_traded_initial_dollars": 158.0716757149856,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.22661638135344297,
+      "wealth_final": 2.979453001568662,
+      "maxdd_daily_open": -0.2494488328448804,
+      "sharpe_daily_log": 0.879915644463056,
+      "es5_daily": -0.03261277111671007,
+      "daily_vol_annualized": 0.2328502810945731
+    },
+    "L4_VOL63_WITHIN": {
+      "fee_notional": 0.15691660904291316,
+      "absolute_gross_traded_initial_dollars": 156.91660904291226,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.2382686832147951,
+      "wealth_final": 3.134031418807877,
+      "maxdd_daily_open": -0.24673854334461642,
+      "sharpe_daily_log": 0.9355741540057018,
+      "es5_daily": -0.03198438178508262,
+      "daily_vol_annualized": 0.22913463041670482
+    },
+    "H3_FROZEN": {
+      "fee_notional": 0.1601748399243429,
+      "absolute_gross_traded_initial_dollars": 160.17483992434276,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.2352595719255739,
+      "wealth_final": 3.0935024188491496,
+      "maxdd_daily_open": -0.2878282294625688,
+      "sharpe_daily_log": 0.7585791136115128,
+      "es5_daily": -0.04137431443292011,
+      "daily_vol_annualized": 0.2793800766674111
+    }
+  },
+  "paired_vs_original_5050": {
+    "L1_K1_WITHIN": {
+      "gain": {
+        "mean": -0.0004380073806432398,
+        "ci95": [
+          -0.001445140090452022,
+          0.0005389884518623765
+        ]
+      },
+      "early_2021_2023": 7.135609725394954e-05,
+      "late_2024_2026": -0.0010527564056915719,
+      "months_better": 21,
+      "preregistered_joint_GO": false
+    },
+    "L2_K1_BETWEEN": {
+      "gain": {
+        "mean": 0.00013754228056271265,
+        "ci95": [
+          -0.0006138653318719292,
+          0.0010603715881613116
+        ]
+      },
+      "early_2021_2023": 0.0008118067234117148,
+      "late_2024_2026": -0.0006762251504619452,
+      "months_better": 22,
+      "preregistered_joint_GO": false
+    },
+    "L3_K1_TWO_LEVELS": {
+      "gain": {
+        "mean": -0.00037634203043793515,
+        "ci95": [
+          -0.0018526464653532435,
+          0.0011415201758374106
+        ]
+      },
+      "early_2021_2023": 0.0008549519497355623,
+      "late_2024_2026": -0.0018623864892680182,
+      "months_better": 22,
+      "preregistered_joint_GO": false
+    },
+    "L4_VOL63_WITHIN": {
+      "gain": {
+        "mean": 0.0004139773739606223,
+        "ci95": [
+          -0.0003449852756452425,
+          0.0012042421262381232
+        ]
+      },
+      "early_2021_2023": 0.0003241767371748242,
+      "late_2024_2026": 0.0005223574528400338,
+      "months_better": 28,
+      "preregistered_joint_GO": false
+    }
+  },
+  "scientific_GO": false,
+  "no_independent_PIT_or_future_holdout": true,
+  "no_production_deployment": true,
+  "limitations": [
+    "Repeatedly mined 2021-2026 cohort of original149 US ETF survivors",
+    "K1 negative 5% is relative to 60/40 benchmark, not absolute downside probability",
+    "No covariance model for simultaneous extreme declines, 8-10 held tickers correlated",
+    "No broker spreads, FX, tax or original fund PIT availability"
+  ]
+}
