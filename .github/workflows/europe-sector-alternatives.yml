@@ -1,0 +1,83 @@
+name: EUROPE_SECTOR_ALTERNATIVES_AMUNDI_XTRACKERS_YFINANCE
+on:
+  push:
+    branches:
+      - research/europe-sector-alternatives-amundi-xtrackers-20261019
+    paths:
+      - '.github/workflows/europe-sector-alternatives.yml'
+      - 'europe_sector2026/alternatives/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+jobs:
+  discover-and-audit-21-independent-european-sector-ucits:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Pin market data and math packages
+        run: |
+          python -m pip install 'yfinance==0.2.65' 'pandas==2.2.3' 'numpy==2.3.5'
+          python -m py_compile europe_sector2026/alternatives/download.py
+      - name: Validate frozen issuer catalog identities and original 30 preserved
+        run: |
+          python - <<'PY'
+          import pandas as pd, pathlib, json
+          p=pathlib.Path("europe_sector2026/alternatives/CATALOG.csv")
+          x=pd.read_csv(p)
+          assert len(x)==21 and x.ticker.is_unique
+          assert (x.issuer=="AMUNDI").sum()==12 and (x.issuer=="XTRACKERS").sum()==9
+          assert x.ticker.str.endswith(".DE").all()
+          assert (x.sector=="REAL_ESTATE").sum()==1
+          assert pathlib.Path("europe_sector2026/results/DOWNLOAD_AUDIT.csv").exists()
+          assert len(pd.read_csv("europe_sector2026/results/DOWNLOAD_AUDIT.csv"))==30
+          PY
+      - name: Download all 21 alternative EUR Xetra historical tickers from Yahoo and quality grade
+        run: |
+          python -m europe_sector2026.alternatives.download --out _ALT21
+      - name: Check both new and old data provenance and no ticker silent substitution
+        run: |
+          python - <<'PY'
+          import pandas as pd,json,hashlib,pathlib
+          p=pathlib.Path("_ALT21")
+          m=json.loads((p/"RESULT.json").read_text())
+          a=pd.read_csv(p/"ALTERNATIVES_QUALITY_AND_BASELINE_COMPARISON.csv")
+          assert len(a)==21 and a.ticker.nunique()==21
+          assert m["roster_proposed"]==21
+          assert a.status.notna().all()
+          for t in a.loc[a.status!="DOWNLOAD_FAILED","ticker"]:
+             assert (p/"raw_vendor"/(t+".csv")).exists()
+             assert (p/"adj_price"/(t+".csv")).exists()
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+             sha,f=line.split("  ",1)
+             assert hashlib.sha256((p/f).read_bytes()).hexdigest()==sha
+          print("ALTERNATIVES_STATUS",m["source_statuses"])
+          print("ALTERNATIVES_QUOTE_GRADES",m["quote_profile_counts"])
+          print("ALTERNATIVES_2017_2026_ELIGIBLE",m["historical_2017_2026_full_coverage"])
+          PY
+      - name: Commit actual Yahoo originals, adjusted prices, issuer quote metadata and comparison
+        run: |
+          mkdir -p europe_sector2026/alternatives/results
+          cp -a _ALT21/. europe_sector2026/alternatives/results/
+          git config user.name "EUROPE21-SECTOR-ALTERNATIVES"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add europe_sector2026/alternatives/results
+          git commit -m "Archive 21 Amundi Xtrackers European sector ETF actual vendor histories, asof coverage and quality comparisons"
+          git push origin HEAD:refs/heads/research/europe-sector-alternatives-amundi-xtrackers-20261019
+      - name: Preserve audit even for failed providers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Europe-sector-21-alternative-vendor-raw-and-quality
+          retention-days: 90
+          path: |
+            _ALT21/
