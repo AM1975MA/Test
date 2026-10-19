@@ -136,7 +136,8 @@ def stats_by_month(forecast,cal,opening,names):
     return evaluations,positions
 
 def evaluate(scored,cal,names,O,master,out):
-    out=Path(out);out.mkdir(parents=True,exist_ok=False)
+    out=Path(out)
+    assert out.is_dir() and not (out/"RESULT.json").exists()
     old=baseline_archive(names,cal)
     base=scored.pivot(index="signal_date",columns="ticker",values="pred")
     own=base.reindex(index=cal.signal_date,columns=names).to_numpy(float)
@@ -157,7 +158,7 @@ def evaluate(scored,cal,names,O,master,out):
                 indexes=desc[:take]
                 # Standalone monthly open-to-open target, source Compact21
                 # mature label horizon 21 EU sessions, not current month.
-                future=by_month.loc[(r.signal_date,names),:]
+                future=by_month.loc[pd.IndexSlice[r.signal_date,names],:]
                 realized21=future.fwd_ret_21.to_numpy(float)
                 rr21=future.target_rank_21.to_numpy(float)
                 assert np.isfinite(realized21).all() and np.isfinite(rr21).all()
