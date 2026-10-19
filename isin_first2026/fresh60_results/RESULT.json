@@ -1,0 +1,23 @@
+{
+  "status": "EUR60_ISIN_MATCHED_FRESH_UNMODIFIED_YAHOO_VENUE_SOURCE",
+  "source": "Yahoo via pinned yfinance 0.2.65, October 2026 fresh",
+  "source_ISIN_mapping_sha": "1db1e110889648620cf3cec76d86f309e696a84275a5bfc7572cfaf4934905f1",
+  "source_roster_sha": "a93571a0bea07dc11359193294b959f40c9888494bba4911e8ae16bf7291f82f",
+  "attempted_original60": 60,
+  "downloaded_EUR_quote_tickers": 60,
+  "quote_statuses": {
+    "EUR_VENDOR_CONFIRMED": 60
+  },
+  "full_2017_to_july2026_with252_prior_bars": 60,
+  "ETF_ISIN_distinct": 44,
+  "same_ISIN_multiple_venues": 16,
+  "total_days_old_vs_new_Close_gt_0_01pct": 42984,
+  "preexisting_EU120_old_bars_were_sanitized": true,
+  "fresh_ohlc_has_NOT_been_repaired": true,
+  "raw_AdjClose_and_Dividends_preserved": true,
+  "current_2026_survivor_roster_not_asof2017": true,
+  "past_ETF_strategy_training_and_backtests_NOT_RERUN": true,
+  "historical_issuer_class_pre2018_quarantine": true,
+  "no_justETF_scraping": true,
+  "retrieved_utc": "2026-10-19 19:00:54.124854+00:00"
+}
