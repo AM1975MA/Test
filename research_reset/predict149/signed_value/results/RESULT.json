@@ -1,0 +1,422 @@
+{
+  "status": "ORIGINAL149_SIGNED_VALUE_DISTRIBUTION_TEST_COMPLETED",
+  "original_tickers": 149,
+  "original_source_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "evaluation_21session_anchors": 64,
+  "same_149_9536_predicted_ticker_months": 9536,
+  "frozen_N4_replay_parity": true,
+  "training_uses_only_strictly_matured_labels": true,
+  "no_new_actual_point_in_time_source": true,
+  "target": "signed 21d benchmark-relative log payoff before costs",
+  "raw_forward_outcome_not_clipped_at_score": true,
+  "model_results": {
+    "B0_N4_TOP15": {
+      "economic": {
+        "cagr": 0.16695968895271163,
+        "terminal_wealth_multiple": 2.284192787443914,
+        "max_daily_open_drawdown": -0.3400723287428331,
+        "daily_log_sharpe": 0.49870602888452226,
+        "daily_es5": -0.04534396597703554,
+        "fee_amount_initial_units": 0.07745746369203566,
+        "gross_turnover_notional_initial_units": 77.45746369203552
+      },
+      "mean_spearman": -0.016543056869475416,
+      "spearman_delta_ci": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "selected_top5_mean_signed_excess": 0.003230059179478861,
+      "selected_top5_probability_positive": 0.496875,
+      "selected_bottom15_fraction": 0.28125,
+      "precision10_top15": 0.2453125,
+      "raw_future_best_found_in_top5": 19,
+      "mean_selected_historical_vol63": 0.02578974515719108,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "mean_signed_excess": -0.013046631318880378,
+          "positive_frac": 0.41714285714285715,
+          "bottom15": 0.3257142857142857,
+          "mean_spearman": -0.04077514295417694,
+          "precision10": 0.2057142857142857
+        },
+        "2024_2026": {
+          "n": 29,
+          "mean_signed_excess": 0.022874340815429665,
+          "positive_frac": 0.5931034482758621,
+          "bottom15": 0.22758620689655173,
+          "mean_spearman": 0.012702564267233329,
+          "precision10": 0.29310344827586204
+        }
+      }
+    },
+    "B1_PAST63": {
+      "economic": {
+        "cagr": -0.06218341280291573,
+        "terminal_wealth_multiple": 0.7093123102937898,
+        "max_daily_open_drawdown": -0.6430059855145218,
+        "daily_log_sharpe": -0.21715754894467715,
+        "daily_es5": -0.04646176956302203,
+        "fee_amount_initial_units": 0.05408473579690476,
+        "gross_turnover_notional_initial_units": 54.08473579690511
+      },
+      "mean_spearman": -0.025304589661579443,
+      "spearman_delta_ci": {
+        "mean": -0.00876153279210403,
+        "ci95": [
+          -0.07099848364091953,
+          0.056170842867573186
+        ]
+      },
+      "selected_top5_mean_signed_excess": -0.013497348696962185,
+      "selected_top5_probability_positive": 0.43437499999999996,
+      "selected_bottom15_fraction": 0.30312500000000003,
+      "precision10_top15": 0.19375,
+      "raw_future_best_found_in_top5": 8,
+      "mean_selected_historical_vol63": 0.021402162952301372,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "mean_signed_excess": -0.022075525515547836,
+          "positive_frac": 0.37714285714285706,
+          "bottom15": 0.34285714285714286,
+          "mean_spearman": -0.04942286532857089,
+          "precision10": 0.2057142857142857
+        },
+        "2024_2026": {
+          "n": 29,
+          "mean_signed_excess": -0.0031443766745312273,
+          "positive_frac": 0.503448275862069,
+          "bottom15": 0.25517241379310346,
+          "mean_spearman": 0.003803674074444724,
+          "precision10": 0.1793103448275862
+        }
+      }
+    },
+    "F1_SIGNED_MEAN": {
+      "economic": {
+        "cagr": 0.010001413656305358,
+        "terminal_wealth_multiple": 1.0546820785657345,
+        "max_daily_open_drawdown": -0.514488408235616,
+        "daily_log_sharpe": 0.037550492499812724,
+        "daily_es5": -0.039628401066476936,
+        "fee_amount_initial_units": 0.08481139882167565,
+        "gross_turnover_notional_initial_units": 84.81139882167577
+      },
+      "mean_spearman": 0.03271585445424676,
+      "spearman_delta_ci": {
+        "mean": 0.04925891132372217,
+        "ci95": [
+          -0.021385858884037903,
+          0.11482469543800534
+        ]
+      },
+      "selected_top5_mean_signed_excess": -0.006654924711427133,
+      "selected_top5_probability_positive": 0.50625,
+      "selected_bottom15_fraction": 0.215625,
+      "precision10_top15": 0.15625,
+      "raw_future_best_found_in_top5": 6,
+      "mean_selected_historical_vol63": 0.019513780741362056,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "mean_signed_excess": -0.018612646087905218,
+          "positive_frac": 0.4742857142857143,
+          "bottom15": 0.25142857142857145,
+          "mean_spearman": 0.05994874781413377,
+          "precision10": 0.15714285714285717
+        },
+        "2024_2026": {
+          "n": 29,
+          "mean_signed_excess": 0.007776807984322276,
+          "positive_frac": 0.5448275862068965,
+          "bottom15": 0.17241379310344832,
+          "mean_spearman": -0.00015143063527204849,
+          "precision10": 0.15517241379310345
+        }
+      }
+    },
+    "F2_HURDLE_EXPECTED": {
+      "economic": {
+        "cagr": 0.13630337105694346,
+        "terminal_wealth_multiple": 1.9809849879752768,
+        "max_daily_open_drawdown": -0.2828375369847387,
+        "daily_log_sharpe": 0.5049415397778968,
+        "daily_es5": -0.035799148443274455,
+        "fee_amount_initial_units": 0.12714015474774776,
+        "gross_turnover_notional_initial_units": 127.14015474774813
+      },
+      "mean_spearman": 0.0870545941238266,
+      "spearman_delta_ci": {
+        "mean": 0.10359765099330201,
+        "ci95": [
+          0.0357960792283156,
+          0.1701490910921862
+        ]
+      },
+      "selected_top5_mean_signed_excess": 0.003558406874610845,
+      "selected_top5_probability_positive": 0.5593750000000001,
+      "selected_bottom15_fraction": 0.1625,
+      "precision10_top15": 0.16875,
+      "raw_future_best_found_in_top5": 6,
+      "mean_selected_historical_vol63": 0.019555585785833454,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "mean_signed_excess": -0.0009857584645285731,
+          "positive_frac": 0.5200000000000001,
+          "bottom15": 0.18857142857142858,
+          "mean_spearman": 0.11525829514559457,
+          "precision10": 0.18857142857142858
+        },
+        "2024_2026": {
+          "n": 29,
+          "mean_signed_excess": 0.009042744352882555,
+          "positive_frac": 0.606896551724138,
+          "bottom15": 0.1310344827586207,
+          "mean_spearman": 0.05301564461479622,
+          "precision10": 0.14482758620689656
+        }
+      }
+    },
+    "F3_QUANTILE_EXPECTED": {
+      "economic": {
+        "cagr": 0.20019785988909722,
+        "terminal_wealth_multiple": 2.6545062423987207,
+        "max_daily_open_drawdown": -0.2973714609803775,
+        "daily_log_sharpe": 0.6930182026665771,
+        "daily_es5": -0.03701818959091073,
+        "fee_amount_initial_units": 0.15444598994696845,
+        "gross_turnover_notional_initial_units": 154.445989946968
+      },
+      "mean_spearman": 0.07318503342003727,
+      "spearman_delta_ci": {
+        "mean": 0.08972809028951267,
+        "ci95": [
+          0.03241090332575143,
+          0.14563687368175807
+        ]
+      },
+      "selected_top5_mean_signed_excess": 0.007949213898550314,
+      "selected_top5_probability_positive": 0.5625,
+      "selected_bottom15_fraction": 0.178125,
+      "precision10_top15": 0.1921875,
+      "raw_future_best_found_in_top5": 10,
+      "mean_selected_historical_vol63": 0.0197793997969037,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "mean_signed_excess": 0.005310335347855458,
+          "positive_frac": 0.5485714285714286,
+          "bottom15": 0.18285714285714286,
+          "mean_spearman": 0.08229635603870138,
+          "precision10": 0.18571428571428572
+        },
+        "2024_2026": {
+          "n": 29,
+          "mean_signed_excess": 0.011134067321802728,
+          "positive_frac": 0.5793103448275863,
+          "bottom15": 0.17241379310344832,
+          "mean_spearman": 0.062188609569925404,
+          "precision10": 0.19999999999999998
+        }
+      }
+    },
+    "F4_SIGNED_EVENT_VALUE": {
+      "economic": {
+        "cagr": 0.13367444853089006,
+        "terminal_wealth_multiple": 1.9565892533034932,
+        "max_daily_open_drawdown": -0.2949675780602792,
+        "daily_log_sharpe": 0.5417407657630161,
+        "daily_es5": -0.034156424944464456,
+        "fee_amount_initial_units": 0.14804933537236553,
+        "gross_turnover_notional_initial_units": 148.0493353723659
+      },
+      "mean_spearman": 0.061094593046638515,
+      "spearman_delta_ci": {
+        "mean": 0.07763764991611391,
+        "ci95": [
+          -0.00673759630295104,
+          0.15612169321018596
+        ]
+      },
+      "selected_top5_mean_signed_excess": 0.0037691722702231727,
+      "selected_top5_probability_positive": 0.54375,
+      "selected_bottom15_fraction": 0.140625,
+      "precision10_top15": 0.1484375,
+      "raw_future_best_found_in_top5": 7,
+      "mean_selected_historical_vol63": 0.016293664526119002,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "mean_signed_excess": 0.004392996789417061,
+          "positive_frac": 0.5771428571428571,
+          "bottom15": 0.16,
+          "mean_spearman": 0.09825331910687667,
+          "precision10": 0.15714285714285714
+        },
+        "2024_2026": {
+          "n": 29,
+          "mean_signed_excess": 0.0030162806091271013,
+          "positive_frac": 0.503448275862069,
+          "bottom15": 0.11724137931034483,
+          "mean_spearman": 0.01624785469807521,
+          "precision10": 0.13793103448275865
+        }
+      }
+    },
+    "F5_MEAN_PER_UNIT_RISK": {
+      "economic": {
+        "cagr": 0.044015431966658136,
+        "terminal_wealth_multiple": 1.2591501767462785,
+        "max_daily_open_drawdown": -0.42586935154021666,
+        "daily_log_sharpe": 0.17644853362294027,
+        "daily_es5": -0.03699411516630132,
+        "fee_amount_initial_units": 0.09387169667277728,
+        "gross_turnover_notional_initial_units": 93.87169667277657
+      },
+      "mean_spearman": 0.03204256250810168,
+      "spearman_delta_ci": {
+        "mean": 0.0485856193775771,
+        "ci95": [
+          -0.012153036852468796,
+          0.10472642477725454
+        ]
+      },
+      "selected_top5_mean_signed_excess": -0.002764101023324414,
+      "selected_top5_probability_positive": 0.534375,
+      "selected_bottom15_fraction": 0.184375,
+      "precision10_top15": 0.1453125,
+      "raw_future_best_found_in_top5": 5,
+      "mean_selected_historical_vol63": 0.017477640150149513,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "mean_signed_excess": -0.011760228589305477,
+          "positive_frac": 0.5257142857142858,
+          "bottom15": 0.21142857142857144,
+          "mean_spearman": 0.048932778563798705,
+          "precision10": 0.13142857142857145
+        },
+        "2024_2026": {
+          "n": 29,
+          "mean_signed_excess": 0.00809329431492859,
+          "positive_frac": 0.5448275862068965,
+          "bottom15": 0.1517241379310345,
+          "mean_spearman": 0.011657818992605283,
+          "precision10": 0.1620689655172414
+        }
+      }
+    },
+    "N7_VOL_ONLY": {
+      "economic": {
+        "cagr": 0.06143854254598491,
+        "terminal_wealth_multiple": 1.3757238387771422,
+        "max_daily_open_drawdown": -0.3636405231429154,
+        "daily_log_sharpe": 0.1966205738885123,
+        "daily_es5": -0.04347337610841269,
+        "fee_amount_initial_units": 0.040811038485564666,
+        "gross_turnover_notional_initial_units": 40.81103848556584
+      },
+      "mean_spearman": 0.03588004641018133,
+      "spearman_delta_ci": {
+        "mean": 0.052423103279656755,
+        "ci95": [
+          0.023064291230591966,
+          0.0840896779136581
+        ]
+      },
+      "selected_top5_mean_signed_excess": -0.006486293738497014,
+      "selected_top5_probability_positive": 0.459375,
+      "selected_bottom15_fraction": 0.340625,
+      "precision10_top15": 0.296875,
+      "raw_future_best_found_in_top5": 19,
+      "mean_selected_historical_vol63": 0.03204262282856592,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "mean_signed_excess": -0.004734194995376976,
+          "positive_frac": 0.45142857142857135,
+          "bottom15": 0.3428571428571428,
+          "mean_spearman": 0.002582304345557777,
+          "precision10": 0.3114285714285715
+        },
+        "2024_2026": {
+          "n": 29,
+          "mean_signed_excess": -0.00860089566984879,
+          "positive_frac": 0.46896551724137925,
+          "bottom15": 0.3379310344827586,
+          "mean_spearman": 0.0760669764881753,
+          "precision10": 0.2793103448275862
+        }
+      }
+    }
+  },
+  "proper_scores_signed_distribution": {
+    "sign": {
+      "brier": 0.24849391047386954,
+      "logloss": 0.6904014130571986,
+      "mean_prediction": 0.47076924475023624,
+      "event_rate": 0.4820679530201342
+    },
+    "sign_null": {
+      "brier": 0.2499136351581124,
+      "logloss": 0.6929750661411891,
+      "mean_prediction": 0.47986760311907184,
+      "event_rate": 0.4820679530201342
+    },
+    "up3": {
+      "brier": 0.15452129005344709,
+      "logloss": 0.48439509599141967,
+      "mean_prediction": 0.19617275416774932,
+      "event_rate": 0.19693791946308725
+    },
+    "up3_null": {
+      "brier": 0.15450045063275233,
+      "logloss": 0.48393377303556084,
+      "mean_prediction": 0.19021415058254676,
+      "event_rate": 0.19693791946308725
+    },
+    "down5": {
+      "brier": 0.09317808969639779,
+      "logloss": 0.32106100150752753,
+      "mean_prediction": 0.11799202577370956,
+      "event_rate": 0.11147231543624161
+    },
+    "down5_null": {
+      "brier": 0.09600246723071576,
+      "logloss": 0.3331694637154154,
+      "mean_prediction": 0.10489811492087325,
+      "event_rate": 0.11147231543624161
+    },
+    "mean_clipped_MSE": 0.0024878659603355772,
+    "matured_prior_MSE": 0.002464577653373694,
+    "hurdle_clipped_MSE": 0.0024643595428118343,
+    "q10_pinball": 0.007984945179653613,
+    "q10_null_pinball": 0.008915754805273299,
+    "q50_pinball": 0.017460905151131093,
+    "q50_null_pinball": 0.017445553861084054,
+    "q90_pinball": 0.008527424640818163,
+    "q90_null_pinball": 0.009383380716036512
+  },
+  "preregistered_directional_skill_gates": {
+    "F1_SIGNED_MEAN": false,
+    "F2_HURDLE_EXPECTED": false,
+    "F3_QUANTILE_EXPECTED": false,
+    "F4_SIGNED_EVENT_VALUE": false,
+    "F5_MEAN_PER_UNIT_RISK": false
+  },
+  "no_promotion_or_backtest_tuning": true,
+  "caveats": [
+    "Original149 survivor-selected and already heavily mined 2021\u201326",
+    "No untouched prospective evidence, no historically delisted funds",
+    "Three quantiles do not fully define the true conditional distribution",
+    "F2 part-wise magnitude forecasts are approximate conditional means",
+    "Future 60/40 benchmark is only target label, not as-of feature",
+    "Yahoo adjusted price path does not ensure executable EUR ETF quotes",
+    "High shadow CAGR, if any, is not a validated profitable strategy"
+  ]
+}
