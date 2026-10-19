@@ -1,0 +1,64 @@
+name: EUR60_FRESH_YFINANCE_RAW_ISIN_MATCHED_PRICE_SOURCES
+on:
+  push:
+    branches:
+      - research/isin-first-verified-europe-prices-20261019
+    paths:
+      - '.github/workflows/isin-first-fresh-yahoo-60.yml'
+      - 'isin_first2026/fresh_60.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  retake-60-unmodified-yahoo-histories:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Pin Yahoo data and table parsers
+        run: |
+          python -m pip install 'yfinance==0.2.65' 'pandas==2.2.3' 'numpy==2.3.5'
+          python -m py_compile isin_first2026/fresh_60.py
+      - name: Independently retrieve EUR60 Yahoo raw histories with Xetra-and-issuer verified ISIN mapping
+        run: python -m isin_first2026.fresh_60 --out _EUR60_FRESH_RAW
+      - name: Validate no row-price clipping, issuer quarantine flags and every available CSV checksum
+        run: |
+          python - <<'PY'
+          import pandas as pd, pathlib, json, hashlib
+          p=pathlib.Path("_EUR60_FRESH_RAW")
+          r=json.loads((p/"RESULT.json").read_text())
+          a=pd.read_csv(p/"ALL_60_FRESH_RAW_PRICE_AND_OLD_SOURCE_DIFFERENCES.csv")
+          assert r["attempted_original60"]==60
+          assert r["ETF_ISIN_distinct"]==44
+          assert r["same_ISIN_multiple_venues"]==16
+          assert len(a)==60 and a.ticker.nunique()==60
+          assert r["fresh_ohlc_has_NOT_been_repaired"]
+          assert r["historical_issuer_class_pre2018_quarantine"]
+          for t in a.loc[a.status!="DOWNLOAD_FAILED","ticker"]:
+              assert (p/"raw_vendor"/(t+".csv")).exists()
+              assert (p/"adj_price"/(t+".csv")).exists()
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+              h,file=line.split("  ",1)
+              assert hashlib.sha256((p/file).read_bytes()).hexdigest()==h
+          print("ISIN_EUR60_FRESH_YAHOO_QUALITY_REPORT",r)
+          PY
+      - name: Archive raw rows adjusted exchange OHLC and source-vintage differences
+        run: |
+          mkdir -p isin_first2026/fresh60_results
+          cp -a _EUR60_FRESH_RAW/. isin_first2026/fresh60_results/
+          git config user.name "ETF_ISIN_FRESH_RAW_EUR60_FORENSIC"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/fresh60_results
+          git commit -m "Preserve all available original EUR60 ETF vendor OHLC and dividend histories with ISIN as of Oct 2026"
+          git push origin HEAD:refs/heads/research/isin-first-verified-europe-prices-20261019
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: EUR60_2026_FRESH_UNSANITIZED_RAW_YAHOO_TRADABLE_VENUES_ISIN
+          retention-days: 90
+          path: _EUR60_FRESH_RAW/
