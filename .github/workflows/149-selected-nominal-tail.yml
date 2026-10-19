@@ -1,0 +1,72 @@
+name: ORIGINAL149_SELECTED_NOMINAL_TAIL_RISK
+on:
+  push:
+    branches:
+      - research/149-selected-nominal-tail-20261019
+    paths:
+      - 'research_reset/predict149/selected_nominal_tail/run.py'
+      - 'research_reset/predict149/selected_nominal_tail/test_run.py'
+      - 'research_reset/predict149/selected_nominal_tail/PREREGISTERED.md'
+      - '.github/workflows/149-selected-nominal-tail.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: '.'
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  original149-selected-nominal-tail-model:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Fixed runtime and compile
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/selected_nominal_tail/run.py research_reset/predict149/selected_nominal_tail/test_run.py
+      - name: Run chronology, frozen roster, and exact Open horizon tests
+        run: python -m unittest -v research_reset.predict149.selected_nominal_tail.test_run
+      - name: Fit past-matured selected nominal risk and jointly correlated basket risk models
+        run: python -m research_reset.predict149.selected_nominal_tail.run --out _M149
+      - name: Validate the 64 historical blocks and independent error metrics
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_M149/RESULT.json").read_text())
+          assert d["status"]=="T149_M_SELECTED_NOMINAL_TAIL_CHRONOLOGY_COMPLETE"
+          assert d["universe_count"]==149 and d["total_evaluation_blocks"]==64
+          assert d["n_scored_portfolio_dates"]==43
+          assert d["strict_previous_block_embargo"] and d["same_f3_h1_top5"]
+          assert d["exact_static_share_parity"]
+          assert "M_TAIL_WITHIN" in d["paired_economics"]
+          print("T149_M_PRECOMMITTED_GO",d["scientific_GO"])
+          PY
+      - name: Persist trained-model forecasts realized labels and costed trade trajectories
+        run: |
+          mkdir -p research_reset/predict149/selected_nominal_tail/results
+          cp _M149/*.csv _M149/*.json research_reset/predict149/selected_nominal_tail/results/
+          (cd research_reset/predict149/selected_nominal_tail/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/selected_nominal_tail/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "Original149-Selected-Nominal-Risk-Science"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/selected_nominal_tail/results
+          git commit -m "Archive prequential absolute risk classification, correlated-basket forecasts and costed tilt evidence"
+          git push origin HEAD:refs/heads/research/149-selected-nominal-tail-20261019
+      - name: Always preserve experiment diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-selected-nominal-risk-prequential-evidence
+          retention-days: 90
+          path: |
+            _M149/*.csv
+            _M149/*.json
