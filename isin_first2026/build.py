@@ -102,6 +102,17 @@ def load_proposals():
         add_candidate(p,x.original_ticker,"8_ALIAS_ORIGIN",
                       category=x.sector,isin=x.isin,family=x.issuer,
                       label=x.comparison_type)
+    evidence=pd.read_csv(ROOT/"isin_first2026/MANUALLY_VERIFIED_NON_XETRA_EUR60_ISINS.csv").fillna("")
+    assert len(evidence)==22 and evidence.ticker.nunique()==22
+    for x in evidence.itertuples(index=False):
+        assert check_isin(x.isin) and x.evidence_url.startswith("https://")
+        assert x.ticker in p and "EUR60_FROZEN" in p[x.ticker]["catalogs"]
+        add_candidate(p,x.ticker,"SOURCED_MANUAL_ISSUER_OR_SECONDARY_ISIN",
+                      isin=x.isin,family=x.evidence_quality)
+        p[x.ticker]["manual_isin_evidence_url"]=x.evidence_url
+        p[x.ticker]["manual_isin_evidence_quality"]=x.evidence_quality
+        p[x.ticker]["manual_linked_xetra"]=x.xetra_reference_mnemonic
+        p[x.ticker]["manual_class_launch"]=x.share_class_inception_date
     return p
 
 def identify(proposals,xetra):
@@ -109,8 +120,11 @@ def identify(proposals,xetra):
     for t,r in sorted(proposals.items()):
         suffix=t.rsplit(".",1)[1]
         src=sorted(r["proposed_isins"])
-        official=xetra.get(t[:-3],[]) if suffix=="DE" else []
-        # Very rare, potentially multiple product share classes with the same mnemonic.
+        related_mnemonic=(t[:-3] if suffix=="DE" else
+                          r.get("manual_linked_xetra",""))
+        official=xetra.get(related_mnemonic,[]) if related_mnemonic else []
+        # Exact issuer supplied same-ISIN Xetra crosslisting is proof only
+        # if the official current Xetra master independently matches.
         official_ids=sorted({u["ISIN"] for u in official
                             if u["MIC Code"]=="XETR" and
                             u["Product Status"]=="Active" and
@@ -121,10 +135,14 @@ def identify(proposals,xetra):
         elif src and official_ids and src[0]!=official_ids[0]:
             status="ISIN_CONFLICT_ISSUER_VS_XETRA";ident=""
         elif official_ids:
-            status="XETRA_2026_OFFICIAL"+("_ISSUER_CROSSCHECK" if src else "")
+            status=("XETRA_2026_OFFICIAL" if suffix=="DE"
+                else "SAME_ISIN_CONFIRMED_BY_XETRA_AND_ISSUER") + (
+                "_ISSUER_CROSSCHECK" if src and suffix=="DE" else "")
             ident=official_ids[0]
         elif src:
-            status="ISSUER_CATALOG_ONLY_NO_XETRA_MATCH"
+            status=("SECONDARY_PROFILE_ONLY_UNCONFIRMED" if
+               r.get("manual_isin_evidence_quality","").startswith("SECONDARY")
+               else "ISSUER_CATALOG_ONLY_NO_XETRA_MATCH")
             ident=src[0]
         else:
             status="UNRESOLVED_ISIN_NO_EVIDENCE";ident=""
@@ -139,6 +157,10 @@ def identify(proposals,xetra):
              xetra_candidate_isins="|".join(official_ids),
              issuer_proposed=len(src)>0,reference_currency=ccy,
              reference_first_trading=str(official_info.get("First Trading Date","")),
+             related_xetra_mnemonic=related_mnemonic,
+             manual_isin_evidence_url=r.get("manual_isin_evidence_url",""),
+             evidence_quality=r.get("manual_isin_evidence_quality",""),
+             share_class_inception=r.get("manual_class_launch",""),
              reference_instrument_name=str(official_info.get("Instrument","")),
              reference_instrument_type=str(official_info.get("Instrument Type","")),
              market=VENUE_GROUP.get(suffix,suffix),
@@ -202,8 +224,15 @@ def assess(t,row,z,path,source):
     frate=float(flat.sum()/len(window)) if len(window) else math.nan
     ret=np.log(window.Close.where(window.Close>0)).diff()
     hist=bool(len(pre)>=252 and pd.notna(last) and last>=STUDY_END)
+    # The current Amundi share class was first introduced in 2018, whereas
+    # legacy Yahoo has prices as early as 2008 under the surviving ticker.
+    # Do not let retrospective predecessor bars masquerade as 2017 prices
+    # belonging to the 2018 legal ISIN until issuer continuity is proven.
+    class_date=pd.to_datetime(getattr(row,"share_class_inception",""),errors="coerce")
+    invalid_preclass=bool(pd.notna(class_date) and z.index.min()<class_date)
     suspicious=(window.loc[valid,"Close"].pct_change().abs()>.25).sum()
-    grade=("NOT_READY_2017_2026" if not hist else
+    grade=("QUARANTINE_PRECLASS_HISTORY" if invalid_preclass else
+           "NOT_READY_2017_2026" if not hist else
            "BAD_SOURCE_BAR_RECORDS" if (~valid).sum()>len(window)*.015 or bad.sum()>len(window)*.01 else
            "A_QUOTE_CLEAN" if zrate<=.02 and frate<=.03 else
            "B_QUOTE_REVIEW" if zrate<=.10 and frate<=.12 else
@@ -215,7 +244,9 @@ def assess(t,row,z,path,source):
         zero_vendor_volume=int((window.Volume.eq(0)&valid).sum()),
         zero_vendor_volume_pct=100*zrate,flat_ohlc=int(flat.sum()),
         flat_ohlc_pct=100*frate,unadjusted_outliers_gt25pct=int(suspicious),
-        daily_adjusted_log_vol=float(ret.std()),grade=grade))
+        daily_adjusted_log_vol=float(ret.std()),grade=grade,
+        issuer_share_class_first_date=(str(class_date.date()) if pd.notna(class_date) else ""),
+        disallowed_legacy_pre_current_isin_bars=int((z.index<class_date).sum()) if pd.notna(class_date) else 0))
     return stats
 
 def pair_compare(a,b,meta,prices):
@@ -325,8 +356,15 @@ def run(out):
         identified_count=int((identified["isin"].str.len()==12).sum()),
         euro60_source_XETRA_official_matched=int(len(xtra)),
         euro60_unresolved_or_nonXetra=int(60-len(xtra)),
+        euro60_verified_other_venues=int(identified[
+            (identified.in_original_EUR60)&identified.status.str.startswith(
+                 "SAME_ISIN_CONFIRMED_BY_XETRA_AND_ISSUER")].shape[0]),
+        euro60_verified_total_current_isins=int(identified[
+            (identified.in_original_EUR60)&identified["isin"].str.len().eq(12)].shape[0]),
         identity_statuses=dict(statuses),
         source_quality_classes=dict(s),
+        knowingly_quarantined_pre2018_shareclass=int(
+          (audit.grade=="QUARANTINE_PRECLASS_HISTORY").sum()),
         with_parsed_yahoo_OHLCV=len(price_data),
         unique_ISIN_with_any_quotes=len(grouped),
         clean_A_B_one_per_ISIN=int(len(unique)),
