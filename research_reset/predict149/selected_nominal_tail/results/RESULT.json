@@ -1,0 +1,161 @@
+{
+  "status": "T149_M_SELECTED_NOMINAL_TAIL_CHRONOLOGY_COMPLETE",
+  "universe_count": 149,
+  "original149_universe_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "total_evaluation_blocks": 64,
+  "minimum_prior_matured_ticker": 16,
+  "minimum_prior_matured_basket": 20,
+  "strict_previous_block_embargo": true,
+  "same_f3_h1_top5": true,
+  "exact_static_share_parity": true,
+  "n_scored_portfolio_dates": 43,
+  "n_scored_held_rows": 408,
+  "label_definition": "raw ETF 21d entry Open to exit Open < -5%; baseline 50/50 gross 21d <-5%; intramonth basket minimum relative to entry Open <-8%",
+  "covariance_definition": "prior 63 completed Close daily log returns, 50 percent diagonal shrink",
+  "ticker_brier_gain": {
+    "M_TAIL": {
+      "mean": -0.015035991858455363,
+      "ci95": [
+        -0.024054282079516674,
+        -0.0061072199991901955
+      ]
+    },
+    "VOL_ONLY": {
+      "mean": -0.007563222769060108,
+      "ci95": [
+        -0.016639945975091164,
+        0.0024965395646875266
+      ]
+    }
+  },
+  "portfolio_proper_scores": {
+    "loss5": {
+      "positives": 3,
+      "evaluated_anchors": 43,
+      "observed_rate": 0.06976744186046512,
+      "predicted_rate": 0.09257541754277153,
+      "brier_model": 0.06915425175486506,
+      "brier_prior": 0.06915425175486506,
+      "brier_gaussian": 0.06708688573778657,
+      "model_minus_prior_gain": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "model_minus_gaussian_gain": {
+        "mean": -0.0020673660170784803,
+        "ci95": [
+          -0.023760583711608236,
+          0.01582983310936696
+        ]
+      }
+    },
+    "intra8": {
+      "positives": 2,
+      "evaluated_anchors": 43,
+      "observed_rate": 0.046511627906976744,
+      "predicted_rate": 0.37519529870856655,
+      "brier_model": 0.15506727450159083,
+      "brier_prior": 0.0665117223515645,
+      "brier_gaussian": 0.05680558600169926,
+      "model_minus_prior_gain": {
+        "mean": -0.08855555215002635,
+        "ci95": [
+          -0.12155098869889704,
+          -0.0432490056369242
+        ]
+      },
+      "model_minus_gaussian_gain": {
+        "mean": -0.09826168849989157,
+        "ci95": [
+          -0.13402013909641833,
+          -0.04972605849381413
+        ]
+      }
+    }
+  },
+  "economics": {
+    "STATIC_F3_H1_50": {
+      "fee_notional": 0.15155562833653902,
+      "absolute_gross_traded_initial_dollars": 151.55562833653968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23215134965968853,
+      "wealth_final": 3.052086994452834,
+      "maxdd_daily_open": -0.24844218622336645,
+      "sharpe_daily_log": 0.886921856171717,
+      "es5_daily": -0.033023285234276945,
+      "daily_vol_annualized": 0.23610277282133796
+    },
+    "M_TAIL_WITHIN": {
+      "fee_notional": 0.1549839572387165,
+      "absolute_gross_traded_initial_dollars": 154.98395723871698,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23455350781203732,
+      "wealth_final": 3.0840546159572497,
+      "maxdd_daily_open": -0.2490951106999827,
+      "sharpe_daily_log": 0.9057128866217692,
+      "es5_daily": -0.03256840444468822,
+      "daily_vol_annualized": 0.23336134206729184
+    },
+    "VOL_ONLY_WITHIN": {
+      "fee_notional": 0.15390503516062226,
+      "absolute_gross_traded_initial_dollars": 153.90503516062276,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23474554571238948,
+      "wealth_final": 3.0866219380162123,
+      "maxdd_daily_open": -0.2455234466011761,
+      "sharpe_daily_log": 0.9109080551810202,
+      "es5_daily": -0.03235453774859521,
+      "daily_vol_annualized": 0.2322016948249548
+    }
+  },
+  "paired_economics": {
+    "M_TAIL_WITHIN": {
+      "net_log_gain_per_21d_block": {
+        "mean": 0.00016280543597555928,
+        "ci95": [
+          -0.0003413365127847008,
+          0.0006439446725049094
+        ]
+      },
+      "eras": [
+        0.00031051930956124365,
+        -1.5469928696818436e-05
+      ],
+      "maxdd_improves": false,
+      "es5_improves": true
+    },
+    "VOL_ONLY_WITHIN": {
+      "net_log_gain_per_21d_block": {
+        "mean": 0.00017580706039551156,
+        "ci95": [
+          -0.00017227684803773386,
+          0.0005298654722861295
+        ]
+      },
+      "eras": [
+        -3.582868842605708e-05,
+        0.00043122951586981853
+      ],
+      "maxdd_improves": true,
+      "es5_improves": true
+    }
+  },
+  "gate_ticker": false,
+  "gate_portfolio": false,
+  "gate_economics": false,
+  "scientific_GO": false,
+  "preregistered_hypothesis_not_independent": true,
+  "known_limitations": [
+    "2021-26 repeatedly mined US survivor list",
+    "43 effective dates, not independent ticker rows",
+    "same chronology does not constitute fresh holdout",
+    "no true point-in-time ETF membership",
+    "FX, live spreads, taxes and EU brokerage untested"
+  ]
+}
