@@ -117,14 +117,15 @@ def fit_source_base(src,cal,names,out):
 def baseline_archive(n,cal):
     saved=pd.read_csv(SOURCE/"results/48_ETF_PREDICTIVE_SCORES_CHRONOLOGICAL.csv",
                      parse_dates=["signal_date"])
-    src={}
-    for kind in ("ORIGINAL_MA3","ADAPT_4_CAUSAL"):
-        table=saved[saved.method==kind].pivot(index="signal_date",
-             columns="ticker",values="forecast_rank_score")
-        test=table.reindex(index=cal.signal_date,columns=n).to_numpy(float)
-        assert test.shape==(65,48) and np.isfinite(test).all(),kind
-        src["MA3_ORIGINAL" if kind=="ORIGINAL_MA3" else "ADAPT4"]=test
-    return src
+    from isin_first2026.predict48.replay_v2 import build_new_rank
+    table=saved[saved.method=="ORIGINAL_MA3"].pivot(index="signal_date",
+         columns="ticker",values="forecast_rank_score")
+    ma3=table.reindex(index=cal.signal_date,columns=n).to_numpy(float)
+    assert ma3.shape==(65,48) and np.isfinite(ma3).all()
+    # Independently reconstruct and verify every ADAPT4 Top5 against the
+    # archived causal expert choices, not missing from original 16-method CSV.
+    adapt4=build_new_rank(cal,n)
+    return {"MA3_ORIGINAL":ma3,"ADAPT4":adapt4}
 
 def stats_by_month(forecast,cal,opening,names):
     evaluations=[];positions={}
