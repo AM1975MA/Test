@@ -152,11 +152,11 @@ def evaluate():
         compare[kind]=dict(
              n=TRIALS,observed_winner_hits=original["N4_NONLINEAR_TOP15"]["top1_winner_in_forecast_top5"],
              median_matched_winner_hits=float(sub.future_absolute_winner_hits.median()),
-             95pct_quantile_matched_hits=float(sub.future_absolute_winner_hits.quantile(.95)),
+             matched_hits_p95=float(sub.future_absolute_winner_hits.quantile(.95)),
              conditional_empirical_upper_tail_hit_rate=float((1+sum(sub.future_absolute_winner_hits>=
                 original["N4_NONLINEAR_TOP15"]["top1_winner_in_forecast_top5"]))/(TRIALS+1)),
              median_null_CAGR=float(sub.cagr.median()),
-             95pct_CAGR=float(sub.cagr.quantile(.95)),
+             null_CAGR_p95=float(sub.cagr.quantile(.95)),
              original_model_CAGR=float(e["cagr"]),
              percentile_of_original_CAGR=float(np.mean(sub.cagr<e["cagr"])),
              median_null_daily_drawdown=float(sub.max_daily_open_drawdown.median()),
@@ -184,7 +184,7 @@ def evaluate():
         all(eras[era]["N4_NONLINEAR_TOP15"]["Brier"]<
             eras[era]["N6_VOL_GROUP_PROB"]["Brier"] for era in eras) and
         original["N4_NONLINEAR_TOP15"]["top1_winner_in_forecast_top5"]>
-            q["95pct_quantile_matched_hits"] and
+            q["matched_hits_p95"] and
         e["cagr"]>p60["cagr"] and
         e["max_daily_open_drawdown"]>=-.30 and
         e["cagr"]>q["median_null_CAGR"] and
