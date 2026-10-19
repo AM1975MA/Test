@@ -1,0 +1,13 @@
+{
+  "status": "SECOND_PASS_ISIN_EXCHANGE_MNEMONIC_YAHOO_COMPLETE",
+  "attempts": 4,
+  "yahoo_results": {
+    "EUR_YAHOO_ETF_CANDIDATE": 3,
+    "DOWNLOAD_FAILED": 1
+  },
+  "catalog_sha256": "8803965e19835b0b4750a370fa713e19617f520c55cb0964d84479c8c4e57074",
+  "original_proof_snapshot_sha256": "40da5453da0a919ae85e05f6957393f4927c53fc54e75f4672b66f6eae8dc403",
+  "no_automated_justETF_scraping": true,
+  "not_proven_trading_price": true,
+  "future_asset_ranking_not_run": true
+}
