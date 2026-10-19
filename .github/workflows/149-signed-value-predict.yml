@@ -1,0 +1,75 @@
+name: ETF149_SIGNED_VALUE_AND_DIRECTION_PREDICTORS
+on:
+  push:
+    branches:
+      - research/149-signed-value-predictor-20261019
+    paths:
+      - 'research_reset/predict149/signed_value/PREREGISTERED.md'
+      - 'research_reset/predict149/signed_value/run.py'
+      - 'research_reset/predict149/signed_value/test_run.py'
+      - '.github/workflows/149-signed-value-predict.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  exact149-models-for-direction-and-conditional-magnitude:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install deterministic numerical runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'lightgbm==4.6.0'
+          python -m py_compile research_reset/predict149/signed_value/run.py research_reset/predict149/signed_value/test_run.py
+      - name: Check signed economic labels and prohibit future-price features
+        run: |
+          python -m unittest -v research_reset.predict149.signed_value.test_run
+      - name: Fit only matured 149 signed-excess return distributions chronologically
+        run: |
+          python -m research_reset.predict149.signed_value.run --out _t149f
+      - name: Scientific and economic hard gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_t149f/RESULT.json").read_text())
+          assert d["status"]=="ORIGINAL149_SIGNED_VALUE_DISTRIBUTION_TEST_COMPLETED"
+          assert d["original_tickers"]==149 and d["evaluation_21session_anchors"]==64
+          assert d["same_149_9536_predicted_ticker_months"]==9536
+          assert d["training_uses_only_strictly_matured_labels"]
+          assert d["frozen_N4_replay_parity"]
+          assert d["raw_forward_outcome_not_clipped_at_score"]
+          assert len(d["model_results"])==8
+          print("ORIGINAL149_SIGNED_PROPER_AND_ECONOMIC_GATES",d["preregistered_directional_skill_gates"])
+          PY
+      - name: Permanently archive every signed probability and magnitude forecast
+        run: |
+          mkdir -p research_reset/predict149/signed_value/results
+          cp _t149f/*.csv _t149f/*.json research_reset/predict149/signed_value/results/
+          (cd research_reset/predict149/signed_value/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/signed_value/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-Signed-Value-Scientific-Audit"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/signed_value/results
+          git commit -m "Archive original149 signed excess likelihood, conditional magnitude, quantile and tail risks, full proper scores, chronology and self-funded equity comparisons"
+          git push origin HEAD:refs/heads/research/149-signed-value-predictor-20261019
+      - name: Preserve all evidence even for negative findings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-signed-excess-probability-forecast-diagnostics
+          retention-days: 90
+          path: |
+            _t149f/*.csv
+            _t149f/*.json
