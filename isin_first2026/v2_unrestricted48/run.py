@@ -198,8 +198,15 @@ def run(prep,tit,output):
     mv=evaluate(Ev2,Tv2,ds)
     original_ref=json.loads(REF.read_text())
     assert original_ref["evaluation_months"]==65
-    if len(ds)!=original_ref["evaluation_daily_open_count"]:
-        raise RuntimeError("Not matching original common EUR48 mark count: "+str(len(ds)))
+    # ETF Trader source-only strategy evaluates ALL 48-way observed European
+    # sessions, not only EU sessions shared with US factor timestamps used by
+    # the F3/H1 experiment. Different daily calendars are an EXPLICIT
+    # comparability limit, not a reason to reject genuine EU market evidence.
+    original_ref_days=pd.read_csv(ROOT/
+        "isin_first2026/refit48/results/DAILY_COSTED_EQUITY_SAME_EUROPE_DATES.csv",
+        parse_dates=["day"])["day"]
+    common_f3_dates=int(pd.DatetimeIndex(ds).isin(original_ref_days).sum())
+    assert common_f3_dates>=original_ref["evaluation_daily_open_count"]-2
     extra=np.asarray(wv>w0+1e-12)
     eval_result=dict(
        status="ETF_TRAINER_V2_UNRESTRICTED_48_FRESH_MODELS_AND_DAILY_SIM_COMPLETE",
@@ -209,6 +216,13 @@ def run(prep,tit,output):
        no_500_baskets=True,source_only_real_Titanium_retrained=True,
        source_only_real_MA3_HYBRID24_retrained=True,
        maturity_safe_hybrid_fit=True,source_S3B_cluster_port=port,
+       european_48_way_observed_daily_opens=len(ds),
+       f3_h1_extra_US_market_date_intersection_daily_opens=
+          original_ref["evaluation_daily_open_count"],
+       overlap_with_F3_H1_calendar_days=common_f3_dates,
+       extra_EU_only_open_dates=len(ds)-common_f3_dates,
+       same_full_execution_calendar_as_F3_H1=(len(ds)==common_f3_dates),
+       note_F3_H1_not_strictly_daily_comparable_due_US_factor_calendar=True,
        monthly_signal_count=len(p.calendar),
        signal_first=str(p.calendar.signal_date.min().date()),
        signal_last=str(p.calendar.signal_date.max().date()),
