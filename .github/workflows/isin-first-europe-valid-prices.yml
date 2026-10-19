@@ -1,0 +1,71 @@
+name: EUROPE_ETF_OFFICIAL_ISIN_FIRST_VERIFIED_PRICE_DATASET
+on:
+  push:
+    branches:
+      - research/isin-first-verified-europe-prices-20261019
+    paths:
+      - '.github/workflows/isin-first-europe-valid-prices.yml'
+      - 'isin_first2026/build.py'
+      - 'isin_first2026/test_build.py'
+      - 'isin_first2026/README.md'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  official-xetra-funds-multi-venue-validation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Pin stable dependencies and compile
+        run: |
+          python -m pip install 'pandas==2.2.3' 'numpy==2.3.5'
+          python -m py_compile isin_first2026/*.py
+      - name: Independent quality and security ID unit tests
+        run: python -m unittest -v isin_first2026.test_build
+      - name: Download authoritative live Xetra XETR ISIN security reference and reconcile genuine EU Yahoo OHLCV
+        run: python -m isin_first2026.build --out _ISIN_PROVENANCE
+      - name: Enforce strict official identity, no 2017 lookahead claim and true dataset integrity
+        run: |
+          python - <<'PY'
+          import pathlib,pandas as pd,hashlib,json
+          p=pathlib.Path("_ISIN_PROVENANCE")
+          v=json.loads((p/"RESULT.json").read_text())
+          assert v["official_reference"]["records"]>5000
+          assert v["official_reference"]["market"]=="XETR"
+          assert v["n_all_source_ticker_candidates"]>80
+          assert v["clean_A_B_one_per_ISIN"]>10
+          assert v["no_justETF_automated_requests"]
+          assert v["not_a_trade_execution_or_model_signal_certification"]
+          o=pd.read_csv(p/"ISIN_ALL_CANDIDATE_REFERENCE_MAPPING.csv")
+          r=o[o.ticker=="EXV1.DE"].iloc[0]
+          assert r["isin"]=="DE000A0F5UJ7"
+          assert r["status"].startswith("XETRA_2026_OFFICIAL")
+          assert r["reference_currency"]=="EUR"
+          q=pd.read_csv(p/"RESEARCH_QUALITY_SELECTED_ONE_VENUE_PER_ISIN.csv")
+          assert q.isin.is_unique and (q.grade.isin(["A_QUOTE_CLEAN","B_QUOTE_REVIEW"])).all()
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+              digest,file=line.split("  ",1)
+              assert hashlib.sha256((p/file).read_bytes()).hexdigest()==digest
+          print("EUROPE_ISIN_PRICE_QA_COMPLETED",v)
+          PY
+      - name: Archive verified ticker-ISIN legal identities, actual historically adjusted venue OHLCV, diagnostics
+        run: |
+          mkdir -p isin_first2026/results
+          cp -a _ISIN_PROVENANCE/. isin_first2026/results/
+          git config user.name "ISIN-EUROPE-VALID-DATA-FORENSIC"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/results
+          git commit -m "Archive real ISIN mapped historical European ETF EUR venue prices and security quality forensic"
+          git push origin HEAD:refs/heads/research/isin-first-verified-europe-prices-20261019
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: EUR_EUROPE_2026_ISIN_VENUE_HISTORICAL_QUOTES_VALIDATION
+          retention-days: 90
+          path: _ISIN_PROVENANCE/
