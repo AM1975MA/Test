@@ -1,0 +1,381 @@
+{
+  "status": "ORIGINAL149_FACTOR_RESIDUAL_DISTRIBUTIONAL_EXPERIMENT_COMPLETE",
+  "source_roster_SHA": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "n_original_etfs": 149,
+  "n_study_full_21day_blocks": 112,
+  "n_eval_anchors": 64,
+  "n_eval_ticker_rows": 9536,
+  "ten_factor_proxy_tickers": [
+    "SPY",
+    "QQQ",
+    "IWM",
+    "VEA",
+    "EEM",
+    "TLT",
+    "HYG",
+    "GLD",
+    "USO",
+    "IEF"
+  ],
+  "asof_factor_beta_lookback": 126,
+  "beta_ridge": 0.005,
+  "quarterly_training_matured_only": true,
+  "original_F3_frozen_economic_parity": true,
+  "no_realized_future_factors_used_at_prediction": true,
+  "no_point_in_time_holdings_or_macro_vintages": true,
+  "factor_forecast_MSE_vs_matured_mean": {
+    "estimated_factor_mse": 0.0024535741511496397,
+    "simple_matured_mean_mse": 0.0020689743151060124,
+    "n_months": 64
+  },
+  "residual_quantile_pinball": {
+    "10": {
+      "model_pinball": 0.005798841671315035,
+      "historical_prior_pinball": 0.006926056460863847,
+      "below_pred_fraction": 0.100251677852349
+    },
+    "50": {
+      "model_pinball": 0.011742355196808869,
+      "historical_prior_pinball": 0.011723356852334435,
+      "below_pred_fraction": 0.5006291946308725
+    },
+    "90": {
+      "model_pinball": 0.005714432886345174,
+      "historical_prior_pinball": 0.006722451069198693,
+      "below_pred_fraction": 0.8899958053691275
+    }
+  },
+  "per_model_evaluation": {
+    "B0_F3_FROZEN": {
+      "economics": {
+        "cagr": 0.20019785988909722,
+        "terminal_wealth_multiple": 2.6545062423987207,
+        "max_daily_open_drawdown": -0.2973714609803775,
+        "daily_log_sharpe": 0.6930182026665771,
+        "daily_es5": -0.03701818959091073,
+        "fee_amount_initial_units": 0.15444598994696845,
+        "gross_turnover_notional_initial_units": 154.445989946968
+      },
+      "conditional_concordance": {
+        "mean": 0.5079814891195644,
+        "ci95": [
+          0.49326601911370194,
+          0.5240029232850825
+        ]
+      },
+      "matched_delta_vs_F3": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "raw_crosssectional_spearman": 0.07318503342003727,
+      "selected5_signed_excess": 0.007949213898550314,
+      "selected_bottom15_fraction": 0.178125,
+      "precision10": 0.1921875,
+      "periods": {
+        "2021_2023": {
+          "n": 35,
+          "concordance": 0.5051003078270597,
+          "improvement_vs_F3": 0.0,
+          "selected_signed_excess": 0.005310335347855458,
+          "selected_bottom15": 0.18285714285714286
+        },
+        "2024_2026": {
+          "n": 29,
+          "concordance": 0.5114587768863804,
+          "improvement_vs_F3": 0.0,
+          "selected_signed_excess": 0.011134067321802728,
+          "selected_bottom15": 0.17241379310344832
+        }
+      }
+    },
+    "B1_N4_FROZEN": {
+      "economics": {
+        "cagr": 0.16695968895271163,
+        "terminal_wealth_multiple": 2.284192787443914,
+        "max_daily_open_drawdown": -0.3400723287428331,
+        "daily_log_sharpe": 0.49870602888452226,
+        "daily_es5": -0.04534396597703554,
+        "fee_amount_initial_units": 0.07745746369203566,
+        "gross_turnover_notional_initial_units": 77.45746369203552
+      },
+      "conditional_concordance": {
+        "mean": 0.48669672730894264,
+        "ci95": [
+          0.4769333387619895,
+          0.49583614459237996
+        ]
+      },
+      "matched_delta_vs_F3": {
+        "mean": -0.021284761810621777,
+        "ci95": [
+          -0.037037172977595095,
+          -0.006963221974938267
+        ]
+      },
+      "raw_crosssectional_spearman": -0.016543056869475416,
+      "selected5_signed_excess": 0.003230059179478861,
+      "selected_bottom15_fraction": 0.28125,
+      "precision10": 0.2453125,
+      "periods": {
+        "2021_2023": {
+          "n": 35,
+          "concordance": 0.48316188980004454,
+          "improvement_vs_F3": -0.02193841802701505,
+          "selected_signed_excess": -0.013046631318880378,
+          "selected_bottom15": 0.3257142857142857
+        },
+        "2024_2026": {
+          "n": 29,
+          "concordance": 0.4909629105093367,
+          "improvement_vs_F3": -0.020495866377043682,
+          "selected_signed_excess": 0.022874340815429665,
+          "selected_bottom15": 0.22758620689655173
+        }
+      }
+    },
+    "B2_VOL63_RANK": {
+      "economics": {
+        "cagr": 0.06143854254598491,
+        "terminal_wealth_multiple": 1.3757238387771422,
+        "max_daily_open_drawdown": -0.3636405231429154,
+        "daily_log_sharpe": 0.1966205738885123,
+        "daily_es5": -0.04347337610841269,
+        "fee_amount_initial_units": 0.040811038485564666,
+        "gross_turnover_notional_initial_units": 40.81103848556584
+      },
+      "conditional_concordance": {
+        "mean": 0.5031553495223849,
+        "ci95": [
+          0.48872757371504527,
+          0.517551732615077
+        ]
+      },
+      "matched_delta_vs_F3": {
+        "mean": -0.004826139597179369,
+        "ci95": [
+          -0.024037883033821778,
+          0.013280976456778504
+        ]
+      },
+      "raw_crosssectional_spearman": 0.03588004641018133,
+      "selected5_signed_excess": -0.006486293738497014,
+      "selected_bottom15_fraction": 0.340625,
+      "precision10": 0.296875,
+      "periods": {
+        "2021_2023": {
+          "n": 35,
+          "concordance": 0.49351257356661327,
+          "improvement_vs_F3": -0.011587734260446325,
+          "selected_signed_excess": -0.004734194995376976,
+          "selected_bottom15": 0.3428571428571428
+        },
+        "2024_2026": {
+          "n": 29,
+          "concordance": 0.5147931825724542,
+          "improvement_vs_F3": 0.0033344056860738548,
+          "selected_signed_excess": -0.00860089566984879,
+          "selected_bottom15": 0.3379310344827586
+        }
+      }
+    },
+    "H1_FACTOR_ONLY": {
+      "economics": {
+        "cagr": 0.2462472500995334,
+        "terminal_wealth_multiple": 3.246830646551072,
+        "max_daily_open_drawdown": -0.33773827205497897,
+        "daily_log_sharpe": 0.7933290373800225,
+        "daily_es5": -0.04111998355488715,
+        "fee_amount_initial_units": 0.15864875781051924,
+        "gross_turnover_notional_initial_units": 158.64875781051853
+      },
+      "conditional_concordance": {
+        "mean": 0.5297357048759901,
+        "ci95": [
+          0.5103834459644153,
+          0.5480098599833757
+        ]
+      },
+      "matched_delta_vs_F3": {
+        "mean": 0.021754215756425707,
+        "ci95": [
+          0.001831565136630527,
+          0.04136788420882262
+        ]
+      },
+      "raw_crosssectional_spearman": 0.09342024652149641,
+      "selected5_signed_excess": 0.01205501057839116,
+      "selected_bottom15_fraction": 0.15625,
+      "precision10": 0.2625,
+      "periods": {
+        "2021_2023": {
+          "n": 35,
+          "concordance": 0.5247011588190686,
+          "improvement_vs_F3": 0.01960085099200919,
+          "selected_signed_excess": 0.011095962336244129,
+          "selected_bottom15": 0.17142857142857146
+        },
+        "2024_2026": {
+          "n": 29,
+          "concordance": 0.5358118811515847,
+          "improvement_vs_F3": 0.024353104265204265,
+          "selected_signed_excess": 0.013212482594775503,
+          "selected_bottom15": 0.13793103448275862
+        }
+      }
+    },
+    "H2_RESIDUAL_Q": {
+      "economics": {
+        "cagr": -0.05279407672884184,
+        "terminal_wealth_multiple": 0.7481405780880183,
+        "max_daily_open_drawdown": -0.5692665006540738,
+        "daily_log_sharpe": -0.21689738762986926,
+        "daily_es5": -0.03636721455159244,
+        "fee_amount_initial_units": 0.05877437639033156,
+        "gross_turnover_notional_initial_units": 58.77437639033192
+      },
+      "conditional_concordance": {
+        "mean": 0.508145043663188,
+        "ci95": [
+          0.48869658683357187,
+          0.526753250279318
+        ]
+      },
+      "matched_delta_vs_F3": {
+        "mean": 0.00016355454362363808,
+        "ci95": [
+          -0.016946647634157725,
+          0.015893891904565832
+        ]
+      },
+      "raw_crosssectional_spearman": 0.006492706557445226,
+      "selected5_signed_excess": -0.013196830394717595,
+      "selected_bottom15_fraction": 0.27812499999999996,
+      "precision10": 0.19062500000000002,
+      "periods": {
+        "2021_2023": {
+          "n": 35,
+          "concordance": 0.4989673377394146,
+          "improvement_vs_F3": -0.006132970087644978,
+          "selected_signed_excess": -0.02260276561814525,
+          "selected_bottom15": 0.3371428571428572
+        },
+        "2024_2026": {
+          "n": 29,
+          "concordance": 0.5192215852953282,
+          "improvement_vs_F3": 0.00776280840894783,
+          "selected_signed_excess": -0.0018448396078221431,
+          "selected_bottom15": 0.20689655172413793
+        }
+      }
+    },
+    "H3_COMBINED_Q": {
+      "economics": {
+        "cagr": 0.2352595719255739,
+        "terminal_wealth_multiple": 3.0965959212679985,
+        "max_daily_open_drawdown": -0.2878282294625688,
+        "daily_log_sharpe": 0.7585791136115128,
+        "daily_es5": -0.04137431443292011,
+        "fee_amount_initial_units": 0.1601748399243429,
+        "gross_turnover_notional_initial_units": 160.17483992434276
+      },
+      "conditional_concordance": {
+        "mean": 0.5289470882826333,
+        "ci95": [
+          0.5065272364640668,
+          0.5504657655562942
+        ]
+      },
+      "matched_delta_vs_F3": {
+        "mean": 0.02096559916306886,
+        "ci95": [
+          -0.00022014282392807986,
+          0.04126589923264955
+        ]
+      },
+      "raw_crosssectional_spearman": 0.08677033935192591,
+      "selected5_signed_excess": 0.011290792998669641,
+      "selected_bottom15_fraction": 0.17812499999999998,
+      "precision10": 0.2671875,
+      "periods": {
+        "2021_2023": {
+          "n": 35,
+          "concordance": 0.5196357238914838,
+          "improvement_vs_F3": 0.014535416064424257,
+          "selected_signed_excess": 0.011122573184722739,
+          "selected_bottom15": 0.18285714285714288
+        },
+        "2024_2026": {
+          "n": 29,
+          "concordance": 0.5401849418581584,
+          "improvement_vs_F3": 0.02872616497177786,
+          "selected_signed_excess": 0.01149381691205383,
+          "selected_bottom15": 0.17241379310344832
+        }
+      }
+    },
+    "H4_F3_EXPOSURE_NEUTRAL": {
+      "economics": {
+        "cagr": 0.16815392373825877,
+        "terminal_wealth_multiple": 2.296726149837638,
+        "max_daily_open_drawdown": -0.3707140670182515,
+        "daily_log_sharpe": 0.6804417415405147,
+        "daily_es5": -0.03339224013268528,
+        "fee_amount_initial_units": 0.14061565132881138,
+        "gross_turnover_notional_initial_units": 140.61565132881074
+      },
+      "conditional_concordance": {
+        "mean": 0.50361637421936,
+        "ci95": [
+          0.4926700399182308,
+          0.5150686742699393
+        ]
+      },
+      "matched_delta_vs_F3": {
+        "mean": -0.004365114900204303,
+        "ci95": [
+          -0.01578223606577318,
+          0.0073190100392361325
+        ]
+      },
+      "raw_crosssectional_spearman": 0.030929848234977568,
+      "selected5_signed_excess": 0.005833765557591993,
+      "selected_bottom15_fraction": 0.18125,
+      "precision10": 0.18125,
+      "periods": {
+        "2021_2023": {
+          "n": 35,
+          "concordance": 0.4944032065798528,
+          "improvement_vs_F3": -0.010697101247206861,
+          "selected_signed_excess": 0.0020787787636084238,
+          "selected_bottom15": 0.18285714285714288
+        },
+        "2024_2026": {
+          "n": 29,
+          "concordance": 0.5147357144739378,
+          "improvement_vs_F3": 0.0032769375875574057,
+          "selected_signed_excess": 0.01036564617102044,
+          "selected_bottom15": 0.1793103448275863
+        }
+      }
+    }
+  },
+  "preregistered_mandatory_skill_and_economic_gates": {
+    "H1_FACTOR_ONLY": false,
+    "H2_RESIDUAL_Q": false,
+    "H3_COMBINED_Q": false,
+    "H4_F3_EXPOSURE_NEUTRAL": false
+  },
+  "no_production_approval": true,
+  "caveats": [
+    "historical 149 ETF roster selected as of 2026 with survivorship bias",
+    "2017\u20132026 panel repeatedly mined; no true independent test",
+    "US ETF factor proxies and group categories do NOT capture all fund mechanisms",
+    "factor prediction is itself uncertain; forward factors are never provided as test-time inputs",
+    "ETF adjusted open data not verified broker fills and not EUR-tradable",
+    "Some factor proxies are correlated; ridge 126d \u03b2 remains an approximation",
+    "No strategy should be promoted solely because retrospective CAGR rose"
+  ]
+}
