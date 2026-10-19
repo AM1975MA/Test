@@ -1,0 +1,240 @@
+{
+  "status": "EXACT149_H1_POSTRESULT_FACTOR_PREMIUM_AND_VOL_PLACEBO_AUDIT_DONE",
+  "original_etfs": 149,
+  "source_roster_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "n_eval_anchors": 64,
+  "n_rows": 9536,
+  "after_observing_prior_H1_backtest": true,
+  "no_model_refit_or_parameter_tuning": true,
+  "all_null_forecast_features_strict_asof": true,
+  "H1_old_economic_parity": true,
+  "number_null_portfolios": 500,
+  "arms": {
+    "H1_OLD_FORECAST": {
+      "economics": {
+        "cagr": 0.2462472500995334,
+        "terminal_wealth_multiple": 3.246830646551072,
+        "max_daily_open_drawdown": -0.33773827205497897,
+        "daily_log_sharpe": 0.7933290373800225,
+        "daily_es5": -0.04111998355488715,
+        "fee_amount_initial_units": 0.15864875781051924,
+        "gross_turnover_notional_initial_units": 158.64875781051853
+      },
+      "concordance": {
+        "mean": 0.5297357048759901,
+        "ci95": [
+          0.5114088667131593,
+          0.5479342590751016
+        ]
+      },
+      "selected_signed_excess": 0.012055010578391156,
+      "bottom15": 0.15625,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "conditional_concordance": 0.5247011588190686,
+          "selected_signed_excess": 0.011095962336244129,
+          "selected_bottom15": 0.17142857142857146
+        },
+        "2024_2026": {
+          "n": 29,
+          "conditional_concordance": 0.5358118811515847,
+          "selected_signed_excess": 0.013212482594775503,
+          "selected_bottom15": 0.13793103448275862
+        }
+      }
+    },
+    "HM_MATURED_FACTOR_MEAN": {
+      "economics": {
+        "cagr": 0.12182058928292205,
+        "terminal_wealth_multiple": 1.8496019103422658,
+        "max_daily_open_drawdown": -0.4318071172842536,
+        "daily_log_sharpe": 0.36474615565253843,
+        "daily_es5": -0.04729199529010223,
+        "fee_amount_initial_units": 0.025542878299491756,
+        "gross_turnover_notional_initial_units": 25.54287829949218
+      },
+      "concordance": {
+        "mean": 0.508858128356428,
+        "ci95": [
+          0.483798457654637,
+          0.5341878560539269
+        ]
+      },
+      "selected_signed_excess": 0.0022020713054028795,
+      "bottom15": 0.184375,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "conditional_concordance": 0.49158067915596815,
+          "selected_signed_excess": -0.002123147397017487,
+          "selected_bottom15": 0.1657142857142857
+        },
+        "2024_2026": {
+          "n": 29,
+          "conditional_concordance": 0.5297102222190523,
+          "selected_signed_excess": 0.007422162842806771,
+          "selected_bottom15": 0.20689655172413796
+        }
+      }
+    },
+    "HT_PAST63_FACTOR_TREND": {
+      "economics": {
+        "cagr": 0.0005690475739028589,
+        "terminal_wealth_multiple": 1.0030480382106637,
+        "max_daily_open_drawdown": -0.597799171799114,
+        "daily_log_sharpe": 0.0017810630476988362,
+        "daily_es5": -0.04910208434268711,
+        "fee_amount_initial_units": 0.058046657816007374,
+        "gross_turnover_notional_initial_units": 58.04665781600777
+      },
+      "concordance": {
+        "mean": 0.48825541005217793,
+        "ci95": [
+          0.46690610930648835,
+          0.5090094044277963
+        ]
+      },
+      "selected_signed_excess": -0.006668262254269241,
+      "bottom15": 0.303125,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "conditional_concordance": 0.4946390760141223,
+          "selected_signed_excess": -0.010561250455107252,
+          "selected_bottom15": 0.3371428571428572
+        },
+        "2024_2026": {
+          "n": 29,
+          "conditional_concordance": 0.48055098561534854,
+          "selected_signed_excess": -0.001969828218775095,
+          "selected_bottom15": 0.2620689655172414
+        }
+      }
+    },
+    "F3_FROZEN": {
+      "economics": {
+        "cagr": 0.20019785988909722,
+        "terminal_wealth_multiple": 2.6545062423987207,
+        "max_daily_open_drawdown": -0.2973714609803775,
+        "daily_log_sharpe": 0.6930182026665771,
+        "daily_es5": -0.03701818959091073,
+        "fee_amount_initial_units": 0.15444598994696845,
+        "gross_turnover_notional_initial_units": 154.445989946968
+      },
+      "concordance": {
+        "mean": 0.5079814891195644,
+        "ci95": [
+          0.4934454657139496,
+          0.5226548379669023
+        ]
+      },
+      "selected_signed_excess": 0.007949213898550307,
+      "bottom15": 0.178125,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "conditional_concordance": 0.5051003078270597,
+          "selected_signed_excess": 0.005310335347855452,
+          "selected_bottom15": 0.18285714285714286
+        },
+        "2024_2026": {
+          "n": 29,
+          "conditional_concordance": 0.5114587768863804,
+          "selected_signed_excess": 0.011134067321802723,
+          "selected_bottom15": 0.17241379310344832
+        }
+      }
+    }
+  },
+  "paired_H1_vs_controls": {
+    "HM_MATURED_FACTOR_MEAN": {
+      "concordance_delta": {
+        "mean": 0.02087757651956198,
+        "ci95": [
+          0.0014396600719361015,
+          0.04244903541562338
+        ]
+      },
+      "signed_payoff_delta": {
+        "mean": 0.009852939272988276,
+        "ci95": [
+          -0.00830667243816758,
+          0.030903557384885143
+        ]
+      }
+    },
+    "HT_PAST63_FACTOR_TREND": {
+      "concordance_delta": {
+        "mean": 0.041480294823812124,
+        "ci95": [
+          0.011677592076593699,
+          0.07160230370469411
+        ]
+      },
+      "signed_payoff_delta": {
+        "mean": 0.018723272832660398,
+        "ci95": [
+          0.001982847377367293,
+          0.0338120469320841
+        ]
+      }
+    },
+    "F3_FROZEN": {
+      "concordance_delta": {
+        "mean": 0.021754215756425707,
+        "ci95": [
+          0.0026740669314866718,
+          0.04136524398164228
+        ]
+      },
+      "signed_payoff_delta": {
+        "mean": 0.004105796679840845,
+        "ci95": [
+          -0.012171778060399428,
+          0.01955246667106491
+        ]
+      }
+    }
+  },
+  "conditional_group_vol_placebos": {
+    "category_only": {
+      "n": 250,
+      "median_cagr": 0.09968279456805507,
+      "p95_cagr": 0.16998427490327106,
+      "H1_percentile_cagr": 1.0,
+      "median_drawdown": -0.26401987502542634,
+      "H1_drawdown": -0.33773827205497897,
+      "median_signed_excess": 0.0010643224213379874,
+      "H1_signed_excess": 0.012055010578391156,
+      "H1_fraction_beating_null_excess": 1.0,
+      "median_vol_mismatch": 0.5870037257820918
+    },
+    "category_and_vol": {
+      "n": 250,
+      "median_cagr": 0.14468545182762904,
+      "p95_cagr": 0.20346929908033864,
+      "H1_percentile_cagr": 1.0,
+      "median_drawdown": -0.2945085965127606,
+      "H1_drawdown": -0.33773827205497897,
+      "median_signed_excess": 0.004226729741684485,
+      "H1_signed_excess": 0.012055010578391156,
+      "H1_fraction_beating_null_excess": 1.0,
+      "median_vol_mismatch": 0.2332700787858637
+    }
+  },
+  "untrained_factor_mean_benchmark_forecast_MSE": {
+    "estimated_factor_mse": 0.0024535741511496397,
+    "simple_matured_mean_mse": 0.0020689743151060124,
+    "n_months": 64
+  },
+  "preregistered_incremental_FACTOR_FORECAST_gate": false,
+  "decision": "H1_STILL_EXPLORATORY_DO_NOT_DEPLOY",
+  "caveats": [
+    "Posthoc study of the same original149 historically mined 2021\u201326",
+    "10 proxies and coarse risk classes omit true exposures and FX",
+    "Current ETF universe excludes historical delistings and European availability",
+    "Random placebo matching cannot substitute untouched future observations",
+    "No direct broker spread, tax or news-data vintages verified"
+  ]
+}
