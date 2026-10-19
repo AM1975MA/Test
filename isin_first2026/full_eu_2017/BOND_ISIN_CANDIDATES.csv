@@ -1,0 +1,17 @@
+isin,ticker,underlying_scope,segment,description,issuer_url
+IE00B14X4Q57,IBCA.DE,EURO_SOVEREIGN,EURO_SOV_1_3Y,1-3yr euro government,https://www.ishares.com/uk/individual/en/products/251733/ishares-govt-bond-1-3yr-ucits-etf
+IE00B14X4Q57,IBGS.AS,EURO_SOVEREIGN,EURO_SOV_1_3Y,1-3yr euro government,https://www.ishares.com/uk/individual/en/products/251733/ishares-govt-bond-1-3yr-ucits-etf
+IE00B1FZS681,IBCN.DE,EURO_SOVEREIGN,EURO_SOV_3_5Y,3-5yr euro government,https://www.ishares.com/it/investitori-privato/it/prodotti/251736/ishares-euro-government-bond-35yr-ucits-etf
+IE00B1FZS681,IBGX.AS,EURO_SOVEREIGN,EURO_SOV_3_5Y,3-5yr euro government,https://www.ishares.com/it/investitori-privato/it/prodotti/251736/ishares-euro-government-bond-35yr-ucits-etf
+IE00B1FZS913,IBCL.DE,EURO_SOVEREIGN,EURO_SOV_15_30Y,15-30yr euro government,https://www.ishares.com/uk/individual/en/products/251735/ishares-euro-government-bond-1530yr-ucits-etf
+IE00B1FZS913,IBGL.AS,EURO_SOVEREIGN,EURO_SOV_15_30Y,15-30yr euro government,https://www.ishares.com/uk/individual/en/products/251735/ishares-euro-government-bond-1530yr-ucits-etf
+IE00B0M62X26,IBCI.DE,EURO_SOVEREIGN,EURO_SOV_INFLATION,euro government inflation-linked,https://www.ishares.com/it/investitore-privato/it/prodotti/251739/ishares-euro-inflation-linked-government-bond-ucits-etf
+IE00B0M62X26,IBEI.DE,EURO_SOVEREIGN,EURO_SOV_INFLATION,euro government inflation-linked Yahoo RIC alternate,https://www.ishares.com/it/investitore-privato/it/prodotti/251739/ishares-euro-inflation-linked-government-bond-ucits-etf
+IE00B0M62X26,IBCI.AS,EURO_SOVEREIGN,EURO_SOV_INFLATION,euro government inflation-linked,https://www.ishares.com/it/investitore-privato/it/prodotti/251739/ishares-euro-inflation-linked-government-bond-ucits-etf
+IE00B3F81R35,EUN5.DE,EURO_CREDIT_MIXED_ISSUERS,EUR_IG_CORPORATE,Euro corporate investment grade mixed issuer nationality,https://www.ishares.com/uk/individual/en/products/251726/ishares-core-euro-corporate-bond-ucits-etf
+IE00B3F81R35,IEAC.AS,EURO_CREDIT_MIXED_ISSUERS,EUR_IG_CORPORATE,Euro corporate investment grade mixed issuer nationality,https://www.ishares.com/uk/individual/en/products/251726/ishares-core-euro-corporate-bond-ucits-etf
+IE00B3F81R35,IEAC.MI,EURO_CREDIT_MIXED_ISSUERS,EUR_IG_CORPORATE,Euro corporate investment grade mixed issuer nationality,https://www.ishares.com/uk/individual/en/products/251726/ishares-core-euro-corporate-bond-ucits-etf
+IE00B66F4759,EUNW.DE,EURO_CREDIT_MIXED_ISSUERS,EUR_HY_CORPORATE,Euro corporate high yield mixed issuer nationality,https://www.ishares.com/uk/professionals/en/products/251843/ishares-high-yield-corp-bond-ucits-etf
+IE00B66F4759,IHYG.MI,EURO_CREDIT_MIXED_ISSUERS,EUR_HY_CORPORATE,Euro corporate high yield mixed issuer nationality,https://www.ishares.com/uk/professionals/en/products/251843/ishares-high-yield-corp-bond-ucits-etf
+IE00B4L60045,EUNT.DE,EURO_CREDIT_MIXED_ISSUERS,EUR_IG_CORP_1_5,Euro corporate 1-5 yr mixed issuer nationality,https://www.ishares.com/uk/individual/en/products/251728/
+IE00B4L60045,SE15.MI,EURO_CREDIT_MIXED_ISSUERS,EUR_IG_CORP_1_5,Euro corporate 1-5 yr mixed issuer nationality,https://www.ishares.com/uk/individual/en/products/251728/
