@@ -1,0 +1,127 @@
+{
+  "retrieved_utc": "2026-10-19T18:31:26.007435+00:00",
+  "no_authentication_or_paid_account": true,
+  "no_vendor_historical_OHLCV_data_redistributed": true,
+  "not_a_license_to_use_provider_data_commercially": true,
+  "sample_only_cannot_extrapolate_full_EU_coverage": true,
+  "probes": [
+    {
+      "provider": "stooq",
+      "scope": "EXV4.DE",
+      "http": 200,
+      "final_url_host": "stooq.com",
+      "content_type": "text/html; charset=utf-8",
+      "sample_length_bytes": 796,
+      "shape": "ACCESS_GATE_OR_HTML",
+      "mentions_captcha": false,
+      "mentions_api_key": false,
+      "mentions_access_denied": false
+    },
+    {
+      "provider": "stooq",
+      "scope": "DXSE.DE",
+      "http": 200,
+      "final_url_host": "stooq.com",
+      "content_type": "text/html; charset=utf-8",
+      "sample_length_bytes": 796,
+      "shape": "ACCESS_GATE_OR_HTML",
+      "mentions_captcha": false,
+      "mentions_api_key": false,
+      "mentions_access_denied": false
+    },
+    {
+      "provider": "stooq",
+      "scope": "EXH4.DE",
+      "http": 200,
+      "final_url_host": "stooq.com",
+      "content_type": "text/html; charset=utf-8",
+      "sample_length_bytes": 796,
+      "shape": "ACCESS_GATE_OR_HTML",
+      "mentions_captcha": false,
+      "mentions_api_key": false,
+      "mentions_access_denied": false
+    },
+    {
+      "provider": "stooq",
+      "scope": "5ESG.DE",
+      "http": 200,
+      "final_url_host": "stooq.com",
+      "content_type": "text/html; charset=utf-8",
+      "sample_length_bytes": 796,
+      "shape": "ACCESS_GATE_OR_HTML",
+      "mentions_captcha": false,
+      "mentions_api_key": false,
+      "mentions_access_denied": false
+    },
+    {
+      "provider": "xetra-pds",
+      "scope": "2017-08-01",
+      "http": 403,
+      "content_type": "application/xml",
+      "shape": "S3_XML_LIST",
+      "returned_keys": [],
+      "key_count_response": 0,
+      "is_truncated": ""
+    },
+    {
+      "provider": "xetra-pds",
+      "scope": "2020-07-01",
+      "http": 403,
+      "content_type": "application/xml",
+      "shape": "S3_XML_LIST",
+      "returned_keys": [],
+      "key_count_response": 0,
+      "is_truncated": ""
+    },
+    {
+      "provider": "xetra-pds",
+      "scope": "2023-07-03",
+      "http": 403,
+      "content_type": "application/xml",
+      "shape": "S3_XML_LIST",
+      "returned_keys": [],
+      "key_count_response": 0,
+      "is_truncated": ""
+    },
+    {
+      "provider": "xetra-pds",
+      "scope": "2026-10-16",
+      "http": 403,
+      "content_type": "application/xml",
+      "shape": "S3_XML_LIST",
+      "returned_keys": [],
+      "key_count_response": 0,
+      "is_truncated": ""
+    },
+    {
+      "provider": "euronext",
+      "scope": "IE00B4WXJJ64-XAMS",
+      "http": 200,
+      "final_url_host": "live.euronext.com",
+      "content_type": "text/html; charset=UTF-8",
+      "sample_length_bytes": 127402,
+      "page_html_detected": true,
+      "is_direct_OHLCV_CSV": false
+    },
+    {
+      "provider": "ishares",
+      "scope": "IMEU",
+      "http": 200,
+      "final_url_host": "www.ishares.com",
+      "content_type": "text/html;charset=UTF-8",
+      "sample_length_bytes": 255815,
+      "page_html_detected": true,
+      "is_direct_OHLCV_CSV": false
+    },
+    {
+      "provider": "vienna",
+      "scope": "etfs",
+      "http": 200,
+      "final_url_host": "www.wienerborse.at",
+      "content_type": "text/html; charset=utf-8",
+      "sample_length_bytes": 182402,
+      "page_html_detected": true,
+      "is_direct_OHLCV_CSV": false
+    }
+  ]
+}
