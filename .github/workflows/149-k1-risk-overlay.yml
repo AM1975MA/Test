@@ -1,0 +1,74 @@
+name: ORIGINAL149_K1_RISK_OVERLAY_ON_F3_H1_HOLDINGS
+on:
+  push:
+    branches:
+      - research/149-k1-risk-overlay-20261019
+    paths:
+      - 'research_reset/predict149/k1_risk_overlay/PREREGISTERED.md'
+      - 'research_reset/predict149/k1_risk_overlay/run.py'
+      - 'research_reset/predict149/k1_risk_overlay/test_run.py'
+      - '.github/workflows/149-k1-risk-overlay.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+jobs:
+  exact149-k1-model-as-risk-only-for-original-experts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Deterministic environment
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/k1_risk_overlay/run.py
+      - name: Test original holdings never replaced by K1 rank
+        run: |
+          python -m unittest -v research_reset.predict149.k1_risk_overlay.test_run
+      - name: Execute frozen proper conditional held-position tail probabilities and self-funded overlay portfolios
+        run: |
+          python -m research_reset.predict149.k1_risk_overlay.run --out _T149L
+      - name: Verify no future label usage, exact original ETF selection and frozen F3 H1 parity
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_T149L/RESULT.json").read_text())
+          assert d["status"]=="ORIGINAL149_K1_AS_RISK_OVERLAY_NOT_SELECTOR_TEST_COMPLETE"
+          assert d["n_149"]==149 and d["n_evaluation_21session_blocks"]==64
+          assert d["n_model_ready_blocks"]==51
+          assert d["original_F3_H1_top5_tickers_unchanged"]
+          assert d["legacy_5050_and_H3_share_level_equity_parity"]
+          assert d["models_frozen_no_refit"]
+          assert len(d["policies"])==6
+          print("T149L_K1_RISK_OVERLAY_GO",d["scientific_GO"])
+          PY
+      - name: Archive exact next-open holdings, 51-anchor risk-score validation, daily cash ledgers and SHA
+        run: |
+          mkdir -p research_reset/predict149/k1_risk_overlay/results
+          cp _T149L/*.json _T149L/*.csv research_reset/predict149/k1_risk_overlay/results/
+          (cd research_reset/predict149/k1_risk_overlay/results && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/k1_risk_overlay/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-K1-RiskOverlay-ScientificReviewer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/k1_risk_overlay/results
+          git commit -m "Archive original149 K1 downside risk overlay on fixed F3/H1 portfolios; actual shares, 51 conditional Brier and full 64 monthly economics"
+          git push origin HEAD:refs/heads/research/149-k1-risk-overlay-20261019
+      - name: Preserve evidence if statistical null rejects overlay
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-k1-overlay-frozen-f3-h1-risk
+          retention-days: 90
+          path: |
+            _T149L/*.csv
+            _T149L/*.json
