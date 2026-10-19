@@ -1,0 +1,71 @@
+{
+  "status": "EU48_500_BALANCED_24_VS_SINGLE_48_UNRESTRICTED_PARITY_STYLE_CONTROL",
+  "original_US_500_basket_metric_is_mean_basket_CAGR": true,
+  "European_trained_model_predictions_unchanged": true,
+  "Europe_price_and_risk_source_same_as_unrestricted_48": true,
+  "period_equal_65_signals_and_1374_EU_actual_open_dates": true,
+  "balanced_500_pockets_each_24_by_6categories4_each": true,
+  "trained_Europe48_rankings_and_hyperparams_never_refitted": true,
+  "controls_single_unrestricted48": {
+    "Hybrid24": {
+      "cagr": 0.013601580406165248,
+      "maxdd": -0.3719336384755709,
+      "sharpe": 0.17517731625699615,
+      "ann_vol": 0.23373981959981324,
+      "es5_daily": -0.036519218880688105,
+      "terminal_nav": 1.076442014707633,
+      "days": 1374,
+      "turnover_ann": 12.40273146378452,
+      "n_months": 65
+    },
+    "TrainerV2": {
+      "cagr": 0.016362344997819484,
+      "maxdd": -0.37193363847557115,
+      "sharpe": 0.1869839142162662,
+      "ann_vol": 0.2345952209518578,
+      "es5_daily": -0.036609198475849196,
+      "terminal_nav": 1.0925252178286107,
+      "days": 1374,
+      "turnover_ann": 11.704165875342444,
+      "n_months": 65
+    }
+  },
+  "balanced_500_Hybrid24": {
+    "baskets": 500,
+    "n_days": 1374,
+    "mean_cagr": 0.05462634110177345,
+    "median_cagr": 0.05277869157742274,
+    "p05_cagr": -0.01480822222320346,
+    "p10_cagr": -0.0015979722912937277,
+    "max_cagr": 0.18791948324558166,
+    "min_cagr": -0.05853024661272439,
+    "mean_maxdd": -0.338764327194135,
+    "worst_basket_maxdd": -0.5136813680190822,
+    "mean_sharpe": 0.35968756999811446,
+    "percentage_cagr_positive": 88.8,
+    "mean_turnover_ann": 10.853652286705714
+  },
+  "balanced_500_V2": {
+    "baskets": 500,
+    "n_days": 1374,
+    "mean_cagr": 0.05513181535459283,
+    "median_cagr": 0.052805589253165613,
+    "p05_cagr": -0.011573200436707601,
+    "p10_cagr": -0.002745434093784682,
+    "max_cagr": 0.19178489666011786,
+    "min_cagr": -0.05829059188191587,
+    "mean_maxdd": -0.33605509246474824,
+    "worst_basket_maxdd": -0.5130060118897519,
+    "mean_sharpe": 0.3615081720808349,
+    "percentage_cagr_positive": 88.6,
+    "mean_turnover_ann": 10.592799596123431
+  },
+  "V2_vs_baseline_balanced_delta_mean_cagr_pp": 0.050547425281937536,
+  "balanced_V2_baskets_improved_pct": 48.6,
+  "V2_extra_concentration_basket_days": 11063,
+  "number_months_any_balanced_basket_V2_changed": 9,
+  "residual_interpretation": "Even same 500 balanced 24-ETF crosssection carries Europe-specific returns; cannot claim US strategy generalizes if returns remain low",
+  "basket_cagr_is_not_CAGR_of_single_pooled_tradable_portfolio": true,
+  "user_requested_full_48_unrestricted_strategy_remains_the_primary_test": true,
+  "no_production_changes": true
+}
