@@ -137,7 +137,7 @@ def main(prep,usdata,fx,out):
             state=market(C.loc[days,names],arr.d1,arr.d2,
                     arr.weight1,rgross,bil_ticker="IBCA.DE",shv_ticker="IBCN.DE")
             for variant in ("FULL_HYBRID24","FULL_V2","TOP2_NO_STOP_NO_RISK",
-                 "TOP2_US_RISK_NO_STOPS"):
+                 "TOP2_GROSS_DD_NO_STOPS"):
                 if variant=="FULL_HYBRID24":
                     weights=leaderweights;gross=g;use_stop=True;use_alts=True
                 elif variant=="FULL_V2":
@@ -172,7 +172,7 @@ def main(prep,usdata,fx,out):
     deltas={}
     for state in ("EU_REFERENCES","ORIGINAL_US_SPY_HYG_IEF"):
         for variant in ("FULL_HYBRID24","FULL_V2",
-                 "TOP2_NO_STOP_NO_RISK","TOP2_US_RISK_NO_STOPS"):
+                 "TOP2_NO_STOP_NO_RISK","TOP2_GROSS_DD_NO_STOPS"):
             old=metrics["MA3_ORIGINAL_"+state+"_"+variant]
             new=metrics["ADAPT4_"+state+"_"+variant]
             deltas[state+"_"+variant]=dict(
