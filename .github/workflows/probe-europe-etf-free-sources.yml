@@ -1,0 +1,42 @@
+name: PROBE_FREE_EUROPE_ETF_HISTORICAL_DATA_SOURCES
+on:
+  push:
+    branches:
+      - research/europe-sector-alternatives-amundi-xtrackers-20261019
+    paths:
+      - 'research_reset/free_europe_data_sources/probe.py'
+      - '.github/workflows/probe-europe-etf-free-sources.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  trace-real-public-source-http-access:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Check probes compile and no private API secrets required
+        run: python -m py_compile research_reset/free_europe_data_sources/probe.py
+      - name: Try historical 2017-2026 European prices from public sources and original AWS Xetra years
+        run: python research_reset/free_europe_data_sources/probe.py
+      - name: Preserve independently inspectable source responses without retransmitting prices
+        run: |
+          mkdir -p research_reset/free_europe_data_sources/results
+          cp _FREE_MARKETDATA_PROBE/RESULT.json research_reset/free_europe_data_sources/results/RESULT.json
+          git config user.name "EUROPE-ETF-FREE-DATA-SOURCE-REVIEW"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/free_europe_data_sources/results/RESULT.json
+          git commit -m "Record Oct 2026 anonymous HTTP coverage evidence on historical EU ETF free sources"
+          git push origin HEAD:refs/heads/research/europe-sector-alternatives-amundi-xtrackers-20261019
+      - name: Retain results even when a provider blocks API
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: free-europe-etf-market-data-provider-live-probe
+          retention-days: 90
+          path: _FREE_MARKETDATA_PROBE/RESULT.json
