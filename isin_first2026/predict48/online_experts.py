@@ -116,7 +116,7 @@ def study(prep,out):
         scores=np.vstack(predictions[method])
         bweights=[]
         for i,row in enumerate(cal.itertuples(index=False)):
-            y=labels.loc[(row.block,names),:].actual_future_log.to_numpy(float)
+            y=frame[frame.block==row.block].set_index('ticker').loc[names].actual_future_log.to_numpy(float)
             val=scores[i]
             s=float(spearmanr(val,y).statistic)
             assert np.isfinite(s)
@@ -162,11 +162,6 @@ def study(prep,out):
                 paired_top5_log_excess_vs_original=boot(diffex,SEED+len(method)+50),
                 absolute_top5_excess=boot(q.top5_excess_log,SEED+len(method)+100))
         duration[period]=rec
-    daily_nav={}
-    for m in METHODS:
-        # Original portfolio source uses exact same dates and tax conventions
-        # as prior F3/H1 research; no stop, leverage, regime controllers.
-        outnav,_nav,_monthly=None,None,None
     summary=dict(
        status="EU48_CAUSAL_ONLINE_EXPERT_RANKING_SECOND_FROZEN_STUDY_COMPLETE",
        months=65,unique_isins=48,methods=METHODS,
