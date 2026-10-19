@@ -1,0 +1,76 @@
+name: ETF149_CAUSAL_RELATIVE_F3_H1_UTILITY_METAMODEL
+on:
+  push:
+    branches:
+      - research/149-relative-expert-utility-20261019
+    paths:
+      - 'research_reset/predict149/relative_utility/PREREGISTERED.md'
+      - 'research_reset/predict149/relative_utility/run.py'
+      - 'research_reset/predict149/relative_utility/test_run.py'
+      - '.github/workflows/149-relative-expert-utility.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  exact149-relative-portfolio-value-and-online-probability:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install deterministic numerical and inference runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/relative_utility/run.py research_reset/predict149/relative_utility/test_run.py
+      - name: Validate strict pre-Open data and previous-unavailable-label embargo
+        run: |
+          python -m unittest -v research_reset.predict149.relative_utility.test_run
+      - name: Test signed F3 minus H1 relative opportunity against fixed static share portfolio
+        run: |
+          python -m research_reset.predict149.relative_utility.run --out _T149J
+      - name: Reject any future outcome, old-backtest mismatch or portfolio accounting fault
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_T149J/RESULT.json").read_text())
+          assert d["status"]=="ORIGINAL149_RELATIVE_EXPERT_UTILITY_META_TEST_COMPLETED"
+          assert d["original_etfs"]==149 and d["total_21day_anchor_periods"]==64
+          assert d["test_149_etf_model_signals_from_frozen_archive"]==9536
+          assert d["strict_full_one_open_period_label_embargo"]
+          assert d["all_original_daily_wealth_paths_replayed_within_1e_minus_9"]
+          assert d["same_next_open_cash_self_funding_and_10bp_each_side"]
+          assert len(d["input_10_asof_features"])==10
+          assert len(d["declared_joint_skill_and_economic_gates"])==3
+          print("T149J_META_PROPER_AND_FINANCIAL_GATES",d["declared_joint_skill_and_economic_gates"])
+          PY
+      - name: Freeze full predictions monthly expert scores actual future signed spreads and costs
+        run: |
+          mkdir -p research_reset/predict149/relative_utility/results
+          cp _T149J/*.json _T149J/*.csv research_reset/predict149/relative_utility/results/
+          (cd research_reset/predict149/relative_utility/results && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/relative_utility/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-RelativeExpert-Metaforecaster"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/relative_utility/results
+          git commit -m "Archive original149 signed F3-H1 economic relative-value predictions, causal Ridge/analog gates, exact share ledgers and scientific fail/pass receipts"
+          git push origin HEAD:refs/heads/research/149-relative-expert-utility-20261019
+      - name: Preserve outcomes for negative or unexpected research evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-signed-relative-F3-H1-metaforecaster
+          retention-days: 90
+          path: |
+            _T149J/*.csv
+            _T149J/*.json
