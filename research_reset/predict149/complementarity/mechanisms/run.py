@@ -74,7 +74,7 @@ def run(dest):
     for key in ("OIL_VS_GROWTH_63","INVERSE_BASKET_VOL63"):
         a=np.diff(np.log(wealth[key][::K]))
         d=np.diff(np.log(wealth["STATIC_F3_H1_50"][::K]))
-        ci=bootstrap(a-d,SEED+21 if False else 20261019+40)
+        ci=bootstrap(a-d,20261019+40)
         ciF=bootstrap(a-np.diff(np.log(wealth["F3"][::K])),20261019+41)
         ciH=bootstrap(a-np.diff(np.log(wealth["H1"][::K])),20261019+42)
         paired[key]=dict(growth_vs_50_50=ci,growth_vs_F3=ciF,growth_vs_H1=ciH,
