@@ -1,0 +1,25 @@
+{
+  "source": "Issuer identities + Xetra Oct2026 reference + yfinance",
+  "attempted": 16,
+  "distinct_isins": 7,
+  "statuses": {
+    "EUR_OFFICIAL_ISIN_VERIFIED": 7,
+    "EUR_ISSUER_NONXETRA_LISTING": 8,
+    "DOWNLOAD_FAILED": 1
+  },
+  "original_full_year_2016_or_earlier": 15,
+  "historic_2017_full_with_252_warmup": 15,
+  "no_justetf_scraping": true,
+  "no_promotion_EURO_CREDIT_MIXED_ISSUERS_to_strict_EU": true,
+  "no_fund_performance_ranking": true,
+  "download_utc": "2026-10-19 19:29:44.247217+00:00",
+  "issuer_catalog_hash": "23ca4c44fe3c2961c57ac88e97cd65e0b8a23f696a20787d83244c702bc491a3",
+  "official_ref": {
+    "url": "https://www.cashmarket.deutsche-boerse.com/resource/blob/1528/a31c10e3183f4c5dd721f9c7f9eaaaea/data/t7-xetr-allTradableInstruments.csv",
+    "market": "XETR",
+    "last_update": "Date Last Update:;19.10.2026",
+    "records": 5516,
+    "invalid_isins": 0,
+    "source_SHA256": "1a720b75571fb3058061c8df14018bcf032654c7df50959ad2495fe0d19a859b"
+  }
+}
