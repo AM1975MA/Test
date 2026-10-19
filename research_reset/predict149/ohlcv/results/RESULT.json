@@ -1,0 +1,261 @@
+{
+  "status": "ORIGINAL149_TRUE_OHLCV_FEATURE_CHALLENGE_COMPLETED",
+  "original149_source_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "n_etfs": 149,
+  "n_anchors": 64,
+  "n_ticker_prediction_rows": 9536,
+  "feature_dimensions": {
+    "raw_21bar": 105,
+    "engineered_original": 19,
+    "engineered_OHLCV_additions": 21,
+    "category_dummies": 6
+  },
+  "frozen_original_N4_economic_parity": true,
+  "original_149_source_historical_vintage_not_true_pit": true,
+  "train_labels_strictly_matured": true,
+  "model_scores": {
+    "B0_ARCHIVED_N4": {
+      "economic": {
+        "cagr": 0.16695968895271163,
+        "terminal_wealth_multiple": 2.284192787443914,
+        "max_daily_open_drawdown": -0.3400723287428331,
+        "daily_log_sharpe": 0.49870602888452226,
+        "daily_es5": -0.04534396597703554,
+        "fee_amount_initial_units": 0.07745746369203566,
+        "gross_turnover_notional_initial_units": 77.45746369203552
+      },
+      "mean_spearman": -0.016543056869475416,
+      "precision10": 0.2453125,
+      "precision5": 0.278125,
+      "actual_winner_found_top5": 19,
+      "top5_future_excess_log": 0.003230059179478861,
+      "false_bottom15_fraction": 0.28125,
+      "source_risk_group_count": 1.921875,
+      "calibrated_proper_score": {
+        "brier": 0.08559515460057732,
+        "logloss": 0.2996515189735496
+      },
+      "spearman_uplift_ci": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_anchors": 64
+      },
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.04077514295417694,
+          "delta": 0.0,
+          "p10": 0.2057142857142857,
+          "bottom15": 0.3257142857142857
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.012702564267233329,
+          "delta": 0.0,
+          "p10": 0.29310344827586204,
+          "bottom15": 0.22758620689655173
+        }
+      }
+    },
+    "O1_RAW_BAR21_LGBM": {
+      "economic": {
+        "cagr": 0.06084634302082148,
+        "terminal_wealth_multiple": 1.3716226304630652,
+        "max_daily_open_drawdown": -0.35255293171655544,
+        "daily_log_sharpe": 0.2130034650684183,
+        "daily_es5": -0.041218343515819066,
+        "fee_amount_initial_units": 0.08612723661198851,
+        "gross_turnover_notional_initial_units": 86.1272366119882
+      },
+      "mean_spearman": -0.0008907783477105735,
+      "precision10": 0.246875,
+      "precision5": 0.27187500000000003,
+      "actual_winner_found_top5": 18,
+      "top5_future_excess_log": -0.004537966764835923,
+      "false_bottom15_fraction": 0.28750000000000003,
+      "source_risk_group_count": 1.90625,
+      "calibrated_proper_score": {
+        "brier": 0.08642088377742992,
+        "logloss": 0.30437625415699743
+      },
+      "spearman_uplift_ci": {
+        "mean": 0.015652278521764845,
+        "ci95": [
+          0.001711005435030223,
+          0.029465026953548468
+        ],
+        "n_anchors": 64
+      },
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.027308475890214515,
+          "delta": 0.013466667063962436,
+          "p10": 0.2485714285714286,
+          "bottom15": 0.32
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.030992649720828665,
+          "delta": 0.018290085453595336,
+          "p10": 0.24482758620689657,
+          "bottom15": 0.24827586206896554
+        }
+      }
+    },
+    "O2_ENG_OHLCV_LGBM": {
+      "economic": {
+        "cagr": 0.019771568393106786,
+        "terminal_wealth_multiple": 1.110423068363667,
+        "max_daily_open_drawdown": -0.42333879443846256,
+        "daily_log_sharpe": 0.06986750655637393,
+        "daily_es5": -0.0415741014733552,
+        "fee_amount_initial_units": 0.08218279620906233,
+        "gross_turnover_notional_initial_units": 82.18279620906205
+      },
+      "mean_spearman": -0.014935234448725833,
+      "precision10": 0.25625,
+      "precision5": 0.240625,
+      "actual_winner_found_top5": 12,
+      "top5_future_excess_log": -0.007558933509392862,
+      "false_bottom15_fraction": 0.278125,
+      "source_risk_group_count": 2.0625,
+      "calibrated_proper_score": {
+        "brier": 0.08558587555738961,
+        "logloss": 0.29924497461179334
+      },
+      "spearman_uplift_ci": {
+        "mean": 0.0016078224207495843,
+        "ci95": [
+          -0.00942791624508522,
+          0.013331781247020037
+        ],
+        "n_anchors": 64
+      },
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.037536138757626035,
+          "delta": 0.0032390041965509064,
+          "p10": 0.23428571428571426,
+          "bottom15": 0.29714285714285715
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.012341719027533048,
+          "delta": -0.00036084523970028733,
+          "p10": 0.2827586206896551,
+          "bottom15": 0.2551724137931035
+        }
+      }
+    },
+    "O3_ENG_OHLCV_EXTRA_TREES": {
+      "economic": {
+        "cagr": 0.05400445532222675,
+        "terminal_wealth_multiple": 1.324956492040941,
+        "max_daily_open_drawdown": -0.5392584655203543,
+        "daily_log_sharpe": 0.16908198158965387,
+        "daily_es5": -0.04607244386433853,
+        "fee_amount_initial_units": 0.06377575548569503,
+        "gross_turnover_notional_initial_units": 63.77575548569498
+      },
+      "mean_spearman": -0.010320636009451066,
+      "precision10": 0.23125,
+      "precision5": 0.24375000000000002,
+      "actual_winner_found_top5": 16,
+      "top5_future_excess_log": -0.004650889791580708,
+      "false_bottom15_fraction": 0.290625,
+      "source_risk_group_count": 1.78125,
+      "calibrated_proper_score": {
+        "brier": 0.08561841234640007,
+        "logloss": 0.2982397820478963
+      },
+      "spearman_uplift_ci": {
+        "mean": 0.006222420860024353,
+        "ci95": [
+          -0.010196852828618885,
+          0.022174868441166146
+        ],
+        "n_anchors": 64
+      },
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.0322264291906747,
+          "delta": 0.008548713763502238,
+          "p10": 0.2114285714285714,
+          "bottom15": 0.3314285714285714
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.016117390243749884,
+          "delta": 0.003414825976516554,
+          "p10": 0.25517241379310346,
+          "bottom15": 0.24137931034482762
+        }
+      }
+    },
+    "O4_ENG_OHLCV_LOGISTIC": {
+      "economic": {
+        "cagr": -0.014076565244475314,
+        "terminal_wealth_multiple": 0.9269632987600409,
+        "max_daily_open_drawdown": -0.47227036483686036,
+        "daily_log_sharpe": -0.04475149454583286,
+        "daily_es5": -0.046981759966737056,
+        "fee_amount_initial_units": 0.04466136578751578,
+        "gross_turnover_notional_initial_units": 44.66136578751582
+      },
+      "mean_spearman": -0.020777511812182337,
+      "precision10": 0.253125,
+      "precision5": 0.25,
+      "actual_winner_found_top5": 13,
+      "top5_future_excess_log": -0.011521700701084301,
+      "false_bottom15_fraction": 0.328125,
+      "source_risk_group_count": 1.984375,
+      "calibrated_proper_score": {
+        "brier": 0.08713143887419578,
+        "logloss": 0.3053688726904074
+      },
+      "spearman_uplift_ci": {
+        "mean": -0.00423445494270692,
+        "ci95": [
+          -0.021519463986558473,
+          0.013111941339396289
+        ],
+        "n_anchors": 64
+      },
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.040905967959969515,
+          "delta": -0.00013082500579257147,
+          "p10": 0.23714285714285716,
+          "bottom15": 0.3028571428571429
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.003515452504112531,
+          "delta": -0.009187111763120792,
+          "p10": 0.27241379310344827,
+          "bottom15": 0.35862068965517246
+        }
+      }
+    }
+  },
+  "preregistered_proper_skill_gates": {
+    "O1_RAW_BAR21_LGBM": false,
+    "O2_ENG_OHLCV_LGBM": false,
+    "O3_ENG_OHLCV_EXTRA_TREES": false,
+    "O4_ENG_OHLCV_LOGISTIC": false
+  },
+  "exploratory_not_promoted_to_live_strategy": true,
+  "notes": [
+    "Volume is ETF secondary-market traded volume, NOT primary-market fund inflows",
+    "OHLCV source adjusted retrospectively; no broker spread or EUR quote",
+    "149 survivor universe already repeatedly studied; further trials risk multiple-testing inflation",
+    "A positive backtest CAGR is not prospective calibrated ETF alpha"
+  ]
+}
