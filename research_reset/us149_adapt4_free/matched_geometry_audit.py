@@ -156,7 +156,7 @@ def run(raw,out):
          n_monthly_signals=65,n_daily_US_market_opens=1360,raw_tradable_universe=149,
          original_US149_V2_free_performance_exact_parity_from_action_39338133099=True,
          original_US_SPY_HYG_IEF_BIL_SHV_and_stop_source_unchanged=True,
-         149_free_candidate_rule_no_sector_limits=True,
+         original149_free_candidate_rule_no_sector_limits=True,
          old_500_candidate_rule_exactly_4_per_6_categories=True,
          all_cases=summaries,
          old_MA3_free_vs_500_mean_cagr_delta_pp=(v2sample-v2free)*100,
