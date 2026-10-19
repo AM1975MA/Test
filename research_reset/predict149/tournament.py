@@ -46,7 +46,7 @@ def precompute(C,roster):
         f=pd.DataFrame(index=C.index,columns=C.columns,dtype=float)
         for group in sorted(set(groups.values())):
             mem=[k for k in C.columns if groups[k]==group]
-            f.loc[:,mem]=r[w][mem].mean(axis=1).to_numpy()[:,None]
+            f.loc[:,mem]=np.repeat(r[w][mem].mean(axis=1).to_numpy()[:,None],len(mem),axis=1)
             if w==63:pct.loc[:,mem]=r[w][mem].rank(axis=1,pct=True)
         factors[w]=f.astype(float)
     d={
