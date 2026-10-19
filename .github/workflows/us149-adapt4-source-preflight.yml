@@ -1,0 +1,37 @@
+name: US149_ADAPT4_ORIGINAL_ARCHIVE_DATA_CONTRACT
+on:
+  push:
+    branches:
+      - research/us149-adapt4-unrestricted-20261020
+    paths:
+      - '.github/workflows/us149-adapt4-source-preflight.yml'
+      - 'research_reset/us149_adapt4_free/prepare.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+jobs:
+  verify-all149-free-original-market-data:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pandas scipy numpy
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Recover frozen original full 149 USA archive, not latest yfinance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _ORIGINAL149_RAW
+      - name: Hard audit 149 complete instruments OHLCV and no synthetic prices
+        run: python -u -m research_reset.us149_adapt4_free.prepare --us _ORIGINAL149_RAW --out _AUDIT149
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: US149_Original_Frozen_Raw_Archive_Preflight
+          retention-days: 30
+          path: _AUDIT149/ORIGINAL_SOURCE_AUDIT.json
