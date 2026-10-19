@@ -102,7 +102,7 @@ def run(prep,tit,output):
     raw=prep/"raw_ticker_csv"
     mats,cats,manifest=load_ticker_csv_folder(raw)
     universe=pd.read_csv(raw/"universe.csv")
-    assert len(universe)==48 and universe.isin.nunique()==48
+    assert len(universe)==48 and universe["isin"].nunique()==48
     names=list(mats["Open"].columns)
     assert len(names)==48
     schedule=pd.read_csv(tit/"TIT_R_SOURCE_ONLY.csv",
