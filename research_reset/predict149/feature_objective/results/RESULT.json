@@ -1,0 +1,382 @@
+{
+  "status": "T149D_FEATURE_AND_OBJECTIVE_EXPLORATORY_DONE",
+  "original_etfs": 149,
+  "exact_source_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "previous_149_N4_baseline_economics_identical": true,
+  "feature_families": {
+    "raw63": 63,
+    "engineered": 19,
+    "asset_categories": 6,
+    "crosssectional_rank_features": 15
+  },
+  "chronological_matured_labels_only": true,
+  "no_new_future_information_or_pit_certification": true,
+  "n_evaluation_21day_anchors": 64,
+  "n_ticker_month_predictions": 9536,
+  "models": {
+    "B0_ARCHIVED_N4": {
+      "economics": {
+        "cagr": 0.16695968895271163,
+        "terminal_wealth_multiple": 2.284192787443914,
+        "max_daily_open_drawdown": -0.3400723287428331,
+        "daily_log_sharpe": 0.49870602888452237,
+        "daily_es5": -0.04534396597703554,
+        "fee_amount_initial_units": 0.07745746369203566,
+        "gross_turnover_notional_initial_units": 77.45746369203552
+      },
+      "mean_spearman": -0.016543056869475416,
+      "precision10": 0.2453125,
+      "precision5": 0.278125,
+      "future_best_hit_in_top5": 19,
+      "forward_top5_excess": 0.003230059179478861,
+      "chosen_bottom15_fraction": 0.28125,
+      "average_63day_vol_selected": 0.02578974515719108,
+      "average_categories_in_top5": 1.921875,
+      "graded_ndcg10": 0.27782341493686613,
+      "score_calibration": {
+        "brier": 0.08559515460057732,
+        "log_loss": 0.2996515189735496,
+        "probability_mean": 0.10488383553578123
+      },
+      "spearman_ci": {
+        "mean": -0.016543056869475416,
+        "ci95": [
+          -0.054087234189296535,
+          0.021716045524796508
+        ],
+        "n_anchors": 64
+      },
+      "paired_spearman_delta_vs_N4_ci": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_anchors": 64
+      },
+      "by_period": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.04077514295417694,
+          "spearman_delta_vs_B0": 0.0,
+          "precision10": 0.2057142857142857,
+          "forward_excess": -0.013046631318880378,
+          "bottom15_rate": 0.3257142857142857
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.012702564267233329,
+          "spearman_delta_vs_B0": 0.0,
+          "precision10": 0.29310344827586204,
+          "forward_excess": 0.022874340815429665,
+          "bottom15_rate": 0.22758620689655173
+        }
+      }
+    },
+    "D1_RAW63_LGBM": {
+      "economics": {
+        "cagr": 0.023813049817512644,
+        "terminal_wealth_multiple": 1.1341698217440117,
+        "max_daily_open_drawdown": -0.3462533277380685,
+        "daily_log_sharpe": 0.0837340115542741,
+        "daily_es5": -0.04271126973884218,
+        "fee_amount_initial_units": 0.0976156856603343,
+        "gross_turnover_notional_initial_units": 97.6156856603347
+      },
+      "mean_spearman": -0.011925930611917782,
+      "precision10": 0.23593750000000002,
+      "precision5": 0.265625,
+      "future_best_hit_in_top5": 13,
+      "forward_top5_excess": -0.007587361936267823,
+      "chosen_bottom15_fraction": 0.26875,
+      "average_63day_vol_selected": 0.025098979552305355,
+      "average_categories_in_top5": 1.796875,
+      "graded_ndcg10": 0.2663925334494996,
+      "score_calibration": {
+        "brier": 0.08680499555041495,
+        "log_loss": 0.30601784868483,
+        "probability_mean": 0.10787237086504396
+      },
+      "spearman_ci": {
+        "mean": -0.011925930611917782,
+        "ci95": [
+          -0.0565616167031874,
+          0.03249192300536794
+        ],
+        "n_anchors": 64
+      },
+      "paired_spearman_delta_vs_N4_ci": {
+        "mean": 0.004617126257557632,
+        "ci95": [
+          -0.016455933572750308,
+          0.0268766291562893
+        ],
+        "n_anchors": 64
+      },
+      "by_period": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.038880086076110085,
+          "spearman_delta_vs_B0": 0.0018950568780668705,
+          "precision10": 0.24571428571428575,
+          "forward_excess": -0.0072533400867738134,
+          "bottom15_rate": 0.2685714285714285
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.02060494667245223,
+          "spearman_delta_vs_B0": 0.0079023824052189,
+          "precision10": 0.22413793103448282,
+          "forward_excess": -0.007990491754622665,
+          "bottom15_rate": 0.26896551724137935
+        }
+      }
+    },
+    "D2_ENGINEERED_LGBM": {
+      "economics": {
+        "cagr": 0.13262131305936498,
+        "terminal_wealth_multiple": 1.9468852157437644,
+        "max_daily_open_drawdown": -0.304660234304976,
+        "daily_log_sharpe": 0.40042020612335255,
+        "daily_es5": -0.045448440745436657,
+        "fee_amount_initial_units": 0.07907757002955551,
+        "gross_turnover_notional_initial_units": 79.07757002955518
+      },
+      "mean_spearman": -0.01619912317407802,
+      "precision10": 0.2421875,
+      "precision5": 0.271875,
+      "future_best_hit_in_top5": 17,
+      "forward_top5_excess": 0.0007025974679589688,
+      "chosen_bottom15_fraction": 0.27812499999999996,
+      "average_63day_vol_selected": 0.025528834297048924,
+      "average_categories_in_top5": 1.921875,
+      "graded_ndcg10": 0.2830795799115396,
+      "score_calibration": {
+        "brier": 0.08577443949091837,
+        "log_loss": 0.29995014281188404,
+        "probability_mean": 0.1058576095703063
+      },
+      "spearman_ci": {
+        "mean": -0.01619912317407802,
+        "ci95": [
+          -0.05324801216882488,
+          0.02249333470778346
+        ],
+        "n_anchors": 64
+      },
+      "paired_spearman_delta_vs_N4_ci": {
+        "mean": 0.00034393369539740046,
+        "ci95": [
+          -0.004021876149979439,
+          0.004746402114554759
+        ],
+        "n_anchors": 64
+      },
+      "by_period": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.03996208819038575,
+          "spearman_delta_vs_B0": 0.000813054763791197,
+          "precision10": 0.21428571428571427,
+          "forward_excess": -0.012581344542877808,
+          "bottom15_rate": 0.34857142857142853
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.012480317362845111,
+          "spearman_delta_vs_B0": -0.00022224690438821487,
+          "precision10": 0.27586206896551724,
+          "forward_excess": 0.016734941274141282,
+          "bottom15_rate": 0.19310344827586212
+        }
+      }
+    },
+    "D3_CONTEXT_LGBM": {
+      "economics": {
+        "cagr": 0.02136923120928813,
+        "terminal_wealth_multiple": 1.119761735615719,
+        "max_daily_open_drawdown": -0.3822121695380709,
+        "daily_log_sharpe": 0.06921407642292098,
+        "daily_es5": -0.045232462921842416,
+        "fee_amount_initial_units": 0.07734622538652502,
+        "gross_turnover_notional_initial_units": 77.34622538652584
+      },
+      "mean_spearman": -0.01842452197599817,
+      "precision10": 0.24843750000000003,
+      "precision5": 0.2375,
+      "future_best_hit_in_top5": 13,
+      "forward_top5_excess": -0.007846655842094125,
+      "chosen_bottom15_fraction": 0.30000000000000004,
+      "average_63day_vol_selected": 0.026367986399431557,
+      "average_categories_in_top5": 2.140625,
+      "graded_ndcg10": 0.27606667015544706,
+      "score_calibration": {
+        "brier": 0.08488986272118318,
+        "log_loss": 0.29565649093383983,
+        "probability_mean": 0.09957152923504033
+      },
+      "spearman_ci": {
+        "mean": -0.01842452197599817,
+        "ci95": [
+          -0.0603073723252734,
+          0.026453599082177787
+        ],
+        "n_anchors": 64
+      },
+      "paired_spearman_delta_vs_N4_ci": {
+        "mean": -0.0018814651065227521,
+        "ci95": [
+          -0.0165661688230791,
+          0.013232502145606903
+        ],
+        "n_anchors": 64
+      },
+      "by_period": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.03420890330088007,
+          "spearman_delta_vs_B0": 0.006566239653296882,
+          "precision10": 0.21999999999999997,
+          "forward_excess": -0.015700208148678105,
+          "bottom15_rate": 0.32571428571428573
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.0006255934161006768,
+          "spearman_delta_vs_B0": -0.012076970851132653,
+          "precision10": 0.2827586206896551,
+          "forward_excess": 0.0016317693555072395,
+          "bottom15_rate": 0.2689655172413793
+        }
+      }
+    },
+    "D4_GRADED_LAMBDARANK": {
+      "economics": {
+        "cagr": 0.09418143870588014,
+        "terminal_wealth_multiple": 1.6185220570093333,
+        "max_daily_open_drawdown": -0.44920402746086685,
+        "daily_log_sharpe": 0.3161835521229467,
+        "daily_es5": -0.04170675426013727,
+        "fee_amount_initial_units": 0.07932871027257626,
+        "gross_turnover_notional_initial_units": 79.32871027257646
+      },
+      "mean_spearman": -0.01283016684342645,
+      "precision10": 0.2375,
+      "precision5": 0.246875,
+      "future_best_hit_in_top5": 9,
+      "forward_top5_excess": -0.0007285151780932787,
+      "chosen_bottom15_fraction": 0.28750000000000003,
+      "average_63day_vol_selected": 0.024933936870085945,
+      "average_categories_in_top5": 2.28125,
+      "graded_ndcg10": 0.2609818979211374,
+      "score_calibration": null,
+      "spearman_ci": {
+        "mean": -0.01283016684342645,
+        "ci95": [
+          -0.05733871351513319,
+          0.035707900057449116
+        ],
+        "n_anchors": 64
+      },
+      "paired_spearman_delta_vs_N4_ci": {
+        "mean": 0.0037128900260489685,
+        "ci95": [
+          -0.015922449845009436,
+          0.02477650273491805
+        ],
+        "n_anchors": 64
+      },
+      "by_period": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.03190225521093764,
+          "spearman_delta_vs_B0": 0.008872887743239313,
+          "precision10": 0.20285714285714285,
+          "forward_excess": -0.01317422591960984,
+          "bottom15_rate": 0.32571428571428573
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.010187870841500852,
+          "spearman_delta_vs_B0": -0.0025146934257324794,
+          "precision10": 0.2793103448275862,
+          "forward_excess": 0.014292170199599122,
+          "bottom15_rate": 0.24137931034482762
+        }
+      }
+    },
+    "D5_SIGNED_TAIL_LGBM": {
+      "economics": {
+        "cagr": 0.07875106592156178,
+        "terminal_wealth_multiple": 1.5001018126524968,
+        "max_daily_open_drawdown": -0.291653195153728,
+        "daily_log_sharpe": 0.30611101042153804,
+        "daily_es5": -0.03565494114389284,
+        "fee_amount_initial_units": 0.110147101293673,
+        "gross_turnover_notional_initial_units": 110.14710129367276
+      },
+      "mean_spearman": 0.02243340388946089,
+      "precision10": 0.1671875,
+      "precision5": 0.178125,
+      "future_best_hit_in_top5": 3,
+      "forward_top5_excess": -0.0006816091042895797,
+      "chosen_bottom15_fraction": 0.178125,
+      "average_63day_vol_selected": 0.018431958113161437,
+      "average_categories_in_top5": 2.703125,
+      "graded_ndcg10": 0.2065692187012317,
+      "score_calibration": null,
+      "spearman_ci": {
+        "mean": 0.02243340388946089,
+        "ci95": [
+          -0.023717489261670877,
+          0.0691508523218047
+        ],
+        "n_anchors": 64
+      },
+      "paired_spearman_delta_vs_N4_ci": {
+        "mean": 0.03897646075893631,
+        "ci95": [
+          -0.013237417472453569,
+          0.09302553680635503
+        ],
+        "n_anchors": 64
+      },
+      "by_period": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": 0.03473423135625594,
+          "spearman_delta_vs_B0": 0.0755093743104329,
+          "precision10": 0.15714285714285717,
+          "forward_excess": -0.006833165733699081,
+          "bottom15_rate": 0.21142857142857144
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.007587577636432383,
+          "spearman_delta_vs_B0": -0.005114986630800944,
+          "precision10": 0.17931034482758618,
+          "forward_excess": 0.00674268337948051,
+          "bottom15_rate": 0.13793103448275862
+        }
+      }
+    }
+  },
+  "preregistered_skill_gates": {
+    "D1_RAW63_LGBM": false,
+    "D2_ENGINEERED_LGBM": false,
+    "D3_CONTEXT_LGBM": false,
+    "D4_GRADED_LAMBDARANK": false,
+    "D5_SIGNED_TAIL_LGBM": false
+  },
+  "best_by_precision10": "D3_CONTEXT_LGBM",
+  "best_by_rank_spearman": "D5_SIGNED_TAIL_LGBM",
+  "must_not_select_model_using_same_researched_2021_2026_sample": true,
+  "caveats": [
+    "Same historical 149 universe, extensively tested before; multiple model comparisons",
+    "Yahoo adjusted OHLC not executable broker quotes, no true PIT fund membership",
+    "N4 original scores obtained from frozen archive, not refitted",
+    "Learning-to-rank score is not a calibrated event probability",
+    "CAGR and drawdown secondary exploratory outcomes not generalization evidence",
+    "No leverage/FX/bid-ask/taxes, no untouched future interval"
+  ]
+}
