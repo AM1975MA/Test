@@ -1,0 +1,32 @@
+name: ETF_V2_EU48_ORIGINAL_US_REFERENCE_RAW_PREFLIGHT
+on:
+  push:
+    branches:
+      - research/etf-v2-eu48-original-us-references-20261019
+    paths:
+      - '.github/workflows/etf-v2-usref-raw-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fetch-original-us-factor-quotes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore immutable upstream USA149 full raw source evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _USRAW
+          find _USRAW -maxdepth 3 -name '*.csv' | head -12
+          for t in SPY HYG IEF BIL SHV; do
+             echo ORIGINAL_RAW_${t}
+             find _USRAW -name "${t}.csv" -exec sh -c 'echo "$1"; head -n 4 "$1"; tail -n 2 "$1"' sh {} \;
+          done
+      - name: Verify US source five original reference series unmodified
+        run: |
+          for t in SPY HYG IEF BIL SHV; do
+            test "$(find _USRAW -name "${t}.csv" | wc -l)" = "1"
+          done
