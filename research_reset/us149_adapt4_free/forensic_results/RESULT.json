@@ -1,0 +1,31 @@
+{
+  "status": "HISTORICAL_31_76_VS_FREE149_NEW_10_48_SAME_PERIOD_DIFFERENT_PREDICTOR_AUDIT_COMPLETE",
+  "old_COMPACT21_BASE_2017_2026_mean_cagr": 0.31758077249027905,
+  "old_COMPACT21_ECON_TOP5_RERANK_2017_2026_mean_cagr": 0.30957772070033845,
+  "old_COMPACT21_BASE_2021_2026_conditional_mean_cagr": 0.3493165984009606,
+  "new_fresh_MA3_2021_2026_one149_cagr": 0.10479353861045033,
+  "new_fresh_ADAPT4_2021_2026_one149_cagr": 0.29174772765074736,
+  "same_ETF_number_149": true,
+  "same_one_full_unconstrained_universe": true,
+  "same_time_window_original_reports": false,
+  "old_3_quotation_source_vintages_not_500_baskets": true,
+  "old_compact21_pretrained_score_family_is_not_new_MA3_family": true,
+  "old_continues_from_2017_new_initializes_from_2021": true,
+  "different_original_replayer_includes_stage19_confidence_weights_and_simulate_arch": true,
+  "new_replayer_highcagr24_apply_plus_v6_simulate_with_alt": true,
+  "original_raw_price_source_not_identical_or_proven_same": true,
+  "date_alignment": {
+    "old_price_days_since2021": 1360,
+    "new_days_2021to2026": 1360,
+    "exact_market_dates_old_and_new": true,
+    "overlapping_common_mark_dates": 1360,
+    "days_only_in_old": [],
+    "days_only_in_new": []
+  },
+  "no_model_training_or_parameter_changes": true,
+  "detailed_experimental_replay_required_for_exact_algorithm_attribution": true,
+  "source_old_run": 39044619710,
+  "source_new_run": 39338133099,
+  "old_artifact_SHA256": "71832165ab3d9234dc6a7ebef22782b2030566a4be75f4a553d7382f8b76c18b",
+  "new_csv_SHA256": "9ba8edd3eb8af52fa244bfb41023efc7e0afc4d2903641e21141101ed1ad28c3"
+}
