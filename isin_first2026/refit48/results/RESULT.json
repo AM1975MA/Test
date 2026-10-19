@@ -1,0 +1,268 @@
+{
+  "status": "EUR48_TRUE_RETRAIN_F3_H1_H3_AND_MATCHED_10BP_EXECUTION_COMPLETE",
+  "isin_count": 48,
+  "groups": {
+    "EU_SECTOR": 23,
+    "EU_SOVEREIGN": 7,
+    "EU_PROPERTY": 6,
+    "EU_BROAD": 4,
+    "EU_COUNTRY": 4,
+    "EU_FACTOR": 4
+  },
+  "signaled_anchors": 113,
+  "evaluation_months": 65,
+  "evaluation_daily_open_count": 1331,
+  "eval_signal_start": "2021-01-29",
+  "eval_last_exit": "2026-07-01",
+  "identical_entry_exit_to_original_EUR60_calendar_blocks": 111,
+  "model_architecture": {
+    "original_euro60_algorithm_source_sha256": "dceedba1061b2e4873d53805ede5c2d02c620ba86480ae5c9b5f619e57615667",
+    "adaptations": {
+      "betas": {
+        "beta.shape!=(60,10)": "beta.shape!=(len(names),10)"
+      },
+      "create_labels_and_asof_features": {
+        "np.zeros((60,6),float)": "np.zeros((len(names),6),float)",
+        "len(frame)!=60*frame.block.nunique()": "len(frame)!=len(names)*frame.block.nunique()",
+        "frame.groupby(\"block\").size().ne(60)": "frame.groupby(\"block\").size().ne(len(names))"
+      },
+      "fit_predict": {
+        "assert len(now)==60": "assert len(now)==len(frame.ticker.unique())",
+        "len(p)==len(testidx)*60": "len(p)==len(testidx)*len(frame.ticker.unique())"
+      }
+    },
+    "n_feature_values": 19,
+    "n_onehot": 6,
+    "model_constants": {
+      "seed": 20261019,
+      "training_min": 40,
+      "factor_len": 10,
+      "quarterly_retrain_months": 3
+    }
+  },
+  "label_blocks": 113,
+  "label_maturity_embargo": true,
+  "source_48_quality_manifest_sha": "240e49e45323f5d05af81ab3189e070645f49f26d0fdb4e5b9c84da200e40e78",
+  "source_48_roster_sha": "3ad7a0ebcfec22788aac0bd3337e77a9e748d02e09e4b044078425b46cdd7fe3",
+  "original_eur60_predictions_sha": "f97b1568bf8a73c6dcc342650fd6e448f510987e3cc81d29ed68dd83654df207",
+  "fx_historical_usd_to_eur_sha": "ab7feed8bed4b5b329fee355343b418bf42a79a71800f0702814b5cf2924a71c",
+  "n_us_etfs_allowed_as_portfolio": 0,
+  "cost_each_side": 0.001,
+  "matched_dates_for_all_48_models": true,
+  "all_strategies_true_ISIN_uniqueness": true,
+  "all_model_results": {
+    "RH_OLD60_MAPPED48": {
+      "cagr": 0.07145203044653825,
+      "terminal_capital": 1.4526208584381244,
+      "maxdd_daily_open": -0.2759407178081065,
+      "sharpe_daily_log": 0.3350503831509416,
+      "es5_daily": -0.030330254045143532,
+      "ann_vol": 0.21170862926596004,
+      "fee_notional": 0.11467332489848947,
+      "gross_turnover": 114.67332489848947,
+      "position_count_mean": 2.0,
+      "n_sessions": 1331
+    },
+    "F3_EU48": {
+      "cagr": 0.03510906841676942,
+      "terminal_capital": 1.2052434246855912,
+      "maxdd_daily_open": -0.24865001477766302,
+      "sharpe_daily_log": 0.22194429794749412,
+      "es5_daily": -0.023706466492721266,
+      "ann_vol": 0.16022318232871025,
+      "fee_notional": 0.11452828266552717,
+      "gross_turnover": 114.52828266552693,
+      "position_count_mean": 5.0,
+      "n_sessions": 1331
+    },
+    "H1_EU48": {
+      "cagr": 0.07892205309583522,
+      "terminal_capital": 1.5082594450572069,
+      "maxdd_daily_open": -0.218144852596591,
+      "sharpe_daily_log": 0.444228666304707,
+      "es5_daily": -0.0266218908016139,
+      "ann_vol": 0.17570856914857963,
+      "fee_notional": 0.0942922427891908,
+      "gross_turnover": 94.2922427891899,
+      "position_count_mean": 5.0,
+      "n_sessions": 1331
+    },
+    "H3_EU48": {
+      "cagr": 0.05646708730069827,
+      "terminal_capital": 1.3460483006014414,
+      "maxdd_daily_open": -0.3105041802799413,
+      "sharpe_daily_log": 0.2991423046201723,
+      "es5_daily": -0.027905840380453465,
+      "ann_vol": 0.18885949298800964,
+      "fee_notional": 0.10088104714043777,
+      "gross_turnover": 100.88104714043766,
+      "position_count_mean": 5.0,
+      "n_sessions": 1331
+    },
+    "F3_H1_BLEND_EU48": {
+      "cagr": 0.06051196299329642,
+      "terminal_capital": 1.3741655899156173,
+      "maxdd_daily_open": -0.19696360404847202,
+      "sharpe_daily_log": 0.38628212108124,
+      "es5_daily": -0.024180665072809894,
+      "ann_vol": 0.15639596446763768,
+      "fee_notional": 0.09703705226979298,
+      "gross_turnover": 97.03705226979368,
+      "position_count_mean": 9.461538461538462,
+      "n_sessions": 1331
+    },
+    "PASSIVE_EU_60_40": {
+      "cagr": 0.06500778104047744,
+      "terminal_capital": 1.4059774550630268,
+      "maxdd_daily_open": -0.18448355063901956,
+      "sharpe_daily_log": 0.6581432726183992,
+      "es5_daily": -0.014968116775422062,
+      "ann_vol": 0.09838172443576039,
+      "fee_notional": 0.0019740877074225782,
+      "gross_turnover": 1.974087707423039,
+      "position_count_mean": 2.0,
+      "n_sessions": 1331
+    }
+  },
+  "paired_vs_RH_old60_mapped48": {
+    "F3_EU48": {
+      "bootstrap_vs_RH": {
+        "mean": -0.0028721208421631124,
+        "CI95": [
+          -0.011842606188075741,
+          0.00602401998659298
+        ]
+      },
+      "earlier_2021_2023": -0.0035583975948579316,
+      "later_2024_2026": -0.0020201910801971317,
+      "drawdown_difference_pp": 2.7290703030443453,
+      "es5_difference_pp": 0.6623787552422267
+    },
+    "H1_EU48": {
+      "bootstrap_vs_RH": {
+        "mean": 0.000578259801734903,
+        "CI95": [
+          -0.007247296557410246,
+          0.008118405523187917
+        ]
+      },
+      "earlier_2021_2023": -0.0032672472724014417,
+      "later_2024_2026": 0.005351992721352434,
+      "drawdown_difference_pp": 5.779586521151547,
+      "es5_difference_pp": 0.3708363243529633
+    },
+    "H3_EU48": {
+      "bootstrap_vs_RH": {
+        "mean": -0.0011722507437252545,
+        "CI95": [
+          -0.008342519522455887,
+          0.006012649109925018
+        ]
+      },
+      "earlier_2021_2023": -0.004315817042905617,
+      "later_2024_2026": 0.002730107420774507,
+      "drawdown_difference_pp": -3.456346247183484,
+      "es5_difference_pp": 0.2424413664690067
+    },
+    "F3_H1_BLEND_EU48": {
+      "bootstrap_vs_RH": {
+        "mean": -0.0008541955423396972,
+        "CI95": [
+          -0.007999637944363576,
+          0.006344234697577585
+        ]
+      },
+      "earlier_2021_2023": -0.003110017875497397,
+      "later_2024_2026": 0.0019461356298560689,
+      "drawdown_difference_pp": 7.897711375963445,
+      "es5_difference_pp": 0.6149588972333638
+    }
+  },
+  "signed_directional_skill": {
+    "F3_EU48": {
+      "spearman": {
+        "mean": -0.005608395082410163,
+        "CI95": [
+          -0.07847565699479739,
+          0.06628130519217038
+        ]
+      },
+      "selected5_mean_future_excess": -0.004013425020095021
+    },
+    "H1_EU48": {
+      "spearman": {
+        "mean": 0.022953338454858217,
+        "CI95": [
+          -0.0526585306790474,
+          0.0959691789972945
+        ]
+      },
+      "selected5_mean_future_excess": -0.0009957041483347263
+    },
+    "H3_EU48": {
+      "spearman": {
+        "mean": 0.02433615017201644,
+        "CI95": [
+          -0.03165678546377634,
+          0.08015423026821204
+        ]
+      },
+      "selected5_mean_future_excess": -0.0026447437993997033
+    }
+  },
+  "proper_forecast_scores": {
+    "F3_q10_pinball": 0.008037029898263213,
+    "matured_null_q10_pinball": 0.008228079008088642,
+    "F3_q90_pinball": 0.007271213113053792,
+    "matured_null_q90_pinball": 0.0074921106609247825,
+    "H1_factor_mse": 0.0022230667836290593,
+    "matured_null_factor_mse": 0.0019724502116088205
+  },
+  "new_F3_H1_blend_GO": false,
+  "legacy_EUR60_archived_predictions_refunded_replay_on_joint_days": [
+    {
+      "method": "F3_EUROPE_REFIT",
+      "EUR60_cagr": -0.016320989149899434,
+      "EUR60_terminal_capital": 0.9148227764352088,
+      "EUR60_maxdd_daily_open": -0.3560936549847423,
+      "EUR60_sharpe_daily_log": -0.09746027106746016,
+      "EUR60_es5_daily": -0.025763846370752793,
+      "EUR60_ann_vol": 0.17113127509655945,
+      "EUR60_fee_notional": 0.10175009971620164,
+      "EUR60_gross_turnover": 101.7500997162017,
+      "EUR60_position_count_mean": 5.0,
+      "EUR60_n_sessions": 1331
+    },
+    {
+      "method": "H1_EUROPE_REFIT",
+      "EUR60_cagr": 0.044092075252155416,
+      "EUR60_terminal_capital": 1.2629227212824032,
+      "EUR60_maxdd_daily_open": -0.3314595758989759,
+      "EUR60_sharpe_daily_log": 0.25510824280745337,
+      "EUR60_es5_daily": -0.0268058359668536,
+      "EUR60_ann_vol": 0.17411419466072514,
+      "EUR60_fee_notional": 0.09149769085364579,
+      "EUR60_gross_turnover": 91.49769085364547,
+      "EUR60_position_count_mean": 5.0,
+      "EUR60_n_sessions": 1331
+    },
+    {
+      "method": "H3_EUROPE_REFIT",
+      "EUR60_cagr": 0.07585422514434348,
+      "EUR60_terminal_capital": 1.4852030683662132,
+      "EUR60_maxdd_daily_open": -0.24442677754420306,
+      "EUR60_sharpe_daily_log": 0.430681578757298,
+      "EUR60_es5_daily": -0.025635319322266384,
+      "EUR60_ann_vol": 0.17445831090720965,
+      "EUR60_fee_notional": 0.10717384937846308,
+      "EUR60_gross_turnover": 107.17384937846393,
+      "EUR60_position_count_mean": 5.0,
+      "EUR60_n_sessions": 1331
+    }
+  ],
+  "eu60_rh_score_ISIN_dedup_BUT_NOT_refit48": true,
+  "historic_2026_survivor_universe_not_real_PIT": true,
+  "period_reused_after_selection_not_pristine_OOS": true,
+  "no_hyperparameter_tuning_on_48_performance": true,
+  "no_production_repo_modified": true
+}
