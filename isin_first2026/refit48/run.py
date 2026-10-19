@@ -11,6 +11,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import Ridge
 from research_reset.predict149.tournament import FEATS
 import europe_only75.f3h1_original_transfer.run as prior
 from europe_only75.risk_ablation.run import read_prices,construct_calendar,frozen_rh_scores
