@@ -1,0 +1,75 @@
+name: EXACT149_PREDICTIVE_FEATURES_AND_RANKER_CHALLENGE
+on:
+  push:
+    branches:
+      - research/149-features-objectives-tournament-20261019
+    paths:
+      - 'research_reset/predict149/feature_objective/run.py'
+      - 'research_reset/predict149/feature_objective/test_run.py'
+      - 'research_reset/predict149/feature_objective/PREREGISTERED.md'
+      - '.github/workflows/149-features-rankers.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  run-frozen-feature-model-objective-challenge:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install minimal LightGBM and exact numerical dependencies
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'lightgbm==4.6.0'
+          python -m py_compile research_reset/predict149/feature_objective/run.py research_reset/predict149/feature_objective/test_run.py
+      - name: Prove 149-ticker features do not use future and LambdaRank respects time queries
+        run: |
+          python -m unittest -v research_reset.predict149.feature_objective.test_run
+      - name: Run full 64-anchor 9536-row tournament and 5 matched nonlinear alternatives
+        run: |
+          python -m research_reset.predict149.feature_objective.run --out _t149d
+      - name: Verify frozen N4 baseline and all immature label leakage fences
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_t149d/RESULT.json").read_text())
+          assert d["status"]=="T149D_FEATURE_AND_OBJECTIVE_EXPLORATORY_DONE"
+          assert d["original_etfs"]==149
+          assert d["previous_149_N4_baseline_economics_identical"]
+          assert d["chronological_matured_labels_only"]
+          assert d["n_evaluation_21day_anchors"]==64
+          assert d["n_ticker_month_predictions"]==9536
+          assert len(d["models"])==6
+          print("T149D_PROPER_PREDICTIVE_GATES",d["preregistered_skill_gates"])
+          PY
+      - name: Freeze all outcomes forecasts scores and original model comparators
+        run: |
+          mkdir -p research_reset/predict149/feature_objective/results
+          cp _t149d/*.csv _t149d/*.json research_reset/predict149/feature_objective/results/
+          (cd research_reset/predict149/feature_objective/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/feature_objective/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-Prediction-Science"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/feature_objective/results
+          git commit -m "Freeze complete 149 best ETF raw63 vs engineered vs contextual vs LambdaRank vs two-tail objective research trial"
+          git push origin HEAD:refs/heads/research/149-features-objectives-tournament-20261019
+      - name: Keep artifacts even if scientific metric gates fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-features-rankers-frozen-tournament
+          retention-days: 90
+          path: |
+            _t149d/*.csv
+            _t149d/*.json
