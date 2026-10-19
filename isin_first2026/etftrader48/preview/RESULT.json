@@ -1,0 +1,27 @@
+{
+  "status": "EU48_PORT_FULL_SOURCE_INPUTS_PREPARED",
+  "n_tickers": 48,
+  "n_unique_isin": 48,
+  "category_counts": {
+    "C02_EU_SECTOR": 23,
+    "C05_BONDS_CASH_CREDIT": 7,
+    "C06_EU_PROPERTY": 6,
+    "C01_EU_BROAD": 4,
+    "C03_EU_COUNTRY": 4,
+    "C04_EU_FACTOR": 4
+  },
+  "raw_source_unmodified": true,
+  "derived_high_low_envelope_rows": 49,
+  "derived_corp_HY_non_europe_issuer_risk_only": true,
+  "risk_ref_euro_HY": "IHYG.MI",
+  "risk_ref_equity": "IMEU.AS",
+  "risk_ref_euro_gov": "EUNH.DE",
+  "defensive1": "IBCA.DE",
+  "defensive2": "IBCN.DE",
+  "first_model_data": "2015-01-01",
+  "final_model_data": "2026-07-01",
+  "vendor_path": "vendor/etf_trader_v2",
+  "original_48_manifest_sha": "240e49e45323f5d05af81ab3189e070645f49f26d0fdb4e5b9c84da200e40e78",
+  "roster_sha256": "3ad7a0ebcfec22788aac0bd3337e77a9e748d02e09e4b044078425b46cdd7fe3",
+  "contract_modification_to_US_cluster_and_risk": true
+}
