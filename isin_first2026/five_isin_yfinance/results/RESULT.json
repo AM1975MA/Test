@@ -1,0 +1,39 @@
+{
+  "status": "JUSTETF_HUMAN_PUBLIC_ISIN_TO_YFINANCE_PILOT_COMPLETE",
+  "source_discovery": "Public search-accessible justETF ETF profiles and listing tables ONLY",
+  "no_automated_justETF_scraping": true,
+  "source_xetra": {
+    "url": "https://www.cashmarket.deutsche-boerse.com/resource/blob/1528/a31c10e3183f4c5dd721f9c7f9eaaaea/data/t7-xetr-allTradableInstruments.csv",
+    "market": "XETR",
+    "last_update": "Date Last Update:;19.10.2026",
+    "records": 5516,
+    "invalid_isins": 0,
+    "source_SHA256": "1a720b75571fb3058061c8df14018bcf032654c7df50959ad2495fe0d19a859b"
+  },
+  "isin_examples": 5,
+  "ticker_candidates": 16,
+  "isins_europe_only": [
+    "IE00B5MTXJ97",
+    "LU1681042518",
+    "LU1834987973"
+  ],
+  "isins_global_excluded": [
+    "LU1900066033",
+    "NL0011683594"
+  ],
+  "source_yfinance_version": "0.2.65",
+  "downloaded_vendor_EUR": 9,
+  "download_failures": 7,
+  "source_quote_grades": {
+    "C_SPARSE_OR_STALE_YAHOO": 2,
+    "NOT_FULL_HISTORICAL_COVERAGE": 7,
+    "FAILED": 7
+  },
+  "full_2017_2026_euro_venue_quote_tickers": 2,
+  "one_per_isin_usable_vendor_quote_candidates": 5,
+  "daily_same_isin_venue_crosscheck_count": 5,
+  "original_ETF_TRADER_and_EUR60_unmodified": true,
+  "no_true_historical_point_in_time_universe_claim": true,
+  "no_Nav_or_Xetra_executable_price_from_justETF_claim": true,
+  "asof_utc": "2026-10-19 19:06:14.306292+00:00"
+}
