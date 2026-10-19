@@ -1,0 +1,71 @@
+name: ETF_V2_US149_BASKET_STYLE_MATCHED_EU48_500_CONTROL
+on:
+  push:
+    branches:
+      - research/etf-v2-eu48-causal-audit-20261019
+    paths:
+      - '.github/workflows/etf-v2-eu48-matched-500-baskets.yml'
+      - 'isin_first2026/v2_forensic48/matched_500_baskets.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  eu48-same-500-basket-style-as-us149:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install unchanged source V6 numerical libraries
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'numba==0.63.1' 'xgboost==3.1.3'
+          python -m py_compile isin_first2026/v2_forensic48/matched_500_baskets.py
+      - name: Reprepare unchanged ISIN European adjusted Yahoo original vendor price histories
+        run: python -m isin_first2026.v2_unrestricted48.prepare --out _AUDIT500_PREP
+      - name: Compare exact 500 basket source evaluation versus unrestricted one-basket primary study without any re-fit
+        run: python -u -m isin_first2026.v2_forensic48.matched_500_baskets --raw _AUDIT500_PREP/raw_ticker_csv --out _MATCHED500
+      - name: Strict candidate count and 500 US-style balanced basket consistency
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,pandas as pd,hashlib
+          p=Path("_MATCHED500")
+          d=json.loads((p/"RESULT.json").read_text())
+          assert d["status"]=="EU48_500_BALANCED_24_VS_SINGLE_48_UNRESTRICTED_PARITY_STYLE_CONTROL"
+          assert d["balanced_500_pockets_each_24_by_6categories4_each"]
+          assert d["trained_Europe48_rankings_and_hyperparams_never_refitted"]
+          assert d["balanced_500_V2"]["baskets"]==500
+          x=pd.read_csv(p/"EU48_500_MATCHED_BASKETS_METRICS.csv")
+          assert len(x)==500
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+              c,f=line.split("  ",1)
+              assert hashlib.sha256((p/f).read_bytes()).hexdigest()==c
+          print("US149_STYLE_BALANCED_BASKETS_NOT_FREE_48_METRIC",json.dumps(d),flush=True)
+          PY
+      - name: Archive exact basket-style control research report on Test
+        run: |
+          mkdir -p isin_first2026/v2_forensic48/matched500_results
+          cp -a _MATCHED500/. isin_first2026/v2_forensic48/matched500_results/
+          git config user.name "ETF-V2-BASKET-STYLE-FORENSIC"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/v2_forensic48/matched500_results
+          git commit -m "Control all 48 Europe ETF source scores under authentic US149 500 balanced 24 basket approach, risk and price unchanged"
+          git pull --rebase origin research/etf-v2-eu48-causal-audit-20261019
+          git push origin HEAD:refs/heads/research/etf-v2-eu48-causal-audit-20261019
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: EU48-500-canonical-baskets-style-comparison-to-149US
+          retention-days: 90
+          path: _MATCHED500/
