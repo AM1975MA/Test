@@ -1,0 +1,76 @@
+name: F3H1_FOUR_STANDALONE_RISK_ABLATIONS
+on:
+  push:
+    branches:
+      - research/f3h1-four-risk-ablations-20261019
+    paths:
+      - '.github/workflows/f3h1-four-risk-ablations.yml'
+      - 'research_reset/risk_four/run.py'
+      - 'research_reset/risk_four/fetch_factors.py'
+      - 'research_reset/risk_four/test_run.py'
+      - 'research_reset/risk_four/PREREGISTERED.md'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: '.'
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  factor-vol-trend-buffer-isolated:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install fixed numerical and free Yahoo quote dependencies
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'yfinance==0.2.65'
+          python -m py_compile research_reset/risk_four/*.py
+      - name: Prove cost accounting, correct cash, same picks, pre-close invariants
+        run: python -m unittest -v research_reset.risk_four.test_run
+      - name: Download and checksum eight 2016-2026 Yahoo factor proxy Close histories
+        run: python -m research_reset.risk_four.fetch_factors --out _FACT149
+      - name: Execute four precommitted isolated return/drawdown ablations
+        run: python -m research_reset.risk_four.run --factors _FACT149/YAHOO_FACTOR_CLOSE.csv --out _R149R
+      - name: Reject changed F3 H1 historical baseline and inconsistent sample
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          d=json.loads(Path("_R149R/RESULT.json").read_text())
+          assert d["status"]=="FOUR_INDEPENDENT_F3H1_RISK_ABLATIONS_COMPLETE"
+          assert d["original_149"]==149 and d["investable_periods"]==64
+          assert d["daily_open_wealth_points"]==1345
+          assert d["frozen_original_F3_H1_exact_parity"]<1e-9
+          assert len(d["paired_tests"])==4
+          print("STRICT_EX_ANTE_GO",d["all_strict_gates_passed"])
+          PY
+      - name: Archive factor prices, model signals, daily self-financed wealth, stats and hashes
+        run: |
+          mkdir -p research_reset/risk_four/results
+          cp _FACT149/* _R149R/* research_reset/risk_four/results/
+          (cd research_reset/risk_four/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/risk_four/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-Portfolio-Risk-Ablations"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/risk_four/results
+          git commit -m "Archive actual Yahoo proxy vintages, isolated risk strategies, costed drawdowns and scientific gates"
+          git push origin HEAD:refs/heads/research/f3h1-four-risk-ablations-20261019
+      - name: Preserve experiment log and results even on scientific failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: F3H1-four-isolated-risk-test-and-Yahoo-factors
+          retention-days: 90
+          path: |
+            _FACT149/*.csv
+            _FACT149/*.json
+            _R149R/*.csv
+            _R149R/*.json
