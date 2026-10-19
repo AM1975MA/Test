@@ -1,0 +1,111 @@
+{
+  "input_original_prepared_audit": {
+    "status": "EU48_PORT_FULL_SOURCE_INPUTS_PREPARED",
+    "n_tickers": 48,
+    "n_unique_isin": 48,
+    "category_counts": {
+      "C02_EU_SECTOR": 23,
+      "C05_BONDS_CASH_CREDIT": 7,
+      "C06_EU_PROPERTY": 6,
+      "C01_EU_BROAD": 4,
+      "C03_EU_COUNTRY": 4,
+      "C04_EU_FACTOR": 4
+    },
+    "raw_source_unmodified": true,
+    "derived_high_low_envelope_rows": 49,
+    "shared_EU48_original_quote_sessions": 2746,
+    "shared_EU48_pre2017_sessions": 377,
+    "non_observed_calendar_dates_NEVER_filled": true,
+    "derived_corp_HY_non_europe_issuer_risk_only": true,
+    "risk_ref_euro_HY": "IHYG.MI",
+    "risk_ref_equity": "IMEU.AS",
+    "risk_ref_euro_gov": "EUNH.DE",
+    "defensive1": "IBCA.DE",
+    "defensive2": "IBCN.DE",
+    "first_model_data": "2015-01-01",
+    "final_model_data": "2026-07-01",
+    "vendor_path": "vendor/etf_trader_v2",
+    "original_48_manifest_sha": "240e49e45323f5d05af81ab3189e070645f49f26d0fdb4e5b9c84da200e40e78",
+    "roster_sha256": "3ad7a0ebcfec22788aac0bd3337e77a9e748d02e09e4b044078425b46cdd7fe3",
+    "contract_modification_to_US_cluster_and_risk": true
+  },
+  "us_source_audit": {
+    "status": "ORIGINAL_US_REFERENCE_ARCHIVE_IMMUTABLE_AND_ASOF_ALIGNED",
+    "refs": [
+      "SPY",
+      "HYG",
+      "IEF",
+      "BIL",
+      "SHV"
+    ],
+    "files_sha256": {
+      "SPY": "f603771dc9e21fe2f42b42c57ec6ee2abd6058b9f64fec9206042d292dc66b5e",
+      "HYG": "6a2e78b34007c5711962727a4335f5fb851e2af41dfa4f7969688c7a91fd02d5",
+      "IEF": "b49e51130709c2fcd3454e0c8069c159dda0040c438955c08e6367510ec0575d",
+      "BIL": "043f5d3c416a89734e6c28066d5f71b902f4e81fcf94e14a6b8a58b77d5f5abb",
+      "SHV": "7f2bb9ed4b70463d5592633b4003980d95e0a612a2a891d7a24f4f12b71f9ccb"
+    },
+    "source_quote_info": {
+      "SPY": {
+        "n_rows": 5659,
+        "first": "2004-01-02",
+        "last": "2026-07-01",
+        "inclusive_max_age_days": 3,
+        "inclusive_mean_age_days": 0.06409322651128915,
+        "strict_max_age_days": 4,
+        "strict_mean_age_days": 1.4628550619082301
+      },
+      "HYG": {
+        "n_rows": 4837,
+        "first": "2007-04-11",
+        "last": "2026-07-01",
+        "inclusive_max_age_days": 3,
+        "inclusive_mean_age_days": 0.06409322651128915,
+        "strict_max_age_days": 4,
+        "strict_mean_age_days": 1.4628550619082301
+      },
+      "IEF": {
+        "n_rows": 5659,
+        "first": "2004-01-02",
+        "last": "2026-07-01",
+        "inclusive_max_age_days": 3,
+        "inclusive_mean_age_days": 0.06409322651128915,
+        "strict_max_age_days": 4,
+        "strict_mean_age_days": 1.4628550619082301
+      },
+      "BIL": {
+        "n_rows": 4803,
+        "first": "2007-05-30",
+        "last": "2026-07-01",
+        "inclusive_max_age_days": 3,
+        "inclusive_mean_age_days": 0.06409322651128915,
+        "strict_max_age_days": 4,
+        "strict_mean_age_days": 1.4628550619082301
+      },
+      "SHV": {
+        "n_rows": 4898,
+        "first": "2007-01-11",
+        "last": "2026-07-01",
+        "inclusive_max_age_days": 3,
+        "inclusive_mean_age_days": 0.06409322651128915,
+        "strict_max_age_days": 4,
+        "strict_mean_age_days": 1.4628550619082301
+      }
+    },
+    "n_eu_dates": 2746,
+    "first_eu_date": "2015-08-10",
+    "last_eu_date": "2026-07-01",
+    "all_euro_feature_price_US_market_date_strictly_prior": true,
+    "original_DD_V6_shifts_US_inclusive_previous_EU_day_before_live_trade": true,
+    "foreign_defense_cash_quote_currency_adjusted_EURUSD": true,
+    "us_ETFs_never_added_to_48_predictive_candidate_set": true,
+    "fx_source_sha256": "ab7feed8bed4b5b329fee355343b418bf42a79a71800f0702814b5cf2924a71c",
+    "no_lookahead_on_EU_Open": true
+  },
+  "us_archive_sha": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995",
+  "original_source_kernel_sha": "fd799f7044f7dd67eb9f2e928e2dbd764b0156d45e59ccb8f2d39d7dfc65229e",
+  "original_source_original_fit_sha": "6a82b653f5bc8d732caf7da325c1a08b9e86cc00dc41981562578f3b0013689b",
+  "annual_fit_6_years": true,
+  "no_US_SPY_candidate": true,
+  "product_data_outside_prior_model_training": false
+}
