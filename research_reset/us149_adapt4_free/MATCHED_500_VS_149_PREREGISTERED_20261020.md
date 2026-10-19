@@ -1,0 +1,12 @@
+# Audit pre-registrato: perché V2 USA149 +10,48% libero anziché ~25–30% storico?
+
+Protocollo fissato il 20 ottobre 2026 prima di calcolare i rendimenti del controllo metodologico. Non cambiare modelli, iperparametri, stop, commissioni, dati o annual fit. Riprendere solo l'archivio USA149 da GitHub Action 36551650325 e il sorgente congelato ETF Trader, MA3/Hybrid24, DD-first, V6, HighCAGR24 e V2.
+
+**Confrontare con le medesime previsioni e 65 segnali / 1.360 sedute tra febbraio 2021 e luglio 2026:**
+
+1. Un unico universo libero da tutti i 149 ETF e le loro previsioni MA3 (check di parità immutabile con +10,479353861% CAGR e -47,5140% MaxDD), controllo ADAPT4 (+29,174772765% e -38,8694%).
+2. 500 panieri canonici separati da 24 ETF, 4 x6 categorie, seed 20260721, ma gli STESSI score MA3 e ADAPT4 e STESSO motore/costi/time range. La media dei 500 CAGR non è la CAGR di un unico patrimonio cumulato: riportare separatamente 5/10/50/90/95 percentili e percentuale di panieri vincitori. Nessuna selezione del paniere migliore o riottimizzazione.
+3. Pari date di scelta e indicatori di rischio originali SPY/HYG/IEF USD; BIL/SHV USD difensivi originali; stop 5,5%, 10bp turnover e simulatore fonte non modificato. Codice client-side immutato tranne vettorizzazione della BASKET membership. All 149 market symbols sono eleggibili solo nel caso FULL149; nei 500 panieri la scelta è fra i 24 previsti.
+4. Per l'uso diagnostico riportare i primi 5 ticker MA3 del portafoglio libero e quante volte ricorrono, loro appartenenza ai 500 panieri, e la frequenza di scatto della regola V2 (margine top1-top2>=0,03, entrambi ET/XGB concordi, risk-off). La distanza media fra top1 e top2 dipende strutturalmente dal numero di candidati 149 vs24: va misurata, non assunta. Per ADAPT4 l'ultimo passaggio 'percentile ranks' può imporre una differenza massima sempre 1/149 o 1/24 tra i top due per un paniere; attenzione ai criteri di threshold <0,03 e alla natura di "Hybrid24 con V2 inattiva" se del caso.
+5. Segnalare il risultato storico originale V2 USA full2017–2026 24,897% medio basket, 2023–26 30,557% medio basket, non comparabile cronologicamente con 2021–26 nemmeno per i 500 senza ritagliare le stesse date. L'audit su 500 relativo al 2021–26 fornisce la prima spiegazione strettamente a parità di periodo.
+6. Esecuzione retrospettiva, dati solo 2026 survivors e studio precedente già noto. Nessuna patch produzione Etf_trader. Salvare sorgente, checksum e risultati con riferimenti GitHub Actions.
