@@ -163,7 +163,7 @@ def metrics(frame,ids,opens,names,dates):
         select=[]
         for b in ids:
             s=frame.loc[frame.block==b]
-            s=s.sort_values([model,"ticker"],ascending=[False,True])
+            s=s.sort_values(model,ascending=False)  # exactly archived N4 tie policy
             p=s.head(5)
             select.append(p.ticker.tolist())
             actual_future_best=s.loc[s.future_log.idxmax(),"ticker"]
