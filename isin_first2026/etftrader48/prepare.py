@@ -100,7 +100,7 @@ def run(out):
     risk,n=bars(risk_src,"IHYG.MI")
     risk.to_csv(out/"EURO_CORP_HY_RISK_ONLY.csv",index=False)
     result=dict(status="EU48_PORT_FULL_SOURCE_INPUTS_PREPARED",n_tickers=48,
-         n_unique_isin=48,category_counts=dict(categories.value_counts()),
+         n_unique_isin=48,category_counts={str(k):int(v) for k,v in categories.value_counts().items()},
          raw_source_unmodified=True,derived_high_low_envelope_rows=corrected,
          derived_corp_HY_non_europe_issuer_risk_only=True,
          risk_ref_euro_HY="IHYG.MI",risk_ref_equity="IMEU.AS",
