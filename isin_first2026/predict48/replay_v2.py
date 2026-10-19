@@ -100,7 +100,7 @@ def main(prep,usdata,fx,out):
          ex[k][st:en+1] for k in ("O","L","C","PC","gap","ud1","uneg","UH","SA")]
     zeros=np.zeros_like(UH,dtype=bool)
     zf=np.zeros_like(ud1,float)
-    no_alternatives=np.full(len(days),-1,int)
+    no_alternatives=np.full((1,len(days)),-1,dtype=np.int64)
     defensive1=names.index("IBCA.DE")
     defensive2=names.index("IBCN.DE")
     bmat,bok=producer.basket_arrays(pd.DataFrame(
