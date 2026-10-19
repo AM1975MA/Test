@@ -1,0 +1,105 @@
+name: EUROPE48_ISIN_F3_H1_H3_GENUINE_FRESH_WALKFORWARD
+on:
+  push:
+    branches:
+      - research/eu48-isin-f3h1h3-refit-20261019
+    paths:
+      - '.github/workflows/eu48-isin-f3h1h3.yml'
+      - 'isin_first2026/refit48/run.py'
+      - 'isin_first2026/refit48/PREREGISTERED.md'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  genuine-europe48-refit-f3-h1-h3:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Freeze same original model dependencies, compile adapted source
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'lightgbm==4.6.0' 'pyarrow==23.0.1'
+          python -m py_compile isin_first2026/refit48/run.py
+      - name: Confirm 48 unique named ISIN, six European feature groups and 2016 warmup
+        run: |
+          python - <<'PY'
+          import pandas as pd,json
+          p="isin_first2026/full_eu_2017/results/"
+          v=json.load(open(p+"RESULT.json"))
+          d=pd.read_csv(p+"STRICT_EUROPE_2017_WARM_2016_UNIQUE_ISIN.csv")
+          assert len(d)==48 and d["isin"].is_unique
+          assert d.sufficient_252_warmup.astype(bool).all()
+          assert d.decision.isin(["A","B"]).all()
+          assert v["original60_ISIN_distinct"]==44 and v["selected_strict_sector_count"]==11
+          assert v["selected_Strict_Europe_unique_ISIN_count"]==48
+          assert v["backtest_not_executed"]
+          PY
+      - name: Restore frozen Europe60 annual R H scores as legacy non-refit control
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39071370480 -R AM1975MA/Test -n europe-only-eur60-full-refit -D _EU60MODELS
+          test -f _EU60MODELS/TRAINING_AUDIT.csv
+          test -f _EU60MODELS/HYBRID_REFITTED.parquet
+          test -f _EU60MODELS/COMPACT_REFITTED.parquet
+      - name: Restore unchanged 11 historical US ETF factor quotes, NEVER portfolio candidates
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _FACT_US
+          test -f _FACT_US/etf_trader_raw/SPY.csv
+          test -f _FACT_US/etf_trader_raw/AGG.csv
+          test -f _FACT_US/etf_trader_raw/USO.csv
+      - name: Genuine trained 48 ETF F3 H1 H3 with purged date-target maturity and 10bp bilateral cost
+        run: |
+          python -m isin_first2026.refit48.run --raw149 _FACT_US --eu-model _EU60MODELS --fx europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv --out _REFIT48
+      - name: Verify strict feature parity, 65 dates, no duplicated ISIN in positions, 10bp cost and SHA
+        run: |
+          python - <<'PY'
+          import pathlib,json,pandas as pd,hashlib
+          p=pathlib.Path("_REFIT48")
+          r=json.loads((p/"RESULT.json").read_text())
+          assert r["status"]=="EUR48_TRUE_RETRAIN_F3_H1_H3_AND_MATCHED_10BP_EXECUTION_COMPLETE"
+          assert r["isin_count"]==48 and r["evaluation_months"]==65
+          assert r["label_maturity_embargo"] and r["n_us_etfs_allowed_as_portfolio"]==0
+          assert r["cost_each_side"]==.001 and r["matched_dates_for_all_48_models"]
+          assert r["model_architecture"]["n_feature_values"]==19
+          assert r["model_architecture"]["n_onehot"]==6
+          pred=pd.read_csv(p/"ALL_48_ISIN_F3_H1_H3_MATURITY_PURGED_FORECASTS.csv")
+          assert pred.groupby("block").size().eq(48).all()
+          h=pd.read_csv(p/"MONTHLY_HOLDINGS_UNIQUE_ISIN.csv")
+          assert h.groupby(["model","block","isin"]).size().eq(1).all()
+          assert h.groupby(["model","block"]).weight.sum().sub(1).abs().max()<1e-10
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+              digest,f=line.split("  ",1)
+              assert hashlib.sha256((p/f).read_bytes()).hexdigest()==digest
+          print("EU48_FINAL_MODEL_RESULTS",json.dumps(r),flush=True)
+          PY
+      - name: Archive new 48 trained forecasts full audit economics, daily Open NAV and holdings
+        run: |
+          mkdir -p isin_first2026/refit48/results
+          cp -a _REFIT48/. isin_first2026/refit48/results/
+          git config user.name "EUROPE48-ISIN-F3H1H3-FRESH-REFIT"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/refit48/results
+          git commit -m "Genuinely refit F3 H1 H3 on 48 unique EU ISIN funds and audit 65 month costed historical portfolios"
+          git pull --rebase origin research/eu48-isin-f3h1h3-refit-20261019
+          git push origin HEAD:refs/heads/research/eu48-isin-f3h1h3-refit-20261019
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: EU48-ISIN-F3-H1-H3-fresh-walkforward-forecasts-portfolio-QA
+          retention-days: 90
+          path: _REFIT48/
