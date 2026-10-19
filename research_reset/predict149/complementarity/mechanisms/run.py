@@ -106,7 +106,7 @@ def run(dest):
         n_149=149,n_anchor_months=64,n_daily_open_points=len(window),
         fixed_after_original_I_results=True,
         no_new_forecaster_training=True,
-        63day_asof_lookback_frozen=True,
+        asof_63day_lookback_frozen=True,
         capital_self_financed_and_10bp_per_side=True,
         same_F3_H1_H3_static_curves_replayed=True,
         policies=stats,
