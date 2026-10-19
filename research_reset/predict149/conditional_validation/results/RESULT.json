@@ -1,0 +1,178 @@
+{
+  "status": "ORIGINAL149_POSTDISCOVERY_N4_RISK_CONDITIONAL_FALSIFIER_COMPLETE",
+  "research_post_selection": true,
+  "no_real_holdout": true,
+  "source_original149_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "original149_universe_exact": true,
+  "n_eval_anchors": 64,
+  "full_outcomes_149_each_anchor": true,
+  "no_future_labels_in_risk_null_training": true,
+  "original_n4_archived_wealth_parity_max_error": 0.0,
+  "original_models": {
+    "N4_NONLINEAR_TOP15": {
+      "economics": {
+        "cagr": 0.16695968895271163,
+        "terminal_wealth_multiple": 2.284192787443914,
+        "max_daily_open_drawdown": -0.3400723287428331,
+        "daily_log_sharpe": 0.49870602888452226,
+        "daily_es5": -0.04534396597703554,
+        "fee_amount_initial_units": 0.07745746369203566,
+        "gross_turnover_notional_initial_units": 77.45746369203552
+      },
+      "top1_winner_in_forecast_top5": 19,
+      "precision10": 0.2453125,
+      "n_anchors": 64
+    },
+    "N6_VOL_GROUP_PROB": {
+      "economics": {
+        "cagr": 0.11103170253744787,
+        "terminal_wealth_multiple": 1.7564086237164915,
+        "max_daily_open_drawdown": -0.36174430038772065,
+        "daily_log_sharpe": 0.3537826270956579,
+        "daily_es5": -0.043297716022595065,
+        "fee_amount_initial_units": 0.0461203164847116,
+        "gross_turnover_notional_initial_units": 46.12031648471189
+      },
+      "top1_winner_in_forecast_top5": 19,
+      "precision10": 0.2953125,
+      "n_anchors": 64
+    },
+    "N7_VOL_ONLY_RANK": {
+      "economics": {
+        "cagr": 0.06143854254598491,
+        "terminal_wealth_multiple": 1.3757238387771422,
+        "max_daily_open_drawdown": -0.3636405231429154,
+        "daily_log_sharpe": 0.1966205738885123,
+        "daily_es5": -0.04347337610841269,
+        "fee_amount_initial_units": 0.040811038485564666,
+        "gross_turnover_notional_initial_units": 40.81103848556584
+      },
+      "top1_winner_in_forecast_top5": 19,
+      "precision10": 0.296875,
+      "n_anchors": 64
+    }
+  },
+  "conditional_placebo_summary": {
+    "category_only": {
+      "n": 250,
+      "observed_winner_hits": 19,
+      "median_matched_winner_hits": 4.0,
+      "matched_hits_p95": 8.0,
+      "conditional_empirical_upper_tail_hit_rate": 0.00398406374501992,
+      "median_null_CAGR": 0.07491318888779963,
+      "null_CAGR_p95": 0.1544175331657435,
+      "original_model_CAGR": 0.16695968895271163,
+      "percentile_of_original_CAGR": 0.972,
+      "median_null_daily_drawdown": -0.28900439593363236,
+      "original_daily_drawdown": -0.3400723287428331,
+      "median_daily_ES5": -0.02777110012432136,
+      "original_daily_ES5": -0.04534396597703554,
+      "mean_volatility_mismatch": 0.6008634748201471
+    },
+    "category_and_vol": {
+      "n": 250,
+      "observed_winner_hits": 19,
+      "median_matched_winner_hits": 7.0,
+      "matched_hits_p95": 11.549999999999983,
+      "conditional_empirical_upper_tail_hit_rate": 0.00398406374501992,
+      "median_null_CAGR": 0.11488947244039327,
+      "null_CAGR_p95": 0.1913062646221437,
+      "original_model_CAGR": 0.16695968895271163,
+      "percentile_of_original_CAGR": 0.868,
+      "median_null_daily_drawdown": -0.30175575426223855,
+      "original_daily_drawdown": -0.3400723287428331,
+      "median_daily_ES5": -0.034718584181607254,
+      "original_daily_ES5": -0.04534396597703554,
+      "mean_volatility_mismatch": 0.28754613083907565
+    }
+  },
+  "risk_baseline_proper_scores": {
+    "N4_NONLINEAR_TOP15": {
+      "Brier": 0.08559515460057732,
+      "logloss": 0.2996515189735496,
+      "mean_prediction": 0.10488383553578123,
+      "observed_rate": 0.10067114093959731
+    },
+    "N6_VOL_GROUP_PROB": {
+      "Brier": 0.0857889032274963,
+      "logloss": 0.30245291158306575,
+      "mean_prediction": 0.10462278045387752,
+      "observed_rate": 0.10067114093959731
+    },
+    "null_top15_probability": {
+      "Brier": 0.09053646232151705,
+      "logloss": 0.3265551233283096,
+      "mean_prediction": 0.1006711409395973,
+      "observed_rate": 0.10067114093959731
+    }
+  },
+  "proper_scores_by_era": {
+    "2021_2023": {
+      "N4_NONLINEAR_TOP15": {
+        "Brier": 0.08630656334716606,
+        "logloss": 0.30232986711035054,
+        "mean_prediction": 0.10870663783881318,
+        "observed_rate": 0.10067114093959731
+      },
+      "N6_VOL_GROUP_PROB": {
+        "Brier": 0.08597011723966017,
+        "logloss": 0.3035139148262116,
+        "mean_prediction": 0.10830960803530983,
+        "observed_rate": 0.10067114093959731
+      },
+      "null_top15_probability": {
+        "Brier": 0.09053646232151706,
+        "logloss": 0.3265551233283096,
+        "mean_prediction": 0.10067114093959731,
+        "observed_rate": 0.10067114093959731
+      }
+    },
+    "2024_2026": {
+      "N4_NONLINEAR_TOP15": {
+        "Brier": 0.084736557837453,
+        "logloss": 0.29641902984292773,
+        "mean_prediction": 0.10027010861832888,
+        "observed_rate": 0.10067114093959731
+      },
+      "N6_VOL_GROUP_PROB": {
+        "Brier": 0.08557019666109163,
+        "logloss": 0.3011723904275449,
+        "mean_prediction": 0.10017316095904537,
+        "observed_rate": 0.10067114093959731
+      },
+      "null_top15_probability": {
+        "Brier": 0.09053646232151706,
+        "logloss": 0.3265551233283096,
+        "mean_prediction": 0.10067114093959731,
+        "observed_rate": 0.10067114093959731
+      }
+    }
+  },
+  "paired_block_bootstrap": {
+    "N6_VOL_GROUP_PROB": {
+      "mean_Brier_improvement_vs_reference": 0.000193748626918966,
+      "ci95": [
+        -0.0006282295358608881,
+        0.0010413835681509242
+      ],
+      "n_nonoverlapping_anchors": 64
+    },
+    "null_top15_probability": {
+      "mean_Brier_improvement_vs_reference": 0.004941307720939729,
+      "ci95": [
+        0.0035548358676848455,
+        0.006337380678415646
+      ],
+      "n_nonoverlapping_anchors": 64
+    }
+  },
+  "live_deployment_or_30pct_claim_allowed": false,
+  "strict_research_go_gate": false,
+  "caveats": [
+    "Source ETF cohort and sample already heavily researched",
+    "Outcome label is max positive return, not positive tail-adjusted portfolio economic utility",
+    "As-of volatility matching controls only crude category and conditional 63-day risk",
+    "Null selections share time/covariance and should not be regarded independent market samples",
+    "No true PIT delistings, broker fill spreads, FX, Euro trading venue or tax"
+  ]
+}
