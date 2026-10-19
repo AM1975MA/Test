@@ -1,0 +1,11 @@
+{
+  "n": 8,
+  "results": {
+    "AVAILABLE_EUR": 7,
+    "DOWNLOAD_FAILED": 1
+  },
+  "zero_volume_warning": "Not a quote bid/ask spread verification",
+  "same_fund_milan_listings_not_independent_instruments": true,
+  "vintage_survivor_2026": true,
+  "no_model_portfolio_changes": true
+}
