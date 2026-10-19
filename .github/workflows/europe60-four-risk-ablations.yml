@@ -1,0 +1,87 @@
+name: EUROPE60_FOUR_STANDALONE_RISK_ABLATIONS
+on:
+  push:
+    branches:
+      - research/europe60-isolated-risk-20261019
+    paths:
+      - 'europe_only75/risk_ablation/PREREGISTERED.md'
+      - 'europe_only75/risk_ablation/run.py'
+      - 'europe_only75/risk_ablation/test_run.py'
+      - '.github/workflows/europe60-four-risk-ablations.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  strict-europe-only-eur60-risk-comparison:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned data computation runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+          python -m py_compile europe_only75/risk_ablation/run.py europe_only75/risk_ablation/test_run.py
+      - name: Audit EU75 geography exclusion and four-arm causal cash tests
+        run: |
+          python -m unittest -v europe_only75.tests.test_universe europe_only75.risk_ablation.test_run
+      - name: Download completed strictly EUR60-retrained annual out-of-fold model scores
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39071370480 -R AM1975MA/Test -n europe-only-eur60-full-refit -D _EU60MODELS
+          ls -lh _EU60MODELS/COMPACT_REFITTED.parquet _EU60MODELS/HYBRID_REFITTED.parquet _EU60MODELS/FIXED_5050.csv _EU60MODELS/TRAINING_AUDIT.csv
+      - name: Download immutable original market-calendar-only reference quotes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _EU60REF
+          test -f _EU60REF/etf_trader_raw/SPY.csv
+          test -f _EU60REF/etf_trader_raw/BIL.csv
+      - name: Rebuild archived EU60 Top2 reference and run 4 isolated causal ablations
+        run: |
+          python -m europe_only75.risk_ablation.run --models _EU60MODELS --raw149 _EU60REF --out _E60R
+      - name: Enforce EUR60, exact old source selection and no invented scientific win
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_E60R/RESULT.json").read_text())
+          assert d["status"]=="EUROPE60_FOUR_STANDALONE_RISK_TRIALS_COMPLETE"
+          assert d["europe_universe_tickers"]==60
+          assert d["trained_on_original149"] is False
+          assert d["trained_eu_folds"]==10
+          assert d["original_refit_approx_5050_parity"]["absolute_error"]<1e-9
+          assert len(d["paired_tests"])==4
+          print("EUROPE60_SCIENTIFIC_GO",d["precommitted_go"])
+          PY
+      - name: Archive actual EU60 as-of positions and wealth curves
+        run: |
+          mkdir -p europe_only75/risk_ablation/results
+          cp _E60R/*.csv _E60R/*.json europe_only75/risk_ablation/results/
+          (cd europe_only75/risk_ablation/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd europe_only75/risk_ablation/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "EUROPE60-Risk-Ablation-Review"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add europe_only75/risk_ablation/results
+          git commit -m "Archive isolated EU60 frozen R_H signals, actual share ledgers, drawdowns and confidence gates"
+          git push origin HEAD:refs/heads/research/europe60-isolated-risk-20261019
+      - name: Preserve original European score and full evidence even with scientific null
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: europe60-four-risk-ablations
+          retention-days: 90
+          path: |
+            _E60R/*.csv
+            _E60R/*.json
