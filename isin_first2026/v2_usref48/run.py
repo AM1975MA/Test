@@ -32,6 +32,10 @@ def run(prep,tit,us_reference,out):
     assert len(names)==48 and set(names)==set(r.ticker)
     source_tit=pd.read_csv(tit/"TIT_R_SOURCE_ONLY.csv",
         parse_dates=["signal_date","entry_date","exit_date"])
+    # June 2026 has one last source-only trained signal but NO next monthly
+    # Open exit by 2026-07-01, identical to original run's maturity contract.
+    # Drop only non-executable final observations; retain all 65 full months.
+    source_tit=source_tit[source_tit.exit_date.notna()].copy()
     assert source_tit.ticker.nunique()==48 and source_tit.signal_date.nunique()==65
     cal=source_tit[["signal_date","entry_date","exit_date"]].drop_duplicates().sort_values("signal_date")
     assert len(cal)==65
