@@ -1,0 +1,101 @@
+name: COMPACT21_BASE_125F_GENUINE_REFIT_48_EUROPE_ISIN
+on:
+  push:
+    branches:
+      - research/eu48-compact21-base-original-125-20261020
+    paths:
+      - .github/workflows/compact21-base-eu48-original-125.yml
+      - isin_first2026/compact21_base48/run.py
+      - isin_first2026/compact21_base48/PREREGISTERED.md
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  PYTHONHASHSEED: '0'
+  OPENBLAS_CORETYPE: Haswell
+  NPY_DISABLE_CPU_FEATURES: AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+  ETF_TRADER_XGB_WORKERS: '1'
+  ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+jobs:
+  original-125feature-xgb-three-seed-annually-refit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 125
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Original Compact21 source numerical requirements, syntax preflight
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'numba==0.65.1' 'pyarrow==23.0.1' 'matplotlib==3.10.8'
+          python -m py_compile isin_first2026/compact21_base48/run.py
+      - name: Restore original USA149 immutable SPY adjusted source (beta only, not candidate)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _US149_ORIG
+          test -f _US149_ORIG/etf_trader_raw/SPY.csv
+          test -f europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv
+      - name: Strict previous original European 48 legal ISIN raw quote preparation
+        run: |
+          python -m isin_first2026.v2_unrestricted48.prepare --out _COMPACT21_EU48_PREP
+          python - <<'PY'
+          import pandas as pd,json
+          p="_COMPACT21_EU48_PREP"
+          a=json.load(open(p+"/RESULT.json"))
+          r=pd.read_csv(p+"/raw_ticker_csv/universe.csv")
+          assert a["n_unique_isin"]==48 and r["isin"].nunique()==48
+          assert a["shared_EU48_original_quote_sessions"]==2746
+          PY
+      - name: ORIGINAL 125 feature Compact21 BASE from source, annual 2021–26 true XGB 3 seeds 360, strict 21-session matured labels
+        run: |
+          python -u -m isin_first2026.compact21_base48.run --prep _COMPACT21_EU48_PREP --us _US149_ORIG --fx europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv --out _COMPACT21_BASE_EU48_RESULT
+      - name: Verify 48 unique ISIN, frozen original 125F, 3seed source training and mature-only annual 21-session OOS forecasts
+        run: |
+          python - <<'PY'
+          import pandas as pd,json,hashlib
+          from pathlib import Path
+          p=Path("_COMPACT21_BASE_EU48_RESULT")
+          z=json.loads((p/"RESULT.json").read_text())
+          assert z["status"]=="COMPACT21_BASE_125_FEATURE_ORIGINAL_XGB_EU48_ANNUAL_WALKFORWARD_COMPLETE"
+          assert z["unique_legal_EU_ISIN"]==48 and z["eligible_ranked_ETF_count"]==48
+          assert z["exact_original_rank_pairwise_360round_3seed"]
+          assert z["strictly_mature_annual_training_cutoff"]
+          assert z["signal_month_count"]==65 and z["true_EUR_open_marks"]==1374
+          s=pd.read_csv(p/"FITTED_3SEED_ANNUAL/BASE_ORIGINAL_125F_XGB_65x48_TRUE_OOS_SCORES.csv")
+          assert s.groupby("signal_date").size().eq(48).all()
+          assert s.groupby("signal_date")["ticker"].nunique().eq(48).all()
+          a=pd.read_csv(p/"FITTED_3SEED_ANNUAL/ANNUAL_125F_XGB_21DAY_MATURITY_AND_SEED_AUDIT.csv")
+          assert len(a)==6 and (pd.to_datetime(a.max_train_mature_exit21)<pd.to_datetime(a.year.astype(str)+"-01-01")).all()
+          w=pd.read_csv(p/"MONTHLY_TOP1_TOP2_TOP5_UNIQUE_ISIN_SELECTIONS.csv")
+          assert w.groupby(["method","k","signal_date"]).isin.nunique().eq(w.k.astype(int).groupby([w.method,w.k,w.signal_date]).first()).all()
+          x=pd.read_csv(p/"DAILY_COSTED_NAV_48_ISIN_9_STANDALONE_METHODS.csv")
+          assert len(x)==1374 and x.notna().all(axis=None)
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+              digest,path=line.split("  ",1)
+              assert hashlib.sha256((p/path).read_bytes()).hexdigest()==digest
+          print("GENUINE_COMPACT21_BASE_EU48_125F_21SESSION_PREDICTIVE_AND_TRADE_PASS",json.dumps(z),flush=True)
+          PY
+      - name: Commit source model actual 48 EU annual research results and market lineage, never production
+        run: |
+          mkdir -p isin_first2026/compact21_base48/results
+          cp -a _COMPACT21_BASE_EU48_RESULT/. isin_first2026/compact21_base48/results/
+          cp _COMPACT21_EU48_PREP/RESULT.json isin_first2026/compact21_base48/results/EU48_RAW_INPUT_AUDIT.json
+          git config user.name "Compact21-BASE-original-125-Europe48-research"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/compact21_base48/results
+          git commit -m "Archive authentic original XGB 125-feature 3seed Compact21 Base 48 EU ISIN annual training and 21d forecast economic research"
+          git pull --rebase origin research/eu48-compact21-base-original-125-20261020
+          git push origin HEAD:refs/heads/research/eu48-compact21-base-original-125-20261020
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-Compact21-BASE-genuine-48-Europe-125-feature-3seeds
+          retention-days: 90
+          path: _COMPACT21_BASE_EU48_RESULT/
