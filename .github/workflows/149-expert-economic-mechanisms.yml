@@ -1,0 +1,75 @@
+name: ETF149_COMPLEMENTARY_EXPERTS_FACTOR_MECHANISMS
+on:
+  push:
+    branches:
+      - research/149-complementarity-regime-meta-20261019
+    paths:
+      - 'research_reset/predict149/complementarity/mechanisms/PREREGISTERED_AFTER_I.md'
+      - 'research_reset/predict149/complementarity/mechanisms/run.py'
+      - 'research_reset/predict149/complementarity/mechanisms/test_run.py'
+      - '.github/workflows/149-expert-economic-mechanisms.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  original149-two-strong-mechanism-hypotheses:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Deterministic scientific runtime
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/complementarity/mechanisms/run.py
+      - name: Falsify future quote lookahead for commodity-growth selector and equal risk
+        run: |
+          python -m unittest -v research_reset.predict149.complementarity.mechanisms.test_run
+      - name: Execute exactly two preregistered macro contrast and risk-budget hypotheses
+        run: |
+          python -m research_reset.predict149.complementarity.mechanisms.run --out _Imechanisms
+      - name: Audit frozen backtest parity and future information embargo
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_Imechanisms/RESULT.json").read_text())
+          assert d["status"]=="EXACT149_COMPLEMENTARITY_POSTHOC_MECHANISTIC_TEST_DONE"
+          assert d["n_149"]==149 and d["n_anchor_months"]==64
+          assert d["n_daily_open_points"]==1345
+          assert d["fixed_after_original_I_results"]
+          assert d["no_new_forecaster_training"]
+          assert d["same_F3_H1_H3_static_curves_replayed"]
+          assert len(d["policies"])==6
+          print("T149Ib_CAUSAL_MECHANISM_GATES",d["primary_preregistered_mechanism_gates"])
+          PY
+      - name: Freeze all 64 state weights, six wealth curves, hashes and research outcome
+        run: |
+          mkdir -p research_reset/predict149/complementarity/mechanisms/results
+          cp _Imechanisms/*.json _Imechanisms/*.csv research_reset/predict149/complementarity/mechanisms/results/
+          (cd research_reset/predict149/complementarity/mechanisms/results && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/complementarity/mechanisms/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-ComplementaryMacro-Falsifier"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/complementarity/mechanisms/results
+          git commit -m "Archive future-free USO-versus-QQQ economic expert switching and 63day basket-risk-parity 149 ETF experiment"
+          git push origin HEAD:refs/heads/research/149-complementarity-regime-meta-20261019
+      - name: Always keep results even if hypotheses are rejected
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-expert-complementarity-oil-vs-growth-and-risk
+          retention-days: 90
+          path: |
+            _Imechanisms/*.json
+            _Imechanisms/*.csv
