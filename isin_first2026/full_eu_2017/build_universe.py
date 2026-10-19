@@ -306,8 +306,8 @@ def main(out):
        all_quote_source_copies_inspected=len(audits),
        all_distinct_retrieved_tickers=len(price_by_ticker),
        all_distinct_europe_isins_with_any_source=len(set(
-           x["isin"] for x in [a for a in mp.values()] if
-           a["geographic_scope"]==GEO_STRICT)),
+           item["isin"] for item in mp.values() if
+           item["geographic_scope"]==GEO_STRICT)),
        original60_ticker_count=int(old60.shape[0]),
        original60_ISIN_distinct=int(len(original_isin)),
        original60_2017_252day_warmup=int(old60[
