@@ -1,0 +1,72 @@
+name: ETF_V2_EU48_FORENSIC_ISOLATE_RANK_RISK_STOP_V6_COST
+on:
+  push:
+    branches:
+      - research/etf-v2-eu48-causal-audit-20261019
+    paths:
+      - '.github/workflows/etf-v2-eu48-forensic-ablation.yml'
+      - 'isin_first2026/v2_forensic48/ablate.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  same-forecast-isolate-portfolio-layers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install fixed numerical packages for unchanged source V6 backtesting
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'numba==0.63.1' 'xgboost==3.1.3'
+          python -m py_compile isin_first2026/v2_forensic48/ablate.py
+      - name: Recreate exact prior Europe48 price input from saved legal ISIN source, no network data fetch or ML retrain
+        run: python -m isin_first2026.v2_unrestricted48.prepare --out _AUDIT_PREP
+      - name: Audit 48-way monthly selection versus exact source V2 cash-portfolio with risk controls selectively disabled
+        run: python -u -m isin_first2026.v2_forensic48.ablate --raw _AUDIT_PREP/raw_ticker_csv --out _AUDIT
+      - name: Validate 48 ETF, 65 months, prior source model forecast parity and file hashes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,pandas as pd
+          p=Path('_AUDIT')
+          z=json.loads((p/'RESULT.json').read_text())
+          assert z['status']=='AUDITED_REAL_V2_SOURCE_48_PERFORMANCE_DECOMPOSITION'
+          assert z['score_and_position_parity_exact_65_month']
+          assert z['old_V2_equity_parity_atol_1e12']
+          assert z['month_count']==65 and z['trading_days']==1374
+          assert z['frozen_training_and_parameters_unchanged']
+          b=pd.read_csv(p/'ABLATION_SAME_1374_SOURCE_SIMULATOR.csv')
+          assert len(b)>=8
+          for line in (p/'SHA256_MANIFEST.txt').read_text().splitlines():
+             sh,name=line.split('  ',1)
+             assert hashlib.sha256((p/name).read_bytes()).hexdigest()==sh
+          print('EU48_CAUSAL_NO_TUNING_FORENSIC',json.dumps(z),flush=True)
+          PY
+      - name: Archive isolated model-vs-risk-vs-execution diagnostic to research branch Test
+        run: |
+          mkdir -p isin_first2026/v2_forensic48/results
+          cp _AUDIT/. isin_first2026/v2_forensic48/results/
+          git config user.name "ETF-V2-EU48-FORENSIC-ISOLATION"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/v2_forensic48/results
+          git commit -m "Attribute ETF Trainer V2 Europe48 performance by same-model ranking, DD risk, stops, V6 alternative and costs with exact NAV parity"
+          git pull --rebase origin research/etf-v2-eu48-causal-audit-20261019
+          git push origin HEAD:refs/heads/research/etf-v2-eu48-causal-audit-20261019
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ETF-V2-EU48-risk-vs-rank-source-forensic
+          retention-days: 90
+          path: _AUDIT/
