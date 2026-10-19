@@ -5,7 +5,10 @@ on:
       - research/etf-v2-eu48-original-us-references-20261019
     paths:
       - '.github/workflows/etf-v2-eu48-original-usrefs.yml'
-      - 'isin_first2026/v2_usref48/**'
+      - 'isin_first2026/v2_usref48/original_us_references.py'
+      - 'isin_first2026/v2_usref48/train_tit.py'
+      - 'isin_first2026/v2_usref48/us_source_helpers.py'
+      - 'isin_first2026/v2_usref48/run.py'
   workflow_dispatch:
 permissions:
   contents: write
