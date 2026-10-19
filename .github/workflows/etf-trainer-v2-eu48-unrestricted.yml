@@ -39,7 +39,7 @@ jobs:
           m,c,_=load_ticker_csv_folder(p)
           r=pd.read_csv(p+'/universe.csv')
           z=json.load(open('_V2_PREP/RESULT.json'))
-          assert len(m['Open'].columns)==48 and r.isin.nunique()==48
+          assert len(m['Open'].columns)==48 and r["isin"].nunique()==48
           assert z['shared_EU48_pre2017_sessions']>=252
           print('ALL_48_UNRESTRICTED_SOURCE_CHECK',z,flush=True)
           PY
