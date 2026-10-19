@@ -1,0 +1,76 @@
+name: YFINANCE_EUROPEAN_SECTOR_UCITS_RAW_AND_ADJUSTED_30
+on:
+  push:
+    branches:
+      - research/europe-sector-etf-yfinance-20261019
+    paths:
+      - '.github/workflows/europe-sector-yfinance-30.yml'
+      - 'europe_sector2026/CATALOG.csv'
+      - 'europe_sector2026/download.py'
+      - 'europe_sector2026/test_download.py'
+      - 'europe_sector2026/README.md'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+jobs:
+  archived-yahoo-europe-sectors:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install fixed free Yahoo and numerical dependencies
+        run: |
+          python -m pip install 'yfinance==0.2.65' 'pandas==2.2.3' 'numpy==2.3.5'
+          python -m py_compile europe_sector2026/*.py
+      - name: Verify 30 European EUR issuer candidates and no price clipping
+        run: python -m unittest -v europe_sector2026.test_download
+      - name: Download full historical raw & adjusted quotes plus 2026 vintage quality audit
+        run: python -m europe_sector2026.download --out _SECTOR30
+      - name: Validate source catalog frozen, issuer sectors and archive integrity
+        run: |
+          python - <<'PY'
+          import pandas as pd, json, pathlib, hashlib
+          r=pathlib.Path("_SECTOR30")
+          x=json.loads((r/"DOWNLOAD_MANIFEST.json").read_text())
+          q=pd.read_csv(r/"DOWNLOAD_AUDIT.csv")
+          assert len(q)==30 and len(set(q.ticker))==30
+          assert x["total_proposed"]==30
+          assert len(x["sectors_requested"])>=11
+          assert set(x["successful_eur"]).isdisjoint(x["rejected_or_failed"])
+          for t in q.loc[q.status!="DOWNLOAD_FAILED","ticker"]:
+              assert (r/"raw_vendor"/(t+".csv")).exists()
+              assert (r/"adj_price"/(t+".csv")).exists()
+          for line in (r/"SHA256_MANIFEST.txt").read_text().splitlines():
+              sha,name=line.split("  ",1)
+              assert hashlib.sha256((r/name).read_bytes()).hexdigest()==sha
+          print("YAHOO_30_PROPOSED_DOWNLOADED_STATUS",x["statuses"])
+          print("YAHOO_EUR_HISTORY_SUCCESS",len(x["successful_eur"]))
+          print("YAHOO_METADATA_UNKNOWN",len(x["available_but_unknown_currency"]))
+          print("YAHOO_REJECTED_OR_FAILED",x["rejected_or_failed"])
+          PY
+      - name: Archive vendor raw quotes and processed file audit to isolated research branch
+        run: |
+          mkdir -p europe_sector2026/results
+          cp -a _SECTOR30/. europe_sector2026/results/
+          git config user.name "EUROPE-SECTOR-ETF-DOWNLOAD"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add europe_sector2026/results
+          git commit -m "Capture actual yfinance prices, 30 European sector UCITS Xetra candidates, provenance and quality flags"
+          git push origin HEAD:refs/heads/research/europe-sector-etf-yfinance-20261019
+      - name: Keep raw prices and even failed-ticker provenance independently
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: europe-sector-ucits-eur30-yfinance-raw-adjusted
+          retention-days: 90
+          path: |
+            _SECTOR30/
