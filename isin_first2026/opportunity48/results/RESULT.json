@@ -1,0 +1,445 @@
+{
+  "status": "EU48_OPPORTUNITY_VERSUS_SELECTOR_QUALITY_FORENSIC_COMPLETED",
+  "study_begin": "2021-02-01",
+  "study_end": "2026-07-01",
+  "years_actual": 5.409993155373032,
+  "funds_dedup_isin": 48,
+  "months": 65,
+  "same_common_opens": 1331,
+  "single_fund_buyhold_statistics": {
+    "mean_cagr": 0.07934010110371083,
+    "median_cagr": 0.07877513201929232,
+    "q10_cagr": -0.017040785914032897,
+    "q90_cagr": 0.1828980059118517,
+    "min_cagr": -0.07700938351186937,
+    "max_cagr": 0.3433658773960404,
+    "funds_with_negative_CAGR": 12,
+    "funds_CAGR_above10pct": 21,
+    "funds_CAGR_above15pct": 7,
+    "funds_CAGR_above20pct": 4
+  },
+  "by_group_buyhold": {
+    "EU_EQUITY_BROAD": {
+      "size": 4,
+      "median": 0.1256745643,
+      "mean": 0.1305875282,
+      "min": 0.1232515808,
+      "max": 0.1477494032
+    },
+    "EU_EQUITY_COUNTRY": {
+      "size": 4,
+      "median": 0.1295986094,
+      "mean": 0.1494354597,
+      "min": 0.1133015432,
+      "max": 0.2252430768
+    },
+    "EU_EQUITY_FACTOR": {
+      "size": 4,
+      "median": 0.099038273,
+      "mean": 0.1138626765,
+      "min": 0.0849555492,
+      "max": 0.1724186108
+    },
+    "EU_EQUITY_SECTOR": {
+      "size": 23,
+      "median": 0.0962339997,
+      "mean": 0.1063432406,
+      "min": -0.0001879223,
+      "max": 0.3433658774
+    },
+    "EU_PROPERTY": {
+      "size": 6,
+      "median": -0.014861753,
+      "mean": -0.0125328615,
+      "min": -0.01796234,
+      "max": -0.0036773626
+    },
+    "SOVEREIGN_EUR": {
+      "size": 7,
+      "median": -0.0237971509,
+      "mean": -0.0197021671,
+      "min": -0.0770093835,
+      "max": 0.0079372705
+    }
+  },
+  "top10_funds_by_historical_buyhold_cagr": [
+    {
+      "ticker": "EXV1.DE",
+      "isin": "DE000A0F5UJ7",
+      "benchmark_bucket": "EU_EQUITY_SECTOR",
+      "sector_11": "FINANCIALS",
+      "buyhold_net_cagr": 0.3433658773960404
+    },
+    {
+      "ticker": "SPYZ.DE",
+      "isin": "IE00BKWQ0G16",
+      "benchmark_bucket": "EU_EQUITY_SECTOR",
+      "sector_11": "FINANCIALS",
+      "buyhold_net_cagr": 0.23984602601887373
+    },
+    {
+      "ticker": "XS7R.DE",
+      "isin": "LU0292103651",
+      "benchmark_bucket": "EU_EQUITY_SECTOR",
+      "sector_11": "FINANCIALS",
+      "buyhold_net_cagr": 0.239707749266018
+    },
+    {
+      "ticker": "SXRY.DE",
+      "isin": "IE00B53L4X51",
+      "benchmark_bucket": "EU_EQUITY_COUNTRY",
+      "sector_11": "",
+      "buyhold_net_cagr": 0.22524307681737454
+    },
+    {
+      "ticker": "EXH1.DE",
+      "isin": "DE000A0H08M3",
+      "benchmark_bucket": "EU_EQUITY_SECTOR",
+      "sector_11": "ENERGY",
+      "buyhold_net_cagr": 0.18560948709763414
+    },
+    {
+      "ticker": "EXH5.DE",
+      "isin": "DE000A0H08K7",
+      "benchmark_bucket": "EU_EQUITY_SECTOR",
+      "sector_11": "FINANCIALS",
+      "buyhold_net_cagr": 0.18173594254651637
+    },
+    {
+      "ticker": "CEMS.DE",
+      "isin": "IE00BQN1K901",
+      "benchmark_bucket": "EU_EQUITY_FACTOR",
+      "sector_11": "",
+      "buyhold_net_cagr": 0.17241861084974408
+    },
+    {
+      "ticker": "CSX5.AS",
+      "isin": "IE00B53L3W79",
+      "benchmark_bucket": "EU_EQUITY_BROAD",
+      "sector_11": "",
+      "buyhold_net_cagr": 0.14774940323131602
+    },
+    {
+      "ticker": "EXH4.DE",
+      "isin": "DE000A0H08J9",
+      "benchmark_bucket": "EU_EQUITY_SECTOR",
+      "sector_11": "INDUSTRIALS",
+      "buyhold_net_cagr": 0.1383345148629902
+    },
+    {
+      "ticker": "SXR7.DE",
+      "isin": "IE00B53QG562",
+      "benchmark_bucket": "EU_EQUITY_COUNTRY",
+      "sector_11": "",
+      "buyhold_net_cagr": 0.13538496067384176
+    }
+  ],
+  "bottom10_funds_by_historical_buyhold_cagr": [
+    {
+      "ticker": "IBCN.DE",
+      "isin": "IE00B1FZS681",
+      "benchmark_bucket": "SOVEREIGN_EUR",
+      "sector_11": "",
+      "buyhold_net_cagr": -0.0037516014267412467
+    },
+    {
+      "ticker": "XREA.DE",
+      "isin": "IE00BP8FKB21",
+      "benchmark_bucket": "EU_PROPERTY",
+      "sector_11": "REAL_ESTATE",
+      "buyhold_net_cagr": -0.0071881260632665755
+    },
+    {
+      "ticker": "D5BK.DE",
+      "isin": "LU0489337690",
+      "benchmark_bucket": "EU_PROPERTY",
+      "sector_11": "",
+      "buyhold_net_cagr": -0.013188404353612682
+    },
+    {
+      "ticker": "IQQP.DE",
+      "isin": "IE00B0M63284",
+      "benchmark_bucket": "EU_PROPERTY",
+      "sector_11": "",
+      "buyhold_net_cagr": -0.016535101659739926
+    },
+    {
+      "ticker": "ZPRP.DE",
+      "isin": "IE00BSJCQV56",
+      "benchmark_bucket": "EU_PROPERTY",
+      "sector_11": "REAL_ESTATE",
+      "buyhold_net_cagr": -0.01664583416652554
+    },
+    {
+      "ticker": "EXI5.DE",
+      "isin": "DE000A0Q4R44",
+      "benchmark_bucket": "EU_PROPERTY",
+      "sector_11": "REAL_ESTATE",
+      "buyhold_net_cagr": -0.017962339991550058
+    },
+    {
+      "ticker": "IBCM.DE",
+      "isin": "IE00B1FZS806",
+      "benchmark_bucket": "SOVEREIGN_EUR",
+      "sector_11": "",
+      "buyhold_net_cagr": -0.02379715091462764
+    },
+    {
+      "ticker": "SXRQ.DE",
+      "isin": "IE00B3VTN290",
+      "benchmark_bucket": "SOVEREIGN_EUR",
+      "sector_11": "",
+      "buyhold_net_cagr": -0.02421700851674702
+    },
+    {
+      "ticker": "EUNH.DE",
+      "isin": "IE00B4WXJJ64",
+      "benchmark_bucket": "SOVEREIGN_EUR",
+      "sector_11": "",
+      "buyhold_net_cagr": -0.024589042063239308
+    },
+    {
+      "ticker": "IBCL.DE",
+      "isin": "IE00B1FZS913",
+      "benchmark_bucket": "SOVEREIGN_EUR",
+      "sector_11": "",
+      "buyhold_net_cagr": -0.07700938351186937
+    }
+  ],
+  "expost_best_five_mean_1month_log_return": 0.05848193819952443,
+  "equal48_mean_1month_log_return": 0.006115383207240436,
+  "median_1month_all48_return_dispersion_sd": 0.029942643902480384,
+  "mean_1month_best5_minus_equal48_log": 0.052366554992283994,
+  "mean_1month_best5_log_returns_positive_months": 62,
+  "selected_vs_EW48_forward_quality": {
+    "F3_EU48": {
+      "monthly_advantage_vs_EW48": -0.0019080706421773165,
+      "CIs_3month_bootstrap": {
+        "mean": -0.0019080706421773165,
+        "CI95": [
+          -0.009188067022783157,
+          0.004928371026002896
+        ]
+      },
+      "positive_months": 31,
+      "n_months": 65,
+      "mean_sov_or_property_weight": 0.40923076923076923,
+      "mean_rank_percentile_selected": 0.48865384615384616
+    },
+    "F3_H1_BLEND_EU48": {
+      "monthly_advantage_vs_EW48": -0.00039921020629716934,
+      "CIs_3month_bootstrap": {
+        "mean": -0.00039921020629716934,
+        "CI95": [
+          -0.004926446557474661,
+          0.004097275555921051
+        ]
+      },
+      "positive_months": 31,
+      "n_months": 65,
+      "mean_sov_or_property_weight": 0.34615384615384615,
+      "mean_rank_percentile_selected": 0.5140964590964591
+    },
+    "H1_EU48": {
+      "monthly_advantage_vs_EW48": 0.0011096502295829783,
+      "CIs_3month_bootstrap": {
+        "mean": 0.0011096502295829783,
+        "CI95": [
+          -0.004973420927771128,
+          0.0066512037183469415
+        ]
+      },
+      "positive_months": 34,
+      "n_months": 65,
+      "mean_sov_or_property_weight": 0.2830769230769231,
+      "mean_rank_percentile_selected": 0.5360897435897436
+    },
+    "H3_EU48": {
+      "monthly_advantage_vs_EW48": -0.000539389421482,
+      "CIs_3month_bootstrap": {
+        "mean": -0.000539389421482,
+        "CI95": [
+          -0.0056308779255205285,
+          0.004087120450539594
+        ]
+      },
+      "positive_months": 37,
+      "n_months": 65,
+      "mean_sov_or_property_weight": 0.2769230769230769,
+      "mean_rank_percentile_selected": 0.5217948717948717
+    },
+    "RH_OLD60_MAPPED48": {
+      "monthly_advantage_vs_EW48": 0.0007081784872333411,
+      "CIs_3month_bootstrap": {
+        "mean": 0.0007081784872333411,
+        "CI95": [
+          -0.00597805095105061,
+          0.007503550848336703
+        ]
+      },
+      "positive_months": 36,
+      "n_months": 65,
+      "mean_sov_or_property_weight": 0.17692307692307693,
+      "mean_rank_percentile_selected": 0.5123397435897435
+    }
+  },
+  "actual_models_65month_CAGR": {
+    "RH_OLD60_MAPPED48": 0.07145203044653825,
+    "F3_EU48": 0.03510906841676942,
+    "H1_EU48": 0.07892205309583522,
+    "H3_EU48": 0.05646708730069827,
+    "F3_H1_BLEND_EU48": 0.06051196299329642,
+    "PASSIVE_EU_60_40": 0.06500778104047744
+  },
+  "additional_costed_portfolios": {
+    "EQUAL_48_MONTHLY": {
+      "cagr": 0.08241915260887067,
+      "maxdd_daily_open": -0.24188927524053894,
+      "sharpe_daily_log": 0.6049914496542886,
+      "es5_daily": -0.02049315225490082,
+      "ann_vol": 0.1345009078873075,
+      "fee_notional": 0.0028146341678253473,
+      "gross_turnover": 2.814634167825381,
+      "position_count_mean": 48.0
+    },
+    "EQUAL_23_EUROPE_SECTORS": {
+      "cagr": 0.11173254538879407,
+      "maxdd_daily_open": -0.21332696762735837,
+      "sharpe_daily_log": 0.6966356580746188,
+      "es5_daily": -0.024094387804917964,
+      "ann_vol": 0.15612530957970563,
+      "fee_notional": 0.0033354226839822365,
+      "gross_turnover": 3.3354226839817844,
+      "position_count_mean": 23.0
+    },
+    "EQUAL_25_NONSECTORS": {
+      "cagr": 0.05566415408327163,
+      "maxdd_daily_open": -0.27154878049728004,
+      "sharpe_daily_log": 0.4669537179897131,
+      "es5_daily": -0.017776964138142424,
+      "ann_vol": 0.11931912935615706,
+      "fee_notional": 0.0023754712271215617,
+      "gross_turnover": 2.3754712271212695,
+      "position_count_mean": 25.0
+    },
+    "EQUAL_7_EURO_SOVEREIGN": {
+      "cagr": -0.01936263733714716,
+      "maxdd_daily_open": -0.2003112742823091,
+      "sharpe_daily_log": -0.31449906874644523,
+      "es5_daily": -0.008925546210326494,
+      "ann_vol": 0.06312574203022382,
+      "fee_notional": 0.001407927843606993,
+      "gross_turnover": 1.4079278436069953,
+      "position_count_mean": 7.0
+    },
+    "EQUAL_6_EU_PROPERTY": {
+      "cagr": -0.011259300700192543,
+      "maxdd_daily_open": -0.4707249003223821,
+      "sharpe_daily_log": -0.057293550244997105,
+      "es5_daily": -0.0283427901753653,
+      "ann_vol": 0.19927981146006188,
+      "fee_notional": 0.0016118276326533287,
+      "gross_turnover": 1.6118276326533072,
+      "position_count_mean": 6.0
+    },
+    "EQUAL_12_EQUITY_BROAD_COUNTRY_FACTOR": {
+      "cagr": 0.13188497180457226,
+      "maxdd_daily_open": -0.22277668107393123,
+      "sharpe_daily_log": 0.8048561527723685,
+      "es5_daily": -0.02441557260770479,
+      "ann_vol": 0.1580123438622388,
+      "fee_notional": 0.0018654107866549197,
+      "gross_turnover": 1.8654107866539167,
+      "position_count_mean": 12.0
+    },
+    "BUY_HOLD_MSCI_EUROPE_100PCT": {
+      "cagr": 0.12657784949977913,
+      "maxdd_daily_open": -0.19044672339702495,
+      "sharpe_daily_log": 0.795500777344239,
+      "es5_daily": -0.023571924697151844,
+      "ann_vol": 0.15381468046651828,
+      "fee_notional": 0.0009990009990009652,
+      "gross_turnover": 0.9990009990009993,
+      "position_count_mean": 1.0
+    },
+    "BUY_HOLD_EURO_GOV_100PCT": {
+      "cagr": -0.024589042063239308,
+      "maxdd_daily_open": -0.2205887394791719,
+      "sharpe_daily_log": -0.3985345560511514,
+      "es5_daily": -0.008814438748482787,
+      "ann_vol": 0.06355963406365141,
+      "fee_notional": 0.0009990009990009652,
+      "gross_turnover": 0.9990009990009991,
+      "position_count_mean": 1.0
+    },
+    "ORACLE_HINDSIGHT_TOP5": {
+      "cagr": 0.980989288722854,
+      "maxdd_daily_open": -0.08879870670129097,
+      "sharpe_daily_log": 4.569224179449531,
+      "es5_daily": -0.01784719246009273,
+      "ann_vol": 0.15339819483854975,
+      "fee_notional": 1.0652130846777172,
+      "gross_turnover": 1065.2130846777204,
+      "position_count_mean": 5.0
+    },
+    "ANTI_ORACLE_HINDSIGHT_WORST5": {
+      "cagr": -0.450679973772553,
+      "maxdd_daily_open": -0.9614914668295321,
+      "sharpe_daily_log": -3.4518414060861935,
+      "es5_daily": -0.03158363823611931,
+      "ann_vol": 0.17784487630597962,
+      "fee_notional": 0.030875312776293462,
+      "gross_turnover": 30.87531277629357,
+      "position_count_mean": 5.0
+    }
+  },
+  "uninformed_300_random_top5": {
+    "median_cagr": 0.05680513806909426,
+    "low10_cagr": 0.029743903234051895,
+    "high90_cagr": 0.0851406529429803,
+    "best_cagr": 0.12345968853429867,
+    "worst_cagr": 0.009520791496575809
+  },
+  "model_performance_percentile_against_uninformed_300": {
+    "F3_EU48": {
+      "actual_cagr": 0.03510906841676942,
+      "random_300_CAGR_percentile": 16.333333333333332,
+      "actual_maxdd": -0.24865001477766302
+    },
+    "H1_EU48": {
+      "actual_cagr": 0.07892205309583522,
+      "random_300_CAGR_percentile": 82.0,
+      "actual_maxdd": -0.218144852596591
+    },
+    "H3_EU48": {
+      "actual_cagr": 0.05646708730069827,
+      "random_300_CAGR_percentile": 49.333333333333336,
+      "actual_maxdd": -0.3105041802799413
+    },
+    "F3_H1_BLEND_EU48": {
+      "actual_cagr": 0.06051196299329642,
+      "random_300_CAGR_percentile": 56.99999999999999,
+      "actual_maxdd": -0.19696360404847202
+    },
+    "RH_OLD60_MAPPED48": {
+      "actual_cagr": 0.07145203044653825,
+      "random_300_CAGR_percentile": 71.33333333333334,
+      "actual_maxdd": -0.2759407178081065
+    },
+    "PASSIVE_EU_60_40": {
+      "actual_cagr": 0.06500778104047744,
+      "random_300_CAGR_percentile": 63.0,
+      "actual_maxdd": -0.18448355063901956
+    }
+  },
+  "oracle_is_backward_looking_and_NOT_tradeable": true,
+  "realistic_quote_opens_are_vendor_prices_not_broker_guarantees": true,
+  "no_2017_PIT_universe_assertion": true,
+  "no_fees_excluded_in_portfolio_tests": true,
+  "training_selection_2026_survivorship_not_prospective": true,
+  "same_as_original_models_10bp_bilateral_commission": true,
+  "no_production_code_modified": true,
+  "orig_roster_sha256": "3ad7a0ebcfec22788aac0bd3337e77a9e748d02e09e4b044078425b46cdd7fe3",
+  "orig_prediction_sha256": "e7b9646af71dba42c79355a0beaee2a3f658c469ab3a0467be294962c0f67b0f",
+  "run_utc": "2026-10-19 20:00:52.385937+00:00"
+}
