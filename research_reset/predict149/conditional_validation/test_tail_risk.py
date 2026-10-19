@@ -100,7 +100,7 @@ def evaluate():
         for b in ids:
             anchor=df[df.block==b].sort_values(method,ascending=False)
             picks.append(anchor.ticker.head(5).tolist())
-        econ,_=portfolio(picks,ids,opens,names,days)
+        _,econ=portfolio(picks,ids,opens,names,days)
         hit=sum(df[(df.block==b)&(df.ticker.isin(t))].future_log.max()>=
             df[df.block==b].future_log.max() for b,t in zip(ids,picks))
         # max-in-top5 gives an exact hit on actual best if no ties.
@@ -138,7 +138,7 @@ def evaluate():
         for j in range(TRIALS):
             rng=np.random.default_rng(RNG+11001*j+(0 if kind=="category_only" else 300001))
             seq,volerr=trial_surrogates(basepicks,current,vol,cat,members,kind,rng)
-            outcome,_=portfolio(seq,ids,opens,names,days)
+            _,outcome=portfolio(seq,ids,opens,names,days)
             hit=int(sum(best_by_anchor[b] in seq[k] for k,b in enumerate(ids)))
             p10_ratio=float(np.mean([sum(ticker in top15_by_anchor[b]
                 for ticker in seq[k])/5 for k,b in enumerate(ids)]))
