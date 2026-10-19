@@ -1,0 +1,87 @@
+name: EU48_PREDICTIVE_SKILL_WALK_FORWARD_16_STRICTLY_REGISTERED
+on:
+  push:
+    branches:
+      - research/eu48-predictive-skill-free-ranking-20261019
+    paths:
+      - '.github/workflows/eu48-predictive-skill-tournament.yml'
+      - 'isin_first2026/predict48/tournament.py'
+      - 'isin_first2026/predict48/PREREGISTERED.md'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  eu48-label-mature-monthly-ranking-tournament:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install numerical libraries pinned; original 48 venue and model source
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'lightgbm==4.6.0' 'xgboost==3.1.3' 'numba==0.63.1'
+          python -m py_compile isin_first2026/predict48/tournament.py
+      - name: Verify quote source unmodified with 48 venue ISIN historical warmup; no network ETF fetch
+        run: |
+          python -m isin_first2026.v2_unrestricted48.prepare --out _EU48PRED_PREP
+          python - <<'PY'
+          import json
+          d=json.load(open("_EU48PRED_PREP/RESULT.json"))
+          assert d["n_unique_isin"]==48
+          assert d["shared_EU48_original_quote_sessions"]==2746
+          assert d["shared_EU48_pre2017_sessions"]>=252
+          PY
+      - name: Genuine causal prior-only 2017–2020 trained, 2021–23 discovery, 2024–26 locked verification
+        run: python -u -m isin_first2026.predict48.tournament --raw _EU48PRED_PREP --out _EU48PRED_RESULT
+      - name: Hard checks for signal months, frozen original MA3, distinct ISIN and source hashes
+        run: |
+          python - <<'PY'
+          import pandas as pd,json,hashlib
+          from pathlib import Path
+          p=Path('_EU48PRED_RESULT')
+          z=json.loads((p/'RESULT.json').read_text())
+          assert z['status']=='EU48_PREDICTIVE_RANKING_WALKFORWARD_AND_LOCKED_2024_CONFIRMATION_COMPLETE'
+          assert z['n_funds']==48 and z['n_original_months']==113
+          assert z['n_evaluation_months']==65 and z['months_dev']==36 and z['months_confirmation']==29
+          assert z['pre_registered_candidate_count']==16
+          assert z['no_lookahead_all_train_maturities_before_signal']
+          assert z['original_MA3_leader_65months_exactly_reproduced']
+          w=pd.read_csv(p/'48_ETF_PREDICTIVE_SCORES_CHRONOLOGICAL.csv')
+          assert w.groupby(['method','signal_date']).size().eq(48).all()
+          assert w.groupby(['method','signal_date'])['isin'].nunique().eq(48).all()
+          s=pd.read_csv(p/'ALL_CANDIDATE_MONTHLY_TRUE_FORWARD_RANK_SKILL.csv')
+          assert s.groupby('method').size().eq(65).all()
+          r=pd.read_csv(p/'SUPERVISED_RIDGE_LGBM_ACTUAL_TRAIN_MATURITY_AUDIT.csv')
+          assert (pd.to_datetime(r.max_label_maturity)<pd.to_datetime(r.fit_signal)).all()
+          for line in (p/'SHA256_MANIFEST.txt').read_text().splitlines():
+             digest,name=line.split('  ',1)
+             assert hashlib.sha256((p/name).read_bytes()).hexdigest()==digest
+          print('PREDICTIVE_SKILL_LOCKED_CONFIRMATION_FINISHED',json.dumps(z),flush=True)
+          PY
+      - name: Archive all predictive method score and true month-forward labels on Test research branch
+        run: |
+          mkdir -p isin_first2026/predict48/results
+          cp -a _EU48PRED_RESULT/. isin_first2026/predict48/results/
+          git config user.name "EU48_PREDICTIVE_SKILL_RESEARCH"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/predict48/results
+          git commit -m "Complete preregistered EU48 16-ranker forecast discovery/locked confirm and risk-independent 10bp net results"
+          git pull --rebase origin research/eu48-predictive-skill-free-ranking-20261019
+          git push origin HEAD:refs/heads/research/eu48-predictive-skill-free-ranking-20261019
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: EU48_Predictive_PIT_Maturity_Ranking_2021_2026
+          retention-days: 90
+          path: _EU48PRED_RESULT/
