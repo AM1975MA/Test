@@ -1,0 +1,62 @@
+name: EUR_ISIN_VERIFIED_GOVT_BOND_CURVE_AND_CREDIT_HISTORY
+on:
+  push:
+    branches:
+      - research/europe-isin-download-backtest-ready-20261019
+    paths:
+      - '.github/workflows/europe-isin-bond-data.yml'
+      - 'isin_first2026/full_eu_2017/download_bonds.py'
+      - 'isin_first2026/full_eu_2017/BOND_ISIN_CANDIDATES.csv'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  eurogovcurve-and-optional-credit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned market data dependencies
+        run: |
+          python -m pip install 'yfinance==0.2.65' 'pandas==2.2.3' 'numpy==2.3.5'
+          python -m py_compile isin_first2026/full_eu_2017/download_bonds.py
+      - name: Fetch issuer-confirmed EUR ISIN market prices 2004-2026, preserving 2016 warmup
+        run: python -m isin_first2026.full_eu_2017.download_bonds --out _BOND16
+      - name: Validate funding universe and source hashes
+        run: |
+          python - <<'PY'
+          import pathlib,pandas as pd,hashlib,json
+          p=pathlib.Path("_BOND16")
+          a=pd.read_csv(p/"BOND_ISIN_QUOTE_AUDIT.csv")
+          d=json.loads((p/"RESULT.json").read_text())
+          assert len(a)==16 and a["isin"].nunique()==7
+          assert (a.groupby("isin").underlying_scope.nunique()==1).all()
+          assert sum(a.underlying_scope=="EURO_SOVEREIGN")==9
+          assert sum(a.underlying_scope=="EURO_CREDIT_MIXED_ISSUERS")==7
+          assert d["no_justetf_scraping"]
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+              code,f=line.split("  ",1)
+              assert hashlib.sha256((p/f).read_bytes()).hexdigest()==code
+          print("BOND16_EURO_QA",json.dumps(d),flush=True)
+          PY
+      - name: Archive raw+adjusted vendor bars with legal ISIN on Test only
+        run: |
+          mkdir -p isin_first2026/full_eu_2017/bonds_results
+          cp -a _BOND16/. isin_first2026/full_eu_2017/bonds_results/
+          git config user.name "ETF-EUR-ISIN-HISTORIC-BONDS"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/full_eu_2017/bonds_results/
+          git commit -m "Archive EUR sovereign curve and euro corporate historical venue OHLCV by issuer-certified ISIN"
+          git pull --rebase origin research/europe-isin-download-backtest-ready-20261019
+          git push origin HEAD:refs/heads/research/europe-isin-download-backtest-ready-20261019
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: euro-government-bond-maturity-2016-onward-isin-prices
+          retention-days: 90
+          path: _BOND16/
