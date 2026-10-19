@@ -249,7 +249,7 @@ def run(out):
     universe=load_proposals()
     identified=identify(universe,official)
     assert len(identified)>80 and identified.ticker.nunique()==len(identified)
-    if not any((identified.ticker=="EXV1.DE")&(identified.isin=="DE000A0F5UJ7")):
+    if not any((identified.ticker=="EXV1.DE")&(identified["isin"]=="DE000A0F5UJ7")):
         raise AssertionError("Canonical EXV1 xetra reference mismatch")
     identified.to_csv(out/"ISIN_ALL_CANDIDATE_REFERENCE_MAPPING.csv",index=False)
     # Output a small local instrument reference snapshot scoped ONLY to
@@ -259,7 +259,7 @@ def run(out):
           reference_currency=r["Currency"],first_trading_date=r["First Trading Date"],
           type=r["Instrument Type"],status=r["Instrument Status"])
           for t,v in ((k[:-3],v) for k,v in ref.items()) for r in v
-          if r["ISIN"] in set(identified.isin) and r["Instrument Type"]=="ETF"]
+          if r["ISIN"] in set(identified["isin"]) and r["Instrument Type"]=="ETF"]
     pd.DataFrame(mini).to_csv(out/"OFFICIAL_XETRA_MATCHED_ETF_SECURITY_MASTER.csv",index=False)
     price_data={}
     audit=[]
@@ -272,8 +272,8 @@ def run(out):
         if z is not None and not z.empty:price_data[row.ticker]=z
     audit=pd.DataFrame(audit)
     audit.to_csv(out/"ALL_QUOTES_WITH_ISIN_HISTORICAL_QUALITY.csv",index=False)
-    identified_ok=identified[identified.isin.str.len()==12]
-    mapping=dict(zip(identified_ok.ticker,identified_ok.isin))
+    identified_ok=identified[identified["isin"].str.len()==12]
+    mapping=dict(zip(identified_ok.ticker,identified_ok["isin"]))
     grouped=defaultdict(list)
     for t in price_data:
         if t in mapping and check_isin(mapping[t]):grouped[mapping[t]].append(t)
@@ -292,7 +292,7 @@ def run(out):
         out/"INDEPENDENT_TRADING_VENUE_SAME_ISIN_CLOSE_COMPARISON.csv",index=False)
     # Grade selection is on hindsight market data, ONLY as exploratory data
     # QC candidate, not ex-ante investability or live portfolio eligibility.
-    eligible=audit[(audit.isin.str.len()==12)&audit.grade.isin(
+    eligible=audit[(audit["isin"].str.len()==12)&audit.grade.isin(
                         ("A_QUOTE_CLEAN","B_QUOTE_REVIEW"))].copy()
     eligible["grade_rank"]=eligible.grade.map(
                          {"A_QUOTE_CLEAN":0,"B_QUOTE_REVIEW":1})
@@ -317,12 +317,12 @@ def run(out):
     statuses=Counter(identified.status)
     all_diff=pd.DataFrame(pairs)
     xtra=identified[(identified.in_original_EUR60)&identified.status.str.startswith("XETRA_")]
-    observed_countries=Counter(str(i[:2]) for i in unique.isin)
+    observed_countries=Counter(str(i[:2]) for i in unique["isin"])
     manifest=dict(status="XETRA_OFFICIAL_ISIN_FIRST_HISTORICAL_EU_ETF_QUOTE_BUILD",
         run_date_utc=str(pd.Timestamp.now(tz="UTC")),
         official_reference=provenance,
         n_all_source_ticker_candidates=len(identified),
-        identified_count=int((identified.isin.str.len()==12).sum()),
+        identified_count=int((identified["isin"].str.len()==12).sum()),
         euro60_source_XETRA_official_matched=int(len(xtra)),
         euro60_unresolved_or_nonXetra=int(60-len(xtra)),
         identity_statuses=dict(statuses),
