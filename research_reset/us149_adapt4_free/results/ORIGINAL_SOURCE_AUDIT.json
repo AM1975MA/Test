@@ -1,0 +1,1354 @@
+{
+  "archive_path": "_US149_RAW_ORIGINAL/etf_trader_raw",
+  "n": 149,
+  "common_date_count": 2924,
+  "common_calendar_intersection_not_forward_filled": true,
+  "source_from": "archived run36551650325 artifact etf-trader-raw-149",
+  "original_149_universe_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "all_source_raw_checksums": [
+    {
+      "ticker": "AAXJ",
+      "rows": 4496,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "b1bf8945f6909c47841d0a0a29fd51e42b34539bd7d44d1f1448b4d5c44c4aff",
+      "first": "2008-08-15",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "ACWI",
+      "rows": 4594,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "ec3bb9fb408c7e101f595dada9d7751a7c92971fa5546db0e1da20cd9fe29691",
+      "first": "2008-03-28",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "AGG",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "1a6b8d618eeb72061560e335f325a23166d9a083054cd8ac02a4ed36f346f6cc",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "ANGL",
+      "rows": 3576,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "6fae7f9def4537e8d7b29a2ec9f62b0d4203e41d40935320448518710396558b",
+      "first": "2012-04-11",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "ARGT",
+      "rows": 3855,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "cb2248f212b999e08026df746e2a723644685ce07b1839e7bf4f908c133fc32d",
+      "first": "2011-03-03",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "ASHR",
+      "rows": 3180,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "543f286882a1865da9316a3289a54c68bfb0b18b28d2399146936e1090ef639c",
+      "first": "2013-11-06",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "BIL",
+      "rows": 4803,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "043f5d3c416a89734e6c28066d5f71b902f4e81fcf94e14a6b8a58b77d5f5abb",
+      "first": "2007-05-30",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "BKLN",
+      "rows": 3855,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e2b5546e2932ebf261bdc3d086a46baa9d1cc1ffe6042fb7a957c49de80081c9",
+      "first": "2011-03-03",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "BND",
+      "rows": 4838,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "d2d8beb93734744ba964c0c687831c1f918200f156ab4d10b7cc2696c178154f",
+      "first": "2007-04-10",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "BNDX",
+      "rows": 3289,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "76c3fe24b8901ed41f60f5ec88a87084584cb120f9e7ed79fc125d7a4c305f08",
+      "first": "2013-06-04",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "BNO",
+      "rows": 4045,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "ccd9c401b2dd239fa9aa46bf9a400b8128139280681d553ef7e71c6086616fab",
+      "first": "2010-06-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "COMT",
+      "rows": 2943,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "d3811e8e8f6591c4ab8b7af597e3cf902daf19edd14aae0a0d179b1ef1e5ca87",
+      "first": "2014-10-16",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "CORN",
+      "rows": 4040,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "fafa1e9e61a3eac6c16ac9a3339bbd5ea9e7400e46ea6858fc054fe07410a287",
+      "first": "2010-06-09",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "CPER",
+      "rows": 3676,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "2b70ac7a9aa1774b297a31b869d391e5ee911ad3cea27e39adf35bd03a263b43",
+      "first": "2011-11-15",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "DBA",
+      "rows": 4902,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "9a0ebe695e7c89238d3a54ff75f3b3b5e4228eaeab1284f26d55bc81321ff0f3",
+      "first": "2007-01-05",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "DBB",
+      "rows": 4902,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "469ac8d6072c77e4d7fb5dbd7b008040c10290b5227e951db32790b2afed2887",
+      "first": "2007-01-05",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "DBC",
+      "rows": 5132,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "52ede270827d3cadd3e196cb3810a54789be44642b204fc06d619ebd4f029c26",
+      "first": "2006-02-06",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "DBO",
+      "rows": 4902,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "1294bc7960cd491f5890088e9b5a64e96e948f13e368d7084557bc51179540b1",
+      "first": "2007-01-05",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "DEM",
+      "rows": 4772,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "602df630c5566283b9152e6bdd50cc5be3c8c67f7321ce5bc0498e3569b66e47",
+      "first": "2007-07-13",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "DGRO",
+      "rows": 3031,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "b3a6f8d14b22f5b18bcffdf643b23368c7457f0163b0fcec5ad46a4ec2f6f942",
+      "first": "2014-06-12",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "DGS",
+      "rows": 4696,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "5f5d4a1a4c425ad1a646dd00f81316e930b6adac804defdda9ea528941885127",
+      "first": "2007-10-30",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "DIA",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "0f15a13734953835ba027ca34c2430f965be3a50def224fbd8ac4b81b7153675",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EDV",
+      "rows": 4635,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "49967b78fd3ca7da7c079d863e8ca0ca9b4bafd26289986572ae57513d6464d2",
+      "first": "2008-01-29",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EEM",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "4d75d2f7b6f924a4d9265f738835434dd743a5ef222377ba89678abe2b65e726",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EFA",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "4a26f58c7e8e6179506ddcecb2e04c7f2dc6e9ad7241519f22beee281279aabf",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EIDO",
+      "rows": 4062,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "fae0e83bd5f6b52368a3b00ff935fc3cee13441508ebd0bf5871a4ecb101a41e",
+      "first": "2010-05-07",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EIRL",
+      "rows": 4060,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "28fa6c9d855ed79b821b5bb59b7082a116efa19ff23f549cb8d641ee3b0b97f1",
+      "first": "2010-05-11",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EIS",
+      "rows": 4594,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "159041039fe44a7c6b4852e5253b0a1b1f52d7b922a309b3c7788229a0423d1c",
+      "first": "2008-03-28",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EMB",
+      "rows": 4661,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "a3eaaa95c429e042844c3f24aa7c7e7b5ad6ff369cb70a515661d8958fc79ef0",
+      "first": "2007-12-19",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "ENZL",
+      "rows": 3980,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "a53e8e2cf1035fee0ec36608414c42b30843b5109e61bf35788e694718f1fbfc",
+      "first": "2010-09-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EPHE",
+      "rows": 3962,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "8479c87f42f56f92908ceccd9d518fc5846833892c4be2c24bf6ce48836b0162",
+      "first": "2010-09-29",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EPI",
+      "rows": 4616,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "fd7f1f3bbd1ab287fd59bbd8ad64158829aad18c9f4478835a8110a13a8d3e48",
+      "first": "2008-02-26",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EPOL",
+      "rows": 4049,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "c221984724ae83283d1900c7fa77e774f155fc9ea9e4fc4c33609c7b26e9d693",
+      "first": "2010-05-26",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EPP",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "68b897e28ca9801fcf40ef15fb1552037c7aabe04c0e9e687a4d01bd90e31fd5",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWA",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "1d47dde5735fe8430d872269de5316e1e11cf005e9be64b9b0938a42d5146785",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWC",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "ed7d386612f37a43ca81885fb4cba6632619134b942f28c8020951200f75f891",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWD",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "d39ebcb02aa0e7c166ab41125daf9d31578c5edf6ebba014390a37bb2d3903bb",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWG",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e15586e5d001093d0619616c713c1e5b3669938c1890c16ce36eb5f314b294c7",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWH",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "00fe8fcd137229bfb5d2e7bbb48c39dcf4b212c8161bd1a1994459d352023778",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWI",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "7b5fefa5ca48079b63c87d2b8ff2546838658b8b07bfe77a404aec5e560ffb09",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWJ",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "ec9074a1838423f6608b92be34c037800e97135c913724154e35c8218903584c",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWK",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "557b834ac2c335ad25222490eb5ae0a90b0af4167dc35f48cbe7e1086a5f2bd3",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWL",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "26372711724b0681e350378ba666ec567c97875c9dd0d865d0c5fe0da6c51fd6",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWM",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "df3a7da1f5c424ee32f088113d5b40716f788cecbb5c0b059715788d68b68d76",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWN",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e1bd4f640feaddda5009a53eba6b02f21a53bea70d1081f95d2e4c025fdb4d71",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWO",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e7f09d1a69718030b4e9e78afbd0151b8fabc775ab72aa6ef01a2cab7cc926a1",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWP",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "ad742b8c55c077d6cd73b68ca77dbdcdfaaa24db52a9759d1f7bdfb9307ba6c9",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWQ",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "653492a7fb211f64690a2828922f1d3ff06ca3fb934920666ae367767c6c0d90",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWS",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "af08c58234a498385f4f7a4bfa5f80c5f80d2e02645a44069dd5f81781c18dbe",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWT",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "ef549b647932e63ba37d98db6c3a412ed40295081a81af9e09bee5930b90ccfc",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWU",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "42ce03614d55d9da0c7c290cb90ec5c7d476f7b1d6210e01767295d28f93fd82",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWY",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "4791d709823a934470f25d7eb4dfe6896b3e2a919b5e27865488548d00eb80e1",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EWZ",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e4106d78f63758d817554cc6be1cc499101b542acc9398c2c8b7bf7e577fc73c",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "EZA",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "b2b11dceb360ff91b12c7d91a822c5dee58ff6dfcc93b3f30aae18d3abdb10ac",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "FDN",
+      "rows": 5036,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "1b04af7b5441da9d66dd87fd21fdc7516a8d3f30be84710970253a69d5527df4",
+      "first": "2006-06-23",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "FXI",
+      "rows": 5466,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "38cfdac085dc8f36b3c5b9572085bad8ffb0a216b6d44d482047b6e371ac26a6",
+      "first": "2004-10-08",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "GDX",
+      "rows": 5059,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "0db987448d5f56dde09a7fa9c0ded6f21497346b54c81c501e93a5c8fff160f2",
+      "first": "2006-05-22",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "GDXJ",
+      "rows": 4183,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "d6806b5dba712ed0a912661da91645284124190acec62131edbc01b9000be578",
+      "first": "2009-11-11",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "GLD",
+      "rows": 5437,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "af1fd4b839da891a23243cd759c93b52a709fe660c66bff8f12319a9378ff77e",
+      "first": "2004-11-18",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "GSG",
+      "rows": 5017,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "10d7c7fbe00b18e335d22152f2f9e71f8a920d4e707dc2119806ace09815db6c",
+      "first": "2006-07-21",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "HACK",
+      "rows": 2924,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "dd90cd82abf98fe5351cc448f4935936759abf4386dbcc3bbbb06ebe5539e94b",
+      "first": "2014-11-12",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "HDV",
+      "rows": 3835,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "4a4caee1a7c3c9560c9b84ffc0bc18d2e92d201bf43553198ec3c05d08bb545d",
+      "first": "2011-03-31",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "HYG",
+      "rows": 4837,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "6a2e78b34007c5711962727a4335f5fb851e2af41dfa4f7969688c7a91fd02d5",
+      "first": "2007-04-11",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IAU",
+      "rows": 5389,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "1f3e08f14d1c955ee99d836ae9582b0e92028f74b9f815b4c5b4b924e89b3590",
+      "first": "2005-01-28",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IBB",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "466e4675ade32e7688bcb93489e350aa575eb9b09114cbc31359bf74fb93e897",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "ICLN",
+      "rows": 4532,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "19b53a1b38dda58deb0ad356af6adeadecd99c26eb8c05be440d316ab29b20b7",
+      "first": "2008-06-25",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IEF",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "b49e51130709c2fcd3454e0c8069c159dda0040c438955c08e6367510ec0575d",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IEFA",
+      "rows": 3439,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "be9d735ffb0a6a9445b979041c819ba94a2c9aad878ffd850b5a39fc1210627f",
+      "first": "2012-10-24",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IEI",
+      "rows": 4898,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "0a28dff8ed816dc2a254ea2371cfdfaceab8c9d6ab17bab16b2a6c3ae9b723cf",
+      "first": "2007-01-11",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IEMG",
+      "rows": 3439,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "2405ac970773410b1d878759c78a125423e2dde881fa978240613294536fd626",
+      "first": "2012-10-24",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IGV",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "07fb1e47baf99fb9e332672630e0722c430031989bb07ffd2468c55ff9eac9fa",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IHI",
+      "rows": 5070,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "0d2b4c1f7f026b05b2c4eb52d9f60606c17738154bed423104a11cffb58056ae",
+      "first": "2006-05-05",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IJH",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "1f56f350106a7f4c6784b9927bac70efcf97461b9ee47157e1e87fbe16479143",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IJR",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "d4cf515519006f0644eb3be7c71cdd3d2ddc074a9ef4e7fee81685d8584278ec",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "INDA",
+      "rows": 3622,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e273415b19c3f16598893a5dc3a10a7bb07bfa96f25a1110f91513736dd227fe",
+      "first": "2012-02-03",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "ITA",
+      "rows": 5070,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "2812db69c2d797c19f371a3a27f7ba4885f5db6c7746256e69c43cb1935bbe3e",
+      "first": "2006-05-05",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IVV",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "777488c2f1cb0b31c14fdcecb717623cb5373c4ede570fa21428ff271e2a458b",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IWD",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "11a5e33af5c04220526a5c7147447049e95094e3331bab70767e04b74a0d5850",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IWF",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "8f4339ad6b7b3596ed7c791f981418d92c0a082782c76f5c56b187987fcbee7f",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IWM",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "b1dc8fb35879c292ddb10440ca8c0196a07c0212938afa376d162b8d9882574f",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IWN",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "36b5834234c7dc086a152094b916d286a87d3e04c32c76c91be0798dac1200d2",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IYR",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "7277bb6f7e1009b8d45d361f927d909866e0126496bbee0f50b00c49e6e23c8a",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "IYT",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "4caa51569041117ef548773113ab19eeb875639c653540e7919e9fbd08877b99",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "JNK",
+      "rows": 4672,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "a2c7c6064dcd985449f78d5ee3f254b6137d1e89aa589965d2a44be82d8f1a95",
+      "first": "2007-12-04",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "KBE",
+      "rows": 5187,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "2bfb4db4a6e82d25970ac5838cd5a726a9e82164ddb66e066240a36b3c9ff292",
+      "first": "2005-11-15",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "KRE",
+      "rows": 5037,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "5b3ddaaf818a55bc2ebb2c56a21fc7ed5f8be71b34de9cf716c190f636728aaa",
+      "first": "2006-06-22",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "KWEB",
+      "rows": 3248,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "77f6959d01e5c34d72ab4cbd3e424d3301db10dce0974440a7cd876528c229fe",
+      "first": "2013-08-01",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "LQD",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "257e7a5cc55d1a5b6e2fef2acf00b97b3765c3ff1357362fcffbc2bd021ec369",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "MBB",
+      "rows": 4854,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "f787f4ecdaf654bf9e6d4085c45faa49b6a7f3c4dc91fd81015a6c2c59004452",
+      "first": "2007-03-16",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "MCHI",
+      "rows": 3835,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "9a5b5f6b585dfd30d3164c0963812db7ad9dc621a6ed59593c5d0bfa48b913e0",
+      "first": "2011-03-31",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "MDY",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "b5fecac7fcb9a021cbc2001e36c72fd8ebe1aa6a768232e9ed0171cb58a9aa0e",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "MTUM",
+      "rows": 3321,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e072bd75baee78a53be6e7d2d83ca6e2a35fad682370da07b477f5f63c25b711",
+      "first": "2013-04-18",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "MUB",
+      "rows": 4732,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "fbf6712e86f5bafaf172930e9a2e446714e74c7b8987013ffc4c4a2d1767f2b5",
+      "first": "2007-09-10",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "PALL",
+      "rows": 4144,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "1d7ee2635c2f4b530636c25d75bba30df03569a8e6222082dfdd41a24c75aaeb",
+      "first": "2010-01-08",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "PPA",
+      "rows": 5201,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "c16d9d03b93dc8d70d681eb93f8906f3d903031d19b2ad6dac3b15e261d6fe37",
+      "first": "2005-10-26",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "PPLT",
+      "rows": 4144,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "6abe3ab91bb539d3590ed2a09ea27e5cfa5894d65ff3c02ad84bbb9816f14a57",
+      "first": "2010-01-08",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "QQQ",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "139e7aa077ca645efc1d7650408bddb9e08dec5d5c92f930e65f895e206adc10",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "QUAL",
+      "rows": 3258,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "339747cdc4ba5f2bd33004c870fee90e62aa27aa09cab6ba6308add39aca5a1e",
+      "first": "2013-07-18",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "RSP",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "748aa645a656c4c257cc7eb8d7e484d3567e9fe374a3e467d57ab1eb2ae27371",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "RWO",
+      "rows": 4555,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "f6523a84f84707d4979c34a21c48fcd50aa49eaf6cd44a19bb03f1f8685d1c29",
+      "first": "2008-05-22",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "RWX",
+      "rows": 4912,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e7c0025d37cb9091db67c4d98e7fb705fd353320580b79f79c2531c2bd3e26c7",
+      "first": "2006-12-19",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SCHB",
+      "rows": 4189,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "5c217e119720fb9b3e893382f600b738c92fa30a8f1038b9dc826d920c91aebd",
+      "first": "2009-11-03",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SCHD",
+      "rows": 3694,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "8b3bed09f8a8503d2cb33dbf165ea4a77486957d36db1d0056140f8d3ba40675",
+      "first": "2011-10-20",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SCHE",
+      "rows": 4140,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "c268d8fbe248c3da7c468f61c45c9767f97c17e6ea14a9b99022c92d9ba23131",
+      "first": "2010-01-14",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SCHP",
+      "rows": 4000,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "dfb66108177fa2ac2eb8b05bc5c830ba94b5d8b64bbf62df4eea173188789e2f",
+      "first": "2010-08-05",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SCHX",
+      "rows": 4189,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "60ecbe14583b5ba17e2ff45ae8d1a1591e12f37116e6d443a110da2692b6a05a",
+      "first": "2009-11-03",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SHV",
+      "rows": 4898,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "7f2bb9ed4b70463d5592633b4003980d95e0a612a2a891d7a24f4f12b71f9ccb",
+      "first": "2007-01-11",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SHY",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "87b14bf930a3b832e11b5d5e14f6e6794fec97cb385240e3f81d2a4245d1e4a6",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SLV",
+      "rows": 5075,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "3af3fad0dcc7a018e80e4e056f4a34351f1c04eab346c5035186bfec5e9435bf",
+      "first": "2006-04-28",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SMH",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e7165f73f72f8f23324b5f2f6bfc23ae8c29c6d9049a6faca4263d23d34ebe95",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SOXX",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "6023a50dc49ea393b736ed08fd262a5ecc77728c17b3ae2c2edc9fff59dac23e",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SPLV",
+      "rows": 3811,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "dbb93bc4d3c31c25e1f51863d13eefe4845389990276a16f7b5f89762e129bca",
+      "first": "2011-05-05",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "SPY",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "f603771dc9e21fe2f42b42c57ec6ee2abd6058b9f64fec9206042d292dc66b5e",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "TAN",
+      "rows": 4582,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "b6faaba43b3ea306e315a78e6e067d6c173e34ddd1526c35e7bd0bbdcac8c329",
+      "first": "2008-04-15",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "THD",
+      "rows": 4592,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "9d4a40ddebc20abae1002987a0938ab083f9e9736d7feb0e0fde43f3694baab5",
+      "first": "2008-04-01",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "TIP",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "d3c4b3029f86c982938427f00b0ba920e5b4842df41816c689d93cda22ff3d17",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "TLT",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "52d4aa751b2d3d5abcea90640bcf2ca430c8a29ee783d3d870ff3f82a3a50058",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "TUR",
+      "rows": 4594,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "a7910409df9f1989e55a02baa48081b0b31dba95dcb3b82618f785b368a17a2c",
+      "first": "2008-03-28",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "UNG",
+      "rows": 4832,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e5c67c18ccdccf0c050692ac6acb92443b29e972c6aae4d999f02521230f7817",
+      "first": "2007-04-18",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "URA",
+      "rows": 3935,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "f962b3255b34b99f9996d19e56e477ac00ebc014f62b3485336c05ac35d9ddb2",
+      "first": "2010-11-05",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "USL",
+      "rows": 4670,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "65d253ec7e5d8f3e7e1a23c29c636115eb6ce5c0ac89aaa350401b270c8f5467",
+      "first": "2007-12-06",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "USO",
+      "rows": 5088,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "cb0f0290c57ae483f80fbca0e04dedf02cf14969118f585d2daf0eb30265ff0f",
+      "first": "2006-04-10",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VB",
+      "rows": 5640,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "323e4db543f0c23df2961fd11c6ea354558653691ad562be64e847dfd8e91b43",
+      "first": "2004-01-30",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VCIT",
+      "rows": 4175,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "12ad4209ce3b5acdb6fbe8573e0a1d457ee190857cbc4f8c857cdc0a834ea03d",
+      "first": "2009-11-23",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VCSH",
+      "rows": 4175,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "a956c359b4b11a9ee47c37398002e7e99dff4487a443db3c9d09a7c97c507eb0",
+      "first": "2009-11-23",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VEA",
+      "rows": 4763,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "2e4a24b8f2b5174d7e46456b6d3f08ebb2f60a192280b178304219526e4ecc7d",
+      "first": "2007-07-26",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VEU",
+      "rows": 4860,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "660f7ec810b7c27fa27d9a0f368e43b101069fc3ee07b64348e37128dde46e6a",
+      "first": "2007-03-08",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VGIT",
+      "rows": 4175,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "c6e61a2634b7c64b939086fd436449e57d3eec57ddf16cb76d9b0df111563e9c",
+      "first": "2009-11-23",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VGK",
+      "rows": 5361,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "204d0f03d9a36ccc079024b07989871e2634f1a80a742616cd3d6bc316843678",
+      "first": "2005-03-10",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VGLT",
+      "rows": 4148,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e4dfd78e17ee9b7ed5eb0b7b78b23c0dd66a836c9fa706e23736fec9fd2e475e",
+      "first": "2010-01-04",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VGSH",
+      "rows": 4175,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "80c31b6d2fbc22951676d98867cf4cb7338210448e701b4bceca88c752af3fe7",
+      "first": "2009-11-23",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VNQ",
+      "rows": 5473,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "3a46593d190cd780112eb77b2c0259fc91e366237445995a74a7898f8fbf556e",
+      "first": "2004-09-29",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VO",
+      "rows": 5640,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "cf4c7a16c71a8f139a14ab1cbbe6d01382f1e77836239b1c0dbcafad19521c36",
+      "first": "2004-01-30",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VTI",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "bfab051cb54f8c12dc4e013648045036b0b26ba1d17f480aa3bd50b65dcd14a9",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VTV",
+      "rows": 5640,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "68f0c02c4884d9551b8e69d837d43a42da1dafc4fded62dc4186d72fd6cfd103",
+      "first": "2004-01-30",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VUG",
+      "rows": 5640,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "f293d440057023642639282a69eb23d6516e043a393ae36b7b2b869836ed3d31",
+      "first": "2004-01-30",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "VWO",
+      "rows": 5361,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "2295f4d3e6713d80fbded3801758498192df97ccaf935651000184f1efbe27e3",
+      "first": "2005-03-10",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "WOOD",
+      "rows": 4532,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "d83ab9ffde2274d8e0ad356244a6350635460313a14a74152f7e10b6adb3237b",
+      "first": "2008-06-25",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XBI",
+      "rows": 5132,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "58915a236fbb8c6c6769c681be4868631c2a858d6a9f63b6119139bbbcfb85cd",
+      "first": "2006-02-06",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XLB",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "8112373de8d3a07227909677aff31a32580e8e083a07e5ebfc84491a0037eed9",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XLE",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e6570dd04b26ebcda2b4080190532e275b96c889ea5e82cbb342aacd52f6ec2a",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XLF",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "1190f437e9f6ab6c1203e22ea666f321a799000b7499884e4d37e50331234afb",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XLI",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "33e6ee35196e237ed6a24a22faa8af8ca3bf0ccdb291357d36647f7226bd60bd",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XLK",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "6378a111e28967f3cda896406aae6c95b023170465be4f943419ef9f6fda9fe8",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XLP",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "fb3f0321b97fafc8b36c66ca7837ec25f57ffddbc79090c565520fa481658ecc",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XLU",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "ddeae0dee7249714c5c884ba062aa1ee593e72fec170d87ecd27cc38a92fc61c",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XLV",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "dedf27739a2ff917435e87a983c45b0162dc3ca7b7e5751fff545ea1a3f25ce1",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XLY",
+      "rows": 5659,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "8cc5079f5a5adf6af4d56922c42cd9ddafeefb7e35d058782d447553883508e6",
+      "first": "2004-01-02",
+      "last": "2026-07-01"
+    },
+    {
+      "ticker": "XRT",
+      "rows": 5037,
+      "missing_cells": 0,
+      "envelope_corrections": 0,
+      "raw_sha256": "e4458809799f63778b309e276e4f8d7912a7fd49d7011ab5aa441b2aa4d119fd",
+      "first": "2006-06-22",
+      "last": "2026-07-01"
+    }
+  ],
+  "raw_data_manually_changed": false,
+  "only_high_low_envelopes_derived": true,
+  "passed_full_source_load_and_2017_warmup": true
+}

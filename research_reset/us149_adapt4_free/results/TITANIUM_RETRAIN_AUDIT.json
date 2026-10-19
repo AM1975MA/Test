@@ -1,0 +1,1114 @@
+{
+  "raw_manifest": {
+    "tickers": 149,
+    "allow_missing": false,
+    "files": {
+      "AAXJ": {
+        "sha256": "e0d5601d6af91276e82489ccc69004a6d46bb41738b7315838c5a29f9bd7dad3",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "ACWI": {
+        "sha256": "d77cd0a8c882dace60904a604c89d6be8500e84eb48ec6dc0c1bc1a3be93372e",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "AGG": {
+        "sha256": "718007d34d21edadb89d349179ef9013430f84f0d425a93979154e0828b97578",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "ANGL": {
+        "sha256": "6d191de93bb0b6db32871c7f332cbc71820b4fc130ff7ad8d806ab9555e87b1b",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "ARGT": {
+        "sha256": "dfd40cf06f9e3fe92b45ac030022ec36b30a74005c9606861bb20c062b97f753",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "ASHR": {
+        "sha256": "21037204925886cbba396dd5fcc5654c39986e6229df599b6216700f8a829693",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "BIL": {
+        "sha256": "0dd807a6c35e3fc57b1f833b79c8c50ce545e7e2c2777fe71348e7168541282f",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "BKLN": {
+        "sha256": "b683210cefe49370ab11e72744e300df3e05db7c9fa16ce0aa77261e2823d011",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "BND": {
+        "sha256": "b2836fda17357fd96bb5deb413104ba56d563a5be0db3013f39e4d45ddc4cb24",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "BNDX": {
+        "sha256": "5021a770bc96d559375fc320bb23b9d735d86d62bf42bee41ce9e7b8a95842ae",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "BNO": {
+        "sha256": "22f93983b09f796bc780c89ee892d777db6518c3de677b9ee426f650b7fc20bb",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "COMT": {
+        "sha256": "305366a738228fda6c52e943a1a6d480acabb4a7879ce6d9636b2b690d572143",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "CORN": {
+        "sha256": "4090bebf1040f5af078684c588e764a771582d946e5b5c71faf9f1d67fbc246b",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "CPER": {
+        "sha256": "9cc502b26f8d6cde706b20382230c709550c8c6a201e04a0d34b6e99b8733047",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "DBA": {
+        "sha256": "64833c9e228470b22e17363d83104802ae1a1118c9f983a2211ef98c40c7c325",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "DBB": {
+        "sha256": "c35456552a72d3209602a0225b974b7a8125927cd6575497796973f0602bb2e8",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "DBC": {
+        "sha256": "011556aa96fc67bf4d3aced32e2b2af5d0ba10ff4a05777fc5267d0e37c29054",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "DBO": {
+        "sha256": "685e128dba73bd767f574d157a95c93bee90ea6da56410d6ea2544c116abbffa",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "DEM": {
+        "sha256": "b18e6a5ea2e57cdc283088ecb50fbedee2f9aafbea75d0ed87227e5a36812bcd",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "DGRO": {
+        "sha256": "cae58ea0553c85eaa900911473bc7bcffa5803435f35d439c2d3b5a7261a15cb",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "DGS": {
+        "sha256": "ea753a4d9305c8aa60c237fe8f7b85a459bd60507621f8d4aacdee9fc18f8f40",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "DIA": {
+        "sha256": "c1ab1bd81a959f437dc8263bd863b1916e0b40f9f8e7417735ffca7ba8906ded",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EDV": {
+        "sha256": "d1e47fe5bc85b3215bbcf32ce6a8074df8ba6f2a702cf395a1143f92ea9a1263",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EEM": {
+        "sha256": "e3730651fe5d0091622b473919eb4a017ed32ee58798b54e0e5f108434686b45",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EFA": {
+        "sha256": "922473c28a78fbe67fbdb8ab66610e85628a5f18a1a2a30bc7cf40a19fa08e77",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EIDO": {
+        "sha256": "aa379f18f0ca16fdac1e67c96a65de5196f6659a9ee04f619d11f1dea1959e1e",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EIRL": {
+        "sha256": "7082e644fe7d407788cc2354c23cf567d3c57af652cc346b51e6c9801b84f6ff",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EIS": {
+        "sha256": "4d0f953fc583d0ccfe0073b96ff858aa24394ae3f2f84ac8fee657ca3b2886b3",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EMB": {
+        "sha256": "f847f0a7a281a4c7659d414bc49c7ed4ea4dfe3a6ea662d325dd958e4caa7109",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "ENZL": {
+        "sha256": "2dedb95714cc363e2dcb6a4c86fe6224724e096e7c98d7a3a04b1e319fb29162",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EPHE": {
+        "sha256": "2c9806d10bb1702262e0a8865fedbf865b28961372842ae328088201e0489cfd",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EPI": {
+        "sha256": "911f043caec48cbe6223e7562c4ef3b761c5b23a359569e0027580fa95dfd496",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EPOL": {
+        "sha256": "e5d9f3bda394b176e7c826f154c02869595212fd8aab566d34c053cc30a70ea8",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EPP": {
+        "sha256": "a86009978031ffea109175aeec4e6f2678c8aa04ad525b8a3f9ebc0f6612137d",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWA": {
+        "sha256": "06f26e2e2b138eb3ce1eb7118eb5d63b76ecc23217db539027b530956af41360",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWC": {
+        "sha256": "7d1d506d02469467d88ddd108cdb7a31fff99de0bc1d81a5ff527dda61ae68d8",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWD": {
+        "sha256": "729c814bf87f638c24ac59be642b5b7ac65c0eb0e8ab5fcd1d4356a1602f00d6",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWG": {
+        "sha256": "bb53b2ced0dba89a30cce12fb8c8d2c5c4ba79b46fe5cef3e21fafafed358583",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWH": {
+        "sha256": "b3fd0a40c4b5f9f4bfc30319e0d7dea684f344839f90f64d885cfa8cce5e89e6",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWI": {
+        "sha256": "0b808df8372840011375098856448bb8ae3c673505db35f0d23680feed2e8311",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWJ": {
+        "sha256": "c6d379425a9c85b270ca341f67b5abc1bc64afff072f57c0ef4826a9ddb057d7",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWK": {
+        "sha256": "1f80d3544dc1935cede0aa67fbffe6f7ee128ec57f556078b1d544f47a680e26",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWL": {
+        "sha256": "ca3386207a461121657159f110564ee10f4884e15e17960c0ef976abedb48e87",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWM": {
+        "sha256": "2755e30340fff4e17615e14753e42340d38f2d72cc00a8aa8d21e0be34d70277",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWN": {
+        "sha256": "e06841bb16cc1bb5dfb2c33212d531ee59d345375dec6d7b78219ff833862201",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWO": {
+        "sha256": "8dace825bc5188082fd8867be96ac3d396e161747996b8d82a88cae42409df13",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWP": {
+        "sha256": "4af55a44d70c8e5850770047f7e0aba91e45f825698413681ad975b5556eedbd",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWQ": {
+        "sha256": "33c4cbf14bc946640aa40b7afde7edfd165be94279ca61e4631f227c8701c77a",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWS": {
+        "sha256": "f8f713fbc3ab8090c1bf6e490675df7ce12e7570dd9d4e2ef14ea955a8d9f7e9",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWT": {
+        "sha256": "189f52cac22a19cc1fc88e1be49b4f599aa65fdaee24c95188c59afae27c9741",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWU": {
+        "sha256": "4aad11dcd0fbf615a56227de2d67ccda340fa73798631496754f64001efb84a9",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWY": {
+        "sha256": "4767e4a1328e2101e96f10884a4d22da73c91c5f866a32b971e5d32177c34f9f",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EWZ": {
+        "sha256": "50f6fdd1ea8fcea3bb30d70be60cb90e30c42c0c90f5e1506929daa8c59bbf36",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "EZA": {
+        "sha256": "a47d4b89b8b0704f79d9e9233e590eddd9277d59bcc5d9080a143bed219b3181",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "FDN": {
+        "sha256": "b13da2abc6ed7339cfb6f8f246d437644cf562216b039096bfd72b2b152d815e",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "FXI": {
+        "sha256": "eedac8506f00eb57795a58babf576563c6c6a912b6c87bb9d69230ec5d918019",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "GDX": {
+        "sha256": "79ae86838767e773abae27344762d4582d6743ac0509f8869901021bdaa11198",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "GDXJ": {
+        "sha256": "93b83b7fbb070fbd8312f87b9866155db82ed6da7141b8c44f51f68f925eeecc",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "GLD": {
+        "sha256": "3376e0b1db93f49b577821dee651970204e91e382aa22393183f796e5cd81cb6",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "GSG": {
+        "sha256": "713ab65e866b7a51b8d164aeeb78213c6222ffef7070fc940a8be770441a3656",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "HACK": {
+        "sha256": "068130f54fd9d46943775d955ab52761c302e0e080e71b6c1f92f543f0564a92",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "HDV": {
+        "sha256": "8ef9bf077f5edd87a8c680333357184ad6df0bcd3e65650f4538357363025e09",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "HYG": {
+        "sha256": "ad2434786d12956bc43901426ba3c69ec02111a2c57080e9cb0b985dc83e3da7",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IAU": {
+        "sha256": "249e6a48f6f99afde34103e5a105363924331d92de58a78896a78fe01db82fe9",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IBB": {
+        "sha256": "265d601f8d1297736eeb4dd5772f55ef849c24cf19fb94094ec0be285b6fcba2",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "ICLN": {
+        "sha256": "a1ea26610c56e581f1cbb6d2083bf599fd805bccd81feb2ef094d63c6505b488",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IEF": {
+        "sha256": "89d5d630a2666c6121f3c1f37012c697be6971006b685a945433c2ebec8e428c",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IEFA": {
+        "sha256": "c26ea953de125de6ae4fe8aac49ae4f6c2a741d3be7d720d84ba52d2a700dfbd",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IEI": {
+        "sha256": "20ad2288082d1a4d6a0b84b428dc2c6859c26511aba3289de60e1739cc2adf45",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IEMG": {
+        "sha256": "2cf8ae06376efd3a14ef75f16cb4b3d12e4955a93096e74e0cda8702f5ea7d06",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IGV": {
+        "sha256": "e20c1f3b144c6a62af337e2bd2a4e7fe8b8fdebb9af6cfcd3c8df6fb259703b8",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IHI": {
+        "sha256": "36ab70124277cfe0f954f3ea21d29913e6001af05ed30796a1db5840e91e4432",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IJH": {
+        "sha256": "483f94be3020496676de350c0b1597116daa6490d9b92bdb353183d0c311ec4a",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IJR": {
+        "sha256": "033c7bd30f84b8a3cb40b4268eaa737da92228ef7dc152ed7a8dbc3724b42262",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "INDA": {
+        "sha256": "aef4e33a330d13be69762048dbb2cfd00259ae6fa8ba53392074bddbcaaca546",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "ITA": {
+        "sha256": "4fb3db7392328b6f886ff56a493cf428062aac006653c33da9e2f48de926cc81",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IVV": {
+        "sha256": "f9066dfdecb5a0c69194cd0edc6716244f2489fa77493f4a18e4a170501bca96",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IWD": {
+        "sha256": "c555417c363ca28beb122535b86e93352032773636336324b312ceabd920b6bc",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IWF": {
+        "sha256": "c7ee564955361b5e4e74f44223d6a0075b111daf69c9a292231e6e560a5a7ec4",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IWM": {
+        "sha256": "4decaf42df711cfe078bc646d8530912aa17cee478442da63e584202b8335b7c",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IWN": {
+        "sha256": "111787b7873ca00bd8947f987c3c3bea2ed10d1b9a03f29179f610dd380d3d7b",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IYR": {
+        "sha256": "7235010b1288a65bd133b8241084db5f5e0fea7112395733a6fa494b6196544c",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "IYT": {
+        "sha256": "ab9621193fdfe43ac3f65285013def1d65a1a7177eb7764e6ec3af7bc2f70f93",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "JNK": {
+        "sha256": "f328ccd29666a2efe604a4041a11388763cb579b8fb700cc2df5798370307680",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "KBE": {
+        "sha256": "0d043358e0bcf5130b57f864d08bd49dec5a55f704414157d61e1e7875314d4e",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "KRE": {
+        "sha256": "17cc00caf3334b28c821f506d52afb5f096cd998dc5adc03c6827bf7c1c0bbae",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "KWEB": {
+        "sha256": "583fe7057373fdfd3f27c08b7db229c624a7afd8cf7f249322b3c4db6b48055c",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "LQD": {
+        "sha256": "2dc7d41c63ef8d3ce1e4749576ea75daf8feebe5e676ae6aeaa29c9a8979f191",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "MBB": {
+        "sha256": "0a6d8fbb85e8bddcf18fd6de66748e147db0f51244bd8126225c913381f3a714",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "MCHI": {
+        "sha256": "80a3ffb6bbdc6b450082321bfa4aff859050396a80175d480b7773f3a1759d26",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "MDY": {
+        "sha256": "c306c67c5bafb9030262f1c4390b4ef49250783492e3c66df9112fae7e23ee7b",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "MTUM": {
+        "sha256": "49141e041142dd1d5cd68ad2b6a2ade918cf649733fcf77ef3994df4452947b9",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "MUB": {
+        "sha256": "e524798475ae947acee781552d288f0bc41b351f5e3fd30e737f52799ff373ec",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "PALL": {
+        "sha256": "1cd0eeade1f8039cbb43e9ffb5c93c308896405471a420513a271e6ae620e1f8",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "PPA": {
+        "sha256": "27fddfecd6ff89aca3cd59445e1ba8e8e40a282edef4bb7ce7a95b1780afde15",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "PPLT": {
+        "sha256": "4cfb431b250ece9c4ab5adb38785e4fd0f77cb6336dfeca55d9a9156dd48e681",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "QQQ": {
+        "sha256": "445b1a4437878fdd546abe5dde624c93b76c4ee2af3b2f8193b7608bb5e4e387",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "QUAL": {
+        "sha256": "c8eaca065d42678901bf2445a2b997a5e5b3047f191efff8a10c06dd9c468995",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "RSP": {
+        "sha256": "483994ad4b14b0b4264ebffb81057e0aafb1cf178351a6b919c0da4241d3f924",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "RWO": {
+        "sha256": "0d90ade94e6e3a278534dea43a709f24335e82982f89855c2560f7a567fe9aee",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "RWX": {
+        "sha256": "add6f7e7619ed4b864ff42f6f45bc4a3c1c81553a72e39de0a85224123c36027",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SCHB": {
+        "sha256": "902da000b5f189e8990e5d93fbe20066a61c2d21287bf3df37d9868569b15254",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SCHD": {
+        "sha256": "0ae27b1b641bb0b443c7b3ee6386eb7645c31a0f72b93fee41b0d11fa9da52b4",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SCHE": {
+        "sha256": "d76f20644423d4c309a45f68e8b0ba63987bb904d2fe76313c9e10847e29c5c8",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SCHP": {
+        "sha256": "98bcfa24829eaed01bd58ab8d67209cd378268d4b549d42cb0d700fac51597df",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SCHX": {
+        "sha256": "09a0511ca23bfb97cad3f9853f2fee5e13e86c1457549465f6f9cd3671ad52c1",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SHV": {
+        "sha256": "d76988e7c004812d5b7937a1ad65581a9a74d80d7da929146f7e844aff47c008",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SHY": {
+        "sha256": "401c9301009071a113c92e5f8c7d099e3008a851e9bbab91a218d496c9b23e1a",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SLV": {
+        "sha256": "cd0412fada40df3136e02c077ea63fb5e45519de8c89db476cd5b78d8892a54c",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SMH": {
+        "sha256": "9c9946015a720c467b38d55c7bf266cc59ec932aebcc47c313f5e55b6961377d",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SOXX": {
+        "sha256": "4de58989df783a5523bc6fad20e4a5931bd3356d8b06a93908a453ba29efc9e9",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SPLV": {
+        "sha256": "750c0d155ec697083b430177165b877ef958cd18a79eb488e20e3ca10428334b",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "SPY": {
+        "sha256": "2c2c641e6d68dc136b354f005feed7bd990e91acbb69eee494db3e4c7438c802",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "TAN": {
+        "sha256": "82b0f4d3c046bc226a86927f7cb7787cf6f954eb39f0f8378e1adae3408ce752",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "THD": {
+        "sha256": "57582a845061a875d440142a7b3d5a40df36f0aee2538deae801defcd9714a80",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "TIP": {
+        "sha256": "c3c6a29124da482726cb6842baab0fc7ce60a5aecf6d9f96ad02f6dbf3b563b0",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "TLT": {
+        "sha256": "7b211926461fff4a9e6e5c28c17b622cd748e6ace43558efeb957d29cb29de91",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "TUR": {
+        "sha256": "468fdd63ba2ba12a96be82170095a4085510a0372d5aded9d561a3adb9be49a0",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "UNG": {
+        "sha256": "427ba531a7ea27da77d327582fe8d979df89bf4369f3f34edcf462232f5da107",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "URA": {
+        "sha256": "f5db29d155a907870ab33a67a51777b94899b72e1df6c256d90fdd8bd5f2c46e",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "USL": {
+        "sha256": "c8a91f3bcef91863dce6335a72fb1bc717ae4888b1f2dad12a1bc663ef31b16a",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "USO": {
+        "sha256": "5cbec493d52fe517a980b3688de0a1bc18e805a76dc330bad30019ca995f89e6",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VB": {
+        "sha256": "8557d867d248b93e1d91eeb84e69ed3a14729c228c135398cb739f6fb0c11f7e",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VCIT": {
+        "sha256": "93b5402f331728873a46c7b9ac33610c69d61b17659f0476c45f2cc7aee993ee",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VCSH": {
+        "sha256": "f7f1ab0b26dd9bd1327682c40d05b495e2bd9a578d9335e4a7c2ff19c1bcab23",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VEA": {
+        "sha256": "705203c567f34dda1ead1cc68bcf5273a4d3c110ab5bcb9d0b5562a0f9ae4f4f",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VEU": {
+        "sha256": "4a4678e311a9b9864985a8233f1224e412a38ab2380bdccdaddab1f77d0968c7",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VGIT": {
+        "sha256": "ba2f12b0edc85bc78de430f4e4c34460a4367bbc085025de22b10a9c4ed9d6e5",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VGK": {
+        "sha256": "334469bd5db5fd8ca1d3eea4b6e1c33a6a0a2adcba1849b020b07ba943725660",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VGLT": {
+        "sha256": "bbd4ad8739b28621204f12b31c0ab0059ed946ed39333693f9bc4d820b5a666c",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VGSH": {
+        "sha256": "15e2f1ba7cdf247e09785990c2ffc0b1f1780aebd1313d201da8f533bb0f450b",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VNQ": {
+        "sha256": "ec0b10a3426569190fa1d1bcdaab12e2d8216d507c9af9f35f2fb6318b212a5d",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VO": {
+        "sha256": "ada85f3979dceea98b4dcac42ee9f2f00d82323099574b0af6850e56782a462a",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VTI": {
+        "sha256": "9719c2f7693cd7e53a0c08e825addf78c290108adc3eedeceac1eca71f51d139",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VTV": {
+        "sha256": "f792754122a8d967f6908fe8ed976820b06efc161c6cdebb68e3e4afa5402e6f",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VUG": {
+        "sha256": "a8495d9d4123c1792205aaedbdfd4dbb2ae1aceb681275488840549fda550067",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "VWO": {
+        "sha256": "17469a8d349408fbbd6a0e207f0e9d5f1afd3d787e7b92f9a99c609a10a15f61",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "WOOD": {
+        "sha256": "ef2159a51fac263d048eb1143f768c00bb30a11b1b6ea830648a69bf6418fe73",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XBI": {
+        "sha256": "de264477a1d8ade1e131c25a9a3f495286cfc9008867d449eb8872546f7075e9",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XLB": {
+        "sha256": "fb20afe739fa7019c19f754b69d7d4bc10147067d2add1cfc2a8a7a719c4ca4e",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XLE": {
+        "sha256": "a5551c627c28b7b5d8c49d31bc87b4cd0d41293c18ce7d96deebf21be7a1af07",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XLF": {
+        "sha256": "518ef45ddcefec3e46c70187b940732665d01adb9a6e1f9e2f48326c7da44332",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XLI": {
+        "sha256": "a553b1627afad1230c41888ada8658d996ce016798b2b5633fac8cac87cc8572",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XLK": {
+        "sha256": "387668fd15814c324834b115a69b234fa8342cf2812689a14b94f564d4f4b3e2",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XLP": {
+        "sha256": "1f2a56a1c5e9aacb62dfdb5140def9823671131bbb6fc69c49218a2d789a4ce5",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XLU": {
+        "sha256": "a11227dd2c9c38fe66e4b6f2904cccfb02a62d52ae393799022dc15dbdd4a52a",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XLV": {
+        "sha256": "ea7e376d4530a81102f2ec1395ae67ef7de3d9d6ef226ab9087ebd1602f409e7",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XLY": {
+        "sha256": "0b24ffd2d482e04d7872e07d04dd228ea3f6193782b7699d8a324e934ca5bc9c",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      },
+      "XRT": {
+        "sha256": "491a5bf16882881c33aa5c1fe8d19cee92ed79eb6d5dd6efbfdff7e2787b4fbe",
+        "rows": 2924,
+        "start": "2014-11-12",
+        "end": "2026-07-01"
+      }
+    }
+  },
+  "annual_retrain_details": [
+    [
+      {
+        "year": 2021,
+        "model": "compact21",
+        "train_rows": 10727,
+        "max_exit": "2020-12-31 00:00:00",
+        "fit_date": "2021-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2021,
+        "model": "compact63",
+        "train_rows": 10429,
+        "max_exit": "2020-12-31 00:00:00",
+        "fit_date": "2021-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2021,
+        "model": "tail",
+        "max_exit": "2020-12-31 00:00:00",
+        "fit_date": "2021-01-01 00:00:00"
+      },
+      {
+        "year": 2021,
+        "model": "macro",
+        "max_exit": "2020-12-31 00:00:00",
+        "fit_date": "2021-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2022,
+        "model": "compact21",
+        "train_rows": 12515,
+        "max_exit": "2021-12-31 00:00:00",
+        "fit_date": "2022-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2022,
+        "model": "compact63",
+        "train_rows": 12217,
+        "max_exit": "2021-12-31 00:00:00",
+        "fit_date": "2022-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2022,
+        "model": "tail",
+        "max_exit": "2021-12-31 00:00:00",
+        "fit_date": "2022-01-01 00:00:00"
+      },
+      {
+        "year": 2022,
+        "model": "macro",
+        "max_exit": "2021-12-31 00:00:00",
+        "fit_date": "2022-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2023,
+        "model": "compact21",
+        "train_rows": 14154,
+        "max_exit": "2022-12-01 00:00:00",
+        "fit_date": "2023-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2023,
+        "model": "compact63",
+        "train_rows": 13856,
+        "max_exit": "2022-12-01 00:00:00",
+        "fit_date": "2023-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2023,
+        "model": "tail",
+        "max_exit": "2022-12-01 00:00:00",
+        "fit_date": "2023-01-01 00:00:00"
+      },
+      {
+        "year": 2023,
+        "model": "macro",
+        "max_exit": "2022-12-01 00:00:00",
+        "fit_date": "2023-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2024,
+        "model": "compact21",
+        "train_rows": 15942,
+        "max_exit": "2023-12-01 00:00:00",
+        "fit_date": "2024-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2024,
+        "model": "compact63",
+        "train_rows": 15644,
+        "max_exit": "2023-12-01 00:00:00",
+        "fit_date": "2024-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2024,
+        "model": "tail",
+        "max_exit": "2023-12-01 00:00:00",
+        "fit_date": "2024-01-01 00:00:00"
+      },
+      {
+        "year": 2024,
+        "model": "macro",
+        "max_exit": "2023-12-01 00:00:00",
+        "fit_date": "2024-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2025,
+        "model": "compact21",
+        "train_rows": 17730,
+        "max_exit": "2024-12-03 00:00:00",
+        "fit_date": "2025-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2025,
+        "model": "compact63",
+        "train_rows": 17581,
+        "max_exit": "2024-12-31 00:00:00",
+        "fit_date": "2025-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2025,
+        "model": "tail",
+        "max_exit": "2024-12-31 00:00:00",
+        "fit_date": "2025-01-01 00:00:00"
+      },
+      {
+        "year": 2025,
+        "model": "macro",
+        "max_exit": "2024-12-31 00:00:00",
+        "fit_date": "2025-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2026,
+        "model": "compact21",
+        "train_rows": 19667,
+        "max_exit": "2025-12-31 00:00:00",
+        "fit_date": "2026-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2026,
+        "model": "compact63",
+        "train_rows": 19369,
+        "max_exit": "2025-12-31 00:00:00",
+        "fit_date": "2026-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2026,
+        "model": "tail",
+        "max_exit": "2025-12-31 00:00:00",
+        "fit_date": "2026-01-01 00:00:00"
+      },
+      {
+        "year": 2026,
+        "model": "macro",
+        "max_exit": "2025-12-31 00:00:00",
+        "fit_date": "2026-01-01 00:00:00"
+      }
+    ]
+  ],
+  "status": "REAL_ORIGINAL_US149_TITANIUM_2021_2026_FULL_RANK_FIT",
+  "n_tradable_candidates": 149,
+  "no_500_baskets": true,
+  "n_signal_months": 65,
+  "source_US149_archived_ohlcv_only": true,
+  "original_SPY_HYG_IEF_as_source": true
+}

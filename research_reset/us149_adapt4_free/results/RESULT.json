@@ -1,0 +1,117 @@
+{
+  "status": "US149_ORIGINAL_SOURCE_ADAPT4_149_UNRESTRICTED_REAL_RETRAIN_COMPLETE",
+  "n_eligible_american_etfs": 149,
+  "distinct_tradable_symbols": 149,
+  "n_baskets": 1,
+  "never_500_balanced_baskets": true,
+  "sector_membership_not_used_to_limit_trading": true,
+  "n_months": 65,
+  "source_HYG_SPY_IEF_BIL_SHV_original_unmodified": true,
+  "original_US149_Titanium_MA3_retrained_actual_source": true,
+  "original_ADAPT4_4expert_weights_and_recency_uncahnged": true,
+  "maturity_in_every_fit_prior_to_decision": true,
+  "online_matured_months_strictly_prior": true,
+  "early_causal_weights_equal25pct": true,
+  "rolling_expert_reward_lookback_months": 12,
+  "expert_weight_floor_each": 0.1,
+  "softmax_temperature": 4.0,
+  "original_US149_500_Baskets_Mean_CAGR_Not_Comparable_To_Unrestricted": true,
+  "all_backtest_2021_to_2026_not_pristine_outofsample": true,
+  "original_SPY_market_factor_model_and_risk": true,
+  "original_US_BIL_SHV_defensive_in_USD": true,
+  "prior_model_USA_narrow_149_end_survivor_universe_caveat": true,
+  "source_original_model_vs_adaptive_rank_monthly_Spearman_delta_block_bootstrap": {
+    "mean": 0.021031984897891754,
+    "CI95": [
+      -0.030984233402357442,
+      0.07519884846210614
+    ]
+  },
+  "source_original_model_vs_adaptive_top5_excess_delta_block_bootstrap": {
+    "mean": 0.003455649482859442,
+    "CI95": [
+      -0.008015216788090189,
+      0.01445175902666116
+    ]
+  },
+  "top5_10bps_real_US_source_net": {
+    "MA3_ORIGINAL": {
+      "cagr": 0.2325568291229132,
+      "terminal_capital": 3.09930980620919,
+      "maxdd_daily_open": -0.2993598035636711,
+      "sharpe_daily_log": 0.7493852190860792,
+      "es5_daily": -0.041049714812874026,
+      "ann_vol": 0.28015026326559883,
+      "fee_notional": 0.10347201831194841,
+      "gross_turnover": 103.47201831194815,
+      "position_count_mean": 5.0,
+      "n_sessions": 1360
+    },
+    "ADAPT4": {
+      "cagr": 0.27897083402610434,
+      "terminal_capital": 3.7854310096176866,
+      "maxdd_daily_open": -0.24191814561892666,
+      "sharpe_daily_log": 0.8997283607550648,
+      "es5_daily": -0.041314666467530986,
+      "ann_vol": 0.2745527636654573,
+      "fee_notional": 0.1523784685733348,
+      "gross_turnover": 152.3784685733356,
+      "position_count_mean": 5.0,
+      "n_sessions": 1360
+    }
+  },
+  "true_source_original_US149_V2_one_unrestricted_basket": {
+    "MA3_ORIGINAL_FULL_HYBRID24": {
+      "cagr": 0.10506232244109799,
+      "maxdd": -0.4751403827732086,
+      "sharpe": 0.46097455912181695,
+      "terminal_nav": 1.7145526721721027,
+      "n_daily": 1360,
+      "turnover_annual": 13.201679084850907
+    },
+    "MA3_ORIGINAL_FULL_V2": {
+      "cagr": 0.10479353861045033,
+      "maxdd": -0.4751403827732086,
+      "sharpe": 0.46030553735607066,
+      "terminal_nav": 1.7123032377181178,
+      "n_daily": 1360,
+      "turnover_annual": 12.964446684600553
+    },
+    "MA3_ORIGINAL_NO_RISK_NO_STOPS": {
+      "cagr": 0.11550070634631678,
+      "maxdd": -0.42550391067228577,
+      "sharpe": 0.4782511445490303,
+      "terminal_nav": 1.8037921393728067,
+      "n_daily": 1360,
+      "turnover_annual": 10.274859475340007
+    },
+    "ADAPT4_FULL_HYBRID24": {
+      "cagr": 0.2917477276507473,
+      "maxdd": -0.3886938250920965,
+      "sharpe": 0.9749152385452438,
+      "terminal_nav": 3.981132835352438,
+      "n_daily": 1360,
+      "turnover_annual": 14.811037214304564
+    },
+    "ADAPT4_FULL_V2": {
+      "cagr": 0.2917477276507473,
+      "maxdd": -0.3886938250920965,
+      "sharpe": 0.9749152385452438,
+      "terminal_nav": 3.981132835352438,
+      "n_daily": 1360,
+      "turnover_annual": 14.811037214304564
+    },
+    "ADAPT4_NO_RISK_NO_STOPS": {
+      "cagr": 0.2525815775690403,
+      "maxdd": -0.423819788990083,
+      "sharpe": 0.8406369294145388,
+      "terminal_nav": 3.371646328471595,
+      "n_daily": 1360,
+      "turnover_annual": 10.876172075876143
+    }
+  },
+  "original_EUR48_ADAPT4_versioning_checksum": "ff6887c8e5c6fb60409827c60c3264559c90939f9efd17cbd1f9eeb11afaf35a",
+  "source_149_original_data_quality_audit_sha": "adb24d4e23417a21e9a8e8fa1cd04dfb632618369d61cab56b5e16e968ee4666",
+  "original_149_genuine_source_TITANIUM_manifest_sha": "6c8ec64ab08aeee46a1ce9060116cec073a1c92cd1ec77f092383f5a872a9617",
+  "no_production_mutation": true
+}
