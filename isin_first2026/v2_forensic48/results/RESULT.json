@@ -1,0 +1,165 @@
+{
+  "status": "AUDITED_REAL_V2_SOURCE_48_PERFORMANCE_DECOMPOSITION",
+  "month_count": 65,
+  "trading_days": 1374,
+  "all_48_ticker_price_original_close_and_open_unchanged": true,
+  "score_and_position_parity_exact_65_month": true,
+  "old_V2_equity_parity_atol_1e12": true,
+  "frozen_training_and_parameters_unchanged": true,
+  "no_future_selection_used_in_live_strategy": true,
+  "no_US149_source_weights_reused": true,
+  "roster_current_2026_survivorship_warning": true,
+  "original_macro_US_port_necessitated_cluster_and_credit_proxy_changes": true,
+  "ablations": {
+    "FULL_HYBRID24_REPLAY": {
+      "portfolio": "FULL_HYBRID24_REPLAY",
+      "cagr": 0.013601580406165248,
+      "maxdd": -0.3719336384755709,
+      "sharpe": 0.17517731625699615,
+      "ann_vol": 0.23373981959981324,
+      "es5_daily": -0.036519218880688105,
+      "terminal_nav": 1.076442014707633,
+      "days": 1374,
+      "turnover_ann": 12.40273146378452,
+      "n_months": 65
+    },
+    "FULL_TRAINER_V2_REPLAY": {
+      "portfolio": "FULL_TRAINER_V2_REPLAY",
+      "cagr": 0.016362344997819484,
+      "maxdd": -0.37193363847557115,
+      "sharpe": 0.1869839142162662,
+      "ann_vol": 0.2345952209518578,
+      "es5_daily": -0.036609198475849196,
+      "terminal_nav": 1.0925252178286107,
+      "days": 1374,
+      "turnover_ann": 11.704165875342444,
+      "n_months": 65
+    },
+    "UNRESTRICTED_SELECTION_TOP2_NO_RISK_NO_STOP": {
+      "portfolio": "UNRESTRICTED_SELECTION_TOP2_NO_RISK_NO_STOP",
+      "cagr": 0.0387947751296788,
+      "maxdd": -0.3499549515982676,
+      "sharpe": 0.27849794327071364,
+      "ann_vol": 0.24336609058031158,
+      "es5_daily": -0.03765723919446112,
+      "terminal_nav": 1.2306272567119316,
+      "days": 1374,
+      "turnover_ann": 10.375035065387316,
+      "n_months": 65
+    },
+    "UNRESTRICTED_SELECTION_TOP1_NO_RISK_NO_STOP": {
+      "portfolio": "UNRESTRICTED_SELECTION_TOP1_NO_RISK_NO_STOP",
+      "cagr": 0.04494134156769591,
+      "maxdd": -0.3588170404315235,
+      "sharpe": 0.30071842371205365,
+      "ann_vol": 0.25250382759961554,
+      "es5_daily": -0.03880411100802146,
+      "terminal_nav": 1.2708560943626015,
+      "days": 1374,
+      "turnover_ann": 8.711790393013102,
+      "n_months": 65
+    },
+    "UNRESTRICTED_SELECTION_TOP2_ONLY_ORIGINAL_STOPS": {
+      "portfolio": "UNRESTRICTED_SELECTION_TOP2_ONLY_ORIGINAL_STOPS",
+      "cagr": 0.013903312969908682,
+      "maxdd": -0.3716081841481572,
+      "sharpe": 0.17688379933269877,
+      "ann_vol": 0.23541288628278562,
+      "es5_daily": -0.03684104664255035,
+      "terminal_nav": 1.0781903291554769,
+      "days": 1374,
+      "turnover_ann": 12.291547269327976,
+      "n_months": 65
+    },
+    "UNRESTRICTED_SELECTION_TOP2_ONLY_GROSS_DD": {
+      "portfolio": "UNRESTRICTED_SELECTION_TOP2_ONLY_GROSS_DD",
+      "cagr": 0.03596499304180817,
+      "maxdd": -0.3635791990340038,
+      "sharpe": 0.26762558661936353,
+      "ann_vol": 0.2401910988919926,
+      "es5_daily": -0.037103018453672455,
+      "terminal_nav": 1.2124594495572854,
+      "days": 1374,
+      "turnover_ann": 10.905008537011051,
+      "n_months": 65
+    },
+    "UNRESTRICTED_SELECTION_TOP2_DD_STOPS_NO_V6_ALT": {
+      "portfolio": "UNRESTRICTED_SELECTION_TOP2_DD_STOPS_NO_V6_ALT",
+      "cagr": 0.013726683868143168,
+      "maxdd": -0.37193363847557115,
+      "sharpe": 0.17570370750821349,
+      "ann_vol": 0.23373329721151595,
+      "es5_daily": -0.0365192188806881,
+      "terminal_nav": 1.0771666145107113,
+      "days": 1374,
+      "turnover_ann": 12.38994381249573,
+      "n_months": 65
+    },
+    "FULL_HYBRID24_ZERO_FEES": {
+      "portfolio": "FULL_HYBRID24_ZERO_FEES",
+      "cagr": 0.026527479826473032,
+      "maxdd": -0.3597477779268746,
+      "sharpe": 0.22939291377083607,
+      "ann_vol": 0.23384667131799686,
+      "es5_daily": -0.03649781355884388,
+      "terminal_nav": 1.153444580095663,
+      "days": 1374,
+      "turnover_ann": 12.402778801870369,
+      "n_months": 65
+    },
+    "TOP2_NO_RISK_NO_STOP_ZERO_FEES": {
+      "portfolio": "TOP2_NO_RISK_NO_STOP_ZERO_FEES",
+      "cagr": 0.04963317582296556,
+      "maxdd": -0.34044397195961174,
+      "sharpe": 0.3211405078900997,
+      "ann_vol": 0.2433925449907471,
+      "es5_daily": -0.037621929478190035,
+      "terminal_nav": 1.3022810816551242,
+      "days": 1374,
+      "turnover_ann": 10.375035065387316,
+      "n_months": 65
+    }
+  },
+  "buyhold_individual_1374_EU_quote_dates": {
+    "IMEU.AS": {
+      "gross_cagr_on_1374_EUR_trading_days": 0.12574083376432044,
+      "terminal_relative": 1.907488192954884
+    },
+    "EXV1.DE": {
+      "gross_cagr_on_1374_EUR_trading_days": 0.34053241295296144,
+      "terminal_relative": 4.942702049028292
+    },
+    "EXV3.DE": {
+      "gross_cagr_on_1374_EUR_trading_days": 0.10285944522889556,
+      "terminal_relative": 1.7054388361661925
+    },
+    "XS8R.DE": {
+      "gross_cagr_on_1374_EUR_trading_days": 0.01195623481245045,
+      "terminal_relative": 1.066949148227414
+    },
+    "EXV5.DE": {
+      "gross_cagr_on_1374_EUR_trading_days": -3.164442494041353e-06,
+      "terminal_relative": 0.9999827463755665
+    },
+    "IBCA.DE": {
+      "gross_cagr_on_1374_EUR_trading_days": 0.007637828791196899,
+      "terminal_relative": 1.0423586950487465
+    },
+    "IBCN.DE": {
+      "gross_cagr_on_1374_EUR_trading_days": -0.003539841324096349,
+      "terminal_relative": 0.980850913761367
+    }
+  },
+  "ranking_skill_65_month_mean_spearman": 0.048234743979424836,
+  "ranking_skill_65_month_positive_months": 34,
+  "selection_mean_next_month_log_excess_vs_EW48": -0.002565873620104612,
+  "selection_positive_months_vs_EW48": 32,
+  "monthly_realized_top_five_oracle_log_over_all48_mean": 0.05229685237559538,
+  "selected_top1_bucket_counts": {
+    "EU_EQUITY_SECTOR": 60,
+    "EU_PROPERTY": 5
+  },
+  "source_full_execution_reference_sha": "9498f3fc9614c7bfe862cbb49d393cb73186b20349012ce85b2fd115402bafbc",
+  "v2_regime_interventions_previous_real": 41,
+  "no_production_modify": true
+}
