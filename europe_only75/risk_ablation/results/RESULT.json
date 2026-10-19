@@ -1,0 +1,200 @@
+{
+  "status": "EUROPE60_FOUR_STANDALONE_RISK_TRIALS_COMPLETE",
+  "europe_universe_tickers": 60,
+  "geography_all_75": 75,
+  "excluded_non_eur": 15,
+  "source_eu120_non_europe_excluded": 45,
+  "model_source_action": 39071370480,
+  "trained_eu_folds": 10,
+  "trained_on_original149": false,
+  "model_score_type": "EUR60 annual matured-fold R_H top2",
+  "source_eur60_roster_sha256": "a93571a0bea07dc11359193294b959f40c9888494bba4911e8ae16bf7291f82f",
+  "source_compact_pred_sha256": "19c6a10211e3bba6fe036a7fe011cb06f7728e090bc3c5ccc5ee92dc5e46cdc2",
+  "source_hybrid_pred_sha256": "3a2ac247a2a924ee9eee112d206eaa4c029c6024837566d8f61ebef30728c82b",
+  "source_training_audit_sha256": "0d66f7d936ebdfae47b5a943b7510cd28baf3e6d696a44297253319d03262654",
+  "source_calendar_price_refs": [
+    "SPY",
+    "HYG",
+    "IEF",
+    "BIL",
+    "SHV"
+  ],
+  "all_months": 113,
+  "common_daily_open_count": 2277,
+  "original_refit_approx_5050_parity": {
+    "archived_approx_equity": 2.448863449071208,
+    "reconstructed_approx_equity": 2.448863449071206,
+    "absolute_error": 2.220446049250313e-15,
+    "archived_cagr": 0.0997803909127188
+  },
+  "new_cost_engine": "self-financing 10bp ETF buy/sale, 0bp cash",
+  "policy_stats": {
+    "B0_RH_TOP2": {
+      "cagr": 0.09046662685821016,
+      "wealth_final": 2.259083204656561,
+      "maxdd_daily_open": -0.44017640423754556,
+      "sharpe_daily_log": 0.396859856863439,
+      "es5_daily": -0.03336945235565528,
+      "annualized_vol": 0.22764557855163395,
+      "fee_notional": 0.2555579210934721,
+      "gross_traded_initial_dollars": 255.55792109347152,
+      "mean_invested": 1.0,
+      "months_cash": 0,
+      "max_underwater_common_sessions": 303,
+      "daily_common_open_count": 2277
+    },
+    "E1_CATEGORY": {
+      "cagr": 0.07201221616370401,
+      "wealth_final": 1.9238858217102413,
+      "maxdd_daily_open": -0.37810303748624474,
+      "sharpe_daily_log": 0.38162344253179775,
+      "es5_daily": -0.02816094852374677,
+      "annualized_vol": 0.19007797080830244,
+      "fee_notional": 0.20189153273525096,
+      "gross_traded_initial_dollars": 201.8915327352511,
+      "mean_invested": 0.8637168141592921,
+      "months_cash": 77,
+      "max_underwater_common_sessions": 338,
+      "daily_common_open_count": 2277
+    },
+    "E2_VOL20": {
+      "cagr": 0.07975747046115678,
+      "wealth_final": 2.0587304031706273,
+      "maxdd_daily_open": -0.436737459718603,
+      "sharpe_daily_log": 0.39908049974521537,
+      "es5_daily": -0.028876906447311248,
+      "annualized_vol": 0.2006132071535704,
+      "fee_notional": 0.23061232953826039,
+      "gross_traded_initial_dollars": 230.61232953825927,
+      "mean_invested": 0.9402674724623804,
+      "months_cash": 30,
+      "max_underwater_common_sessions": 610,
+      "daily_common_open_count": 2277
+    },
+    "E3_TREND126": {
+      "cagr": 0.04599763092997011,
+      "wealth_final": 1.526805662001558,
+      "maxdd_daily_open": -0.2850056172077652,
+      "sharpe_daily_log": 0.32042830910179326,
+      "es5_daily": -0.02228799675309982,
+      "annualized_vol": 0.14656989538178455,
+      "fee_notional": 0.15685873665921768,
+      "gross_traded_initial_dollars": 156.85873665921932,
+      "mean_invested": 0.7256637168141593,
+      "months_cash": 62,
+      "max_underwater_common_sessions": 381,
+      "daily_common_open_count": 2277
+    },
+    "E4_BUFFER": {
+      "cagr": 0.10416749358998745,
+      "wealth_final": 2.5407308170476472,
+      "maxdd_daily_open": -0.44017640423754556,
+      "sharpe_daily_log": 0.4511430770488283,
+      "es5_daily": -0.033654581831632134,
+      "annualized_vol": 0.22908973690629553,
+      "fee_notional": 0.23724130336596427,
+      "gross_traded_initial_dollars": 237.24130336596363,
+      "mean_invested": 1.0,
+      "months_cash": 0,
+      "max_underwater_common_sessions": 294,
+      "daily_common_open_count": 2277
+    }
+  },
+  "paired_tests": {
+    "E1_CATEGORY": {
+      "net_log_growth_paired": {
+        "mean": -0.0014213456908648335,
+        "ci_98_75": [
+          -0.0032241931482791574,
+          0.0004961731878187977
+        ],
+        "ci_95": [
+          -0.002764875743891937,
+          2.796991619979981e-05
+        ]
+      },
+      "eras": {
+        "2017_2020": -0.0013636647670162679,
+        "2021_2023": -0.0025847254082914475,
+        "2024_2026": -7.262205353286878e-05
+      },
+      "maxdd_improvement_pp": 6.207336675130081,
+      "es5_improvement_pp": 0.5208503831908508,
+      "strict_GO": false
+    },
+    "E2_VOL20": {
+      "net_log_growth_paired": {
+        "mean": -0.0008218547403574053,
+        "ci_98_75": [
+          -0.0026959179469159037,
+          0.0005927751213169503
+        ],
+        "ci_95": [
+          -0.0022494200802263367,
+          0.0003358970552297135
+        ]
+      },
+      "eras": {
+        "2017_2020": -0.0018099032828600636,
+        "2021_2023": -0.00017617218465723077,
+        "2024_2026": 1.1998984984708034e-05
+      },
+      "maxdd_improvement_pp": 0.3438944518942555,
+      "es5_improvement_pp": 0.4492545908344029,
+      "strict_GO": false
+    },
+    "E3_TREND126": {
+      "net_log_growth_paired": {
+        "mean": -0.0034670913188675177,
+        "ci_98_75": [
+          -0.008281283641698669,
+          0.0009106162815254904
+        ],
+        "ci_95": [
+          -0.007216597145314825,
+          0.00013524362791437464
+        ]
+      },
+      "eras": {
+        "2017_2020": -0.003368047566405876,
+        "2021_2023": -0.0030567897615386822,
+        "2024_2026": -0.004140365669970856
+      },
+      "maxdd_improvement_pp": 15.517078702978038,
+      "es5_improvement_pp": 1.1081455602555457,
+      "strict_GO": false
+    },
+    "E4_BUFFER": {
+      "net_log_growth_paired": {
+        "mean": 0.0010397583501619277,
+        "ci_98_75": [
+          -0.000568133920894461,
+          0.003047375639962994
+        ],
+        "ci_95": [
+          -0.00029628450644139914,
+          0.002639373494966475
+        ]
+      },
+      "eras": {
+        "2017_2020": -0.0004359166862203912,
+        "2021_2023": 0.0019791187993040632,
+        "2024_2026": 0.0023161523355838052
+      },
+      "maxdd_improvement_pp": 0.0,
+      "es5_improvement_pp": -0.028512947597685717,
+      "strict_GO": false
+    }
+  },
+  "precommitted_go": [],
+  "historical_development_not_independent": true,
+  "actual_EUR_trade_currency_and_ISIN_not_verified": true,
+  "no_production_change": true,
+  "warnings": [
+    "EUR60 historical survivor ticker lines from 2026 source; not PIT",
+    "Adjusted Yahoo OHLC histories may be revised; no historical vendor vintages",
+    "Same-fund multiple ticker lines or ISIN duplicates not audited",
+    "No live bid/ask slippage, broker FX, taxes or cash interest",
+    "Old published 9.978% EUR60 R_H fixed5050 and new share-level 5050 have different fee accounting; do not conflate"
+  ]
+}
