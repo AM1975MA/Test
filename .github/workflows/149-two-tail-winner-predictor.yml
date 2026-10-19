@@ -1,0 +1,73 @@
+name: ORIGINAL149_BIDIRECTIONAL_TAIL_WINNER_FORECAST
+on:
+  push:
+    branches:
+      - research/149-predictive-ticker-tournament-20261019
+    paths:
+      - 'research_reset/predict149/two_tails/PREREGISTERED_AFTER_N4.md'
+      - 'research_reset/predict149/two_tails/bidirectional.py'
+      - '.github/workflows/149-two-tail-winner-predictor.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  condition-on-upside-vs-downside:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Compile same-fixed-HGB negative-tail classifier
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/two_tails/bidirectional.py
+      - name: Verify original ETF data / self-financing / causal historical features
+        run: |
+          python -m unittest -v research_reset.predict149.test_tournament research_reset.m0b.test_m0b
+      - name: Forecast 149 best names conditional on bidirectional expected tail asymmetry
+        run: |
+          python -m research_reset.predict149.two_tails.bidirectional --out _two_tails
+      - name: Verify samples are full and original N4 remains exactly frozen
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("_two_tails/RESULT.json").read_text())
+          assert x["status"]=="ORIGINAL149_TWO_TAIL_WINNER_FORECAST_COMPLETED"
+          assert x["exact_etf_count"]==149 and x["n_anchor"]==64
+          assert x["predictions_use_only_matured_training_labels"]
+          assert x["underlying_upside_model_is_frozen_N4"]
+          assert x["original_N4_wealth_parity"]<1e-10
+          assert not x["live_deployable"] and not x["independent_holdout"]
+          print("T149C_TWO_TAIL_GATES",x["preregistered_improvement_gate"])
+          PY
+      - name: Archive complete risk-calibrated positive and negative tail forecasts and paths
+        run: |
+          mkdir -p research_reset/predict149/two_tails/results
+          cp _two_tails/*.csv _two_tails/*.json research_reset/predict149/two_tails/results/
+          (cd research_reset/predict149/two_tails/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/two_tails/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-TwoTail-Forecasting-Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/two_tails/results
+          git commit -m "Archive original149 causal bidirectional top/bottom tail ETF prediction, risk-aware ranking and 21d cost-aware economics"
+          git push origin HEAD:refs/heads/research/149-predictive-ticker-tournament-20261019
+      - name: Preserve results even if a hypothesis fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-two-tail-risk-adjusted-winner-predictor
+          retention-days: 90
+          path: |
+            _two_tails/*.json
+            _two_tails/*.csv
