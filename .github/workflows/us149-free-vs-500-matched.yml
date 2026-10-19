@@ -1,0 +1,83 @@
+name: US149_V2_MATCHED_65_MONTH_FREE149_VS_SOURCE_500x24
+on:
+  push:
+    branches:
+      - research/us149-free-vs-500-causal-parity-20261020
+    paths:
+      - '.github/workflows/us149-free-vs-500-matched.yml'
+      - 'research_reset/us149_adapt4_free/matched_geometry_audit.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+  ETF_TRADER_XGB_WORKERS: '2'
+  ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+jobs:
+  original-ma3-v2-and-adapt4-one-149-versus-original-500:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install exact original 149 Titan and MA3 dependencies
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'numba==0.63.1' 'pyarrow==23.0.1' 'matplotlib==3.10.8'
+          python -m py_compile research_reset/us149_adapt4_free/matched_geometry_audit.py
+      - name: Download frozen original 149 USD OHLCV, not fresh Yahoo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _US149_RAW
+          test -f _US149_RAW/etf_trader_raw/universe.csv
+      - name: Refit only same original source and compare paired 500 canonical 24 ETF baskets and single 149 asset on same signals
+        run: |
+          python -u -m research_reset.us149_adapt4_free.matched_geometry_audit --us _US149_RAW --out _MATCHED_GEOMETRY
+      - name: Strict audit same 2021–26 65 signals original 149 freely ranked model identical with prior source results
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          import pandas as pd
+          from pathlib import Path
+          p=Path("_MATCHED_GEOMETRY")
+          z=json.loads((p/"RESULT.json").read_text())
+          assert z["status"]=="US149_COHORT_MATCHED_SOURCE_CAUSAL_FREE149_VS_500_BASKETS_2021_2026_COMPLETE"
+          assert z["original_US149_V2_free_performance_exact_parity_from_action_39338133099"]
+          assert z["n_monthly_signals"]==65 and z["n_daily_US_market_opens"]==1360
+          for key,v in z["all_cases"].items():
+              assert v["n_days"]==1360
+              assert v["n_baskets"]==(500 if "CANONICAL_500x24" in key else 1)
+          basket=pd.read_csv(p/"ORIGINAL_SOURCE_FULL149_VS_500_US149_METRICS_BY_BASKET.csv")
+          assert len(basket)==2004
+          for l in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+              sh,fn=l.split("  ",1)
+              assert hashlib.sha256((p/fn).read_bytes()).hexdigest()==sh
+          print("US149_MATCHED_GEOMETRY_AUDITED",json.dumps(z),flush=True)
+          PY
+      - name: Commit independently verified source original 500 basket vs 149 fully unrestricted forensic
+        run: |
+          mkdir -p research_reset/us149_adapt4_free/matched_results
+          cp _MATCHED_GEOMETRY/RESULT.json _MATCHED_GEOMETRY/SHA256_MANIFEST.txt _MATCHED_GEOMETRY/*.csv research_reset/us149_adapt4_free/matched_results/
+          git config user.name "US149_V2_FREE_VS_500_SAME_DATE_FORENSIC"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/us149_adapt4_free/matched_results
+          git commit -m "Explain USA149 10.48% vs original 500 basket 2017–26 25% via frozen same-date original V2 2021–26 paired portfolios" 
+          git pull --rebase origin research/us149-free-vs-500-causal-parity-20261020
+          git push origin HEAD:refs/heads/research/us149-free-vs-500-causal-parity-20261020
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: US149_V2_MA3_ADAPT4_Free149_vs_500_Basket_Matched_Diagnosis
+          retention-days: 90
+          path: |
+            _MATCHED_GEOMETRY/RESULT.json
+            _MATCHED_GEOMETRY/SHA256_MANIFEST.txt
+            _MATCHED_GEOMETRY/*.csv
