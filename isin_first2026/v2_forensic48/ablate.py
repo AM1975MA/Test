@@ -49,11 +49,27 @@ def run(raw,output):
     leader_src=pd.read_csv(HERE/"ALL48_MONTHLY_LEADERS_AND_V2_INTERVENTIONS.csv",
                   parse_dates=["signal_date"])
     assert len(leader_src)==65
-    cal=pd.read_csv(ROOT/"isin_first2026/refit48/results/MONTHLY_EUROPE48_EXECUTION_DATES.csv",
-                    parse_dates=["signal_date","entry_date","exit_date"])
-    # Refit48 monthly calendar uses same 65 anchored signal/entry/exit dates,
-    # though it sampled fewer daily sessions due US factor closures.
+    # Rebuild precisely the SOURCE kernel month_end_dates/add_labels
+    # calendar on the common 48-ETF European venue sessions, not the F3/H1
+    # US-factor calendar: December 2021/2024/2025 have different signals.
+    quote_dates=mats["Close"].index
+    monthends=pd.DatetimeIndex(pd.Series(quote_dates,index=quote_dates).
+                 groupby(quote_dates.to_period("M")).max().values)
+    observed_signals=pd.DatetimeIndex(sorted(p.signal_date.unique()))
+    assert len(observed_signals)==65
+    cals=[]
+    for sd in observed_signals:
+        pos=int(quote_dates.get_loc(sd))
+        nextpos=int(monthends.searchsorted(sd))+1
+        assert nextpos<len(monthends)
+        next_signal=monthends[nextpos]
+        nextstart=int(quote_dates.get_loc(next_signal))+1
+        assert 0<=pos+1<nextstart<len(quote_dates)
+        cals.append(dict(signal_date=sd,entry_date=quote_dates[pos+1],
+                         exit_date=quote_dates[nextstart]))
+    cal=pd.DataFrame(cals)
     assert len(cal)==65 and cal.signal_date.equals(leader_src.signal_date)
+    cal.to_csv(output/"SOURCE_EU48_MONTHLY_EXECUTION_CALENDAR.csv",index=False)
     s,et,xb,b=calculate_score(p,cal,names)
     bm,bok=producer.basket_arrays(pd.DataFrame(
                  dict(basket=np.zeros(len(names),dtype=int),ticker=names)),
