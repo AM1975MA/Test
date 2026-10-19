@@ -1,0 +1,98 @@
+name: ETF_TRAINER_V2_48_ISIN_ALL_TICKERS_UNRESTRICTED_WALKFORWARD
+on:
+  push:
+    branches:
+      - research/etf-trainer-v2-unrestricted-eu48-20261019
+    paths:
+      - '.github/workflows/etf-trainer-v2-eu48-unrestricted.yml'
+      - 'isin_first2026/v2_unrestricted48/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  full-unrestricted-48-v2-unchanged-ranked-models:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 115
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install numerical packages for real source-only Titanium and MA3 model retraining
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'numba==0.63.1' 'pyarrow==23.0.1'
+          python -m py_compile isin_first2026/v2_unrestricted48/prepare.py isin_first2026/v2_unrestricted48/cluster_adapter.py isin_first2026/v2_unrestricted48/train_tit.py isin_first2026/v2_unrestricted48/run.py
+      - name: Prepare 48 original Yahoo EUR legal ISIN quotes on common real observation dates
+        run: |
+          python -m isin_first2026.v2_unrestricted48.prepare --out _V2_PREP
+          python - <<'PY'
+          from etf_trader.source_only.raw_io import load_ticker_csv_folder
+          import pandas as pd,json
+          p='_V2_PREP/raw_ticker_csv'
+          m,c,_=load_ticker_csv_folder(p)
+          r=pd.read_csv(p+'/universe.csv')
+          z=json.load(open('_V2_PREP/RESULT.json'))
+          assert len(m['Open'].columns)==48 and r.isin.nunique()==48
+          assert z['shared_EU48_pre2017_sessions']>=252
+          print('ALL_48_UNRESTRICTED_SOURCE_CHECK',z,flush=True)
+          PY
+      - name: Refit actual original Titanium TIT R compact and tail annually 2021-2026 from data alone
+        run: python -u -m isin_first2026.v2_unrestricted48.train_tit --data _V2_PREP/raw_ticker_csv --out _V2_TIT
+      - name: Refit original MA3 Hybrid24 after honest S3B 5-dynamic/1-sovereign sizing and simulate V2 vs baseline on one 48-fund candidate list
+        run: |
+          python -u -m isin_first2026.v2_unrestricted48.run --prep _V2_PREP --tit _V2_TIT --out _V2_EU48_FINAL
+      - name: Hard verify genuine 48-fund all-eligible V2 vs baseline on 65 months with 10bp exact daily trades
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd,json,hashlib
+          p=Path('_V2_EU48_FINAL')
+          r=json.loads((p/'RESULT.json').read_text())
+          assert r['status']=='ETF_TRAINER_V2_UNRESTRICTED_48_FRESH_MODELS_AND_DAILY_SIM_COMPLETE'
+          assert r['universe_tickers']==48 and r['legal_fund_isins']==48
+          assert r['one_single_unrestricted_48_fund_candidate_set']
+          assert r['no_fixed_4_per_category_sector_constraints'] and r['no_500_baskets']
+          assert r['source_only_real_Titanium_retrained']
+          assert r['source_only_real_MA3_HYBRID24_retrained']
+          assert r['maturity_safe_hybrid_fit'] and r['V2_no_exposure_increase']
+          x=pd.read_csv(p/'ALL48_MONTHLY_LEADERS_AND_V2_INTERVENTIONS.csv')
+          assert len(x)==65 and x['leader_ISIN'].str.len().eq(12).all()
+          assert r['ETF_TRAINER_V2_port_costed']['days']>1200
+          for z in (p/'SHA256_MANIFEST.txt').read_text().splitlines():
+             digest,name=z.split('  ',1)
+             assert hashlib.sha256((p/name).read_bytes()).hexdigest()==digest
+          print('COMPLETE_ACTUAL_ETF_TRADER_TRAINER_V2_FREE_TO_PICK_ANY_48',json.dumps(r),flush=True)
+          PY
+      - name: Commit independent V2 historic proof to Test branch alone
+        run: |
+          mkdir -p isin_first2026/v2_unrestricted48/results
+          cp _V2_EU48_FINAL/RESULT.json _V2_EU48_FINAL/SHA256_MANIFEST.txt isin_first2026/v2_unrestricted48/results/
+          cp _V2_EU48_FINAL/*.csv isin_first2026/v2_unrestricted48/results/
+          cp _V2_PREP/RESULT.json isin_first2026/v2_unrestricted48/results/INPUT_PREPARATION_RESULT.json
+          cp _V2_PREP/SOURCE_AND_OHLC_REPAIR_AUDIT.csv isin_first2026/v2_unrestricted48/results/
+          cp _V2_TIT/MANIFEST.json isin_first2026/v2_unrestricted48/results/TITANIUM_RETRAIN_MANIFEST.json
+          git config user.name "ETF_TRAINER_V2_EUROPE48_SOURCE_ONLY"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/v2_unrestricted48/results
+          git commit -m "Actually refit ETF Trainer V2 freely ranked across all 48 Europe ISIN and archive costed baseline-v2 monthly decisions"
+          git pull --rebase origin research/etf-trainer-v2-unrestricted-eu48-20261019
+          git push origin HEAD:refs/heads/research/etf-trainer-v2-unrestricted-eu48-20261019
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: actual-etf-trainer-v2-unrestricted-all-48-europe-isins
+          retention-days: 90
+          path: |
+            _V2_EU48_FINAL/RESULT.json
+            _V2_EU48_FINAL/*.csv
+            _V2_EU48_FINAL/MA3_HYBRID24_MATURITY_FIT_AUDIT.csv
+            _V2_PREP/RESULT.json
+            _V2_PREP/SOURCE_AND_OHLC_REPAIR_AUDIT.csv
+            _V2_TIT/MANIFEST.json
