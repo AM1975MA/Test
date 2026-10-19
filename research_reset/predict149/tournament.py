@@ -322,7 +322,7 @@ def main():
     src,roster,days,opens,names=dataset()
     pred,ids=train_forecast(src)
     metrics,passive,classification,gate=evaluate(pred,ids,roster,days,opens,names,dest)
-    pred.drop(columns=[*FEATS,*[f"g{i}" for i in range(6)]).to_csv(dest/"ALL149_FROZEN_PREQUENTIAL_PREDICTIONS.csv",index=False)
+    pred.drop(columns=[*FEATS,*[f"g{i}" for i in range(6)]]).to_csv(dest/"ALL149_FROZEN_PREQUENTIAL_PREDICTIONS.csv",index=False)
     out=dict(status="EXACT149_BEST_TICKER_FORECAST_TOURNAMENT_COMPLETE",
         universe_size=149,original149_roster_sha256=sha(SRC/"universe.csv"),
         n_21day_eval_anchors=len(ids),first_eval_signal=str(pred.signal.min()),
