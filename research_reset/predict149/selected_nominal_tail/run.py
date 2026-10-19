@@ -96,7 +96,7 @@ def historical_block(p, roster, closes, opens, days, signals, b, f, h):
     w = np.array([base[t] for t in chosen])
     original = p.loc[p.block == b].set_index("ticker")
     assert len(original) == 149
-    tail = closes.loc[:signal, chosen + ["SPY"]].dropna().tail(128)
+    tail = closes.loc[:signal, list(dict.fromkeys(chosen + ["SPY"]))].dropna().tail(128)
     assert len(tail) == 128 and tail.index[-1] == signal
     logs = np.log(tail)
     d = logs.diff().dropna()
