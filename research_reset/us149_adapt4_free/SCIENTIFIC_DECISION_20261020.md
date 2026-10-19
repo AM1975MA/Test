@@ -44,3 +44,38 @@ La media USA500 historical +24.897% 2017–26 è CAGR medio di 500 portafogli da
 
 ## Raccomandazione
 **Ricerca promettente, production gate chiuso.** Non applicare azioni live. Confermare su nuovo arco dati PIT, gruppi settoriali e market regimes, e auditare US equity 2025 regime/turnover. Non risintonizzare pesi dopo i risultati.
+
+
+## FINAL SUCCESS and independent after-run recomputation from archived 1,360 daily NAV rows
+
+The final workflow run https://github.com/AM1975MA/Test/actions/runs/39338133099 is **completed SUCCESS**, all gates passed and reports/CSV/SHA256 committed under results/. One single 149 ETF basket confirmed and no category quota applied, genuine data source 2924 historic Open dates, 538 warmup pre2017. Full source refit rather than historical weights reuse. Original MA3 10.47935% CAGR (minor 0.00014 percentage point run-to-run rounding/training variability from preliminary 10.47922%, not a scientific change), ADAPT4 29.17477%.
+
+### Actual annual year-end net wealth returns, from saved NAV 1360 date rows (not signal-year regrouping!)
+
+| Civil period | Original MA3 USA149 FULL V2 | ADAPT4 USA149 FULL V2 |
+|---|---:|---:|
+| **2021 Feb–Dec (partial)** | -26.44% | +42.92% |
+| 2022 | +11.49% | +21.06% |
+| 2023 | +2.46% | **-19.28%** |
+| 2024 | **+45.61%** | **-0.01%** |
+| 2025 | +14.33% | **+79.12%** |
+| **2026 Jan–Jul 1 (partial)** | +22.41% | **+59.15%** |
+
+The variability across years is extreme. Adaptive outperformance is neither monotonic nor guaranteed: **in 2023 and 2024 the old MA3 was substantially better**. ADAPT4 has strong retro returns in 2021/2025/2026, may be driven by a few high-beta winners. Original MA3 top1 historically KWEB 9, GDXJ 6, SOXX 5, GDX 5; adaptive top1 UNG 7, URA 6, EPOL 4, ARGT 4, TAN 3, GDX 3. This source market contains highly volatile natural gas, uranium and thematic sector ETFs. Not equivalent to strictly Europe ETF opportunity/risk profile.
+
+### Predictive diagnostics independent of CAGR
+
+Signed rank Spearman original MA3 across 65 monthly cross-sections: **+0.02864**; ADAPT4 **+0.04967**. Difference +0.02103 with three-month circular bootstrap confidence interval [-0.03098,+0.07520]. Original Top5 next-month log excess vs equal149 mean **+0.9554% each month**, ADAPT4 **+1.3009% each month**, difference **+0.3456 monthly points**, bootstrap [-0.8015,+1.4452 monthly points], thus not statistically significant. Both methods have 37/65 months with positive Top5 excess. Historical source 10bps Top5 cumulative risk method ADAPT4 27.8971% CAGR versus old 23.2557%; MaxDD improved from -29.936% to -24.192%; this is a genuine all149 top5, no V2 stops. Full original V2 risk+stops 29.1748% vs old 10.4794%, MaxDD -38.869% vs -47.514%.
+
+Important: 2021–2026 final full horizon is reused from prior research; the block bootstrap does **not** correct multiple-experiment selection bias, 149 survivor universe bias, or implementation execution spreads. The risk regime may benefit ADAPT4 but volatility remains high. No claim independent future alpha until prospectively unseen dates and PIT roster.
+
+Archived evidence:
+- https://github.com/AM1975MA/Test/tree/research/us149-adapt4-unrestricted-20261020/research_reset/us149_adapt4_free/results
+- GitHub SUCCESS https://github.com/AM1975MA/Test/actions/runs/39338133099
+- 149_UNRESTRICTED_PREDICTIVE_MONTHLY_RANK_SKILL.csv
+- ORIGINAL_SOURCE_V2_US149_ONE_FREE_UNIVERSE_DAILY_NAV.csv
+- ORIGINAL_SOURCE_US149_65_MONTH_ONE_FREE_UNIVERSE_LEADERS.csv
+- ADAPT4_MONTHLY_LEARNED_WEIGHTS_PREVIOUS12_ONLY.csv
+- TITANIUM_RETRAIN_AUDIT.json
+- ORIGINAL_SOURCE_AUDIT.json
+- SHA256_MANIFEST.txt
