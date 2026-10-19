@@ -1,0 +1,508 @@
+{
+  "n_tickers": 48,
+  "n_signal_dates": 66,
+  "rows": 3168,
+  "model_fits": [
+    [
+      {
+        "year": 2021,
+        "model": "compact21",
+        "train_rows": 2972,
+        "max_exit": "2020-12-01 00:00:00",
+        "fit_date": "2021-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2021,
+        "model": "compact63",
+        "train_rows": 2876,
+        "max_exit": "2020-11-27 00:00:00",
+        "fit_date": "2021-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2021,
+        "model": "tail",
+        "max_exit": "2020-11-27 00:00:00",
+        "fit_date": "2021-01-01 00:00:00"
+      },
+      {
+        "year": 2021,
+        "model": "macro",
+        "max_exit": "2020-11-27 00:00:00",
+        "fit_date": "2021-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2022,
+        "model": "compact21",
+        "train_rows": 3548,
+        "max_exit": "2021-11-30 00:00:00",
+        "fit_date": "2022-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2022,
+        "model": "compact63",
+        "train_rows": 3500,
+        "max_exit": "2021-12-30 00:00:00",
+        "fit_date": "2022-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2022,
+        "model": "tail",
+        "max_exit": "2021-12-30 00:00:00",
+        "fit_date": "2022-01-01 00:00:00"
+      },
+      {
+        "year": 2022,
+        "model": "macro",
+        "max_exit": "2021-12-30 00:00:00",
+        "fit_date": "2022-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2023,
+        "model": "compact21",
+        "train_rows": 4124,
+        "max_exit": "2022-11-30 00:00:00",
+        "fit_date": "2023-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2023,
+        "model": "compact63",
+        "train_rows": 4076,
+        "max_exit": "2022-12-30 00:00:00",
+        "fit_date": "2023-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2023,
+        "model": "tail",
+        "max_exit": "2022-12-30 00:00:00",
+        "fit_date": "2023-01-01 00:00:00"
+      },
+      {
+        "year": 2023,
+        "model": "macro",
+        "max_exit": "2022-12-30 00:00:00",
+        "fit_date": "2023-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2024,
+        "model": "compact21",
+        "train_rows": 4700,
+        "max_exit": "2023-11-30 00:00:00",
+        "fit_date": "2024-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2024,
+        "model": "compact63",
+        "train_rows": 4604,
+        "max_exit": "2023-11-29 00:00:00",
+        "fit_date": "2024-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2024,
+        "model": "tail",
+        "max_exit": "2023-11-29 00:00:00",
+        "fit_date": "2024-01-01 00:00:00"
+      },
+      {
+        "year": 2024,
+        "model": "macro",
+        "max_exit": "2023-11-29 00:00:00",
+        "fit_date": "2024-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2025,
+        "model": "compact21",
+        "train_rows": 5276,
+        "max_exit": "2024-12-02 00:00:00",
+        "fit_date": "2025-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2025,
+        "model": "compact63",
+        "train_rows": 5180,
+        "max_exit": "2024-11-28 00:00:00",
+        "fit_date": "2025-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2025,
+        "model": "tail",
+        "max_exit": "2024-11-28 00:00:00",
+        "fit_date": "2025-01-01 00:00:00"
+      },
+      {
+        "year": 2025,
+        "model": "macro",
+        "max_exit": "2024-11-28 00:00:00",
+        "fit_date": "2025-01-01 00:00:00"
+      }
+    ],
+    [
+      {
+        "year": 2026,
+        "model": "compact21",
+        "train_rows": 5852,
+        "max_exit": "2025-12-02 00:00:00",
+        "fit_date": "2026-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2026,
+        "model": "compact63",
+        "train_rows": 5756,
+        "max_exit": "2025-11-28 00:00:00",
+        "fit_date": "2026-01-01 00:00:00",
+        "mode": "isolated_parallel_workers",
+        "workers": 2,
+        "threads_per_worker": 1
+      },
+      {
+        "year": 2026,
+        "model": "tail",
+        "max_exit": "2025-11-28 00:00:00",
+        "fit_date": "2026-01-01 00:00:00"
+      },
+      {
+        "year": 2026,
+        "model": "macro",
+        "max_exit": "2025-11-28 00:00:00",
+        "fit_date": "2026-01-01 00:00:00"
+      }
+    ]
+  ],
+  "no_US149_score_consumed": true,
+  "actual_models_retrained": true,
+  "input_source": {
+    "tickers": 48,
+    "allow_missing": false,
+    "files": {
+      "CEMS.DE": {
+        "sha256": "7f76fa34e7830d7378c291d7a31451fd97bd9aae9038036864e21f88e43e5b87",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "CSX5.AS": {
+        "sha256": "82da6d664f1ce45c1bd1f8bca6e3103cbc808940cf35789844ee5bec3f93a386",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "D5BK.DE": {
+        "sha256": "00cf911f9aedfe6a56e4c096da25f2189055c0b1f9b0eb3f2349ca0306050def",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "DXSC.DE": {
+        "sha256": "57d0c4cdccbf1f4cf1ac1b2e6ad00b26857b06d62ce958a86420fc8bf73631d8",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "DXSE.DE": {
+        "sha256": "f0be63eebacca82e605fbe1b8c68ab231c6d162d97a84e37b4cc5ddd61600076",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "DXSK.DE": {
+        "sha256": "3906c2b9e07800513b5cb9af2ae44f5632dbdb024d6f2c7386eb4e37f72f7850",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EUN0.DE": {
+        "sha256": "aa3c2438c24164bf927c823f2a215d7ae432a85fb93d7fd1d9d2fe168e2e3ca0",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EUNH.DE": {
+        "sha256": "003c20244e29f444d3377765fdc8924582e3844832c7d54318bcb6593f22c0e2",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXH1.DE": {
+        "sha256": "18678a62a711dc246bc3dd8d3f80b7b6152dda2c714e96d693f0b96a7e1e6849",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXH2.DE": {
+        "sha256": "65b2e85266d9b1135ec61b993e1f44e17163683689ccc1ba02c04dbd3575df32",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXH3.DE": {
+        "sha256": "e81df98b5f305a8662e266957f1bcc14b0f453a8837b928d06665da24c49f761",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXH4.DE": {
+        "sha256": "1748bcfb92de2e62ac9ec5f228960ad2c33b972cd59d205cbbc8c8f16c056f50",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXH5.DE": {
+        "sha256": "bdca3555171061a763f2ae941db2cb0e9e1c29b52626d77e304ef6c0ed623483",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXH7.DE": {
+        "sha256": "85b54aeb587419d1e5438df08226f1b78b89762573db71f5e5b9effac20a9a4c",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXH8.DE": {
+        "sha256": "c0bf3c8bd6ff0edaa0c85c48a4a4bc3cf37410bcab429dc2b48c6d062fbf9317",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXH9.DE": {
+        "sha256": "e8ac6b42a18edb1c532088b4757dfdb5fbedd7b5c628eb1d2c452cac07d241ba",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXI5.DE": {
+        "sha256": "8ff6ba3c9a1a3506c07657aaa4434cd8d889652e8cd307e36287c73e43ea8af7",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXS1.DE": {
+        "sha256": "ef276ff66e70066d69a74addac0b0e21e20c384ab3c3e47b6b7a75380baaef6a",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXS3.DE": {
+        "sha256": "df2248bf213a8cad2d98fe83da0280f7cfe4852ff5e9d2b249a67b5e831c12b4",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXSA.DE": {
+        "sha256": "e144a6e3b64eff59d1e57ea15e62adc66fbc8620b1fcc7297a7467a4ce9ac1e0",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXV1.DE": {
+        "sha256": "448bde9d09e8712a79268b02e8b33334b253611277741dd5f996efa2dd00392b",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXV2.DE": {
+        "sha256": "e229f8e649015dffcfdb8899491d4fe948b5ad729b226553529837cd178ec682",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXV3.DE": {
+        "sha256": "97499a75e45e58b14630692b2d6d0ba546545a0d489ef655276d5f507ba73d4d",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXV4.DE": {
+        "sha256": "2c48339ac3698a53f7dacb119901cd6fe96e635fd05bf601ebb2b66dfa89a2bd",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXV5.DE": {
+        "sha256": "e1700c73f23806601cfd6621644d42ac5b32aba6d03fc8c6651eebaac48d27d5",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXV6.DE": {
+        "sha256": "d8a09f19b35c17d8dd0262ffb43e06b2a274ea9ea3bf10bd85ef3abe01df0086",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXV7.DE": {
+        "sha256": "1bb6fdad5c3a82ff214036cfac83da6e57d747ded350fa5c27401c5074c2fbb5",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXV8.DE": {
+        "sha256": "d92df5cbf182fd8cf46b495484bd46f0f79ac618db5899a02d5d0a6a20c9fab4",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "EXV9.DE": {
+        "sha256": "8a959c3143bacd52594f2ca9a821d330c08bd59cb6e1bf5dfba2deffece13845",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "IAEX.AS": {
+        "sha256": "1c05d3079a5b5e2bfd286bcb06e68f8cdb2c70f88027084aad332b22a6e3955c",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "IBCA.DE": {
+        "sha256": "934c64a221161ed84373bbeab2f18c1a9a231b34f7c0534ed1f2adc5f450ff89",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "IBCI.AS": {
+        "sha256": "3ece445fadf445c50842e6568b1e661e8955d2beb3d8b277e8132469d8cdf549",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "IBCL.DE": {
+        "sha256": "451e82e8ce00bd5bc1da131dee3f54b2836ee4062e49e676ddc48420016e0ac6",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "IBCM.DE": {
+        "sha256": "b267237d3481166767e6d854813da0a83fe25de45de721e25e1723bac9a3da8e",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "IBCN.DE": {
+        "sha256": "b51fb291407c8736f3e4777d9f780a40b6e4f3f185b26c509e46d0e613df3cfe",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "IMEU.AS": {
+        "sha256": "914028f9ee7652a1a21d2fd6030f8ddd49d41d1dc9b1cadeb04d8e75ef0cd3bc",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "IQQP.DE": {
+        "sha256": "495bf90cb54a88f92ad81f0b5c38ce0863ebd218252558d163c38dd2d9e18f50",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "SC0E.DE": {
+        "sha256": "90152d20cb533116830275a08891fb01803ad2e07ced01dcd6c6aa83565591e6",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "SPYZ.DE": {
+        "sha256": "38e192a9632c584928453db5cc601f20d8d71533ffedc344c7b6071868c7b0ec",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "SXR7.DE": {
+        "sha256": "7913246d761e5676796816a56895e06dc7ac75068236e3bdf8b6b9b00f56a729",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "SXRJ.DE": {
+        "sha256": "ea86f85d8745883aeac96390c56fdd8bc0dfe7b6aceb4c428b102a4bd109f8fe",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "SXRQ.DE": {
+        "sha256": "22d572bf5bec18822503d9a7cbee55988706d5ed2770b1d75d7291827bd1b5ff",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "SXRY.DE": {
+        "sha256": "a0753307bf279d09aaeec89567b17a02011cb8c32d3030e2537dd2799d991d92",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "XREA.DE": {
+        "sha256": "de291b532d834599bbdc0d7116fe0978f6ea1f93fe6a39012972c9d0510d76af",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "XS7R.DE": {
+        "sha256": "a89adc68b118a849b650254181b32c3eb670d0fc2902c85ca445cc04f24c5a5a",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "XS8R.DE": {
+        "sha256": "c30aa0fe93e11289271f1eb08f7f790c26386e764a027ea3bd9174d3021a6a03",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "ZPRP.DE": {
+        "sha256": "e6794561efa134bfcd56a4e0088a7df1fe1730dca221f1846122a5b8d99acd4d",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      },
+      "ZPRX.DE": {
+        "sha256": "69c6f7262f945686a047e4c1e4c22e85d7c117351b5c3e5ed37031ba0b15ed3a",
+        "rows": 2746,
+        "start": "2015-08-10",
+        "end": "2026-07-01"
+      }
+    }
+  },
+  "dates_2021_onward_due_48_launch_calendar": true
+}
