@@ -32,7 +32,7 @@ def read_data():
     assert full.groupby("block").bottom15.sum().eq(15).all()
     ids=sorted(published.block.unique())
     assert len(ids)==64
-    expected=full[full.block.isin(ids)][["block","ticker","signal","future_log","future_excess","top15","bottom15"]].copy()
+    expected=full[full.block.isin(ids)][["block","ticker","signal","category","future_log","future_excess","top15","bottom15"]].copy()
     common=expected.merge(published[["block","ticker","N4_NONLINEAR_TOP15",
               "N2_RIDGE_EXCESS"]],on=["block","ticker"],validate="one_to_one")
     common=common.merge(matched[["block","ticker","N6_VOL_GROUP_PROB"]],
