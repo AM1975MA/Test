@@ -59,7 +59,7 @@ jobs:
           assert z["softmax_temperature"]==4.
           positions=pd.read_csv(p/"ORIGINAL_SOURCE_US149_65_MONTH_ONE_FREE_UNIVERSE_LEADERS.csv")
           assert positions.groupby("model").size().eq(65).all()
-          assert positions.groupby("model").first.isna().sum()==0
+          assert positions["first"].notna().all()
           a=pd.read_csv(p/"ADAPT4_MONTHLY_LEARNED_WEIGHTS_PREVIOUS12_ONLY.csv")
           assert len(a)==65 and a.filter(regex="^weight_").sum(axis=1).sub(1).abs().max()<1e-10
           forecast=pd.read_csv(p/"ADAPT4_ALL_149_FREE_RANK_SCORES.csv")
