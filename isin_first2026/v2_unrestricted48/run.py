@@ -84,13 +84,21 @@ def evaluate(E,T,dates,start="2021-02-01",end="2026-07-01"):
     vals=np.asarray(E[0,mask],float);t=np.asarray(T[0,mask],float)
     ds=dates[mask]
     assert len(vals)>1200 and np.isfinite(vals).all() and (vals>0).all()
-    logret=np.diff(np.log(vals))
-    years=(ds[-1]-ds[0]).days/365.25
-    peak=np.maximum.accumulate(np.r_[1.0,vals])
-    dd=float((np.r_[1.0,vals]/peak-1).min())
-    annvol=float(logret.std(ddof=1)*np.sqrt(252))
-    sharpe=float(logret.mean()/logret.std(ddof=1)*np.sqrt(252)) if annvol>0 else 0.0
-    return dict(cagr=float((vals[-1]/vals[0])**(1/years)-1),
+    # Match EXACT ETF Trader source runner metrics: the initial invested
+    # portfolio starts at NAV 1.0. Engine E[0] already includes first-session
+    # trading/price performance. Excluding it would artificially omit costs
+    # and first day's gain/loss from reported CAGR and Sharpe.
+    logret=np.diff(np.log(np.r_[1.0,vals]))
+    returns=np.expm1(logret)
+    n=len(logret)
+    cagr=float(np.expm1(logret.sum()*252/n))
+    equity=np.exp(np.cumsum(logret))
+    high=np.maximum.accumulate(np.r_[1.0,equity])[1:]
+    dd=float(np.min(equity/high-1))
+    annvol=float(returns.std(ddof=1)*np.sqrt(252))
+    sharpe=(float(returns.mean()*np.sqrt(252)/returns.std(ddof=1))
+             if annvol>0 else 0.0)
+    return dict(cagr=cagr,
         maxdd=dd,sharpe=sharpe,ann_vol=annvol,
         es5_daily=float(np.sort(logret)[:max(1,int(.05*len(logret)))].mean()),
         terminal_nav=float(vals[-1]),days=len(vals),
