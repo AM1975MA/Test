@@ -268,12 +268,14 @@ def run(out):
     for arm in ARM_NAMES:
         x,trade=trade_policy(selections[arm],O,days,ids,list(roster.ticker))
         if arm in BASIS:
-            diff=float(np.max(abs(x-old[{"F3":"B0_F3_FROZEN",
-                "H1":"H1_FACTOR_ONLY","H3":"H3_COMBINED_Q",
-                "STATIC_F3_H1_50":None}[arm]].to_numpy(float))))
-            # Archived 50:50 is from experiment I, not original factor-only.
+            expected=old[{"F3":"B0_F3_FROZEN",
+                "H1":"H1_FACTOR_ONLY","H3":"H3_COMBINED_Q"}.get(
+                    arm, "STATIC_F3_H1_50")].to_numpy(float) if arm!="STATIC_F3_H1_50" else pd.read_csv(
+                    PREVIOUS/"EXPERTS_AND_REAL_COSTED_MIXTURES_DAILY.csv"
+                    )["STATIC_F3_H1_50"].to_numpy(float)
+            diff=float(np.max(abs(x-expected)))
             if diff>1e-9:
-                raise AssertionError("Underlying legacy expert cash curve mismatch")
+                raise AssertionError("Underlying legacy expert cash curve mismatch "+arm)
         wealth[arm]=x
         portfolio[arm]=metrics(x,window,trade)
         print("T149K_TICKER_META_POLICY",arm,json.dumps(portfolio[arm],
