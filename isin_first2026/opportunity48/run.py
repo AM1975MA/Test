@@ -219,7 +219,7 @@ def run(out):
     group=equity.groupby("benchmark_bucket").buyhold_net_cagr.agg(
        ["size","median","mean","min","max"]).round(10).to_dict("index")
     rt=equity.buyhold_net_cagr.to_numpy(float)
-    candidates=equity[["ticker","isin","benchmark_bucket","sector_11","buyhold_net_cagr"]]
+    candidates=equity[["ticker","isin","benchmark_bucket","sector_11","buyhold_net_cagr"]].fillna("")
     origin=src["all_model_results"]
     r={
         "status":"EU48_OPPORTUNITY_VERSUS_SELECTOR_QUALITY_FORENSIC_COMPLETED",
