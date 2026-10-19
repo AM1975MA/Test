@@ -1,0 +1,14 @@
+# T149-F2 — Post-discovery falsification of signed F3 quantile model
+Date 2026-10-19. This test is **written AFTER reading** T149-F results: F3 20.02% CAGR, -29.74% daily-open MaxDD, 0.073 Spearman, versus N4 16.70% CAGR/-34.01% and N4 Spearman -0.0165. F3 fails original stricter cross-era payoff superiority vs N4. THIS IS NOT independent holdout and MUST not tune F3 quantile weights based on this.
+
+### Test with no new training
+Read frozen source file `research_reset/predict149/signed_value/results/ALL_9536_SIGNED_VALUE_FORECASTS.csv` (64x149 predictions) and all-original canonical `load_149`; compare **exact** same frozen five selected ETF identity and next-Open prices:
+1. F3 vs N4 and N7 VOL_ONLY (from frozen csv) signed forward log benchmark-relative excess *per 21-session anchor*, fraction selected positive, membership of absolute bottom15; circular block bootstrap 3 anchor, 2000 draws SEED 20261019 for paired differences in future mean signed log excess and month-by-month costed log-wealth growth (in same instrument slots).
+2. Apply existing `research_reset/m0b/enrichment.py::trial_surrogates` unchanged to F3 five-item selection lists for 64 anchors. Generate **250 conditional macrocategory-only null** and **250 conditional macrocategory + nearest-8-as-of 63-session volatility null**, fixing precisely same composition and preserved ticker identities each anchor. Draw candidate only from information no later than signal close, excluding reuse of old placeholders on switch. Use exact original share-rebalance solver and 10bp per side. Nulls have SAME number of holdings and rebalance dates, matched macroclass and held identity count. 500 reproducible placebo paths.
+3. Record F3's percentile of both random outcomes in *gross signed benchmark excess* and *cost-adjusted CAGR*, MaxDD and left-tail worst 5% of daily returns. **Do not** treat a placebo rank as prospective p-value.
+4. Test if F3's signed improvement survives both 2021–23 and 2024–26 separately and year-by-year; negative late period after 2024 is a veto to calling it stable. Do not select a better gate or blend.
+5. Compute positive-return hit conditional on matched 63d volatility and sample class to prevent calling risk exposure 'predictive direction'.
+
+**Go/no-go** stronger than T149-F: Both 95% lower bounds on paired signed *economic mean return* F3−N4 AND F3−class/vol median must be positive, incremental Sharpe at no worse tail, F3 above 95th percentile of volatility+class matched placebo in CAGR, and positive signed excess in each predeclared era. An outcome missing any gate is FAIL even if CAGR 20%+.
+
+All pre-2021 training source and 2021–26 labels are heavily previously mined. No untouched holdout, EUR venue/bid-ask or real broker fees. F3 cannot be promoted without frozen future predictions to future observations after 2026-07 and actual PIT roster. No changes to production `etf_trader`.
