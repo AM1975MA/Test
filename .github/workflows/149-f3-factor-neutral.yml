@@ -1,0 +1,74 @@
+name: ETF149_F3_CONDITIONAL_DIRECTION_ORTHOGONAL_AUDIT
+on:
+  push:
+    branches:
+      - research/149-f3-factor-neutral-diagnostics-20261019
+    paths:
+      - 'research_reset/predict149/factor_neutral/PROTOCOL_FROZEN.md'
+      - 'research_reset/predict149/factor_neutral/diagnose.py'
+      - 'research_reset/predict149/factor_neutral/test_diagnose.py'
+      - '.github/workflows/149-f3-factor-neutral.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  original149-frozen-quantile-direction-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install deterministic data and science libraries
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0'
+          python -m py_compile research_reset/predict149/factor_neutral/diagnose.py
+      - name: Validate as-of same category/volatility pair matching
+        run: |
+          python -m unittest -v research_reset.predict149.factor_neutral.test_diagnose
+      - name: Falsify frozen F3 against same-risk same-class directional baselines
+        run: |
+          python -m research_reset.predict149.factor_neutral.diagnose --out _riskneutral
+      - name: Audit scientific source and unchanged model
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_riskneutral/RESULT.json").read_text())
+          assert d["status"]=="ORIGINAL149_F3_FACTOR_VOL_CONDITIONAL_PAIRWISE_AUDIT_COMPLETED"
+          assert d["n_etfs"]==149 and d["n_anchor"]==64
+          assert d["n_ticker_month_forecasts"]==9536
+          assert d["n_conditional_matched_pairs"]>2000
+          assert d["all_risk_vol_and_group_matches_strict_asof"]
+          assert d["no_new_training_or_rebalanced_portfolios"]
+          print("ORIGINAL149_F3_FACTOR_CONDITIONAL_GATE",d["preregistered_conditional_direction_skill_gate"])
+          PY
+      - name: Permanently archive 64-anchor controls and all matched pair evidence
+        run: |
+          mkdir -p research_reset/predict149/factor_neutral/results
+          cp _riskneutral/*.json _riskneutral/*.csv research_reset/predict149/factor_neutral/results/
+          (cd research_reset/predict149/factor_neutral/results && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/factor_neutral/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-F3-FactorNeutral-Scientific-Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/factor_neutral/results
+          git commit -m "Archive exact original149 no-refit F3 within-group and 63d-vol matched pairwise direction forecast diagnostic with quantile coverage"
+          git push origin HEAD:refs/heads/research/149-f3-factor-neutral-diagnostics-20261019
+      - name: Preserve outputs even for failed experiments
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-quantile-factor-neutral-direction-falsification
+          retention-days: 90
+          path: |
+            _riskneutral/*.json
+            _riskneutral/*.csv
