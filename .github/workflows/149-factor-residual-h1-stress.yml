@@ -1,0 +1,72 @@
+name: ETF149_H1_FACTOR_PREMIUM_VS_FORECAST_STRESS
+on:
+  push:
+    branches:
+      - research/149-factor-residual-distributional-20261019
+    paths:
+      - 'research_reset/predict149/factor_residual/stress/PREREGISTERED_AFTER_H1.md'
+      - 'research_reset/predict149/factor_residual/stress/run.py'
+      - 'research_reset/predict149/factor_residual/stress/test_run.py'
+      - '.github/workflows/149-factor-residual-h1-stress.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  posthoc-factor-exposure-competence-falsifier:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install exact same numeric/scientific runtime and check syntax
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'lightgbm==4.6.0'
+          python -m py_compile research_reset/predict149/factor_residual/stress/run.py
+      - name: Validate matured as-of factor mean null and risk-matched condition
+        run: |
+          python -m unittest -v research_reset.predict149.factor_residual.stress.test_run research_reset.m0b.test_m0b
+      - name: Quantify H1 incremental factor forecast vs simple matured premium and 500 matched nulls
+        run: |
+          python -m research_reset.predict149.factor_residual.stress.run --out _H1stress
+      - name: Verify exactly frozen 149 source, historical F3/H1 shares, maturity and scientific gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_H1stress/RESULT.json").read_text())
+          assert d["status"]=="EXACT149_H1_POSTRESULT_FACTOR_PREMIUM_AND_VOL_PLACEBO_AUDIT_DONE"
+          assert d["original_etfs"]==149 and d["n_eval_anchors"]==64 and d["n_rows"]==9536
+          assert d["number_null_portfolios"]==500
+          assert d["H1_old_economic_parity"] and d["all_null_forecast_features_strict_asof"]
+          print("H1_FACTOR_PREDICTIVE_STRESS_GATE",d["preregistered_incremental_FACTOR_FORECAST_gate"])
+          PY
+      - name: Commit unabridged null factor forecasts and identical-cost portfolio trials
+        run: |
+          mkdir -p research_reset/predict149/factor_residual/stress/results
+          cp _H1stress/*.csv _H1stress/*.json research_reset/predict149/factor_residual/stress/results/
+          (cd research_reset/predict149/factor_residual/stress/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/factor_residual/stress/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "Original149-H1-FactorNull-Auditor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/factor_residual/stress/results
+          git commit -m "Archive 149 H1 factor prediction null controls against 500 category risk exposure matched portfolios and uncertainty intervals"
+          git push origin HEAD:refs/heads/research/149-factor-residual-distributional-20261019
+      - name: Retain data and failure receipts without model promotion
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-H1-posthoc-factor-null-risk-matched-500
+          retention-days: 90
+          path: |
+            _H1stress/*.csv
+            _H1stress/*.json
