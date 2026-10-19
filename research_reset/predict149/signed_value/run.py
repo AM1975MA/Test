@@ -59,7 +59,6 @@ def history_event_prior(training,category_id,column,eps=.001):
 
 def train_forecasts(df):
     original=pd.read_csv(BASE/"ALL149_FROZEN_PREQUENTIAL_PREDICTIONS.csv")
-    volbased=pd.read_csv(RISK/"RISK_BASELINE_PER_TICKER_PREQUENTIAL.csv")
     ids=sorted(original.block.unique())
     assert len(ids)==64
     fitted={}
@@ -125,8 +124,7 @@ def train_forecasts(df):
         if not np.allclose(pred[key].to_numpy(float),
                            pred[key+"_old"].to_numpy(float),atol=1e-12,rtol=0):
             raise AssertionError("Frozen 149 forecast target moved "+key)
-    pred=pred.merge(volbased[["block","ticker","N7_VOL_ONLY_RANK"]],
-                    on=["block","ticker"],validate="one_to_one")
+    pred["N7_VOL_ONLY"]=pred.v63  # direct as-of risk-only comparator
     pred["B0_N4_TOP15"]=pred.N4_NONLINEAR_TOP15
     assert len(pred)==64*149 and pred.groupby("block").size().eq(149).all()
     if not (pd.to_datetime(pred.trained_last_maturity)<pd.to_datetime(pred.signal)).all():
