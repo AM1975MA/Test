@@ -1,0 +1,247 @@
+{
+  "status": "ORIGINAL149_TWO_TAIL_WINNER_FORECAST_COMPLETED",
+  "exact_etf_count": 149,
+  "n_anchor": 64,
+  "source_original149_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "predictions_use_only_matured_training_labels": true,
+  "original_N4_wealth_parity": 0.0,
+  "underlying_upside_model_is_frozen_N4": true,
+  "downside_model_same_fixed_hyperparams_as_N4": true,
+  "downside_proper_score": {
+    "downside_histGB": {
+      "Brier": 0.08446612230823883,
+      "logloss": 0.29407856284929274,
+      "event_rate": 0.10067114093959731,
+      "probability_mean": 0.10657407484131576
+    },
+    "historical_15of149_prior": {
+      "Brier": 0.09053646232151705,
+      "logloss": 0.3265551233283096,
+      "event_rate": 0.10067114093959731,
+      "probability_mean": 0.1006711409395973
+    },
+    "by_era": {
+      "2021_2023": {
+        "Brier": 0.08383618902559817,
+        "logloss": 0.2917185184903921,
+        "event_rate": 0.10067114093959731,
+        "probability_mean": 0.10937756231362931
+      },
+      "2024_2026": {
+        "Brier": 0.08522638661487411,
+        "logloss": 0.2969268922479658,
+        "event_rate": 0.10067114093959731,
+        "probability_mean": 0.10319055547817872
+      }
+    }
+  },
+  "models": {
+    "N4_NONLINEAR_TOP15": {
+      "economics": {
+        "cagr": 0.16695968895271163,
+        "terminal_wealth_multiple": 2.284192787443914,
+        "max_daily_open_drawdown": -0.3400723287428331,
+        "daily_log_sharpe": 0.49870602888452226,
+        "daily_es5": -0.04534396597703554,
+        "fee_amount_initial_units": 0.07745746369203566,
+        "gross_turnover_notional_initial_units": 77.45746369203552
+      },
+      "future_best_top5_hits": 19,
+      "actual_top15_fraction": 0.278125,
+      "actual_bottom15_fraction": 0.28125,
+      "mean_forward_benchmark_excess": 0.003230059179478861,
+      "mean_rank_spearman": -0.016543056869475416,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "relative_future_excess": -0.013046631318880378,
+          "worst15_selected_rate": 0.3257142857142857,
+          "future_best_hit_count": 5,
+          "mean_spearman": -0.04077514295417694
+        },
+        "2024_2026": {
+          "n": 29,
+          "relative_future_excess": 0.022874340815429665,
+          "worst15_selected_rate": 0.22758620689655173,
+          "future_best_hit_count": 14,
+          "mean_spearman": 0.012702564267233329
+        }
+      }
+    },
+    "N2_RIDGE_EXCESS": {
+      "economics": {
+        "cagr": 0.07027301225069116,
+        "terminal_wealth_multiple": 1.4380994089479333,
+        "max_daily_open_drawdown": -0.43186925384132446,
+        "daily_log_sharpe": 0.2465520976816401,
+        "daily_es5": -0.04018796173444922,
+        "fee_amount_initial_units": 0.09813900964183819,
+        "gross_turnover_notional_initial_units": 98.13900964183792
+      },
+      "future_best_top5_hits": 6,
+      "actual_top15_fraction": 0.22500000000000003,
+      "actual_bottom15_fraction": 0.21875,
+      "mean_forward_benchmark_excess": -0.002894497375811747,
+      "mean_rank_spearman": 0.06318392172639908,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "relative_future_excess": -0.009970165750795911,
+          "worst15_selected_rate": 0.26285714285714284,
+          "future_best_hit_count": 4,
+          "mean_spearman": 0.038222328887921236
+        },
+        "2024_2026": {
+          "n": 29,
+          "relative_future_excess": 0.005645102387100182,
+          "worst15_selected_rate": 0.16551724137931034,
+          "future_best_hit_count": 2,
+          "mean_spearman": 0.09330998204869993
+        }
+      }
+    },
+    "N6_VOL_GROUP_PROB": {
+      "economics": {
+        "cagr": 0.11103170253744787,
+        "terminal_wealth_multiple": 1.7564086237164915,
+        "max_daily_open_drawdown": -0.36174430038772065,
+        "daily_log_sharpe": 0.3537826270956579,
+        "daily_es5": -0.043297716022595065,
+        "fee_amount_initial_units": 0.0461203164847116,
+        "gross_turnover_notional_initial_units": 46.12031648471189
+      },
+      "future_best_top5_hits": 19,
+      "actual_top15_fraction": 0.309375,
+      "actual_bottom15_fraction": 0.30625,
+      "mean_forward_benchmark_excess": -0.0026296111482323314,
+      "mean_rank_spearman": -0.014903667766676449,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "relative_future_excess": -0.0017205319910120035,
+          "worst15_selected_rate": 0.30857142857142855,
+          "future_best_hit_count": 12,
+          "mean_spearman": -0.04027276258947415
+        },
+        "2024_2026": {
+          "n": 29,
+          "relative_future_excess": -0.003726775648325833,
+          "worst15_selected_rate": 0.303448275862069,
+          "future_best_hit_count": 7,
+          "mean_spearman": 0.015714205295320784
+        }
+      }
+    },
+    "T149C_ASYMMETRIC_EDGE": {
+      "economics": {
+        "cagr": 0.16136783097565166,
+        "terminal_wealth_multiple": 2.226244318562666,
+        "max_daily_open_drawdown": -0.24819941696119696,
+        "daily_log_sharpe": 0.606232819439849,
+        "daily_es5": -0.03460206580510235,
+        "fee_amount_initial_units": 0.12606909478926742,
+        "gross_turnover_notional_initial_units": 126.06909478926725
+      },
+      "future_best_top5_hits": 3,
+      "actual_top15_fraction": 0.190625,
+      "actual_bottom15_fraction": 0.15000000000000002,
+      "mean_forward_benchmark_excess": 0.005779351553260704,
+      "mean_rank_spearman": 0.030155295241678447,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "relative_future_excess": 0.0005554848211395975,
+          "worst15_selected_rate": 0.17142857142857146,
+          "future_best_hit_count": 2,
+          "mean_spearman": 0.012759991960045512
+        },
+        "2024_2026": {
+          "n": 29,
+          "relative_future_excess": 0.012084018298924106,
+          "worst15_selected_rate": 0.12413793103448276,
+          "future_best_hit_count": 1,
+          "mean_spearman": 0.05114962678847681
+        }
+      }
+    },
+    "T149C_TAIL_DIRECTION": {
+      "economics": {
+        "cagr": 0.09252045930496045,
+        "terminal_wealth_multiple": 1.6054213689860408,
+        "max_daily_open_drawdown": -0.27310018017754256,
+        "daily_log_sharpe": 0.42698269227440777,
+        "daily_es5": -0.029891917609596825,
+        "fee_amount_initial_units": 0.08815778504828642,
+        "gross_turnover_notional_initial_units": 88.15778504828619
+      },
+      "future_best_top5_hits": 1,
+      "actual_top15_fraction": 0.1,
+      "actual_bottom15_fraction": 0.096875,
+      "mean_forward_benchmark_excess": 0.0011383473574919111,
+      "mean_rank_spearman": 0.0496664620906428,
+      "eras": {
+        "2021_2023": {
+          "n": 35,
+          "relative_future_excess": -0.0015527867633355836,
+          "worst15_selected_rate": 0.10857142857142858,
+          "future_best_hit_count": 1,
+          "mean_spearman": 0.03236063955122036
+        },
+        "2024_2026": {
+          "n": 29,
+          "relative_future_excess": 0.004386267848145784,
+          "worst15_selected_rate": 0.08275862068965519,
+          "future_best_hit_count": 0,
+          "mean_spearman": 0.0705527996382216
+        }
+      }
+    }
+  },
+  "paired_bootstrap_vs_N4": {
+    "N2_RIDGE_EXCESS": {
+      "mean_monthly_net_log_improvement": -0.007229536080143646,
+      "ci95": [
+        -0.022000912486731458,
+        0.005639440242003397
+      ],
+      "n_monthly_blocks": 64
+    },
+    "N6_VOL_GROUP_PROB": {
+      "mean_monthly_net_log_improvement": -0.0041053363510776385,
+      "ci95": [
+        -0.019181362844194656,
+        0.007950316301181105
+      ],
+      "n_monthly_blocks": 64
+    },
+    "T149C_ASYMMETRIC_EDGE": {
+      "mean_monthly_net_log_improvement": -0.0004015108194840684,
+      "ci95": [
+        -0.015417267610402399,
+        0.015420370557013655
+      ],
+      "n_monthly_blocks": 64
+    },
+    "T149C_TAIL_DIRECTION": {
+      "mean_monthly_net_log_improvement": -0.00550978810507431,
+      "ci95": [
+        -0.020210200944056764,
+        0.008516030122236439
+      ],
+      "n_monthly_blocks": 64
+    }
+  },
+  "preregistered_improvement_gate": {
+    "T149C_ASYMMETRIC_EDGE": false,
+    "T149C_TAIL_DIRECTION": false
+  },
+  "independent_holdout": false,
+  "live_deployable": false,
+  "caveats": [
+    "New after observing prior 149 poor risk-matched result",
+    "Historical ETF sample repeatedly mined and selected by hindsight survivorship",
+    "Bottom15 identification skill is not inherently a reliable forecast of positive alpha",
+    "No verified EUR ETF broker quote or bid/ask, tax, latency, delisting",
+    "Causal chronological refit but not independent future validation"
+  ]
+}
