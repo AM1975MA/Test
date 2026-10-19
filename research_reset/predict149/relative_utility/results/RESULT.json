@@ -1,0 +1,390 @@
+{
+  "status": "ORIGINAL149_RELATIVE_EXPERT_UTILITY_META_TEST_COMPLETED",
+  "original_etfs": 149,
+  "original_universe_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "total_21day_anchor_periods": 64,
+  "test_149_etf_model_signals_from_frozen_archive": 9536,
+  "input_10_asof_features": [
+    "F3_holding_relative_score_advantage",
+    "H1_holding_relative_score_advantage",
+    "score_advantage_difference",
+    "F3_H1_basket_past63_momentum_diff",
+    "F3_H1_basket_past63_vol_ratio",
+    "F3_H1_past63_basket_corr",
+    "F3_H1_quoted_factor_beta_distance",
+    "F3_H1_residual_quantile_width_difference",
+    "USO_minus_QQQ_past63",
+    "SPY_vol21_over_vol63"
+  ],
+  "minimum_fully_matured_meta_training_samples": 18,
+  "strict_full_one_open_period_label_embargo": true,
+  "no_expost_selection_of_market_states": true,
+  "all_original_daily_wealth_paths_replayed_within_1e_minus_9": true,
+  "same_next_open_cash_self_funding_and_10bp_each_side": true,
+  "no_forecaster_training_or_hyperparam_tuning_on_future_labels": true,
+  "portfolio_metrics": {
+    "F3": {
+      "fee_notional": 0.15444598994696845,
+      "absolute_gross_traded_initial_dollars": 154.445989946968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.20019785988909722,
+      "wealth_final": 2.65185438801071,
+      "maxdd_daily_open": -0.2973714609803775,
+      "sharpe_daily_log": 0.6930182026665771,
+      "es5_daily": -0.03701818959091073,
+      "daily_vol_annualized": 0.2641323112738675
+    },
+    "H1": {
+      "fee_notional": 0.15864875781051924,
+      "absolute_gross_traded_initial_dollars": 158.64875781051853,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.2462472500995334,
+      "wealth_final": 3.2435870594915803,
+      "maxdd_daily_open": -0.33773827205497897,
+      "sharpe_daily_log": 0.7933290373800223,
+      "es5_daily": -0.04111998355488715,
+      "daily_vol_annualized": 0.2783395853199773
+    },
+    "H3": {
+      "fee_notional": 0.1601748399243429,
+      "absolute_gross_traded_initial_dollars": 160.17483992434276,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.2352595719255739,
+      "wealth_final": 3.0935024188491496,
+      "maxdd_daily_open": -0.2878282294625688,
+      "sharpe_daily_log": 0.7585791136115128,
+      "es5_daily": -0.04137431443292011,
+      "daily_vol_annualized": 0.2793800766674111
+    },
+    "STATIC_F3_H1_50": {
+      "fee_notional": 0.15155562833653902,
+      "absolute_gross_traded_initial_dollars": 151.55562833653968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23215134965968853,
+      "wealth_final": 3.052086994452834,
+      "maxdd_daily_open": -0.24844218622336645,
+      "sharpe_daily_log": 0.886921856171717,
+      "es5_daily": -0.033023285234276945,
+      "daily_vol_annualized": 0.23610277282133796
+    },
+    "J1_SCORE_DIFFERENCE_RULE": {
+      "fee_notional": 0.1671564089701948,
+      "absolute_gross_traded_initial_dollars": 167.15640897019415,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.24254111112824894,
+      "wealth_final": 3.1923164212372686,
+      "maxdd_daily_open": -0.24844218622336633,
+      "sharpe_daily_log": 0.8568641872306517,
+      "es5_daily": -0.03646280009795678,
+      "daily_vol_annualized": 0.25421465307325797
+    },
+    "J2_ONLINE_RIDGE_PROB": {
+      "fee_notional": 0.15253620622726982,
+      "absolute_gross_traded_initial_dollars": 152.5362062272704,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23877894374070086,
+      "wealth_final": 3.1409466067788507,
+      "maxdd_daily_open": -0.24844218622336633,
+      "sharpe_daily_log": 0.9066537167278633,
+      "es5_daily": -0.0330869292079467,
+      "daily_vol_annualized": 0.23689937393126415
+    },
+    "J3_ONLINE_ANALOG_SIGN": {
+      "fee_notional": 0.15180030388210197,
+      "absolute_gross_traded_initial_dollars": 151.80030388210187,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23032375433010777,
+      "wealth_final": 3.027946492577306,
+      "maxdd_daily_open": -0.24844218622336622,
+      "sharpe_daily_log": 0.8774204913887187,
+      "es5_daily": -0.03302328523427693,
+      "daily_vol_annualized": 0.23696253159596842
+    },
+    "OIL_VS_GROWTH_63": {
+      "note": "Archived control with existing trade fees",
+      "cagr": 0.293785425116994,
+      "wealth_final": 3.962800284328916,
+      "maxdd_daily_open": -0.2922340899273058,
+      "sharpe_daily_log": 0.9668536497128477,
+      "es5_daily": -0.03805404866616892,
+      "daily_vol_annualized": 0.26722317642293225
+    },
+    "OLD_ONLINE_RIDGE_GATE": {
+      "note": "Archived control with existing trade fees",
+      "cagr": 0.22491385101004702,
+      "wealth_final": 2.957396023124507,
+      "maxdd_daily_open": -0.2575849967746793,
+      "sharpe_daily_log": 0.8250650006798961,
+      "es5_daily": -0.03504767582002026,
+      "daily_vol_annualized": 0.24664162641918094
+    }
+  },
+  "signed_relative_advantage_predictive_proper_score": {
+    "J2": {
+      "test_n": 45,
+      "MSE": 0.003929038813012011,
+      "matured_prior_MSE": 0.0035104507483163425,
+      "MSE_improvement_vs_prior_ci": {
+        "mean": -0.0004185880646956679,
+        "block3_95pct": [
+          -0.000871010682704922,
+          6.63503514679649e-05
+        ],
+        "n": 45
+      },
+      "positive_sign": {
+        "brier": 0.28818020190960136,
+        "log_loss": 0.77273865679147,
+        "base_event_rate": 0.5555555555555556,
+        "probability_mean": 0.44202874421842436
+      },
+      "online_prior_sign": {
+        "brier": 0.2592577776209327,
+        "log_loss": 0.7117403709297668,
+        "base_event_rate": 0.5555555555555556,
+        "probability_mean": 0.4804443770748695
+      },
+      "sign_brier_improvement_ci": {
+        "mean": -0.028922424288668664,
+        "block3_95pct": [
+          -0.05087008459093235,
+          -0.005626011416359203
+        ],
+        "n": 45
+      },
+      "sign_accuracy": 0.37777777777777777,
+      "fraction_signal_switches": 0.1111111111111111,
+      "prediction_vs_realized_corr": -0.11308245109366889
+    },
+    "J3": {
+      "test_n": 45,
+      "MSE": 0.00371683885154114,
+      "matured_prior_MSE": 0.0035104507483163425,
+      "MSE_improvement_vs_prior_ci": {
+        "mean": -0.00020638810322479845,
+        "block3_95pct": [
+          -0.0009852057115118983,
+          0.0006036859683360973
+        ],
+        "n": 45
+      },
+      "positive_sign": {
+        "brier": 0.26952056141809855,
+        "log_loss": 0.7337666093877241,
+        "base_event_rate": 0.5555555555555556,
+        "probability_mean": 0.5194967470580963
+      },
+      "online_prior_sign": {
+        "brier": 0.2592577776209327,
+        "log_loss": 0.7117403709297668,
+        "base_event_rate": 0.5555555555555556,
+        "probability_mean": 0.4804443770748695
+      },
+      "sign_brier_improvement_ci": {
+        "mean": -0.010262783797165807,
+        "block3_95pct": [
+          -0.0383462355516792,
+          0.0186777171846952
+        ],
+        "n": 45
+      },
+      "sign_accuracy": 0.4666666666666667,
+      "fraction_signal_switches": 0.044444444444444446,
+      "prediction_vs_realized_corr": -0.1669792613907922
+    }
+  },
+  "matched_64_anchor_paired_economic_statistics": {
+    "J1_SCORE_DIFFERENCE_RULE": {
+      "vs_static50": {
+        "mean": 0.0007018935474790849,
+        "block3_95pct": [
+          -0.0026245000138314877,
+          0.004476854391461408
+        ],
+        "n": 64
+      },
+      "vs_f3": {
+        "mean": 0.0028982443718795618,
+        "block3_95pct": [
+          -0.006727867152259536,
+          0.012882786060748077
+        ],
+        "n": 64
+      },
+      "vs_h1": {
+        "mean": -0.0002489535999094098,
+        "block3_95pct": [
+          -0.008092548705477804,
+          0.0071260549736964695
+        ],
+        "n": 64
+      },
+      "number_months_better_than_50": 24,
+      "early_2021_2023_mean_gain": 0.0013533700340348682,
+      "late_2024_2026_mean_gain": -8.437117767444675e-05
+    },
+    "J2_ONLINE_RIDGE_PROB": {
+      "vs_static50": {
+        "mean": 0.0004484156956078601,
+        "block3_95pct": [
+          -0.00028809763236751194,
+          0.0013674772318307067
+        ],
+        "n": 64
+      },
+      "vs_f3": {
+        "mean": 0.0026447665200083365,
+        "block3_95pct": [
+          -0.005722047809036283,
+          0.010372475100073797
+        ],
+        "n": 64
+      },
+      "vs_h1": {
+        "mean": -0.0005024314517806346,
+        "block3_95pct": [
+          -0.00871086677188983,
+          0.007700278411039086
+        ],
+        "n": 64
+      },
+      "number_months_better_than_50": 19,
+      "early_2021_2023_mean_gain": -0.00026340354959316004,
+      "late_2024_2026_mean_gain": 0.00130750788809185
+    },
+    "J3_ONLINE_ANALOG_SIGN": {
+      "vs_static50": {
+        "mean": -0.00012407738369507246,
+        "block3_95pct": [
+          -0.0008674633689783234,
+          0.0004966902069895612
+        ],
+        "n": 64
+      },
+      "vs_f3": {
+        "mean": 0.002072273440705404,
+        "block3_95pct": [
+          -0.0058734561226141966,
+          0.009679115169340544
+        ],
+        "n": 64
+      },
+      "vs_h1": {
+        "mean": -0.0010749245310835672,
+        "block3_95pct": [
+          -0.009507360447451957,
+          0.007222396239052895
+        ],
+        "n": 64
+      },
+      "number_months_better_than_50": 12,
+      "early_2021_2023_mean_gain": 0.00030274450711745835,
+      "late_2024_2026_mean_gain": -0.0006392072519170925
+    }
+  },
+  "declared_joint_skill_and_economic_gates": {
+    "J1_SCORE_DIFFERENCE_RULE": false,
+    "J2_ONLINE_RIDGE_PROB": false,
+    "J3_ONLINE_ANALOG_SIGN": false
+  },
+  "year_condition_diagnostics": [
+    {
+      "year": 2021,
+      "anchors": 12,
+      "F3_mean_monthly_net_log": 0.003911772103470255,
+      "H1_mean_monthly_net_log": 0.027764767611032217,
+      "H3_mean_monthly_net_log": 0.023084569618760566,
+      "STATIC_F3_H1_50_mean_monthly_net_log": 0.016734906386966487,
+      "J1_SCORE_DIFFERENCE_RULE_mean_monthly_net_log": 0.014657540792396817,
+      "J2_ONLINE_RIDGE_PROB_mean_monthly_net_log": 0.016734906386966487,
+      "J3_ONLINE_ANALOG_SIGN_mean_monthly_net_log": 0.016734906386966487
+    },
+    {
+      "year": 2022,
+      "anchors": 11,
+      "F3_mean_monthly_net_log": -0.005252364341993822,
+      "H1_mean_monthly_net_log": -0.017829801947231633,
+      "H3_mean_monthly_net_log": -0.015888579099748088,
+      "STATIC_F3_H1_50_mean_monthly_net_log": -0.010353635956509273,
+      "J1_SCORE_DIFFERENCE_RULE_mean_monthly_net_log": -0.0035677355657251055,
+      "J2_ONLINE_RIDGE_PROB_mean_monthly_net_log": -0.010353635956509273,
+      "J3_ONLINE_ANALOG_SIGN_mean_monthly_net_log": -0.010353635956509273
+    },
+    {
+      "year": 2023,
+      "anchors": 12,
+      "F3_mean_monthly_net_log": 0.028673875595482744,
+      "H1_mean_monthly_net_log": 0.02763573987424631,
+      "H3_mean_monthly_net_log": 0.03091787344445106,
+      "STATIC_F3_H1_50_mean_monthly_net_log": 0.028690195761563255,
+      "J1_SCORE_DIFFERENCE_RULE_mean_monthly_net_log": 0.028494481930515802,
+      "J2_ONLINE_RIDGE_PROB_mean_monthly_net_log": 0.027921935408583204,
+      "J3_ONLINE_ANALOG_SIGN_mean_monthly_net_log": 0.029573200573989173
+    },
+    {
+      "year": 2024,
+      "anchors": 12,
+      "F3_mean_monthly_net_log": 0.012643343322695955,
+      "H1_mean_monthly_net_log": 0.03487555643104005,
+      "H3_mean_monthly_net_log": 0.03531858729588313,
+      "STATIC_F3_H1_50_mean_monthly_net_log": 0.024154131769655914,
+      "J1_SCORE_DIFFERENCE_RULE_mean_monthly_net_log": 0.024862639523911975,
+      "J2_ONLINE_RIDGE_PROB_mean_monthly_net_log": 0.02564435726107907,
+      "J3_ONLINE_ANALOG_SIGN_mean_monthly_net_log": 0.022609380910856302
+    },
+    {
+      "year": 2025,
+      "anchors": 12,
+      "F3_mean_monthly_net_log": 0.04261929479240961,
+      "H1_mean_monthly_net_log": 0.015519286041381567,
+      "H3_mean_monthly_net_log": 0.010107125222362548,
+      "STATIC_F3_H1_50_mean_monthly_net_log": 0.02936202559607798,
+      "J1_SCORE_DIFFERENCE_RULE_mean_monthly_net_log": 0.030262765977518157,
+      "J2_ONLINE_RIDGE_PROB_mean_monthly_net_log": 0.029362025596077968,
+      "J3_ONLINE_ANALOG_SIGN_mean_monthly_net_log": 0.02936202559607799
+    },
+    {
+      "year": 2026,
+      "anchors": 5,
+      "F3_mean_monthly_net_log": -0.004028951467823982,
+      "H1_mean_monthly_net_log": 0.02085259135785824,
+      "H3_mean_monthly_net_log": 0.02238798427096813,
+      "STATIC_F3_H1_50_mean_monthly_net_log": 0.008683999755943939,
+      "J1_SCORE_DIFFERENCE_RULE_mean_monthly_net_log": 0.004332451399761172,
+      "J2_ONLINE_RIDGE_PROB_mean_monthly_net_log": 0.012691004327461109,
+      "J3_ONLINE_ANALOG_SIGN_mean_monthly_net_log": 0.00868399975594385
+    }
+  ],
+  "original_50_50_reference": {
+    "fee_notional": 0.15155562833653902,
+    "absolute_gross_traded_initial_dollars": 151.55562833653968,
+    "trade_dates": 64,
+    "avg_underlying_positions": 9.484375,
+    "cagr": 0.23215134965968853,
+    "wealth_final": 3.052086994452834,
+    "maxdd_daily_open": -0.24844218622336645,
+    "sharpe_daily_log": 0.886921856171717,
+    "es5_daily": -0.033023285234276945,
+    "daily_vol_annualized": 0.23610277282133796
+  },
+  "no_live_or_point_in_time_validation": true,
+  "experiment_reuses_heavily_mined_2021_2026_historical_cohort": true,
+  "_not_new_causal_market_information": true,
+  "warnings": [
+    "Only 64 monthly chronological observations; first 19 are meta warmup",
+    "No independent proper prospective test, not a 30%-CAGR claimed strategy",
+    "Original 149 selected from survivor USD ETF universe and prices retro-adjusted",
+    "Residual/factor distributional expert scores have different non-calibrated units",
+    "One-open maturity embargo conservatively forbids just finished month label",
+    "Probabilistic Normal interpretation is a convenience; requires ex-ante calibration",
+    "Historical portfolio log spread is not identical to payoff for mixed book",
+    "True euro costs, spreads, taxes, ETF issuer holdings vintages not verified"
+  ]
+}
