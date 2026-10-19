@@ -1,0 +1,77 @@
+name: ETF149_F3_H1_K1_RISK_OVERLAY
+on:
+  push:
+    branches:
+      - research/149-K1-risk-overlay-F3-H1-20261019
+    paths:
+      - 'research_reset/predict149/k1_overlay/PREREGISTERED.md'
+      - 'research_reset/predict149/k1_overlay/run.py'
+      - 'research_reset/predict149/k1_overlay/test_run.py'
+      - '.github/workflows/149-K1-downside-overlay.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  fixed-149-f3-h1-risk-only-overlay-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install deterministic numerical runtime and validate Python source
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/k1_overlay/run.py research_reset/predict149/k1_overlay/test_run.py
+      - name: Check exact original F3/H1 untouched roster, no lookahead and model-risk controls
+        run: |
+          python -m unittest -v research_reset.predict149.k1_overlay.test_run
+      - name: Costed K1 downside-only weight overlay and held-event proper-score 51-period test
+        run: |
+          python -m research_reset.predict149.k1_overlay.run --out _T149L
+      - name: Forensically require 149, 51 trained K1 signals, 64 anchor Opens, true capital and null equality
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_T149L/RESULT.json").read_text())
+          assert d["status"]=="ORIGINAL149_K1_DOWNSIDE_RISK_OVERLAY_RESULTS_COMPLETE"
+          assert d["n_original_etfs"]==149 and d["n_months"]==64
+          assert d["n_postwarmup_k1_months"]==51 and d["n_full_daily_open_wealth_points"]==1345
+          assert d["source_classifier_retrained"] is False
+          assert d["f3_h1_h3_exact_original_holdings_unchanged"]
+          assert d["forecasts_and_meta_labels_asof_strict"]
+          assert d["actual_underlying_share_costs_10bps_per_buy_and_sale"]
+          assert d["prior_only_must_exactly_replay_static"]
+          assert len(d["strict_precommitted_risk_and_return_gates"])==3
+          print("T149L_K1_OVERLAY_SCIENTIFIC_PASSFAIL",d["strict_precommitted_risk_and_return_gates"])
+          PY
+      - name: Save risk-overlay source evidence, weight decisions and complete wealth curves with SHA256
+        run: |
+          mkdir -p research_reset/predict149/k1_overlay/results
+          cp _T149L/*.csv _T149L/*.json research_reset/predict149/k1_overlay/results/
+          (cd research_reset/predict149/k1_overlay/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/k1_overlay/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "Original149-K1-RiskOverlay-ScientificReview"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/k1_overlay/results
+          git commit -m "Record original149 frozen F3/H1 risk-only K1 overlay under 51 prior asof tail forecasts with cash-funded wealth and inverse/null controls"
+          git push origin HEAD:refs/heads/research/149-K1-risk-overlay-F3-H1-20261019
+      - name: Always retain artifact evidence even when risk hypotheses fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-K1-risk-only-F3-H1-51-anchors
+          retention-days: 90
+          path: |
+            _T149L/*.csv
+            _T149L/*.json
