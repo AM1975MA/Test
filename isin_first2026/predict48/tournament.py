@@ -361,11 +361,10 @@ def run(raw,out):
     selected=analysis["champion"]
     econ={}
     rows={}
-    for m in (("ORIGINAL_MA3",selected,"MOM63_126","RIDGE_ALL_HISTORY","LGBM_RECENT48M")):
-        for method in dict.fromkeys(m):
-            metric,nav,month=costed_path(champion[method],evalcal,O,O.index)
-            econ[method]=metric
-            nav.name=method;rows[method]=nav
+    for method in dict.fromkeys(("ORIGINAL_MA3",selected,"MOM63_126","RIDGE_ALL_HISTORY","LGBM_RECENT48M")):
+        metric,nav,month=costed_path(champion[method],evalcal,O,O.index)
+        econ[method]=metric
+        nav.name=method;rows[method]=nav
     pd.DataFrame(rows).rename_axis("day").to_csv(out/"COSTED_EUR_OPEN_MONTHLY_TOP5_NET_EQUITY_CURVES.csv")
     preds=[]
     for method,scores in allscore.items():
