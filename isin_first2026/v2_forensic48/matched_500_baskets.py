@@ -57,6 +57,11 @@ def run(raw,out):
     assert len(cal)==65
     score,et,xb,base=calculate_score(pred,cal,names)
     mem=build_canonical_baskets(roster,names)
+    # The authentic 500 x 24 membership generator records basket and ticker,
+    # not the originating category; rejoin the immutable validated 48 roster.
+    mem=mem.merge(roster[["ticker","macro_category"]],
+                  on="ticker",how="left",validate="many_to_one")
+    assert mem.macro_category.notna().all()
     assert len(mem)==12000 and mem.basket.nunique()==500
     assert mem.groupby("basket").ticker.nunique().eq(24).all()
     for b,g in mem.groupby("basket"):
