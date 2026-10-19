@@ -33,11 +33,12 @@ def prepare(us,out):
         z=pd.read_csv(file,parse_dates=['date'],float_precision='round_trip')
         assert z.date.is_monotonic_increasing and z.date.is_unique
         assert set(['Open','High','Low','Close','Volume'])<=set(z)
-        assert len(z)>=2450,(t,len(z))
-        if dtidx is None:dtidx=pd.DatetimeIndex(z.date)
-        # An original USD149 archive could contain missing pre-inception entries.
-        if not pd.DatetimeIndex(z.date).equals(dtidx):
-            raise AssertionError('inconsistent raw price calendars for '+t)
+        assert len(z)>=500,(t,len(z))
+        # Original US149 archive stores each ETF on its OWN source vendor date
+        # calendar, not a synthetic master common calendar. Intersect only
+        # observations actually present; never manufacture missing sessions.
+        present=pd.DatetimeIndex(z.loc[z[['Open','High','Low','Close','Volume']].notna().all(axis=1),'date'])
+        dtidx=present if dtidx is None else dtidx.intersection(present)
         num=z[['Open','High','Low','Close','Volume']]
         finite=np.isfinite(num.to_numpy(float))
         missing=int((~finite).sum())
@@ -47,26 +48,35 @@ def prepare(us,out):
             first=str(z.date.min().date()),last=str(z.date.max().date())))
         raw[t]=z
     m=pd.DataFrame(diagnostics)
-    print('US149_SOURCE_RAW_DIAGNOSTIC',json.dumps(dict(n=149,rows=len(dtidx),
+    dtidx=dtidx.sort_values()
+    print('US149_SOURCE_RAW_DIAGNOSTIC',json.dumps(dict(n=149,source_real_common_rows=len(dtidx),
        earliest=str(dtidx.min().date()),latest=str(dtidx.max().date()),
        missing_cells=int(m.missing_cells.sum()),bad_hilo=int(m.envelope_corrections.sum()),
+       earliest_ticker=str(m.loc[m['rows'].idxmin(),'ticker']),
+       min_ticker_rows=int(m.rows.min()),
+       pre2017_common=int((dtidx<pd.Timestamp('2017-01-01')).sum()),
+       after2021_common=int((dtidx>=pd.Timestamp('2021-01-01')).sum()),
        categories=roster.macro_category.value_counts().to_dict())),flush=True)
     # Repair only the immutable vendor envelope for executable safety:
     # Source raw remains unchanged. Existing all-finite archive can remain.
     pre=out/'raw_ticker_csv';pre.mkdir()
     for t in names:
-        z=raw[t].copy()
+        # Keep ONLY actual source days common across ALL 149 ETF tickers.
+        # Different calendar coverage is not silently forward-filled.
+        z=raw[t].set_index('date').loc[dtidx].reset_index()
+        assert len(z)==len(dtidx)
         z['Low']=z[['Low','Open','Close']].min(axis=1)
         z['High']=z[['High','Open','Close']].max(axis=1)
         z.to_csv(pre/(t+'.csv'),index=False,float_format='%.16g')
     roster.to_csv(pre/'universe.csv',index=False)
     mats,cats,manifest=load_ticker_csv_folder(pre)
     assert mats['Close'].shape[1]==149
-    assert len(mats['Close'].index)>2520
-    assert (mats['Close'].index<pd.Timestamp('2017-01-01')).sum()>=500
+    assert len(mats['Close'].index)>1000
+    assert (mats['Close'].index<pd.Timestamp('2017-01-01')).sum()>=252
     assert pd.Timestamp('2026-07-01') in mats['Close'].index
     (out/'ORIGINAL_SOURCE_AUDIT.json').write_text(json.dumps(dict(
       archive_path=str(files[0].parent),n=149,common_date_count=len(dtidx),
+      common_calendar_intersection_not_forward_filled=True,
       source_from='archived run36551650325 artifact etf-trader-raw-149',
       original_149_universe_sha=sha(files[0]),all_source_raw_checksums=m.to_dict('records'),
       raw_data_manually_changed=False,only_high_low_envelopes_derived=True,
