@@ -141,6 +141,12 @@ def create_labels_and_asof_features(roster,candidate,C,cal,eur):
         if len(eligible)==0:raise AssertionError("no previous price close")
         asof=eligible[-1]
         if (signal-asof).days>8:raise AssertionError("as-of close stale")
+        # Europe60 has a late starting common historical panel. Original
+        # H1 requires 126 PRE-signal joint closes. This is an as-of source
+        # eligibility test, not ex-post performance-based ticker selection.
+        if int(C.index.searchsorted(asof,side="right")) < 127:
+            print("EU60_SKIP_EARLY_WARMUP_INSUFFICIENT_PRIOR_126",block,str(signal.date()),flush=True)
+            continue
         start=pd.Timestamp(r.entry_date);stop=pd.Timestamp(r.exit_date)
         assert asof<=signal<start<stop
         market_start=eur.loc[start,list(REF)].to_numpy(float)
@@ -179,7 +185,8 @@ def create_labels_and_asof_features(roster,candidate,C,cal,eur):
         factor_z.append(z)
         factor_context.append(context)
     frame=pd.DataFrame(rows)
-    if (len(frame)!=60*len(cal) or frame.groupby("block").size().ne(60).any()
+    if (len(frame)!=60*frame.block.nunique() or
+        frame.block.nunique()<len(cal)-10 or frame.groupby("block").size().ne(60).any()
         or not np.isfinite(frame[list(INPUT)].to_numpy(float)).all()):
         raise AssertionError("EU60 panel incomplete")
     return frame,np.array(factor_z),np.array(factor_context)
@@ -433,7 +440,7 @@ def evaluate(args):
     result=dict(status="EUROPE60_ORIGINAL_F3_H1_H3_WALKFORWARD_AND_MATCHED_RH_COMPLETE",
         n_europeonly_EUR_candidate_etfs=60,
         n_annual_eu_source_RH_folds=10,
-        n_training_eu_months_total=len(cal),n_eval_months=len(testidx),
+        n_eu_calendar_months_total=len(cal),n_retained_asof_feature_label_blocks=frame.block.nunique(),n_eval_months=len(testidx),
         eval_begin=str(smallcal.signal_date.min().date()),
         eval_end=str(smallcal.exit_date.max().date()),
         daily_open_evaluations=len(table),
