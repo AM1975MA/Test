@@ -58,8 +58,7 @@ def run(dest):
         weights["INVERSE_BASKET_VOL63"].append(wRisk)
     window=days[ids[0]*K:(ids[-1]+1)*K+1]
     stats={};wealth={}
-    previous_sources={"F3":"B0_F3_FROZEN","H1":"H1_FACTOR_ONLY",
-                     "H3":"H3_COMBINED_Q","STATIC_F3_H1_50":"STATIC_F3_H1_50"}
+    previous_sources={x:x for x in ("F3","H1","H3","STATIC_F3_H1_50")}
     priorcsv=pd.read_csv(BASE/"EXPERTS_AND_REAL_COSTED_MIXTURES_DAILY.csv")
     for key in POLICIES:
         path,turn=trade_policy(weights[key],O,days,ids,list(roster.ticker))
