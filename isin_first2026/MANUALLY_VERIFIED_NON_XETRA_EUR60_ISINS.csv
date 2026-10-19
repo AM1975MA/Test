@@ -1,5 +1,5 @@
 ticker,isin,evidence_quality,xetra_reference_mnemonic,share_class_inception_date,evidence_url
-BBVAI.MC,ES0105336038,SECONDARY_PUBLIC_PROFILE,,,https://www.justetf.com/it/etf-profile.html?isin=ES0105336038
+BBVAI.MC,ES0105336038,REGULATOR_CNMV,,,https://www.cnmv.es/portal/Consultas/IIC/Fondo?isin=ES0105336038&lang=es
 C40.PA,LU1681046931,ISSUER_AMUNDI,GC40,2018-02-14,https://www.amundietf.com/pdfDocuments/monthly-factsheet/LU1681046931/ENG/GBR/INSTITUTIONNEL/ETF/20260430
 CSEMU.MI,IE00B53QG562,ISSUER_BLACKROCK,SXR7,,https://www.ishares.com/it/investitore-privato/it/prodotti/253729/ishares-msci-emu-ucits-etf
 CSEMUS.MI,IE00B3VWMM18,ISSUER_BLACKROCK,SXRJ,,https://www.ishares.com/it/investitore-privato/it/prodotti/253496/ishares-msci-emu-small-cap-ucits-etf
@@ -7,7 +7,7 @@ CSMIB.MI,IE00B53L4X51,ISSUER_BLACKROCK,SXRY,,https://www.blackrock.com/it/invest
 CSSX5E.MI,IE00B53L3W79,ISSUER_BLACKROCK,SXRT,,https://www.ishares.com/it/investitore-privato/it/prodotti/253712/ishares-euro-stoxx-50-b-ucits-etf-acc-fund
 CSX5.AS,IE00B53L3W79,ISSUER_BLACKROCK,SXRT,,https://www.ishares.com/it/investitore-privato/it/prodotti/253712/ishares-euro-stoxx-50-b-ucits-etf-acc-fund
 EPRE.MI,LU1681039480,ISSUER_AMUNDI,REAL,2018-01-31,https://www.amundietf.com/pdfDocuments/monthly-factsheet/LU1681039480/ENG/LUX/INSTITUTIONNEL/ETF/20260131
-HEU.PA,IE00B5BD5K76,SECONDARY_PUBLIC_PROFILE,H4ZE,,https://www.justetf.com/en-fr/etf-profile.html?isin=IE00B5BD5K76
+HEU.PA,IE00B5BD5K76,ISSUER_HSBC,H4ZE,,https://mena.assetmanagement.hsbc.com/en/institutional-investor/capabilities/-/media/files/attachments/common/etf/hsbc-etfs-plc-proxynotice-2025-egm-040725-fk-en.pdf
 IAEX.AS,IE00B0M62Y33,ISSUER_BLACKROCK,,,https://www.ishares.com/it/investitore-privato/it/prodotti/251712/ishares-aex-ucits-etf
 IBGM.AS,IE00B1FZS806,ISSUER_BLACKROCK,IBCM,,https://www.ishares.com/uk/professionals/en/products/251738/ishares-euro-government-bond-710yr-ucits-etf
 IBGM.MI,IE00B1FZS806,ISSUER_BLACKROCK,IBCM,,https://www.ishares.com/uk/professionals/en/products/251738/ishares-euro-government-bond-710yr-ucits-etf
