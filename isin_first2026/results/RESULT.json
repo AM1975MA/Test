@@ -1,6 +1,6 @@
 {
   "status": "XETRA_OFFICIAL_ISIN_FIRST_HISTORICAL_EU_ETF_QUOTE_BUILD",
-  "run_date_utc": "2026-10-19 18:51:56.384956+00:00",
+  "run_date_utc": "2026-10-19 18:56:01.799308+00:00",
   "official_reference": {
     "url": "https://www.cashmarket.deutsche-boerse.com/resource/blob/1528/a31c10e3183f4c5dd721f9c7f9eaaaea/data/t7-xetr-allTradableInstruments.csv",
     "market": "XETR",
@@ -10,33 +10,38 @@
     "source_SHA256": "1a720b75571fb3058061c8df14018bcf032654c7df50959ad2495fe0d19a859b"
   },
   "n_all_source_ticker_candidates": 100,
-  "identified_count": 78,
+  "identified_count": 100,
   "euro60_source_XETRA_official_matched": 38,
   "euro60_unresolved_or_nonXetra": 22,
+  "euro60_verified_other_venues": 19,
+  "euro60_verified_total_current_isins": 60,
   "identity_statuses": {
-    "UNRESOLVED_ISIN_NO_EVIDENCE": 22,
+    "SECONDARY_PROFILE_ONLY_UNCONFIRMED": 1,
+    "SAME_ISIN_CONFIRMED_BY_XETRA_AND_ISSUER": 19,
     "XETRA_2026_OFFICIAL": 39,
     "XETRA_2026_OFFICIAL_ISSUER_CROSSCHECK": 30,
-    "ISSUER_CATALOG_ONLY_NO_XETRA_MATCH": 9
+    "ISSUER_CATALOG_ONLY_NO_XETRA_MATCH": 11
   },
   "source_quality_classes": {
-    "UNRESOLVED_NO_DATA": 22,
+    "A_QUOTE_CLEAN": 46,
+    "QUARANTINE_PRECLASS_HISTORY": 2,
     "C_SPARSE_OR_STALE_YAHOO": 14,
-    "A_QUOTE_CLEAN": 30,
-    "B_QUOTE_REVIEW": 13,
+    "B_QUOTE_REVIEW": 17,
     "NOT_READY_2017_2026": 14,
     "BAD_SOURCE_BAR_RECORDS": 1,
     "UNRESOLVED": 6
   },
-  "with_parsed_yahoo_OHLCV": 72,
-  "unique_ISIN_with_any_quotes": 69,
-  "clean_A_B_one_per_ISIN": 43,
-  "exported_actual_market_quote_rows": 186459,
-  "duplicate_isin_with_at_least_two_venues": 3,
-  "venue_price_pair_tests": 3,
+  "knowingly_quarantined_pre2018_shareclass": 2,
+  "with_parsed_yahoo_OHLCV": 94,
+  "unique_ISIN_with_any_quotes": 75,
+  "clean_A_B_one_per_ISIN": 48,
+  "exported_actual_market_quote_rows": 205786,
+  "duplicate_isin_with_at_least_two_venues": 15,
+  "venue_price_pair_tests": 23,
   "issuer_domicile_prefixes_observed": {
     "DE": 21,
-    "IE": 16,
+    "ES": 1,
+    "IE": 20,
     "LU": 6
   },
   "no_justETF_automated_requests": true,
