@@ -146,6 +146,10 @@ def create_labels_and_asof_features(roster,candidate,C,cal,eur):
         # eligibility test, not ex-post performance-based ticker selection.
         if int(C.index.searchsorted(asof,side="right")) < 127:
             print("EU60_SKIP_EARLY_WARMUP_INSUFFICIENT_PRIOR_126",block,str(signal.date()),flush=True)
+            # Retain exact original MONTH INDEX for factor training and
+            # future asof contexts; these NaNs are NEVER fitted or predicted.
+            factor_z.append(np.full(10,np.nan))
+            factor_context.append(np.full(30,np.nan))
             continue
         start=pd.Timestamp(r.entry_date);stop=pd.Timestamp(r.exit_date)
         assert asof<=signal<start<stop
@@ -189,6 +193,7 @@ def create_labels_and_asof_features(roster,candidate,C,cal,eur):
         frame.block.nunique()<len(cal)-10 or frame.groupby("block").size().ne(60).any()
         or not np.isfinite(frame[list(INPUT)].to_numpy(float)).all()):
         raise AssertionError("EU60 panel incomplete")
+    assert len(factor_z)==len(cal) and len(factor_context)==len(cal)
     return frame,np.array(factor_z),np.array(factor_context)
 
 def qmodel(q):
@@ -210,7 +215,7 @@ def fit_predict(frame,Z,contexts,cal):
         assert len(usable)>=TRAIN_MIN and (last<=idx-2)
         assert (pd.to_datetime(past.maturity)<signal).all()
         now=frame[frame.block==idx].copy()
-        assert len(now)==60
+        assert len(now)==60 and np.isfinite(contexts[idx]).all()
         if models is None or j%3==0:
             trainx=past[list(COLUMNS)].to_numpy(float)
             trainfull=past[list(INPUT)].to_numpy(float)
@@ -218,6 +223,7 @@ def fit_predict(frame,Z,contexts,cal):
             r=past.clipped_future_idio_residual.to_numpy(float)
             F3={q:qmodel(q).fit(trainx,y) for q in QUANTILES}
             H2={q:qmodel(q).fit(trainfull,r) for q in QUANTILES}
+            assert np.isfinite(contexts[usable]).all() and np.isfinite(Z[usable]).all()
             sc=StandardScaler().fit(contexts[usable])
             h=Ridge(alpha=60.,fit_intercept=True).fit(
                 sc.transform(contexts[usable]),Z[usable])
