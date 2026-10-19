@@ -1,0 +1,343 @@
+{
+  "status": "EXACT149_BEST_TICKER_FORECAST_TOURNAMENT_COMPLETE",
+  "universe_size": 149,
+  "original149_roster_sha256": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "n_21day_eval_anchors": 64,
+  "first_eval_signal": "2021-02-02",
+  "last_eval_signal": "2026-05-11",
+  "training_label_maturity_verified": true,
+  "all_149_tickers_preserved": true,
+  "tested_models": [
+    "N0_MOMENTUM63",
+    "N1_REVERSAL5",
+    "N2_RIDGE_EXCESS",
+    "N3_NONLINEAR_EXCESS",
+    "N4_NONLINEAR_TOP15",
+    "N5_HIERARCHICAL_RESIDUAL"
+  ],
+  "weekly_feature_transforms_never_fitted_on_future": true,
+  "first_training_year": 2017,
+  "no_independent_holdout": true,
+  "each_future_topdecile_exactly_15": true,
+  "nonlinear_quarterly_training_updates": true,
+  "no_backtest_hyperparameter_tuning": true,
+  "fee_each_side": 0.001,
+  "metrics": {
+    "N0_MOMENTUM63": {
+      "economics": {
+        "cagr": -0.06218341280291573,
+        "terminal_wealth_multiple": 0.7093123102937898,
+        "max_daily_open_drawdown": -0.6430059855145218,
+        "daily_log_sharpe": -0.21715754894467715,
+        "daily_es5": -0.04646176956302203,
+        "fee_amount_initial_units": 0.05408473579690476,
+        "gross_turnover_notional_initial_units": 54.08473579690511
+      },
+      "mean_spearman": -0.025304589661579443,
+      "n_winner_in_predicted_top5": 8,
+      "precision_at10": 0.19375,
+      "mean_net_forward5_excess_vs_60_40": -0.013497348696962185,
+      "mean_net_forward1_excess_vs_60_40": 0.0004756519415600041,
+      "ndcg10": 0.23577392120621316,
+      "mean_number_of_distinct_categories_top5": 2.3125,
+      "average_selected_63d_vol": 0.021402162952301372,
+      "by_era": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.04942286532857089,
+          "precision10": 0.2057142857142857,
+          "selected5_excess_log": -0.022075525515547836,
+          "expected_future_best_hits": 4
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.003803674074444724,
+          "precision10": 0.1793103448275862,
+          "selected5_excess_log": -0.0031443766745312273,
+          "expected_future_best_hits": 4
+        }
+      },
+      "spearman_3anchor_ci": {
+        "mean": -0.025304589661579443,
+        "ci95": [
+          -0.0956707022640003,
+          0.04565261445181545
+        ],
+        "blocks": 64,
+        "positive_months": 26
+      }
+    },
+    "N1_REVERSAL5": {
+      "economics": {
+        "cagr": 0.0673530228663255,
+        "terminal_wealth_multiple": 1.4172336975022195,
+        "max_daily_open_drawdown": -0.4273832259013398,
+        "daily_log_sharpe": 0.2612575972745668,
+        "daily_es5": -0.03609874945865675,
+        "fee_amount_initial_units": 0.11726983394407564,
+        "gross_turnover_notional_initial_units": 117.26983394407645
+      },
+      "mean_spearman": 0.03424498597093271,
+      "n_winner_in_predicted_top5": 6,
+      "precision_at10": 0.1953125,
+      "mean_net_forward5_excess_vs_60_40": -0.0024322984249649246,
+      "mean_net_forward1_excess_vs_60_40": -0.017451651523096155,
+      "ndcg10": 0.2348037484409779,
+      "mean_number_of_distinct_categories_top5": 2.390625,
+      "average_selected_63d_vol": 0.020547559210678048,
+      "by_era": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": 0.049017119238570946,
+          "precision10": 0.21142857142857144,
+          "selected5_excess_log": -0.00856972819543846,
+          "expected_future_best_hits": 4
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.016416549268610695,
+          "precision10": 0.17586206896551726,
+          "selected5_excess_log": 0.004974944401468651,
+          "expected_future_best_hits": 2
+        }
+      },
+      "spearman_3anchor_ci": {
+        "mean": 0.03424498597093271,
+        "ci95": [
+          -0.026202497169394472,
+          0.10297250480811457
+        ],
+        "blocks": 64,
+        "positive_months": 34
+      }
+    },
+    "N2_RIDGE_EXCESS": {
+      "economics": {
+        "cagr": 0.07027301225069116,
+        "terminal_wealth_multiple": 1.4380994089479333,
+        "max_daily_open_drawdown": -0.43186925384132446,
+        "daily_log_sharpe": 0.2465520976816401,
+        "daily_es5": -0.04018796173444922,
+        "fee_amount_initial_units": 0.09813900964183819,
+        "gross_turnover_notional_initial_units": 98.13900964183792
+      },
+      "mean_spearman": 0.06318392172639908,
+      "n_winner_in_predicted_top5": 6,
+      "precision_at10": 0.19375,
+      "mean_net_forward5_excess_vs_60_40": -0.002894497375811747,
+      "mean_net_forward1_excess_vs_60_40": -0.02088173955494653,
+      "ndcg10": 0.23597732975168456,
+      "mean_number_of_distinct_categories_top5": 2.109375,
+      "average_selected_63d_vol": 0.024252661270218752,
+      "by_era": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": 0.038222328887921236,
+          "precision10": 0.1942857142857143,
+          "selected5_excess_log": -0.009970165750795911,
+          "expected_future_best_hits": 4
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.09330998204869993,
+          "precision10": 0.19310344827586207,
+          "selected5_excess_log": 0.005645102387100182,
+          "expected_future_best_hits": 2
+        }
+      },
+      "spearman_3anchor_ci": {
+        "mean": 0.06318392172639908,
+        "ci95": [
+          0.004881039701614369,
+          0.12417233831412298
+        ],
+        "blocks": 64,
+        "positive_months": 35
+      }
+    },
+    "N3_NONLINEAR_EXCESS": {
+      "economics": {
+        "cagr": -0.020116765836558193,
+        "terminal_wealth_multiple": 0.89698413848262,
+        "max_daily_open_drawdown": -0.516392975128179,
+        "daily_log_sharpe": -0.07715779671806733,
+        "daily_es5": -0.03970902030703055,
+        "fee_amount_initial_units": 0.0773469506595571,
+        "gross_turnover_notional_initial_units": 77.3469506595574
+      },
+      "mean_spearman": 0.052227008260384795,
+      "n_winner_in_predicted_top5": 6,
+      "precision_at10": 0.16562500000000002,
+      "mean_net_forward5_excess_vs_60_40": -0.009410078950467622,
+      "mean_net_forward1_excess_vs_60_40": -0.02102693690216601,
+      "ndcg10": 0.20452918980421314,
+      "mean_number_of_distinct_categories_top5": 2.390625,
+      "average_selected_63d_vol": 0.019891190779665325,
+      "by_era": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": 0.06522028329326644,
+          "precision10": 0.16571428571428573,
+          "selected5_excess_log": -0.02087412693873815,
+          "expected_future_best_hits": 3
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.036545469427596594,
+          "precision10": 0.16551724137931034,
+          "selected5_excess_log": 0.00442584103537612,
+          "expected_future_best_hits": 3
+        }
+      },
+      "spearman_3anchor_ci": {
+        "mean": 0.052227008260384795,
+        "ci95": [
+          -0.004370444761878072,
+          0.10686178449062851
+        ],
+        "blocks": 64,
+        "positive_months": 35
+      }
+    },
+    "N4_NONLINEAR_TOP15": {
+      "economics": {
+        "cagr": 0.16695968895271163,
+        "terminal_wealth_multiple": 2.284192787443914,
+        "max_daily_open_drawdown": -0.3400723287428331,
+        "daily_log_sharpe": 0.49870602888452226,
+        "daily_es5": -0.04534396597703554,
+        "fee_amount_initial_units": 0.07745746369203566,
+        "gross_turnover_notional_initial_units": 77.45746369203552
+      },
+      "mean_spearman": -0.016543056869475416,
+      "n_winner_in_predicted_top5": 19,
+      "precision_at10": 0.2453125,
+      "mean_net_forward5_excess_vs_60_40": 0.003114127390989585,
+      "mean_net_forward1_excess_vs_60_40": -0.0012018165256931553,
+      "ndcg10": 0.2862501668068146,
+      "mean_number_of_distinct_categories_top5": 1.921875,
+      "average_selected_63d_vol": 0.02579061596666561,
+      "by_era": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.04077514295417694,
+          "precision10": 0.2057142857142857,
+          "selected5_excess_log": -0.013046631318880378,
+          "expected_future_best_hits": 5
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": 0.012702564267233329,
+          "precision10": 0.29310344827586204,
+          "selected5_excess_log": 0.022618491351177474,
+          "expected_future_best_hits": 14
+        }
+      },
+      "spearman_3anchor_ci": {
+        "mean": -0.016543056869475416,
+        "ci95": [
+          -0.05600469375211402,
+          0.02554501141933881
+        ],
+        "blocks": 64,
+        "positive_months": 32
+      }
+    },
+    "N5_HIERARCHICAL_RESIDUAL": {
+      "economics": {
+        "cagr": 0.031974579370876555,
+        "terminal_wealth_multiple": 1.1833844888080753,
+        "max_daily_open_drawdown": -0.3595296168464812,
+        "daily_log_sharpe": 0.1451864289731489,
+        "daily_es5": -0.03303454151112778,
+        "fee_amount_initial_units": 0.1006853601404265,
+        "gross_turnover_notional_initial_units": 100.68536014042621
+      },
+      "mean_spearman": -0.034117877375202624,
+      "n_winner_in_predicted_top5": 5,
+      "precision_at10": 0.109375,
+      "mean_net_forward5_excess_vs_60_40": -0.0041552904778094585,
+      "mean_net_forward1_excess_vs_60_40": -0.0023739673916068943,
+      "ndcg10": 0.16392130523768972,
+      "mean_number_of_distinct_categories_top5": 1.890625,
+      "average_selected_63d_vol": 0.0170580955153909,
+      "by_era": {
+        "2021_2023": {
+          "n": 35,
+          "spearman": -0.03247471643672096,
+          "precision10": 0.12000000000000001,
+          "selected5_excess_log": -0.006730299822128486,
+          "expected_future_best_hits": 2
+        },
+        "2024_2026": {
+          "n": 29,
+          "spearman": -0.03610100264578395,
+          "precision10": 0.09655172413793103,
+          "selected5_excess_log": -0.0010475205794933907,
+          "expected_future_best_hits": 3
+        }
+      },
+      "spearman_3anchor_ci": {
+        "mean": -0.034117877375202624,
+        "ci95": [
+          -0.08715622580872799,
+          0.019709464170419824
+        ],
+        "blocks": 64,
+        "positive_months": 29
+      }
+    }
+  },
+  "passive": {
+    "SPY_BUY_HOLD": {
+      "cagr": 0.14327990924898115,
+      "terminal_wealth_multiple": 2.0469268731140096,
+      "max_daily_open_drawdown": -0.2628581165528918,
+      "daily_log_sharpe": 0.7904260046203303,
+      "daily_es5": -0.02498817590064092,
+      "fee_amount_initial_units": 0.0009990009990008542,
+      "gross_turnover_notional_initial_units": 0.9990009990009991
+    },
+    "6040_SPY_AGG_NO_REBALANCE": {
+      "cagr": 0.09491000858718546,
+      "terminal_wealth_multiple": 1.6242958840292216,
+      "max_daily_open_drawdown": -0.22712921657157303,
+      "daily_log_sharpe": 0.7589172807457214,
+      "daily_es5": -0.017385065870212997,
+      "fee_amount_initial_units": 0.0009990009990009992,
+      "gross_turnover_notional_initial_units": 1.0
+    }
+  },
+  "classifier_calibration": {
+    "N4_NONLINEAR_TOP15": {
+      "brier": 0.08559515460057733,
+      "log_loss": 0.2996515189735496,
+      "avg_p": 0.10488383553578128,
+      "actual_rate": 0.10067114093959731
+    },
+    "null_top15_probability": {
+      "brier": 0.09053646232151705,
+      "log_loss": 0.3265551233283096,
+      "avg_p": 0.1006711409395973,
+      "actual_rate": 0.10067114093959731
+    }
+  },
+  "candidate_economic_and_statistical_gates": {
+    "N0_MOMENTUM63": false,
+    "N1_REVERSAL5": false,
+    "N2_RIDGE_EXCESS": false,
+    "N3_NONLINEAR_EXCESS": false,
+    "N4_NONLINEAR_TOP15": false,
+    "N5_HIERARCHICAL_RESIDUAL": false
+  },
+  "no_leverage_or_hindsight_or_concentration_tuning": true,
+  "guaranteed_30pct_CAGR": false,
+  "comments": [
+    "30 percent annual CAGR is an aspiration, not supported a priori",
+    "Deep cross-sectional data dependence: 149 ETF labels do NOT provide 149 independent time trials",
+    "149 survivor universe and Yahoo adjusted opens not point-in-time investable, reused 2017-26 sample",
+    "NDCG@10 and top15 selection are research diagnostics, not investable expected utilities",
+    "No EUR conversion, broker spreads, taxes, actual volumes or transaction impact",
+    "Successful results only developmental, need independent new vintages and untouched prospective dates"
+  ]
+}
