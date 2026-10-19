@@ -176,7 +176,6 @@ def run(raw,output):
     md=pd.DataFrame(measures)
     md.to_csv(output/"MONTHLY_SCORE_SKILL_AND_SUBSEQUENT_RETURNS.csv",index=False)
     pd.DataFrame(results).to_csv(output/"ABLATION_SAME_1374_SOURCE_SIMULATOR.csv",index=False)
-    f3=pd.read_csv(ROOT/"isin_first2026/refit48/results/RESULT.json",typ="series")
     summary=dict(status="AUDITED_REAL_V2_SOURCE_48_PERFORMANCE_DECOMPOSITION",
       month_count=len(md),trading_days=len(ds),
       all_48_ticker_price_original_close_and_open_unchanged=True,
