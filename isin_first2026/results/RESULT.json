@@ -1,0 +1,58 @@
+{
+  "status": "XETRA_OFFICIAL_ISIN_FIRST_HISTORICAL_EU_ETF_QUOTE_BUILD",
+  "run_date_utc": "2026-10-19 18:51:56.384956+00:00",
+  "official_reference": {
+    "url": "https://www.cashmarket.deutsche-boerse.com/resource/blob/1528/a31c10e3183f4c5dd721f9c7f9eaaaea/data/t7-xetr-allTradableInstruments.csv",
+    "market": "XETR",
+    "last_update": "Date Last Update:;19.10.2026",
+    "records": 5516,
+    "invalid_isins": 0,
+    "source_SHA256": "1a720b75571fb3058061c8df14018bcf032654c7df50959ad2495fe0d19a859b"
+  },
+  "n_all_source_ticker_candidates": 100,
+  "identified_count": 78,
+  "euro60_source_XETRA_official_matched": 38,
+  "euro60_unresolved_or_nonXetra": 22,
+  "identity_statuses": {
+    "UNRESOLVED_ISIN_NO_EVIDENCE": 22,
+    "XETRA_2026_OFFICIAL": 39,
+    "XETRA_2026_OFFICIAL_ISSUER_CROSSCHECK": 30,
+    "ISSUER_CATALOG_ONLY_NO_XETRA_MATCH": 9
+  },
+  "source_quality_classes": {
+    "UNRESOLVED_NO_DATA": 22,
+    "C_SPARSE_OR_STALE_YAHOO": 14,
+    "A_QUOTE_CLEAN": 30,
+    "B_QUOTE_REVIEW": 13,
+    "NOT_READY_2017_2026": 14,
+    "BAD_SOURCE_BAR_RECORDS": 1,
+    "UNRESOLVED": 6
+  },
+  "with_parsed_yahoo_OHLCV": 72,
+  "unique_ISIN_with_any_quotes": 69,
+  "clean_A_B_one_per_ISIN": 43,
+  "exported_actual_market_quote_rows": 186459,
+  "duplicate_isin_with_at_least_two_venues": 3,
+  "venue_price_pair_tests": 3,
+  "issuer_domicile_prefixes_observed": {
+    "DE": 21,
+    "IE": 16,
+    "LU": 6
+  },
+  "no_justETF_automated_requests": true,
+  "no_source_data_synthetic_NAV_used": true,
+  "pseudo_independent_venues_share_yahoo_vintage": true,
+  "original_eu120_contributed_low_trust_price_source": true,
+  "licensed_as_of_2017_fund_universe_not_proven": true,
+  "not_a_trade_execution_or_model_signal_certification": true,
+  "source_notes": [
+    "Deutsche Boerse official 19-Oct-2026 ISIN mnemonic currency ETF mapping, not 2017 historical listing membership",
+    "Data from already-archived original Yahoo vendor sources (raw-to-adjusted OHLC) and legacy EU120 sanitized price bars",
+    "Yahoo vol=0 can be vendor reporting gap and Open is not executable without quoted spread/venue proof",
+    "One ISIN may have many currency/venue ticker lines; one per ISIN selected for exploratory quality after 2026",
+    "Venue return correlations validate agreement in value, do not produce actual independent second price VENDOR",
+    "No justETF website scraping, no undocumented justETF performance API access",
+    "Non-Xetra EUR60 tickers without issuer-backed legal IDs intentionally stay unmatched",
+    "No ex-post ETF Trader F3 H1 retraining; development roster date biases remain."
+  ]
+}
