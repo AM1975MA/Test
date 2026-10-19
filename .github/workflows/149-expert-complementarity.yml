@@ -1,0 +1,78 @@
+name: ETF149_F3_H1_H3_COMPLEMENTARITY_AND_CAUSAL_REGIME_META
+on:
+  push:
+    branches:
+      - research/149-complementarity-regime-meta-20261019
+    paths:
+      - 'research_reset/predict149/complementarity/PREREGISTERED.md'
+      - 'research_reset/predict149/complementarity/run.py'
+      - 'research_reset/predict149/complementarity/test_run.py'
+      - '.github/workflows/149-expert-complementarity.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  scientific-expert-complementarity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Deterministic numerics
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/complementarity/run.py research_reset/predict149/complementarity/test_run.py
+      - name: Validate causal next-open capital and past-only expert meta gate
+        run: |
+          python -m unittest -v research_reset.predict149.complementarity.test_run
+      - name: Trace original149 frozen model selection to costed share-level mixtures and causal regimes
+        run: |
+          python -m research_reset.predict149.complementarity.run --out _T149I
+      - name: Forensic 3-expert exact daily replay and future outcome embargo
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("_T149I/RESULT.json").read_text())
+          assert d["status"]=="EXACT149_F3_H1_H3_COMPLEMENTARITY_CAUSAL_REGIMES_TESTED"
+          assert d["n_original_etfs"]==149 and d["n_eval_blocks"]==64
+          assert d["n_daily_open_observations"]==1345
+          assert all(x<1e-9 for x in d["replay_max_abs_error"].values())
+          assert d["all_meta_labels_strictly_matured_before_signal"]
+          assert d["last_known_finished_meta_block_lag"]==2
+          assert d["combined_portfolio_uses_actual_weighted_ETF_shares_and_bilateral_fees"]
+          assert d["noncausal_oracle_is_DIAGNOSTIC_NOT_INVESTABLE"]
+          assert len(d["portfolio_results"])==10
+          print("T149I_REGIME_GATES",d["causal_regime_statistical_gates"])
+          print("T149I_STATIC_RISK_GATE",d["preregistered_static_50_robust_diversification_gate"])
+          PY
+      - name: Archive original 149 date-level regimes every trading share path and hashes
+        run: |
+          mkdir -p research_reset/predict149/complementarity/results
+          cp _T149I/*.json _T149I/*.csv research_reset/predict149/complementarity/results/
+          (cd research_reset/predict149/complementarity/results && sha256sum *.json *.csv > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/complementarity/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-ComplementaryExperts-Research"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/complementarity/results
+          git commit -m "Archive exact original149 expert overlap factors regimes and true next-open cash-funded static versus embargoed online switching evidence"
+          git push origin HEAD:refs/heads/research/149-complementarity-regime-meta-20261019
+      - name: Always retain portfolio and meta-outcome logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original149-f3-h1-h3-complementarity-with-asof-meta-policy
+          retention-days: 90
+          path: |
+            _T149I/*.csv
+            _T149I/*.json
