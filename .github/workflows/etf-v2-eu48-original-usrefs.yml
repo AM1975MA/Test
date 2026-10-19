@@ -1,0 +1,109 @@
+name: ETF_TRAINER_V2_48_UNRESTRICTED_ORIGINAL_US_SPY_HYG_IEF_BIL_SHV_FULL_RETRAIN
+on:
+  push:
+    branches:
+      - research/etf-v2-eu48-original-us-references-20261019
+    paths:
+      - '.github/workflows/etf-v2-eu48-original-usrefs.yml'
+      - 'isin_first2026/v2_usref48/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+  ETF_TRADER_XGB_WORKERS: '2'
+  ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+jobs:
+  unrestricted-48-us-spy-original-risk-and-cash-source-true-full-retrain:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 115
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Pin original source-model dependencies and check code compilation
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'numba==0.63.1' 'pyarrow==23.0.1' 'matplotlib==3.10.8'
+          python -m py_compile isin_first2026/v2_usref48/*.py
+      - name: Restore exact raw SPY HYG IEF BIL SHV US149 market history unchanged
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _US149_SOURCE
+          for t in SPY HYG IEF BIL SHV; do
+            test -f "_US149_SOURCE/etf_trader_raw/$t.csv"
+          done
+      - name: Produce exactly the same 48 distinct European ISIN venue OHLC input
+        run: |
+          python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_PREP
+          python - <<'PY'
+          import json
+          a=json.load(open("_EU48_PREP/RESULT.json"))
+          assert a["n_unique_isin"]==48
+          assert a["shared_EU48_original_quote_sessions"]==2746
+          assert a["shared_EU48_pre2017_sessions"]>=252
+          PY
+      - name: Restore USD-original source risk anchors with causal calendar and EURUSD FX for optional USD defensives
+        run: |
+          python -m isin_first2026.v2_usref48.original_us_references --us _US149_SOURCE --eu-prep _EU48_PREP --fx europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv --out _USREFS
+      - name: Genuine source-only Titanium annual retrain with SPY USD reference market factor and Europe 48 investible targets
+        run: |
+          python -u -m isin_first2026.v2_usref48.train_tit --data _EU48_PREP/raw_ticker_csv --usrefs _USREFS/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv --out _US_TIT
+      - name: Genuine MA3 Hybrid24 model refit then 5 paired simulations for US signal vs EU signal and original cash treatment
+        run: |
+          python -u -m isin_first2026.v2_usref48.run --prep _EU48_PREP --tit _US_TIT --us-reference _USREFS --out _USREF_EU48_COMPARE
+      - name: Strict previous EU V2 NAV parity 48 unique ISIN only no lookahead 65 months and SHA
+        run: |
+          python - <<'PY'
+          import json,hashlib,pandas as pd
+          from pathlib import Path
+          p=Path("_USREF_EU48_COMPARE")
+          j=json.loads((p/"RESULT.json").read_text())
+          assert j["status"]=="REAL_EU48_ETF_V2_US_ORIGINAL_SPY_HYG_IEF_US_BIL_SHV_REFERENCES_COMPLETE"
+          assert j["n_europe_unique_isin_eligible"]==48 and j["n_US_ETFs_eligible_as_Top1_Top2"]==0
+          assert j["periods"]==65 and j["observed_EU_open_days"]==1374
+          assert j["original_unchanged_V2_previous_test_exactly_reproduced"]
+          assert j["genuine_new_annual_models_US_SPY_Titanium_MA3"]
+          assert j["USA_market_reference_USD_prior_asof_causal"]
+          a=pd.read_csv(p/"ALL_SCENARIOS_TRUE_EU48_65_MONTH_POSITION_CHANGES.csv")
+          assert a.groupby("case").size().eq(65).all() and a.case.nunique()==5
+          a=pd.read_csv(p/"DAILY_NAV_ORIGINAL_US_SPY_HYG_IEF_AND_DEFENSE_COMPARISON.csv")
+          assert len(a)==1374 and a.notna().all(axis=None)
+          for l in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+            digest,name=l.split("  ",1)
+            assert hashlib.sha256((p/name).read_bytes()).hexdigest()==digest
+          print("EU48_ORIGINAL_US_REF_RERUN_COMPLETE",json.dumps(j),flush=True)
+          PY
+      - name: Persist final test artifacts and pre-registered original US quote reference evidence in Test branch only
+        run: |
+          mkdir -p isin_first2026/v2_usref48/results
+          cp -a _USREF_EU48_COMPARE/. isin_first2026/v2_usref48/results/
+          cp _USREFS/SOURCE_REFERENCE_AUDIT.json isin_first2026/v2_usref48/results/REFERENCE_ASOF_AUDIT.json
+          cp _EU48_PREP/RESULT.json isin_first2026/v2_usref48/results/PREPARATION_EU48_AUDIT.json
+          cp _US_TIT/MANIFEST.json isin_first2026/v2_usref48/results/TITANIUM_US_SPY_RETRAIN_AUDIT.json
+          git config user.name "EU48-ETFTRADER-V2-ORIGINAL-US-SPY-REFERENCES"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/v2_usref48/results
+          git commit -m "Archive genuine EU48 ETF Trainer V2 USD SPY HYG IEF refit and paired US BIL SHV EUR-defense simulations"
+          git pull --rebase origin research/etf-v2-eu48-original-us-references-20261019
+          git push origin HEAD:refs/heads/research/etf-v2-eu48-original-us-references-20261019
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: EUR48-ETF-Trader-V2-Original-US-market-reference-five-scenarios
+          retention-days: 90
+          path: |
+            _USREF_EU48_COMPARE/RESULT.json
+            _USREF_EU48_COMPARE/*.csv
+            _USREFS/SOURCE_REFERENCE_AUDIT.json
+            _EU48_PREP/RESULT.json
+            _US_TIT/MANIFEST.json
