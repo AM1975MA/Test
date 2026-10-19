@@ -129,6 +129,8 @@ def evaluate():
     best_by_anchor={
         int(b):df[df.block==b].sort_values("future_log",ascending=False).ticker.iloc[0]
         for b in ids}
+    top15_by_anchor={int(b):set(df[(df.block==b)&(df.top15==1)].ticker)
+                     for b in ids}
     checks=[]
     compare={}
     basepicks=samples["N4_NONLINEAR_TOP15"]
@@ -138,9 +140,8 @@ def evaluate():
             seq,volerr=trial_surrogates(basepicks,current,vol,cat,members,kind,rng)
             outcome,_=portfolio(seq,ids,opens,names,days)
             hit=int(sum(best_by_anchor[b] in seq[k] for k,b in enumerate(ids)))
-            p10_ratio=float(np.mean([sum(ticker in set(
-                df[(df.block==b)&(df.top15==1)].ticker) for ticker in seq[k])/5
-                for k,b in enumerate(ids)]))
+            p10_ratio=float(np.mean([sum(ticker in top15_by_anchor[b]
+                for ticker in seq[k])/5 for k,b in enumerate(ids)]))
             checks.append(dict(placebo_kind=kind,trial=j,
                  future_absolute_winner_hits=hit,
                  precision_top5=p10_ratio,
