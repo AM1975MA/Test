@@ -1,0 +1,74 @@
+name: JUSTETF_PUBLIC_ISIN5_TO_YFINANCE_ACTUAL_EURO_HISTORIES
+on:
+  push:
+    branches:
+      - research/justetf-isin5-yfinance-20261019
+    paths:
+      - ".github/workflows/isin5-justetf-yfinance.yml"
+      - "isin_first2026/five_isin_yfinance/**"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  actual-free-yahoo-bars-by-isins:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Reproducible free market source dependencies
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'yfinance==0.2.65'
+          python -m py_compile isin_first2026/five_isin_yfinance/run.py
+      - name: Verify precommitted identities and Europe-only global exclusions
+        run: |
+          python - <<'PY'
+          import pandas as pd
+          from isin_first2026.build import check_isin
+          d=pd.read_csv("isin_first2026/five_isin_yfinance/CATALOG.csv")
+          assert len(d)==16 and d.isin.nunique()==5
+          assert d.isin.map(check_isin).all()
+          assert d.groupby("isin").underlying_geo.nunique().eq(1).all()
+          assert set(d.loc[d.underlying_geo=="GLOBAL_EXCLUDE","isin"])=={
+            "LU1900066033","NL0011683594"}
+          assert set(d.loc[d.underlying_geo=="EUROPE_ONLY","isin"])=={
+            "LU1681042518","LU1834987973","IE00B5MTXJ97"}
+          PY
+      - name: Fetch exact Xetra legal ISIN & all 16 free Yahoo raw OHLCV ticker alternatives
+        run: |
+          python -m isin_first2026.five_isin_yfinance.run --out _ISIN5YAHOO
+      - name: Verify independent SHA fingerprints and fixed five ISINs
+        run: |
+          python - <<'PY'
+          import pathlib,json,hashlib,pandas as pd
+          p=pathlib.Path("_ISIN5YAHOO")
+          a=pd.read_csv(p/"TICKER_BY_ISIN_CURRENCY_HISTORY_QUALITY.csv")
+          v=json.loads((p/"RESULT.json").read_text())
+          assert len(a)==16 and a.isin.nunique()==5
+          assert v["no_automated_justETF_scraping"]
+          assert v["source_xetra"]["records"]>5000
+          assert v["ticker_candidates"]==16
+          for item in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+             h,path=item.split("  ",1)
+             assert hashlib.sha256((p/path).read_bytes()).hexdigest()==h
+          print("ISIN5_YAHOO_VERIFIED_DOWNLOAD_SUMMARY",json.dumps(v),flush=True)
+          PY
+      - name: Preserve every raw or adjusted venue history and scientific status, successes and failures
+        run: |
+          mkdir -p isin_first2026/five_isin_yfinance/results
+          cp -a _ISIN5YAHOO/. isin_first2026/five_isin_yfinance/results/
+          git config user.name "ISIN5-HISTORY-PROVENANCE"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/five_isin_yfinance/results/
+          git commit -m "Archive public justETF identified five ISIN to actual yfinance multiple-venue historical raw and adjusted quotes"
+          git push origin HEAD:refs/heads/research/justetf-isin5-yfinance-20261019
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: JUSTETF_ISIN5_REAL_YFINANCE_OHLCV_SOURCE
+          retention-days: 90
+          path: _ISIN5YAHOO/
