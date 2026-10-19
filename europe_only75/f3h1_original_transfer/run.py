@@ -87,10 +87,51 @@ def betas(C,names,asof):
     assert len(context)==30 and len(eps)==2
     return beta,np.column_stack(eps),np.array(context,float)
 
+
+def original_feature_formulas_for_60(C,roster):
+    """Exact original149 19 maths, with 60 portfolio names distinguished from
+    11 explanatory nontradeable factor proxies (the 149 helper assumed otherwise).
+    """
+    names=list(roster.ticker)
+    log=np.log(C.where(C>0))
+    ret=log.diff()
+    r={w:log-log.shift(w) for w in (5,21,63,126)}
+    vol={w:ret.rolling(w,min_periods=w).std() for w in (21,63,126)}
+    draw={w:log-log.rolling(w,min_periods=w).max() for w in (63,126)}
+    down=ret.clip(upper=0).pow(2).rolling(63,min_periods=63).mean().pow(.5)
+    sp=ret["SPY"]
+    beta=ret.rolling(126,min_periods=126).cov(sp).div(
+         sp.rolling(126,min_periods=126).var(),axis=0)
+    groups=roster.set_index("ticker").macro_category.to_dict()
+    factors={}
+    pct=pd.DataFrame(index=C.index,columns=names,dtype=float)
+    for w in (21,63):
+        f=pd.DataFrame(index=C.index,columns=names,dtype=float)
+        for group in sorted(set(groups.values())):
+            mem=[t for t in names if groups[t]==group]
+            f.loc[:,mem]=np.repeat(r[w][mem].mean(axis=1).to_numpy()[:,None],
+                                   len(mem),axis=1)
+            if w==63:pct.loc[:,mem]=r[w][mem].rank(axis=1,pct=True)
+        factors[w]=f.astype(float)
+    d={
+      "r5":r[5],"r21":r[21],"r63":r[63],"r126":r[126],
+      "v21":vol[21],"v63":vol[63],"v126":vol[126],
+      "down63":down,"draw63":draw[63],"draw126":draw[126],
+      "beta126":beta,
+      "res21":r[21][names]-factors[21],
+      "res63":r[63][names]-factors[63],
+      "grp21":factors[21],"grp63":factors[63],
+      "volshock":vol[21]/vol[63].clip(lower=1e-5),
+      "accel":r[5]-r[21]/4.2,
+      "rank63":pct,
+      "trendrisk":(r[21]+r[63]/3)/(vol[63].clip(lower=.001)*math.sqrt(21))}
+    assert tuple(d)==FEATS and len(d)==19
+    return d,groups
+
 def create_labels_and_asof_features(roster,candidate,C,cal,eur):
     """Historical 113 monthly blocks with actual labels only for later matured fit."""
     names=list(roster.ticker)
-    fs,groups=precompute(C,roster)
+    fs,groups=original_feature_formulas_for_60(C,roster)
     category={x:i for i,x in enumerate(sorted(set(roster.macro_category)))}
     assert len(category)==6
     rows=[];factor_z=[];factor_context=[]
