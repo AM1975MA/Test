@@ -1,0 +1,98 @@
+name: US149_UNRESTRICTED_ADAPT4_ORIGINAL_ETFTRADER_V2_FULL_SOURCE_RETRAIN
+on:
+  push:
+    branches:
+      - research/us149-adapt4-unrestricted-20261020
+    paths:
+      - '.github/workflows/us149-adapt4-unrestricted-full.yml'
+      - 'research_reset/us149_adapt4_free/run.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+  ETF_TRADER_XGB_WORKERS: '2'
+  ETF_TRADER_XGB_THREADS_PER_WORKER: '1'
+jobs:
+  original-149-all-free-2021-to-2026:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned original source Titanium Hybrid24 forecast dependencies
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'numba==0.63.1' 'pyarrow==23.0.1' 'matplotlib==3.10.8'
+          python -m py_compile research_reset/us149_adapt4_free/run.py
+      - name: Restore immutable original 149 American OHLC archive not Yahoo live
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _US149_RAW_ORIGINAL
+          test -f _US149_RAW_ORIGINAL/etf_trader_raw/universe.csv
+      - name: Original-source full real Titanium 149 fit and original eight cluster MA3 refit, causal ADAPT4 ranking and V2 one free 149 portfolio
+        run: |
+          python -u -m research_reset.us149_adapt4_free.run --raw _US149_RAW_ORIGINAL --out _US149_ADAPT4_RESULT
+      - name: Hard verification one unrestricted 149 ETF candidate set and four exact ADAPT4 causal source components
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,pandas as pd
+          p=Path("_US149_ADAPT4_RESULT")
+          z=json.loads((p/"RESULT.json").read_text())
+          assert z["status"]=="US149_ORIGINAL_SOURCE_ADAPT4_149_UNRESTRICTED_REAL_RETRAIN_COMPLETE"
+          assert z["n_eligible_american_etfs"]==149 and z["n_baskets"]==1
+          assert z["never_500_balanced_baskets"] and z["sector_membership_not_used_to_limit_trading"]
+          assert z["n_months"]==65 and z["original_US149_Titanium_MA3_retrained_actual_source"]
+          assert z["rolling_expert_reward_lookback_months"]==12
+          assert z["expert_weight_floor_each"]==.10
+          assert z["softmax_temperature"]==4.
+          positions=pd.read_csv(p/"ORIGINAL_SOURCE_US149_65_MONTH_ONE_FREE_UNIVERSE_LEADERS.csv")
+          assert positions.groupby("model").size().eq(65).all()
+          assert positions.groupby("model").first.isna().sum()==0
+          a=pd.read_csv(p/"ADAPT4_MONTHLY_LEARNED_WEIGHTS_PREVIOUS12_ONLY.csv")
+          assert len(a)==65 and a.filter(regex="^weight_").sum(axis=1).sub(1).abs().max()<1e-10
+          forecast=pd.read_csv(p/"ADAPT4_ALL_149_FREE_RANK_SCORES.csv")
+          assert len(forecast)==65 and len(forecast.columns)==150
+          equity=pd.read_csv(p/"ORIGINAL_SOURCE_V2_US149_ONE_FREE_UNIVERSE_DAILY_NAV.csv")
+          assert len(equity)>1200
+          assert equity.notna().all(axis=None)
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+             sha,fn=line.split("  ",1)
+             assert hashlib.sha256((p/fn).read_bytes()).hexdigest()==sha
+          print("US149_SINGLE_FREE_ADAPT4_FINAL_AUDITED",json.dumps(z),flush=True)
+          PY
+      - name: Archive immutable sources and evidence on only Test private research branch
+        run: |
+          mkdir -p research_reset/us149_adapt4_free/results
+          cp _US149_ADAPT4_RESULT/RESULT.json research_reset/us149_adapt4_free/results/
+          cp _US149_ADAPT4_RESULT/*.csv research_reset/us149_adapt4_free/results/
+          cp _US149_ADAPT4_RESULT/SHA256_MANIFEST.txt research_reset/us149_adapt4_free/results/
+          cp _US149_ADAPT4_RESULT/SOURCE_ORIGINAL_US149/ORIGINAL_SOURCE_AUDIT.json research_reset/us149_adapt4_free/results/
+          cp _US149_ADAPT4_RESULT/TITANIUM_TRUE_SOURCE/MANIFEST.json research_reset/us149_adapt4_free/results/TITANIUM_RETRAIN_AUDIT.json
+          git config user.name "US149_ADAPT4_ONE_FREE_CANDIDATE_SOURCE"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/us149_adapt4_free/results
+          git commit -m "Archive 149 ETF original-source ADAPT4 single unconstrained portfolio, real 2021-26 full Titanium MA3 refits, rank skill V2 NAV and SHA provenance"
+          git pull --rebase origin research/us149-adapt4-unrestricted-20261020
+          git push origin HEAD:refs/heads/research/us149-adapt4-unrestricted-20261020
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: US149_ADAPT4_One_Fully_Unrestricted_Forecast_And_V2
+          retention-days: 90
+          path: |
+            _US149_ADAPT4_RESULT/*.json
+            _US149_ADAPT4_RESULT/*.csv
+            _US149_ADAPT4_RESULT/*.txt
+            _US149_ADAPT4_RESULT/TITANIUM_TRUE_SOURCE/MANIFEST.json
