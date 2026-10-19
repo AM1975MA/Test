@@ -30,8 +30,8 @@ jobs:
           import pandas as pd
           from isin_first2026.build import check_isin
           d=pd.read_csv("isin_first2026/five_isin_yfinance/CATALOG.csv")
-          assert len(d)==16 and d.isin.nunique()==5
-          assert d.isin.map(check_isin).all()
+          assert len(d)==16 and d["isin"].nunique()==5
+          assert d["isin"].map(check_isin).all()
           assert d.groupby("isin").underlying_geo.nunique().eq(1).all()
           assert set(d.loc[d.underlying_geo=="GLOBAL_EXCLUDE","isin"])=={
             "LU1900066033","NL0011683594"}
@@ -48,7 +48,7 @@ jobs:
           p=pathlib.Path("_ISIN5YAHOO")
           a=pd.read_csv(p/"TICKER_BY_ISIN_CURRENCY_HISTORY_QUALITY.csv")
           v=json.loads((p/"RESULT.json").read_text())
-          assert len(a)==16 and a.isin.nunique()==5
+          assert len(a)==16 and a["isin"].nunique()==5
           assert v["no_automated_justETF_scraping"]
           assert v["source_xetra"]["records"]>5000
           assert v["ticker_candidates"]==16
