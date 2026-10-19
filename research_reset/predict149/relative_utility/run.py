@@ -144,8 +144,8 @@ def online_model_predictions(states,expert_deltas,days,signals,ids):
             ridge_score=float(model.predict(scaler.transform(states[k:k+1]))[0])
             sigma=max(.03,float(np.std(trainy,ddof=1)))
             x_scaled=scaler.transform(states[k:k+1])[0]
-            smalltrain=xx[:,SMALL_FEATURES]
-            nearest=np.argsort(np.sum((smalltrain-x_scaled[SMALL_FEATURES])**2,axis=1),
+            smalltrain=xx[:,list(SMALL_FEATURES)]
+            nearest=np.argsort(np.sum((smalltrain-x_scaled[list(SMALL_FEATURES)])**2,axis=1),
                                kind="stable")[:8]
             neighbors=trainy[nearest]
             analog_score=float(neighbors.mean())
