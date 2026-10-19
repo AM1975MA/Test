@@ -1,0 +1,70 @@
+name: FORENSIC_COMPACT21_31P76_VS_FREE_MA3_10P48_SAME_PERIOD
+on:
+  push:
+    branches:
+      - research/us149-adapt4-unrestricted-20261020
+    paths:
+      - '.github/workflows/us149-compact21-31-vs-10-forensic.yml'
+      - 'research_reset/us149_adapt4_free/forensic_compact21.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  actual-original149-free-31-versus-10-forensic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+          python -m py_compile research_reset/us149_adapt4_free/forensic_compact21.py
+      - name: Download real historical October17 Compact21 BASE and Top5 rerank 149 unrestrained 2017-26 paths (3 source vintages)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39044619710 -R AM1975MA/Test -n compact21-top5-rerank-economic -D _OLD_COMPACT
+          for i in 1 2 3; do
+             test -f "_OLD_COMPACT/v2replay-ECON_TOP5_RERANK-r$i/baseline_control/FULL_UNIVERSE_PATH.npz"
+             test -f "_OLD_COMPACT/v2replay-ECON_TOP5_RERANK-r$i/candidate/FULL_UNIVERSE_PATH.npz"
+          done
+      - name: Compare full 2017–26 and conditional 2021–26 actual source daily NAV to new fresh trained V2 single149
+        run: |
+          python research_reset/us149_adapt4_free/forensic_compact21.py --historic _OLD_COMPACT --new research_reset/us149_adapt4_free/results --out _RECONCILIATION
+      - name: Strict exact empirical parity with both old 31.758% Compact21 and new 10.479% and ADAPT4 29.175%
+        run: |
+          python - <<'PY'
+          import json,hashlib,pandas as pd
+          from pathlib import Path
+          p=Path("_RECONCILIATION")
+          x=json.loads((p/"RESULT.json").read_text())
+          assert x["status"]=="HISTORICAL_31_76_VS_FREE149_NEW_10_48_SAME_PERIOD_DIFFERENT_PREDICTOR_AUDIT_COMPLETE"
+          assert x["same_one_full_unconstrained_universe"] and x["old_3_quotation_source_vintages_not_500_baskets"]
+          assert abs(x["old_COMPACT21_BASE_2017_2026_mean_cagr"]-.31758077249027905)<1e-12
+          assert abs(x["new_fresh_MA3_2021_2026_one149_cagr"]-.10479353861045033)<1e-12
+          assert abs(x["new_fresh_ADAPT4_2021_2026_one149_cagr"]-.2917477276507473)<1e-12
+          assert pd.read_csv(p/"ORIGINAL31_VS_LATEST10_EXACT_CAGR_AND_SOURCE_IDENTITIES.csv").shape[0]==8
+          for l in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+             h,f=l.split("  ",1)
+             assert hashlib.sha256((p/f).read_bytes()).hexdigest()==h
+          print("31_VS_10_HISTORICAL_CONTRACT_RECONCILED",json.dumps(x),flush=True)
+          PY
+      - name: Save exact 2017-26 and matched 2021-26 apples-to-apples evidence in Test research only
+        run: |
+          mkdir -p research_reset/us149_adapt4_free/forensic_results
+          cp -a _RECONCILIATION/. research_reset/us149_adapt4_free/forensic_results/
+          git config user.name "ETF149-31p76-vs-10p48-FORENSIC"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/us149_adapt4_free/forensic_results
+          git commit -m "Document exactly why Oct17 Compact21 original149 free BASE 31.76 differs from Oct19 freshly refitted MA3 single149 10.48: same-window conditional NAV attribution"
+          git pull --rebase origin research/us149-adapt4-unrestricted-20261020
+          git push origin HEAD:refs/heads/research/us149-adapt4-unrestricted-20261020
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Original149_31p76_vs_10p48_source-NAV-forensic
+          retention-days: 90
+          path: _RECONCILIATION/
