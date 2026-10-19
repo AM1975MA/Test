@@ -22,7 +22,7 @@ class ISINIdentity(unittest.TestCase):
                    "Currency":"EUR"})]}
         r=identify(proposals,xetra).iloc[0]
         self.assertEqual(r.status,"ISIN_CONFLICT_ISSUER_VS_XETRA")
-        self.assertEqual(r.isin,"")
+        self.assertEqual(r["isin"],"")
 
     def test_venue_return_correlation_cannot_be_relabelled_independent_vendor(self):
         dates=pd.bdate_range("2020-01-01",periods=300)
