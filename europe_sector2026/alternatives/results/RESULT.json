@@ -1,0 +1,36 @@
+{
+  "status": "EUROPE_UCITS_SECTOR_ALTERNATIVES_YAHOO_RETRIEVED",
+  "source": "Yahoo/yfinance downloaded direct vs issuer and independent exchange",
+  "yfinance_version": "0.2.65",
+  "roster_proposed": 21,
+  "issuer_split": {
+    "AMUNDI": 12,
+    "XTRACKERS": 9
+  },
+  "source_catalog_sha256": "07d5a1ef3e5d719ce14efb6e12acba9996938f9527191c99101f64cc28d69e24",
+  "xetra_eur_success": 16,
+  "source_statuses": {
+    "AVAILABLE_EUR": 16,
+    "DOWNLOAD_FAILED": 5
+  },
+  "quote_profile_counts": {
+    "LATE_OR_INCOMPLETE_FOR_2017_BACKTEST": 12,
+    "REJECT_OR_NOT_VERIFIED": 5,
+    "QUOTE_PROFILE_B": 3,
+    "HIGH_YAHOO_VOLUME_OR_FLAT_BAR_RISK": 1
+  },
+  "high_confidence_quote_A": [],
+  "historical_2017_2026_full_coverage": 4,
+  "alternative_exchange_and_quote_data_not_same_as_live_executable_spread": true,
+  "official_index_families_not_interchangeable": true,
+  "had_missing_ISIN_identifiers": [
+    "XS7R.DE",
+    "XSDR.DE",
+    "XSKR.DE"
+  ],
+  "additional_yahoo_volume_audits_have_unknown_reporting_completeness": true,
+  "date_fetched_utc": "2026-10-19 18:22:14.276444+00:00",
+  "original_30_download_sha": "8517195506cb828c58b03935192462b4597496d87dcdd5b910dc82dcc5ae6b38",
+  "data_source_sha_canonical": true,
+  "impact_scope": "No trade, no ETF Trader model or portfolio changes"
+}
