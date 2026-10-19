@@ -74,7 +74,8 @@ jobs:
           a=pd.read_csv(p/"FITTED_3SEED_ANNUAL/ANNUAL_125F_XGB_21DAY_MATURITY_AND_SEED_AUDIT.csv")
           assert len(a)==6 and (pd.to_datetime(a.max_train_mature_exit21)<pd.to_datetime(a.year.astype(str)+"-01-01")).all()
           w=pd.read_csv(p/"MONTHLY_TOP1_TOP2_TOP5_UNIQUE_ISIN_SELECTIONS.csv")
-          assert w.groupby(["method","k","signal_date"]).isin.nunique().eq(w.k.astype(int).groupby([w.method,w.k,w.signal_date]).first()).all()
+          idx=[w["method"],w["k"],w["signal_date"]]
+          assert w["isin"].groupby(idx).nunique().eq(w["k"].groupby(idx).first()).all()
           x=pd.read_csv(p/"DAILY_COSTED_NAV_48_ISIN_9_STANDALONE_METHODS.csv")
           assert len(x)==1374 and x.notna().all(axis=None)
           for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
