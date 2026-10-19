@@ -1,0 +1,102 @@
+{
+  "status": "ORIGINAL149_F3_FACTOR_VOL_CONDITIONAL_PAIRWISE_AUDIT_COMPLETED",
+  "n_etfs": 149,
+  "n_anchor": 64,
+  "n_ticker_month_forecasts": 9536,
+  "exact_source_roster_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "n_conditional_matched_pairs": 40396,
+  "per_anchor_pairs_min": 525,
+  "per_anchor_pairs_median": 631.0,
+  "predetermined_abs_log_risk_ratio_band": 0.2,
+  "all_risk_vol_and_group_matches_strict_asof": true,
+  "no_new_training_or_rebalanced_portfolios": true,
+  "correct_outcome_used_only_to_score_predictions": true,
+  "scorer_equal_weight_each_anchor_not_independent_pairs": true,
+  "matched_conditional_64anchor_bootstrap": {
+    "F3_QUANTILE_EXPECTED_concordance": {
+      "mean": 0.5079814891195644,
+      "ci95": [
+        0.49374720121980004,
+        0.5237906994863974
+      ]
+    },
+    "B0_N4_TOP15_concordance": {
+      "mean": 0.48669672730894264,
+      "ci95": [
+        0.476884047420609,
+        0.4963372169231685
+      ]
+    },
+    "F2_HURDLE_EXPECTED_concordance": {
+      "mean": 0.5086022763372697,
+      "ci95": [
+        0.49699138328324405,
+        0.5208185436134669
+      ]
+    },
+    "N7_VOL_ONLY_concordance": {
+      "mean": 0.5031553495223849,
+      "ci95": [
+        0.48977222572479645,
+        0.5170555668766414
+      ]
+    },
+    "F3_minus_N4": {
+      "mean": 0.021284761810621777,
+      "ci95": [
+        0.00737304917087487,
+        0.036218589874404954
+      ]
+    },
+    "F3_minus_F2": {
+      "mean": -0.0006207872177054026,
+      "ci95": [
+        -0.012117964649901166,
+        0.011527981526673775
+      ]
+    },
+    "F3_minus_vol": {
+      "mean": 0.004826139597179369,
+      "ci95": [
+        -0.013370641541741557,
+        0.023413542288960757
+      ]
+    }
+  },
+  "by_era": {
+    "2021_2023": {
+      "anchors": 35,
+      "F3_concordance": 0.5051003078270597,
+      "N4_concordance": 0.48316188980004454,
+      "vol_concordance": 0.49351257356661327,
+      "F3_minus_N4": 0.02193841802701505,
+      "q10_tail_coverage": 0.10316395014381592,
+      "q90_tail_coverage": 0.8903163950143815
+    },
+    "2024_2026": {
+      "anchors": 29,
+      "F3_concordance": 0.5114587768863804,
+      "N4_concordance": 0.4909629105093367,
+      "vol_concordance": 0.5147931825724542,
+      "F3_minus_N4": 0.020495866377043682,
+      "q10_tail_coverage": 0.11201110853968989,
+      "q90_tail_coverage": 0.8613746817866237
+    }
+  },
+  "quantile_coverage": {
+    "q10_future_y_below_pred_q10": 0.10717281879194632,
+    "q50_future_y_below_pred_q50": 0.4914010067114094,
+    "q90_future_y_below_pred_q90": 0.8772021812080537,
+    "q10_pinball": 0.008217693672583626,
+    "q90_pinball": 0.008852644954017644
+  },
+  "preregistered_conditional_direction_skill_gate": false,
+  "interpretation": "Development diagnostic only, prior model/dates heavily mined",
+  "caveats": [
+    "6 coarse groups + 63d volatility are not fully sufficient factor matching",
+    "Pairs within each anchor are statistically dependent, hence 64 anchor bootstrap",
+    "Prospectively untouched samples not yet available",
+    "No independent PIT fund members, no EUR broker investability",
+    "Actual future group returns never fed into as-of predictions"
+  ]
+}
