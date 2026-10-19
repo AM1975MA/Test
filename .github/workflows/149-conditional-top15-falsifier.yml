@@ -1,0 +1,74 @@
+name: ORIGINAL149_TOP15_PREDICTOR_RISK_MATCHED_FALSIFICATION
+on:
+  push:
+    branches:
+      - research/149-predictive-ticker-tournament-20261019
+    paths:
+      - 'research_reset/predict149/conditional_validation/PREREGISTERED_AFTER_DISCOVERY.md'
+      - 'research_reset/predict149/conditional_validation/test_tail_risk.py'
+      - '.github/workflows/149-conditional-top15-falsifier.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  PYTHONPATH: ${{ github.workspace }}
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  conditional-risk-falsification:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Immutable numeric requirements and compilation
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0'
+          python -m py_compile research_reset/predict149/conditional_validation/test_tail_risk.py
+      - name: Recheck underlying exact original149 data and forecast chronology
+        run: |
+          python -m unittest -v research_reset.predict149.test_tournament research_reset.m0b.test_m0b
+      - name: Train matched as-of volatility risk classifier and 500 causal null portfolios
+        run: |
+          python -m research_reset.predict149.conditional_validation.test_tail_risk --out _tail_falsifier
+      - name: Require exact N4 parity, all 149 tickers and correctly documented post-selection
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("_tail_falsifier/RESULT.json").read_text())
+          assert x["status"]=="ORIGINAL149_POSTDISCOVERY_N4_RISK_CONDITIONAL_FALSIFIER_COMPLETE"
+          assert x["original149_universe_exact"] and x["n_eval_anchors"]==64
+          assert x["research_post_selection"] and x["no_real_holdout"]
+          assert x["original_n4_archived_wealth_parity_max_error"]<1e-10
+          assert x["conditional_placebo_summary"]["category_and_vol"]["n"]==250
+          assert x["no_future_labels_in_risk_null_training"]
+          assert x["live_deployment_or_30pct_claim_allowed"] is False
+          print("P149B_FROZEN_GATES",x["strict_research_go_gate"])
+          PY
+      - name: Archive full rare-winner predictions and 500 matched portfolio controls
+        run: |
+          mkdir -p research_reset/predict149/conditional_validation/results
+          cp _tail_falsifier/*.csv _tail_falsifier/*.json research_reset/predict149/conditional_validation/results/
+          (cd research_reset/predict149/conditional_validation/results && sha256sum *.csv *.json > SHA256_MANIFEST.txt)
+          (cd research_reset/predict149/conditional_validation/results && sha256sum -c SHA256_MANIFEST.txt)
+          git config user.name "ETF149-Conditional-Scientific-Falsifier"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research_reset/predict149/conditional_validation/results
+          git commit -m "Preserve N4 best-ticker top15 prediction independent risk-factor null, matched conditional 500 portfolios and model-vintage veto"
+          git push origin HEAD:refs/heads/research/149-predictive-ticker-tournament-20261019
+      - name: Keep full scientific evidence on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exact149-n4-top15-risk-conditional-falsification
+          retention-days: 90
+          path: |
+            _tail_falsifier/*.json
+            _tail_falsifier/*.csv
