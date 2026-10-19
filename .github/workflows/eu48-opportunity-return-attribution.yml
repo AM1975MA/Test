@@ -1,0 +1,70 @@
+name: EU48_ISIN_TICKER_RETURNS_VERSUS_MODEL_SELECTION_FORENSIC
+on:
+  push:
+    branches:
+      - research/eu48-opportunity-diagnostic-20261019
+    paths:
+      - '.github/workflows/eu48-opportunity-return-attribution.yml'
+      - 'isin_first2026/opportunity48/run.py'
+      - 'isin_first2026/opportunity48/PREREGISTERED.md'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  matched-opportunity-and-predictability:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install fixed same numerical library versions
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'lightgbm==4.6.0'
+          python -m py_compile isin_first2026/opportunity48/run.py
+      - name: Analyze ETF opportunity vs realized model selector contribution without retraining
+        run: python -m isin_first2026.opportunity48.run --out _EU48_OPPORTUNITY
+      - name: Test exactly matched 65 periods, 48 ISIN, 1331 Opens, fee consistency and SHA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,pandas as pd
+          p=Path("_EU48_OPPORTUNITY")
+          z=json.loads((p/"RESULT.json").read_text())
+          assert z["status"]=="EU48_OPPORTUNITY_VERSUS_SELECTOR_QUALITY_FORENSIC_COMPLETED"
+          assert z["funds_dedup_isin"]==48 and z["months"]==65 and z["same_common_opens"]==1331
+          assert z["oracle_is_backward_looking_and_NOT_tradeable"]
+          assert z["same_as_original_models_10bp_bilateral_commission"]
+          r=pd.read_csv(p/"SINGLE_ISIN_BUY_AND_HOLD_CAGR_2021_2026.csv")
+          assert len(r)==48 and r["isin"].is_unique
+          ex=pd.read_csv(p/"MODEL_VERSUS_EQUAL_WEIGHT_REALIZED_SELECTION_SKILL.csv")
+          assert ex.groupby("model").size().eq(65).all()
+          stats=pd.read_csv(p/"VALID_PASSIVE_VERSUS_HINDSIGHT_ONLY_BOUNDS.csv")
+          assert len(stats)==10
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+            digest,f=line.split("  ",1)
+            assert hashlib.sha256((p/f).read_bytes()).hexdigest()==digest
+          print("EU48_HISTORICAL_OPPORTUNITY_PROVEN",json.dumps(z),flush=True)
+          PY
+      - name: Archive research-only ETF historical opportunity cost and model skill analysis
+        run: |
+          mkdir -p isin_first2026/opportunity48/results
+          cp -a _EU48_OPPORTUNITY/. isin_first2026/opportunity48/results/
+          git config user.name "ETF_EUROPE_OPPORTUNITY_FORENSICS"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/opportunity48/results
+          git commit -m "Record matched EU48 fund returns sector opportunity and real F3 H1 selection vs random and unattainable oracle"
+          git pull --rebase origin research/eu48-opportunity-diagnostic-20261019
+          git push origin HEAD:refs/heads/research/eu48-opportunity-diagnostic-20261019
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: EU48-real-fund-returns-selector-forecast-skill-diagnostics
+          retention-days: 90
+          path: _EU48_OPPORTUNITY/
