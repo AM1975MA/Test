@@ -6,11 +6,11 @@ full-window strict observations appear only after 2016/2017; 2017–2020
 chronologically trained samples remain used. Does not reuse USA149 TIT scores.
 """
 from __future__ import annotations
-import argparse,os,json
+import argparse,os,json,inspect
 from pathlib import Path
 import pandas as pd
 from etf_trader.source_only import kernel as k
-from etf_trader.source_only.features import build as build_extra_features
+from etf_trader.source_only import features as feature_module
 from etf_trader.source_only.models import fit_predict,variants
 from etf_trader.source_only.raw_io import load_ticker_csv_folder
 def run(data,out):
@@ -34,7 +34,16 @@ def run(data,out):
     tail_no_labels=tail.drop(columns=[c for c in tail if
         c.startswith(("fwd_","target_","exit_")) or c in ["entry_date","y_tailmix"]])
     macro,mfeatures=k.build_macro_panel(tail_no_labels,tail)
-    extra=build_extra_features(mats,cats,dates)
+    # Preserve original ETF Trader full Titanic features, changing ONLY the
+    # source market factor from US SPY to European MSCI Europe IMEU.AS.
+    eu_src=inspect.getsource(feature_module.build)
+    pattern="lr['SPY']"
+    assert eu_src.count(pattern)==1
+    namespace={}
+    exec(compile(eu_src.replace(pattern,"lr['IMEU.AS']"),
+                 "<etf_trainer_v2_spy_europe_beta>", "exec"),
+         feature_module.__dict__,namespace)
+    extra=namespace["build"](mats,cats,dates)
     print("EU48_TIT_START_REAL_FITS",len(compact),len(tail),flush=True)
     pred=fit_predict(k,compact,tail,macro,mfeatures,extra,
                      out/"annual_models",years=range(2021,2027))
