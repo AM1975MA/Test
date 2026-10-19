@@ -48,7 +48,7 @@ jobs:
           assert r["status"].startswith("XETRA_2026_OFFICIAL")
           assert r["reference_currency"]=="EUR"
           q=pd.read_csv(p/"RESEARCH_QUALITY_SELECTED_ONE_VENUE_PER_ISIN.csv")
-          assert q.isin.is_unique and (q.grade.isin(["A_QUOTE_CLEAN","B_QUOTE_REVIEW"])).all()
+          assert q["isin"].is_unique and (q.grade.isin(["A_QUOTE_CLEAN","B_QUOTE_REVIEW"])).all()
           for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
               digest,file=line.split("  ",1)
               assert hashlib.sha256((p/file).read_bytes()).hexdigest()==digest
