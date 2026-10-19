@@ -1,0 +1,29 @@
+name: XETRA_ISIN_REFERENCE_PROBE
+on:
+  push:
+    branches:
+      - research/isin-first-verified-europe-prices-20261019
+    paths:
+      - '.github/workflows/isin-reference-probe.yml'
+      - 'isin_first2026/probe_xetra.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  official-isins:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: 
+          python-version: '3.13'
+      - run: python isin_first2026/probe_xetra.py
+      - run: |
+          mkdir -p isin_first2026/reference
+          cp _XETRA_PROBE/RESULT.json isin_first2026/reference/PROBE.json
+          git config user.name "ISIN-REFERENCE-XETRA-RESEARCH"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/reference/PROBE.json
+          git commit -m "Record official Xetra current reference ISIN mapping access, schema, source proof"
+          git push origin HEAD:refs/heads/research/isin-first-verified-europe-prices-20261019
