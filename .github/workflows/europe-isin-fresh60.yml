@@ -1,0 +1,64 @@
+name: ISIN_EUROPE_FRESH60_YFINANCE_UNREPAIRED_VENDOR_QUOTES
+on:
+  push:
+    branches:
+      - research/europe-isin-download-backtest-ready-20261019
+    paths:
+      - '.github/workflows/europe-isin-fresh60.yml'
+      - 'isin_first2026/fresh_60.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fresh-original60-by-legal-isin:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with: 
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Pin yfinance and numpy/pandas
+        run: |
+          python -m pip install 'yfinance==0.2.65' 'numpy==2.3.5' 'pandas==2.2.3'
+          python -m py_compile isin_first2026/fresh_60.py
+      - name: Download all EUR60 ETF Yahoo vendor raw bars with official and issuer ISIN
+        run: python -m isin_first2026.fresh_60 --out _FRESH60
+      - name: Check archive validity, all ticker identities and source hashes
+        run: |
+          python - <<'PY'
+          import pathlib,json,pandas as pd,hashlib
+          p=pathlib.Path("_FRESH60")
+          r=json.loads((p/"RESULT.json").read_text())
+          a=pd.read_csv(p/"ALL_60_FRESH_RAW_PRICE_AND_OLD_SOURCE_DIFFERENCES.csv")
+          assert r["attempted_original60"]==60
+          assert len(a)==60 and a.ticker.nunique()==60
+          assert a["isin"].str.len().eq(12).all()
+          assert r["ETF_ISIN_distinct"]==44
+          assert r["fresh_ohlc_has_NOT_been_repaired"]
+          for line in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
+             code,name=line.split("  ",1)
+             assert hashlib.sha256((p/name).read_bytes()).hexdigest()==code
+          for t in a.loc[a.status=="EUR_VENDOR_CONFIRMED","ticker"]:
+             assert (p/"raw_vendor"/(t+".csv")).is_file()
+             assert (p/"adj_price"/(t+".csv")).is_file()
+          print("ISIN_FRESH60_METRICS",json.dumps(r),flush=True)
+          PY
+      - name: Commit untouched Yahoo source quote histories and provenance audit on Test research branch
+        run: |
+          mkdir -p isin_first2026/fresh60_results
+          cp -a _FRESH60/. isin_first2026/fresh60_results/
+          git config user.name "EUROPE-ISIN-FRESH60-YFINANCE"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/fresh60_results
+          git commit -m "Preserve fresh Yahoo 60 Europe-only ETF raw and adjusted bars and raw-versus-sanitized diagnostics"
+          git pull --rebase origin research/europe-isin-download-backtest-ready-20261019
+          git push origin HEAD:refs/heads/research/europe-isin-download-backtest-ready-20261019
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: europe60-free-yahoo-original-unrepaired-ohlc-isin
+          retention-days: 90
+          path: _FRESH60/
