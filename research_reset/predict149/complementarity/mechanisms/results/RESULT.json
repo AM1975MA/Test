@@ -1,0 +1,284 @@
+{
+  "status": "EXACT149_COMPLEMENTARITY_POSTHOC_MECHANISTIC_TEST_DONE",
+  "source_sha": "7bccf1b756bf3652280a254c7486fb43f1e805ebb4cdf10731cecc74007292e6",
+  "n_149": 149,
+  "n_anchor_months": 64,
+  "n_daily_open_points": 1345,
+  "fixed_after_original_I_results": true,
+  "no_new_forecaster_training": true,
+  "asof_63day_lookback_frozen": true,
+  "capital_self_financed_and_10bp_per_side": true,
+  "same_F3_H1_H3_static_curves_replayed": true,
+  "policies": {
+    "F3": {
+      "fee_notional": 0.15444598994696845,
+      "absolute_gross_traded_initial_dollars": 154.445989946968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.20019785988909722,
+      "wealth_final": 2.65185438801071,
+      "maxdd_daily_open": -0.2973714609803775,
+      "sharpe_daily_log": 0.6930182026665771,
+      "es5_daily": -0.03701818959091073,
+      "daily_vol_annualized": 0.2641323112738675
+    },
+    "H1": {
+      "fee_notional": 0.15864875781051924,
+      "absolute_gross_traded_initial_dollars": 158.64875781051853,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.2462472500995334,
+      "wealth_final": 3.2435870594915803,
+      "maxdd_daily_open": -0.33773827205497897,
+      "sharpe_daily_log": 0.7933290373800225,
+      "es5_daily": -0.04111998355488715,
+      "daily_vol_annualized": 0.2783395853199773
+    },
+    "H3": {
+      "fee_notional": 0.1601748399243429,
+      "absolute_gross_traded_initial_dollars": 160.17483992434276,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.2352595719255739,
+      "wealth_final": 3.0935024188491496,
+      "maxdd_daily_open": -0.2878282294625688,
+      "sharpe_daily_log": 0.7585791136115128,
+      "es5_daily": -0.04137431443292011,
+      "daily_vol_annualized": 0.2793800766674111
+    },
+    "STATIC_F3_H1_50": {
+      "fee_notional": 0.15155562833653902,
+      "absolute_gross_traded_initial_dollars": 151.55562833653968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23215134965968853,
+      "wealth_final": 3.052086994452834,
+      "maxdd_daily_open": -0.24844218622336645,
+      "sharpe_daily_log": 0.886921856171717,
+      "es5_daily": -0.033023285234276945,
+      "daily_vol_annualized": 0.23610277282133796
+    },
+    "OIL_VS_GROWTH_63": {
+      "fee_notional": 0.19827960419723356,
+      "absolute_gross_traded_initial_dollars": 198.27960419723433,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.293785425116994,
+      "wealth_final": 3.962800284328916,
+      "maxdd_daily_open": -0.2922340899273058,
+      "sharpe_daily_log": 0.9668536497128479,
+      "es5_daily": -0.03805404866616892,
+      "daily_vol_annualized": 0.2672231764229322
+    },
+    "INVERSE_BASKET_VOL63": {
+      "fee_notional": 0.1569977524086804,
+      "absolute_gross_traded_initial_dollars": 156.99775240868053,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.2298882390821746,
+      "wealth_final": 3.0222167892123224,
+      "maxdd_daily_open": -0.26719007452058763,
+      "sharpe_daily_log": 0.903371309471054,
+      "es5_daily": -0.03209348630350886,
+      "daily_vol_annualized": 0.229762270855077
+    }
+  },
+  "paired_month_results": {
+    "OIL_VS_GROWTH_63": {
+      "growth_vs_50_50": {
+        "mean": 0.0040800828245318305,
+        "ci95": [
+          -0.002912436833118127,
+          0.011253691874326593
+        ]
+      },
+      "growth_vs_F3": {
+        "mean": 0.006276433648932307,
+        "ci95": [
+          -0.00670946538900838,
+          0.019775166338612565
+        ]
+      },
+      "growth_vs_H1": {
+        "mean": 0.0031292356771433355,
+        "ci95": [
+          -0.004969429463275975,
+          0.011085083825188628
+        ]
+      },
+      "positive_50_50_months": 38,
+      "regime_time_asof_only": true
+    },
+    "INVERSE_BASKET_VOL63": {
+      "growth_vs_50_50": {
+        "mean": -0.00015367216904969507,
+        "ci95": [
+          -0.001485404216162745,
+          0.0011321011782747482
+        ]
+      },
+      "growth_vs_F3": {
+        "mean": 0.0020426786553507806,
+        "ci95": [
+          -0.005955894603890385,
+          0.009940383573079845
+        ]
+      },
+      "growth_vs_H1": {
+        "mean": -0.0011045193164381892,
+        "ci95": [
+          -0.009703569570081337,
+          0.006904907239575973
+        ]
+      },
+      "positive_50_50_months": 32,
+      "regime_time_asof_only": true
+    }
+  },
+  "chronology_era_diagnostics": {
+    "OIL_VS_GROWTH_63": {
+      "year_2021_2023_mean_monthly_log_excess_over_static": 0.006178513930841048,
+      "year_2024_2026_mean_monthly_log_excess_over_static": 0.0015474935582965674
+    },
+    "INVERSE_BASKET_VOL63": {
+      "year_2021_2023_mean_monthly_log_excess_over_static": 0.0006193359155076442,
+      "year_2024_2026_mean_monthly_log_excess_over_static": -0.0010866129607568287
+    }
+  },
+  "original_dynamic_benchmark": {
+    "F3": {
+      "fee_notional": 0.15444598994696845,
+      "absolute_gross_traded_initial_dollars": 154.445989946968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.20019785988909722,
+      "wealth_final": 2.65185438801071,
+      "maxdd_daily_open": -0.2973714609803775,
+      "sharpe_daily_log": 0.6930182026665771,
+      "es5_daily": -0.03701818959091073,
+      "daily_vol_annualized": 0.2641323112738675
+    },
+    "H1": {
+      "fee_notional": 0.15864875781051924,
+      "absolute_gross_traded_initial_dollars": 158.64875781051853,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.2462472500995334,
+      "wealth_final": 3.2435870594915803,
+      "maxdd_daily_open": -0.33773827205497897,
+      "sharpe_daily_log": 0.7933290373800225,
+      "es5_daily": -0.04111998355488715,
+      "daily_vol_annualized": 0.2783395853199773
+    },
+    "H3": {
+      "fee_notional": 0.1601748399243429,
+      "absolute_gross_traded_initial_dollars": 160.17483992434276,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.2352595719255739,
+      "wealth_final": 3.0935024188491496,
+      "maxdd_daily_open": -0.2878282294625688,
+      "sharpe_daily_log": 0.7585791136115128,
+      "es5_daily": -0.04137431443292011,
+      "daily_vol_annualized": 0.2793800766674111
+    },
+    "STATIC_F3_H1_50": {
+      "fee_notional": 0.15155562833653902,
+      "absolute_gross_traded_initial_dollars": 151.55562833653968,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.23215134965968853,
+      "wealth_final": 3.052086994452834,
+      "maxdd_daily_open": -0.24844218622336645,
+      "sharpe_daily_log": 0.886921856171717,
+      "es5_daily": -0.033023285234276945,
+      "daily_vol_annualized": 0.23610277282133796
+    },
+    "STATIC_F3_H3_50": {
+      "fee_notional": 0.15160125647548672,
+      "absolute_gross_traded_initial_dollars": 151.60125647548702,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.328125,
+      "cagr": 0.2269221194358766,
+      "wealth_final": 2.9834280926302648,
+      "maxdd_daily_open": -0.25386942732360995,
+      "sharpe_daily_log": 0.8630852852997809,
+      "es5_daily": -0.03313469358729051,
+      "daily_vol_annualized": 0.23768056115975036
+    },
+    "STATIC_3_WAY": {
+      "fee_notional": 0.15247664917427295,
+      "absolute_gross_traded_initial_dollars": 152.47664917427346,
+      "trade_dates": 64,
+      "avg_underlying_positions": 10.5,
+      "cagr": 0.2357039451825682,
+      "wealth_final": 3.0994606078303724,
+      "maxdd_daily_open": -0.26025549118265434,
+      "sharpe_daily_log": 0.8762321089572642,
+      "es5_daily": -0.034833679764150687,
+      "daily_vol_annualized": 0.242279040772264
+    },
+    "SWITCH_PAST3": {
+      "fee_notional": 0.1712719066745627,
+      "absolute_gross_traded_initial_dollars": 171.27190667456162,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.296875,
+      "cagr": 0.22473888132469977,
+      "wealth_final": 2.9551367633757466,
+      "maxdd_daily_open": -0.35762445015604394,
+      "sharpe_daily_log": 0.7747187205166283,
+      "es5_daily": -0.03892779974149488,
+      "daily_vol_annualized": 0.2624850486265461
+    },
+    "SWITCH_PAST6": {
+      "fee_notional": 0.13578567408507525,
+      "absolute_gross_traded_initial_dollars": 135.7856740850754,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.5,
+      "cagr": 0.17600828139541158,
+      "wealth_final": 2.378179263931198,
+      "maxdd_daily_open": -0.418699755643814,
+      "sharpe_daily_log": 0.6157528947043975,
+      "es5_daily": -0.04042283357726845,
+      "daily_vol_annualized": 0.264107978890765
+    },
+    "ONLINE_RIDGE_GATE": {
+      "fee_notional": 0.15169868291975497,
+      "absolute_gross_traded_initial_dollars": 151.6986829197538,
+      "trade_dates": 64,
+      "avg_underlying_positions": 9.484375,
+      "cagr": 0.22491385101004702,
+      "wealth_final": 2.957396023124507,
+      "maxdd_daily_open": -0.2575849967746793,
+      "sharpe_daily_log": 0.8250650006798965,
+      "es5_daily": -0.03504767582002025,
+      "daily_vol_annualized": 0.24664162641918086
+    },
+    "NONCAUSAL_ORACLE_F3_H1": {
+      "fee_notional": 0.5867185922138755,
+      "absolute_gross_traded_initial_dollars": 586.7185922138739,
+      "trade_dates": 64,
+      "avg_underlying_positions": 5.0,
+      "cagr": 0.6763448094193751,
+      "wealth_final": 15.84368202543603,
+      "maxdd_daily_open": -0.22368379228426727,
+      "sharpe_daily_log": 1.9489766069383014,
+      "es5_daily": -0.03518700105636971,
+      "daily_vol_annualized": 0.2658866871113866
+    }
+  },
+  "primary_preregistered_mechanism_gates": {
+    "OIL_VS_GROWTH_63": false,
+    "INVERSE_BASKET_VOL63": false
+  },
+  "market_state_comparison_EXPLORATORY": true,
+  "conclusions_limited_by_repeatedly_mined_2021_2026": true,
+  "no_trading_production_approval": true,
+  "notes": [
+    "USO oil futures roll ETF vs QQQ Nasdaq relative strength is a coarse proxy",
+    "Original 149 are survivor-selected and U.S. listed, no EUR broker spread",
+    "Posthoc original result exposure discovery contaminates new hypothesis",
+    "Even lower paired bootstrap CI positive cannot certify independent alpha",
+    "Same underlying fee accounting and original next-Open fills"
+  ]
+}
