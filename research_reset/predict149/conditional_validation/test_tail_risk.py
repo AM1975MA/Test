@@ -31,7 +31,7 @@ def read_source():
     return d,p
 
 def risk_null_predict(all_data,p):
-    original=p.sort_values(["block","ticker"]).reset_index(drop=True)
+    original=p.copy().reset_index(drop=True)
     times=sorted(original.block.unique())
     z=[]
     feats=["vol_log","down63"]+[f"g{i}" for i in range(6)]
@@ -98,8 +98,7 @@ def evaluate():
     for method in METHODS:
         picks=[]
         for b in ids:
-            anchor=df[df.block==b].sort_values(
-               [method,"ticker"],ascending=[False,True],kind="stable")
+            anchor=df[df.block==b].sort_values(method,ascending=False)
             picks.append(anchor.ticker.head(5).tolist())
         econ,_=portfolio(picks,ids,opens,names,days)
         hit=sum(df[(df.block==b)&(df.ticker.isin(t))].future_log.max()>=
