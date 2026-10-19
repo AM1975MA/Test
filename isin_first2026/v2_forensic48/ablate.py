@@ -121,6 +121,7 @@ def run(raw,output):
     full_g=np.ones(len(ds),dtype=float)
     no_alt=np.full_like(state.alt_idx,-1)
     results=[]
+    daily_curves={"day":ds}
     def simulate(name, use_risk, stops, alt, cost, concentrated=False,
                  leaders_only=False):
         ga=gross if use_risk else full_g
@@ -136,6 +137,8 @@ def run(raw,output):
             d1,d2,ww,O,L,C,PC,gap,up,un,u,v,
             risk1,risk2,ga,altidx,alt,cost)
         results.append(output_performance(name,E,T,ds))
+        daily_curves[name]=E[0]
+        daily_curves[name+"_turnover"]=T[0]
         return E,T
     Eb,Tb=simulate("FULL_HYBRID24_REPLAY",True,True,True,.001)
     Ev,Tv=simulate("FULL_TRAINER_V2_REPLAY",True,True,True,.001,concentrated=True)
@@ -192,6 +195,7 @@ def run(raw,output):
     md=pd.DataFrame(measures)
     md.to_csv(output/"MONTHLY_SCORE_SKILL_AND_SUBSEQUENT_RETURNS.csv",index=False)
     pd.DataFrame(results).to_csv(output/"ABLATION_SAME_1374_SOURCE_SIMULATOR.csv",index=False)
+    pd.DataFrame(daily_curves).to_csv(output/"DAILY_NAV_ALL_RISK_AND_RANK_ABLATIONS.csv",index=False)
     summary=dict(status="AUDITED_REAL_V2_SOURCE_48_PERFORMANCE_DECOMPOSITION",
       month_count=len(md),trading_days=len(ds),
       all_48_ticker_price_original_close_and_open_unchanged=True,
