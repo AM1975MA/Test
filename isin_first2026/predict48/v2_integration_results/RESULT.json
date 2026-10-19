@@ -1,0 +1,234 @@
+{
+  "status": "EU48_CAUSAL_ADAPT4_REPLAY_IN_SOURCE_V2_WITH_ORIGINAL_US_SPY_HYG_IEF_COMPLETE",
+  "n_legal_europe_funds": 48,
+  "n_american_candidates": 0,
+  "first_trade": "2021-02-01",
+  "last_trade": "2026-07-01",
+  "n_months": 65,
+  "n_daily_common_Europe_opens": 1374,
+  "original_MA3_EU_source_V2_daily_parity_1e11": true,
+  "original_MA3_original_US_macro_reference_risk_CAGR_and_DD_parity_1e10": true,
+  "only_predictive_score_replaced_new_ADAPT4_from_asof_online_frozen": true,
+  "other_original_V2_cash_risk_and_stops_unchanged": true,
+  "full_V2_agreement_ET_XGB_old_source_predictions_always_validated": true,
+  "original_US_SPY_HYG_IEF_risk_reference_USD_derived_previous_bar": true,
+  "only_EUR_IBCA_IBCN_defensive_sleeve_tradeable_EUR_funds": true,
+  "no_US_fund_in_predictive_48_candidate_set": true,
+  "risk_reference_original_2026_survivor_fund_PIT_caveat": true,
+  "risk_intraday_vendor_HighLow_49_repair_caveat": true,
+  "all_exact_costed_economic_metrics": {
+    "MA3_ORIGINAL_EU_REFERENCES_FULL_HYBRID24": {
+      "cagr": 0.013601580406165135,
+      "maxdd": -0.37193363847557126,
+      "sharpe": 0.1751773162569957,
+      "ann_vol": 0.23373981959981324,
+      "es5_daily": -0.0365192188806881,
+      "terminal_nav": 1.0764420147076323,
+      "days": 1374,
+      "turnover_ann": 12.40273146378452,
+      "n_months": 65
+    },
+    "MA3_ORIGINAL_EU_REFERENCES_FULL_V2": {
+      "cagr": 0.01636234499781948,
+      "maxdd": -0.37193363847557115,
+      "sharpe": 0.18698391421626623,
+      "ann_vol": 0.2345952209518578,
+      "es5_daily": -0.036609198475849196,
+      "terminal_nav": 1.0925252178286107,
+      "days": 1374,
+      "turnover_ann": 11.704165875342444,
+      "n_months": 65
+    },
+    "MA3_ORIGINAL_EU_REFERENCES_TOP2_NO_STOP_NO_RISK": {
+      "cagr": 0.038794775129678924,
+      "maxdd": -0.3499549515982676,
+      "sharpe": 0.2784979432707142,
+      "ann_vol": 0.24336609058031164,
+      "es5_daily": -0.03765723919446112,
+      "terminal_nav": 1.2306272567119325,
+      "days": 1374,
+      "turnover_ann": 10.375035065387316,
+      "n_months": 65
+    },
+    "MA3_ORIGINAL_EU_REFERENCES_TOP2_GROSS_DD_NO_STOPS": {
+      "cagr": 0.03848378254364105,
+      "maxdd": -0.36035252978087573,
+      "sharpe": 0.2775682922049418,
+      "ann_vol": 0.24125194711897027,
+      "es5_daily": -0.03719299804883354,
+      "terminal_nav": 1.2286198121586414,
+      "days": 1374,
+      "turnover_ann": 10.031651581038137,
+      "n_months": 65
+    },
+    "MA3_ORIGINAL_ORIGINAL_US_SPY_HYG_IEF_FULL_HYBRID24": {
+      "cagr": 0.007703731734388643,
+      "maxdd": -0.3709342802635056,
+      "sharpe": 0.14902293715438591,
+      "ann_vol": 0.23049942785314198,
+      "es5_daily": -0.036165023141979946,
+      "terminal_nav": 1.0427304587352162,
+      "days": 1374,
+      "turnover_ann": 11.960326842306578,
+      "n_months": 65
+    },
+    "MA3_ORIGINAL_ORIGINAL_US_SPY_HYG_IEF_FULL_V2": {
+      "cagr": 0.006460162124235695,
+      "maxdd": -0.3709342802635056,
+      "sharpe": 0.1438229849574651,
+      "ann_vol": 0.23090314606544265,
+      "es5_daily": -0.03627671479156332,
+      "terminal_nav": 1.0357336110185118,
+      "days": 1374,
+      "turnover_ann": 12.049138088525806,
+      "n_months": 65
+    },
+    "MA3_ORIGINAL_ORIGINAL_US_SPY_HYG_IEF_TOP2_NO_STOP_NO_RISK": {
+      "cagr": 0.03482693898212506,
+      "maxdd": -0.3644389489231825,
+      "sharpe": 0.2627657611714089,
+      "ann_vol": 0.2433452046144228,
+      "es5_daily": -0.03762154386241241,
+      "terminal_nav": 1.205214936935819,
+      "days": 1374,
+      "turnover_ann": 9.738098589330287,
+      "n_months": 65
+    },
+    "MA3_ORIGINAL_ORIGINAL_US_SPY_HYG_IEF_TOP2_GROSS_DD_NO_STOPS": {
+      "cagr": 0.025256132459728204,
+      "maxdd": -0.359862571249704,
+      "sharpe": 0.22419286147439565,
+      "ann_vol": 0.23669414429312824,
+      "es5_daily": -0.03699016222859403,
+      "terminal_nav": 1.1456771165063846,
+      "days": 1374,
+      "turnover_ann": 10.386557815176138,
+      "n_months": 65
+    },
+    "ADAPT4_EU_REFERENCES_FULL_HYBRID24": {
+      "cagr": 0.1819048784993368,
+      "maxdd": -0.2688122666458369,
+      "sharpe": 0.9753121636664869,
+      "ann_vol": 0.18990606980139038,
+      "es5_daily": -0.02804723889444663,
+      "terminal_nav": 2.4874111586764682,
+      "days": 1374,
+      "turnover_ann": 11.646746293042996,
+      "n_months": 65
+    },
+    "ADAPT4_EU_REFERENCES_FULL_V2": {
+      "cagr": 0.1819048784993368,
+      "maxdd": -0.2688122666458369,
+      "sharpe": 0.9753121636664869,
+      "ann_vol": 0.18990606980139038,
+      "es5_daily": -0.02804723889444663,
+      "terminal_nav": 2.4874111586764682,
+      "days": 1374,
+      "turnover_ann": 11.646746293042996,
+      "n_months": 65
+    },
+    "ADAPT4_EU_REFERENCES_TOP2_NO_STOP_NO_RISK": {
+      "cagr": 0.18528432462297023,
+      "maxdd": -0.24598959736326798,
+      "sharpe": 0.9502426700129247,
+      "ann_vol": 0.20007168029778655,
+      "es5_daily": -0.029571708982033103,
+      "terminal_nav": 2.526437830924958,
+      "days": 1374,
+      "turnover_ann": 10.223860417913608,
+      "n_months": 65
+    },
+    "ADAPT4_EU_REFERENCES_TOP2_GROSS_DD_NO_STOPS": {
+      "cagr": 0.18112707321930493,
+      "maxdd": -0.2586998660879628,
+      "sharpe": 0.9393309234177608,
+      "ann_vol": 0.19827469599160663,
+      "es5_daily": -0.029365737838220933,
+      "terminal_nav": 2.47849893891048,
+      "days": 1374,
+      "turnover_ann": 10.808062243958052,
+      "n_months": 65
+    },
+    "ADAPT4_ORIGINAL_US_SPY_HYG_IEF_FULL_HYBRID24": {
+      "cagr": 0.17679688631535317,
+      "maxdd": -0.2669576423254464,
+      "sharpe": 0.9652466041245036,
+      "ann_vol": 0.1867930978278935,
+      "es5_daily": -0.02779796396464765,
+      "terminal_nav": 2.429358284787905,
+      "days": 1374,
+      "turnover_ann": 11.970544547325016,
+      "n_months": 65
+    },
+    "ADAPT4_ORIGINAL_US_SPY_HYG_IEF_FULL_V2": {
+      "cagr": 0.17679688631535317,
+      "maxdd": -0.2669576423254464,
+      "sharpe": 0.9652466041245036,
+      "ann_vol": 0.1867930978278935,
+      "es5_daily": -0.02779796396464765,
+      "terminal_nav": 2.429358284787905,
+      "days": 1374,
+      "turnover_ann": 11.970544547325016,
+      "n_months": 65
+    },
+    "ADAPT4_ORIGINAL_US_SPY_HYG_IEF_TOP2_NO_STOP_NO_RISK": {
+      "cagr": 0.18528432462297023,
+      "maxdd": -0.24598959736326798,
+      "sharpe": 0.9502426700129247,
+      "ann_vol": 0.20007168029778655,
+      "es5_daily": -0.029571708982033103,
+      "terminal_nav": 2.526437830924958,
+      "days": 1374,
+      "turnover_ann": 10.223860417913608,
+      "n_months": 65
+    },
+    "ADAPT4_ORIGINAL_US_SPY_HYG_IEF_TOP2_GROSS_DD_NO_STOPS": {
+      "cagr": 0.17319691505900067,
+      "maxdd": -0.24695571329032096,
+      "sharpe": 0.9207681428493191,
+      "ann_vol": 0.19405431270789203,
+      "es5_daily": -0.029042720670328873,
+      "terminal_nav": 2.3891127225479454,
+      "days": 1374,
+      "turnover_ann": 11.06597061320275,
+      "n_months": 65
+    }
+  },
+  "paired_rank_swap_economic_deltas": {
+    "EU_REFERENCES_FULL_HYBRID24": {
+      "cagr_gain_pp": 16.830329809317167,
+      "maxdd_gain_pp": 10.312137182973435
+    },
+    "EU_REFERENCES_FULL_V2": {
+      "cagr_gain_pp": 16.554253350151733,
+      "maxdd_gain_pp": 10.312137182973425
+    },
+    "EU_REFERENCES_TOP2_NO_STOP_NO_RISK": {
+      "cagr_gain_pp": 14.648954949329129,
+      "maxdd_gain_pp": 10.396535423499964
+    },
+    "EU_REFERENCES_TOP2_GROSS_DD_NO_STOPS": {
+      "cagr_gain_pp": 14.26432906756639,
+      "maxdd_gain_pp": 10.165266369291292
+    },
+    "ORIGINAL_US_SPY_HYG_IEF_FULL_HYBRID24": {
+      "cagr_gain_pp": 16.90931545809645,
+      "maxdd_gain_pp": 10.397663793805922
+    },
+    "ORIGINAL_US_SPY_HYG_IEF_FULL_V2": {
+      "cagr_gain_pp": 17.03367241911175,
+      "maxdd_gain_pp": 10.397663793805922
+    },
+    "ORIGINAL_US_SPY_HYG_IEF_TOP2_NO_STOP_NO_RISK": {
+      "cagr_gain_pp": 15.045738564084518,
+      "maxdd_gain_pp": 11.844935155991454
+    },
+    "ORIGINAL_US_SPY_HYG_IEF_TOP2_GROSS_DD_NO_STOPS": {
+      "cagr_gain_pp": 14.794078259927247,
+      "maxdd_gain_pp": 11.290685795938305
+    }
+  },
+  "source_original_online_ADAPT4_predictions_sha": "810e652340748c63c38677a1c018740ea84aa6465dbc0064942a5b159f03bdb4",
+  "source_original_MA3_rank_prediction_sha": "17022aee00596b5c9f0d26126d0dab9b25e183eb44d27a0949c6e863f5d5af50",
+  "production_changed": false
+}
