@@ -1,0 +1,20 @@
+name: V2 canonical basket source export
+on:
+  push:
+    branches: [research-v2-127-allocations-20261020]
+    paths: [.github/workflows/v2-export-basket.yml]
+  workflow_dispatch:
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source checksum
+        run: echo "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e  regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv" | sha256sum --check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-canonical-baskets
+          path: regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv
+          retention-days: 30
