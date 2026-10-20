@@ -1,0 +1,84 @@
+name: V2 frozen source formula migration 2018-2026
+on:
+  push:
+    branches: [research-v2-formula-retrain-20261021]
+    paths:
+      - '.github/workflows/v2-formula-retrain.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  train:
+    name: Source-only ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - shard: years_2018_2020
+            years: "2018,2019,2020"
+          - shard: years_2021_2023
+            years: "2021,2022,2023"
+          - shard: years_2024_2026
+            years: "2024,2025,2026"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reproduce original V2 numerical environment
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Download same frozen 149-ETF OHLCV
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+      - name: Source-only matched annual retraining (original vs downvol vs corrected)
+        run: |
+          python regeneration/v2_formula_retrain.py \
+            --years "${{ matrix.years }}" \
+            --variants LEGACY,DOWNVOL_ONLY,CORRECTED \
+            --raw etf_trader_raw \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out "runs/v2_formula_shards/${{ matrix.shard }}"
+      - name: Preserve year-shard OOS scores and fit provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v2-formula-${{ matrix.shard }}
+          path: runs/v2_formula_shards/
+          if-no-files-found: warn
+          retention-days: 30
+  combine:
+    needs: train
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy tabulate
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-formula-years_*
+          merge-multiple: true
+          path: runs/v2_formula_shards/
+      - name: Test chronological pairing and aggregate bootstrap
+        run: |
+          python regeneration/v2_formula_retrain_aggregate.py \
+            --root runs/v2_formula_shards \
+            --out runs/v2_formula_complete
+      - name: Save complete 149 ETF OOS rankings and metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v2-formula-retrain-complete
+          path: runs/v2_formula_complete/
+          if-no-files-found: warn
+          retention-days: 30
