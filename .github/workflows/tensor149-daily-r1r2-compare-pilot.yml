@@ -21,10 +21,10 @@ jobs:
           set -eux
           gh run download 39455195643 -R AM1975MA/Test -n tensor149-5d-pilot-2024-2025 -D _baseline
           for variant in B_DAILY_BASE C_DAILY_R1 D_DAILY_R1R2 E_CAT_R1R2; do
-            gh run download 39478626210 -R AM1975MA/Test -n "original149-daily-r1r2-pilot-$variant" -D "_new/$variant"
+            gh run download 39478626210 -R AM1975MA/Test -n "original149-daily-r1r2-pilot-$variant'" -D "_new/$variant"
           done
           for variant in E_XGB_BASE E_XGB_R1R2; do
-            gh run download 39479747137 -R AM1975MA/Test -n "original149-daily-r1r2-xgb-pilot-$variant" -D "_new/$variant"
+            gh run download 39479747137 -R AM1975MA/Test -n "original149-daily-r1r2-xgb-pilot-$variant'" -D "_new/$variant"
           done
       - name: Exact-date, SHA, RankIC, Top5 economics and 5wk block paired tests
         run: python -m tensor149_tcn5d.compare_daily_r1r2 --baseline _baseline --newroot _new --weeks 100 --out _audit
