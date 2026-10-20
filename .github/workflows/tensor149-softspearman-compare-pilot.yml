@@ -1,0 +1,33 @@
+name: ORIGINAL149_SOFTSPEARMAN_PILOT_INDEPENDENT_PAIRED_AUDIT
+on:
+  push:
+    branches: [research/original149-softspearman-20261020]
+    paths: ['.github/workflows/tensor149-softspearman-compare-pilot.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+jobs:
+  paired:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Pinned paired comparison
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Immutable same-date OOS archives
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -eux
+          gh run download 39455195643 -R AM1975MA/Test -n tensor149-5d-pilot-2024-2025 -D _baseline
+          for variant in SOFTSPEARMAN SOFTSPEARMAN_RETURN SOFTSPEARMAN_TOP5; do
+            gh run download 39473836762 -R AM1975MA/Test -n "original149-softspearman-pilot-$variant" -D "_models/$variant"
+          done
+      - name: Independent paired date and weekly return blocks
+        run: python -m tensor149_tcn5d.compare_softspearman --baseline _baseline --challenge _models --expected-weeks 100 --out _paired
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-softspearman-pilot-independent-paired
+          retention-days: 90
+          path: _paired/
