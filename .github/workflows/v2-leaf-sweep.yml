@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install original-model and data dependencies
-        run: pip install numpy pandas scipy scikit-learn xgboost yfinance
+        run: pip install numpy pandas scipy scikit-learn xgboost yfinance matplotlib
       - name: Download original 149 ETF OHLCV through frozen cutoff
         run: python regeneration/etf_trader_raw.py
       - name: Certify the original basket, 149 ETF prices and source-only inputs
