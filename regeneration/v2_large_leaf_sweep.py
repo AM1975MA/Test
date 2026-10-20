@@ -118,6 +118,7 @@ def main():
     ap.add_argument('--baskets',default='regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv')
     ap.add_argument('--out',default='runs/v2_large_leaf_sweep')
     ap.add_argument('--years',default='2017,2018,2019,2020,2021,2022,2023,2024,2025,2026')
+    ap.add_argument('--scores-only',action='store_true',help='produce only causally fitted scores and realized leaf audits for distributed shards')
     args=ap.parse_args()
     years=[int(y) for y in args.years.split(',')]
     assert years and set(years)<=set(range(2017,2027))
@@ -165,6 +166,11 @@ def main():
     if not predictions:raise RuntimeError('NO_FITTED_YEARS')
     scores=pd.concat(predictions,ignore_index=True)
     scores.to_csv(out/'OOS_SCORES.csv',index=False)
+    (out/'FIT_AUDIT.json').write_text(json.dumps(audit,indent=2,default=str))
+    pd.DataFrame(tree_audit).to_csv(out/'REALIZED_LEAF_COUNTS.csv',index=False)
+    if args.scores_only:
+        print('SCORES_ONLY_COMPLETE',years,len(scores),len(tree_audit),flush=True)
+        return
     universe,basket=assess(scores,baskets)
     universe.to_csv(out/'UNIVERSE_MONTHLY.csv',index=False)
     basket.to_csv(out/'BASKET_MONTHLY.csv',index=False)
