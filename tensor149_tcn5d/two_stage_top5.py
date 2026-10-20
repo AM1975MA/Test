@@ -44,7 +44,11 @@ def staged_scores(primary,secondary,shortlist_size):
     mask=np.zeros(len(p),dtype=bool)
     mask[allowed]=True
     ans=np.where(mask,1.+q,-1.+p)
-    if not np.array_equal(np.sort(np.argsort(-ans,kind="stable")[:5]),np.sort(allowed[np.argsort(-secondary[allowed],kind="stable")[:5]])):
+    # XGB may emit equal scores. Resolve ties by global original ticker_id,
+    # not by shortlist order; primary rank MUST NOT secretly break second-stage ties.
+    allowed_by_ticker=np.sort(allowed)
+    expected=allowed_by_ticker[np.argsort(-np.asarray(secondary)[allowed_by_ticker],kind="stable")[:5]]
+    if not np.array_equal(np.sort(np.argsort(-ans,kind="stable")[:5]),np.sort(expected)):
         raise ValueError("Stage shortlist rerank inconsistent")
     return ans
 
