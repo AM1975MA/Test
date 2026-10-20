@@ -1,0 +1,78 @@
+name: ORIGINAL149_RMT_DIRECT_XGB_476_WEEK_FOUR_WAY
+on:
+  push:
+    branches: [research/original149-rmt-direct-features-20261020]
+    paths: ['.github/workflows/tensor149-rmt-direct-full.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+env:
+  PYTHONPATH: '${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}'
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '2'
+  OPENBLAS_NUM_THREADS: '2'
+  MKL_NUM_THREADS: '2'
+  NUMEXPR_NUM_THREADS: '2'
+jobs:
+  xgb_rmt:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        variant: [B_RMT_GLOBAL, C_RMT_ETF, D_RMT_BOTH, E_SIMPLE_CORREL]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install exact locked XGB 125 comparison stack
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'matplotlib==3.10.8' 'pyarrow==23.0.1'
+          python -m pip install 'torch==2.7.1' --index-url https://download.pytorch.org/whl/cpu
+      - name: Retrieve QA-verified immutable raw-history RMT signal-time features
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh run download 39489049420 -R AM1975MA/Test -n original149-rmt-direct-daily-causal-cache -D _rmtcache
+          sha256sum _rmtcache/RMT_CAUSAL_DAILY_CACHE.npz
+      - name: Same Original149 expanding-walkforward XGBRanker and net Top5, 476 weeks
+        run: |
+          set -o pipefail
+          python -m tensor149_tcn5d.rmt_direct_run --raw evidence_v1/data/original149 --cache _rmtcache/RMT_CAUSAL_DAILY_CACHE.npz --variant ${{ matrix.variant }} --out _results | tee _run.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-rmt-xgb-full-ARTIFACT_${{ matrix.variant }}
+          retention-days: 90
+          path: |
+            _results/
+            _run.log
+  independent_audit:
+    needs: [xgb_rmt]
+    if: success()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Small pinned independent audit environment
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Fetch frozen baseline and all four just-completed green model archives
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -eu
+          gh run download 39479754815 -R AM1975MA/Test -n "original149-daily-r1r2-xgb-full-E_XGB_BASE'" -D _baseline
+          for name in B_RMT_GLOBAL C_RMT_ETF D_RMT_BOTH E_SIMPLE_CORREL; do
+            gh run download "$GITHUB_RUN_ID" -R AM1975MA/Test -n "original149-rmt-xgb-full-$name" -D "_models/$name"
+          done
+      - name: Matched 476 original dates, metadata and paired block uncertainty
+        run: |
+          python -m tensor149_tcn5d.compare_rmt_direct --baseline _baseline --newroot _models --out _audit | tee _audit.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-rmt-direct-xgb-476week-independent-comparison
+          retention-days: 90
+          path: |
+            _audit/
+            _audit.log
