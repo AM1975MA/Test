@@ -4,9 +4,11 @@ on:
     branches: [research/original149-tcn-listwise-20261020]
     paths:
       - '.github/workflows/tensor149-listwise-full.yml'
-      - 'tensor149_tcn5d/compare_listwise.py'
       - '.github/workflows/tensor149-listwise-full.yml'
   workflow_dispatch:
+concurrency:
+  group: "full-listwise-${{ github.ref }}"
+  cancel-in-progress: true
 permissions: {contents: read}
 env:
   PYTHONPATH: '${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}'
