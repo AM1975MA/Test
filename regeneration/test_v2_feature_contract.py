@@ -52,6 +52,25 @@ def check_formula_units():
     assert rsi["gain"].iloc[-1]==100,rsi.iloc[-1]
     assert rsi["loss"].iloc[-1]==0,rsi.iloc[-1]
     assert rsi["flat"].iloc[-1]==50,rsi.iloc[-1]
+    # Independent Wilder RSI oracle: first h changes use an SMA seed,
+    # subsequent updates use (previous*(h-1)+current)/h.
+    diffs=np.array([1.,-2.,3.,-1.,4.,-3.,2.,-1.,2.,-1.,3.,-2.,1.,-1.,2.,-3.])
+    prices=np.r_[100.0,100+np.cumsum(diffs)]
+    times=pd.bdate_range("2024-01-02",periods=len(prices))
+    rs=k.rolling_rsi(pd.DataFrame({"x":prices},index=times),h=14)["x"]
+    gain=np.maximum(diffs[:14],0.0).mean()
+    loss=np.maximum(-diffs[:14],0.0).mean()
+    assert np.isnan(rs.iloc[13])
+    assert np.isclose(rs.iloc[14],100*gain/(gain+loss),atol=1e-12)
+    gain=(13*gain+max(diffs[14],0.0))/14
+    loss=(13*loss+max(-diffs[14],0.0))/14
+    assert np.isclose(rs.iloc[15],100*gain/(gain+loss),atol=1e-12)
+    gap=pd.DataFrame({"x":100*np.exp(np.arange(40)*.01)})
+    gap.iloc[20,0]=np.nan
+    rsi_gap=k.rolling_rsi(gap,h=14)["x"]
+    assert rsi_gap.iloc[34:].notna().sum()==4  # 14 valid changes from t=22 through t=35
+    assert rsi_gap.iloc[34]!=rsi_gap.iloc[34]  # incomplete warm-up
+    assert rsi_gap.iloc[35]==100.0
     s=pd.DataFrame({"gain":[.001]*100,"loss":[-.001]*100,"mixed":[.001,-.001]*50})
     ent=k.rolling_sign_entropy(s,63).iloc[-1]
     assert np.isclose(ent["gain"],0.0,atol=1e-14) and np.isclose(ent["loss"],0.0,atol=1e-14)
