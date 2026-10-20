@@ -112,7 +112,7 @@ def main():
     if hashlib.sha256(Path(a.baskets).read_bytes()).hexdigest()!=SHAFILE:raise RuntimeError('Basket source mismatch')
     audited=json.loads(Path(a.audit).read_text())
     if audited['status']!='BASELINE_SCORE_PARITY_PASS':raise RuntimeError('Missing original score parity')
-    z=pd.read_csv(a.components,parse_dates=['signal_date'])
+    z=pd.read_csv(a.components,parse_dates=['signal_date'],float_precision='round_trip')
     if z.duplicated(['signal_date','ticker']).any():raise RuntimeError('duplicated score rows')
     mats,cats,_=source.load_ticker_csv_folder(a.raw)
     mats={k:v.loc[v.index>=pd.Timestamp(2011,1,1)] for k,v in mats.items()}
