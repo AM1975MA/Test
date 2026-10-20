@@ -123,8 +123,16 @@ def main(data,us,fx,out):
         assert score.shape==(65,48) and np.isfinite(score).all()
         alloc=producer.allocations_from_score(score,cal,days,bm,bok,continuous=True)
         assert alloc.d1.shape==(1,1374) and alloc.d1.max()<48 and alloc.d2.max()<48
-        source_state=original_us_v6(Cdf.loc[days,names],alloc.d1,alloc.d2,alloc.weight1,ddgross,
+        # V6 original needs the *reference names* BIL/SHV visible but they
+        # are never among the 48 candidate columns indexed by ranker.
+        stateclose=Cdf.loc[days,names].copy()
+        priordaily=strict.set_index("date").reindex(days)
+        stateclose["BIL"]=priordaily["BIL_EUR_OPEN_EST"].to_numpy(float)
+        stateclose["SHV"]=priordaily["SHV_EUR_OPEN_EST"].to_numpy(float)
+        source_state=original_us_v6(stateclose,alloc.d1,alloc.d2,alloc.weight1,ddgross,
                    bil_ticker="BIL",shv_ticker="SHV")
+        assert np.all((source_state.alt_idx<48)|(source_state.alt_idx<0)),(
+            "Non-EU alternative must never be promoted into 48 European candidate ALT")
         _,agree,agreeall=stage19.daily_monthly_state(score,pm,cal,days,bm,bok)
         weights=stage19.confidence_weights(alloc,g_risk,agree,agreeall,
                   "current_plus_models_riskoff")
