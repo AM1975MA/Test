@@ -1,0 +1,35 @@
+name: ORIGINAL149_RISKRELATIVE_PILOT_INDEPENDENT_PAIRED_AUDIT
+on:
+  push:
+    branches: [research/original149-tcn-riskrelative-20261020]
+    paths: ['.github/workflows/tensor149-riskrelative-compare-pilot.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+jobs:
+  paired:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Pinned pairwise evaluation stack
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Independently download frozen 100 weeks pointwise and 3 risk-target OOS
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -eux
+          gh run download 39455195643 -R AM1975MA/Test -n tensor149-5d-pilot-2024-2025 -D _frozen
+          for variant in RAW_EXCESS_DIST VOL_EXCESS_DIST BETA_VOL_RESID_DIST; do
+            gh run download 39471026485 -R AM1975MA/Test -n "original149-riskrelative-pilot-$variant" -D "_risk/$variant"
+          done
+      - name: Exact roster date and control parity plus paired calendar-year audit
+        run: |
+          python -m tensor149_tcn5d.compare_riskrelative --baseline _frozen --challenge _risk --out _comparison --expected-weeks 100
+      - name: Retain every audit artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-riskrelative-pilot-independent-audit
+          retention-days: 90
+          path: _comparison/
