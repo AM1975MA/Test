@@ -49,7 +49,7 @@ class ListwiseLossTests(unittest.TestCase):
         anchors=np.arange(280,len(dates)-6,5,dtype=np.int32)
         avail=np.ones((len(dates),149),dtype=bool)
         y=np.ones((len(dates),149),dtype=np.float32)
-        cutoff=pd.Timestamp("2017-01-01")
+        cutoff=pd.Timestamp("2018-01-01")
         train=sample_pairs(anchors,dates,avail,y,exit_before=cutoff)
         self.assertGreater(len(train),0)
         self.assertTrue(all(dates[t+6]<cutoff for t in train[:,0]))
