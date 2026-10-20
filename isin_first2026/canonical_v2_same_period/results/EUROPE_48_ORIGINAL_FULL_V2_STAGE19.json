@@ -1,0 +1,48 @@
+{
+  "status": "EU48_REAL_ORIGINAL_FULL_V2_STAGE19_SOURCE_STACK_MATCHED_65_MONTHS",
+  "original_stage19_vendor_source_SHA256": "f4fc206acf8aa7408e8ba819e56d407eeedb0b9bd806955fe292c9d10e598920",
+  "genuine_48_source_only_original_Titanium_and_MA3_USSPY_refit_archived": true,
+  "genuine_48_source_only_original_125feature_compact21_XGB_yearly_source_fit_archived": true,
+  "original_V2_full_stage19_not_LATER_V6_SIMPLIFIED": true,
+  "predictions_65x48_with_no_future_labels": true,
+  "portfolio_one_unrestricted_europe48": true,
+  "original_149_trading_system_CAGR_31P76_from_three_data_vintages_not_500_baskets": true,
+  "n_european_isins": 48,
+  "n_tradeable_predictive_US_tickers": 0,
+  "n_original_macro_reference_US_tickers": 5,
+  "n_europe_sessions": 1374,
+  "n_months": 65,
+  "source_149_score_model_cannot_exactly_clone_on_48_ISIN": true,
+  "original_149_7_dynamic_cluster_infeasible_with_48_EU_ISIN": true,
+  "original_SPY_HYG_IEF_USD_risk": true,
+  "original_BIL_SHV_USD_cash_marked_as_EUR_with_last_prior_close_fx": true,
+  "original_BIL_SHV_cash_euro_open_quotes_NOT_real_broker_executable": true,
+  "staged_125F_compact21_override_is_EXPLICIT_DIAGNOSTIC_not_plain_canonical": true,
+  "original_EU_48_quote_49_HighLow_repairs_flag": true,
+  "no_outcome_optimisation_or_new_refits_during_test": true,
+  "historical_2026_roster_survivorship_and_Yahoo_adjusted_backfilled_caveats": true,
+  "all_cases": {
+    "MA3_US_SPY_FITTED_AND_ORIGINAL_V2_FULL_STAGE19": {
+      "cagr": -0.001548735494856131,
+      "maxdd": -0.3990932998524386,
+      "sharpe": 0.10742322336033434,
+      "terminal_nav": 0.9915847663238524,
+      "annual_turnover": 12.737068156229974,
+      "risk_macro_SPY_HYG_IEF_USD": true,
+      "defensive_BIL_SHV_USD_in_EUR_mark": true,
+      "actual_real_months": 65,
+      "original_stage19_score_included": true
+    },
+    "125F_COMPACT21_SOURCE_REPLACES_MA3_BASE_IN_ORIGINAL_STAGE19": {
+      "cagr": 0.059762514397520464,
+      "maxdd": -0.3478984148707047,
+      "sharpe": 0.37898783921856893,
+      "terminal_nav": 1.3722923367058335,
+      "annual_turnover": 13.378796281195953,
+      "risk_macro_SPY_HYG_IEF_USD": true,
+      "defensive_BIL_SHV_USD_in_EUR_mark": true,
+      "actual_real_months": 65,
+      "original_stage19_score_included": true
+    }
+  }
+}
