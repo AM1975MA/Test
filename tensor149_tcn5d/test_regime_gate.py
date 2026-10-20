@@ -39,10 +39,10 @@ class CausalRegimeTests(unittest.TestCase):
         self.assertTrue(a.lambda1_share126.between(0,1).all())
 
     def test_matured_label_gate_and_weight(self):
-        dates=pd.bdate_range("2020-01-01",periods=300)
+        dates=pd.bdate_range("2020-01-01",periods=700)
         weeks=[dict(t_idx=i,exit_date=dates[i+6],ret_experts=np.array([.001,.003,-.01]))
-               for i in range(0,245,5)]
-        p=20
+               for i in range(0,645,5)]
+        p=95
         older=history_before(weeks,p,dates)
         self.assertTrue(all(weeks[j]["exit_date"]<dates[weeks[p]["t_idx"]] for j in older))
         self.assertNotIn(p-1,older)
