@@ -30,3 +30,22 @@ All three registered Listwise 5D losses fail full-window economic screen vs Poin
 Source https://github.com/AM1975MA/Test/actions/runs/39458064851
 
 The relatively good ex-post winner hit rate is consistent with volatility preference. A claim of extra predictive tail alpha would require risk-matched controls, independent forward data and stabilized regime dependence. Original149 has universe survival/selection bias and Yahoo OHLCV adjusted open prices cannot certify live fills. No live deployment recommendation.
+
+
+## Exact same-date independent comparison and paired uncertainty
+
+All 476 held-out weekly decision dates match the archived Pointwise dates exactly for each Listwise model, verified by an independent summary runner, not merely comparing aggregate headline metrics.
+
+Paired weekly Top5 true-winner overlap improvement relative to Pointwise:
+- ListNet all-name +10.7563 percentage points; exploratory 95% 5-week circular-block interval [+8.4874,+13.0252] pp.
+- ListMLE Top5 +12.2269 pp; interval [+10.1681,+14.1607] pp.
+- Hybrid ListNet +11.5966 pp; interval [+9.2857,+13.9086] pp.
+
+Paired weekly rank-IC declines relative to Pointwise:
+- ListNet −.05242, 95% interval [−.08084,−.02461].
+- ListMLE −.05285, interval [−.08351,−.02353].
+- Hybrid −.04787, interval [−.07423,−.02169].
+
+The large positive extreme-winner overlap in Listwise models does NOT imply forecastable positive relative dollar-return alpha. Risk-only high-vol21 overlaps true top5 19.50% vs Listwise 17.02%, 18.49%, 17.86%; high-vol21 has materially negative net returns. A rank-tail objective has been falsified here as a standalone net-profit strategy, despite more ex-post Top5 matches.
+
+Certified comparison action: https://github.com/AM1975MA/Test/actions/runs/39458965249
