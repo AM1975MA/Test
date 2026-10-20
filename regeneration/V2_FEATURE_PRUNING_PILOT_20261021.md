@@ -46,3 +46,15 @@ Each missing fraction propagates to its pct/dev derived features. The code uses 
 - Follow with temporally nested feature selection and a larger, explicitly defined walk-forward confirmation; do not optimize feature count on CAGR.
 
 All numeric claims here refer to the archived pilot artifact `12303808328`, not to the later in-progress experiment.
+
+## Sensitivity: nonconsecutive-year block handling
+
+Because 2018, 2022 and 2025 are separated by calendar gaps, an additional conditional bootstrap resamples 6-month circular blocks **inside each 12-month year**, keeping all three years equally weighted rather than concatenating their dates.
+
+| Candidate minus BASE125 | Basket Top3 mean delta | Conditional 95% bootstrap interval | Universe IC mean delta |
+| --- | ---: | ---: | ---: |
+| K16 | -7.08 pp | [-10.11,-4.16] pp | -0.01690 |
+| K32 | -5.89 pp | [-8.58,-3.10] pp | -0.02154 |
+| K46 | -5.94 pp | [-8.28,-3.62] pp | -0.01612 |
+
+These intervals still condition on the exact three chosen years; they do **not** quantify the uncertainty over unseen market regimes, source changes, or strategy selection after thousands of exploratory tests. The direction of underperformance is unchanged in each of the three years.
