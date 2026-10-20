@@ -86,6 +86,22 @@ def run(args):
                 "weekly_top5_return_delta_block95":block_ci(delta),
                 "mean_true_top5_overlap_delta":float(raw_overlap.mean()),
                 "top5_overlap_delta_block95":block_ci(raw_overlap)}
+    # Compound the same costed 5-session single-hold P&L into calendar-year
+    # tables without resetting out-of-sample refits or picking training years.
+    annual=[]
+    for name,df in {**{k:series[k] for k in CHALLENGERS},
+                    **{k:series["RAW_EXCESS_DIST:"+k] for k in CONTROLS},
+                    **frozen}.items():
+        for year,g in df.groupby(df.date.str[:4]):
+            weekly=(1-.002)*(1+g.top5_mean_future_return.to_numpy(dtype=float))
+            curve=np.cumprod(np.r_[1.,weekly])
+            ann_dd=float((curve/np.maximum.accumulate(curve)-1).min())
+            annual.append(dict(model=name,year=int(year),n_weeks=len(g),
+                cumulative_costed_5d=float(curve[-1]-1),
+                maxdd_at_weekly_exits=float(ann_dd),
+                mean_raw_future_5d=float(g.top5_mean_future_return.mean()),
+                fraction_profitable_costed_week=float((weekly>1).mean())))
+    annual_df=pd.DataFrame(annual).sort_values(["year","model"])
     out=dict(status="RISKRELATIVE_COMPARISON_COMPLETED",
              test_dates=int(args.expected_weeks),all_weekly_dates_and_roster_exact=True,
              controls_identical_across_target_variants=True,
@@ -95,6 +111,7 @@ def run(args):
     out_dir=Path(args.out);out_dir.mkdir(parents=True,exist_ok=True)
     (out_dir/"COMPARISON.json").write_text(json.dumps(out,indent=2,allow_nan=False)+"\n")
     pd.DataFrame([{"model":k,**{m:r.get(m) for m in KEY_METRICS}} for k,r in metrics.items()]).to_csv(out_dir/"METRICS.csv",index=False)
+    annual_df.to_csv(out_dir/"ANNUAL_WEEKLY_REPLAY.csv",index=False)
     pd.DataFrame([{"variant":q,"control":ref,**v} for q,compar in paired.items()
                   for ref,v in compar.items()]).to_json(out_dir/"PAIRED.json",orient="records",indent=2)
     print(json.dumps({"status":out["status"],"dates":out["test_dates"],
