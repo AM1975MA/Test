@@ -30,7 +30,7 @@ class TensorContract(unittest.TestCase):
             t=self.dates.get_loc(row.signal_date)
             j=self.mats["Open"].columns.get_loc(row.ticker)
             actual=self.X[t,j]
-            expected=row[FIELDS].to_numpy(float)
+            expected=row[list(FIELDS)].to_numpy(float)
             np.testing.assert_allclose(actual,expected,rtol=5e-5,atol=2e-4,equal_nan=True)
 
     def test_past_prefix_invariant_and_next_open(self):
