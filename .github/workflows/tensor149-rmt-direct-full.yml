@@ -32,7 +32,12 @@ jobs:
       - name: Retrieve QA-verified immutable raw-history RMT signal-time features
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
-          gh run download 39489049420 -R AM1975MA/Test -n original149-rmt-direct-daily-causal-cache -D _rmtcache
+          gh run download 39489049420 -R AM1975MA/Test -n original149-rmt-direct-daily-causal-cache -D _cache_download
+          find _cache_download -maxdepth 4 -type f -print
+          cache_path="$(find _cache_download -name RMT_CAUSAL_DAILY_CACHE.npz -type f | head -n 1)"
+          test -n "$cache_path"
+          mkdir -p _rmtcache
+          cp "$cache_path" _rmtcache/RMT_CAUSAL_DAILY_CACHE.npz
           sha256sum _rmtcache/RMT_CAUSAL_DAILY_CACHE.npz
       - name: Same Original149 expanding-walkforward XGBRanker and net Top5, 476 weeks
         run: |
@@ -41,7 +46,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: original149-rmt-xgb-full-ARTIFACT_${{ matrix.variant }}
+          name: original149-rmt-xgb-full-${{ matrix.variant }}
           retention-days: 90
           path: |
             _results/
