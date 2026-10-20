@@ -1,0 +1,37 @@
+name: ORIGINAL149_XGB125_DEPTH_476_WEEK_INDEPENDENT_AUDIT
+on:
+  push:
+    branches: [research/original149-xgb125-depth-sweep-20261020]
+    paths: ['.github/workflows/tensor149-xgb125-depth-audit.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Pinned independent, lightweight 476-week statistics stack
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'pyarrow==23.0.1'
+      - name: Download immutable original depth4 and 6 completed experiment archives
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -eux
+          gh run download 39479754815 -R AM1975MA/Test -n "original149-daily-r1r2-xgb-full-E_XGB_BASE'" -D _original
+          for d in 2 3 4 5 6 7; do
+            gh run download 39492170319 -R AM1975MA/Test -n "original149-xgb125-depth-$d" -D "_six/depth$d"
+          done
+      - name: Hard depth4 reproduction gate, exact week/roster and paired 5week bootstrap
+        run: |
+          set -o pipefail
+          python -m tensor149_tcn5d.compare_xgb125_depth --baseline _original --candidates _six --out _audit | tee _audit.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-xgb125-depth-476w-independent-statistical-audit
+          retention-days: 90
+          path: |
+            _audit/
+            _audit.log
