@@ -9,7 +9,7 @@ on:
 permissions:
   contents: read
 env:
-  PYTHONPATH: '\${{ github.workspace }}/vendor/etf_trader_v2/src:\${{ github.workspace }}'
+  PYTHONPATH: '${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}'
   PYTHONHASHSEED: '0'
   OMP_NUM_THREADS: '2'
   OPENBLAS_NUM_THREADS: '2'
