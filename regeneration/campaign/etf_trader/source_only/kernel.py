@@ -125,14 +125,48 @@ def rolling_downvol(ret:pd.DataFrame,h:int)->pd.DataFrame:
     return np.sqrt(252.0*downside.pow(2).rolling(h,min_periods=h).mean())
 
 def rolling_rsi(c:pd.DataFrame,h:int=14)->pd.DataFrame:
-    d=c.diff(); up=d.clip(lower=0).ewm(alpha=1/h,adjust=False,min_periods=h).mean(); dn=(-d.clip(upper=0)).ewm(alpha=1/h,adjust=False,min_periods=h).mean()
-    # Wilder RSI boundary values: no losses -> 100, no gains -> 0,
-    # completely flat series -> neutral 50. Preserve insufficient warmup NaN.
-    rs=up/dn.where(dn>0)
-    rsi=100-100/(1+rs)
-    rsi=rsi.mask((dn==0)&(up>0),100.0)
-    rsi=rsi.mask((dn==0)&(up==0),50.0)
-    return rsi.where(up.notna()&dn.notna())
+    """Wilder RSI with *exact* SMA seed and recursive smoothed gains/losses.
+
+    The first value uses the mean of h consecutive close changes (not an
+    exponentially weighted seed). Subsequent values use alpha=1/h. Missing
+    closing prices reset the warm-up, rather than being interpreted as flats.
+    """
+    if h<2:raise ValueError('RSI window must be >=2')
+    delta=c.diff().to_numpy(dtype=float)
+    n,m=delta.shape
+    up=np.maximum(delta,0.0)
+    down=np.maximum(-delta,0.0)
+    cnt=np.zeros(m,dtype=int)
+    sumup=np.zeros(m,dtype=float)
+    sumdown=np.zeros(m,dtype=float)
+    avgup=np.full(m,np.nan)
+    avgdown=np.full(m,np.nan)
+    values=np.full((n,m),np.nan,dtype=float)
+    for i in range(n):
+        finite=np.isfinite(delta[i])
+        invalid=~finite
+        cnt[invalid]=0
+        sumup[invalid]=0.0
+        sumdown[invalid]=0.0
+        avgup[invalid]=np.nan
+        avgdown[invalid]=np.nan
+        warm=finite & (cnt<h)
+        sumup[warm]+=up[i,warm]
+        sumdown[warm]+=down[i,warm]
+        cnt[warm]+=1
+        seeded=warm & (cnt==h)
+        avgup[seeded]=sumup[seeded]/h
+        avgdown[seeded]=sumdown[seeded]/h
+        update=finite & (cnt>=h) & ~seeded
+        avgup[update]=((h-1)*avgup[update]+up[i,update])/h
+        avgdown[update]=((h-1)*avgdown[update]+down[i,update])/h
+        ready=seeded|update
+        denom=avgup[ready]+avgdown[ready]
+        result=np.full(ready.sum(),50.0,dtype=float)
+        nonflat=denom>0
+        result[nonflat]=100.0*avgup[ready][nonflat]/denom[nonflat]
+        values[i,ready]=result
+    return pd.DataFrame(values,index=c.index,columns=c.columns)
 
 def rolling_cvar10(ret:pd.DataFrame,h:int)->pd.DataFrame:
     return ret.rolling(h,min_periods=h).apply(lambda x: np.nanmean(np.sort(x)[:max(1,int(math.ceil(.1*len(x))))]),raw=True)
