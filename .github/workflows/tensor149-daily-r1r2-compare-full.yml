@@ -1,0 +1,36 @@
+name: ORIGINAL149_DAILY_R1R2_FULL_INDEPENDENT_476_DATE_AUDIT
+on:
+  push:
+    branches: [research/original149-r1r2-daily-20261020]
+    paths: ['.github/workflows/tensor149-daily-r1r2-compare-full.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Independent paired-analysis numerical environment
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Pull original frozen 100 weeks and six independent new model archives
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -eux
+          gh run download 39455244701 -R AM1975MA/Test -n tensor149-5d-full-2017-2026 -D _baseline
+          for variant in B_DAILY_BASE C_DAILY_R1 D_DAILY_R1R2 E_CAT_R1R2; do
+            gh run download 39478752782 -R AM1975MA/Test -n "original149-daily-r1r2-full-$variant'" -D "_new/$variant"
+          done
+          for variant in E_XGB_BASE E_XGB_R1R2; do
+            gh run download 39479754815 -R AM1975MA/Test -n "original149-daily-r1r2-xgb-full-$variant'" -D "_new/$variant"
+          done
+      - name: Exact-date, SHA, RankIC, Top5 economics and 5wk block paired tests
+        run: python -m tensor149_tcn5d.compare_daily_r1r2 --baseline _baseline --newroot _new --weeks 476 --out _audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-r1r2-full-paired476-audit
+          retention-days: 90
+          path: _audit/
