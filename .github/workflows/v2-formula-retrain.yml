@@ -4,6 +4,8 @@ on:
     branches: [research-v2-formula-retrain-20261021]
     paths:
       - '.github/workflows/v2-formula-retrain.yml'
+      - 'regeneration/v2_formula_retrain.py'
+      - 'regeneration/v2_formula_retrain_aggregate.py'
   workflow_dispatch:
 permissions:
   contents: read
