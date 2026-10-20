@@ -2,7 +2,9 @@ name: ORIGINAL149_FROZEN_DEPTHS_TWO_STAGE_TOP5_476W
 on:
   push:
     branches: [research/original149-two-stage-top5-20261020]
-    paths: ['.github/workflows/tensor149-two-stage-top5.yml']
+    paths:
+      - '.github/workflows/tensor149-two-stage-top5.yml'
+      - 'tensor149_tcn5d/two_stage_top5.py'
   workflow_dispatch:
 permissions: {contents: read, actions: read}
 env:
