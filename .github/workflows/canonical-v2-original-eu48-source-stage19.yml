@@ -62,7 +62,7 @@ jobs:
           assert d["n_europe_sessions"]==1374 and d["n_months"]==65
           assert len(d["all_cases"])==2
           h=pd.read_csv(p/"ORIGINAL_V2_STAGE19_EU48_MONTHLY_LEADERS.csv")
-          assert h.groupby("case").size().eq(65).all() and h.groupby("case").leader_isin.notna().all()
+          assert h.groupby("case").size().eq(65).all() and h["leader_isin"].notna().all()
           nav=pd.read_csv(p/"ORIGINAL_V2_STAGE19_EU48_DAILY_NAV_COSTED.csv")
           assert len(nav)==1374 and nav.notna().all(axis=None)
           for l in (p/"SHA256_MANIFEST.txt").read_text().splitlines():
