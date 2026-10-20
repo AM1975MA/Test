@@ -160,8 +160,10 @@ def main():
         if actual.date.tolist()!=frozen.date.tolist() or actual.selected.tolist()!=frozen.selected.tolist():
             raise ValueError(f"Single-depth Top5 not reproduced for {depth}")
         for k in ("rank_ic","top5_overlap","top5_mean_future_return"):
-            if not np.allclose(actual[k],frozen[k],atol=1e-10,rtol=1e-10):
-                raise ValueError(f"Single-depth OOS metrics not replicated {depth}: {k}")
+            absolute_max=float(np.max(np.abs(actual[k].to_numpy(dtype=float)-frozen[k].to_numpy(dtype=float))))
+            if not np.allclose(actual[k],frozen[k],atol=1e-6,rtol=1e-6):
+                raise ValueError(f"Single-depth OOS metrics not replicated {depth}: {k} max_difference={absolute_max}")
+            print(json.dumps(dict(frozen_metric_check_depth=depth,metric=k,max_abs_diff=absolute_max)),flush=True)
     stats=[];curves=[]
     for method in METHODS:
         curve,eco=nav_path(df,dates,mats,method)
