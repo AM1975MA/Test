@@ -175,7 +175,7 @@ def main(data,us,fx,out):
         n_european_isins=48,n_tradeable_predictive_US_tickers=0,
         n_original_macro_reference_US_tickers=5,n_europe_sessions=1374,n_months=65,
         source_149_score_model_cannot_exactly_clone_on_48_ISIN=True,
-        48_dynamic_cluster_original_149_7_dynamic_not_possible_with_41_equity=True,
+        original_149_7_dynamic_cluster_infeasible_with_48_EU_ISIN=True,
         original_SPY_HYG_IEF_USD_risk=True,
         original_BIL_SHV_USD_cash_marked_as_EUR_with_last_prior_close_fx=True,
         original_BIL_SHV_cash_euro_open_quotes_NOT_real_broker_executable=True,
