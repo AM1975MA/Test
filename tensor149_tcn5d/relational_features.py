@@ -133,7 +133,7 @@ def make_r1r2(mats,universe_csv):
         return a,keys
     R1,k1=as_tensor(r1)
     R2,k2=as_tensor(r2)
-    if len(k1)!=14 or len(k2)!=18:raise ValueError(f"feature counts: R1 {len(k1)}, R2 {len(k2)}")
+    if len(k1)!=14 or len(k2)!=20:raise ValueError(f"feature counts: R1 {len(k1)}, R2 {len(k2)}")
     return R1,k1,R2,k2
 
 def attach_blocks(x,r1,r2,variant):
