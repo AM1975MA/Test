@@ -1,0 +1,34 @@
+name: ORIGINAL149_LISTWISE_FULL_MATCHED_PAIRED_COMPARISON
+on:
+  push:
+    branches: [research/original149-tcn-listwise-20261020]
+    paths: ['.github/workflows/tensor149-listwise-compare-full.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+jobs:
+  independent-paired-summary:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Pinned summarize environment
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Download immutable matched 3 challenger archives and original Pointwise
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -eux
+          gh run download 39455244701 -R AM1975MA/Test -n tensor149-5d-full-2017-2026 -D _baseline
+          for variant in LISTNET_ALL LISTMLE_TOP5 LISTNET_RETURN_HYBRID; do
+            gh run download 39457504782 -R AM1975MA/Test -n "original149-listwise-full-$variant" -D "_new/$variant"
+          done
+      - name: Exact same dated Top5 and paired circular-block test
+        run: |
+          python -m tensor149_tcn5d.compare_listwise --scope full --old _baseline --newroot _new --out _comparison
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-listwise-full-paired-comparison
+          retention-days: 90
+          path: _comparison/
