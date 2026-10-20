@@ -4,6 +4,7 @@ on:
     branches: [research/original149-r1r2-daily-20261020]
     paths:
       - '.github/workflows/tensor149-daily-r1r2-pilot.yml'
+      - 'tensor149_tcn5d/relational_features.py'
   workflow_dispatch:
 concurrency:
   group: "original149-daily-r1r2-pilot-${{ github.ref }}"
