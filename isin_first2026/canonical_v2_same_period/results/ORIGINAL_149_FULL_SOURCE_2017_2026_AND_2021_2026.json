@@ -1,0 +1,146 @@
+{
+  "status": "ORIGINAL_ETF_TRADER_V2_US149_CANONICAL_SOURCE_THREE_VINTAGES_2017_TO_2026_AND_2021_TO_2026_VERIFIED",
+  "original_total_2017_2026_vintage_mean_BASE_cagr": 0.31758077249027905,
+  "original_total_2017_2026_vintage_mean_top5_rerank_cagr": 0.30957772070033845,
+  "original_total_2017_2026_BASE_mean_maxdd": -0.32216416348051896,
+  "original_total_2017_2026_BASE_mean_sharpe": 1.105346108167936,
+  "preserved_all_three_full_original149_V2_path_SHA256": {
+    "v2replay-ECON_TOP5_RERANK-r1/baseline_control/FULL_UNIVERSE_PATH.npz": "71832165ab3d9234dc6a7ebef22782b2030566a4be75f4a553d7382f8b76c18b",
+    "v2replay-ECON_TOP5_RERANK-r2/baseline_control/FULL_UNIVERSE_PATH.npz": "1d414cbbccafea1243d67d0dabe2a12fe05328bda3e6a1dba9b859a49616f177",
+    "v2replay-ECON_TOP5_RERANK-r3/baseline_control/FULL_UNIVERSE_PATH.npz": "0177093f28d0c90fafaa4380e566fe3fabb9b15f4beceea53e651d4b48a83c1a",
+    "v2replay-ECON_TOP5_RERANK-r1/candidate/FULL_UNIVERSE_PATH.npz": "8055f4bfb05db669f181a45811520578b721f82b437629eafe62a5fdc1460d1b",
+    "v2replay-ECON_TOP5_RERANK-r2/candidate/FULL_UNIVERSE_PATH.npz": "eb2df6aff35dfafd7caf674550bfd2589e9ff4b51fd63b4582322aa3aa77100b",
+    "v2replay-ECON_TOP5_RERANK-r3/candidate/FULL_UNIVERSE_PATH.npz": "ee28085a3ca51a76565f0536db343845375d99e1df05bc1a90cb930997e69297"
+  },
+  "old_model_original_FULL_STAGED_V2_not_MA3_only": true,
+  "old_original_was_one_unrestricted_149_portfolio_each_of_three_quote_vintages": true,
+  "no_500_baskets_in_31_76_replayed_measure": true,
+  "common_overlap_2021_2026_vintage_mean_BASE_cagr": 0.3493165984009606,
+  "common_overlap_2021_2026_vintage_mean_rerank_cagr": 0.33529626821790864,
+  "common_overlap_2021_2026_vintage_mean_BASE_maxdd": -0.2600217993741118,
+  "common_overlap_2021_2026_vintage_mean_rerank_maxdd": -0.2535593446838868,
+  "full_history_149": {
+    "BASE": {
+      "1": {
+        "first": "2017-02-01",
+        "last": "2026-07-01",
+        "n": 2366,
+        "cagr": 0.29753447746605766,
+        "maxdd": -0.3486213376490779,
+        "sharpe": 1.0461135207098167,
+        "nav_factor": 11.536148681359933
+      },
+      "2": {
+        "first": "2017-02-01",
+        "last": "2026-07-01",
+        "n": 2366,
+        "cagr": 0.3084370492564604,
+        "maxdd": -0.25689610266686813,
+        "sharpe": 1.0869929498969455,
+        "nav_factor": 12.478988259917129
+      },
+      "3": {
+        "first": "2017-02-01",
+        "last": "2026-07-01",
+        "n": 2366,
+        "cagr": 0.346770790748319,
+        "maxdd": -0.36097505012561093,
+        "sharpe": 1.1829318538970461,
+        "nav_factor": 16.365303998168837
+      }
+    },
+    "ECON_TOP5_RERANK": {
+      "1": {
+        "first": "2017-02-01",
+        "last": "2026-07-01",
+        "n": 2366,
+        "cagr": 0.2785173712639045,
+        "maxdd": -0.34859590201581525,
+        "sharpe": 0.9909600396075617,
+        "nav_factor": 10.04284413786203
+      },
+      "2": {
+        "first": "2017-02-01",
+        "last": "2026-07-01",
+        "n": 2366,
+        "cagr": 0.311568289246779,
+        "maxdd": -0.256896102666868,
+        "sharpe": 1.0971460944787328,
+        "nav_factor": 12.76220587103726
+      },
+      "3": {
+        "first": "2017-02-01",
+        "last": "2026-07-01",
+        "n": 2366,
+        "cagr": 0.3386475015903318,
+        "maxdd": -0.36096328410759815,
+        "sharpe": 1.1556234070569034,
+        "nav_factor": 15.461626433977433
+      }
+    }
+  },
+  "same_period_2021_2026": {
+    "BASE": {
+      "1": {
+        "first": "2021-02-01",
+        "last": "2026-07-01",
+        "n": 1360,
+        "cagr": 0.3411661087818657,
+        "maxdd": -0.2476319871467716,
+        "sharpe": 1.0819295719039153,
+        "nav_factor": 4.875298068788491
+      },
+      "2": {
+        "first": "2021-02-01",
+        "last": "2026-07-01",
+        "n": 1360,
+        "cagr": 0.2796339060569414,
+        "maxdd": -0.256896102666868,
+        "sharpe": 0.9557345030978451,
+        "nav_factor": 3.7837552407240174
+      },
+      "3": {
+        "first": "2021-02-01",
+        "last": "2026-07-01",
+        "n": 1360,
+        "cagr": 0.4271497803640747,
+        "maxdd": -0.2755373083086958,
+        "sharpe": 1.3012180634293031,
+        "nav_factor": 6.817815078184504
+      }
+    },
+    "ECON_TOP5_RERANK": {
+      "1": {
+        "first": "2021-02-01",
+        "last": "2026-07-01",
+        "n": 1360,
+        "cagr": 0.3142914712046155,
+        "maxdd": -0.2476065957363831,
+        "sharpe": 1.0129747836424805,
+        "nav_factor": 4.370773739723403
+      },
+      "2": {
+        "first": "2021-02-01",
+        "last": "2026-07-01",
+        "n": 1360,
+        "cagr": 0.27598672728403006,
+        "maxdd": -0.256896102666868,
+        "sharpe": 0.9478844315227906,
+        "nav_factor": 3.725917442860935
+      },
+      "3": {
+        "first": "2021-02-01",
+        "last": "2026-07-01",
+        "n": 1360,
+        "cagr": 0.41561060616508033,
+        "maxdd": -0.25617533564840933,
+        "sharpe": 1.2635792690352128,
+        "nav_factor": 6.525553816023735
+      }
+    }
+  },
+  "old_path_run": 39044619710,
+  "no_new_fit_no_ticker_selection_changes": true,
+  "original_statements_31_76_mean_3_quote_vintages_correct": true,
+  "study_overlap_2021_2026_is_NOT_new_unseen_data": true
+}
