@@ -89,7 +89,8 @@ def make_r1r2(mats,universe_csv):
     # Exclude self from the broad return proxy; available from t without look-ahead.
     universe_exself=(ret.sum(axis=1,min_count=1).to_numpy()[:,None]-
                      ret.fillna(0.).to_numpy()) / np.maximum(valid.sum(axis=1).to_numpy()[:,None]-valid.to_numpy(),1)
-    univ_peer=pd.DataFrame(universe_exself,index=C.index,columns=names).where(valid.sum(axis=1).to_numpy()[:,None]>=2)
+    universe_exself=np.where((valid.sum(axis=1).to_numpy()>=2)[:,None],universe_exself,np.nan)
+    univ_peer=pd.DataFrame(universe_exself,index=C.index,columns=names)
     for h in (21,63):
         r2[f"r2_corr_universe_{h}"]=ret.rolling(h,min_periods=h).corr(univ_peer)
         r2[f"r2_corr_peer_{h}"]=ret.rolling(h,min_periods=h).corr(peer_ret)
