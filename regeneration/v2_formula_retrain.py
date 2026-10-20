@@ -50,6 +50,10 @@ def panel_set(raw,baskets_path):
     finally:
         legacy.rolling_downvol=original_downvol
     _,xcorrect,_,_=new.build_features(mats)
+    # build_features() also emits the final unfinished month. add_labels
+    # receives a deliberately shortened canonical signal-date list.
+    xdown=xdown[xdown.signal_date.isin(dates)].reset_index(drop=True)
+    xcorrect=xcorrect[xcorrect.signal_date.isin(dates)].reset_index(drop=True)
     keys=["signal_date","ticker"]
     base=labelled[keys]
     for label,x in [("DOWNVOL_ONLY",xdown),("CORRECTED",xcorrect)]:
