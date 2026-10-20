@@ -36,8 +36,11 @@ def run(args):
     for k in OLD:
         if select[k].date.tolist()!=weekly_dates:raise ValueError("Baseline date mismatch")
     metrics={k:frozen["metrics"][k] for k in OLD}
+    requested=tuple(args.models.split(',')) if args.models else NEW
+    if not requested or len(set(requested))!=len(requested) or set(requested)-set(NEW):
+        raise ValueError('Unsupported or duplicate models')
     audits={}
-    for variant in NEW:
+    for variant in requested:
         r,path=one(Path(args.newroot)/variant)
         if r.get("status")!="R1R2_DAILY_ABLATION_COMPLETE" or r.get("variant")!=variant:
             raise ValueError("Not a completed ablation")
@@ -50,10 +53,10 @@ def run(args):
         metrics[variant]=r["metrics"]
         audits[variant]={"folds":r["folds"],"features":r["feature_count"]}
     comparison={}
-    for variant in NEW:
+    for variant in requested:
         a=select[variant];comparison[variant]={}
         for ref in ("TCN_30x125","MOM21","B_DAILY_BASE","C_DAILY_R1","D_DAILY_R1R2","E_XGB_BASE"):
-            if variant==ref:continue
+            if variant==ref or ref not in select:continue
             b=select[ref]
             report={}
             for key in ("rank_ic","top5_overlap","top5_mean_future_return"):
@@ -83,11 +86,12 @@ def run(args):
     print(json.dumps({"status":report["status"],"weeks":args.weeks,
       "models":{k:{v:metrics[k].get(v) for v in ("cagr","maxdd","sharpe","rank_ic","top5_overlap")} for k in metrics},
       "comparisons_vs_A_and_momentum":{k:{ref:val for ref,val in comparison[k].items()
-                    if ref in ("TCN_30x125","MOM21")} for k in NEW}},indent=2),flush=True)
+                    if ref in ("TCN_30x125","MOM21")} for k in requested}},indent=2),flush=True)
 if __name__=="__main__":
     p=argparse.ArgumentParser()
     p.add_argument("--baseline",required=True)
     p.add_argument("--newroot",required=True)
     p.add_argument("--weeks",type=int,choices=(100,476),required=True)
     p.add_argument("--out",required=True)
+    p.add_argument("--models",default=None,help='comma-separated fixed subset, default all six preregistered models')
     run(p.parse_args())
