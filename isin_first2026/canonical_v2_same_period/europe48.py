@@ -182,7 +182,7 @@ def main(data,us,fx,out):
         staged_125F_compact21_override_is_EXPLICIT_DIAGNOSTIC_not_plain_canonical=True,
         original_EU_48_quote_49_HighLow_repairs_flag=True,
         no_outcome_optimisation_or_new_refits_during_test=True,
-        2026_roster_survivorship_and_Yahoo_adjusted_backfilled_caveats=True,
+        historical_2026_roster_survivorship_and_Yahoo_adjusted_backfilled_caveats=True,
         all_cases=results)
     (out/"RESULT.json").write_text(json.dumps(md,indent=2,allow_nan=False)+"\n")
     (out/"SHA256_MANIFEST.txt").write_text("".join(
