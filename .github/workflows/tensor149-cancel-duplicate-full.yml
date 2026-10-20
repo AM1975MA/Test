@@ -1,0 +1,16 @@
+name: CANCEL_REDUNDANT_LISTWISE_FULL_ACTIONS
+on:
+  push:
+    branches: [research/original149-tcn-listwise-20261020]
+    paths: ['.github/workflows/tensor149-cancel-duplicate-full.yml']
+permissions: {contents: read, actions: write}
+jobs:
+  cancel-redundant-earlier-full-matrix:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Preserve latest 39457504782, cancel two redundant full matrix copies
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh run cancel 39457431723 -R AM1975MA/Test || true
+          gh run cancel 39457454494 -R AM1975MA/Test || true
+          echo "Latest full experiment 39457504782 left untouched"
