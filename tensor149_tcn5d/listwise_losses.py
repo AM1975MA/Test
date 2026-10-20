@@ -22,13 +22,12 @@ def top5_listmle_loss(s: torch.Tensor,y: torch.Tensor):
     continue competing in each denominator. Discount decreases at deeper positions.
     """
     if s.ndim!=1 or s.shape!=y.shape or s.numel()<10:raise ValueError("Bad query")
-    top=torch.argsort(y,descending=True,stable=True)[:5]
-    alive=torch.ones_like(s,dtype=torch.bool)
+    order=torch.argsort(y,descending=True,stable=True)
+    top=order[:5]
     loss=s.new_zeros(())
     discount=s.new_tensor([1.,.6309297536,.5,.4306765581,.3868528072])
     for k,idx in enumerate(top):
-        loss=loss+discount[k]*(torch.logsumexp(s[alive],dim=0)-s[idx])
-        alive[idx]=False
+        loss=loss+discount[k]*(torch.logsumexp(s[order[k:]],dim=0)-s[idx])
     return loss/discount.sum()
 
 def centered_relative_return(ret:torch.Tensor):
