@@ -1,0 +1,108 @@
+name: ETF Trader V2 31-63-127-255-511 leaf sweep
+on:
+  push:
+    branches: [research-v2-deep-leaves-20261020]
+    paths:
+      - 'regeneration/v2_large_leaf_sweep.py'
+      - 'regeneration/v2_large_leaf_aggregate.py'
+      - '.github/workflows/v2-large-leaf-sweep.yml'
+  workflow_dispatch:
+
+jobs:
+  prepare-inputs:
+    name: Freeze official raw data once
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' yfinance
+      - name: Freeze raw snapshot through July 1 2026
+        run: python regeneration/etf_trader_raw.py
+      - name: Validate canonical 149 ETFs and 500 x 24 baskets
+        run: python regeneration/certify_etf_trader_raw.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-deep-leaf-frozen-raw
+          path: etf_trader_raw/
+          retention-days: 30
+
+  train:
+    name: Train OOS ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    needs: prepare-inputs
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - shard: shard_2018_2020
+            years: '2018,2019,2020'
+          - shard: shard_2021_2023
+            years: '2021,2022,2023'
+          - shard: shard_2024_2026
+            years: '2024,2025,2026'
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen compatible V2 stack
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib
+      - uses: actions/download-artifact@v4
+        with:
+          name: v2-deep-leaf-frozen-raw
+          path: etf_trader_raw/
+      - name: Train three mature-label walk-forward years without cached signals
+        run: python regeneration/v2_large_leaf_sweep.py --years "${{ matrix.years }}" --scores-only --raw etf_trader_raw --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv --out "runs/${{ matrix.shard }}"
+      - name: Save this fold predictions and realized leaf counts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v2-deep-leaf-${{ matrix.shard }}
+          path: runs/
+          if-no-files-found: warn
+          retention-days: 30
+
+  evaluate:
+    name: Merge all folds and assess V2 ETF winner selection
+    needs: [prepare-inputs, train]
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib
+      - uses: actions/download-artifact@v4
+        with:
+          name: v2-deep-leaf-frozen-raw
+          path: etf_trader_raw/
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-deep-leaf-shard_*
+          path: runs/
+          merge-multiple: true
+      - name: Check raw consistency and basket fingerprint
+        run: python regeneration/certify_etf_trader_raw.py
+      - name: Combine causal OOS predictions; paired-month inference and execution replay
+        run: python regeneration/v2_large_leaf_aggregate.py --shard-dir runs --raw etf_trader_raw --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv --out runs/v2_large_leaf_complete
+      - name: Publish aggregate results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v2-deep-leaf-complete-results
+          path: |
+            runs/v2_large_leaf_complete/
+            certification/
+          if-no-files-found: warn
+          retention-days: 30
