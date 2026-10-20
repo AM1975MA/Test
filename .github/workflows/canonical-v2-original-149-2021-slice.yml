@@ -1,0 +1,50 @@
+name: CANONICAL_V2_ORIGINAL_149_UNRESTRICTED_31P76_IDENTICAL_TIME_WINDOW
+on:
+  push:
+    branches: [research/canonical-v2-source-us149-eu48-20261020]
+    paths:
+      - '.github/workflows/canonical-v2-original-149-2021-slice.yml'
+      - 'isin_first2026/canonical_v2_same_period/original149.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  exact-three-raw-vintage-source-daily-v2-149:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+          python -m py_compile isin_first2026/canonical_v2_same_period/original149.py
+      - name: Restore precisely source original ETF Trader V2 149 + rerank, 3 vendor price vintages, not later MA3-only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 39044619710 -R AM1975MA/Test -n compact21-top5-rerank-economic -D _ORIG149_COMPLETE
+          test -f _ORIG149_COMPLETE/TOP5_RERANK_ECONOMIC.json
+          for n in 1 2 3; do
+            test -f "_ORIG149_COMPLETE/v2replay-ECON_TOP5_RERANK-r$n/baseline_control/FULL_UNIVERSE_PATH.npz"
+          done
+      - name: Verify original 31.76% against fully stacked V2 baseline and extract SAME 2021–26 period directly from exact NAV
+        run: |
+          python -u -m isin_first2026.canonical_v2_same_period.original149 --source _ORIG149_COMPLETE --out _SAME_149
+      - name: Write verified source-only results in TEST
+        run: |
+          mkdir -p isin_first2026/canonical_v2_same_period/results
+          cp _SAME_149/RESULT.json isin_first2026/canonical_v2_same_period/results/ORIGINAL_149_FULL_SOURCE_2017_2026_AND_2021_2026.json
+          git config user.name "CANONICAL_V2_US149_SOURCE_RECONCILIATION"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add isin_first2026/canonical_v2_same_period/results
+          git commit -m "Verify authentic 31.76 original V2 daily USA149 on 3 vintages and same-period 2021–26 slice"
+          git pull --rebase origin research/canonical-v2-source-us149-eu48-20261020
+          git push origin HEAD:refs/heads/research/canonical-v2-source-us149-eu48-20261020
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CANONICAL_149_ORIGINAL_V2_31P76_AND_SAME_PERIOD
+          path: _SAME_149/
