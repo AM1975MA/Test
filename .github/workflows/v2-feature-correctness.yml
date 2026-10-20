@@ -1,0 +1,52 @@
+name: ETF V2 feature correctness certification
+on:
+  push:
+    branches: [research-v2-formula-corrections-20261021]
+    paths:
+      - 'regeneration/campaign/etf_trader/source_only/kernel.py'
+      - 'regeneration/campaign/etf_trader/source_only/features.py'
+      - 'regeneration/test_v2_feature_contract.py'
+      - 'regeneration/v2_feature_real_snapshot_audit.py'
+      - '.github/workflows/v2-feature-correctness.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  synthetic-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib
+      - run: python regeneration/test_v2_feature_contract.py
+  full-frozen-snapshot-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib
+      - name: Use exact frozen 149 ETF snapshot; no new data download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+      - name: Generate all corrected features and audit their coverage
+        run: |
+          python regeneration/v2_feature_real_snapshot_audit.py --raw etf_trader_raw \
+             --out runs/v2_feature_formula_audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-feature-formula-real-snapshot-audit
+          path: |
+            runs/v2_feature_formula_audit/
+            certification/
+          if-no-files-found: warn
+          retention-days: 30
