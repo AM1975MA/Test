@@ -5,7 +5,7 @@ on:
     paths:
       - '.github/workflows/tensor149-listwise-full.yml'
       - 'tensor149_tcn5d/compare_listwise.py'
-      - '.github/workflows/tensor149-listwise-pilot.yml'
+      - '.github/workflows/tensor149-listwise-full.yml'
   workflow_dispatch:
 permissions: {contents: read}
 env:
