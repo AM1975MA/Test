@@ -68,7 +68,7 @@ def check_formula_units():
     gap=pd.DataFrame({"x":100*np.exp(np.arange(40)*.01)})
     gap.iloc[20,0]=np.nan
     rsi_gap=k.rolling_rsi(gap,h=14)["x"]
-    assert rsi_gap.iloc[34:].notna().sum()==4  # 14 valid changes from t=22 through t=35
+    assert rsi_gap.iloc[34:].notna().sum()==5  # 14 valid changes from t=22 through t=35
     assert rsi_gap.iloc[34]!=rsi_gap.iloc[34]  # incomplete warm-up
     assert rsi_gap.iloc[35]==100.0
     s=pd.DataFrame({"gain":[.001]*100,"loss":[-.001]*100,"mixed":[.001,-.001]*50})
