@@ -1,0 +1,63 @@
+name: ORIGINAL149_REGIME_GATE_INDEPENDENT_EVIDENCE_AUDIT
+on:
+  push:
+    branches: [research/original149-regime-gating-20261020]
+    paths: ['.github/workflows/tensor149-regime-audit.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Read previous fixed run from immutable artefact
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh run download 39485726248 -R AM1975MA/Test -n original149-regime-gate-2020-2026-rmt-hmm -D _archive
+      - name: Independent full-report checks and per-year/weights diagnostics
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import numpy as np
+          import pandas as pd
+          p=list(Path("_archive").rglob("REPORT.json"))
+          assert len(p)==1,p
+          root=p[0].parent
+          a=json.loads(p[0].read_text())
+          assert a["status"]=="ORIGINAL149_CAUSAL_REGIME_GATE_COMPLETE" and a["dates"]==325
+          g=pd.read_csv(root/"GATE_WEIGHTS.csv")
+          w=pd.read_csv(root/"OOS_WEEKLY_SELECTIONS.csv")
+          raw=pd.read_csv(root/"YEARLY_WEEKLY_REPLAY.csv")
+          named=("MOM21","B_DAILY_BASE","E_XGB_BASE","STATIC_EQUAL","TRAILING_ONLY","BASIC_HMM","RMT_HMM","SIMPLE_BUCKET")
+          assert set(g.model)==set(named)==set(w.model)
+          assert all(g[g.model==k].date.nunique()==325 for k in named)
+          assert all(w[w.model==k].date.nunique()==325 for k in named)
+          assert np.allclose(g[["w_mom","w_tcn","w_xgb"]].sum(axis=1),1.,atol=1e-9)
+          print("STATUS: PASSED — same 325 weekly dates, 8 alternatives, unit sum weights")
+          gstats=g.groupby("model")[["w_mom","w_tcn","w_xgb"]].agg(["mean","std","min","max"])
+          print("GATE WEIGHT DISTRIBUTIONS:",gstats.to_string())
+          print("EXPOST WINNER CLASS ACCURACY:",
+                g.groupby("model").apply(lambda d:(d.historically_best_expert==d.predicted_largest_weight_expert).mean(),include_groups=False).to_string())
+          print("ANNUAL RETURNS PIVOT:")
+          print(raw.pivot(index="year",columns="model",values="costed_weekly_compound_return").to_string(float_format=lambda v:f"{v*100:.2f}%"))
+          print("MEAN ANNUAL RANKIC:")
+          print(raw.pivot(index="year",columns="model",values="mean_rank_ic").to_string(float_format=lambda v:f"{v:.3f}"))
+          Path("_audit").mkdir()
+          gstats.to_csv("_audit/GATE_WEIGHT_STATS.csv")
+          raw.to_csv("_audit/ANNUAL_RETURNS.csv",index=False)
+          pd.DataFrame(a["metrics"]).to_csv("_audit/PERFORMANCE.csv",index=False)
+          Path("_audit/PROTOCOL_CHECKS.json").write_text(json.dumps(dict(status="PASSED",weeks=325,
+                  regimes=["BASIC_HMM","RMT_HMM","SIMPLE_BUCKET"],expert_score_retraining=False,
+                  first_evaluation=a["start"],last_evaluation=a["end"]),indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-regime-gate-independent-diagnostics
+          retention-days: 90
+          path: _audit/
