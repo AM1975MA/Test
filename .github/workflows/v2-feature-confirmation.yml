@@ -1,0 +1,83 @@
+name: V2 127-leaf 9-year feature confirmation
+on:
+  push:
+    branches: [research-v2-feature-confirmation-20261021]
+    paths:
+      - '.github/workflows/v2-feature-confirmation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  fit:
+    name: V2 source-only ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - shard: shard_2018_2020
+            years: '2018,2019,2020'
+          - shard: shard_2021_2023
+            years: '2021,2022,2023'
+          - shard: shard_2024_2026
+            years: '2024,2025,2026'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original compatible V2 numerical stack
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Recover exact original shared OHLCV snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+      - name: Train BASE125, NO_DEV, NO_MARKET on mature annual folds
+        run: |
+          python regeneration/v2_feature_channel_ablation.py \
+            --years "${{ matrix.years }}" \
+            --sets BASE125,NO_DEV,NO_MARKET \
+            --raw etf_trader_raw \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v2_feature_confirm_shards/${{ matrix.shard }}
+      - name: Preserve fold-level results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v2-feature-confirm-${{ matrix.shard }}
+          path: runs/v2_feature_confirm_shards/
+          if-no-files-found: warn
+          retention-days: 30
+
+  aggregate:
+    needs: fit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy tabulate
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-feature-confirm-*
+          merge-multiple: true
+          path: runs/v2_feature_confirm_shards/
+      - name: Aggregate mature months and paired month-block inference
+        run: |
+          python regeneration/v2_feature_channel_aggregate.py \
+            --root runs/v2_feature_confirm_shards \
+            --out runs/v2_feature_confirm_complete
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-feature-confirm-complete
+          path: runs/v2_feature_confirm_complete/
+          if-no-files-found: warn
+          retention-days: 30
