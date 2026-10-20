@@ -1,0 +1,65 @@
+name: V2 127-leaf frozen feature pruning pilot
+on:
+  push:
+    branches: [research-v2-feature-pruning-20261021]
+    paths:
+      - 'regeneration/v2_feature_pruning.py'
+      - '.github/workflows/v2-feature-pruning.yml'
+  workflow_dispatch:
+    inputs:
+      years:
+        description: 'Comma-separated years, e.g. 2018,2022,2025 or all 2018-2026'
+        type: string
+        required: false
+        default: '2018,2022,2025'
+      sets:
+        description: 'BASE125,K16,K32,K46 (or add K8,K24,K40)'
+        type: string
+        required: false
+        default: 'BASE125,K16,K32,K46'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  frozen-feature-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install same numerical training stack
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Recover EXACT frozen 20 Oct 2026 raw snapshot (no download from finance providers)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          test -f etf_trader_raw/manifest.json
+          test -f etf_trader_raw/universe.csv
+      - name: Certify original 149 ETF snapshot and 500 canonical baskets
+        run: python regeneration/certify_etf_trader_raw.py
+      - name: Validate script without fitting
+        run: python -m py_compile regeneration/v2_feature_pruning.py
+      - name: Refit same model with pruned subsets and compare OOS
+        env:
+          YEARS: ${{ inputs.years || '2018,2022,2025' }}
+          SETS: ${{ inputs.sets || 'BASE125,K16,K32,K46' }}
+        run: |
+          python regeneration/v2_feature_pruning.py \
+            --years "$YEARS" --sets "$SETS" \
+            --raw etf_trader_raw \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v2_feature_pruning
+      - name: Preserve paired results, fit audit and certification even if experiment fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v2-feature-pruning-pilot-results
+          path: |
+            runs/v2_feature_pruning/
+            certification/
+          if-no-files-found: warn
+          retention-days: 30
