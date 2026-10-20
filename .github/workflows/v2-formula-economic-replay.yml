@@ -1,0 +1,63 @@
+name: V2 formula migration economic replay on frozen prices
+on:
+  push:
+    branches: [research-v2-formula-retrain-20261021]
+    paths:
+      - '.github/workflows/v2-formula-economic-replay.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Require completed successful matched full-year OOS training
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in $(seq 1 40); do
+            state=$(gh run view 39515716383 --repo AM1975MA/Test --json status,conclusion --jq '.status + ":" + (.conclusion // "")')
+            echo "SOURCE_TRAIN_RUN=$state"
+            if [ "$state" = 'completed:success' ]; then
+              exit 0
+            fi
+            case "$state" in
+              completed:*) echo 'Failure in source run, no economic replay permitted' ; exit 1 ;;
+            esac
+            sleep 30
+          done
+          echo 'Full original vs corrected run did not complete in 20 minutes'
+          exit 1
+      - name: Load original frozen OHLCV and exact paired OOS rankings
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v2_formula_complete
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39515716383 --repo AM1975MA/Test --name v2-formula-retrain-complete --dir runs/v2_formula_complete
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v2_formula_complete/OOS_SCORES.csv
+          test -s runs/v2_formula_complete/RESULTS.csv
+      - name: Replay same next-open fee assumptions and 500 baskets
+        run: |
+          python regeneration/v2_formula_retrain_replay.py \
+            --raw etf_trader_raw \
+            --scores runs/v2_formula_complete/OOS_SCORES.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v2_formula_economics
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-formula-retrain-economic-complete
+          path: |
+            runs/v2_formula_economics/
+            certification/
+          if-no-files-found: warn
+          retention-days: 30
