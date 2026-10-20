@@ -1,0 +1,33 @@
+name: ORIGINAL149_TWO_STAGE_TOP5_476W_INDEPENDENT_AUDIT
+on:
+  push:
+    branches: [research/original149-two-stage-top5-20261020]
+    paths: ['.github/workflows/tensor149-two-stage-verify.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Pinned independent statistics stack
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Fetch original immutable succeeded experiment artifact
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh run download 39496396121 -R AM1975MA/Test -n original149-frozen-xgb125-two-stage-476week-full -D _original
+      - name: 476-date, 12 method, benchmark, paired and annual checks
+        run: |
+          set -o pipefail
+          python -m tensor149_tcn5d.verify_two_stage_top5 --root _original --out _audit | tee _audit.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-top5-twostage-independent-audit-476w
+          retention-days: 90
+          path: |
+            _audit/
+            _audit.log
