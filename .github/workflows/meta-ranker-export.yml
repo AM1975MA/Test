@@ -1,0 +1,76 @@
+name: Asset-level OOS score export
+on:
+  push:
+    branches: [research/meta-ranker-asset-oos-20261021]
+    paths: [.github/workflows/meta-ranker-export.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --quiet pandas pyarrow numpy
+      - uses: actions/download-artifact@v4
+        with:
+          repository: AM1975MA/Test
+          run-id: 39492170319
+          name: original149-xgb125-depth-7
+          path: src/A
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          repository: AM1975MA/Test
+          run-id: 39489526724
+          name: original149-rmt-xgb-full-B_RMT_GLOBAL
+          path: src/B
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          repository: AM1975MA/Test
+          run-id: 39489526724
+          name: original149-rmt-xgb-full-C_RMT_ETF
+          path: src/C
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          repository: AM1975MA/Test
+          run-id: 39489526724
+          name: original149-rmt-xgb-full-D_RMT_BOTH
+          path: src/D
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          repository: AM1975MA/Test
+          run-id: 39489526724
+          name: original149-rmt-xgb-full-E_SIMPLE_CORREL
+          path: src/E
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Export OOS predictions for independent analysis
+        shell: bash
+        run: |
+          python - <<'PY'
+          import pathlib, pandas as pd, json
+          pathlib.Path('out').mkdir(exist_ok=True)
+          aud=[]
+          for variant in 'ABCDE':
+              inp=pathlib.Path('src')/variant/'_results'/'ALL_OOS_SCORES.parquet'
+              assert inp.exists(), f'Missing {inp}'
+              d=pd.read_parquet(inp)
+              print(f'VARIANT {variant}: shape={d.shape}; columns={d.columns.tolist()}; dtypes={d.dtypes.astype(str).to_dict()}',flush=True)
+              print(d.head(2).to_string(index=False),flush=True)
+              print('NULLS',d.isna().sum().to_dict(),flush=True)
+              d.to_csv(f'out/scores_{variant}.csv.gz',index=False,compression='gzip')
+              aud.append({'variant':variant,'rows':len(d),'cols':d.columns.tolist(),'first_two':d.head(2).astype(str).to_dict('records')})
+          pathlib.Path('out/SCHEMA.json').write_text(json.dumps(aud,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: meta-ranker-asset-scores-476w
+          path: out/
+          retention-days: 14
