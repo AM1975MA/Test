@@ -114,18 +114,35 @@ def rolling_efficiency(logc:pd.DataFrame,h:int)->pd.DataFrame:
     return logc.diff(h).abs()/logc.diff().abs().rolling(h,min_periods=h).sum().replace(0,np.nan)
 
 def rolling_downvol(ret:pd.DataFrame,h:int)->pd.DataFrame:
-    return ret.where(ret<0).rolling(h,min_periods=max(10,h//2)).std(ddof=0)*np.sqrt(252)
+    """Annualized downside deviation about zero (lower partial moment, order 2).
+
+    All h valid daily log returns contribute. Nonnegative returns contribute
+    zero rather than becoming missing observations. Require the full window;
+    genuine missing returns remain missing and are never encoded as losses.
+    """
+    if h<2:raise ValueError('downside window must be >=2')
+    downside=ret.clip(upper=0.0)
+    return np.sqrt(252.0*downside.pow(2).rolling(h,min_periods=h).mean())
 
 def rolling_rsi(c:pd.DataFrame,h:int=14)->pd.DataFrame:
     d=c.diff(); up=d.clip(lower=0).ewm(alpha=1/h,adjust=False,min_periods=h).mean(); dn=(-d.clip(upper=0)).ewm(alpha=1/h,adjust=False,min_periods=h).mean()
-    rs=up/dn.replace(0,np.nan); return 100-100/(1+rs)
+    # Wilder RSI boundary values: no losses -> 100, no gains -> 0,
+    # completely flat series -> neutral 50. Preserve insufficient warmup NaN.
+    rs=up/dn.where(dn>0)
+    rsi=100-100/(1+rs)
+    rsi=rsi.mask((dn==0)&(up>0),100.0)
+    rsi=rsi.mask((dn==0)&(up==0),50.0)
+    return rsi.where(up.notna()&dn.notna())
 
 def rolling_cvar10(ret:pd.DataFrame,h:int)->pd.DataFrame:
     return ret.rolling(h,min_periods=h).apply(lambda x: np.nanmean(np.sort(x)[:max(1,int(math.ceil(.1*len(x))))]),raw=True)
 
 def rolling_sign_entropy(ret:pd.DataFrame,h:int)->pd.DataFrame:
-    p=(ret>0).rolling(h,min_periods=h).mean().clip(1e-9,1-1e-9)
-    return -(p*np.log(p)+(1-p)*np.log(1-p))
+    # A genuine missing return is NOT a negative session.
+    p=(ret>0).where(ret.notna()).rolling(h,min_periods=h).mean()
+    a=p.where(p>0,1.0)
+    b=(1.0-p).where(p<1,1.0)
+    return -(p*np.log(a)+(1.0-p)*np.log(b))
 
 def rolling_autocorr(ret:pd.DataFrame,h:int)->pd.DataFrame:
     return ret.rolling(h,min_periods=h).corr(ret.shift(1))
@@ -176,7 +193,7 @@ def build_features(mats:Mapping[str,pd.DataFrame]):
     compact['skew63']=snapshot(lr.rolling(63,min_periods=63).skew(),dates)
     compact['kurt63']=snapshot(lr.rolling(63,min_periods=63).kurt(),dates)
     gk=.5*np.log(H/L.replace(0,np.nan))**2-(2*np.log(2)-1)*np.log(C/O.replace(0,np.nan))**2
-    compact['gkvol21']=snapshot(np.sqrt(gk.rolling(21,min_periods=21).mean()*252),dates)
+    compact['gkvol21']=snapshot(np.sqrt(gk.rolling(21,min_periods=21).mean().clip(lower=0)*252),dates)
     adv=(C*V).rolling(63,min_periods=42).mean()
     compact['log_adv63']=snapshot(np.log(adv.where(adv>0)),dates)
     lv=np.log(V.where(V>0)); compact['volume_surprise21']=snapshot((lv-lv.rolling(21,min_periods=15).mean())/lv.rolling(21,min_periods=15).std(ddof=0).replace(0,np.nan),dates)
@@ -188,7 +205,7 @@ def build_features(mats:Mapping[str,pd.DataFrame]):
     compact['ema_gap50']=snapshot(C/C.ewm(span=50,adjust=False,min_periods=50).mean()-1,dates)
     for h in [126,252]: compact[f'breakout_pos{h}']=snapshot((C-C.rolling(h,min_periods=h).min())/(C.rolling(h,min_periods=h).max()-C.rolling(h,min_periods=h).min()).replace(0,np.nan),dates)
     compact['rsi14']=snapshot(rolling_rsi(C,14),dates)
-    compact['positive_frac63']=snapshot((ret>0).rolling(63,min_periods=63).mean(),dates)
+    compact['positive_frac63']=snapshot((ret>0).where(ret.notna()).rolling(63,min_periods=63).mean(),dates)
     compact['max_loss63']=snapshot(ret.rolling(63,min_periods=63).min(),dates)
     compact['max_gain63']=snapshot(ret.rolling(63,min_periods=63).max(),dates)
     compact['cvar10_63']=snapshot(rolling_cvar10(ret,63),dates)
@@ -198,8 +215,10 @@ def build_features(mats:Mapping[str,pd.DataFrame]):
     for name in list(compact):
         if name+'_pct' in F2D_FEATURES: compact[name+'_pct']=cs_pct(compact[name])
         if name+'_dev' in F2D_FEATURES: compact[name+'_dev']=cs_robust_dev(compact[name])
-    for n in F2D_FEATURES:
-        if n not in compact: compact[n]=pd.DataFrame(np.nan,index=dates,columns=C.columns)
+    # Never silently replace a mistyped/unimplemented feature by an all-NaN column.
+    undeclared=set(compact)-set(F2D_FEATURES)
+    missing=set(F2D_FEATURES)-set(compact)
+    if missing:raise RuntimeError(f'Compact feature implementation missing: {sorted(missing)}')
     compact_long=pd.concat([compact[n].stack(dropna=False).rename(n) for n in F2D_FEATURES],axis=1).reset_index().rename(columns={'level_0':'signal_date','level_1':'ticker'})
 
     D={}
@@ -226,7 +245,10 @@ def build_features(mats:Mapping[str,pd.DataFrame]):
     for h in [63,126]:
         b,c=beta_corr(ret,mkt,h);D[f'beta_mkt{h}']=snapshot(b,dates);D[f'corr_mkt{h}']=snapshot(c,dates)
     D['spectral_entropy64']=snapshot(spectral_entropy_frame(lr,64),dates)
-    D['signed_volume21']=snapshot((np.sign(ret)*V).rolling(21,min_periods=15).sum()/V.rolling(21,min_periods=15).sum().replace(0,np.nan),dates)
+    # Volume weights must cover exactly the sessions with observed returns.
+    signed_valid_volume=V.where(ret.notna())
+    D['signed_volume21']=snapshot((np.sign(ret)*signed_valid_volume).rolling(21,min_periods=15).sum()/
+        signed_valid_volume.rolling(21,min_periods=15).sum().replace(0,np.nan),dates)
     D['volume_z20']=snapshot((V-V.rolling(20,min_periods=15).mean())/V.rolling(20,min_periods=15).std(ddof=0).replace(0,np.nan),dates)
     D['pv_corr21']=snapshot(ret.rolling(21,min_periods=21).corr(V.pct_change(fill_method=None)),dates)
     for k,v in list(D.items()):D[k+'_rank']=cs_pct(v)
@@ -240,7 +262,9 @@ def build_features(mats:Mapping[str,pd.DataFrame]):
     for req in TAIL_FEATURES:
         if req not in D:
             base=req[:-5] if req.endswith('_rank') else req
-            D[req]=cs_pct(D[base]) if base in D else pd.DataFrame(np.nan,index=dates,columns=C.columns)
+            if base not in D:
+                raise RuntimeError(f'Tail feature implementation missing: {req} (base={base})')
+            D[req]=cs_pct(D[base])
     tail_long=pd.concat([D[n].stack(dropna=False).rename(n) for n in TAIL_FEATURES],axis=1).reset_index().rename(columns={'level_0':'signal_date','level_1':'ticker'})
     return dates,compact_long,tail_long,D
 
