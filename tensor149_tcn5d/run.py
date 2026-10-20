@@ -233,7 +233,7 @@ def main():
         path,econ=nav_path(score,dates,mats,name)
         paths.append(path.rename(name))
         metrics[name]=dict(**econ,rank_ic=float(group.rank_ic.mean()),
-             top1_mean_realized_pct=float(group.top1_realized_rank.mean()),
+             top1_mean_realized_pct=float(group.top1_realized_rank_pct.mean()),
              topdecile_regret=float(group.topdecile_regret.mean()),
              top5_overlap=float(group.top5_overlap.mean()),
              top1_absolute_future_return=float(group.top1_return.mean()))
