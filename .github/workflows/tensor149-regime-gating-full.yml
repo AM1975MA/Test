@@ -1,0 +1,52 @@
+name: ORIGINAL149_CAUSAL_RMT_HMM_THREE_EXPERT_GATE
+on:
+  push:
+    branches: [research/original149-regime-gating-20261020]
+    paths: ['.github/workflows/tensor149-regime-gating-full.yml']
+  workflow_dispatch:
+permissions: {contents: read, actions: read}
+concurrency:
+  group: "original149-regime-20261020-${{ github.ref }}"
+  cancel-in-progress: false
+env:
+  PYTHONPATH: '${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}'
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '2'
+  OPENBLAS_NUM_THREADS: '2'
+  MKL_NUM_THREADS: '2'
+  NUMEXPR_NUM_THREADS: '2'
+jobs:
+  original149_regime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 95
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install pinned forward HMM and original analysis environment
+        run: |
+          python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'pyarrow==23.0.1' 'hmmlearn==0.3.3' 'matplotlib==3.10.8' 'xgboost==3.1.3'
+          python -m pip install 'torch==2.7.1' --index-url https://download.pytorch.org/whl/cpu
+      - name: Run no-future causal tests including original source contract
+        run: |
+          python -m py_compile tensor149_tcn5d/regime_gate_run.py tensor149_tcn5d/regime_features.py tensor149_tcn5d/test_regime_gate.py
+          python -m unittest -v tensor149_tcn5d.test_regime_gate tensor149_tcn5d.test_contract
+      - name: Download exactly frozen full OOS archive models; never retrain experts
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -eux
+          gh run download 39455244701 -R AM1975MA/Test -n tensor149-5d-full-2017-2026 -D _baseline
+          gh run download 39478752782 -R AM1975MA/Test -n "original149-daily-r1r2-full-B_DAILY_BASE'" -D _tnn
+          gh run download 39479754815 -R AM1975MA/Test -n "original149-daily-r1r2-xgb-full-E_XGB_BASE'" -D _xgb
+      - name: Strict frozen-score date/ETF audits and 2020-26 causal state gate
+        run: |
+          set -o pipefail
+          python -m tensor149_tcn5d.regime_gate_run --raw evidence_v1/data/original149 --baseline _baseline --tnn _tnn --xgb _xgb --out _regime | tee _regime_output.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original149-regime-gate-2020-2026-rmt-hmm
+          retention-days: 90
+          path: |
+            _regime/
+            _regime_output.log
