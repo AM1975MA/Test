@@ -153,7 +153,7 @@ def scoring_frame(date,ids,ret,y,models,tickers):
         actual_top=set(ids[np.argsort(-ret[ids],kind="stable")[:5]])
         decile=np.sort(ret[ids])[-max(1,int(np.ceil(.1*len(ids)))):]
         rows.append(dict(date=str(date.date()),model=name,n=len(ids),
-            rank_ic=float(ic),top1_realized_rank=float(y[top[0]]),
+            rank_ic=float(ic),top1_realized_rank_pct=float((1.+y[top[0]])/2.),
             top1_return=float(ret[top[0]]),topdecile_regret=float(decile.mean()-ret[top[0]]),
             top5_overlap=len(set(top)&actual_top)/5.,
             top5_mean_future_return=float(np.mean(ret[top])),
