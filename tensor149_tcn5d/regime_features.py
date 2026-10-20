@@ -85,7 +85,6 @@ def forward_hmm_probabilities(model,X):
     prior=np.log(np.maximum(start,1e-200))
     out=np.zeros((len(X),len(start)))
     for j,obs in enumerate(X):
-        emit=norm-.5*np.square(obs[None,:]-mean).sum(axis=1) * 0  # placeholder assigned next
         emit=norm-.5*(np.square(obs[None,:]-mean)/covariance).sum(axis=1)
         log_post=prior+emit
         log_post-=logsumexp(log_post)
