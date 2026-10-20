@@ -1,0 +1,58 @@
+name: ETF Trader V2 frozen 127 - direct Tail Macro retune
+on:
+  push:
+    branches: [research-v2-127-allocations-20261020]
+    paths:
+      - 'regeneration/v2_127_direct_components.py'
+      - 'regeneration/v2_127_direct_tail_macro_grid.py'
+      - '.github/workflows/v2-127-direct-tail-macro.yml'
+  workflow_dispatch:
+
+jobs:
+  direct-tail-macro:
+    name: Reconstruct Tail and Macro; replay coefficient grid
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen source compatible dependencies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib
+      - name: Restore same original frozen OHLCV snapshot from 127-leaf run
+        uses: actions/download-artifact@v4
+        with:
+          name: v2-deep-leaf-frozen-raw
+          run-id: 39482809691
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: etf_trader_raw/
+      - name: Restore exact frozen 127-leaf cross-sectional raw scores
+        uses: actions/download-artifact@v4
+        with:
+          name: v2-deep-leaf-complete-results
+          run-id: 39482809691
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: .
+      - name: Validate original baskets and raw prices
+        run: |
+          echo '36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e  regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv' | sha256sum --check
+          python regeneration/certify_etf_trader_raw.py
+      - name: Fit only mature-year Tail and Macro; require exact baseline score parity
+        run: python regeneration/v2_127_direct_components.py --raw etf_trader_raw --scores runs/v2_large_leaf_complete/OOS_SCORES.csv --out runs/v2_127_direct_components
+      - name: Compare direct Tail weights and macro bonus with Top2 and Top3 allocations
+        run: python regeneration/v2_127_direct_tail_macro_grid.py --components runs/v2_127_direct_components/FROZEN_COMPONENTS.csv --audit runs/v2_127_direct_components/COMPONENT_AUDIT.json --out runs/v2_127_tail_macro_direct
+      - name: Publish reproducible scores, fit audit, monthly bootstraps and portfolio results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v2-127-direct-tail-macro-results
+          path: |
+            runs/v2_127_direct_components/
+            runs/v2_127_tail_macro_direct/
+            certification/
+          if-no-files-found: warn
+          retention-days: 30
