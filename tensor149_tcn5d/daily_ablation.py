@@ -144,7 +144,7 @@ def fit_tree(x,y,dates,avail,year,variant,out):
     vagroup=np.unique(val[:,0],return_counts=True)[1]
     if variant.startswith("E_XGB"):
         from xgboost import XGBRanker
-        model=XGBRanker(objective="rank:pairwise",n_estimators=240,max_depth=4,
+        model=XGBRanker(objective="rank:pairwise",eval_metric="rmse",n_estimators=240,max_depth=4,
             learning_rate=.035,subsample=.85,colsample_bytree=.8,
             min_child_weight=8,reg_lambda=8.,reg_alpha=.1,tree_method="hist",
             n_jobs=2,verbosity=0,random_state=SEED)
