@@ -1,0 +1,88 @@
+name: Authentic ETF Trader V2 Stage19 vs Compact21 XGB127 isolated producer swap
+
+on:
+  push:
+    branches: [research/stage19-compact127-one-layer-swap-20261021]
+    paths:
+      - 'stage19_compact127_swap/**'
+      - '.github/workflows/stage19-compact127-one-layer-swap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONPATH: ${{ github.workspace }}/vendor/etf_trader_v2/src:${{ github.workspace }}
+  PYTHONHASHSEED: '0'
+  NPY_DISABLE_CPU_FEATURES: 'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_SPR'
+  OPENBLAS_CORETYPE: Haswell
+  OMP_NUM_THREADS: '2'
+  OPENBLAS_NUM_THREADS: '2'
+  MKL_NUM_THREADS: '2'
+  NUMEXPR_NUM_THREADS: '2'
+
+jobs:
+  producer-swap:
+    strategy:
+      fail-fast: false
+      matrix:
+        repeat: [1, 2, 3]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    name: Original vintage ${{ matrix.repeat }} exact BASE then only Compact127
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install canonical frozen numerical environment
+        run: |
+          python -m pip install -r vendor/etf_trader_v2/requirements.txt 'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'pyarrow==23.0.1' 'scipy==1.17.0' 'matplotlib==3.10.8' 'numba==0.65.1' 'threadpoolctl==3.6.0'
+          python -m py_compile stage19_compact127_swap/run.py
+      - name: Restore original market raw source and original BASE per vintage
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 37121749852 -R AM1975MA/Test -n yfinance-repeatability-v1-raw -D _raw
+          gh run download 37195399755 -R AM1975MA/Test -n learner-full-BASE-r${{ matrix.repeat }} -D _bases/r${{ matrix.repeat }}
+          gh run download 37150436612 -R AM1975MA/Test -n titanium-internal-fixed-repeat-${{ matrix.repeat }} -D _ti/r${{ matrix.repeat }}
+      - name: Replay Stage19 BASE with exact original daily path and fit ONLY Compact21 XGB127 annual
+        run: |
+          python stage19_compact127_swap/run.py \
+            --raw "_raw/_repeat${{ matrix.repeat }}" \
+            --baseline "_bases/r${{ matrix.repeat }}" \
+            --ti-panel "_ti/r${{ matrix.repeat }}/TI_COMPACT.parquet" \
+            --repeat ${{ matrix.repeat }} \
+            --out "_results/r${{ matrix.repeat }}"
+      - name: Publish same-vintage baseline/challenger full daily NAV and fit audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage19-compact127-isolated-r${{ matrix.repeat }}
+          path: _results/
+          retention-days: 60
+          if-no-files-found: warn
+
+  aggregate:
+    needs: producer-swap
+    runs-on: ubuntu-24.04
+    name: Check 3-vintage Stage19 paired metrics
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install numpy pandas
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: stage19-compact127-isolated-r*
+          path: _results
+          merge-multiple: true
+      - name: Aggregate same-calendar baseline vs challenger across 3 historical quote vintages
+        run: python stage19_compact127_swap/aggregate.py --root _results --out _final
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage19-compact127-isolated-final
+          path: _final/
+          retention-days: 60
