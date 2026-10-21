@@ -1,0 +1,41 @@
+name: V3 L04.3 frozen expert winner union and reciprocal-rank fusion
+on:
+  push:
+    branches: [research-v3-next-layer-gates-20261021]
+    paths:
+      - '.github/workflows/v3-l04-or.yml'
+      - 'etf-trader-v3 corrected/experiments/l04_or_fusion/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Retrieve immutable original 149 ETF frozen-expert score oracles
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_l04_reference
+          gh run download 39659903643 --repo AM1975MA/Test \
+            --name v3-l04-frozen-expert-blend-results --dir runs/v3_l04_reference
+          test -s runs/v3_l04_reference/OOS_SCORES_ALL_FIXED_BLENDS.csv
+      - name: Evaluate preregistered winner-OR versus Tail and original fixed blend
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l04_or_fusion/evaluate.py' \
+            --prior runs/v3_l04_reference \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_l04_or
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l04-or-fusion-skill-results
+          path: runs/v3_l04_or/
+          if-no-files-found: warn
+          retention-days: 90
