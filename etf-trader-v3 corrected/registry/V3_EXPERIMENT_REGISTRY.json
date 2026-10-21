@@ -26,7 +26,8 @@
       "replay_validated",
       "untouched_vintage_required_for_claims_of_generalization"
     ],
-    "production_V2_unchanged": true
+    "production_V2_unchanged": true,
+    "full_backtest_status": "PREPARATION_ONLY; do not advertise independent out-of-time performance"
   },
   "frozen_references": {
     "L00": {
@@ -61,13 +62,15 @@
     "L03": {
       "id": "NO_DYNAMIC_REGIME",
       "run": 39659065223,
-      "status": "static_experts_only"
+      "status": "static_experts_only",
+      "second_test_run": 39674680942
     },
     "L04": {
       "id": "KEEP_FROZEN_EXPERTS_SEPARATE",
       "score_run": 39659903643,
       "meta_run": 39660554536,
-      "status": "no_blend_promoted"
+      "status": "no_blend_promoted",
+      "second_static_test_run": 39674361027
     },
     "L05": {
       "id": "TAIL_TOP3_50_30_20",
@@ -78,7 +81,8 @@
         0.2
       ],
       "status": "research_candidate",
-      "reference_policy": "V2_LIKE"
+      "reference_policy": "V2_LIKE",
+      "second_weight_test_run": 39674584732
     },
     "L06": {
       "id": "NO_HARD_VETO",
@@ -186,6 +190,47 @@
       "id": "absolute-risk-soft-weights",
       "run": 39672320747,
       "decision": "research_candidate_only"
+    },
+    {
+      "layer": "L03",
+      "id": "rmt-spectral-regime-63d",
+      "run": 39674680942,
+      "artifact": 12380838434,
+      "decision": "rejected",
+      "result": {
+        "market_only_Brier": 0.253953,
+        "market_plus_RMT_Brier": 0.272494,
+        "market_plus_RMT_AUC": 0.366071
+      },
+      "exploratory": true
+    },
+    {
+      "layer": "L04",
+      "id": "winner-union-or-rrf",
+      "run": 39674361027,
+      "artifact": 12381350315,
+      "decision": "not_promoted",
+      "result": {
+        "tail_top3": 0.427465,
+        "rrf_top3": 0.425604,
+        "rrf_ndcg": 0.539113,
+        "or_top3": 0.41895
+      },
+      "exploratory": true
+    },
+    {
+      "layer": "L05",
+      "id": "vol63-ex-ante-weight",
+      "run": 39674584732,
+      "artifact": 12382150250,
+      "decision": "not_promoted",
+      "result": {
+        "top3_decay_bottom3_weight": 0.266952,
+        "vol_weight_bottom3_weight": 0.263116,
+        "top3_decay_winner_weight": 0.152176,
+        "vol_weight_winner_weight": 0.149339
+      },
+      "exploratory": true
     }
   ],
   "pending_experiments": [
@@ -193,19 +238,22 @@
       "layer": "L03",
       "id": "rmt-regime",
       "goal": "ex ante relative expert win forecast; log-loss/Brier/Top3 choosing expert; compare original market-only and train-only prior",
-      "status": "to_run"
+      "status": "completed_rejected",
+      "run": 39674680942
     },
     {
       "layer": "L04",
       "id": "static-diversity-rank-aggregation",
       "goal": "paired Top3, nDCG, regret and distinct winner recall vs Tail and blend",
-      "status": "to_run"
+      "status": "completed_not_promoted",
+      "run": 39674361027
     },
     {
       "layer": "L05",
       "id": "volatility-capped-allocation",
       "goal": "single-policy allocation quality, concentration, false-loss, target churn without CAGR",
-      "status": "to_run"
+      "status": "completed_not_promoted",
+      "run": 39674584732
     },
     {
       "layer": "L06",
