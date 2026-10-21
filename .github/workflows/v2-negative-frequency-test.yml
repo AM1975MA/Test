@@ -4,6 +4,9 @@ on:
     branches: [research-v2-negative-frequency-20261021]
     paths:
       - '.github/workflows/v2-negative-frequency-test.yml'
+      - 'regeneration/v2_negative_frequency_retrain.py'
+      - 'regeneration/v2_negative_frequency_aggregate.py'
+      - 'regeneration/v2_negative_frequency_replay.py'
   workflow_dispatch:
 permissions:
   contents: read
