@@ -46,3 +46,7 @@
 ## L06.4 — Genuine absolute >=10% loss risk forecasting
 
 [Source-backed 53-month test](../reports/L06/20261021_ABSOLUTE_LOSS_SKILL.md): On 2,281 distinct Tail-selected ETF-months (162 large next-21D losses), frozen original risk score delivers **ROC-AUC 0.6266 (95% month-block CI 0.543–0.724)**, AP **0.1325 vs 0.0710 prevalence**, and new train-only probability calibration Brier **0.06550 vs constant 0.06640**. **RISK FORECASTING: LIMITED FUNCTIONAL PASS**, with substantial false alarms. No actual policy approved; proceed to single fixed weight-only candidate test, not hard veto. No CAGR.
+
+## L06.5 — Research candidate: calibrated absolute-loss risk soft weights
+
+[Functional test](../reports/L06/20261021_ABSOLUTE_SOFT_POLICY.md): 53 maturity-safe OOS months, same frozen Tail Top3 50/30/20 ETFs, adjusted weight `normalize(original_weight*exp(-3*p_abs_loss10))`. Severe actual next21D loss exposure **9.244%→9.146%** (−0.098 pp), winner weight **15.666%→15.574%** (−0.091 pp), future rank quality **0.505593→0.506417**, regret **0.115445→0.115259**, churn **0.3471→0.3562**. **RESEARCH CANDIDATE; NOT APPROVED for production or L07.** Next independent confirmation and cost-aware evaluation required. No CAGR optimized.
