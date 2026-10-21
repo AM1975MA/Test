@@ -1,0 +1,84 @@
+name: V3 L01 corrected-input ranking capability
+on:
+  push:
+    branches: [research-v3-l00-quality-l01-ranker-20261021]
+    paths:
+      - '.github/workflows/v3-l01-ranker.yml'
+      - 'etf-trader-v3 corrected/experiments/l01_ranker/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fit:
+    name: L01 chronological refit ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {shard: years_2018_2020, years: "2018,2019,2020"}
+          - {shard: years_2021_2023, years: "2021,2022,2023"}
+          - {shard: years_2024_2026, years: "2024,2025,2026"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Input contract and exact certified corrected-125 OOS baseline
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test -s 'etf-trader-v3 corrected/src/etf_trader_v3/source_only/kernel.py'
+          mkdir -p etf_trader_raw runs/v2_corrected_oracle
+          gh run download 39482809691 --repo AM1975MA/Test \
+            --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39515716383 --repo AM1975MA/Test \
+            --name v2-formula-retrain-complete --dir runs/v2_corrected_oracle
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v2_corrected_oracle/OOS_SCORES.csv
+      - name: Fit rankers; maximize predictive ranking capability only
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l01_ranker/evaluate.py' \
+            --years '${{ matrix.years }}' \
+            --raw etf_trader_raw \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --prior runs/v2_corrected_oracle \
+            --out 'runs/v3_l01_shards/${{ matrix.shard }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l01-${{ matrix.shard }}
+          path: runs/v3_l01_shards/
+          if-no-files-found: warn
+          retention-days: 90
+  evaluate:
+    name: L01 prediction metrics and uncertainty (no CAGR)
+    needs: fit
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy tabulate
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v3-l01-years_*
+          merge-multiple: true
+          path: runs/v3_l01_shards/
+      - name: Check exact same ETF/month targets and compute Top1/Top3/nDCG/IC/regret
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l01_ranker/aggregate.py' \
+            --root runs/v3_l01_shards \
+            --out runs/v3_l01_complete
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l01-paired-ranking-results
+          path: runs/v3_l01_complete/
+          if-no-files-found: warn
+          retention-days: 90
