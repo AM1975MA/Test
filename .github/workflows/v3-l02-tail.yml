@@ -1,0 +1,74 @@
+name: V3 L02 Tail independent recall/rare-event skill
+on:
+  push:
+    branches: [research-v3-l00-quality-l01-ranker-20261021]
+    paths:
+      - '.github/workflows/v3-l02-tail.yml'
+      - 'etf-trader-v3 corrected/experiments/l02_tail/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fit:
+    name: Tail de-dup isolated folds ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {shard: years_2018_2020, years: "2018,2019,2020"}
+          - {shard: years_2021_2023, years: "2021,2022,2023"}
+          - {shard: years_2024_2026, years: "2024,2025,2026"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Exact same original 149 ETF OHLCV and frozen Tail inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+      - name: Refit only original and de-duplicated Tail; strict 63-day mature labels
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l02_tail/evaluate.py' \
+            --years '${{ matrix.years }}' --raw etf_trader_raw \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out 'runs/v3_l02_shards/${{ matrix.shard }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l02-${{ matrix.shard }}
+          path: runs/v3_l02_shards/
+          if-no-files-found: warn
+          retention-days: 90
+  aggregate:
+    needs: fit
+    name: Tail average precision, recall and missed extreme winners
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy tabulate
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v3-l02-years_*
+          merge-multiple: true
+          path: runs/v3_l02_shards/
+      - name: Matched matured 63d Tail labels only (no CAGR)
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l02_tail/aggregate.py' \
+            --root runs/v3_l02_shards --out runs/v3_l02_complete
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l02-tail-only-results
+          path: runs/v3_l02_complete/
+          if-no-files-found: warn
+          retention-days: 90
