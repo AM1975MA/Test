@@ -159,7 +159,7 @@ def main():
         assert tr.fwd_ret_21.notna().all()
         log_return=np.log1p(tr.fwd_ret_21.clip(lower=-.95).astype(float))
         centered=(log_return-log_return.groupby(tr.signal_date).transform("median")).clip(-.25,.25)
-        extra_penalty=(-np.log(.9)-log_return).clip(lower=0,upper=.20)
+        extra_penalty=(np.log(.9)-log_return).clip(lower=0,upper=.20)
         utility_targets={
            "L09_EXCESS21":100*centered.to_numpy(float),
            "L09_DOWNSIDE21":100*(centered-0.5*extra_penalty).to_numpy(float)
