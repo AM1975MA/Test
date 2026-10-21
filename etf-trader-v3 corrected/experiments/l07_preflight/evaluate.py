@@ -32,7 +32,7 @@ def matured_fit_audit(file):
     for entry in fit:
         if "year" not in entry:continue
         year=int(entry["year"])
-        last=entry.get("last_mature_exit") or entry.get("last_mature_63d_label") or entry.get("last_mature_63D_exit") or entry.get("max_mature_63d_exit") or entry.get("last_mature_63d_exit")
+        last=entry.get("last_mature_exit") or entry.get("last_mature_63d_label") or entry.get("last_mature_63D_exit") or entry.get("max_mature_63d_exit") or entry.get("last_mature_63d_exit") or entry.get("last_train_exit") or entry.get("last_exit_date")
         if last is None:
             for k,v in entry.items():
                 if ("mature" in k.lower() and "exit" in k.lower()):
