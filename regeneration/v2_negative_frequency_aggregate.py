@@ -11,6 +11,9 @@ root=Path(args.root);out=Path(args.out);out.mkdir(parents=True,exist_ok=True)
 files=sorted(root.glob("**/PAIRED_MONTHLY.csv"))
 if len(files)!=3:raise RuntimeError(f"Expect 3 disjoint year shards: {files}")
 df=pd.concat([pd.read_csv(x) for x in files],ignore_index=True)
+# Historical OOS controls serialize midnight timestamps; new month stats use ISO dates.
+# Compare semantic trading dates, never raw string representation.
+df["signal_date"]=pd.to_datetime(df["signal_date"],format="mixed")
 names=["LEGACY","CORRECTED","CORRECTED_PLUS_FREQ"]
 assert set(df.variant.unique())==set(names)
 assert not df.duplicated(["signal_date","variant"]).any()
@@ -50,6 +53,7 @@ pd.DataFrame(rows).to_csv(out/"PAIRED_BOOTSTRAP.csv",index=False)
 scores=sorted(root.glob("**/OOS_SCORES.csv"))
 if len(scores)!=3:raise RuntimeError("Not all three score shards present")
 sc=pd.concat([pd.read_csv(x) for x in scores],ignore_index=True)
+sc["signal_date"]=pd.to_datetime(sc["signal_date"],format="mixed")
 if sc.duplicated(["variant","signal_date","ticker"]).any():raise RuntimeError("Duplicate score keys")
 for name in names:
     key=sc[sc.variant==name][["signal_date","ticker"]].sort_values(["signal_date","ticker"]).reset_index(drop=True)
