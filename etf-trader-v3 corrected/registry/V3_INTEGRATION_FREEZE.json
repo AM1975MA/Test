@@ -79,6 +79,15 @@
       "artifact": 12386252130,
       "evidence": "High Tail extreme winner capture has lower selected future-rank quality and lower real executed returns; Top3 cannot compensate for model score loss",
       "production_approved": false
+    },
+    "L09": {
+      "status": "EXPLORATORY_21D_REGRESSION_TARGETS_REJECTED",
+      "prediction_run": 39690121638,
+      "prediction_artifact": 12388882435,
+      "economic_run": 39691623601,
+      "economic_artifact": 12388986240,
+      "production_approved": false,
+      "decision": "both target-aligned XGBRegressor models have substantially lower Top3 winner recall and worse same-policy executed economics than CORRECTED_PAIR127; asymmetric penalty lowers true loss exposure but further loses winning ETFs"
     }
   },
   "comparison_to_run": {

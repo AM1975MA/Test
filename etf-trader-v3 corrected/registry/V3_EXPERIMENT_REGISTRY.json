@@ -104,6 +104,19 @@
       "preflight_status": "PASS_RESEARCH_PREFLIGHT_ONLY",
       "integrated_backtest_run": 39683840686,
       "integrated_artifact_id": 12385666508
+    },
+    "L09": {
+      "status": "REJECTED_NO_VALIDATED_IMPROVEMENT",
+      "run": 39690121638,
+      "economic_run": 39691623601,
+      "source_features_corrected": 125,
+      "baseline": "CORRECTED_PAIR127",
+      "models_not_promoted": [
+        "L09_EXCESS21",
+        "L09_DOWNSIDE21"
+      ],
+      "absolute_loss_exposure_reduced_but_opportunity_loss_higher": true,
+      "experimental_root": "etf-trader-v3 corrected/experiments/l09_utility_target"
     }
   },
   "experiments": [
@@ -343,6 +356,73 @@
       },
       "remains_untouched_holdout": false,
       "production_V2_unchanged": true
+    },
+    {
+      "layer": "L09",
+      "id": "new-21d-utility-vs-corrected-ranker",
+      "run": 39690121638,
+      "artifact": 12388882435,
+      "prior_invalid_run": 39690087601,
+      "decision": "rejected",
+      "changed": [
+        "prediction objective pairwise->regression",
+        "target true clipped cross-universe-median-relative 21D log return",
+        "predeclared alternate downside absolute loss penalty >=10 percent"
+      ],
+      "fixed": [
+        "125 corrected features",
+        "149 ETFs",
+        "500 canonical baskets",
+        "annual mature-only refits",
+        "127 leaves",
+        "360 estimators",
+        "three seeds"
+      ],
+      "period": "2018–2026 101 matured months",
+      "outcomes": {
+        "corrected_top3": 0.354713,
+        "excess_top3": 0.201465,
+        "downside_top3": 0.19695,
+        "corrected_ic": 0.038536,
+        "excess_ic": 0.059904,
+        "downside_ic": 0.056782
+      },
+      "production_change": false
+    },
+    {
+      "layer": "L09",
+      "id": "utility-economic-factorial-followup",
+      "run": 39691623601,
+      "artifact": 12388986240,
+      "decision": "rejected_no_production_promotion",
+      "changed": [
+        "fixed score channels only"
+      ],
+      "fixed": [
+        "same selection policy Top2 or Top3",
+        "identical 500 baskets",
+        "next-open open-to-open execution",
+        "10bps 1way costs"
+      ],
+      "matched_CAGR": {
+        "legacy_top2": 0.231568,
+        "corrected_top2": 0.196339,
+        "excess_top2": 0.162964,
+        "downside_top2": 0.135271
+      },
+      "long_CAGR": {
+        "legacy_top2": 0.15941,
+        "corrected_top2": 0.147292,
+        "excess_top2": 0.117519,
+        "downside_top2": 0.097945
+      },
+      "top3_loss10_weight": {
+        "corrected": 0.084861,
+        "excess": 0.058248,
+        "downside": 0.055842
+      },
+      "full_V2_production_reconstructed": false,
+      "virgin_holdout": false
     }
   ],
   "pending_experiments": [
