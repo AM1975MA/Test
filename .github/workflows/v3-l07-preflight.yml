@@ -1,0 +1,57 @@
+name: V3 L07 research stack preflight - immutable inputs no CAGR
+on:
+  push:
+    branches: [research-v3-next-layer-gates-20261021]
+    paths:
+      - '.github/workflows/v3-l07-preflight.yml'
+      - 'etf-trader-v3 corrected/experiments/l07_preflight/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    name: Verify all selected layers, frozen OOS scores, labels and identical risk alternatives
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Download exact frozen model OOS and canonical allocation/risk snapshots
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_l01_reference runs/v3_l02_reference runs/v3_l04_reference \
+                   runs/v3_l05_reference runs/v3_l06_absolute runs/v3_l06_policy
+          gh run download 39652989033 --repo AM1975MA/Test \
+            --name v3-l01-paired-ranking-results --dir runs/v3_l01_reference
+          gh run download 39655513813 --repo AM1975MA/Test \
+            --name v3-l02-tail-event-results --dir runs/v3_l02_reference
+          gh run download 39659903643 --repo AM1975MA/Test \
+            --name v3-l04-frozen-expert-blend-results --dir runs/v3_l04_reference
+          gh run download 39661273577 --repo AM1975MA/Test \
+            --name v3-l05-selection-functional-results --dir runs/v3_l05_reference
+          gh run download 39671493979 --repo AM1975MA/Test \
+            --name v3-l06-absolute-loss-capability --dir runs/v3_l06_absolute
+          gh run download 39672320747 --repo AM1975MA/Test \
+            --name v3-l06-calibrated-absolute-soft-policy-results --dir runs/v3_l06_policy
+          test -s runs/v3_l01_reference/OOS_SCORES.csv
+          test -s runs/v3_l06_policy/PAIRED_MONTHLY.csv
+      - name: Gate-check maturity and 149 ETF identity before any integrated backtest
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l07_preflight/evaluate.py' \
+            --registry 'etf-trader-v3 corrected/registry/V3_EXPERIMENT_REGISTRY.json' \
+            --l01 runs/v3_l01_reference --l02 runs/v3_l02_reference \
+            --l04 runs/v3_l04_reference --l05 runs/v3_l05_reference \
+            --l06abs runs/v3_l06_absolute --l06policy runs/v3_l06_policy \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_l07_preflight
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l07-frozen-integration-preflight
+          path: runs/v3_l07_preflight/
+          if-no-files-found: warn
+          retention-days: 90
