@@ -38,3 +38,7 @@
 ## L06.2 — Trial: within-Top3 risk reweighting (21 October 2026)
 
 [Audited result](../reports/L06/20261021_SOFT_RISK_WEIGHT_SKILL.md): same three ETF candidates retained, winner capture exactly **42.7465%**; bad-bottom3 weight 26.6952%→26.3915%, but winner weight 15.2176%→14.9645%, and target-weight churn 0.38336→0.39941. The risk head's conditional AUC among preselected basket candidates is **0.575** vs universe-wide AUC **0.755** (different outcome conditioning). **Decision: inconclusive/NOT PROMOTED.** Next test must improve conditional risk discrimination with the allocation fully frozen, not optimize a risk penalty on these same OOS years.
+
+## L06.3 — Selection-conditional loss classification (21 October 2026)
+
+[Technical report](../reports/L06/20261021_CONDITIONAL_RISK_SKILL.md): New model trained annually from historical OOS Tail-selected ETF candidates to predict basket-relative future worst-three outcome **did not improve** risk identification. On 53 later-year months, AP **0.4227 vs 0.4368** for calibrated frozen global risk, paired 95% CI of delta **[-0.0198,-0.0090]**; AUC about **0.577** either way. **REJECT conditioned3**; preserve Tail Top3 baseline and the frozen risk model as diagnostic. The next isolated L06 check will assess **absolute large-loss event detection** rather than basket-relative losers. No CAGR / allocation changes.
