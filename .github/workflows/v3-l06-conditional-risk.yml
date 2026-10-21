@@ -1,0 +1,46 @@
+name: V3 L06.3 conditional risk skill among Tail Top3
+on:
+  push:
+    branches: [research-v3-l06-conditional-risk-20261021]
+    paths:
+      - '.github/workflows/v3-l06-conditional-risk.yml'
+      - 'etf-trader-v3 corrected/experiments/l06_conditional_risk/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  predict:
+    name: Strict out-of-year conditionally selected bad-event classifier
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Same frozen 149 ETF OOS risk/elite scores and SPY trading calendar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_l06_ref etf_trader_raw
+          gh run download 39662062361 --repo AM1975MA/Test \
+            --name v3-l06-risk-standalone-results --dir runs/v3_l06_ref
+          gh run download 39482809691 --repo AM1975MA/Test \
+            --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          test -s runs/v3_l06_ref/RISK_SCORES_OOS.csv
+          test -s etf_trader_raw/SPY.csv
+      - name: Causally train one risk calibration and one selected-risk learner
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l06_conditional_risk/evaluate.py' \
+            --reference runs/v3_l06_ref \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --spy etf_trader_raw/SPY.csv \
+            --out runs/v3_l06_conditional
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l06-conditional-risk-classification-results
+          path: runs/v3_l06_conditional/
+          if-no-files-found: warn
+          retention-days: 90
