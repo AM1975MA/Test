@@ -208,7 +208,7 @@ def main():
         # MONTH-END Jan 2018 and Jan 2022 signals are the earliest strategy signals.
         schedules={}
         for expert in EXPERTS:
-            these,choices=make_schedules(scored[expert],baskets,market_dates)
+            these,choices=make_schedules(scored[expert],baskets,market_dates,cols)
             for policy,sch in these.items():
                 schedules[f"{expert}__{policy}"]=sch
         reference={}
