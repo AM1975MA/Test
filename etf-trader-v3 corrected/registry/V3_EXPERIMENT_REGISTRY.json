@@ -27,7 +27,7 @@
       "untouched_vintage_required_for_claims_of_generalization"
     ],
     "production_V2_unchanged": true,
-    "full_backtest_status": "NOT EXECUTED; review frozen candidate stack and no-virgin-holdout before claiming validation",
+    "full_backtest_status": "COMPLETED_HISTORICAL_DIAGNOSTIC_WITH_SOURCE_ONLY_V2_LEGACY_REFERENCE",
     "integrated_scoreline_baseline_ready": true
   },
   "frozen_references": {
@@ -99,9 +99,11 @@
     },
     "L07": {
       "id": "NOT_RUN",
-      "status": "blocked_until_reference_freeze_and_validation",
+      "status": "full_historical_replay_completed_not_production_approved",
       "preflight_run": 39676155405,
-      "preflight_status": "PASS_RESEARCH_PREFLIGHT_ONLY"
+      "preflight_status": "PASS_RESEARCH_PREFLIGHT_ONLY",
+      "integrated_backtest_run": 39683840686,
+      "integrated_artifact_id": 12385666508
     }
   },
   "experiments": [
@@ -266,6 +268,30 @@
       "artifact": 12381996439,
       "decision": "pass_research_integrity_only",
       "full_backtest_executed": false
+    },
+    {
+      "layer": "L07",
+      "id": "integrated-cost-aware-open-replay",
+      "run": 39683840686,
+      "artifact": 12385666508,
+      "decision": "success_historical_diagnostic_no_production_promotion",
+      "n_baskets": 500,
+      "n_etfs": 149,
+      "matched_risk_signals": 53,
+      "start": "2022-02-01",
+      "end": "2026-07-01",
+      "cost": 0.001,
+      "aggregated_cagr": {
+        "v2_legacy_top2": 0.23157,
+        "v3_tail_top3": 0.13856,
+        "v3_tail_top3_abs_soft": 0.1407
+      },
+      "full_v2_production_reconstructed": false,
+      "paired_CI95_log_annual_v3soft_vs_static": [
+        -0.000068565,
+        0.00606725
+      ],
+      "virgin_holdout": false
     }
   ],
   "pending_experiments": [
