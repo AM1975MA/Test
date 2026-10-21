@@ -31,7 +31,7 @@ import numpy as np
 import pandas as pd
 
 HERE=Path(__file__).resolve().parent
-V3=HERE.parents[2]
+V3=HERE.parents[1]
 sys.path.insert(0,str(V3/"src"))
 from etf_trader_v3.source_only.raw_io import load_ticker_csv_folder,load_baskets
 from etf_trader_v3.source_only.execution import allocations as original_allocations, replay as original_replay
@@ -100,8 +100,10 @@ def build_top2(scores,baskets,dates,cols,max_signal=None):
     return schedule
 
 
-def build_top3(scores,baskets,dates,cols,risk_scores=None,max_signal=None):
-    source=scores if max_signal is None else scores.loc[scores.signal_date<=pd.Timestamp(max_signal)]
+def build_top3(scores,baskets,dates,cols,risk_scores=None,max_signal=None,min_signal=None):
+    source=scores.copy()
+    if max_signal is not None: source=source.loc[source.signal_date<=pd.Timestamp(max_signal)]
+    if min_signal is not None: source=source.loc[source.signal_date>=pd.Timestamp(min_signal)]
     pivot=source.pivot(index="signal_date",columns="ticker",values="pred").reindex(columns=cols)
     assert np.isfinite(pivot.to_numpy(float)).all()
     names={t:i for i,t in enumerate(cols)}
@@ -259,7 +261,7 @@ def main():
         s2["V3_TAIL_TOP3_STATIC"]=ts
         if pname=="MATCHED53":
             rs,selected=build_top3(tail,baskets,dates,cols,risk_scores=risk,
-                                    max_signal=period["last_signal"])
+                                    max_signal=period["last_signal"],min_signal="2022-01-31")
             s2["V3_TAIL_TOP3_ABS_SOFT"]=rs
             # ALL selected ETF names must match every calendar signal, every basket.
             for key in ts:
