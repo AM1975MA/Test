@@ -105,7 +105,7 @@ def main():
     np.testing.assert_allclose(frame.fwd_ret_21,frame.tail_future,atol=1e-14,rtol=0,equal_nan=True)
     b=read_baskets(a.baskets,frame.ticker.unique())
     frame["pair_percentile"]=frame.groupby("signal_date").pair.rank(method="average",pct=True)
-    frame["tail_percentile"]=frame.groupby("signal_date").tail.rank(method="average",pct=True)
+    frame["tail_percentile"]=frame.groupby("signal_date")["tail"].rank(method="average",pct=True)
     results=[];overlaps=[]
     for dt,g in frame.groupby("signal_date",sort=True):
         item,overlap=month_report(g,b)
