@@ -140,19 +140,6 @@ def main():
     audits=[]
     params=dict(v3.COMPACT_PARAMS,objective="reg:squarederror",eval_metric="rmse",
                 max_depth=0,grow_policy="lossguide",max_leaves=127)
-    # Fixed objective change ONLY. Both labels use next-open to 21 trading
-    # session future OHLCV, fully matured before annual fit cutoff.
-    # Rescale clipped log returns to 100bp-ish labels, so optimizer has
-    # ordinary numerically stable regression gradients.
-    assert tr.fwd_ret_21.notna().all()
-    log_return=np.log1p(tr.fwd_ret_21.clip(lower=-.95).astype(float))
-    centered=(log_return-log_return.groupby(tr.signal_date).transform("median")).clip(-.25,.25)
-    extra_penalty=(-np.log(.9)-log_return).clip(lower=0,upper=.20)
-    utility_targets={
-       "L09_EXCESS21":100*centered.to_numpy(float),
-       "L09_DOWNSIDE21":100*(centered-0.5*extra_penalty).to_numpy(float)
-    }
-    assert all(np.isfinite(a).all() for a in utility_targets.values())
     for year in years:
         cutoff=pd.Timestamp(year,1,1)
         train=((old.signal_date>=pd.Timestamp("2012-01-01"))&
@@ -165,6 +152,19 @@ def main():
         assert tr.exit_date_21.max()<cutoff
         groups=tr.groupby("signal_date",sort=True).size().to_numpy()
         assert groups.sum()==len(tr)
+        # Fixed objective change ONLY. Both labels use next-open to 21 trading
+        # session future OHLCV, fully matured before annual fit cutoff.
+        # Rescale clipped log returns to 100bp-ish labels, so optimizer has
+        # ordinary numerically stable regression gradients.
+        assert tr.fwd_ret_21.notna().all()
+        log_return=np.log1p(tr.fwd_ret_21.clip(lower=-.95).astype(float))
+        centered=(log_return-log_return.groupby(tr.signal_date).transform("median")).clip(-.25,.25)
+        extra_penalty=(-np.log(.9)-log_return).clip(lower=0,upper=.20)
+        utility_targets={
+           "L09_EXCESS21":100*centered.to_numpy(float),
+           "L09_DOWNSIDE21":100*(centered-0.5*extra_penalty).to_numpy(float)
+        }
+        assert all(np.isfinite(a).all() for a in utility_targets.values())
         X=tr[FEATURES].replace([np.inf,-np.inf],np.nan)
         Xt=te[FEATURES].replace([np.inf,-np.inf],np.nan)
         for arm in ARMS:
