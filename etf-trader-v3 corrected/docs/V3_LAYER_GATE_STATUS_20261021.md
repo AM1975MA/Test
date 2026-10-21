@@ -42,3 +42,7 @@
 ## L06.3 — Selection-conditional loss classification (21 October 2026)
 
 [Technical report](../reports/L06/20261021_CONDITIONAL_RISK_SKILL.md): New model trained annually from historical OOS Tail-selected ETF candidates to predict basket-relative future worst-three outcome **did not improve** risk identification. On 53 later-year months, AP **0.4227 vs 0.4368** for calibrated frozen global risk, paired 95% CI of delta **[-0.0198,-0.0090]**; AUC about **0.577** either way. **REJECT conditioned3**; preserve Tail Top3 baseline and the frozen risk model as diagnostic. The next isolated L06 check will assess **absolute large-loss event detection** rather than basket-relative losers. No CAGR / allocation changes.
+
+## L06.4 — Genuine absolute >=10% loss risk forecasting
+
+[Source-backed 53-month test](../reports/L06/20261021_ABSOLUTE_LOSS_SKILL.md): On 2,281 distinct Tail-selected ETF-months (162 large next-21D losses), frozen original risk score delivers **ROC-AUC 0.6266 (95% month-block CI 0.543–0.724)**, AP **0.1325 vs 0.0710 prevalence**, and new train-only probability calibration Brier **0.06550 vs constant 0.06640**. **RISK FORECASTING: LIMITED FUNCTIONAL PASS**, with substantial false alarms. No actual policy approved; proceed to single fixed weight-only candidate test, not hard veto. No CAGR.
