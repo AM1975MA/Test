@@ -45,8 +45,8 @@ def make_negative_fraction(mats,dates):
     blocks=[]
     for h,col in zip(FREQ_HORIZONS,FREQ_NAMES):
         fraction=(lr<0).where(lr.notna()).rolling(h,min_periods=h).mean()
-        assert fraction.ge(0).fillna(True).all().all()
-        assert fraction.le(1).fillna(True).all().all()
+        finite=fraction.stack(dropna=True)
+        assert finite.between(0,1).all() and len(finite)>0
         f=fraction.reindex(dates).stack(dropna=False).rename(col)
         blocks.append(f)
     panel=pd.concat(blocks,axis=1).reset_index()
