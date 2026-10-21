@@ -173,7 +173,8 @@ def main():
     baseline=combined_month[combined_month.variant=="LEGACY"].sort_values("signal_date").reset_index(drop=True)
     for name in ["CORRECTED",VARIANT]:
         other=combined_month[combined_month.variant==name].sort_values("signal_date").reset_index(drop=True)
-        pd.testing.assert_series_equal(baseline.signal_date,other.signal_date)
+        assert pd.DatetimeIndex(pd.to_datetime(baseline.signal_date)).equals(
+            pd.DatetimeIndex(pd.to_datetime(other.signal_date)))
         pd.testing.assert_series_equal(baseline.n_tickers,other.n_tickers)
         pd.testing.assert_series_equal(baseline.n_baskets,other.n_baskets)
     combined_scores.to_csv(out/"OOS_SCORES.csv",index=False)
