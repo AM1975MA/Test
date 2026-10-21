@@ -1,0 +1,50 @@
+name: V3 L06.5 same-Top3 calibrated absolute-loss weighting
+on:
+  push:
+    branches: [research-v3-l06-absolute-soft-policy-20261021]
+    paths:
+      - '.github/workflows/v3-l06-absolute-soft-policy.yml'
+      - 'etf-trader-v3 corrected/experiments/l06_absolute_soft_policy/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  evaluate:
+    name: Single frozen absolute-loss probability reweight, no veto
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Recover immutable original 149 ETF OOS risk and first-stage 2022-26 risk calibration
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_l06_ref runs/v3_l06_abs_ref runs/v3_l05_reference
+          gh run download 39662062361 --repo AM1975MA/Test \
+            --name v3-l06-risk-standalone-results --dir runs/v3_l06_ref
+          gh run download 39671493979 --repo AM1975MA/Test \
+            --name v3-l06-absolute-loss-capability --dir runs/v3_l06_abs_ref
+          gh run download 39661273577 --repo AM1975MA/Test \
+            --name v3-l05-selection-functional-results --dir runs/v3_l05_reference
+          test -s runs/v3_l06_ref/RISK_SCORES_OOS.csv
+          test -s runs/v3_l06_abs_ref/OOS_SELECTED_ETF_ABSOLUTE_LOSS.csv
+          test -s runs/v3_l05_reference/PAIRED_MONTHLY.csv
+      - name: Keep three Tail selections and reduce true future severe-loss exposure
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l06_absolute_soft_policy/evaluate.py' \
+            --risk runs/v3_l06_ref \
+            --absolute runs/v3_l06_abs_ref \
+            --l05 runs/v3_l05_reference \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_l06_abs_policy
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l06-calibrated-absolute-soft-policy-results
+          path: runs/v3_l06_abs_policy/
+          if-no-files-found: warn
+          retention-days: 90
