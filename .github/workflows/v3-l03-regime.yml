@@ -1,0 +1,50 @@
+name: V3 L03 prequential market-regime skill (frozen experts)
+on:
+  push:
+    branches: [research-v3-l00-quality-l01-ranker-20261021]
+    paths:
+      - '.github/workflows/v3-l03-regime.yml'
+      - 'etf-trader-v3 corrected/experiments/l03_regime/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Recover same OOS expert scores and frozen 149 ETF OHLCV
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v3_l01_reference runs/v3_l02_reference
+          gh run download 39482809691 --repo AM1975MA/Test \
+            --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39652989033 --repo AM1975MA/Test \
+            --name v3-l01-paired-ranking-results --dir runs/v3_l01_reference
+          gh run download 39655513813 --repo AM1975MA/Test \
+            --name v3-l02-tail-event-results --dir runs/v3_l02_reference
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v3_l01_reference/OOS_SCORES.csv
+          test -s runs/v3_l02_reference/OOS_SCORES.csv
+      - name: Fit only market regime; train on fully matured historical expert success
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l03_regime/evaluate.py' \
+            --raw etf_trader_raw \
+            --ranker runs/v3_l01_reference \
+            --tail runs/v3_l02_reference \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_l03_regime
+      - name: Archive expert comparisons and genuine chronological regime skill
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l03-relative-expert-regime-results
+          path: runs/v3_l03_regime/
+          if-no-files-found: warn
+          retention-days: 90
