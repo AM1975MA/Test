@@ -1,0 +1,56 @@
+name: V3 L07 full integrated cost-aware execution diagnostic
+on:
+  push:
+    branches: [research-v3-l07-integrated-replay-20261021]
+    paths:
+      - '.github/workflows/v3-l07-integrated.yml'
+      - 'etf-trader-v3 corrected/experiments/l07_integrated/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 115
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Retrieve immutable original 149 ETFs, genuine legacy OOS, frozen Tail and matured risk probabilities
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v2_legacy runs/v3_l02 runs/v3_l06abs
+          gh run download 39482809691 --repo AM1975MA/Test \
+            --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39515716383 --repo AM1975MA/Test \
+            --name v2-formula-retrain-complete --dir runs/v2_legacy
+          gh run download 39655513813 --repo AM1975MA/Test \
+            --name v3-l02-tail-event-results --dir runs/v3_l02
+          gh run download 39671493979 --repo AM1975MA/Test \
+            --name v3-l06-absolute-loss-capability --dir runs/v3_l06abs
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v2_legacy/OOS_SCORES.csv
+          test -s runs/v3_l02/OOS_SCORES.csv
+          test -s runs/v3_l06abs/OOS_SELECTED_ETF_ABSOLUTE_LOSS.csv
+      - name: Full integrated self-financing daily replay, fees and exact V2 numeric oracle
+        run: |
+          OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+          python 'etf-trader-v3 corrected/experiments/l07_integrated/evaluate.py' \
+            --raw etf_trader_raw \
+            --legacy runs/v2_legacy \
+            --tail runs/v3_l02 \
+            --absolute runs/v3_l06abs \
+            --frozen 'etf-trader-v3 corrected/registry/V3_INTEGRATION_FREEZE.json' \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_l07_integrated
+      - name: Archive reproducible 53-month comparison, 101-month historical baseline, daily equity, cost sensitivity and calendar-block uncertainty
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l07-integrated-full-economic-results
+          path: runs/v3_l07_integrated/
+          if-no-files-found: warn
+          retention-days: 90
