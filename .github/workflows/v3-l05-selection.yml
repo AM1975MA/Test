@@ -1,0 +1,41 @@
+name: V3 L05 allocation ranking quality and churn (no CAGR)
+on:
+  push:
+    branches: [research-v3-l00-quality-l01-ranker-20261021]
+    paths:
+      - '.github/workflows/v3-l05-selection.yml'
+      - 'etf-trader-v3 corrected/experiments/l05_selection/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Use frozen original 149 ETF OOS Tail score only, no model refit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_l04_static
+          gh run download 39659903643 --repo AM1975MA/Test \
+            --name v3-l04-frozen-expert-blend-results --dir runs/v3_l04_static
+          test -s runs/v3_l04_static/OOS_SCORES_ALL_FIXED_BLENDS.csv
+      - name: Compare fixed Top-1/2/3 with same score, no price P&L optimization
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l05_selection/evaluate.py' \
+            --predictions runs/v3_l04_static/OOS_SCORES_ALL_FIXED_BLENDS.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_l05_selection
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l05-selection-functional-results
+          path: runs/v3_l05_selection/
+          if-no-files-found: warn
+          retention-days: 90
