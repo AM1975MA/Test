@@ -1,0 +1,60 @@
+name: V2 negative-frequency finalize validated OOS shards
+on:
+  push:
+    branches: [research-v2-negative-frequency-20261021]
+    paths:
+      - '.github/workflows/v2-negative-frequency-finalize.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Recover all three successfully trained frozen ETF ranking shards
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v2_negative_frequency_shards
+          gh run download 39557244268 --repo AM1975MA/Test \
+            --pattern 'v2-negative-frequency-years_*' \
+            --dir runs/v2_negative_frequency_shards
+          find runs/v2_negative_frequency_shards -name PAIRED_MONTHLY.csv -print
+          test "$(find runs/v2_negative_frequency_shards -name PAIRED_MONTHLY.csv | wc -l)" -eq 3
+      - name: Match canonical month timestamps and calculate paired 101-month bootstrap
+        run: |
+          python regeneration/v2_negative_frequency_aggregate.py \
+            --root runs/v2_negative_frequency_shards \
+            --out runs/v2_negative_frequency_complete
+      - name: Load exact 149 ETF same-source adjusted OHLCV and validate original baskets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw
+          gh run download 39482809691 --repo AM1975MA/Test \
+            --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+      - name: Next-open 10 bp cost 500-basket economic replay for all 3 arms
+        run: |
+          python regeneration/v2_negative_frequency_replay.py \
+            --raw etf_trader_raw \
+            --scores runs/v2_negative_frequency_complete/OOS_SCORES.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v2_negative_frequency_economics
+      - name: Persist complete historical OOS metric and score bundle
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-negative-frequency-final-results
+          path: |
+            runs/v2_negative_frequency_complete/
+            runs/v2_negative_frequency_economics/
+            certification/
+          if-no-files-found: warn
+          retention-days: 30
