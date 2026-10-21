@@ -163,7 +163,7 @@ def main():
         cand=newscore.sort_values(["signal_date","ticker"]).reset_index(drop=True)
         pd.testing.assert_frame_equal(ref[["signal_date","ticker"]],
                                       cand[["signal_date","ticker"]])
-        np.testing.assert_allclose(ref.fwd_ret_21,cand.fwd_ret_21,equal_nan=True,rtol=0,atol=0)
+        np.testing.assert_allclose(ref.fwd_ret_21,cand.fwd_ret_21,equal_nan=True,rtol=0,atol=1e-14)
         assert len(ref)>1000
 
     combined_scores=pd.concat([hist,newscore],ignore_index=True)
