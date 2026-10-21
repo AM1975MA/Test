@@ -17,7 +17,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score, brier_score_loss, log_loss
 
-V3=Path(__file__).resolve().parents[2]
+V3=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(V3/"src"))
 from etf_trader_v3.source_only.raw_io import load_ticker_csv_folder
 
