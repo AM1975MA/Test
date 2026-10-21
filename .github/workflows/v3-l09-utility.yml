@@ -1,0 +1,62 @@
+name: V3 L09 utility targets 21d
+on:
+  push:
+    branches: [research-v3-l09-21d-utility-target-20261022]
+    paths: ['.github/workflows/v3-l09-utility.yml', 'etf-trader-v3 corrected/experiments/l09_utility_target/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {shard: s1, years: '2018,2019,2020'}
+          - {shard: s2, years: '2021,2022,2023'}
+          - {shard: s3, years: '2024,2025,2026'}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy==2.2.6 pandas==2.2.3 xgboost==3.0.5 scipy scikit-learn matplotlib tabulate
+      - name: Frozen ETF source and original corrected OOS
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v2_ref
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39515716383 --repo AM1975MA/Test --name v2-formula-retrain-complete --dir runs/v2_ref
+          python regeneration/certify_etf_trader_raw.py
+      - name: Year-locked 21d utility regressions
+        run: |
+          OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 python 'etf-trader-v3 corrected/experiments/l09_utility_target/evaluate.py' --years '${{ matrix.years }}' --raw etf_trader_raw --prior runs/v2_ref --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv --out runs/v3_l09/${{ matrix.shard }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: l09-${{ matrix.shard }}
+          path: runs/v3_l09/
+          retention-days: 90
+  aggregate:
+    needs: fit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy==2.2.6 pandas==2.2.3 scipy tabulate
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: l09-s*
+          path: runs/v3_l09/
+          merge-multiple: true
+      - run: python 'etf-trader-v3 corrected/experiments/l09_utility_target/aggregate.py' --root runs/v3_l09 --out runs/v3_l09_complete
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l09-21d-utility-complete
+          path: runs/v3_l09_complete/
+          retention-days: 90
