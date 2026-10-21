@@ -96,12 +96,16 @@ def audit(raw,out):
                      "count":int(len(subset)),"missing_fraction":float(subset.isna().mean()) if len(subset) else None})
     pd.DataFrame(missing).to_csv(dest/"MISSINGNESS_BY_ETF_AGE.csv",index=False)
     C=mats["Close"];O=mats["Open"];H=mats["High"];L=mats["Low"];V=mats["Volume"]
-    consistency=((H>=np.maximum(O,C))&(L<=np.minimum(O,C))&(H>=L))
+    # Match the canonical raw loader's OHLC tolerance (1e-8 absolute).
+    # The initial strict-comparison counts were IEEE-754 roundoff ONLY.
     valid_c=O.notna()&H.notna()&L.notna()&C.notna()
-    failures=(~consistency)&valid_c
+    low_ref=np.minimum(O,C);high_ref=np.maximum(O,C)
+    strict_failures=valid_c&((H<high_ref)|(L>low_ref)|(H<L))
+    failures=valid_c&((H<high_ref-1e-8)|(L>low_ref+1e-8)|(H<L-1e-8))
     anomaly_count=int(failures.to_numpy().sum())
+    float_roundoff_count=int((strict_failures&~failures).to_numpy().sum())
     raw_info={"n_tickers":149,"n_signal_months":len(dates),"first_date":str(C.index.min().date()),
-        "last_date":str(C.index.max().date()),"ohlc_violations":anomaly_count,
+        "last_date":str(C.index.max().date()),"ohlc_material_violations":anomaly_count,"ohlc_float_roundoff_only":float_roundoff_count,
         "ohlc_total_valid":int(valid_c.to_numpy().sum()),
         "volume_zero_or_negative":int((V.notna()&(V<=0)).to_numpy().sum()),
         "zero_return_or_flat_period":"Must distinguish zero from missing",
@@ -118,7 +122,7 @@ def audit(raw,out):
     (dest/"FINDINGS.md").write_text(
         "# V3 L00: source/feature quality audit (no prediction targets)\n\n"+
         f"Audited {len(coverage)} feature columns across {len(dates)} month ends and 149 ETF price histories.\n\n"+
-        f"OHLC contradictions: {anomaly_count}. Exact duplicate feature groups: {len(duplicate_pairs)}. "+
+        f"OHLC contradictions above 1e-8 tolerance: {anomaly_count}; floating-point-only flags: {float_roundoff_count}. Exact duplicate feature groups: {len(duplicate_pairs)}. "+
         f"Robust-dev families with at least one zero-MAD month: {sum(z['months_with_zero_mad_and_20_etfs']>0 for z in cs)}.\n\n"+
         "The feature audit is descriptive; no formula changed and **no predictive superiority is claimed**. "+
         "Missingness is split by ETF history length, not imputed. Structural duplicate names and "+
