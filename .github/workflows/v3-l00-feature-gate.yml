@@ -3,8 +3,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'etf-trader-v3 corrected/**'
-      - '.github/workflows/v3-l00-feature-gate.yml'
+      - 'etf-trader-v3 corrected/src/**'
+      - 'etf-trader-v3 corrected/tests/**'
+      - 'etf-trader-v3 corrected/experiments/**'
   workflow_dispatch:
 permissions:
   contents: read
