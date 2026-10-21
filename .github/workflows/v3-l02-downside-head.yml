@@ -1,0 +1,79 @@
+name: V3 L02 isolate bottom-decile false-selection head
+on:
+  push:
+    branches: [research-v3-l00-quality-l01-ranker-20261021]
+    paths:
+      - '.github/workflows/v3-l02-downside-head.yml'
+      - 'etf-trader-v3 corrected/experiments/l02_tail_downside/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fit:
+    name: Tail independent downside risk ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {shard: years_2018_2020, years: "2018,2019,2020"}
+          - {shard: years_2021_2023, years: "2021,2022,2023"}
+          - {shard: years_2024_2026, years: "2024,2025,2026"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Download exact frozen 149 ETF prices and independently trained elite-head OOS
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v3_l02_elite_reference
+          gh run download 39482809691 --repo AM1975MA/Test \
+            --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39655513813 --repo AM1975MA/Test \
+            --name v3-l02-tail-event-results --dir runs/v3_l02_elite_reference
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v3_l02_elite_reference/OOS_SCORES.csv
+          test -s runs/v3_l02_elite_reference/PAIRED_MONTHLY.csv
+      - name: Fit only downside classifier; never refit elite, Compact or fusion
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l02_tail_downside/fit.py' \
+            --years '${{ matrix.years }}' --raw etf_trader_raw \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --reference runs/v3_l02_elite_reference \
+            --out 'runs/v3_l02_bad_shards/${{ matrix.shard }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l02-bad-${{ matrix.shard }}
+          path: runs/v3_l02_bad_shards/
+          if-no-files-found: warn
+          retention-days: 90
+  analyze:
+    needs: fit
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy tabulate
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v3-l02-bad-years_*
+          merge-multiple: true
+          path: runs/v3_l02_bad_shards/
+      - name: Compare same-month extreme winners vs false bottom-decile selections
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l02_tail_downside/aggregate.py' \
+            --root runs/v3_l02_bad_shards --out runs/v3_l02_bad_complete
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l02-elite-downside-paired-results
+          path: runs/v3_l02_bad_complete/
+          if-no-files-found: warn
+          retention-days: 90
