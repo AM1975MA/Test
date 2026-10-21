@@ -72,6 +72,13 @@
       "production_approved": false,
       "integrated_artifact_id": 12385666508,
       "integrated_status": "SUCCESS_HISTORICAL_DIAGNOSTIC_NOT_VIRGIN_OOS"
+    },
+    "L08": {
+      "status": "EXPLORATORY_MODEL_POLICY_ATTRIBUTION_COMPLETED_NO_PROMOTION",
+      "run": 39685852459,
+      "artifact": 12386252130,
+      "evidence": "High Tail extreme winner capture has lower selected future-rank quality and lower real executed returns; Top3 cannot compensate for model score loss",
+      "production_approved": false
     }
   },
   "comparison_to_run": {

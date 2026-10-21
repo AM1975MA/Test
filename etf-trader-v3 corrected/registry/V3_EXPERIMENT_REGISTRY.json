@@ -292,6 +292,57 @@
         0.00606725
       ],
       "virgin_holdout": false
+    },
+    {
+      "layer": "L08",
+      "id": "score-policy-factorial-4x3",
+      "run": 39685852459,
+      "artifact": 12386252130,
+      "decision": "completed_exploratory_diagnostic_do_not_promote",
+      "prior_failed_run": 39685692589,
+      "frozen_experts": [
+        "LEGACY",
+        "PAIR127",
+        "TAIL45",
+        "RRF10"
+      ],
+      "predeclared_policies": [
+        "TOP1",
+        "TOP2",
+        "TOP3"
+      ],
+      "windows": [
+        "2018-02-01 to 2026-07-01",
+        "2022-02-01 to 2026-07-01"
+      ],
+      "transaction_fee_one_way": 0.001,
+      "identical_500_baskets": true,
+      "source_only_V2_legacy_reference_not_full_V2": true,
+      "matched_2022_2026_aggregate_CAGR": {
+        "LEGACY_TOP1": 0.2522,
+        "LEGACY_TOP2": 0.2316,
+        "PAIR127_TOP2": 0.1963,
+        "PAIR127_TOP3": 0.1778,
+        "RRF10_TOP3": 0.1677,
+        "TAIL45_TOP2": 0.1268,
+        "TAIL45_TOP3": 0.1386
+      },
+      "long_2018_2026_aggregate_CAGR": {
+        "LEGACY_TOP1": 0.1702,
+        "LEGACY_TOP2": 0.1594,
+        "PAIR127_TOP2": 0.1473,
+        "PAIR127_TOP3": 0.1388,
+        "RRF10_TOP3": 0.1364,
+        "TAIL45_TOP3": 0.1156
+      },
+      "important_functional_result": {
+        "tail_top3_winner_capture": 0.427465,
+        "legacy_top3_winner_capture": 0.357446,
+        "tail_weighted_rank_quality": 0.512941,
+        "legacy_weighted_rank_quality": 0.529142
+      },
+      "remains_untouched_holdout": false,
+      "production_V2_unchanged": true
     }
   ],
   "pending_experiments": [
@@ -328,6 +379,12 @@
       "goal": "pin frozen inputs, leakage-check, reproducibility and run full integrated benchmark only after gates, no production change",
       "status": "preflight_pass_full_test_not_executed",
       "run": 39676155405
+    },
+    {
+      "layer": "L08",
+      "id": "forecast-target-alignment",
+      "status": "UNSTARTED",
+      "goal": "Align 21D expected investor utility, downside and rank with deployed rebalancing; predeclare train-only objective and validate on truly newer data before improving any layer"
     }
   ]
 }
