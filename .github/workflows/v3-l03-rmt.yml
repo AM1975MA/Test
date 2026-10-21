@@ -1,0 +1,43 @@
+name: V3 L03.2 RMT market regime incremental capability
+on:
+  push:
+    branches: [research-v3-next-layer-gates-20261021]
+    paths:
+      - '.github/workflows/v3-l03-rmt.yml'
+      - 'etf-trader-v3 corrected/experiments/l03_rmt_regime/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  spectral-regime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Fetch immutable 149 ETFs and scored expert comparison months
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v3_l03_oracle
+          gh run download 39482809691 --repo AM1975MA/Test \
+            --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39659065223 --repo AM1975MA/Test \
+            --name v3-l03-relative-expert-regime-results --dir runs/v3_l03_oracle
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v3_l03_oracle/EXPERT_MONTHLY_INTRINSIC.csv
+      - name: Check month-end RMT spectrum vs static and market-only forecasts
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l03_rmt_regime/evaluate.py' \
+            --raw etf_trader_raw --regime runs/v3_l03_oracle \
+            --out runs/v3_l03_rmt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l03-rmt-expert-prediction-skill
+          path: runs/v3_l03_rmt/
+          if-no-files-found: warn
+          retention-days: 90
