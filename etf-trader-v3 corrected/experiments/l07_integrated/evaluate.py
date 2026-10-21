@@ -264,8 +264,8 @@ def main():
                                     max_signal=period["last_signal"],min_signal="2022-01-31")
             s2["V3_TAIL_TOP3_ABS_SOFT"]=rs
             # ALL selected ETF names must match every calendar signal, every basket.
-            for key in ts:
-                assert key in rs
+            for key in rs:
+                assert key in ts
                 assert np.array_equal(ts[key]>0,rs[key]>0)
                 assert np.allclose(rs[key].sum(axis=1),1)
             check["absolute_policy_same_ETFs"]=True
