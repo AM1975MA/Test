@@ -1,0 +1,89 @@
+{
+  "project": "ETF_TRADER_V3_CORRECTED",
+  "date": "2026-10-21",
+  "status": "FROZEN_RESEARCH_STACK_NOT_PRODUCTION",
+  "data": {
+    "run": 39482809691,
+    "etfs": 149,
+    "baskets": 500,
+    "each": 24,
+    "virgin_holdout": false
+  },
+  "reference": {
+    "L00": {
+      "type": "corrected feature engine",
+      "n_features": 125,
+      "code": "src/etf_trader_v3/source_only/kernel.py"
+    },
+    "L01": {
+      "type": "XGBRanker",
+      "objective": "rank:pairwise",
+      "max_leaves": 127,
+      "n_estimators": 360,
+      "seeds": [
+        101,
+        202,
+        303
+      ],
+      "reg_lambda": 8,
+      "source_run": 39652989033,
+      "additional_lambda16_rejected": 39675577723
+    },
+    "L02": {
+      "type": "45 dedup Tail features; logistic elite classifier",
+      "C": 0.2,
+      "class_weight": "balanced",
+      "source_run": 39655513813,
+      "unbalanced_not_promoted": 39675781293
+    },
+    "L03": {
+      "type": "no dynamic gate",
+      "market_only_rejected": 39659065223,
+      "RMT_rejected": 39674680942
+    },
+    "L04": {
+      "type": "Tail and Pair kept separate",
+      "no_blend_promoted": true,
+      "OR_RRF_not_promoted": 39674361027,
+      "meta_not_promoted": 39660554536
+    },
+    "L05": {
+      "type": "Top3 weights constant",
+      "weights": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "reference_source_run": 39661273577,
+      "volatility_weight_not_promoted": 39674584732
+    },
+    "L06": {
+      "type": "no hard veto; separate risk research only",
+      "absolute_loss_criterion": "future 21 trading days <= -10%",
+      "absolute_calibrated_risk_run": 39671493979,
+      "soft_weight_formula": "normalize(base*wexp(-3*p_abs_loss))",
+      "soft_weight_candidate_run": 39672320747,
+      "not_promoted": true
+    },
+    "L07": {
+      "preflight_run": 39676155405,
+      "preflight_pass": true,
+      "integrated_backtest_run": null,
+      "production_approved": false
+    }
+  },
+  "comparison_to_run": {
+    "baseline": "TAIL_TOP3_50_30_20",
+    "risk_candidate": "TAIL_TOP3_50_30_20_ABSLOSS_SOFT",
+    "same_ETF_membership": true,
+    "common_mature_months": 53,
+    "includes_full_strategy_execution_costs": false
+  },
+  "governance": {
+    "do_not_tune_CAGR_per_layer": true,
+    "replay_original_before_comparison": true,
+    "never_merge_rejected_arms": true,
+    "check_calendar_maturity": true,
+    "confirmation_on_new_untouched_dates_required": true
+  }
+}

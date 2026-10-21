@@ -27,7 +27,8 @@
       "untouched_vintage_required_for_claims_of_generalization"
     ],
     "production_V2_unchanged": true,
-    "full_backtest_status": "PREPARATION_ONLY; do not advertise independent out-of-time performance"
+    "full_backtest_status": "NOT EXECUTED; review frozen candidate stack and no-virgin-holdout before claiming validation",
+    "integrated_scoreline_baseline_ready": true
   },
   "frozen_references": {
     "L00": {
@@ -50,14 +51,16 @@
         303
       ],
       "objective": "rank:pairwise",
-      "status": "research_reference"
+      "status": "research_reference",
+      "second_regularization_run": 39675577723
     },
     "L02": {
       "id": "TAIL_EVENT_LOGIT45",
       "run": 39655513813,
       "features": 45,
       "target": "top-decile of matured 21/42/63D tailmix",
-      "status": "winner_specialist_only"
+      "status": "winner_specialist_only",
+      "second_classweight_run": 39675781293
     },
     "L03": {
       "id": "NO_DYNAMIC_REGIME",
@@ -96,7 +99,9 @@
     },
     "L07": {
       "id": "NOT_RUN",
-      "status": "blocked_until_reference_freeze_and_validation"
+      "status": "blocked_until_reference_freeze_and_validation",
+      "preflight_run": 39676155405,
+      "preflight_status": "PASS_RESEARCH_PREFLIGHT_ONLY"
     }
   },
   "experiments": [
@@ -231,6 +236,36 @@
         "vol_weight_winner_weight": 0.149339
       },
       "exploratory": true
+    },
+    {
+      "layer": "L01",
+      "id": "pair127-lambda16",
+      "run": 39675577723,
+      "artifact": 12382386873,
+      "decision": "not_promoted",
+      "paired_top3_delta": -0.010832,
+      "CI95_top3": [
+        -0.024,
+        0.001644
+      ]
+    },
+    {
+      "layer": "L02",
+      "id": "tail45-unbalanced-vs-balanced",
+      "run": 39675781293,
+      "artifact": 12381171838,
+      "decision": "not_promoted",
+      "delta_rare_event_recall": 0.006122,
+      "delta_top3": -0.00149,
+      "delta_AP": -0.002561
+    },
+    {
+      "layer": "L07",
+      "id": "frozen-stack-preflight",
+      "run": 39676155405,
+      "artifact": 12381996439,
+      "decision": "pass_research_integrity_only",
+      "full_backtest_executed": false
     }
   ],
   "pending_experiments": [
@@ -265,7 +300,8 @@
       "layer": "L07",
       "id": "versioned-integration-oracle",
       "goal": "pin frozen inputs, leakage-check, reproducibility and run full integrated benchmark only after gates, no production change",
-      "status": "to_prepare"
+      "status": "preflight_pass_full_test_not_executed",
+      "run": 39676155405
     }
   ]
 }
