@@ -1,0 +1,44 @@
+name: V3 L04 frozen-expert complementarity and skill
+on:
+  push:
+    branches: [research-v3-l00-quality-l01-ranker-20261021]
+    paths:
+      - '.github/workflows/v3-l04-fusion.yml'
+      - 'etf-trader-v3 corrected/experiments/l04_fusion/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Load unmodified annual OOS scores of both frozen corrected experts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_l01_reference runs/v3_l02_reference
+          gh run download 39652989033 --repo AM1975MA/Test \
+            --name v3-l01-paired-ranking-results --dir runs/v3_l01_reference
+          gh run download 39655513813 --repo AM1975MA/Test \
+            --name v3-l02-tail-event-results --dir runs/v3_l02_reference
+          test -s runs/v3_l01_reference/OOS_SCORES.csv
+          test -s runs/v3_l02_reference/OOS_SCORES.csv
+      - name: Test only frozen score fusion weights with Top-3, nDCG, regret
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l04_fusion/evaluate.py' \
+            --ranker runs/v3_l01_reference --tail runs/v3_l02_reference \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_l04_fusion
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l04-frozen-expert-blend-results
+          path: runs/v3_l04_fusion/
+          if-no-files-found: warn
+          retention-days: 90
