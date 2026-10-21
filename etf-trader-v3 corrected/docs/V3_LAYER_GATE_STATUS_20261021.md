@@ -1,0 +1,36 @@
+# ETF Trader V3 Corrected — Sequential functional gate status
+
+**Date:** 21 October 2026. **All results exploratory** on previously investigated 149 ETF / 500 basket original OHLCV. Production V2 unchanged. **CAGR deliberately excluded from layer tuning**.
+
+| Gate | Mission | Outcome | Functional evidence / decision |
+|---|---|---|---|
+| L00 | Correct and audit feature formulas, true missingness, source data | **QUALITY_PASS** | 203 fields checked, OHLC source price tolerance met; 125 corrected Compact frozen; exact Tail duplicate groups identified |
+| L01 | Find actual next-21D ETF winners | **PAIR127 FROZEN** | Winner Top3 **35.47%** on 101 months; pair63 only **32.24%**, NDCG loss only **17.77%** despite higher rank IC |
+| L02 | Detect strongly winning ETFs, independent of risk layer | **ELITE45 SPECIALIST** | Top-tail AP **0.2884** (Ridge45 0.2697), Tail target winner Top3 **39.80%** (Ridge45 35.47%), but 21D false bottom selections rise 25.62%→28.02%. 15 Tail aliases removed with negligible change |
+| L03 | Ex ante predict which frozen expert works in a regime | **REJECT market-only gate** | 53 months; AUC **0.470**, Brier **0.254** vs constant prior **0.250**. No demonstrated regime prediction |
+| L04 | Exploit complementary model predictions without target lookahead | **NO BLEND PROMOTION** | Tail-only next21D Top3 **42.75%**, 50/50 **41.90%** over 101 months; strict prequential meta model **44.26%** vs Tail **44.27%** on matched 53 later months |
+| L05 | Stable diversified budget and limited selection churn | **TOP3 DECAY CANDIDATE** | Tail-driven [50%,30%,20%] lowers monthly target-weight churn 0.474→**0.383** and weight in future bottom 3 28.01%→**26.70%**, while weighted future-rank quality remains ~0.513 |
+| L06 | Prevent large losers without missing most winners | **REJECT 85th-percentile veto** | Standalone risk AP **0.290**, AUC **0.755**; hard risk exclusions reduce future bottom-3 weight 26.70%→17.71% but devastate winner Top3 42.75%→**20.64%** and raise churn |
+| L07 | Full integrated causal strategy certification | **NOT STARTED** | No single newly approved regime/fusion/risk policy suitable for production. Need further risk-policy research and new untouched evaluation vintage before integration |
+
+## Frozen research interfaces
+
+- **Corrected feature baseline:** 125 Compact, corrected `downvol`/RSI and true-missing semantics; original 149-ETF snapshot.
+- **Predictive ranker reference:** XGBRanker pairwise, 127 leaves/360 rounds, 3 seeds; no special risk or regime.
+- **Tail expert:** 45 distinct correct Tail inputs, historical annual logistic classifier of matured upper-decile Tail labels; preserves scores separately from Ranker.
+- **Regime:** no validated gating model; do not label hindsight winners as observable regimes.
+- **Blending:** no confirmed improvement; do not promote arbitrary weights or supervised meta.
+- **Allocation candidate:** top three by Tail rank, fixed target weights [0.5,0.3,0.2].
+- **Risk:** keep 45-feature bottom-decile classifier as diagnostic; no live/replay hard veto until selection-loss false alarms controlled.
+- **Releases:** production remains unchanged; all code, fit audits, OOS month tables, full artifact zips and rejected trials are archived. Full V3 integration remains a **blocked research gate**.
+
+## Provenance and completed Actions
+
+- L00/L01: [39652989033](https://github.com/AM1975MA/Test/actions/runs/39652989033), corrected 125 OOS, source [39482809691](https://github.com/AM1975MA/Test/actions/runs/39482809691).
+- L02 elite winner: [39655513813](https://github.com/AM1975MA/Test/actions/runs/39655513813); L02 downside tradeoff: [39657701155](https://github.com/AM1975MA/Test/actions/runs/39657701155).
+- L03 market regime: [39659065223](https://github.com/AM1975MA/Test/actions/runs/39659065223).
+- L04 frozen score fusion: [39659903643](https://github.com/AM1975MA/Test/actions/runs/39659903643); supervised meta: [39660554536](https://github.com/AM1975MA/Test/actions/runs/39660554536).
+- L05 selection quality: [39661273577](https://github.com/AM1975MA/Test/actions/runs/39661273577).
+- L06 independent bottom-tail risk veto: [39662062361](https://github.com/AM1975MA/Test/actions/runs/39662062361).
+
+**Research methodology:** Months, not overlapping basket draws, define independent chronological blocks for paired uncertainty; mathematical validity and predictive quality have separate gate outcomes; corrected feature semantics are maintained even when older incorrect signals historically fit better.
