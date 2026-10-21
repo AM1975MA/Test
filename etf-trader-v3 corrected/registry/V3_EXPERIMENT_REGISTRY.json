@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.0",
+  "project": "ETF Trader V3 Corrected",
+  "date": "2026-10-21",
+  "repo": "AM1975MA/Test",
+  "branch": "main",
+  "raw_snapshot": {
+    "source_actions_run": 39482809691,
+    "etfs": 149,
+    "baskets": 500,
+    "n_per_basket": 24,
+    "calendar_start": "2018-01",
+    "calendar_end": "2026-05",
+    "prior_exploration": true,
+    "virgin_holdout": false
+  },
+  "governance": {
+    "dont_optimize_CAGR_per_layer": true,
+    "train_on_mature_labels_only": true,
+    "one_layer_change_at_a_time": true,
+    "all_runs_archived": true,
+    "requirements_before_full_integration": [
+      "chronology_verified",
+      "identical_membership_and_sample",
+      "feature_contract_pass",
+      "replay_validated",
+      "untouched_vintage_required_for_claims_of_generalization"
+    ],
+    "production_V2_unchanged": true
+  },
+  "frozen_references": {
+    "L00": {
+      "id": "CORRECTED125",
+      "code": "src/etf_trader_v3/source_only/kernel.py",
+      "features": 125,
+      "status": "quality_pass",
+      "verified_203": true,
+      "run": 39652313100
+    },
+    "L01": {
+      "id": "CORRECTED_PAIR127",
+      "run": 39652989033,
+      "features": 125,
+      "leaves": 127,
+      "trees": 360,
+      "seeds": [
+        101,
+        202,
+        303
+      ],
+      "objective": "rank:pairwise",
+      "status": "research_reference"
+    },
+    "L02": {
+      "id": "TAIL_EVENT_LOGIT45",
+      "run": 39655513813,
+      "features": 45,
+      "target": "top-decile of matured 21/42/63D tailmix",
+      "status": "winner_specialist_only"
+    },
+    "L03": {
+      "id": "NO_DYNAMIC_REGIME",
+      "run": 39659065223,
+      "status": "static_experts_only"
+    },
+    "L04": {
+      "id": "KEEP_FROZEN_EXPERTS_SEPARATE",
+      "score_run": 39659903643,
+      "meta_run": 39660554536,
+      "status": "no_blend_promoted"
+    },
+    "L05": {
+      "id": "TAIL_TOP3_50_30_20",
+      "run": 39661273577,
+      "weights": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "status": "research_candidate",
+      "reference_policy": "V2_LIKE"
+    },
+    "L06": {
+      "id": "NO_HARD_VETO",
+      "run": 39662062361,
+      "status": "no_production_policy_promoted",
+      "diagnostic_prob_run": 39671493979,
+      "candidate_soft_weight_run": 39672320747,
+      "weight_formula": "normalized base_w * exp(-3*p_abs_loss10)",
+      "period": "2022-2026",
+      "candidate_only": true
+    },
+    "L07": {
+      "id": "NOT_RUN",
+      "status": "blocked_until_reference_freeze_and_validation"
+    }
+  },
+  "experiments": [
+    {
+      "layer": "L00",
+      "id": "L00-downvol-gates",
+      "run": 39645036665,
+      "decision": "rejected",
+      "reason": "no Top3 gain"
+    },
+    {
+      "layer": "L00",
+      "id": "L00-math-quality",
+      "run": 39652313100,
+      "decision": "quality_pass"
+    },
+    {
+      "layer": "L01",
+      "id": "pair63-vs-ndcg127",
+      "run": 39652989033,
+      "decision": "pair127_reference"
+    },
+    {
+      "layer": "L02",
+      "id": "tail60-to45",
+      "run": 39654585994,
+      "decision": "dedup45_research_input"
+    },
+    {
+      "layer": "L02",
+      "id": "elite-classifier",
+      "run": 39655513813,
+      "decision": "winner_specialist_selected"
+    },
+    {
+      "layer": "L02",
+      "id": "elite-minus-bad",
+      "run": 39657701155,
+      "decision": "rejected"
+    },
+    {
+      "layer": "L03",
+      "id": "market-regime-gate",
+      "run": 39659065223,
+      "decision": "rejected"
+    },
+    {
+      "layer": "L04",
+      "id": "fixed-weights",
+      "run": 39659903643,
+      "decision": "no_positive_proven_gain"
+    },
+    {
+      "layer": "L04",
+      "id": "supervised-meta",
+      "run": 39660554536,
+      "decision": "rejected"
+    },
+    {
+      "layer": "L05",
+      "id": "fixed-selection-policies",
+      "run": 39661273577,
+      "decision": "top3_decay_candidate"
+    },
+    {
+      "layer": "L06",
+      "id": "hard-risk-veto",
+      "run": 39662062361,
+      "decision": "rejected"
+    },
+    {
+      "layer": "L06",
+      "id": "generic-soft-penalty",
+      "run": 39669570005,
+      "decision": "not_promoted"
+    },
+    {
+      "layer": "L06",
+      "id": "conditional-relative-risk",
+      "run": 39670543932,
+      "decision": "rejected"
+    },
+    {
+      "layer": "L06",
+      "id": "absolute-loss10-probability",
+      "run": 39671493979,
+      "decision": "diagnostic_prediction_skill_pass"
+    },
+    {
+      "layer": "L06",
+      "id": "absolute-risk-soft-weights",
+      "run": 39672320747,
+      "decision": "research_candidate_only"
+    }
+  ],
+  "pending_experiments": [
+    {
+      "layer": "L03",
+      "id": "rmt-regime",
+      "goal": "ex ante relative expert win forecast; log-loss/Brier/Top3 choosing expert; compare original market-only and train-only prior",
+      "status": "to_run"
+    },
+    {
+      "layer": "L04",
+      "id": "static-diversity-rank-aggregation",
+      "goal": "paired Top3, nDCG, regret and distinct winner recall vs Tail and blend",
+      "status": "to_run"
+    },
+    {
+      "layer": "L05",
+      "id": "volatility-capped-allocation",
+      "goal": "single-policy allocation quality, concentration, false-loss, target churn without CAGR",
+      "status": "to_run"
+    },
+    {
+      "layer": "L06",
+      "id": "absolute-risk-calibration-drift",
+      "goal": "yearly Brier and false alarm rates under untouched split",
+      "status": "existing_diagnostics_to_audit"
+    },
+    {
+      "layer": "L07",
+      "id": "versioned-integration-oracle",
+      "goal": "pin frozen inputs, leakage-check, reproducibility and run full integrated benchmark only after gates, no production change",
+      "status": "to_prepare"
+    }
+  ]
+}
