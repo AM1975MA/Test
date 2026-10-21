@@ -1,0 +1,39 @@
+name: V3 L00 independent 203-feature data quality audit
+on:
+  push:
+    branches: [research-v3-l00-quality-l01-ranker-20261021]
+    paths:
+      - '.github/workflows/v3-l00-quality-audit.yml'
+      - 'etf-trader-v3 corrected/experiments/l00_features/quality_audit.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  data-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Fetch frozen 149 ETF input, no label or future return
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+      - name: Inspect every corrected feature and OHLC consistency
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l00_features/quality_audit.py' \
+            --raw etf_trader_raw --out runs/v3_l00_quality
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l00-203-feature-quality
+          path: runs/v3_l00_quality/
+          if-no-files-found: warn
+          retention-days: 90
