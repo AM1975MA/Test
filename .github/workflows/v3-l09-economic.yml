@@ -29,6 +29,9 @@ jobs:
       - name: Matched next-open execution with no 21D-target parameter search
         run: |
           OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 python 'etf-trader-v3 corrected/experiments/l09_utility_target/economic.py' --raw etf_trader_raw --old runs/v2_formula_reference/OOS_SCORES.csv --new runs/v3_l09_complete/OOS_SCORES.csv --out runs/v3_l09_economic
+      - name: 101-month matured functional utility ranking gate
+        run: |
+          OPENBLAS_NUM_THREADS=1 python 'etf-trader-v3 corrected/experiments/l09_utility_target/functional.py' --old runs/v2_formula_reference/OOS_SCORES.csv --new runs/v3_l09_complete/OOS_SCORES.csv --out runs/v3_l09_economic
       - uses: actions/upload-artifact@v4
         if: always()
         with:
