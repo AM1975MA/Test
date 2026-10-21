@@ -1,0 +1,46 @@
+name: V3 L05.2 point-in-time volatility-aware same-Top3 weighting
+on:
+  push:
+    branches: [research-v3-next-layer-gates-20261021]
+    paths:
+      - '.github/workflows/v3-l05-vol.yml'
+      - 'etf-trader-v3 corrected/experiments/l05_vol_aware/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  allocation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Fetch original price, frozen scores and locked L05 allocation oracle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v3_l04_reference runs/v3_l05_reference
+          gh run download 39482809691 --repo AM1975MA/Test \
+            --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39659903643 --repo AM1975MA/Test \
+            --name v3-l04-frozen-expert-blend-results --dir runs/v3_l04_reference
+          gh run download 39661273577 --repo AM1975MA/Test \
+            --name v3-l05-selection-functional-results --dir runs/v3_l05_reference
+          python regeneration/certify_etf_trader_raw.py
+      - name: Evaluate single 63-day past-volatility bounded weight change
+        run: |
+          python 'etf-trader-v3 corrected/experiments/l05_vol_aware/evaluate.py' \
+            --raw etf_trader_raw --predictions runs/v3_l04_reference/OOS_SCORES_ALL_FIXED_BLENDS.csv \
+            --prior runs/v3_l05_reference \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_l05_vol
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l05-volatility-weight-skill-results
+          path: runs/v3_l05_vol/
+          if-no-files-found: warn
+          retention-days: 90
