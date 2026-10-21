@@ -34,3 +34,7 @@
 - L06 independent bottom-tail risk veto: [39662062361](https://github.com/AM1975MA/Test/actions/runs/39662062361).
 
 **Research methodology:** Months, not overlapping basket draws, define independent chronological blocks for paired uncertainty; mathematical validity and predictive quality have separate gate outcomes; corrected feature semantics are maintained even when older incorrect signals historically fit better.
+
+## L06.2 — Trial: within-Top3 risk reweighting (21 October 2026)
+
+[Audited result](../reports/L06/20261021_SOFT_RISK_WEIGHT_SKILL.md): same three ETF candidates retained, winner capture exactly **42.7465%**; bad-bottom3 weight 26.6952%→26.3915%, but winner weight 15.2176%→14.9645%, and target-weight churn 0.38336→0.39941. The risk head's conditional AUC among preselected basket candidates is **0.575** vs universe-wide AUC **0.755** (different outcome conditioning). **Decision: inconclusive/NOT PROMOTED.** Next test must improve conditional risk discrimination with the allocation fully frozen, not optimize a risk penalty on these same OOS years.
