@@ -1,0 +1,37 @@
+name: V3 L09 economic check after frozen 21d utility scores
+on:
+  push:
+    branches: [research-v3-l09-utility-economics-20261022]
+    paths: ['etf-trader-v3 corrected/experiments/l09_utility_target/START_ECONOMIC.txt']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy==2.2.6 pandas==2.2.3 xgboost==3.0.5 scipy scikit-learn matplotlib tabulate
+      - name: Fetch same OOS reference and complete pre-fit 21D models
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v2_formula_reference runs/v3_l09_complete
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39515716383 --repo AM1975MA/Test --name v2-formula-retrain-complete --dir runs/v2_formula_reference
+          gh run download 39690121638 --repo AM1975MA/Test --name v3-l09-21d-utility-complete --dir runs/v3_l09_complete
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v3_l09_complete/OOS_SCORES.csv
+      - name: Matched next-open execution with no 21D-target parameter search
+        run: |
+          OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 python 'etf-trader-v3 corrected/experiments/l09_utility_target/economic.py' --raw etf_trader_raw --old runs/v2_formula_reference/OOS_SCORES.csv --new runs/v3_l09_complete/OOS_SCORES.csv --out runs/v3_l09_economic
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l09-utility-economic-replay
+          path: runs/v3_l09_economic/
+          retention-days: 90
