@@ -1,0 +1,116 @@
+name: V2 negative-day frequency 128 feature OOS and economics
+on:
+  push:
+    branches: [research-v2-negative-frequency-20261021]
+    paths:
+      - '.github/workflows/v2-negative-frequency-test.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fit:
+    runs-on: ubuntu-latest
+    name: Refit frequency arm ${{ matrix.shard }}
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {shard: years_2018_2020, years: "2018,2019,2020"}
+          - {shard: years_2021_2023, years: "2021,2022,2023"}
+          - {shard: years_2024_2026, years: "2024,2025,2026"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - name: Verify original frozen 149 ETF input and audited matched baselines
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/prior_v2_formula
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39515716383 --repo AM1975MA/Test --name v2-formula-retrain-complete --dir runs/prior_v2_formula
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/prior_v2_formula/OOS_SCORES.csv
+          test -s runs/prior_v2_formula/PAIRED_MONTHLY.csv
+      - name: Fit only new corrected-125-plus-negative-frequency-3 ensemble
+        run: |
+          python regeneration/v2_negative_frequency_retrain.py \
+            --years "${{ matrix.years }}" \
+            --prior runs/prior_v2_formula \
+            --raw etf_trader_raw \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out "runs/v2_negative_frequency_shards/${{ matrix.shard }}"
+      - name: Preserve full OOS scores and statistical provenance
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-negative-frequency-${{ matrix.shard }}
+          path: runs/v2_negative_frequency_shards/
+          if-no-files-found: warn
+          retention-days: 30
+  aggregate:
+    needs: fit
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy tabulate
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-negative-frequency-years_*
+          merge-multiple: true
+          path: runs/v2_negative_frequency_shards/
+      - name: Audit paired 101 months and bootstrap differences
+        run: |
+          python regeneration/v2_negative_frequency_aggregate.py \
+            --root runs/v2_negative_frequency_shards \
+            --out runs/v2_negative_frequency_complete
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-negative-frequency-complete
+          path: runs/v2_negative_frequency_complete/
+          if-no-files-found: warn
+          retention-days: 30
+  economic:
+    needs: aggregate
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy scikit-learn xgboost matplotlib tabulate
+      - uses: actions/download-artifact@v4
+        with:
+          name: v2-negative-frequency-complete
+          path: runs/v2_negative_frequency_complete/
+      - name: Recover the same 149 ETF frozen adjusted OHLCV
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+      - name: Replay fixed monthly next-open trades with 10 bps traded-notional cost
+        run: |
+          python regeneration/v2_negative_frequency_replay.py \
+            --raw etf_trader_raw \
+            --scores runs/v2_negative_frequency_complete/OOS_SCORES.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v2_negative_frequency_economics
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-negative-frequency-economic-complete
+          path: runs/v2_negative_frequency_economics/
+          if-no-files-found: warn
+          retention-days: 30
