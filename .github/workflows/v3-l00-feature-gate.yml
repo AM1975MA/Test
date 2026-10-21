@@ -5,7 +5,9 @@ on:
     paths:
       - 'etf-trader-v3 corrected/src/**'
       - 'etf-trader-v3 corrected/tests/**'
-      - 'etf-trader-v3 corrected/experiments/**'
+      - 'etf-trader-v3 corrected/experiments/l00_features/evaluate.py'
+      - 'etf-trader-v3 corrected/experiments/l00_features/aggregate.py'
+      - 'etf-trader-v3 corrected/experiments/l00_features/replay.py'
   workflow_dispatch:
 permissions:
   contents: read
