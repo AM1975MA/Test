@@ -1,0 +1,49 @@
+name: ETF V3 L10.E4 matched next-open 10bp economics with E3 parity
+on:
+  push:
+    branches: [research-v3-l10e4-chronocal-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START_E4_ECON.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  economic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install numpy==2.2.6 pandas==2.2.3 scipy scikit-learn
+      - name: Immutable original raw, original ranking, E3 action and E4 action streams
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/l10_frozen runs/e3_frozen runs/e4_frozen
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39700865721 --repo AM1975MA/Test --name v3-l10-topk5-risk-tier-results --dir runs/l10_frozen
+          gh run download 39752940429 --repo AM1975MA/Test --name v3-l10e3-pair-review --dir runs/e3_frozen
+          gh run download 39828627036 --repo AM1975MA/Test --name v3-l10e4-chronological-calibration --dir runs/e4_frozen
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/e3_frozen/SUBSTITUTIONS.csv
+          test -s runs/e4_frozen/SUBSTITUTIONS.csv
+      - name: Three-arm matched next-open source L07 replay at exactly 10bp one-way fees
+        run: |
+          OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 python \
+            'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/economic_e4.py' \
+            --raw etf_trader_raw \
+            --scores runs/l10_frozen/OOS_SCORES.csv \
+            --e3-substitutions runs/e3_frozen/SUBSTITUTIONS.csv \
+            --e3-manifest runs/e3_frozen/MANIFEST.json \
+            --e4-substitutions runs/e4_frozen/SUBSTITUTIONS.csv \
+            --e4-manifest runs/e4_frozen/MANIFEST.json \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/e4_economic
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l10e4-matched-economics-nextopen-10bp
+          path: runs/e4_economic/
+          retention-days: 90
