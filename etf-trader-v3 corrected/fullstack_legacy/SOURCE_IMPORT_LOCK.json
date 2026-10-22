@@ -1,0 +1,42 @@
+{
+  "imported_original_test_sha": "c349cac9dc352f86087bdd6a6ca99c72d17970f0",
+  "original_repo": "AM1975MA/Etf_trader",
+  "legacy_modules_bit_identical_to_existing_git_blobs": true,
+  "n_vendor_source_files": 26,
+  "certified_legacy_blobs": {
+    "src/etf_trader/ma3/hybrid_producer.py": "acf83f2cee6876c89dfd9948cfbf30889af4c08e",
+    "src/etf_trader/ma3/ddfirst.py": "3794564fdfe8501c2c19e618bc7d1550884aeb53",
+    "src/etf_trader/ma3/v6.py": "6c5d3fd6f54fb5ef5162f4b26d3ef9af2af34701",
+    "src/etf_trader/ma3/highcagr24.py": "5ee8a9812b97b928d3220ce656abd53c28a8b59f"
+  },
+  "code_files_sha256": {
+    "START_VENDOR_IMPORT.txt": "9f7d759af7d308a6a09e8936392142dcdfb044dddfd879d57e0fe317c4f888e7",
+    "config/ACTIVE_STRATEGY_SPEC.json": "2de8ff71fe8c0eae2ba8dcb226e2b667eb15ca2ef0f74a539e7a69513a255161",
+    "config/ma3_highcagr24.json": "71a741f09a4f1f2e65a17ce3cb5b20364ad4d9c10762a65492b32b9eab1a510e",
+    "data/ETF_UNIVERSE.csv": "a9677e600fbb9295ee88550add0b6f45f6fe301c5bfea4c492b46d864d246c90",
+    "requirements.txt": "e01e2e91cf9498ddc2115caeae247772dfcc5600accce15a3b296c6b7726b4ef",
+    "scripts/build_ma3_panel_source_only.py": "5221c6d9558971e1e2dd01f11d32c81a35a889f6cda3075e2824e3fb279b0093",
+    "scripts/build_tit_r_source_only.py": "052f60b077c0c4a5ad04254ffef73fbbe4bf27709ab98de35f710f730182d12f",
+    "scripts/run_ma3_highcagr24_ensemble_source_only.py": "b1dab4ac0f422b3a1df73fe93d4451e6a3198ab92653170f676a7113e78a0766",
+    "scripts/run_v3_fullstack_pair25.py": "b1137047313f19a8056f96baddef669d10660e7704e772fa89c9ae3ab848e324",
+    "src/etf_trader/__init__.py": "31c261189510dbf8f0e0f72b3f2ff844d588322e32446f1f4faf4119ea4cc170",
+    "src/etf_trader/frozen_engine.py": "30578e066eb298410ece4cf09b61ca7424836178c8ca23f563f5832f7c6e1cde",
+    "src/etf_trader/ma3/__init__.py": "a9409bf53f13488298bb243d56a41df28176d4b83fdcfa411fedeae588dbdccb",
+    "src/etf_trader/ma3/ddfirst.py": "b3903fa226fdfae58dda041a9ddb4422e4713195d0c6223900d7ddd31d30174e",
+    "src/etf_trader/ma3/ensemble.py": "89b8b48c7eca1b564ee4485e4790bec6c4ec22b0e5ef5efac78e9652ea291c66",
+    "src/etf_trader/ma3/highcagr24.py": "7f6112c5a02bac88348fcf36497fd20b2e74879bc31c6a5c86663be7a6dd2be6",
+    "src/etf_trader/ma3/hybrid_producer.py": "fa6bd69630b539774a222dc2722fa324b0c0aac8713dcee70b1c43c1ac40060e",
+    "src/etf_trader/ma3/producer.py": "c5c072cee56a35445b254a5675b9957efbabcf4d9ac9326f9c92b39f56aef0eb",
+    "src/etf_trader/ma3/v6.py": "deff0aec3df1c48383bdac523aa8feb6f587eeb702c55c0984c402aeff6a4479",
+    "src/etf_trader/source_only/__init__.py": "731c0554192ab48cf090bbb2498b7e725ab3f5b3a1889dc0094377690f8138ee",
+    "src/etf_trader/source_only/_xgb_worker.py": "704a0811108c7c764399690f2bccc9f4010b1c2936d1d8625d63ecaad124ed50",
+    "src/etf_trader/source_only/a4_cluster_destination.py": "894339611e8e9bb73e5766836077aac7301941ed54a526d7a09645f806d0daff",
+    "src/etf_trader/source_only/baskets.py": "7a1b1ef6246713f3333a71c34dba13b2af46b99b74653a3a7cfbb96abf193bf7",
+    "src/etf_trader/source_only/features.py": "6021988ea136807fd3d77c098698dd3a841ba880ff314bfd5192576b43cb7bba",
+    "src/etf_trader/source_only/kernel.py": "fd799f7044f7dd67eb9f2e928e2dbd764b0156d45e59ccb8f2d39d7dfc65229e",
+    "src/etf_trader/source_only/models.py": "599332568c951a87352c28ab12d83614e4efca66114691c95cd3e0b4d614570d",
+    "src/etf_trader/source_only/raw_io.py": "679eaa76ba53c2a873f4747360de8be31b217fbcf957727336e5d32e4559132d"
+  },
+  "original_V2_production_unchanged": true,
+  "note": "Research-only V3 separate source package, exact source mirrors historic 149 full-stack, no transplant of cached predictions/models/decisions"
+}
