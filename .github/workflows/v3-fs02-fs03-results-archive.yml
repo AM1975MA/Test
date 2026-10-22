@@ -47,7 +47,7 @@ jobs:
           p='etf-trader-v3 corrected/reports/FULLSTACK/data_run_39836842157'
           q='etf-trader-v3 corrected/reports/FULLSTACK/data_run_39838818618'
           mkdir -p "$p" "$q"
-          for file in RESULT.json ENSEMBLE_FIT_AUDIT.csv V3_BASE_FUSION_AUDIT.csv MODEL_AGREEMENT_DAILY_AUDIT.csv ENSEMBLE_TAIL_OOS.csv; do
+          for file in RESULT.json ENSEMBLE_FIT_AUDIT.csv V3_BASE_FUSION_AUDIT.csv ENSEMBLE_TAIL_OOS.csv; do
             cp "/tmp/fs02/$file" "$p/"
           done
           for file in ECONOMIC_SCORECARD.csv YEARLY.csv PAIRED_BOOTSTRAP.csv MONTHLY_MODEL_AGREEMENTS.csv DAILY_ACTION_AUDIT.csv MANIFEST.json; do
