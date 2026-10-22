@@ -1,0 +1,21 @@
+{
+  "strategy": "UNRESTRICTED_SINGLE_149_ETF_FULL_HYBRID24",
+  "causal_frozen_source_only_Titanium_Hybrid24_S3B_run": 39836842157,
+  "n_total_tickers": 149,
+  "n_economic_baskets": 1,
+  "n_months": 114,
+  "trading_days": 2366,
+  "original_500_basket_Top2_and_weights_exact_parity": true,
+  "original_500_basket_risk_gross_exact_parity": true,
+  "frozen_original_500_Hybrid24_source_only_reproduced": true,
+  "original_ETF_TRAINER_V2_rank_unchanged": true,
+  "future_outcomes_used_for_decisions": false,
+  "original_ranker_refitted": false,
+  "fee_bps_one_way": 10,
+  "full_vintage_current_raw": true,
+  "old_43pct_snapshot_not_identical": true,
+  "source_experiment_run": 39836842157,
+  "v3_pair_frozen_run": 39700865721,
+  "original_500_basket_sha256": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+  "original_prod_unchanged": true
+}
