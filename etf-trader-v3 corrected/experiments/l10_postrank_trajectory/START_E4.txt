@@ -1,0 +1,1 @@
+Fixed before E4 outcomes: annual Platt calibration from prior matured E3 OOT scores, unchanged ML ranking and replacement pool; no CAGR selection.
