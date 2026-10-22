@@ -1,0 +1,56 @@
+name: ETF V3 full-stack 500 source-only compact-result archive
+on:
+  push:
+    branches: [research-v3-full-stack-v2-parity-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/fullstack_legacy/START_ARCHIVE_FIRST_500.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify full V2 source-only versus frozen V3 Pair25
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/v3_fullstack500
+          gh run download 39834445061 --repo AM1975MA/Test \
+            --name v3-fullstack-v2-parity-pair25-500 --dir /tmp/v3_fullstack500
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path("/tmp/v3_fullstack500")
+          j=json.loads((p/"RESULT.json").read_text())
+          assert j["contract"]["ensemble_maturity_safe"]
+          assert j["contract"]["titanium_maturity_safe"]
+          assert j["contract"]["cluster_source_causal"]
+          assert j["contract"]["basket_sha256"]=="36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e"
+          assert j["calendar"]["days"]==2366 and j["v3_pair25"]["v3_updated_months"]==102
+          assert abs(j["metrics"]["full"]["highcagr24"]["cagr"]-0.2217716371734245)<1e-11
+          assert abs(j["metrics"]["full"]["v3_hybrid_pair25"]["cagr"]-0.2194319886080804)<1e-11
+          print("FULL SOURCE-ONLY V2 STAGED PARITY / PAIR25 OUTCOME CHECK PASS")
+          PY
+      - name: Preserve data and source audit permanently in V3 main
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git switch -c archive-v3-fullstack-main origin/main
+          p='etf-trader-v3 corrected/reports/FULLSTACK/data_run_39834445061'
+          mkdir -p "$p"
+          cp /tmp/v3_fullstack500/RESULT.json "$p/"
+          cp /tmp/v3_fullstack500/ENSEMBLE_FIT_AUDIT.csv "$p/"
+          cp /tmp/v3_fullstack500/V3_BASE_FUSION_AUDIT.csv "$p/"
+          cp /tmp/v3_fullstack500/GENERATED_CANONICAL_BASKETS.csv "$p/"
+          cp /tmp/v3_fullstack500/ENSEMBLE_TAIL_OOS.csv "$p/"
+          cp /tmp/v3_fullstack500/titanium/TIT_R_SOURCE_ONLY_MANIFEST.json "$p/"
+          cp /tmp/v3_fullstack500/ma3_panel/CLUSTER_SOURCE_DATE_AUDIT.csv "$p/"
+          git add "$p"
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'V3 permanently archive original full V2 500 source-only evidence and Pair25 tested negative outcome'
+          git push origin HEAD:main
