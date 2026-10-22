@@ -97,7 +97,33 @@
       "economic_artifact": 12393515838,
       "reference_unchanged": true,
       "production_approved": false,
-      "not_virgin_holdout": true
+      "not_virgin_holdout": true,
+      "candidate_retrieval_followup": {
+        "run": 39703702242,
+        "artifact": 12394450375,
+        "archive_run": 39705218877,
+        "original_frozen_reference_unchanged": true,
+        "decision": "INFORMATION_COMPLEMENTARITY_ONLY_NO_MODEL_OR_TRADING_PROMOTION",
+        "matched_size_reference": "original CORRECTED next-ranked names 4+",
+        "mean_extra_etfs": 1.1929306930693069,
+        "winner_recall_baseline": 0.3547128712871288,
+        "winner_recall_matched": 0.4537821782178218,
+        "winner_recall_union": 0.506,
+        "union_vs_matched_bootstrap_ci95": [
+          0.03271188118811881,
+          0.07144653465346533
+        ],
+        "severe_loss_added_names_union": 0.10482793262650696,
+        "severe_loss_added_names_matched": 0.07175094139201761,
+        "severe_loss_delta_ci95": [
+          0.021301850741682796,
+          0.04552670167565992
+        ],
+        "requires_new_predeclared_two_stage_model_before_economic_promotion": true,
+        "durable_data": "etf-trader-v3 corrected/reports/L10/data_run_39703702242/",
+        "report": "etf-trader-v3 corrected/reports/L10/20261022_CANDIDATE_UNION_DIAGNOSTIC.md",
+        "non_virgin_holdout": true
+      }
     }
   },
   "comparison_to_run": {
