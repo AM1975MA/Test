@@ -1,0 +1,81 @@
+name: "ETF V3 L11.W1 weekly five-basket full original V2 causal replay"
+on:
+  push:
+    branches: [research-v3-l11-weekly-crossmarket-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/fullstack_legacy/START_L11_WEEKLY.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  five-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - name: Fixed original V2 runtime
+        run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'numba==0.65.1' 'scipy>=1.13' 'scikit-learn==1.8.0'
+      - name: Fully certified as-of RAW and source-only 500 original V2 producer
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/fs02_original runs/v3_frozen
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          gh run download 39836842157 -R AM1975MA/Test -n v3-fullstack-model-agreement-500 -D runs/fs02_original
+          gh run download 39700865721 -R AM1975MA/Test -n v3-l10-topk5-risk-tier-results -D runs/v3_frozen
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/fs02_original/PATH.npz
+          test -s runs/fs02_original/ENSEMBLE_TAIL_OOS.csv
+      - name: Run only five selected baskets with prior-close weekly V2 source risk
+        env:
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+          NUMBA_NUM_THREADS: '2'
+        run: |
+          python -u 'etf-trader-v3 corrected/fullstack_legacy/experiments/l11_weekly_five.py' \
+            --raw etf_trader_raw \
+            --fs02-path runs/fs02_original/PATH.npz \
+            --fs02-result runs/fs02_original/RESULT.json \
+            --fs02-pred runs/fs02_original/ENSEMBLE_TAIL_OOS.csv \
+            --pair runs/v3_frozen/OOS_SCORES.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/l11_weekly_five
+      - name: Verify independent commodity basis observer never fabricates LME prices or trades
+        run: |
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          import pandas as pd
+          sys.path.insert(0,str(Path("etf-trader-v3 corrected/experiments/l11_weekly_tail").resolve()))
+          from commodity_basis import monitor_weekly_basis,LBS_PER_METRIC_TONNE
+          no_lme=pd.DataFrame([{"quote_ts_utc":"2025-07-30T20:00:00Z","market":"COMEX_HG_USD_PER_LB_3M","price":4.}])
+          r=monitor_weekly_basis(no_lme,"2025-07-31T11:00:00Z")
+          assert r.status=="ABSTAIN" and r.trading_action=="NONE_OBSERVE_ONLY"
+          day=pd.date_range("2025-01-01",periods=72,freq="B",tz="UTC")
+          quotes=[]
+          for k,d in enumerate(day):
+              lo=d+pd.Timedelta(hours=16)
+              co=d+pd.Timedelta(hours=21)
+              quotes.extend([
+                  {"quote_ts_utc":lo,"market":"LME_CU_USD_PER_TONNE_3M","price":10000.},
+                  {"quote_ts_utc":co,"market":"COMEX_HG_USD_PER_LB_3M",
+                   "price":10000./LBS_PER_METRIC_TONNE*(1+.005*k/70.)}])
+          fake=pd.DataFrame(quotes)
+          cutoff=day[-1]+pd.Timedelta(days=1,hours=1)
+          r1=monitor_weekly_basis(fake,cutoff)
+          assert r1.status=="OBSERVATION_ONLY" and r1.prior_pairs==63
+          future=pd.concat([fake,pd.DataFrame([{"quote_ts_utc":cutoff+pd.Timedelta(hours=1),
+              "market":"COMEX_HG_USD_PER_LB_3M","price":1000000.}])],ignore_index=True)
+          r2=monitor_weekly_basis(future,cutoff)
+          assert r1.basis_pct==r2.basis_pct and r1.basis_zscore_63==r2.basis_zscore_63
+          assert not r1.divergence_alert and r1.trading_action=="NONE_OBSERVE_ONLY"
+          print("COMEX/LME observer synthetic unit test PASS; NO ACTUAL LME PRICE SUPPLIED")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l11-weekly-five-risks-only
+          path: runs/l11_weekly_five/
+          retention-days: 90
