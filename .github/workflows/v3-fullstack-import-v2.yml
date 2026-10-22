@@ -1,0 +1,62 @@
+name: ETF V3 restore exact V2 full-stack source into V3 research tree
+on:
+  push:
+    branches: [research-v3-full-stack-v2-parity-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/fullstack_legacy/START_VENDOR_IMPORT.txt'
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Restore exact original V2 full-stack immutable Git blobs
+        run: |
+          set -euo pipefail
+          original=c349cac9dc352f86087bdd6a6ca99c72d17970f0
+          git fetch --depth=1 origin "$original"
+          mkdir -p /tmp/source
+          git archive "$original" vendor/etf_trader_v2 | tar -x -C /tmp/source
+          root='etf-trader-v3 corrected/fullstack_legacy'
+          mkdir -p "$root"
+          cp -a /tmp/source/vendor/etf_trader_v2/src "$root/"
+          cp -a /tmp/source/vendor/etf_trader_v2/config "$root/"
+          mkdir -p "$root/data"
+          cp /tmp/source/vendor/etf_trader_v2/data/ETF_UNIVERSE.csv "$root/data/"
+          cp /tmp/source/vendor/etf_trader_v2/requirements.txt "$root/"
+          cp /tmp/source/vendor/etf_trader_v2/scripts/build_ma3_panel_source_only.py "$root/scripts/"
+          cp /tmp/source/vendor/etf_trader_v2/scripts/build_tit_r_source_only.py "$root/scripts/"
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          root=Path("etf-trader-v3 corrected/fullstack_legacy")
+          want={
+            "src/etf_trader/ma3/hybrid_producer.py":"acf83f2cee6876c89dfd9948cfbf30889af4c08e",
+            "src/etf_trader/ma3/ddfirst.py":"3794564fdfe8501c2c19e618bc7d1550884aeb53",
+            "src/etf_trader/ma3/v6.py":"6c5d3fd6f54fb5ef5162f4b26d3ef9af2af34701",
+            "src/etf_trader/ma3/highcagr24.py":"5ee8a9812b97b928d3220ce656abd53c28a8b59f",
+          }
+          # Git SHA-1 blob, not SHA-256 content; preserve original exactly.
+          for name,expected in want.items():
+              b=(root/name).read_bytes()
+              digest=hashlib.sha1(b"blob "+str(len(b)).encode()+b"\0"+b).hexdigest()
+              assert digest==expected,(name,digest,expected)
+          files=sorted(p for p in root.rglob("*") if p.is_file() and p.suffix in {".py",".json",".txt",".csv"})
+          data={"imported_original_test_sha":"c349cac9dc352f86087bdd6a6ca99c72d17970f0",
+            "original_repo":"AM1975MA/Etf_trader","legacy_modules_bit_identical_to_existing_git_blobs":True,
+            "n_vendor_source_files":len(files),"certified_legacy_blobs":want,
+            "code_files_sha256":{str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
+            "original_V2_production_unchanged":True,
+            "note":"Research-only V3 separate source package, exact source mirrors historic 149 full-stack, no transplant of cached predictions/models/decisions"}
+          (root/"SOURCE_IMPORT_LOCK.json").write_text(json.dumps(data,indent=2)+"\n")
+          print(json.dumps({"status":"SOURCE_IMPORT_PASS","files":len(files)},indent=2))
+          PY
+          git add "$root"
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'V3 integrate exact historic V2 Hybrid24, temporal smoothing, continuous dynamic Top2, DD-first V6 HighCAGR24 modules'
+          git push origin HEAD:research-v3-full-stack-v2-parity-20261022
