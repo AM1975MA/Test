@@ -1,0 +1,31 @@
+{
+  "status": "FIVE_SCREEN_NEGATIVE_NO_500_VETO_EXTENSION",
+  "original_full_500_baseline_replay_exact": true,
+  "original_full_500_Stage19_replay_exact": true,
+  "modified_weekly_executor_five_NAV_and_turnover_exact": true,
+  "source_snapshot_run": 39482809691,
+  "source_only_original_v2_500_run": 39836842157,
+  "original_FS03_500_path_run": 39838818618,
+  "n_full_source_ETFs": 149,
+  "n_canonical_baskets": 500,
+  "n_NEW_tested_baskets": 5,
+  "selected_ids": [
+    227,
+    69,
+    327,
+    301,
+    220
+  ],
+  "n_sessions": 2366,
+  "first_signal_only_previous_session_close": true,
+  "source_monthly_Top2_unmodified": true,
+  "weekly_next_open_rebalance": true,
+  "monthly_intraweek_name_change_cancels_stale_overlay": true,
+  "stage19_original_riskoff_priority": true,
+  "one_way_cost_bps": 10,
+  "original_intraday_stop_slippage_and_V6_alt": true,
+  "LME_independent_market_not_in_raw_149": true,
+  "no_500_extension_triggered": true,
+  "nonvirgin_history": true,
+  "production_V2_and_V3_unchanged": true
+}
