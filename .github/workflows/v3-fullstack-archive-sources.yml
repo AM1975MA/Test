@@ -1,0 +1,52 @@
+name: ETF V3 archive complete source-faithful V2 risk-stack research integration to main
+on:
+  push:
+    branches: [research-v3-full-stack-v2-parity-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/fullstack_legacy/START_SOURCE_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  source-archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Source and raw-provenance validation independent of economics
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,json,hashlib
+          root=Path('etf-trader-v3 corrected/fullstack_legacy')
+          j=json.loads((root/'SOURCE_IMPORT_LOCK.json').read_text())
+          assert j['legacy_modules_bit_identical_to_existing_git_blobs']
+          for p,sha in j['certified_legacy_blobs'].items():
+              assert subprocess.check_output(['git','hash-object',str(root/p)],text=True).strip()==sha
+          for p,sha in j['code_files_sha256'].items():
+              assert hashlib.sha256((root/p).read_bytes()).hexdigest()==sha
+          assert (root/'scripts/run_ma3_highcagr24_ensemble_source_only.py').is_file()
+          assert (root/'scripts/run_v3_fullstack_pair25.py').is_file()
+          print('EXACT V2 SOURCE RESTORED PASS',len(j['code_files_sha256']))
+          PY
+      - name: Preserve full-stack source under V3 main research path only, leave model freeze unchanged
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git switch -c main-v3-fullstack-source origin/main
+          git checkout origin/research-v3-full-stack-v2-parity-20261022 -- \
+            'etf-trader-v3 corrected/fullstack_legacy' \
+            'etf-trader-v3 corrected/reports/FULLSTACK/20261022_PROTOCOL.md' \
+            '.github/workflows/v3-fullstack-500-v2-pair25.yml' \
+            '.github/workflows/v3-fullstack-import-v2.yml'
+          git add 'etf-trader-v3 corrected/fullstack_legacy' \
+                  'etf-trader-v3 corrected/reports/FULLSTACK/20261022_PROTOCOL.md' \
+                  '.github/workflows/v3-fullstack-500-v2-pair25.yml' \
+                  '.github/workflows/v3-fullstack-import-v2.yml'
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m 'V3 add source-exact Hybrid24, S3B, dynamic Top2, DD-first V6 and HighCAGR24 full-stack research architecture'
+          git push origin HEAD:main
