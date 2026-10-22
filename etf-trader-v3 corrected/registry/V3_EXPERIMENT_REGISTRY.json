@@ -537,6 +537,66 @@
       "research_history_reused": true,
       "production_V2_unchanged": true,
       "V3_reference_unchanged": true
+    },
+    {
+      "layer": "L10.D1",
+      "id": "l10d1-analytical-residual-persistence-downside",
+      "status": "COMPLETED_REJECT_STANDALONE_TOP3_REORDER; RETAIN_AS_RESEARCH_ONLY",
+      "branch": "research-v3-l10d-analytic-signal-20261022",
+      "preregistered_protocol": "etf-trader-v3 corrected/reports/L10/20261022_L10D1_RESIDUAL_PERSISTENCE_PROTOCOL.md",
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_L10D1_ANALYTICAL_RESULTS.md",
+      "source": "etf-trader-v3 corrected/experiments/l10_analytic_discriminator/evaluate.py",
+      "qa_source": "etf-trader-v3 corrected/experiments/l10_analytic_discriminator/audit_auc_bootstrap.py",
+      "successful_run": 39738471945,
+      "artifact_id": 12408381310,
+      "initial_failed_run": 39738202561,
+      "initial_failure": "SPY self benchmark created zero residual, synthetic prefix test failed before outcome evaluation",
+      "amendment": "fixed prior-only composite market log return = 0.5*SPY+0.5*VTI, same shifted126 beta and 63 residual downside ratio",
+      "failed_archive_runs": [
+        39738974565,
+        39739113883
+      ],
+      "archived_by_run": 39739293349,
+      "durable_data": "etf-trader-v3 corrected/reports/L10/data_run_39738471945",
+      "frozen_raw_run": 39482809691,
+      "frozen_ranking_run": 39700865721,
+      "controls": "Corrected Top3 vs equal-capacity Corrected top3+Top5 candidate union vs Corrected top3+next-ranked corrected additions, same mathematical sorter",
+      "n_etfs": 149,
+      "n_baskets": 500,
+      "n_months": 101,
+      "days_of_forward_target": 21,
+      "coverage_all_months": 1,
+      "synthetic_asof_prefix_invariance": "PASS",
+      "formula": "sum trailing63 ETF residual daily log returns divided by sqrt(sum of squared negative residual daily log returns); beta fitted from prior shifted126 covariance with fixed 0.5*(SPY daily return + VTI daily return)",
+      "analytic_universe_spearman_ic": -0.010615,
+      "reference_universe_spearman_ic": 0.038536,
+      "union_analytic_top3_winner": 0.381465,
+      "corrected_base_top3_winner": 0.354713,
+      "matched_analytic_top3_winner": 0.348832,
+      "union_analytic_future_weighted_rank": 0.521726,
+      "corrected_base_rank": 0.524852,
+      "union_analytic_loss10_weight": 0.085057,
+      "matched_analytic_loss10_weight": 0.074947,
+      "union_vs_matched_loss10_weight_ci95": [
+        0.005388,
+        0.014919
+      ],
+      "monthly_unique_union_loss_auc_analytic": 0.5450841657459662,
+      "monthly_unique_union_loss_auc_corrected": 0.397101120128472,
+      "n_calendar_months_with_both_risk_classes": 71,
+      "analytic_loss_auc_above_random_0_5_ci95": [
+        -0.025148877818104928,
+        0.11144141764168175
+      ],
+      "risk_auc_analytic_minus_corrected_ci95": [
+        0.03396253175415664,
+        0.2601575995114111
+      ],
+      "decision": "No evidence of stand-alone superior general ETF alpha rank and no established severe-loss classification above random; keep independent analytic channel, no model fusion/portfolio release.",
+      "prices_forward_in_analytic_signal": false,
+      "no_CAGR_selection": true,
+      "reused_2018_2026_not_holdout": true,
+      "no_production_or_V3_freeze_change": true
     }
   ],
   "pending_experiments": [
@@ -606,7 +666,7 @@
     {
       "layer": "L10.D",
       "id": "l10-independent-analytical-discriminator",
-      "status": "PLANNED_NOT_EXECUTED",
+      "status": "FIRST_ANALYTICAL_FAMILY_L10D1_COMPLETED_NOT_PROMOTED; OTHER_MATH_FAMILIES_NOT_EXECUTED",
       "report": "etf-trader-v3 corrected/reports/L10/20261022_ANALYTICAL_DISCRIMINATOR_RESEARCH_PLAN.md",
       "objective": "Treat mathematical/econophysical alpha, downside and conditional rank discrimination as an independent evidence channel alongside frozen Pairwise127 general rank and L10 Top5 candidate proposal",
       "sources_to_audit": [
@@ -635,7 +695,10 @@
       "code_written": false,
       "tests_executed": false,
       "reference_changed": false,
-      "production_change": false
+      "production_change": false,
+      "completed_first_test_run": 39738471945,
+      "completed_first_test_report": "etf-trader-v3 corrected/reports/L10/20261022_L10D1_ANALYTICAL_RESULTS.md",
+      "first_test_decision": "Reject general-alpha ranking; no risk AUC above chance. Audit further independent A4 phase/hazard rather than tune on sampled returns."
     }
   ]
 }
