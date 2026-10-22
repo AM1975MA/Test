@@ -30,6 +30,8 @@ def _validate(q:pd.DataFrame)->pd.DataFrame:
     need={"quote_ts_utc","market","price"}
     if not need.issubset(q):raise ValueError("Missing quote_ts_utc, market or price")
     x=q[list(need)].copy()
+    if x.quote_ts_utc.map(lambda t: pd.Timestamp(t).tzinfo is None).any():
+        raise ValueError("Quote source timestamp must include explicit timezone/UTC offset; cannot assume UTC")
     x.quote_ts_utc=pd.to_datetime(x.quote_ts_utc,utc=True,errors="raise")
     if x.quote_ts_utc.isna().any():raise ValueError("Unparseable UTC timestamps")
     if not x.market.isin(MARKETS).all():raise ValueError("Need actual underlying COMEX and LME 3m markets; no London ETC proxy")
