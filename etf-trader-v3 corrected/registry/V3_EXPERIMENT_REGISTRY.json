@@ -117,6 +117,16 @@
       ],
       "absolute_loss_exposure_reduced_but_opportunity_loss_higher": true,
       "experimental_root": "etf-trader-v3 corrected/experiments/l09_utility_target"
+    },
+    "L10": {
+      "status": "NOT_PROMOTED",
+      "source_features": 125,
+      "baseline": "CORRECTED_PAIR127",
+      "training_run": 39700865721,
+      "economic_run": 39701813167,
+      "reason": "Improved basket winner Top3 +6.88pp but increased 21D severe loss exposure +2.44pp of allocated Top3 capital, worsened regret and economic long CAGR; risk-tier partially mitigates but remains inferior to baseline on long sample.",
+      "possible_research_only_signal": "Top5 as winner candidate discovery, not buy ranking",
+      "production_approved": false
     }
   },
   "experiments": [
@@ -429,7 +439,7 @@
       "id": "cost-sensitive-pairwise-top5-risk-tiers",
       "run": 39700865721,
       "branch": "research-v3-l10-topk-riskpair-20261022",
-      "decision": "RUNNING_NOT_PROMOTED",
+      "decision": "COMPLETED_REJECT_AS_STANDALONE_RANKER",
       "data": "149 frozen ETF, 500x24 canonical baskets, corrected 125 features, 101 maturity-safe OOS months",
       "methods": [
         "original pairwise top1",
@@ -438,7 +448,46 @@
       ],
       "reference": "CORRECTED_PAIR127",
       "economic_branch": "research-v3-l10-economic-20261022",
-      "main_or_production_changed": false
+      "main_or_production_changed": false,
+      "status": "success",
+      "training_run": 39700865721,
+      "training_artifact": 12392758288,
+      "economic_run": 39701813167,
+      "economic_artifact": 12393515838,
+      "oos_101_months": {
+        "baseline_Top3": 0.354713,
+        "topk5_Top3": 0.423465,
+        "risk_tier_Top3": 0.377089,
+        "baseline_regret": 0.104115,
+        "topk5_regret": 0.111145,
+        "risk_tier_regret": 0.107476,
+        "topk5_Top3_CI_delta": [
+          0.037504,
+          0.099802
+        ],
+        "topk5_regret_CI_delta": [
+          0.001672,
+          0.012673
+        ]
+      },
+      "top3_allocation": {
+        "baseline_future_loss10_weight": 0.084861,
+        "topk5_loss10_weight": 0.109297,
+        "risk_tier_loss10_weight": 0.095883,
+        "baseline_weight_winner": 0.125818,
+        "topk5_weight_winner": 0.149594,
+        "risk_tier_weight_winner": 0.133764
+      },
+      "CAGR_at_fee_10bps": {
+        "long_baseline_Top3": 0.13883,
+        "long_Top5": 0.1108,
+        "long_Risktier": 0.11156,
+        "recent_baseline_Top3": 0.17777,
+        "recent_Top5": 0.17165,
+        "recent_Risktier": 0.1809
+      },
+      "virgin_holdout": false,
+      "production_change": false
     }
   ],
   "pending_experiments": [
@@ -485,9 +534,10 @@
     {
       "layer": "L10",
       "id": "cost-sensitive-pairwise-top5-vs-risk-tier",
-      "status": "training_running",
+      "status": "completed_rejected_standalone",
       "run": 39700865721,
-      "goal": "Does top selection pair mining and then severe loss tier ranking improve Top3 winner recall / regret without large weight-on-winner cost?"
+      "goal": "Does top selection pair mining and then severe loss tier ranking improve Top3 winner recall / regret without large weight-on-winner cost?",
+      "economic_run": 39701813167
     }
   ]
 }

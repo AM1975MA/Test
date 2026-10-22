@@ -88,6 +88,16 @@
       "economic_artifact": 12388986240,
       "production_approved": false,
       "decision": "both target-aligned XGBRegressor models have substantially lower Top3 winner recall and worse same-policy executed economics than CORRECTED_PAIR127; asymmetric penalty lowers true loss exposure but further loses winning ETFs"
+    },
+    "L10": {
+      "status": "STANDALONE_PAIRWISE_TOP5_AND_RISKTIER_NOT_PROMOTED",
+      "prediction_run": 39700865721,
+      "source_artifact": 12392758288,
+      "economic_run": 39701813167,
+      "economic_artifact": 12393515838,
+      "reference_unchanged": true,
+      "production_approved": false,
+      "not_virgin_holdout": true
     }
   },
   "comparison_to_run": {

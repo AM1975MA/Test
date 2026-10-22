@@ -1,0 +1,40 @@
+name: V3 L10 economic consequence of topk5 and risk-tier pairwise
+on:
+  push:
+    branches: [research-v3-l10-economic-20261022]
+    paths: ['etf-trader-v3 corrected/experiments/l10_pairwise_risk/START_ECONOMIC.txt']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 105
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy==2.2.6 pandas==2.2.3 xgboost==3.0.5 scipy scikit-learn matplotlib tabulate
+      - name: Load immutable original 149 ETF, frozen corrected comparator and 101-month L10 OOS
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v2_ref runs/v3_l10_complete
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39515716383 --repo AM1975MA/Test --name v2-formula-retrain-complete --dir runs/v2_ref
+          gh run download 39700865721 --repo AM1975MA/Test --name v3-l10-topk5-risk-tier-results --dir runs/v3_l10_complete
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v3_l10_complete/OOS_SCORES.csv
+      - name: Function gate loss exposure and winner rank in each fixed policy
+        run: |
+          OPENBLAS_NUM_THREADS=1 python 'etf-trader-v3 corrected/experiments/l10_pairwise_risk/functional.py' --old runs/v2_ref/OOS_SCORES.csv --new runs/v3_l10_complete/OOS_SCORES.csv --out runs/v3_l10_economics
+      - name: Fixed policy true next-open 10bps self-financing replay
+        run: |
+          OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 python 'etf-trader-v3 corrected/experiments/l10_pairwise_risk/economic.py' --raw etf_trader_raw --old runs/v2_ref/OOS_SCORES.csv --new runs/v3_l10_complete/OOS_SCORES.csv --out runs/v3_l10_economics
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l10-topk5-risk-tier-economics
+          path: runs/v3_l10_economics/
+          retention-days: 90
