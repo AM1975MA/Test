@@ -1142,6 +1142,55 @@
       "full_500_companion_FS03_beats_best_original_V2_full_mean_CAGR": false,
       "production_unchanged": true,
       "assessment": "Small actual historic V3 outperformance on 149 unrestricted same source and superior Sharpe/DD, but 2023+ zero actions and block bootstrap includes 0; 500-basket best original still leads. Retain and seek unseen out-of-time cross-regime proof."
+    },
+    {
+      "layer": "FULLSTACK.L11.S1_S2",
+      "id": "l11s1s2-robust-sigma-and-downtrend-five",
+      "status": "FIVE_ONLY_LOCAL_EXPLORATORY_NEGATIVE; NEVER_PROMOTED; NO_NEW_500_STRATEGY_TEST",
+      "origin": "User design: daily X-sigma idiosyncratic liquidation with rebound eligibility plus persistent downtrend exclusion from new purchases",
+      "prereg_protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_L11S1_ROBUST_SIGMA_SHOCK_REENTRY_PREREG.md",
+      "prereg_branch": "research-v3-l11-sigma-shock-reentry-20261022",
+      "completed_report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_L11S1_S2_SIGMA_AND_DOWNTREND_FIVE_BASKETS.md",
+      "original_149_raw_run": 39482809691,
+      "original_500_source_run": 39836842157,
+      "n_new_test_baskets": 5,
+      "representatives": [
+        227,
+        69,
+        327,
+        301,
+        220
+      ],
+      "n_trading_sessions": 2366,
+      "baseline_Etf_trainer_v2_original_NAV_absolute_replay_max_error": 6.04e-14,
+      "baseline_mean_cagr": 0.22447,
+      "baseline_mean_maxdd": -0.337606,
+      "sigma_only": {
+        "cagr": 0.196966,
+        "maxdd": -0.349758
+      },
+      "trend_exit_existing_and_veto_new": {
+        "cagr": 0.167065,
+        "maxdd": -0.337759
+      },
+      "trend_new_purchase_veto_only": {
+        "cagr": 0.18995,
+        "maxdd": -0.326809,
+        "methodology_note": "tested after first sell-held trend screen; hypothesis-generating exploratory"
+      },
+      "sigma_and_trend_new_purchase_veto": {
+        "cagr": 0.16768,
+        "maxdd": -0.341551
+      },
+      "sigma_and_exit_existing": {
+        "cagr": 0.158528,
+        "maxdd": -0.335834
+      },
+      "original_ranker_monthly_unchanged": true,
+      "historical_period_already_examined": true,
+      "hard_stop_one_way_fee_10bps_and_gap_open_fill": true,
+      "verdict": "Naive absolute trailing downtrend filter either forces premature exits or blocks profitable recovery; 500 experiment gate not met. Next independent proposal only if requested: conditional monthly selection veto with original rank3 fallback and source-regime controls, no retroactive threshold tuning.",
+      "original_V2_original_V3_production_unchanged": true
     }
   ],
   "pending_experiments": [
