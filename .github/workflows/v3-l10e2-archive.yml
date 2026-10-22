@@ -1,0 +1,56 @@
+name: ETF V3 L10.E2 immutable research data archive
+on:
+  push:
+    branches: [research-v3-l10e2-trajectory-coherence-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START_E2_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify raw output artifact and original model parity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/l10e2
+          gh run download 39743730941 --repo AM1975MA/Test --name v3-l10e2-postrank-coherence --dir /tmp/l10e2
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd,json, math
+          p=Path("/tmp/l10e2")
+          m=json.loads((p/"MANIFEST.json").read_text())
+          assert m["layer"].startswith("L10.E2")
+          assert m["source_raw_run"]==39482809691 and m["source_frozen_model_run"]==39700865721
+          assert m["n_etf"]==149 and m["n_baskets"]==500 and m["n_mature_months"]==101
+          assert m["prior_exact_E1_test"]==39742108852 and m["coherence_cutoff"]==0.45
+          assert m["no_ML_refit"] and m["no_general_analytic_reranking"] and m["no_CAGR"]
+          f=pd.read_csv(p/"TRAJECTORY_MONTHLY.csv")
+          assert len(f)==101 and f.signal_date.nunique()==101
+          s=f.mean(numeric_only=True)
+          for key,v in {"BASE_top3_winner":.354713,"E1_top3_winner":.292713,
+                        "BASE_loss10_weight":.084861,"E1_loss10_weight":.067834}.items():
+              assert math.isclose(float(s[key]),v,abs_tol=1.1e-6,rel_tol=0)
+          assert sum(1 for _ in open(p/"TRAJECTORY_ASOF_AUDIT.csv"))==101*149+1
+          assert len(pd.read_csv(p/"PAIRED_MONTH_BOOTSTRAP.csv"))==14
+          print("L10 E2 provenance + paired E1 parity verification passed")
+          PY
+      - name: Atomic copy full E2 research artifact to main, no reference overwrite
+        run: |
+          git fetch origin main
+          git switch -c main-e2-archive origin/main
+          mkdir -p 'etf-trader-v3 corrected/reports/L10/data_run_39743730941'
+          cp /tmp/l10e2/* 'etf-trader-v3 corrected/reports/L10/data_run_39743730941/'
+          git add 'etf-trader-v3 corrected/reports/L10/data_run_39743730941/'
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'L10.E2 archive causal coherence veto, full trajectories and paired uncertainty'
+          git push origin HEAD:main
