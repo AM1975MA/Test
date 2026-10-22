@@ -1,0 +1,9 @@
+{
+  "n_mature_months": 101,
+  "complete_analytic_coverage_month_mean": 1.0,
+  "min_monthly_coverage": 1.0,
+  "analytic_signal_universe_coverage": 1.0,
+  "failing_months_lt90pct": [],
+  "causal_prefix_invariance": true,
+  "safe_to_compare_all_months": true
+}
