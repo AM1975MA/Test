@@ -1,4 +1,4 @@
-name: ETF V3 full risk: ETF_TRAINER_V2 vs Pair127 third-model veto
+name: "ETF V3 full risk: ETF_TRAINER_V2 vs Pair127 third-model veto"
 on:
   push:
     branches: [research-v3-fullstack-model-agreement-20261022]
@@ -53,7 +53,7 @@ jobs:
           MKL_NUM_THREADS: '2'
           NUMEXPR_NUM_THREADS: '2'
         run: |
-          python -u 'etf-trader-v3 corrected/fullstack_legacy/scripts/run_v3_fullstack_pair25.py' \
+          python -u 'etf-trader-v3 corrected/fullstack_legacy/scripts/run_v3_fullstack_risk_agreement.py' \
             --raw "$PWD/etf_trader_raw" \
             --output "$PWD/runs/v3_risk_agreement_500" \
             --v3-pair-scores "$PWD/runs/v3_pair_frozen/OOS_SCORES.csv" \
@@ -61,7 +61,7 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          d=json.loads(Path("runs/v3_fullstack_500/RESULT.json").read_text())
+          d=json.loads(Path("runs/v3_risk_agreement_500/RESULT.json").read_text())
           assert d["contract"]["titanium_maturity_safe"]
           assert d["contract"]["cluster_source_causal"]
           assert d["contract"]["ensemble_maturity_safe"]
@@ -89,11 +89,11 @@ jobs:
           retention-days: 90
           if-no-files-found: warn
           path: |
-            runs/v3_fullstack_500/RESULT.json
-            runs/v3_fullstack_500/GENERATED_CANONICAL_BASKETS.csv
-            runs/v3_fullstack_500/ENSEMBLE_FIT_AUDIT.csv
-            runs/v3_fullstack_500/V3_BASE_FUSION_AUDIT.csv
-            runs/v3_fullstack_500/ENSEMBLE_TAIL_OOS.csv
-            runs/v3_fullstack_500/PATH.npz
-            runs/v3_fullstack_500/titanium/TIT_R_SOURCE_ONLY_MANIFEST.json
-            runs/v3_fullstack_500/ma3_panel/CLUSTER_SOURCE_DATE_AUDIT.csv
+            runs/v3_risk_agreement_500/RESULT.json
+            runs/v3_risk_agreement_500/GENERATED_CANONICAL_BASKETS.csv
+            runs/v3_risk_agreement_500/ENSEMBLE_FIT_AUDIT.csv
+            runs/v3_risk_agreement_500/V3_BASE_FUSION_AUDIT.csv
+            runs/v3_risk_agreement_500/ENSEMBLE_TAIL_OOS.csv
+            runs/v3_risk_agreement_500/PATH.npz
+            runs/v3_risk_agreement_500/titanium/TIT_R_SOURCE_ONLY_MANIFEST.json
+            runs/v3_risk_agreement_500/ma3_panel/CLUSTER_SOURCE_DATE_AUDIT.csv
