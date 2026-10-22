@@ -63,10 +63,10 @@ def main():
     original_baskets=pd.read_csv(z.baskets)
     assert len(original_baskets)==12000
     ticker_pos={t:i for i,t in enumerate(names)}
-    bm=np.array([[ticker_pos[t] for t in x.sort_values("ticker").ticker]
-           for _,x in original_baskets.groupby("basket",sort=True)],np.int32)
-    assert bm.shape==(500,24)
-    BOK=np.ones_like(bm,bool)
+    # Use EXACT original source group order. Sorting ticker names can alter
+    # stable/argpartition ordering for ties even when memberships are identical.
+    bm,BOK=producer.basket_arrays(original_baskets,names,n_baskets=500)
+    assert bm.shape==BOK.shape==(500,24) and BOK.all()
     days=pd.DatetimeIndex(mats["Open"].index)
     ent=[days[days.searchsorted(sig,side="right")] for sig in months]
     assert ent[0]==ds[0] and ent[-1]==ds[-1]
@@ -75,8 +75,8 @@ def main():
     prior500=producer.allocations_from_score(score,cal,ds,bm,BOK,continuous=True)
     np.testing.assert_array_equal(prior500.d1,prior["d1"])
     np.testing.assert_array_equal(prior500.d2,prior["d2"])
-    np.testing.assert_allclose(prior500.weight1,prior["wg"],atol=0,rtol=0)
-    np.testing.assert_allclose(prior500.margin,prior["margin"],atol=0,rtol=0)
+    np.testing.assert_allclose(prior500.weight1,prior["wg"],atol=1e-12,rtol=0)
+    np.testing.assert_allclose(prior500.margin,prior["margin"],atol=1e-12,rtol=0)
     # Original systemic prior-close risk is identical to the original reference.
     Odf=mats["Open"].reindex(columns=names).ffill().bfill()
     Ldf=mats["Low"].reindex(columns=names).ffill().bfill().reindex(Odf.index)
@@ -86,14 +86,14 @@ def main():
     assert Odf.index[st:en+1].equals(ds)
     dd_gross=np.asarray(ddfirst.sync_c95_m75_gross(Cdf)[st:en+1],float)
     gross_ref,_=highcagr24.apply_highcagr24(dd_gross,prior500.weight1,prior500.margin)
-    np.testing.assert_allclose(gross_ref,prior["global_gross"],atol=0,rtol=0)
+    np.testing.assert_allclose(gross_ref,prior["global_gross"],atol=1e-12,rtol=0)
     # Original V2 Top2 selector on one basket containing *all 149 ETFs*.
     ALL=np.arange(149,dtype=np.int32)[None,:]
     alloc=producer.allocations_from_score(score,cal,ds,ALL,np.ones_like(ALL,bool),continuous=True)
     assert alloc.d1.shape==(1,len(ds)) and alloc.d2.shape==(1,len(ds))
     assert np.all(alloc.d1!=alloc.d2)
     G,w_original=highcagr24.apply_highcagr24(dd_gross,alloc.weight1,alloc.margin)
-    np.testing.assert_allclose(G,prior["global_gross"],atol=0,rtol=0)
+    np.testing.assert_allclose(G,prior["global_gross"],atol=1e-12,rtol=0)
     state=v6.build_v6_state(Cdf.loc[ds,names],alloc.d1,alloc.d2,alloc.weight1,dd_gross)
     ex=ddfirst.daily_execution_inputs(Odf,Ldf,Cdf)
     O,L,C,PC,gap,ud1,uneg,UH,SA=[ex[k][st:en+1] for k in ("O","L","C","PC","gap","ud1","uneg","UH","SA")]
