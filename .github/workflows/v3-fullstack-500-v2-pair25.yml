@@ -20,7 +20,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r 'etf-trader-v3 corrected/fullstack_legacy/requirements.txt' \
             'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' \
-            'xgboost==3.1.3' 'numba==0.65.1' 'yfinance==0.2.66'
+            'xgboost==3.1.3' 'numba==0.65.1' 'yfinance==0.2.66' 'matplotlib>=3.9'
       - name: Retrieve same original 149 tickers and frozen OOS Pair127 signal series
         env:
           GH_TOKEN: ${{ github.token }}
