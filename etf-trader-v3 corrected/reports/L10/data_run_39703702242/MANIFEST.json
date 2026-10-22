@@ -1,0 +1,12 @@
+{
+  "case": "L10.C",
+  "frozen_model_source_run": 39700865721,
+  "baseline_model": "CORRECTED",
+  "proposal_model": "L10_TOP5_PAIR127",
+  "ETF": 149,
+  "baskets": 500,
+  "mature_months": 101,
+  "matched_control": "CORRECTED Top3 plus same number next highest CORRECTED scores",
+  "no_retraining_or_execution": true,
+  "historical_reuse_not_virgin": true
+}
