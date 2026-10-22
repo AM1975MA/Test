@@ -597,6 +597,69 @@
       "no_CAGR_selection": true,
       "reused_2018_2026_not_holdout": true,
       "no_production_or_V3_freeze_change": true
+    },
+    {
+      "layer": "L10.E1",
+      "id": "l10e1-postrank-trend-drawdown-veto",
+      "status": "COMPLETED_REJECT_AS_AUTOMATIC_VETO; ARCHIVE_USER_INTENDED_ARCHITECTURE",
+      "conceptual_correction": "ML frozen general rank FIRST; mathematical trajectory confidence audit ONLY on ML selected names SECOND; replace suspicious incumbents with next eligible name in SAME ML ranking; never broadly analytical-rerank all ETF candidates",
+      "branch": "research-v3-l10e-postrank-trajectory-20261022",
+      "protocol": "etf-trader-v3 corrected/reports/L10/20261022_L10E_POSTRANK_TRAJECTORY_PROTOCOL.md",
+      "source": "etf-trader-v3 corrected/experiments/l10_postrank_trajectory/evaluate.py",
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E_POSTRANK_TRAJECTORY_RESULTS.md",
+      "workflow": ".github/workflows/v3-l10e1-postrank-trajectory.yml",
+      "run": 39742108852,
+      "artifact": 12409995955,
+      "archive_run": 39742298365,
+      "data_directory": "etf-trader-v3 corrected/reports/L10/data_run_39742108852/",
+      "underlying_immutable_runs": {
+        "raw": 39482809691,
+        "ml_OOS": 39700865721
+      },
+      "n_etf": 149,
+      "baskets": 500,
+      "basket_size": 24,
+      "n_complete_21d_months": 101,
+      "one_predeclared_rule": "past21d log momentum negative AND contemporaneous63d drawdown from prior peak <= -10pct",
+      "action": "Only flagged incumbent slots replaced by next originally ML-ranked nonflagged ETF from ranks4+; weights [0.5,0.3,0.2] stay by original slots",
+      "source_lookahead_synthetic_test": "PASS",
+      "coverage_all_149_etf_months": 1,
+      "changed_basket_rate": 0.566119,
+      "weighted_original_capital_removed": 0.319228,
+      "flagged_capital_weight": 0.319556,
+      "mean_replacements_per_basket": 0.904634,
+      "original_top3_hit": 0.354713,
+      "veto_top3_hit": 0.292713,
+      "top3_hit_delta_ci95": [
+        -0.090517,
+        -0.035941
+      ],
+      "original_future_winner_weight": 0.125818,
+      "veto_winner_weight": 0.101826,
+      "winner_weight_delta_ci95": [
+        -0.035563,
+        -0.013741
+      ],
+      "original_loss10_weight": 0.084861,
+      "veto_loss10_weight": 0.067834,
+      "loss10_weight_delta_ci95": [
+        -0.033371,
+        -0.000614
+      ],
+      "original_weighted_future_rank": 0.524852,
+      "veto_weighted_future_rank": 0.516791,
+      "original_weighted_regret21": 0.10547,
+      "veto_weighted_regret21": 0.106066,
+      "original_removed_winner_weight": 0.044952,
+      "gained_replacement_winner_weight": 0.02096,
+      "removed_positive_weight": 0.173614,
+      "post_selection_unique_flag_precision_loss10": 0.110759,
+      "post_selection_unique_unflag_loss10_rate": 0.07053,
+      "interpretation": "Risk reduction exists but broad crude trailing weakness screen removes many future rebound/winner ETFs selected by ML. Conditional trajectory analysis must distinguish recoverable corrections from genuine deterioration; no new ranker or threshold tuning on reused 2018-26.",
+      "cagr_not_run": true,
+      "explored_calendar_not_virgin": true,
+      "production_V2_untouched": true,
+      "frozen_V3_unmodified": true
     }
   ],
   "pending_experiments": [
@@ -698,7 +761,24 @@
       "production_change": false,
       "completed_first_test_run": 39738471945,
       "completed_first_test_report": "etf-trader-v3 corrected/reports/L10/20261022_L10D1_ANALYTICAL_RESULTS.md",
-      "first_test_decision": "Reject general-alpha ranking; no risk AUC above chance. Audit further independent A4 phase/hazard rather than tune on sampled returns."
+      "first_test_decision": "Reject general-alpha ranking; no risk AUC above chance. Audit further independent A4 phase/hazard rather than tune on sampled returns.",
+      "user_intent_correction": "PRIORITY: post-ML trajectory audit, not standalone analytical reranking; preserve completed L10D1 negative standalone test separately",
+      "followup_layer": "L10.E"
+    },
+    {
+      "layer": "L10.E2",
+      "id": "l10e2-conditional-trajectory-review",
+      "status": "PLANNED_NOT_TESTED",
+      "must_preserve_frozen_LM_order": true,
+      "goal": "Distinguish truly deteriorating trajectories from recoverable corrections/reversals among frozen ML-ranked Top2/Top3; quantify conditional severe-loss risk and false exclusion of future winners, then only if skill demonstrated define one prespecified selective replacement policy",
+      "ensure_no_hindsight": "No threshold search on explored 2018-2026; annual matured labels only for any fitted conditional confidence measure; independent newer vintage needed for confirmation",
+      "tests": [
+        "unique selected ETF-month conditional discrimination",
+        "false veto of actual future winners",
+        "severe-loss avoided versus winner weight lost",
+        "functional regret/rank and turnover then fee-aware replay if gate passes"
+      ],
+      "no_promotion": true
     }
   ]
 }
