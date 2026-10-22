@@ -261,6 +261,56 @@
         "cost_fee_one_way_bps": 10,
         "reuse_2018_2026_not_virgin": true,
         "production_V2_unchanged": true
+      },
+      "postrank_chronocal_E4": {
+        "status": "L10E4_EXECUTED_NO_PROMOTION; only 2021 actions, no 2022-26 incremental gain",
+        "predictive_run": 39828627036,
+        "predictive_archive": 39829016417,
+        "economic_run": 39829232588,
+        "economic_archive": 39829477302,
+        "prerequisite_original_ML_run": 39700865721,
+        "source_E3_unique_pairs": 39752940429,
+        "original_rank_frozen": true,
+        "no_E3_refit": true,
+        "intervention": "Annual past fully matured E3 OOT sigmoid calibration applied only to specific incumbent-vs-next-ML-ranked replacement; threshold .70 frozen",
+        "n_etfs": 149,
+        "n_canonical_baskets": 500,
+        "n_mature_months": 101,
+        "n_distinct_E4_acted_pairs": 64,
+        "n_basket_slot_changes": 158,
+        "all_intervention_years": [
+          2021
+        ],
+        "base_vs_e4_winner_capture": [
+          0.3547128712871288,
+          0.3547128712871288
+        ],
+        "base_vs_e4_loss10_weight": [
+          0.0848613861386138,
+          0.0842792079207921
+        ],
+        "base_vs_e4_full_2018_2026_NAV_CAGR": [
+          0.15650410951308125,
+          0.1569966179104194
+        ],
+        "base_vs_e4_recent_2022_2026_NAV_CAGR": [
+          0.21434619905689933,
+          0.21434619905689933
+        ],
+        "base_vs_e4_recent_max_drawdown": [
+          -0.19457061182674174,
+          -0.19457061182674174
+        ],
+        "full_annualized_paired_log_alpha_ci95": [
+          -0.000321,
+          0.003554
+        ],
+        "next_open_execution_10bps": true,
+        "reason_no_promotion": "2021-only realized optional changes and +0.049pp full CAGR with no gain after 2021; confidence intervals cross zero; heavily reused history",
+        "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E4_CHRONO_CALIBRATION_RESULTS_AND_CAGR.md",
+        "predictive_archive_path": "etf-trader-v3 corrected/reports/L10/data_run_39828627036/",
+        "economics_archive_path": "etf-trader-v3 corrected/reports/L10/economics_run_39829232588/",
+        "original_V2_and_V3_integrated_reference_unchanged": true
       }
     }
   },
