@@ -1,0 +1,1 @@
+Single global 149 full V2 Hybrid24 Top2, ETF_TRAINER_V2 original risk ET+XGB, and V3 two-out-of-three risk confirmation. Run on exactly FS02 source and raw; verify original 500-basket daily selection/gross parity first. No new training or parameter selection.
