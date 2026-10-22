@@ -1,0 +1,31 @@
+{
+  "experiment": "L10.D1 analytic residual-persistence/downside gate",
+  "raw_run": 39482809691,
+  "frozen_scores_run": 39700865721,
+  "baskets_sha256": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+  "n_ETF": 149,
+  "n_baskets": 500,
+  "expected_mature_months": 101,
+  "analytic": "rolling63 residual return / sqrt(rolling63 negative residual square sum); preceding shifted126 beta against equal-weight SPY+VTI return benchmark",
+  "future_prices_or_labels_used_in_signal": false,
+  "forward_target_used_only_for_evaluation": true,
+  "same_static_top3_weights": [
+    0.5,
+    0.3,
+    0.2
+  ],
+  "no_model_training": true,
+  "no_CAGR": true,
+  "no_production_change": true,
+  "not_virgin_holdout": true,
+  "source_raw_manifest_tickers": 149,
+  "coverage": {
+    "n_mature_months": 101,
+    "complete_analytic_coverage_month_mean": 1.0,
+    "min_monthly_coverage": 1.0,
+    "analytic_signal_universe_coverage": 1.0,
+    "failing_months_lt90pct": [],
+    "causal_prefix_invariance": true,
+    "safe_to_compare_all_months": true
+  }
+}
