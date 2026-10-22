@@ -1,0 +1,42 @@
+name: ETF V3 L10.E1 frozen ML post-selection trajectory correction
+on:
+  push:
+    branches: [research-v3-l10e-postrank-trajectory-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install numpy==2.2.6 pandas==2.2.3
+      - name: Download immutable certified 149-ETF inputs and ML OOS
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/l10_frozen
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39700865721 --repo AM1975MA/Test --name v3-l10-topk5-risk-tier-results --dir runs/l10_frozen
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/l10_frozen/OOS_SCORES.csv
+      - name: Assess one predeclared post-rank trajectory veto and original-ML-order correction
+        run: |
+          OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 python \
+            'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/evaluate.py' \
+            --raw etf_trader_raw --scores runs/l10_frozen/OOS_SCORES.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/l10_postrank_trajectory
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l10e1-trajectory-veto-results
+          path: runs/l10_postrank_trajectory/
+          retention-days: 90
