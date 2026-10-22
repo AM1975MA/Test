@@ -1,0 +1,50 @@
+name: ETF V3 L10.E4 immutable calibrated-pair research archive
+on:
+  push:
+    branches: [research-v3-l10e4-chronocal-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START_E4_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download E4 original outputs and verify frozen proof
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/l10e4
+          gh run download 39828627036 --repo AM1975MA/Test --name v3-l10e4-chronological-calibration --dir /tmp/l10e4
+          python3 - <<'PY'
+          import csv,json
+          from pathlib import Path
+          p=Path("/tmp/l10e4")
+          j=json.loads((p/"MANIFEST.json").read_text())
+          assert j["frozen_e3_run"]==39752940429
+          assert j["frozen_scores_run"]==39700865721 and j["underlying_frozen_raw_run"]==39482809691
+          assert j["n_etfs"]==149 and j["n_baskets"]==500 and j["n_months"]==101
+          assert j["full_label_maturity_gate"] and j["original_E3_pair_predictions_unchanged"]
+          assert j["entire_E3_pair_audit_reproduced"] and j["E3_and_E1_metrics_reproduced"]
+          assert j["production_unchanged"] and j["nonvirgin_reused_history"]
+          assert len(list(csv.DictReader(open(p/"MONTHLY.csv"))))==101
+          assert len(list(csv.DictReader(open(p/"CALIBRATION_FIT_AUDIT.csv"))))==9
+          assert len(list(csv.DictReader(open(p/"BOOTSTRAP.csv"))))==14
+          assert len(list(csv.DictReader(open(p/"PAIR_MODEL_PREDICTION_AUDIT.csv"))))==18218
+          print("L10.E4 exact E3 provenance PASS")
+          PY
+      - name: Git-archive all source-faithful results on main, no freeze mutation
+        run: |
+          git fetch origin main
+          git switch -c l10e4-archive origin/main
+          mkdir -p 'etf-trader-v3 corrected/reports/L10/data_run_39828627036'
+          cp /tmp/l10e4/* 'etf-trader-v3 corrected/reports/L10/data_run_39828627036/'
+          git add 'etf-trader-v3 corrected/reports/L10/data_run_39828627036/'
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m 'L10.E4 archive fully matured frozen-E3 probability calibration, 101-month outcomes'
+          git push origin HEAD:main
