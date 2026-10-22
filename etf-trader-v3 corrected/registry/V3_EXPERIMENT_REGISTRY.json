@@ -1010,6 +1010,72 @@
       "original_V2_production_unchanged": true,
       "frozen_V3_ranker_unchanged": true,
       "decision": "Port full V2 production logic to V3 as research infrastructure; reject constant Pair25 hybrid experiment and do not promote. Next isolate risk-sleeve model consensus and chronologically validate separately."
+    },
+    {
+      "layer": "FULLSTACK.FS02",
+      "id": "fs02-original-v2-stage19-v3-third-vote",
+      "status": "COMPLETED_ETF_TRAINER_V2_BEST; V3_THIRD_VOTE_REJECTED",
+      "test_run": 39836842157,
+      "artifact_id": 12451018561,
+      "inputs": {
+        "source_raw_run": 39482809691,
+        "frozen_v3_rank_run": 39700865721,
+        "source_only_original_V2": true,
+        "Etf_count": 149,
+        "canonical_500_24": true,
+        "sessions": 2366
+      },
+      "protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_RISK_AGREEMENT_PREREG.md",
+      "report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS02_V2_STAGE19_V3_THIRD_VOTE_RESULTS.md",
+      "source": "etf-trader-v3 corrected/fullstack_legacy/scripts/run_v3_fullstack_risk_agreement.py",
+      "full_orig_Hybrid24_mean_CAGR": 0.2217716371734245,
+      "original_ETF_TRAINER_V2_risk_sleeve_mean_CAGR": 0.2245930412878681,
+      "new_v3_unanimous_third_vote_mean_CAGR": 0.22256333592523767,
+      "full_original_risk_sleeve_minus_baseline_pp": 0.28214041144436025,
+      "v3_vs_original_best_pp": -0.2029705362630444,
+      "original_risk_approved_basket_days": 41965,
+      "strict_third_v3_approved_basket_days": 22680,
+      "no_global_ranker_or_risk_gross_changes": true,
+      "new_model_refits": false,
+      "production_V2_unchanged": true
+    },
+    {
+      "layer": "FULLSTACK.FS03",
+      "id": "fs03-v3-two-of-three-original-v2-sleeve",
+      "status": "COMPLETED_NO_FULL_PERIOD_UPLIFT_VS_ETF_TRAINER_V2_NOT_PROMOTED",
+      "run": 39838818618,
+      "artifact": 12452641034,
+      "source": "etf-trader-v3 corrected/fullstack_legacy/experiments/fs03_majority_risk_replay.py",
+      "protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS03_THREE_VOTE_PREREG.md",
+      "report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS03_MAJORITY_2OF3_RESULTS.md",
+      "inputs": {
+        "source_data_run": 39836842157,
+        "original_raw_run": 39482809691,
+        "frozen_V3_OOS_run": 39700865721
+      },
+      "intervention": "Original Hybrid24 Top1/Top2 and risk gross frozen, original ET/XGB agreement in C4/SEVERE plus >=2 of ET/XGB/Pair127 for optional Top1 concentration in same riskoff state",
+      "exact_daily_nav_and_notional_replay_parity_to_original_V2_and_Stage19": true,
+      "old_V2_risk_actions_basketdays": 41965,
+      "new_V3_majority_actions_basketdays": 52715,
+      "increment_actions_basketdays": 10750,
+      "full_500_mean_basket_cagr_original_Hybrid24": 0.2217716371734245,
+      "full_500_mean_basket_cagr_best_original_ETF_TRAINER_V2": 0.2245930412878681,
+      "full_500_mean_basket_cagr_v3_majority": 0.2245445,
+      "full_500_aggregate_NAV_cagr_original_ETF_TRAINER_V2": 0.250915,
+      "full_500_aggregate_NAV_cagr_v3_majority": 0.250538,
+      "later_2023plus_cagr_ETF_TRAINER_V2": 0.3055942001387825,
+      "later_2023plus_cagr_V3_majority": 0.305668,
+      "full_p10_CAGR_ETF_TRAINER_V2": 0.108948,
+      "full_p10_CAGR_V3_majority": 0.11082,
+      "full_mean_maxDD_ETF_TRAINER_V2": -0.353786,
+      "full_mean_maxDD_V3_majority": -0.355022,
+      "paired_calendar_21d_block_logalpha_V3_vs_Stage19_full": -0.000004,
+      "ci95": [
+        -0.001132,
+        0.001136
+      ],
+      "not_independent_oos": true,
+      "production_V2_unchanged": true
     }
   ],
   "pending_experiments": [
@@ -1179,7 +1245,7 @@
     {
       "layer": "FULLSTACK.FS02",
       "id": "fs02-v2-stage19-risk-sleeve-v3-model-agreement",
-      "status": "EVALUATION_IN_PROGRESS",
+      "status": "COMPLETED_STAGE19_BEATS_V3_THIRD_VOTE_NOT_PROMOTED",
       "research_branch": "research-v3-fullstack-model-agreement-20261022",
       "test_run": 39836842157,
       "protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_RISK_AGREEMENT_PREREG.md",
@@ -1191,7 +1257,8 @@
         "Full 2017-26 repeatedly researched",
         "No backward retuning",
         "Do not touch frozen V2 or V3 defaults"
-      ]
+      ],
+      "report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS02_V2_STAGE19_V3_THIRD_VOTE_RESULTS.md"
     }
   ]
 }
