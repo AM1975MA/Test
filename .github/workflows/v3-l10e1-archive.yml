@@ -1,0 +1,49 @@
+name: V3 L10.E1 archive immutable trajectory audit to main
+on:
+  push:
+    branches: [research-v3-l10e-postrank-trajectory-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Download original outputs, assert version and source completeness
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/l10e1
+          gh run download 39742108852 --repo AM1975MA/Test --name v3-l10e1-trajectory-veto-results --dir /tmp/l10e1
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          p=Path("/tmp/l10e1")
+          j=json.loads((p/"MANIFEST.json").read_text())
+          assert j["source_frozen_model_run"]==39700865721
+          assert j["source_raw_run"]==39482809691
+          assert j["n_etf"]==149 and j["n_baskets"]==500 and j["n_mature_months"]==101
+          assert j["no_ML_refit"] and j["no_general_analytic_reranking"] and j["no_CAGR"]
+          assert sum(1 for _ in csv.DictReader(open(p/"TRAJECTORY_MONTHLY.csv")))==101
+          assert sum(1 for _ in csv.DictReader(open(p/"TRAJECTORY_ASOF_AUDIT.csv")))==149*101
+          assert sum(1 for _ in csv.DictReader(open(p/"PAIRED_MONTH_BOOTSTRAP.csv")))==7
+          PY
+      - name: Atomically copy exact source artifacts into isolated L10.E1 main folder
+        run: |
+          git fetch origin main
+          git switch -c archive-l10e1 origin/main
+          mkdir -p 'etf-trader-v3 corrected/reports/L10/data_run_39742108852'
+          cp /tmp/l10e1/* 'etf-trader-v3 corrected/reports/L10/data_run_39742108852/'
+          git add 'etf-trader-v3 corrected/reports/L10/data_run_39742108852/'
+          git diff --cached --stat
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m 'L10.E1 archive 101-month trajectory selection audits and bootstrap'
+          git push origin HEAD:main
