@@ -1,0 +1,37 @@
+name: V3 L10.C candidate retrieval fixed-size diagnostic
+on:
+  push:
+    branches: [research-v3-l10-candidate-union-20261022]
+    paths: ['etf-trader-v3 corrected/experiments/l10_pairwise_risk/START_CANDIDATES.txt']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy==2.2.6 pandas==2.2.3
+      - name: Fetch frozen L10 OOS
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/l10_source
+          gh run download 39700865721 --repo AM1975MA/Test --name v3-l10-topk5-risk-tier-results --dir runs/l10_source
+          test -s runs/l10_source/OOS_SCORES.csv
+      - name: Test size-matched candidate retrieval
+        run: |
+          OPENBLAS_NUM_THREADS=1 python 'etf-trader-v3 corrected/experiments/l10_pairwise_risk/candidate_union.py' \
+            --scores runs/l10_source/OOS_SCORES.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/l10_candidate_union
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l10-candidate-union-vs-matched
+          path: runs/l10_candidate_union/
+          retention-days: 90
