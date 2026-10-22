@@ -3,3 +3,5 @@ Single global 149 full V2 Hybrid24 Top2, ETF_TRAINER_V2 original risk ET+XGB, an
 FS04 pre-outcome source-order and numeric parity gate precision correction; no policy adjustment.
 
 Re-run after original V2 producer imports require scikit-learn, fixed setup only.
+
+Source-only V2 comparable post-HighCAGR24 weights QA, after failed 39841545315 before global economic outcomes.
