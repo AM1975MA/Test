@@ -21,9 +21,9 @@ inspired by A4's causal persistence/resilience remit but independent of A4 ML.
 ## D1 isolated signal (ONE FORMULA; NO parameter sweep)
 
 From the canonical adjusted daily Close series, let
-`r_i,s = log(C_i,s / C_i,s-1)` and `r_M,s` be SPY log return.
+`r_i,s = log(C_i,s / C_i,s-1)` and `r_M,s = 0.5*r_SPY,s+0.5*r_VTI,s` be the fixed market-composite return.
 Beta on each day is estimated from the *preceding*, shifted 126-session
-rolling covariance of asset returns with SPY divided by trailing SPY variance;
+rolling covariance of asset returns with SPY divided by trailing composite-return variance;
 at least 100 points are required. Define residual
 `e_i,s = r_i,s - beta_i,s * r_M,s`.
 For a signal date t compute **residual persistence / downside**
@@ -75,3 +75,7 @@ No economic test and NO decision to promote solely from this stage;
 if and only if independent analytical discrimination demonstrates utility,
 a separately defined one-intervention D2 conditional-reranking experiment may
 be considered. Current period repeatedly researched, no virgin holdout.
+
+## Engineering preregistration amendment before examining any D1 outcome
+
+Initial Actions run **39738202561** FAILED before loading target predictions into the evaluation function. The synthetic point-in-time assertion caught a deterministic formula defect: original self-benchmark SPY-on-SPY beta makes its residual identically zero, with zero downside denominator. No D1 outcome/metric was produced. Corrected benchmark once, **prior to any outcome read**, to the fixed equal-weight daily SPY/VTI return composite for every ETF, including SPY and VTI. Keeps the 126-session shifted beta, 63-session residual/downside score, cutoff and all acceptance metrics unchanged. No hyperparameter search or data-dependent formula decision. Retain failed run ID as provenance.
