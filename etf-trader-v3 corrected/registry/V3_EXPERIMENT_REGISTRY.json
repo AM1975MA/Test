@@ -594,7 +594,48 @@
       "status": "NOT_EXECUTED",
       "goal": "Freeze L10C candidate pool and test exactly one chronological train-only second-stage ranking intervention with loss-aware safeguards against corrected baseline; no CAGR fitting; use genuine new vintage for independent validation.",
       "prerequisite_run": 39703702242,
-      "no_promotion_without_independent_confirmation": true
+      "no_promotion_without_independent_confirmation": true,
+      "planned_sources": [
+        "CORRECTED general rank",
+        "L10 Top5 retriever",
+        "independent mathematical/analytical discriminator",
+        "optional supervised alpha and risk heads (later, separate test)"
+      ],
+      "note": "Do not assume second stage must be ML; test analytic-only prediction/discrimination and causal ranking before ML fusion."
+    },
+    {
+      "layer": "L10.D",
+      "id": "l10-independent-analytical-discriminator",
+      "status": "PLANNED_NOT_EXECUTED",
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_ANALYTICAL_DISCRIMINATOR_RESEARCH_PLAN.md",
+      "objective": "Treat mathematical/econophysical alpha, downside and conditional rank discrimination as an independent evidence channel alongside frozen Pairwise127 general rank and L10 Top5 candidate proposal",
+      "sources_to_audit": [
+        "analytic opportunity/persistence A0/A4 lineage",
+        "OASIS relative crisis resilience & change points",
+        "factor/residual alpha F3/H1/H3 lineage",
+        "RMT spectral state indicators"
+      ],
+      "prior_negative_control": "L03 RMT-to-expert logistic gate 39674680942 rejected; distinct analytic feature hypotheses are untested",
+      "sequence": [
+        "audit existing source and provenance",
+        "isolated analytical predictor vs matched L10C candidate lists, no ML refit",
+        "one causal analytic-only reranking rule",
+        "only then one-change analytic+ML joint test and same-policy next-open economics"
+      ],
+      "guards": [
+        "mature-only labels",
+        "point-in-time adjusted OHLCV",
+        "no NaN math silent substitution",
+        "same 149 ETFs and 500 original overlapping baskets",
+        "monthly block uncertainty",
+        "2018-2026 repeatedly explored, not virgin",
+        "do not tune CAGR",
+        "never overwrite V2 or frozen V3"
+      ],
+      "code_written": false,
+      "tests_executed": false,
+      "reference_changed": false,
+      "production_change": false
     }
   ]
 }
