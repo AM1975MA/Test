@@ -200,7 +200,7 @@ def main():
             corr=np.nan
             g=st+k
             if g>=64:
-                x=all_close_log[g-63:g,t1];y=all_close_log[g-63:g,t2]
+                x=all_close_log[g-64:g-1,t1];y=all_close_log[g-64:g-1,t2]
                 if np.std(x)>0 and np.std(y)>0:
                     corr=float(np.corrcoef(x,y)[0,1])
             ret=w*r1+(1-w)*r2
@@ -269,7 +269,7 @@ def main():
         delta_maxdd_pp=("delta_maxdd_pp","mean")).reset_index()
     # Fail closed against prior stand-alone source-only 5-basket calculation.
     reference={"V2_STAGE19":.22446978024908676,
-        "WEEKLY_BALANCED_DOWNTREND":.2174032499758562,
+        "WEEKLY_BALANCED_DOWNTREND":.2171147766344495,
         "WEEKLY_RELATIVE_ROTATION":.19053596503921183,
         "WEEKLY_TAIL_THEN_RECOVERY":.1993948158853373}
     for key,target in reference.items():
