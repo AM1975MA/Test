@@ -1,0 +1,48 @@
+name: ETF V3 L10.E3 immutable full research archive
+on:
+  push:
+    branches: [research-v3-l10e3-pair-review-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START_E3_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and validate immutable E3 results before archiving
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/l10e3_data
+          gh run download 39752940429 --repo AM1975MA/Test --name v3-l10e3-pair-review --dir /tmp/l10e3_data
+          python3 - <<'PY'
+          import csv,json
+          from pathlib import Path
+          p=Path("/tmp/l10e3_data")
+          j=json.loads((p/"MANIFEST.json").read_text())
+          assert j["n_etfs"]==149 and j["n_baskets"]==500 and j["n_months"]==101
+          assert j["full_label_maturity_gate"] and j["no_future_in_signal"]
+          assert j["frozen_scores_run"]==39700865721
+          assert j["underlying_frozen_raw_run"]==39482809691
+          assert j["no_retrained_global_ranker"] and j["production_unchanged"]
+          assert len(list(csv.DictReader(open(p/"MONTHLY.csv"))))==101
+          assert len(list(csv.DictReader(open(p/"FIT_AUDIT.csv"))))>=8
+          assert len(list(csv.DictReader(open(p/"BOOTSTRAP.csv"))))==14
+          print("E3 STRICT MANIFEST/FIT PARITY: PASS")
+          PY
+      - name: Commit exact full source experiment outputs to main without overwriting frozen references
+        run: |
+          git fetch origin main
+          git switch -c archive-l10e3-main origin/main
+          mkdir -p 'etf-trader-v3 corrected/reports/L10/data_run_39752940429'
+          cp /tmp/l10e3_data/* 'etf-trader-v3 corrected/reports/L10/data_run_39752940429/'
+          git add 'etf-trader-v3 corrected/reports/L10/data_run_39752940429/'
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'L10.E3 archive mature-only pairwise postrank vetting and monthly evidence'
+          git push origin HEAD:main
