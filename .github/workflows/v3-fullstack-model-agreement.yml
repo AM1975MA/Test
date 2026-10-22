@@ -1,0 +1,99 @@
+name: ETF V3 full risk: ETF_TRAINER_V2 vs Pair127 third-model veto
+on:
+  push:
+    branches: [research-v3-fullstack-model-agreement-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/fullstack_legacy/START_MODEL_AGREEMENT.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  full-500:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - name: Install original V2 full-stack environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r 'etf-trader-v3 corrected/fullstack_legacy/requirements.txt' \
+            'numpy==2.3.5' 'pandas==2.2.3' 'scikit-learn==1.8.0' \
+            'xgboost==3.1.3' 'numba==0.65.1' 'yfinance==0.2.66' 'matplotlib>=3.9'
+      - name: Retrieve same original 149 tickers and frozen OOS Pair127 signal series
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v3_pair_frozen
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          gh run download 39700865721 -R AM1975MA/Test -n v3-l10-topk5-risk-tier-results -D runs/v3_pair_frozen
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v3_pair_frozen/OOS_SCORES.csv
+      - name: Check copied V2 source SHA and static mathematical design
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess,json
+          r=Path("etf-trader-v3 corrected/fullstack_legacy")
+          z=json.loads((r/"SOURCE_IMPORT_LOCK.json").read_text())
+          for name,sha in z["certified_legacy_blobs"].items():
+              got=subprocess.check_output(["git","hash-object",str(r/name)],text=True).strip()
+              assert got==sha,(name,got,sha)
+          src=(r/"scripts/run_v3_fullstack_risk_agreement.py").read_text()
+          assert "new_base[idx]=.75*p.base[idx]+.25*v3_rank" in src
+          assert "v6.simulate_with_alt" in src and "highcagr24.apply_highcagr24" in src
+          assert "p.score + .475*(new_base-p.base)" in src
+          print("FULL STACK EXACT MODULE SOURCE AND ONE-DIFF PRETEST PASS")
+          PY
+      - name: Rebuild raw-only Titanium S3B Hybrid24 and compare full original V2 against V3 Pair25 with same risk
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python -u 'etf-trader-v3 corrected/fullstack_legacy/scripts/run_v3_fullstack_pair25.py' \
+            --raw "$PWD/etf_trader_raw" \
+            --output "$PWD/runs/v3_risk_agreement_500" \
+            --v3-pair-scores "$PWD/runs/v3_pair_frozen/OOS_SCORES.csv" \
+            --n-jobs 2 --xgb-workers 3 --xgb-threads-per-worker 1
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("runs/v3_fullstack_500/RESULT.json").read_text())
+          assert d["contract"]["titanium_maturity_safe"]
+          assert d["contract"]["cluster_source_causal"]
+          assert d["contract"]["ensemble_maturity_safe"]
+          assert d["contract"]["basket_sha256"]=="36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e"
+          assert d["v3_pair25"]["ddfirst_v6_highcagr24_all_enabled"]
+          assert d["v3_pair25"]["v3_updated_months"]>=95
+          assert abs(d["metrics"]["full"]["highcagr24"]["cagr"]-0.2217716371734245)<1e-9
+          assert d["risk_sleeve_agreement"]["v3_actions_strict_subset"]
+          assert d["risk_sleeve_agreement"]["ETF_TRAINER_V2_risk_sleeve_actions_asof"] >= d["risk_sleeve_agreement"]["V3_three_model_risk_sleeve_actions_asof"]
+          for p in ["full","dev_daily","holdout_daily","common2018plus","common2022plus"]:
+              v=d["metrics"][p]
+              print("MODEL_AGREEMENT_FINAL",p,
+                 "V2_orig",v["highcagr24"]["cagr"],
+                 "ETFV2risk",v["etf_trainer_v2_risk_conviction"]["cagr"],
+                 "V3three",v["v3_three_model_risk_conviction"]["cagr"],
+                 "dd_base",v["highcagr24"]["maxdd"],
+                 "dd_ETFV2",v["etf_trainer_v2_risk_conviction"]["maxdd"],
+                 "dd_V3three",v["v3_three_model_risk_conviction"]["maxdd"])
+          PY
+      - name: Upload source-faithful full-stack metrics and input audits
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-fullstack-model-agreement-500
+          retention-days: 90
+          if-no-files-found: warn
+          path: |
+            runs/v3_fullstack_500/RESULT.json
+            runs/v3_fullstack_500/GENERATED_CANONICAL_BASKETS.csv
+            runs/v3_fullstack_500/ENSEMBLE_FIT_AUDIT.csv
+            runs/v3_fullstack_500/V3_BASE_FUSION_AUDIT.csv
+            runs/v3_fullstack_500/ENSEMBLE_TAIL_OOS.csv
+            runs/v3_fullstack_500/PATH.npz
+            runs/v3_fullstack_500/titanium/TIT_R_SOURCE_ONLY_MANIFEST.json
+            runs/v3_fullstack_500/ma3_panel/CLUSTER_SOURCE_DATE_AUDIT.csv
