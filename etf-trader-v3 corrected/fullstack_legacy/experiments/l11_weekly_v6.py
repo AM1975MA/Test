@@ -1,5 +1,7 @@
-"""Exact original V2 V6 executor port: the only changed signal paths are weekly precomputed selected Top2 weight and multiplicative risk factor. Original alt, stop, slip and cost same. Not promoted."""
-"""MA3 V6 resilient-alternative layer from source-only price and allocation inputs."""
+"""MA3 original V2 V6 resilient alternative from source-only inputs.
+L11 research copy: only precomputed weekly risky sleeve factor and selected Top2 weight injected.
+Original fees, stop, slippage, alt and producer all remain unchanged; not promoted.
+"""
 from __future__ import annotations
 
 from dataclasses import dataclass
