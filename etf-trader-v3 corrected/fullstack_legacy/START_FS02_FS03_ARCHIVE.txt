@@ -1,0 +1,1 @@
+Preserve immutable original Hybrid24, Stage19 risk-consensus, V3 strict and V3 majority historical source-only FS02/FS03 results on main. No model or production changes.
