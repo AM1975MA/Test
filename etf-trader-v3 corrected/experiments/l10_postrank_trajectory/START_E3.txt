@@ -1,1 +1,3 @@
 L10 E3 pre-registered 7 fixed relative trajectory + ML score gap, annual train-only pairwise validation; 70% veto confidence, no tuning 2018-26.
+
+Retry after no-candidate-month engineering gate correction; previous run 39752728805 failed before classifier fit/output.
