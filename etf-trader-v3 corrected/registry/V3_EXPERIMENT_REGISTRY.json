@@ -660,6 +660,71 @@
       "explored_calendar_not_virgin": true,
       "production_V2_untouched": true,
       "frozen_V3_unmodified": true
+    },
+    {
+      "layer": "L10.E2",
+      "id": "l10e2-postrank-trajectory-coherence",
+      "status": "COMPLETED_EXPLORATORY_NO_DEMONSTRATED_UPLIFT; NOT_PROMOTED",
+      "provenance": {
+        "evaluation_run": 39743730941,
+        "artifact_id": 12410790359,
+        "archive_failed_missing_pandas": 39743951395,
+        "archive_success": 39744027534,
+        "branch": "research-v3-l10e2-trajectory-coherence-20261022",
+        "prior_E1_run": 39742108852,
+        "frozen_RAW_OHLCV_run": 39482809691,
+        "frozen_ML_scores_run": 39700865721
+      },
+      "protocol": "etf-trader-v3 corrected/reports/L10/20261022_L10E2_TRAJECTORY_COHERENCE_PREREG.md",
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E2_COHERENCE_RESULTS.md",
+      "source": "etf-trader-v3 corrected/experiments/l10_postrank_trajectory/evaluate_e2.py",
+      "archived_csv": "etf-trader-v3 corrected/reports/L10/data_run_39743730941/",
+      "intervention": "ONLY ML selected incumbents E1 flagged AND absolute net 21d log displacement/gross 21d path length >=0.45; replace with next highest original rank, same [0.5,0.3,0.2] slot weights",
+      "single_causal_delta_vs_E1": "one added path coherence threshold 0.45 (pre-registered), no changed score, candidates, weight, labels, fee assumptions",
+      "no_fit": true,
+      "no_CAGR_selection": true,
+      "all_149_ETFs": true,
+      "canonical_500x24_baskets": true,
+      "mature_months": 101,
+      "e1_parity_reproduced_exactly": true,
+      "synthetic_causal_future_price_invariance": true,
+      "result_monthly_aggregate": {
+        "base_top3_hit": 0.3547128712871288,
+        "E1_top3_hit": 0.2927128712871287,
+        "E2_top3_hit": 0.3483168316831684,
+        "base_loss10_weight": 0.0848613861386138,
+        "E1_loss10_weight": 0.0678336633663366,
+        "E2_loss10_weight": 0.0829861386138613,
+        "base_winner_weight": 0.1258178217821782,
+        "E1_winner_weight": 0.1018257425742574,
+        "E2_winner_weight": 0.1238217821782178,
+        "base_rank": 0.5248524321997416,
+        "E1_rank": 0.5167913043478262,
+        "E2_rank": 0.5242609556607835,
+        "base_avg_21d_return": 0.0135595773546104,
+        "E1_avg_21d_return": 0.0129641873414248,
+        "E2_avg_21d_return": 0.0137528984375878,
+        "base_21d_regret": 0.1054702215675347,
+        "E2_21d_regret": 0.1052769004845574,
+        "E2_edited_basket_rate": 0.0911683168316831,
+        "E2_original_weight_replaced": 0.0381465346534653,
+        "E2_replacement_count": 5297
+      },
+      "paired_month_6_bootstrap_6000": {
+        "E2_vs_BASE_top3_hit_delta": -0.006396,
+        "ci95": [
+          0.031068,
+          0.082595
+        ],
+        "E2_vs_BASE_loss10_weight_delta": -0.001875,
+        "E2_vs_BASE_winner_weight_delta": -0.001996,
+        "E2_vs_BASE_21d_weighted_return_delta": 0.000193,
+        "E2_vs_E1_top3_hit_delta": 0.055604
+      },
+      "interpretation": "E2 reduces false exclusion vs bad E1 by rarely intervening; does not demonstrate improved severe-loss risk or alpha vs unchanged ML baseline. Unique selected ETF-month severe-loss precision approx 10.82% on just 39 informative months, no proof of added calibrated risk value.",
+      "repeatedly_explored_2018_2026_not_independent_holdout": true,
+      "original_V2_production_unchanged": true,
+      "V3_frozen_reference_unchanged": true
     }
   ],
   "pending_experiments": [
@@ -768,7 +833,7 @@
     {
       "layer": "L10.E2",
       "id": "l10e2-conditional-trajectory-review",
-      "status": "PLANNED_NOT_TESTED",
+      "status": "COMPLETED_E2_SINGLE_COHERENCE_HEURISTIC_REJECTED_FOR_PROMOTION",
       "must_preserve_frozen_LM_order": true,
       "goal": "Distinguish truly deteriorating trajectories from recoverable corrections/reversals among frozen ML-ranked Top2/Top3; quantify conditional severe-loss risk and false exclusion of future winners, then only if skill demonstrated define one prespecified selective replacement policy",
       "ensure_no_hindsight": "No threshold search on explored 2018-2026; annual matured labels only for any fitted conditional confidence measure; independent newer vintage needed for confirmation",
@@ -778,7 +843,28 @@
         "severe-loss avoided versus winner weight lost",
         "functional regret/rank and turnover then fee-aware replay if gate passes"
       ],
-      "no_promotion": true
+      "no_promotion": true,
+      "completed_run": 39743730941,
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E2_COHERENCE_RESULTS.md"
+    },
+    {
+      "layer": "L10.E3",
+      "id": "l10e3-conditional-pairwise-postrank-review",
+      "status": "PLANNED_NOT_EXECUTED",
+      "goal": "Review each frozen original ML-selected ETF relative to its specific original-ML-ranked alternative, comparing conditional rebound vs deterioration using strictly past-matured labels, not an independent general ETF ranker",
+      "guardrails": [
+        "preserve original frozen ML ordering unless independently validated adverse trajectory evidence",
+        "no global analytic reranking",
+        "false veto of actual winner as primary cost",
+        "use chronological maturity-safe features and frozen reference",
+        "do not tune/claim virgin confirmation on repeatedly explored 2018-2026",
+        "economics only after functional gate",
+        "no production/V2 overwrite"
+      ],
+      "prerequisite": [
+        "L10.E1 and E2 archived with honest negative results",
+        "pre-registration before any E3 test"
+      ]
     }
   ]
 }
