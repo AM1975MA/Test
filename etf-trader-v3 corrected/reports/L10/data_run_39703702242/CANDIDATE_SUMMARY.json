@@ -1,0 +1,14 @@
+{
+  "baseline_recall": 0.3547128712871288,
+  "union_recall": 0.5059999999999999,
+  "matched_recall": 0.4537821782178218,
+  "added_count": 1.1929306930693069,
+  "new_loss10_fraction": 0.10482793262650696,
+  "matched_loss10_fraction": 0.07175094139201761,
+  "new_rank_quality": 0.5008506665427876,
+  "matched_rank_quality": 0.5091339465863205,
+  "new_21d_return": 0.00932348060375036,
+  "matched_21d_return": 0.009408245439166704,
+  "new_bottom3_fraction": 0.2698872727213028,
+  "matched_bottom3_fraction": 0.20242056066782468
+}
