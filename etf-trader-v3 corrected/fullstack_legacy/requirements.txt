@@ -1,0 +1,11 @@
+numpy>=1.26
+pandas>=2.2
+numba>=0.59
+pyarrow>=15
+scikit-learn>=1.5
+xgboost>=2.1
+lightgbm>=4.5
+scipy>=1.13
+pyyaml>=6
+yfinance>=0.2
+pytest>=8

@@ -1,0 +1,53 @@
+{
+  "specification_date": "2026-09-23",
+  "producer": {
+    "target_power": 1.5,
+    "target_weights": {
+      "rank21": 0.45,
+      "rank42": 0.35,
+      "rank63": 0.2
+    },
+    "model": {
+      "type": "ExtraTreesRegressor",
+      "n_estimators": 120,
+      "max_features": 0.6,
+      "min_samples_leaf": 30,
+      "max_depth": 9,
+      "random_state": 101
+    },
+    "tail_smoothing": {
+      "current": 0.4,
+      "lag1": 0.3,
+      "lag2": 0.3,
+      "power": 1.1
+    },
+    "base_weight": 0.475,
+    "tail_weight": 0.525,
+    "continuous_positioning": {
+      "min_top1_weight": 0.6,
+      "margin_scale": 0.13,
+      "power": 2
+    }
+  },
+  "ddfirst": {
+    "normal": 1,
+    "three_vote": 0.95,
+    "four_plus": 0.75,
+    "severe": 0.25
+  },
+  "highcagr24": {
+    "three_vote": 1,
+    "four_plus": 0.945,
+    "severe": 0.66,
+    "top1_margin_threshold": 0.03
+  },
+  "execution": {
+    "cost": 0.001,
+    "stop": 0.055,
+    "stop_slippage": 0.001
+  },
+  "note": "Historical corrected-MA3 specification. The authoritative current baseline is Hybrid24 ET/XGB 60/40 as defined by config/ACTIVE_STRATEGY_SPEC.json.",
+  "status": "LEGACY_CORRECTED_ET_ONLY_NOT_AUTHORITATIVE",
+  "authoritative_spec": "config/ACTIVE_STRATEGY_SPEC.json",
+  "legacy_scope": "Corrected ExtraTrees-only MA3 specification retained for lineage; not the promoted Hybrid24 source-only producer."
+}
