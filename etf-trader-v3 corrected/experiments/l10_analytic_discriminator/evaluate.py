@@ -22,13 +22,14 @@ WEIGHT=np.array([.5,.3,.2],dtype=float)
 
 def analytical_signal(close):
     """Completely causal: beta from preceding 126 observations, not future data."""
-    assert "SPY" in close.columns
+    assert "SPY" in close.columns and "VTI" in close.columns
     logc=np.log(close.where(close>0))
     lr=logc.diff()
-    spy=lr["SPY"]
-    spyvar=spy.rolling(126,min_periods=100).var()
-    beta=lr.rolling(126,min_periods=100).cov(spy).div(spyvar,axis=0).shift(1)
-    residual=lr-beta.mul(spy,axis=0)
+    # Composite equally-weighted reference prevents SPY-on-SPY exact degeneracy.
+    market=0.5*lr["SPY"]+0.5*lr["VTI"]
+    var=market.rolling(126,min_periods=100).var()
+    beta=lr.rolling(126,min_periods=100).cov(market).div(var,axis=0).shift(1)
+    residual=lr-beta.mul(market,axis=0)
     numerator=residual.rolling(63,min_periods=63).sum()
     den=np.sqrt(residual.clip(upper=0).pow(2).rolling(63,min_periods=63).sum())
     val=numerator.div(den.where(den>1e-12))
@@ -40,6 +41,7 @@ def prefix_invariance_test():
     n=np.arange(len(ix),dtype=float)
     data=pd.DataFrame({
         "SPY":100*np.exp(.0007*n+.017*np.sin(n*.13)),
+        "VTI":102*np.exp(.00068*n+.016*np.sin(n*.12)),
         "AAA":90*np.exp(.0011*n+.03*np.cos(n*.085)),
         "BBB":75*np.exp(-.0001*n+.025*np.sin(n*.075)),
     },index=ix)
@@ -49,6 +51,7 @@ def prefix_invariance_test():
     modified.loc[ix[276]:,"AAA"]*=2.5
     modified.loc[ix[276]:,"BBB"]*=0.35
     modified.loc[ix[276]:,"SPY"]*=1.7
+    modified.loc[ix[276]:,"VTI"]*=1.6
     new=analytical_signal(modified).loc[checkpoint]
     np.testing.assert_allclose(original.to_numpy(),new.to_numpy(),rtol=0,atol=1e-12)
     assert np.isfinite(original).all()
@@ -253,7 +256,7 @@ def main():
         "experiment":"L10.D1 analytic residual-persistence/downside gate",
         "raw_run":39482809691,"frozen_scores_run":39700865721,
         "baskets_sha256":BASKET_SHA,"n_ETF":149,"n_baskets":500,
-        "expected_mature_months":101,"analytic":"rolling63 residual return / sqrt(rolling63 negative residual square sum); prior126 SPY rolling beta shifted1",
+        "expected_mature_months":101,"analytic":"rolling63 residual return / sqrt(rolling63 negative residual square sum); preceding shifted126 beta against equal-weight SPY+VTI return benchmark",
         "future_prices_or_labels_used_in_signal":False,
         "forward_target_used_only_for_evaluation":True,
         "same_static_top3_weights":[.5,.3,.2],
