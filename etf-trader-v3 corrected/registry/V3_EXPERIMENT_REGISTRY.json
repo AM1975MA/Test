@@ -946,6 +946,70 @@
       "reused_2018_2026_not_virgin": true,
       "production_V2_unchanged": true,
       "frozen_V3_unchanged": true
+    },
+    {
+      "layer": "FULLSTACK.FS01",
+      "id": "fs01-v2-complete-hybrid24-v3-pair25",
+      "status": "COMPLETED_FULLSTACK_PORT_PASS; 25PCT_PAIR127_REJECTED",
+      "source_port": "etf-trader-v3 corrected/fullstack_legacy/",
+      "repo_source_v2_original_commit": "c349cac9dc352f86087bdd6a6ca99c72d17970f0",
+      "source_sha_lock": "etf-trader-v3 corrected/fullstack_legacy/SOURCE_IMPORT_LOCK.json",
+      "frozen_original_V2_runner_git_blob": "79b5999730816e233c98ef71f60b2dbf02dd2071",
+      "original_model_layers": [
+        "Original V2 Titanium compact 21/63 mature-OOS",
+        "S3B persistent clusters from raw prices",
+        "MA3 42-feature panel",
+        "60% ExtraTrees + 40% XGBoost Hybrid24 producer",
+        "40/30/30 temporal smoothing + power 1.10",
+        "47.5% base/52.5% Tail hybrid",
+        "continuous dynamic Top2",
+        "DD-first SYNC_C95_M75",
+        "V6 REL_B resilient alternative",
+        "HighCAGR24 gross/weight transform",
+        "intraday daily execution, 10bps fee"
+      ],
+      "test_source": "etf-trader-v3 corrected/fullstack_legacy/scripts/run_v3_fullstack_pair25.py",
+      "executable_workflow": ".github/workflows/v3-fullstack-500-v2-pair25.yml",
+      "protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_PROTOCOL.md",
+      "report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_V3_COMPLETE_HYBRID24_FIRST_RESULTS.md",
+      "permanent_numeric_evidence": "etf-trader-v3 corrected/reports/FULLSTACK/data_run_39834445061/",
+      "completed_run": 39834445061,
+      "artifact_id": 12450322508,
+      "first_failed_install_only_run": 39834220139,
+      "source_import_run": 39833903630,
+      "source_main_archive_run": 39835199797,
+      "first_numeric_archive_run": 39837189147,
+      "original_raw_OHLCV_run": 39482809691,
+      "original_model_frozen_OOS_run": 39700865721,
+      "n_etfs": 149,
+      "canonical_baskets": 500,
+      "basket_size": 24,
+      "n_days": 2366,
+      "raw_csv_aggregate_sha256": "0ee4be0cb24bc550194b7f1fb0aefc244b8df575c0c7bbd683a5203f2a74576d",
+      "causal_label_maturity_and_S3B_audits": "PASS",
+      "one_change_hypothesis": "replace only 25% of original V2 Titanium BASE rank with ORIGINAL V3 Pairwise127 OOS percentile before otherwise frozen Hybrid24 mix",
+      "historical_current_raw_metrics": {
+        "V2_full_mean_basket_cagr": 0.2217716371734245,
+        "V3_full_mean_basket_cagr": 0.2194319886080804,
+        "delta_full_cagr_pp": -0.2339648565344077,
+        "V2_mean_maxdd": -0.3529718762579096,
+        "V3_mean_maxdd": -0.36107346503114535,
+        "V2_sharpe": 0.8696257730623042,
+        "V3_sharpe": 0.8582313713000113,
+        "V2_2023_2026_mean_cagr": 0.30514919112872435,
+        "V3_2023_2026_mean_cagr": 0.303539233229114,
+        "paired_annualized_daily_logalpha": -0.0020458060052607127,
+        "paired_21d_block_bootstrap_ci95": [
+          -0.00932982,
+          0.00541952
+        ]
+      },
+      "prior_sept_raw_different_vintage_V2_500_mean_cagr": 0.24490165033588845,
+      "no_raw_vintage_parity_to_sept2026_claim": true,
+      "no_global_149_inference": true,
+      "original_V2_production_unchanged": true,
+      "frozen_V3_ranker_unchanged": true,
+      "decision": "Port full V2 production logic to V3 as research infrastructure; reject constant Pair25 hybrid experiment and do not promote. Next isolate risk-sleeve model consensus and chronologically validate separately."
     }
   ],
   "pending_experiments": [
@@ -1111,6 +1175,23 @@
       "economic_run": 39829232588,
       "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E4_CHRONO_CALIBRATION_RESULTS_AND_CAGR.md",
       "note": "No E4 interventions 2022-2026; do not retune historical threshold"
+    },
+    {
+      "layer": "FULLSTACK.FS02",
+      "id": "fs02-v2-stage19-risk-sleeve-v3-model-agreement",
+      "status": "EVALUATION_IN_PROGRESS",
+      "research_branch": "research-v3-fullstack-model-agreement-20261022",
+      "test_run": 39836842157,
+      "protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_RISK_AGREEMENT_PREREG.md",
+      "hypothesis": "Keep original V2 full Hybrid24-selected Top2; in DD-first HighCAGR24 risk-off states require original ET and XGB consensus to concentrate sleeve, then isolated V3 corrected Pair127 third vote; do not reorder ETFs",
+      "guardrails": [
+        "No future labels",
+        "Full original V2 source from raw",
+        "Same 149/500 and 10bps",
+        "Full 2017-26 repeatedly researched",
+        "No backward retuning",
+        "Do not touch frozen V2 or V3 defaults"
+      ]
     }
   ]
 }
