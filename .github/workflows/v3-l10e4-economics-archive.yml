@@ -1,0 +1,49 @@
+name: ETF V3 L10.E4 matched economics immutable archive
+on:
+  push:
+    branches: [research-v3-l10e4-chronocal-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START_E4_ECON_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify E4 and E3 frozen matched cost economics outputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/l10e4_economics
+          gh run download 39829232588 --repo AM1975MA/Test --name v3-l10e4-matched-economics-nextopen-10bp --dir /tmp/l10e4_economics
+          python3 - <<'PY'
+          from pathlib import Path
+          import csv,json
+          p=Path("/tmp/l10e4_economics")
+          m=json.loads((p/"MANIFEST.json").read_text())
+          assert m["experimental_E3_run"]==39752940429
+          assert m["experimental_E4_run"]==39828627036
+          assert m["exact_original_E3_actions_replayed"]==965
+          assert m["exact_original_E4_actions_replayed"]==158
+          assert m["source_frozen_scores"]==39700865721
+          assert m["fees_one_way_bps"]==10 and m["next_open_source_L07_executor"]
+          assert m["last_mature_signal"]=="2026-05-29" and m["economic_end"]=="2026-06-01"
+          assert len(list(csv.DictReader(open(p/"ECONOMIC_SCORECARD.csv"))))==6
+          assert len(list(csv.DictReader(open(p/"PAIRED_BLOCK_BOOTSTRAP.csv"))))==4
+          print("E4 identical economics provenance PASS")
+          PY
+      - name: Atomic commit exact economics data to main
+        run: |
+          git fetch origin main
+          git switch -c archive-e4-econ origin/main
+          mkdir -p 'etf-trader-v3 corrected/reports/L10/economics_run_39829232588'
+          cp /tmp/l10e4_economics/* 'etf-trader-v3 corrected/reports/L10/economics_run_39829232588/'
+          git add 'etf-trader-v3 corrected/reports/L10/economics_run_39829232588/'
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m 'L10.E4 archive full next-open 10bp BASE E3 E4 matched CAGR NAV and drawdown'
+          git push origin HEAD:main
