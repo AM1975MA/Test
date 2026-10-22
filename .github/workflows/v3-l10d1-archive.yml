@@ -33,7 +33,7 @@ jobs:
           PY
       - name: Commit unmodified artifacts to main, isolating prior results
         env:
-          GH_TOKEN: GITHUB_TOKEN_PLACEHOLDER
+          GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
           from pathlib import Path
