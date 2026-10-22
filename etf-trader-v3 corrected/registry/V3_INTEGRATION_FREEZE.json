@@ -312,6 +312,37 @@
         "economics_archive_path": "etf-trader-v3 corrected/reports/L10/economics_run_39829232588/",
         "original_V2_and_V3_integrated_reference_unchanged": true
       }
+    },
+    "FULLSTACK": {
+      "status": "ORIGINAL_V2_SOURCE_RESTORED_IN_V3_RESEARCH; NOT_PROMOTED",
+      "original_vendor_source_commit": "c349cac9dc352f86087bdd6a6ca99c72d17970f0",
+      "source_root": "etf-trader-v3 corrected/fullstack_legacy/",
+      "source_lock": "etf-trader-v3 corrected/fullstack_legacy/SOURCE_IMPORT_LOCK.json",
+      "producer": "Hybrid24 ExtraTrees 60% + XGBoost 40%, target 21/42/63 corrected ranks",
+      "temporal_smoothing": "0.40 current +0.30 lag1 +0.30 lag2; power 1.10",
+      "final_mixture": "0.475 original Titanium BASE +0.525 smoothed Hybrid24 Tail",
+      "allocation": "Original continuous dynamically weighted Top2",
+      "regime_risk": [
+        "DD-first prior-close SYNC_C95_M75",
+        "V6 REL_B resilient alternative",
+        "HighCAGR24 dynamic gross and selection weight"
+      ],
+      "trading_cost_bps_one_way": 10,
+      "canonical_500x24_baskets": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+      "raw_149_run": 39482809691,
+      "original_baseline_rebuild_run": 39834445061,
+      "fullstack_first_archived_run": 39837189147,
+      "original_baseline_mean_basket_cagr_oct_snapshot": 0.2217716371734245,
+      "original_baseline_mean_basket_maxdd_oct_snapshot": -0.3529718762579096,
+      "V3_Pair25_CAGR_oct_snapshot": 0.2194319886080804,
+      "V3_Pair25_decision": "REJECTED_DEGRADES_RETURN_AND_DRAWDOWN",
+      "documented_original_Sept_other_vintage_mean_cagr": 0.24490165033588845,
+      "original_v2_prod_unchanged": true,
+      "original_v3_ranker_ref_frozen": true,
+      "no_virgin_holdout": true,
+      "unresolved_next_evaluation": "Original ETF_TRAINER_V2 riskoff ET XGB agreement versus V3 third-model veto (FS02) 39836842157",
+      "primary_source_report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_V3_COMPLETE_HYBRID24_FIRST_RESULTS.md",
+      "test_protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_PROTOCOL.md"
     }
   },
   "comparison_to_run": {
