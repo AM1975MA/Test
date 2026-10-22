@@ -1,3 +1,5 @@
 Archive full successful L10.D1 mathematical indicator results run 39738471945, artifact 12408381310; do not modify source.
 
 Retry upload: token placeholder bug in first archive run 39738974565; D1 result run 39738471945 immutable.
+
+Third archive attempt: existing first 3 files intact, 1.39MB CSV exceeded Linux argv size in API call, use atomic git push.
