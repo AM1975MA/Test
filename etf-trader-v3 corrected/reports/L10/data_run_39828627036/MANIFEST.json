@@ -1,0 +1,31 @@
+{
+  "status": "L10.E4 research, no promotion before acceptance",
+  "underlying_frozen_raw_run": 39482809691,
+  "frozen_scores_run": 39700865721,
+  "frozen_e3_run": 39752940429,
+  "original_rank": "CORRECTED Pairwise127",
+  "original_E3_pair_predictions_unchanged": true,
+  "n_etfs": 149,
+  "n_baskets": 500,
+  "n_months": 101,
+  "basket_sha256": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+  "calibrator": "annual sigmoid logistic C=1, input logit of frozen E3 OOT probability",
+  "minimum_prior_months": 8,
+  "minimum_prior_unique_pairs": 300,
+  "entire_E3_pair_audit_reproduced": true,
+  "full_label_maturity_gate": true,
+  "no_future_feature_and_prefix_pass": true,
+  "E3_and_E1_metrics_reproduced": true,
+  "threshold": 0.7,
+  "refit_original_E3_model": false,
+  "n_unique_pairs": 18218,
+  "n_E4_changed_basket_slots": 158,
+  "slot_weights": [
+    0.5,
+    0.3,
+    0.2
+  ],
+  "no_CAGR_tuning": true,
+  "nonvirgin_reused_history": true,
+  "production_unchanged": true
+}

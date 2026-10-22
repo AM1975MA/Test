@@ -1,0 +1,10 @@
+year,annual_cutoff,n_training_oos_mature_pair_observations,n_training_oos_mature_months,last_label_exit,all_labels_mature_pre_cutoff,class1_rate,fitted,calibration_slope,calibration_intercept,reason
+2018,2018-01-01,0,0,,True,,False,,,insufficient_past_mature_OOT
+2019,2019-01-01,0,0,,True,,False,,,insufficient_past_mature_OOT
+2020,2020-01-01,0,0,,True,,False,,,insufficient_past_mature_OOT
+2021,2021-01-01,2330,11,2020-12-31,True,0.4703862660944206,True,0.43962146197942376,0.31004115855299075,trained_on_past_year_OOT_pairs
+2022,2022-01-01,4230,23,2021-12-31,True,0.5023640661938534,True,0.2607112295941125,0.16165463029178326,trained_on_past_year_OOT_pairs
+2023,2023-01-01,7862,34,2022-12-01,True,0.4152887306029,True,0.22087815516940573,-0.08409331585794992,trained_on_past_year_OOT_pairs
+2024,2024-01-01,10418,46,2023-12-01,True,0.41994624688039933,True,0.25785221555302273,-0.08888316545297338,trained_on_past_year_OOT_pairs
+2025,2025-01-01,12166,58,2024-12-03,True,0.4213381555153707,True,0.24276291166506486,-0.16272756184121567,trained_on_past_year_OOT_pairs
+2026,2026-01-01,14121,70,2025-12-31,True,0.4246866369237306,True,0.09340512539075363,-0.1576088916158521,trained_on_past_year_OOT_pairs
