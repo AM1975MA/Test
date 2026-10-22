@@ -1,0 +1,61 @@
+name: ETF V3 FS02 and FS03 freeze full-stack numeric evidence
+on:
+  push:
+    branches: [research-v3-fullstack-majority-three-vote-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/fullstack_legacy/START_FS02_FS03_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact successful FS02 FS03 provenance and fixed full-stack original result
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/fs02 /tmp/fs03
+          gh run download 39836842157 --repo AM1975MA/Test --name v3-fullstack-model-agreement-500 --dir /tmp/fs02
+          gh run download 39838818618 --repo AM1975MA/Test --name v3-fullstack-fs03-majority-risk --dir /tmp/fs03
+          python3 - <<'PY'
+          from pathlib import Path
+          import csv,json
+          p=Path("/tmp/fs02");q=Path("/tmp/fs03")
+          a=json.loads((p/"RESULT.json").read_text())
+          assert a["contract"]["titanium_maturity_safe"] and a["contract"]["ensemble_maturity_safe"] and a["contract"]["cluster_source_causal"]
+          assert a["calendar"]["days"]==2366 and a["v3_pair25"]["ddfirst_v6_highcagr24_all_enabled"]
+          assert abs(a["metrics"]["full"]["highcagr24"]["cagr"]-.2217716371734245)<1e-11
+          assert abs(a["metrics"]["full"]["etf_trainer_v2_risk_conviction"]["cagr"]-.2245930412878681)<1e-11
+          b=json.loads((q/"MANIFEST.json").read_text())
+          assert b["source_only_input_run"]==39836842157
+          assert b["original_V2_daily_NAV_exact_parity"] and b["original_ETF_TRAINER_V2_daily_NAV_exact_parity"]
+          assert b["increment_new_basket_days"]==10750
+          assert b["n_etfs"]==149 and b["n_baskets"]==500
+          assert len(list(csv.DictReader(open(q/"ECONOMIC_SCORECARD.csv"))))==15
+          assert len(list(csv.DictReader(open(q/"PAIRED_BOOTSTRAP.csv"))))==10
+          print("FS02 and FS03 chronology / exact baseline / original V2 source parity PASS")
+          PY
+      - name: Atomically preserve compact audits and metrics on V3 main, no production overwrite
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git switch -c archive-v3-fs02-fs03 origin/main
+          p='etf-trader-v3 corrected/reports/FULLSTACK/data_run_39836842157'
+          q='etf-trader-v3 corrected/reports/FULLSTACK/data_run_39838818618'
+          mkdir -p "$p" "$q"
+          for file in RESULT.json ENSEMBLE_FIT_AUDIT.csv V3_BASE_FUSION_AUDIT.csv MODEL_AGREEMENT_DAILY_AUDIT.csv ENSEMBLE_TAIL_OOS.csv; do
+            cp "/tmp/fs02/$file" "$p/"
+          done
+          for file in ECONOMIC_SCORECARD.csv YEARLY.csv PAIRED_BOOTSTRAP.csv MONTHLY_MODEL_AGREEMENTS.csv DAILY_ACTION_AUDIT.csv MANIFEST.json; do
+            cp "/tmp/fs03/$file" "$q/"
+          done
+          git add "$p" "$q"
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m 'ETF V3 preserve exact V2 full-risk FS02 and FS03 majority scorecard, fit/source audits, uncertainty'
+          git push origin HEAD:main
