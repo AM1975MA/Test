@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install archive audit dependency
+        run: pip install pandas==2.2.3 numpy==2.2.6
       - name: Verify raw output artifact and original model parity
         env:
           GH_TOKEN: ${{ github.token }}
