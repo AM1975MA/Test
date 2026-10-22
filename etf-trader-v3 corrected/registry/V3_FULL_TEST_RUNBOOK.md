@@ -1,6 +1,6 @@
 # ETF Trader V3 Corrected — frozen configuration and full-test runbook
 
-**Date:** 21 October 2026. **Status:** All documented L00–L06 research-gate follow-up tests executed and archived. **L07 preflight passed, final integrated execution backtest not yet executed.** V2 production untouched.
+**Date:** 21 October 2026. **Status:** All documented L00–L06 research-gate follow-up tests executed and archived. **L07 integrated execution backtest completed in successful run 39683840686; historical diagnostic only, not production approved.** V2 production untouched.
 
 ## Source of truth (machine readable)
 
@@ -53,3 +53,8 @@
 [Successful run 39685852459](https://github.com/AM1975MA/Test/actions/runs/39685852459), artifact **12386252130**, code `experiments/l08_score_policy_factorial/evaluate.py`. Matched fee-aware 10bps execution of **four fixed genuinely OOS score channels × three predeclared portfolio policies** over full 2018–2026 and common 2022–2026 periods, all 500 canonical baskets. The LEGACY Top2 independent original V2 replay matches exactly (NAV/turnover within 1e-10), 149-ETF labels are identical. Historical exploratory, **NOT a virgin holdout**.
 
 The most important identified mismatch is **forecast objective vs portfolio value**. Although Tail45 Top3 finds the future best basket ETF in 42.75% of baskets vs LEGACY 35.74%, Tail's weighted average future rank is only 0.5129 vs LEGACY 0.5291 (both Top3 50/30/20). Equal-weighted 500-basket aggregate CAGR over 2022–26 at 10bps: LEGACY Top1 25.22%, LEGACY Top2 23.16%, corrected PAIR127 Top2 19.63%, corrected PAIR127 Top3 17.78%, frozen RRF10 Top3 16.77%, frozen Tail45 Top3 13.86%. The V3 relative drag is primarily MODEL/OBJECTIVE, not only portfolio weights. Extreme-winner capture is not synonymous with wealth generation or average rank. Multiple models and policies have been compared ex post; no winning configuration is promoted as new production strategy. Keep LEGACY reference and frozen research stack unchanged. Independent, predeclared newer data required for performance confirmation.
+
+
+## L10.C — retrieval complementarity (22 October 2026)
+
+Original L10 run **39700865721** and economic run **39701813167** succeeded. Both Top5-alone new rankers remain rejected as final buy-order models. New fixed-size candidate comparison **39703702242** (artifact **12394450375**, permanently archived via run **39705218877**) compares baseline Corrected Top3 against the union with distinct Top5 Top3 candidates, with matched extra CORRECTED rank-4+ candidates as the control. Union adds 1.19293 names per basket; future-best coverage **50.60%** versus capacity-matched **45.3782%** (baseline **35.4713%**): paired six-month-block delta **+5.2218 pp**, descriptive CI **[+3.2712,+7.1447] pp**. However the added names are severe 10% losers **10.4828%** versus **7.1751%** for matched corrected names, with descriptive delta CI [+2.1302,+4.5527] pp. **No investment promotion** or refit. Raw monthly CSV, year table, bootstrap, manifest permanently committed under [L10 data archive](../reports/L10/data_run_39703702242/) and full [L10.C report](../reports/L10/20261022_CANDIDATE_UNION_DIAGNOSTIC.md). The old 2018–2026 years are repeatedly explored, not independently unused. A later fit-only-on-past second-stage selector requires its own frozen preregistration.
