@@ -1,3 +1,5 @@
 Run unchanged original V2 after FS02 source-only with L11 once-weekly decisions exactly five preselected 500 baskets, no full 500 candidates; audit COMEX/LME observer missing data. 2026-10-22.
 
 Retry source-causal 63D correlation leak patch. Prior first run invalid for A and should be discarded, no signal tuning.
+
+Retry after import-only syntax failure in duplicated V6 module docstring; no outcome run yet from Actions, unchanged policies.
