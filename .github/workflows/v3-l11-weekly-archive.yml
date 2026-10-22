@@ -1,0 +1,56 @@
+name: "ETF V3 L11 weekly five-only strict-causal source archive"
+on:
+  push:
+    branches: [research-v3-l11-weekly-crossmarket-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/fullstack_legacy/START_L11_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify original five-basket source-only causal replay and NO 500 intervention
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/l11weekly
+          gh run download 39858350163 -R AM1975MA/Test -n v3-l11-weekly-five-risks-only -D /tmp/l11weekly
+          python3 - <<'PY'
+          from pathlib import Path
+          import csv,json
+          p=Path("/tmp/l11weekly")
+          m=json.loads((p/"MANIFEST.json").read_text())
+          assert m["status"]=="FIVE_SCREEN_NEGATIVE_NO_500_VETO_EXTENSION"
+          assert m["source_snapshot_run"]==39482809691
+          assert m["original_full_500_baseline_replay_exact"]
+          assert m["original_full_500_Stage19_replay_exact"]
+          assert m["modified_weekly_executor_five_NAV_and_turnover_exact"]
+          assert m["first_signal_only_previous_session_close"]
+          assert m["monthly_intraweek_name_change_cancels_stale_overlay"]
+          assert m["one_way_cost_bps"]==10
+          assert m["n_canonical_baskets"]==500 and m["n_NEW_tested_baskets"]==5
+          assert m["selected_ids"]==[227,69,327,301,220]
+          assert m["no_500_extension_triggered"] and m["production_V2_and_V3_unchanged"]
+          rows=list(csv.DictReader(open(p/"FIVE_BASKETS_EXACT_WEEKLY_SCORES.csv")))
+          assert len(rows)==20 and len(set(r["basket"] for r in rows))==5
+          assert len(set(r["policy"] for r in rows))==4
+          print("L11 original unchanged FS02 Stage19 and FIVE-only economics archive checks PASS")
+          PY
+      - name: Append full source-faithful research outputs to main, do not promote production
+        run: |
+          git fetch origin main
+          git switch -c archive-v3-l11weekly origin/main
+          p='etf-trader-v3 corrected/reports/FULLSTACK/data_run_39858350163'
+          mkdir -p "$p"
+          cp /tmp/l11weekly/* "$p/"
+          git add "$p"
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'L11 archive causal once-weekly five V2 basket risk policies, audited drawdowns/turnover and source NAV parity, no 500 extension'
+          git push origin HEAD:main
