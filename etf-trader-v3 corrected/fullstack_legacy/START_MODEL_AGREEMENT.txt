@@ -1,0 +1,1 @@
+Reconstruct original Hybrid24 500 source-only, then test archived ETF_TRAINER_V2 ET/XGB risk-off conviction versus V3 Pair127 third-model confirmation, no threshold optimization.
