@@ -1076,6 +1076,72 @@
       ],
       "not_independent_oos": true,
       "production_V2_unchanged": true
+    },
+    {
+      "layer": "FULLSTACK.FS04",
+      "id": "fs04-unrestricted149-fullstack-v3-majority",
+      "status": "COMPLETED_POSITIVE_HISTORICAL_GLOBAL_NOT_CONFIRMED; NOT_PROMOTED",
+      "purpose": "Restore 149 unrestricted global full V2 as separate universe, compare same source original Stage19 ETF_TRAINER_V2 and V3 Pair127 majority risk vote",
+      "branch": "research-v3-fs04-full149-20261022",
+      "protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS04_GLOBAL149_PREREG.md",
+      "report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS04_UNRESTRICTED_149_RESULTS.md",
+      "source": "etf-trader-v3 corrected/fullstack_legacy/experiments/fs04_unrestricted149.py",
+      "archived_data": "etf-trader-v3 corrected/reports/FULLSTACK/data_run_39841769495/",
+      "successful_actions": 39841769495,
+      "artifact": 12453945376,
+      "archive_actions": 39842080164,
+      "original_source_only_producer_fit_and_500_source_run": 39836842157,
+      "original_RAW_run": 39482809691,
+      "frozen_original_V3_OOS_run": 39700865721,
+      "mean_basket_cagr_applicability": "NOT_APPLICABLE_ONE_GLOBAL_149_PORTFOLIO",
+      "n_baskets": 1,
+      "n_selectable_ETF": 149,
+      "n_completed_monthly_signals": 114,
+      "n_trading_days": 2366,
+      "original_500_basket_Top2_exact_parity": true,
+      "original_500_basket_risk_gross_1e12_parity": true,
+      "original_V2_source_frozen": true,
+      "original_V3_ranker_frozen": true,
+      "no_new_ranking": true,
+      "no_new_overall_risk_exposure": true,
+      "no_fit": true,
+      "no_outcome_as_input": true,
+      "cost_10bp_oneway": true,
+      "historic_new_raw_global_metrics": {
+        "full_original_Hybrid24_CAGR": 0.334944,
+        "full_original_ETF_TRAINER_V2_CAGR": 0.344741,
+        "full_V3_majority_2of3_CAGR": 0.347846,
+        "V3_vs_original_ETF_V2_CAGR_delta_percentage_points": 0.3105,
+        "full_original_ETF_TRAINER_V2_maxdd": -0.319313,
+        "full_V3_majority_maxdd": -0.312195,
+        "full_original_ETF_TRAINER_V2_sharpe": 1.192686,
+        "full_V3_majority_sharpe": 1.201528,
+        "later_2023_2026_original_and_V3_CAGR": 0.461421,
+        "no_actions_later_2023_2026": true,
+        "Original_Stage19_2019_2020_2022_action_days": [
+          13,
+          21,
+          17
+        ],
+        "V3_majority_2019_2020_2022_action_days": [
+          13,
+          22,
+          49
+        ],
+        "posthoc_single_portfolio_21d_block_logalpha_annualized": 0.002306822571313165,
+        "posthoc_CI95": [
+          -0.00376754,
+          0.00876852
+        ]
+      },
+      "old_other_vintage_149_free_old_CAGR": 0.4314595242029944,
+      "other_oct2_snapshot_149_free_CAGR": 0.31603994562922105,
+      "source_vintage_not_interchangeable": true,
+      "prior_research_dates_repeatedly_inspected": true,
+      "out_of_time_inferential_gate_pass": false,
+      "full_500_companion_FS03_beats_best_original_V2_full_mean_CAGR": false,
+      "production_unchanged": true,
+      "assessment": "Small actual historic V3 outperformance on 149 unrestricted same source and superior Sharpe/DD, but 2023+ zero actions and block bootstrap includes 0; 500-basket best original still leads. Retain and seek unseen out-of-time cross-regime proof."
     }
   ],
   "pending_experiments": [
