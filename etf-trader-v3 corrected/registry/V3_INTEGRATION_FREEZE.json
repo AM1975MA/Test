@@ -183,6 +183,41 @@
         "next_layer": "L10.E2 conditional correction-versus-deterioration audit",
         "no_prod_or_ranker_promotion": true,
         "prior_historical_reused_not_virgin": true
+      },
+      "postrank_coherence_E2": {
+        "status": "L10E2_COMPLETED_NOT_PROMOTED",
+        "experiment_id": "l10e2-postrank-trajectory-coherence",
+        "run": 39743730941,
+        "artifact": 12410790359,
+        "archived_by_run": 39744027534,
+        "reference_unchanged": true,
+        "original_ranker_frozen": "CORRECTED Pairwise127",
+        "interpretation": "Mathematics audits only the selected ETF paths and conditionally vetoes slots; never performs independent universe-wide rank",
+        "formula": "E1 flag and efficiency21 >= .45",
+        "source": "etf-trader-v3 corrected/experiments/l10_postrank_trajectory/evaluate_e2.py",
+        "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E2_COHERENCE_RESULTS.md",
+        "archived_outputs": "etf-trader-v3 corrected/reports/L10/data_run_39743730941/",
+        "causal_and_E1_parity_checks": "PASS",
+        "n_ETFs": 149,
+        "n_baskets": 500,
+        "n_mature_months": 101,
+        "E2_edited_baskets_pct": 9.1168,
+        "baseline_top3_future_winner_capture_pct": 35.4713,
+        "E2_top3_future_winner_capture_pct": 34.8317,
+        "baseline_loss10_weight_pct": 8.4861,
+        "E2_loss10_weight_pct": 8.2986,
+        "e2_vs_baseline_top3_delta_ci95": [
+          -0.018158,
+          0.002357
+        ],
+        "e2_vs_baseline_loss10_delta_ci95": [
+          -0.006058,
+          0.001721
+        ],
+        "no_virgin_holdout": true,
+        "no_CAGR_ranking": true,
+        "no_trading_promotion": true,
+        "next_hypothesis": "Train-only conditional risk/reversal utility of rejecting original selected ETF versus specific replacement; new preregistered E3 needed"
       }
     }
   },
