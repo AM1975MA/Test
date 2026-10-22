@@ -1,0 +1,3 @@
+L10.C preregistered candidate union 2026-10-22.
+No change to frozen V3/production V2. No CAGR or execution.
+Run only the already frozen 101 mature months, 149 ETFs and 500 canonical baskets.
