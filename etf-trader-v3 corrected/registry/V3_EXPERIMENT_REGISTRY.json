@@ -725,6 +725,111 @@
       "repeatedly_explored_2018_2026_not_independent_holdout": true,
       "original_V2_production_unchanged": true,
       "V3_frozen_reference_unchanged": true
+    },
+    {
+      "layer": "L10.E3",
+      "id": "l10e3-conditional-pairwise-postrank-review",
+      "status": "COMPLETED_NO_PORTFOLIO_CAGR_UPLIFT_NOT_PROMOTED",
+      "goal": "Review the originally ML-ranked selected ETF's trajectory only against the specific next available original ML-ranked replacement; no independent global rerank",
+      "branch": "research-v3-l10e3-pair-review-20261022",
+      "preregistered_protocol": "etf-trader-v3 corrected/reports/L10/20261022_L10E3_PAIRWISE_VETO_PREREG.md",
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E3_PAIRWISE_POSTRANK_RESULTS_AND_CAGR.md",
+      "source": "etf-trader-v3 corrected/experiments/l10_postrank_trajectory/evaluate_e3.py",
+      "economic_source": "etf-trader-v3 corrected/experiments/l10_postrank_trajectory/economic_e3.py",
+      "raw_data_dir": "etf-trader-v3 corrected/reports/L10/data_run_39752940429/",
+      "economic_data_dir": "etf-trader-v3 corrected/reports/L10/economics_run_39753426512/",
+      "initial_failed_qa_run": 39752728805,
+      "initial_qa_correction": "A month without E1 selected trajectories can correctly abstain; pre-outcome assertion updated, no model/threshold revision",
+      "evaluation_run": 39752940429,
+      "evaluation_artifact_id": 12414128295,
+      "predictive_archive_run": 39753447149,
+      "economic_run": 39753426512,
+      "economic_artifact_id": 12413574353,
+      "economic_archive_run": 39753612579,
+      "frozen_ohlcv_run": 39482809691,
+      "frozen_original_XGB_OOS_run": 39700865721,
+      "n_etfs": 149,
+      "n_baskets": 500,
+      "n_mature_OOS_months": 101,
+      "original_ranker_retrained": false,
+      "conditional_classification_refit": "Annual Jan1 expanding maturation-only",
+      "first_annual_train_year": 2020,
+      "strict_train_label_maturity_check": true,
+      "synthetic_no_future_feature_test": true,
+      "n_distinct_pair_date_observations": 18218,
+      "n_fitted_pair_date_predictions": 14961,
+      "specific_pairs_crossing_fixed_70pct_threshold": 363,
+      "high_conf_distinct_pairs_avg_pred_prob": 0.7495658732333935,
+      "high_conf_distinct_pairs_actual_success_probability": 0.6060606060606061,
+      "high_conf_distinct_pairs_mean_future21D_relative_advantage": 0.028283514064169055,
+      "calibration_warning": "Observed 60.61% success when predicted probability averages 74.96%; fixed threshold not adequately calibrated for actual selected subset",
+      "basket_slot_replacements": 965,
+      "mean_baskets_changed": 0.018634,
+      "functional_original_ML": {
+        "top3_basket_winner": 0.354713,
+        "winner_weight": 0.125818,
+        "loss10_weight": 0.084861,
+        "weighted_rank": 0.524852,
+        "mean_forward21d": 0.01356
+      },
+      "functional_E3": {
+        "top3_basket_winner": 0.353327,
+        "winner_weight": 0.125202,
+        "loss10_weight": 0.084026,
+        "weighted_rank": 0.524932,
+        "mean_forward21d": 0.013698
+      },
+      "monthly_six_month_paired_CI95": {
+        "top3_basket_winner_delta": [
+          -0.003565,
+          0.000238
+        ],
+        "severe_loss_weight_delta": [
+          -0.00301,
+          0.001469
+        ],
+        "future21d_mean_return_delta": [
+          -0.000262,
+          0.000563
+        ],
+        "winner_weight_delta": [
+          -0.001578,
+          0.000071
+        ]
+      },
+      "economic_execution": "Same original L07 source-only next-open self-financing replay, unchanged TOP3 50/30/20, fee 10bp per dollar traded; restrict common calendar to last mature E3 signal May29 and economic end Jun1 2026",
+      "economic_long": {
+        "start": "2018-02-01",
+        "end": "2026-06-01",
+        "original_aggregate_CAGR": 0.15650410951308125,
+        "E3_aggregate_CAGR": 0.15613229879534463,
+        "delta_CAGR_percentage_points": -0.037181071773662,
+        "annualized_paired_log_alpha": 0.000881,
+        "CI95": [
+          -0.00412,
+          0.006022
+        ],
+        "baseline_aggregate_maxdd": -0.3841880015207796,
+        "E3_aggregate_maxdd": -0.38462852854553176
+      },
+      "economic_recent": {
+        "start": "2022-02-01",
+        "end": "2026-06-01",
+        "original_aggregate_CAGR": 0.21434619905689933,
+        "E3_aggregate_CAGR": 0.20982310238012247,
+        "delta_CAGR_percentage_points": -0.452309667677686,
+        "annualized_paired_log_alpha": -0.003077,
+        "CI95": [
+          -0.010712,
+          0.00378
+        ],
+        "baseline_aggregate_maxdd": -0.19457061182674174,
+        "E3_aggregate_maxdd": -0.1942597326593377
+      },
+      "decision": "Retain conditional-pairwise signal as exploratory diagnostic only. Do not promote automatic substitution: aggregate portfolio CAGR has no gain, 2022-26 worsens, selected action probability overconfident, and bootstrap functional intervals cross 0.",
+      "no_virgin_holdout": true,
+      "ranking_reference_unchanged": true,
+      "V2_production_unchanged": true
     }
   ],
   "pending_experiments": [
@@ -850,7 +955,7 @@
     {
       "layer": "L10.E3",
       "id": "l10e3-conditional-pairwise-postrank-review",
-      "status": "PLANNED_NOT_EXECUTED",
+      "status": "COMPLETED_NOT_PROMOTED",
       "goal": "Review each frozen original ML-selected ETF relative to its specific original-ML-ranked alternative, comparing conditional rebound vs deterioration using strictly past-matured labels, not an independent general ETF ranker",
       "guardrails": [
         "preserve original frozen ML ordering unless independently validated adverse trajectory evidence",
@@ -864,7 +969,28 @@
       "prerequisite": [
         "L10.E1 and E2 archived with honest negative results",
         "pre-registration before any E3 test"
-      ]
+      ],
+      "completed_experiment_run": 39752940429,
+      "completed_economic_run": 39753426512,
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E3_PAIRWISE_POSTRANK_RESULTS_AND_CAGR.md"
+    },
+    {
+      "layer": "L10.E4",
+      "id": "l10e4-conditional-calibration-false-veto",
+      "status": "PLANNED_NOT_EXECUTED",
+      "goal": "A genuinely validated post-original-ML selected-trajectory veto, with distinct correction/reversal and crash risk, per-pair calibration on only prior matured data, false future winners removed strictly penalized",
+      "prerequisites": [
+        "E3 fit and economic results archived",
+        "independent future untouched vintages or explicitly exploratory tests",
+        "one frozen new classifier/decision threshold per experiment"
+      ],
+      "avoids": [
+        "CAGR threshold retrospective sweeps",
+        "global analytical re-ranking",
+        "retraining original 125 feature ML",
+        "overwriting V2 or reference V3"
+      ],
+      "next_CAGR_gate": "Only run cost-matched next-open benchmark after demonstrated functional incremental skill; do not promote on 2018–26 re-exploration."
     }
   ]
 }
