@@ -12,3 +12,7 @@ Historic old unrestricted 43.145952% versus Oct2 fresh 31.603995% were different
 ## Pre-outcome engineering amendment
 
 FS04 original basket reconstruction must use original V2 source function producer.basket_arrays, preserving exact member ordering, not an independent sorted-by-ticker grouping; otherwise unstable tie ordering could be changed. For floating round trips from source-only CSV, weight/margin/gross numeric equality uses 1e-12 absolute tolerance while original selected Top1/Top2 identities require exact equality. These are execution/provenance guard refinements, not V3 signal/risk policy changes, and were committed before outcome reading.
+
+## Pre-result runtime QA
+
+First Actions run 39841253358 failed before any model/economic result (missing scikit-learn module imported by original V2 producer). The first source-order corrected retry 39841439728 also used the old dependency list. Fix only by installing scikit-learn==1.8.0, original FS02 environment version; preserve all hypotheses/rules, record all failed QA attempts.
