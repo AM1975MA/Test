@@ -1,0 +1,1 @@
+Archive successful corrected L11 weekly five-basket causal run 39858350163. Original whole 500 FS02 reference reproduced for parity; three NEW policies only 5 selected baskets; no 500 backtest triggered. Test independent COMEX/LME observer abstention with no real LME series.
