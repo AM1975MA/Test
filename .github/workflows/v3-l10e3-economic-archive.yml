@@ -1,0 +1,48 @@
+name: ETF V3 L10.E3 source-faithful economic archive
+on:
+  push:
+    branches: [research-v3-l10e3-pair-review-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START_E3_ECON_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download immutable E3 economics run and certify parameters
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/l10e3_economics
+          gh run download 39753426512 --repo AM1975MA/Test --name v3-l10e3-matched-economic-nextopen-10bp --dir /tmp/l10e3_economics
+          python3 - <<'PY'
+          import csv,json
+          from pathlib import Path
+          p=Path("/tmp/l10e3_economics")
+          m=json.loads((p/"MANIFEST.json").read_text())
+          assert m["experimental_E3_run"]==39752940429
+          assert m["exact_original_E3_actions_replayed"]==965
+          assert m["source_frozen_scores"]==39700865721
+          assert m["fees_one_way_bps"]==10
+          assert m["same_top3_policy"] and m["next_open_source_L07_executor"]
+          assert m["last_mature_signal"]=="2026-05-29" and m["economic_end"]=="2026-06-01"
+          assert len(list(csv.DictReader(open(p/"ECONOMIC_SCORECARD.csv"))))==4
+          assert len(list(csv.DictReader(open(p/"PAIRED_BLOCK_BOOTSTRAP.csv"))))==2
+          print("ECONOMIC PROVENANCE PASS")
+          PY
+      - name: Atomic archive to main, leave frozen references untouched
+        run: |
+          git fetch origin main
+          git switch -c l10e3-economic-archive origin/main
+          mkdir -p 'etf-trader-v3 corrected/reports/L10/economics_run_39753426512'
+          cp /tmp/l10e3_economics/* 'etf-trader-v3 corrected/reports/L10/economics_run_39753426512/'
+          git add 'etf-trader-v3 corrected/reports/L10/economics_run_39753426512/'
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'L10.E3 archive 10bp next-open matched economic NAV, CAGR and uncertainty'
+          git push origin HEAD:main
