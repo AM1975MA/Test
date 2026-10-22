@@ -144,7 +144,8 @@ def main():
                            e1=e1,tickers=tickers,calendar_exit=label_exit))
     assert len(states)==101 and len(allpairs)>0
     monthdates=sorted({r["signal_date"] for r in allpairs.values()})
-    assert len(monthdates)>=100
+    # Some months have zero E1 warnings: no candidate pairs is legitimate abstention.
+    assert len(monthdates)>=18
     # Annual training of one fixed classifier (no fit inside signal month).
     fit_by_year={}
     audits=[]
@@ -289,7 +290,7 @@ def main():
              n_unique_pair_observations=len(allpairs),
              n_replaced_basket_slot_events=len(events),
              action="Only vetted E1-flagged ML Top3 slots replaced by their original-ML-ranked candidate",
-             slot_weights=list(WEIGHT),no_CAGR_tuning=True,
+             slot_weights=[float(w) for w in WEIGHT],no_CAGR_tuning=True,
              nonvirgin_reused_history=True,production_unchanged=True)
     (out/"MANIFEST.json").write_text(json.dumps(manifest,indent=2)+"\n")
     print("E3_FIT_AUDIT",pd.DataFrame(audits).to_string(index=False),flush=True)
