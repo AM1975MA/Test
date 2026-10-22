@@ -314,7 +314,7 @@
       }
     },
     "FULLSTACK": {
-      "status": "ORIGINAL_V2_SOURCE_RESTORED_IN_V3_RESEARCH; NOT_PROMOTED",
+      "status": "ORIGINAL_V2_FULLSTACK_PORT_SUCCESS_AND_FULL_MATCHED_500_TESTS_FS01_FS02_FS03_COMPLETED_NO_DEMONSTRATED_V3_UBIQUITOUS_OUTPERFORMANCE",
       "original_vendor_source_commit": "c349cac9dc352f86087bdd6a6ca99c72d17970f0",
       "source_root": "etf-trader-v3 corrected/fullstack_legacy/",
       "source_lock": "etf-trader-v3 corrected/fullstack_legacy/SOURCE_IMPORT_LOCK.json",
@@ -342,7 +342,23 @@
       "no_virgin_holdout": true,
       "unresolved_next_evaluation": "Original ETF_TRAINER_V2 riskoff ET XGB agreement versus V3 third-model veto (FS02) 39836842157",
       "primary_source_report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_V3_COMPLETE_HYBRID24_FIRST_RESULTS.md",
-      "test_protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_PROTOCOL.md"
+      "test_protocol": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_PROTOCOL.md",
+      "raw_OHLCV_149_source_run": 39482809691,
+      "original_Hybrid24_complete_mean_basket_CAGR": 0.2217716371734245,
+      "restored_ETF_TRAINER_V2_original_risk_consensus_mean_basket_CAGR": 0.2245930412878681,
+      "V3_pair25_simple_blend_mean_basket_CAGR": 0.2194319886080804,
+      "V3_strict_third_vote_mean_basket_CAGR": 0.22256333592523767,
+      "V3_majority_2of3_mean_basket_CAGR": 0.2245445,
+      "full_universe_149_prospective_V3_integration_not_yet_tested": true,
+      "no_V3_superiority_vs_full_original_ETF_TRAINER_V2_established": true,
+      "all_V3_experiments_tested_on_repeatedly_inspected_2017_2026": true,
+      "risks_original_v2_and_v3_frozen_refs_unchanged": true,
+      "source_exact_subpackage": "etf-trader-v3 corrected/fullstack_legacy",
+      "fullstack_action_risk_SF02_run": 39836842157,
+      "fullstack_risk_majority_FS03_run": 39838818618,
+      "fullstack_FS02_report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS02_V2_STAGE19_V3_THIRD_VOTE_RESULTS.md",
+      "fullstack_FS03_report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS03_MAJORITY_2OF3_RESULTS.md",
+      "production_promotion": "NONE"
     }
   },
   "comparison_to_run": {
