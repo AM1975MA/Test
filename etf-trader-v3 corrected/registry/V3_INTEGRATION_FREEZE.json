@@ -123,6 +123,37 @@
         "durable_data": "etf-trader-v3 corrected/reports/L10/data_run_39703702242/",
         "report": "etf-trader-v3 corrected/reports/L10/20261022_CANDIDATE_UNION_DIAGNOSTIC.md",
         "non_virgin_holdout": true
+      },
+      "independent_analytical_followup": {
+        "status": "L10D1_COMPLETED_RESEARCH_ONLY_NOT_PROMOTED",
+        "branch": "research-v3-l10d-analytic-signal-20261022",
+        "run": 39738471945,
+        "artifact": 12408381310,
+        "archived_run": 39739293349,
+        "original_rankers_unchanged": true,
+        "production_approved": false,
+        "signal": "shifted126 beta fixed 50/50 SPY VTI benchmark; residual63/downside63",
+        "n_etfs": 149,
+        "overlapping_baskets": 500,
+        "n_mature_months": 101,
+        "causal_prefix_test": true,
+        "full_signal_coverage": true,
+        "original_corrected_rankIC": 0.038536,
+        "analytical_signal_rankIC": -0.010615,
+        "base_corrected_top3": 0.354713,
+        "top5_union_analytic_top3": 0.381465,
+        "matched_analytic_top3": 0.348832,
+        "union_analytic_loss10_weight": 0.085057,
+        "matched_analytic_loss10_weight": 0.074947,
+        "unique_loss_auc_analytic": 0.545084,
+        "unique_loss_auc_analytic_vs_chance_bootstrap_ci95": [
+          -0.025149,
+          0.111441
+        ],
+        "report": "etf-trader-v3 corrected/reports/L10/20261022_L10D1_ANALYTICAL_RESULTS.md",
+        "full_data": "etf-trader-v3 corrected/reports/L10/data_run_39738471945",
+        "not_virgin": true,
+        "no_change_to_original_V2_or_frozen_V3_reference": true
       }
     }
   },
