@@ -75,7 +75,9 @@ def main():
     prior500=producer.allocations_from_score(score,cal,ds,bm,BOK,continuous=True)
     np.testing.assert_array_equal(prior500.d1,prior["d1"])
     np.testing.assert_array_equal(prior500.d2,prior["d2"])
-    np.testing.assert_allclose(prior500.weight1,prior["wg"],atol=1e-12,rtol=0)
+    # PATH.wg is the HighCAGR24 TRANSFORMED allocation, not the raw
+    # continuous producer.weight1. Compare after applying the exact source
+    # gross + selected-weight transform below.
     np.testing.assert_allclose(prior500.margin,prior["margin"],atol=1e-12,rtol=0)
     # Original systemic prior-close risk is identical to the original reference.
     Odf=mats["Open"].reindex(columns=names).ffill().bfill()
@@ -85,8 +87,9 @@ def main():
     st=int(Odf.index.get_loc(ds[0]));en=int(Odf.index.get_loc(ds[-1]))
     assert Odf.index[st:en+1].equals(ds)
     dd_gross=np.asarray(ddfirst.sync_c95_m75_gross(Cdf)[st:en+1],float)
-    gross_ref,_=highcagr24.apply_highcagr24(dd_gross,prior500.weight1,prior500.margin)
+    gross_ref,corrected_w=highcagr24.apply_highcagr24(dd_gross,prior500.weight1,prior500.margin)
     np.testing.assert_allclose(gross_ref,prior["global_gross"],atol=1e-12,rtol=0)
+    np.testing.assert_allclose(corrected_w,prior["wg"],atol=1e-12,rtol=0)
     # Original V2 Top2 selector on one basket containing *all 149 ETFs*.
     ALL=np.arange(149,dtype=np.int32)[None,:]
     alloc=producer.allocations_from_score(score,cal,ds,ALL,np.ones_like(ALL,bool),continuous=True)
