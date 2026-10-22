@@ -16,3 +16,5 @@ FS04 original basket reconstruction must use original V2 source function produce
 ## Pre-result runtime QA
 
 First Actions run 39841253358 failed before any model/economic result (missing scikit-learn module imported by original V2 producer). The first source-order corrected retry 39841439728 also used the old dependency list. Fix only by installing scikit-learn==1.8.0, original FS02 environment version; preserve all hypotheses/rules, record all failed QA attempts.
+
+FS04 retry 39841545315 stopped on the reference weight assertion before generating any 149-global return: the frozen 500-basket PATH field wg is POST HighCAGR24, while the replica initially compared PRE HighCAGR24 producer weights. Keep exact original V2 Top1/Top2 and margin equality; compare identical post-transform HighCAGR24 weights after the original transform. This fixes a reference-stage mismatch only, not the trading policy.
