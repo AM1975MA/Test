@@ -1,0 +1,61 @@
+name: "ETF V3 FS03 original ETF_TRAINER_V2 versus 2of3 model risk-off"
+on:
+  push:
+    branches: [research-v3-fullstack-majority-three-vote-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/fullstack_legacy/START_FS03_MAJORITY.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  three-vote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'numba==0.65.1' 'scipy>=1.13'
+      - name: Frozen as-of original full-stack portfolios and input OHLCV
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/fs02_source_only runs/v3_pair_frozen
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          gh run download 39836842157 -R AM1975MA/Test -n v3-fullstack-model-agreement-500 -D runs/fs02_source_only
+          gh run download 39700865721 -R AM1975MA/Test -n v3-l10-topk5-risk-tier-results -D runs/v3_pair_frozen
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/fs02_source_only/PATH.npz
+          test -s runs/fs02_source_only/ENSEMBLE_TAIL_OOS.csv
+          test -s runs/fs02_source_only/RESULT.json
+          test -s runs/v3_pair_frozen/OOS_SCORES.csv
+      - name: Verify baseline and ETF_TRAINER_V2 exact daily execution parity before any new result
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          NUMBA_NUM_THREADS: '2'
+        run: |
+          python -u 'etf-trader-v3 corrected/fullstack_legacy/experiments/fs03_majority_risk_replay.py' \
+            --raw etf_trader_raw \
+            --fs02-path runs/fs02_source_only/PATH.npz \
+            --fs02-result runs/fs02_source_only/RESULT.json \
+            --fs02-pred runs/fs02_source_only/ENSEMBLE_TAIL_OOS.csv \
+            --pair runs/v3_pair_frozen/OOS_SCORES.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/fs03_majority
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path("runs/fs03_majority/MANIFEST.json").read_text())
+          assert m["original_V2_daily_NAV_exact_parity"] and m["original_ETF_TRAINER_V2_daily_NAV_exact_parity"]
+          assert m["selection_names_unchanged"] and m["risk_gross_unchanged"]
+          assert m["no_bps_or_threshold_search"] and m["n_baskets"]==500
+          print("FS03 source-only exact original/V2 stage19 executor parity PASS")
+          PY
+      - name: Upload full audit and results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-fullstack-fs03-majority-risk
+          path: runs/fs03_majority/
+          retention-days: 90
