@@ -1,0 +1,31 @@
+{
+  "status": "L10.E3 completed research, no production promotion",
+  "underlying_frozen_raw_run": 39482809691,
+  "frozen_scores_run": 39700865721,
+  "original_rank": "CORRECTED Pairwise127",
+  "no_retrained_global_ranker": true,
+  "n_etfs": 149,
+  "n_baskets": 500,
+  "n_months": 101,
+  "basket_sha256": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+  "label": "P(fwd21 challenger minus incumbent >=1pct)",
+  "signal": "7 frozen pairwise as-of features, trained yearly before outcomes fully mature",
+  "full_label_maturity_gate": true,
+  "no_future_in_signal": true,
+  "synthetic_prefix_invariance": true,
+  "min_annual_training_months": 18,
+  "min_pairs": 150,
+  "annual_fit_logistic_L2_C": 0.25,
+  "threshold": 0.7,
+  "n_unique_pair_observations": 18218,
+  "n_replaced_basket_slot_events": 965,
+  "action": "Only vetted E1-flagged ML Top3 slots replaced by their original-ML-ranked candidate",
+  "slot_weights": [
+    0.5,
+    0.3,
+    0.2
+  ],
+  "no_CAGR_tuning": true,
+  "nonvirgin_reused_history": true,
+  "production_unchanged": true
+}
