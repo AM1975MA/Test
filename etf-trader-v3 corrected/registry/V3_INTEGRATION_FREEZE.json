@@ -358,7 +358,37 @@
       "fullstack_risk_majority_FS03_run": 39838818618,
       "fullstack_FS02_report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS02_V2_STAGE19_V3_THIRD_VOTE_RESULTS.md",
       "fullstack_FS03_report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS03_MAJORITY_2OF3_RESULTS.md",
-      "production_promotion": "NONE"
+      "production_promotion": "NONE",
+      "unrestricted149_FS04": {
+        "status": "COMPLETED_SOURCE_FAITHFUL_HISTORICAL_GAIN_NOT_PROMOTED",
+        "original_full_V2_source_500_reference_run": 39836842157,
+        "original_RAW_OHLCV_run": 39482809691,
+        "frozen_original_V3_Pair127_run": 39700865721,
+        "FS04_outcome_run": 39841769495,
+        "FS04_artifact": 12453945376,
+        "FS04_archived_run": 39842080164,
+        "original_500_Top2_and_gross_parity_certified": true,
+        "universe": "one global portfolio with all 149 investable tickers, 114 mature source OOS signals, 2366 daily trading sessions 2017-Feb-01..2026-Jul-01",
+        "same_costs_and_original_producer_and_S3B_and_risk": true,
+        "original_Hybrid24_CAGR": 0.334944,
+        "original_ETF_TRAINER_V2_CAGR": 0.344741,
+        "V3_majority2of3_CAGR": 0.347846,
+        "V3_vs_original_best_CAGR_delta_pp": 0.3105,
+        "original_Stage19_maxdd": -0.319313,
+        "V3_majority_maxdd": -0.312195,
+        "identical_2023_2026_returns": true,
+        "all_riskoff_model_concentration_differences_before_2023": true,
+        "descriptive_paired_logalpha_ci95": [
+          -0.00376754,
+          0.00876852
+        ],
+        "source_vintage_old_43_percent_not_comparable": true,
+        "report": "etf-trader-v3 corrected/reports/FULLSTACK/20261022_FS04_UNRESTRICTED_149_RESULTS.md",
+        "archived_data": "etf-trader-v3 corrected/reports/FULLSTACK/data_run_39841769495/",
+        "production_promotion": "NONE",
+        "separate_500_basket_FS03_fullperiod_superiority": false,
+        "return_performance_future_reliability": "NOT ESTABLISHED"
+      }
     }
   },
   "comparison_to_run": {
