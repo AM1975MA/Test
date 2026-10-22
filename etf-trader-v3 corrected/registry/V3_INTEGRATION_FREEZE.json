@@ -154,6 +154,35 @@
         "full_data": "etf-trader-v3 corrected/reports/L10/data_run_39738471945",
         "not_virgin": true,
         "no_change_to_original_V2_or_frozen_V3_reference": true
+      },
+      "postrank_trajectory_conditional_audit": {
+        "status": "L10E1_COMPLETED_REJECT_CRUDE_FLAG; USER-INTENDED ARCHITECTURE DEFINED",
+        "workflow_run": 39742108852,
+        "artifact": 12409995955,
+        "archived_run": 39742298365,
+        "model_ranker_first": "CORRECTED Pairwise127 original, no refit and no analytic global re-rank",
+        "reviewer_second": "Past-only trajectory audit of selected ML choices and preservation of uncontested positions",
+        "exact_initial_rule": "momentum21 < 0 AND drawdown63 <= -0.10",
+        "potential_replacement": "highest-ranked unflagged from original CORRECTED rank4+ to original slot, no weight change",
+        "mean_basket_changed_fraction": 0.566119,
+        "before_after_basket_winner_recall": [
+          0.354713,
+          0.292713
+        ],
+        "before_after_winner_capital_weight": [
+          0.125818,
+          0.101826
+        ],
+        "before_after_absolute_loss10_capital_weight": [
+          0.084861,
+          0.067834
+        ],
+        "conservative_decision": "REJECT E1; disproportionate true future winners vetoed",
+        "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E_POSTRANK_TRAJECTORY_RESULTS.md",
+        "archived_monthly_yearly_and_45400plus_substitutions": "etf-trader-v3 corrected/reports/L10/data_run_39742108852/",
+        "next_layer": "L10.E2 conditional correction-versus-deterioration audit",
+        "no_prod_or_ranker_promotion": true,
+        "prior_historical_reused_not_virgin": true
       }
     }
   },
