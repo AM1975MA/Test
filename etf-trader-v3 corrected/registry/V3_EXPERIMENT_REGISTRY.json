@@ -830,6 +830,122 @@
       "no_virgin_holdout": true,
       "ranking_reference_unchanged": true,
       "V2_production_unchanged": true
+    },
+    {
+      "layer": "L10.E4",
+      "id": "l10e4-annual-oot-platt-calibration",
+      "status": "COMPLETED_SPARSE_2021_ONLY_GAIN_NOT_PROMOTED",
+      "branch": "research-v3-l10e4-chronocal-20261022",
+      "protocol": "etf-trader-v3 corrected/reports/L10/20261022_L10E4_CHRONO_CALIBRATION_PREREG.md",
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E4_CHRONO_CALIBRATION_RESULTS_AND_CAGR.md",
+      "predictive_source": "etf-trader-v3 corrected/experiments/l10_postrank_trajectory/evaluate_e4.py",
+      "economic_source": "etf-trader-v3 corrected/experiments/l10_postrank_trajectory/economic_e4.py",
+      "predictive_archive_path": "etf-trader-v3 corrected/reports/L10/data_run_39828627036/",
+      "economics_archive_path": "etf-trader-v3 corrected/reports/L10/economics_run_39829232588/",
+      "raw_run": 39482809691,
+      "original_ml_frozen_OOS_run": 39700865721,
+      "frozen_E3_pair_predictions_run": 39752940429,
+      "evaluation_run": 39828627036,
+      "evaluation_artifact_id": 12446848962,
+      "predictive_archive_run": 39829016417,
+      "economic_run": 39829232588,
+      "economic_artifact_id": 12447777963,
+      "economic_archive_run": 39829477302,
+      "calibration": "Only frozen annual Jan1 sigmoid(C=1) on previously OOT E3 logit predictions with strict next21-session label maturity; at least 8 past OOT months and 300 past unique pairs, nonpositive slope abstains; preserve E3 threshold 0.70 and exact candidates",
+      "no_new_ranker": true,
+      "E3_classifier_frozen": true,
+      "E3_original_pred_probs_unchanged": true,
+      "source_parity_E3_E1_BASE": true,
+      "n_etfs": 149,
+      "n_original_overlap_baskets": 500,
+      "n_mature_calendar_months": 101,
+      "n_immutable_original_E3_pairs": 18218,
+      "first_valid_calibration_year": 2021,
+      "calibration_fit_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "valid_cal_months_with_OOT_pairs": 64,
+      "calibration_brier_unweighted_month_mean_E4": 0.25245502467671577,
+      "calibration_brier_unweighted_month_mean_E3_matched": 0.25874687680823083,
+      "E4_unique_acted_pairs": 64,
+      "E4_pair_success_ge_1pct": 0.875,
+      "E4_unique_pair_avg_forward_relative_ret": 0.09201896148801192,
+      "E4_acted_unique_avg_calibrated_prob": 0.7403165300308774,
+      "E4_basket_slot_changes": 158,
+      "E4_changes_only_in_years": [
+        2021
+      ],
+      "E4_months_with_replacements": 8,
+      "E4_changed_baskets_rate": 0.003129,
+      "functional_baseline": {
+        "winner_top3": 0.3547128712871288,
+        "winner_weight": 0.1258178217821782,
+        "loss10_weight": 0.0848613861386138,
+        "weighted_future_rank": 0.5248524321997416,
+        "weighted_next21D_return": 0.0135595773546104
+      },
+      "functional_E3": {
+        "winner_top3": 0.3533267326732673,
+        "loss10_weight": 0.0840257425742574
+      },
+      "functional_E4": {
+        "winner_top3": 0.3547128712871288,
+        "winner_weight": 0.1258158415841584,
+        "loss10_weight": 0.0842792079207921,
+        "weighted_future_rank": 0.5251517,
+        "weighted_next21D_return": 0.013654
+      },
+      "E4_vs_BASE_blockbootstrap_6_month_CI95": {
+        "winner_capture": [
+          -0.000198,
+          0.000178
+        ],
+        "loss10_weight": [
+          -0.001717,
+          0
+        ],
+        "weighted_forward_return": [
+          -0.000007,
+          0.00029
+        ],
+        "winner_weight": [
+          -0.00005,
+          0.00004
+        ]
+      },
+      "economics": {
+        "execution": "original L07 source-only next-open self-financing matched E3/BASE/E4 portfolio; no actual execution, exactly 10bp one-way costs, Top3 50/30/20 unchanged",
+        "start_full": "2018-02-01",
+        "start_recent": "2022-02-01",
+        "last_common_economic_date": "2026-06-01",
+        "baseline_full_aggregate_CAGR": 0.15650410951308125,
+        "E3_full_aggregate_CAGR": 0.15613229879534463,
+        "E4_full_aggregate_CAGR": 0.1569966179104194,
+        "E4_full_delta_CAGR_pp": 0.049250839733815,
+        "baseline_recent_aggregate_CAGR": 0.21434619905689933,
+        "E3_recent_aggregate_CAGR": 0.20982310238012247,
+        "E4_recent_aggregate_CAGR": 0.21434619905689933,
+        "E4_recent_delta_CAGR_pp": 0,
+        "long_base_aggregate_maxdd": -0.3841880015207796,
+        "long_E4_aggregate_maxdd": -0.3841880015207796,
+        "common_long_calendar_daily_log_alpha_annualized": 0.001119,
+        "CI95": [
+          0,
+          0
+        ],
+        "common_recent_calendar_daily_log_alpha_annualized": 0,
+        "E3_matched_economic_reference_reproduced_exactly": true
+      },
+      "interpretation": "Calibrated pair reviewer preserves frozen ML selected basket winners almost exactly and rare proposed replacement pairs work in 2021, but ALL 158 actual interventions occur in 2021 ONLY; the 2022-26 strategy is identical to BASE. Nonconfirmatory aggregate long CAGR +0.049pp with bootstrap alpha CI crossing 0; no deployable uplift or cross-regime generalization.",
+      "no_historical_CAGR_threshold_tuning": true,
+      "reused_2018_2026_not_virgin": true,
+      "production_V2_unchanged": true,
+      "frozen_V3_unchanged": true
     }
   ],
   "pending_experiments": [
@@ -977,7 +1093,7 @@
     {
       "layer": "L10.E4",
       "id": "l10e4-conditional-calibration-false-veto",
-      "status": "PLANNED_NOT_EXECUTED",
+      "status": "COMPLETED_NOT_PROMOTED; 2021_ONLY",
       "goal": "A genuinely validated post-original-ML selected-trajectory veto, with distinct correction/reversal and crash risk, per-pair calibration on only prior matured data, false future winners removed strictly penalized",
       "prerequisites": [
         "E3 fit and economic results archived",
@@ -990,7 +1106,11 @@
         "retraining original 125 feature ML",
         "overwriting V2 or reference V3"
       ],
-      "next_CAGR_gate": "Only run cost-matched next-open benchmark after demonstrated functional incremental skill; do not promote on 2018–26 re-exploration."
+      "next_CAGR_gate": "Only run cost-matched next-open benchmark after demonstrated functional incremental skill; do not promote on 2018–26 re-exploration.",
+      "test_run": 39828627036,
+      "economic_run": 39829232588,
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E4_CHRONO_CALIBRATION_RESULTS_AND_CAGR.md",
+      "note": "No E4 interventions 2022-2026; do not retune historical threshold"
     }
   ]
 }
