@@ -1,0 +1,43 @@
+name: ETF V3 L10.E3 maturity-safe pair-specific postrank review
+on:
+  push:
+    branches: [research-v3-l10e3-pair-review-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START_E3.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install numpy==2.2.6 pandas==2.2.3 scikit-learn==1.7.2
+      - name: Certify identical frozen 149-ETF raw OHLCV and 500 baskets; retrieve model's archived OOS predictions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/l10_frozen
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39700865721 --repo AM1975MA/Test --name v3-l10-topk5-risk-tier-results --dir runs/l10_frozen
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/l10_frozen/OOS_SCORES.csv
+      - name: Run preregistered E3 chronological pair-review model and functional diagnostics
+        run: |
+          OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 python \
+            'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/evaluate_e3.py' \
+            --raw etf_trader_raw \
+            --scores runs/l10_frozen/OOS_SCORES.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/l10_postrank_e3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l10e3-pair-review
+          path: runs/l10_postrank_e3/
+          retention-days: 90
