@@ -1,0 +1,55 @@
+name: ETF V3 L10.E2 post-rank trajectory coherence one-change experiment
+on:
+  push:
+    branches: [research-v3-l10e2-trajectory-coherence-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/START_E2.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen evaluation dependencies
+        run: pip install numpy==2.2.6 pandas==2.2.3
+      - name: Reuse frozen original OHLCV, original 500 baskets, original 101 mature OOS score vintages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/l10_frozen
+          gh run download 39482809691 --repo AM1975MA/Test --name v2-deep-leaf-frozen-raw --dir etf_trader_raw
+          gh run download 39700865721 --repo AM1975MA/Test --name v3-l10-topk5-risk-tier-results --dir runs/l10_frozen
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/l10_frozen/OOS_SCORES.csv
+      - name: Run E2 conditional coherence and exact original E1 plus BASE in same sample
+        run: |
+          OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1 python \
+            'etf-trader-v3 corrected/experiments/l10_postrank_trajectory/evaluate_e2.py' \
+            --raw etf_trader_raw --scores runs/l10_frozen/OOS_SCORES.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/l10_postrank_e2
+      - name: Confirm original E1 reproduced identically before publishing E2
+        run: |
+          python - <<'PY'
+          import pandas as pd, math
+          p="runs/l10_postrank_e2/TRAJECTORY_SUMMARY.csv"
+          z=dict(zip(pd.read_csv(p).metric,pd.read_csv(p).monthly_mean))
+          expected={"E1_top3_winner":.292713,"E1_loss10_weight":.067834,
+                    "E1_winner_weight":.101826,
+                    "BASE_top3_winner":.354713,"BASE_loss10_weight":.084861}
+          for k,v in expected.items():
+              assert math.isclose(z[k],v,abs_tol=1.1e-6,rel_tol=0),(k,z[k],v)
+          print("PARITY E1 and BASE PASS",z)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l10e2-postrank-coherence
+          path: runs/l10_postrank_e2/
+          retention-days: 90
