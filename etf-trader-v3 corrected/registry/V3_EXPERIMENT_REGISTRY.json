@@ -423,6 +423,22 @@
       },
       "full_V2_production_reconstructed": false,
       "virgin_holdout": false
+    },
+    {
+      "layer": "L10",
+      "id": "cost-sensitive-pairwise-top5-risk-tiers",
+      "run": 39700865721,
+      "branch": "research-v3-l10-topk-riskpair-20261022",
+      "decision": "RUNNING_NOT_PROMOTED",
+      "data": "149 frozen ETF, 500x24 canonical baskets, corrected 125 features, 101 maturity-safe OOS months",
+      "methods": [
+        "original pairwise top1",
+        "same label pairwise top5",
+        "same top5 with below-10pct loss tier"
+      ],
+      "reference": "CORRECTED_PAIR127",
+      "economic_branch": "research-v3-l10-economic-20261022",
+      "main_or_production_changed": false
     }
   ],
   "pending_experiments": [
@@ -465,6 +481,13 @@
       "id": "forecast-target-alignment",
       "status": "UNSTARTED",
       "goal": "Align 21D expected investor utility, downside and rank with deployed rebalancing; predeclare train-only objective and validate on truly newer data before improving any layer"
+    },
+    {
+      "layer": "L10",
+      "id": "cost-sensitive-pairwise-top5-vs-risk-tier",
+      "status": "training_running",
+      "run": 39700865721,
+      "goal": "Does top selection pair mining and then severe loss tier ranking improve Top3 winner recall / regret without large weight-on-winner cost?"
     }
   ]
 }
