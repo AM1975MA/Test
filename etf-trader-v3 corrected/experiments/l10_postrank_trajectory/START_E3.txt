@@ -1,0 +1,1 @@
+L10 E3 pre-registered 7 fixed relative trajectory + ML score gap, annual train-only pairwise validation; 70% veto confidence, no tuning 2018-26.
