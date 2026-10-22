@@ -1,0 +1,28 @@
+{
+  "layer": "L10.E2 ML postrank coherence-confirmed veto/frozen ML replacement",
+  "source_raw_run": 39482809691,
+  "source_frozen_model_run": 39700865721,
+  "n_etf": 149,
+  "n_baskets": 500,
+  "basket_size": 24,
+  "n_mature_months": 101,
+  "basket_sha256": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+  "selected_ranker_unchanged": "CORRECTED_PAIR127",
+  "single_rule": "E1 negative momentum21 plus drawdown63 <=-.10, AND Kaufman efficiency21 >= .45; sole additional E2 condition",
+  "prior_exact_E1_test": 39742108852,
+  "coherence_cutoff": 0.45,
+  "replacement": "only flagged original positions, first unflagged name ranked 4+ by original CORRECTED ML, else hold original",
+  "same_slot_weights": [
+    0.5,
+    0.3,
+    0.2
+  ],
+  "future_returns_exclusively_for_eval": true,
+  "no_ML_refit": true,
+  "no_general_analytic_reranking": true,
+  "no_CAGR": true,
+  "not_virgin_holdout": true,
+  "original_V2_unchanged": true,
+  "original_raw_source_count": 149,
+  "synthetic_prefix_invariance_passed": true
+}
