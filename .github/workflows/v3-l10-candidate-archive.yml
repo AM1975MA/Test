@@ -1,0 +1,51 @@
+name: V3 L10.C archive full raw results on main
+on:
+  push:
+    branches: [research-v3-l10-candidate-union-20261022]
+    paths: ['etf-trader-v3 corrected/experiments/l10_pairwise_risk/START_ARCHIVE.txt']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Download successful source artifact and assert archived shape
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/l10c_source
+          gh run download 39703702242 --repo AM1975MA/Test --name v3-l10-candidate-union-vs-matched --dir /tmp/l10c_source
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          p=Path("/tmp/l10c_source")
+          assert sum(1 for x in csv.DictReader(open(p/"CANDIDATE_MONTHLY.csv")))==101
+          assert sum(1 for x in csv.DictReader(open(p/"CANDIDATE_BOOTSTRAP.csv")))==6
+          manifest=json.loads((p/"MANIFEST.json").read_text())
+          assert manifest["frozen_model_source_run"]==39700865721
+          assert manifest["no_retraining_or_execution"] is True
+          PY
+      - name: Commit all original 101-month source result CSVs to main, isolated path
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import subprocess, base64
+          from pathlib import Path
+          from urllib.parse import quote
+          src=Path("/tmp/l10c_source")
+          dest="etf-trader-v3 corrected/reports/L10/data_run_39703702242"
+          for file in ["MANIFEST.json","CANDIDATE_SUMMARY.json","CANDIDATE_MONTHLY.csv","CANDIDATE_YEARLY.csv","CANDIDATE_BOOTSTRAP.csv"]:
+              content=base64.b64encode((src/file).read_bytes()).decode("ascii")
+              path=quote(f"{dest}/{file}",safe="/")
+              subprocess.run(["gh","api","--method","PUT",f"repos/AM1975MA/Test/contents/{path}",
+                  "-f","branch=main",
+                  "-f",f"message=L10.C archive frozen candidate result: {file}",
+                  "-f",f"content={content}"],check=True,stdout=subprocess.DEVNULL)
+              print("Archived",file,flush=True)
+          PY
