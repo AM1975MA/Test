@@ -1,0 +1,56 @@
+name: ETF V3 FS04 archive full unrestricted 149 source-only scorecards
+on:
+  push:
+    branches: [research-v3-fs04-full149-20261022]
+    paths:
+      - 'etf-trader-v3 corrected/fullstack_legacy/START_FS04_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve success FS04 and verify full original 500 basket V2 parity first
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/fs04
+          gh run download 39841769495 -R AM1975MA/Test -n v3-fs04-global149-source-only -D /tmp/fs04
+          python3 - <<'PY'
+          import csv,json
+          from pathlib import Path
+          p=Path("/tmp/fs04")
+          m=json.loads((p/"MANIFEST.json").read_text())
+          assert m["strategy"]=="UNRESTRICTED_SINGLE_149_ETF_FULL_HYBRID24"
+          assert m["causal_frozen_source_only_Titanium_Hybrid24_S3B_run"]==39836842157
+          assert m["original_500_basket_Top2_and_weights_exact_parity"]
+          assert m["original_500_basket_risk_gross_exact_parity"]
+          assert not m["future_outcomes_used_for_decisions"]
+          assert m["n_total_tickers"]==149 and m["n_economic_baskets"]==1
+          assert m["trading_days"]==2366 and m["fee_bps_one_way"]==10
+          rows=list(csv.DictReader(open(p/"ECONOMIC_SCORECARD.csv")))
+          assert len(rows)==15
+          R={(r["window"],r["arm"]):r for r in rows}
+          assert abs(float(R["FULL","HYBRID24_ORIGINAL"]["cagr"])-0.334944)<1e-5
+          assert abs(float(R["FULL","ETF_TRAINER_V2"]["cagr"])-0.344741)<1e-5
+          assert abs(float(R["FULL","V3_MAJORITY2OF3"]["cagr"])-0.347846)<1e-5
+          assert len(list(csv.DictReader(open(p/"ORIGINAL_TOP2_ASOF_MONTHLY.csv"))))==114
+          print("FS04 no-future, original V2, strict 500/149 source parity PASS")
+          PY
+      - name: Archive exact 149 global NAV and asof signals permanently on V3 main
+        run: |
+          git fetch origin main
+          git switch -c fs04-main-archive origin/main
+          p='etf-trader-v3 corrected/reports/FULLSTACK/data_run_39841769495'
+          mkdir -p "$p"
+          cp /tmp/fs04/* "$p/"
+          git add "$p"
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' \
+             -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+             commit -m 'ETF V3 fullstack global unrestricted 149 source-only portfolio evidence and matched V2 Stage19/V3 NAV'
+          git push origin HEAD:main
