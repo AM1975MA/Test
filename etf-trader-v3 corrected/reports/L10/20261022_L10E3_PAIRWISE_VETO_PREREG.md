@@ -17,3 +17,7 @@ Matched 149 ETFs, 500 24-name canonical baskets SHA256 36a45916b5d8191f3ccd206f3
 RUN ECONOMIC NEXT-OPEN CAGR only if E3 shows a plausible FUNCTIONAL gain vs BASE: less severe-loss invested weight or improved forward weighted realized return, WITHOUT material degradation in winner-weight or Top3 winner capture, with manageable modification/turnover. No strategy claim without 10bp transaction fee and exact original next-open execution; do not guess figures. Otherwise label research rejection and archive, no economic experiment.
 
 Existing 2018-2026 history has been explored repeatedly; it is NOT a virgin independent holdout, and any new test here is descriptive hypothesis exploration, not confirmatory. V2 production, frozen ranker and registry historical experiments must not be overwritten.
+
+## Engineering amendment before E3 numeric outcomes
+
+Initial Actions run **39752728805** stopped before model fitting or score output on an overly restrictive assertion that every month must contain at least one E1 warning/pair. Some months have zero warnings; they correctly have no candidates and are handled as abstentions. The assertion is revised to permit this state (at least 18 pair-generating prior signal dates exist), without changing the frozen E1 trigger, seven features, paired labels, annual fits, >=0.70 veto cutoff, dataset or evaluation metrics. Also correct numpy numeric serialization in the output manifest. All outcomes remain unread at amendment time.
