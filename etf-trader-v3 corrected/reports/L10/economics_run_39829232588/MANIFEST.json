@@ -1,0 +1,36 @@
+{
+  "experimental_E3_run": 39752940429,
+  "exact_original_E3_actions_replayed": 965,
+  "exact_original_E4_actions_replayed": 158,
+  "experimental_E4_run": 39828627036,
+  "OOT_calibrator_refitted_for_economics": false,
+  "benchmark": "CORRECTED frozen 127-leaf Top3",
+  "same_top3_policy": true,
+  "weights": [
+    0.5,
+    0.3,
+    0.2
+  ],
+  "next_open_source_L07_executor": true,
+  "fees_one_way_bps": 10,
+  "source_frozen_raw": 39482809691,
+  "source_frozen_scores": 39700865721,
+  "n_etfs": 149,
+  "n_baskets": 500,
+  "n_months": 101,
+  "last_mature_signal": "2026-05-29",
+  "economic_end": "2026-06-01",
+  "window_dates": {
+    "2018_TO_MAY2026": [
+      "2018-02-01",
+      "2026-06-01"
+    ],
+    "2022_TO_MAY2026": [
+      "2022-02-01",
+      "2026-06-01"
+    ]
+  },
+  "retrospective_history_previously_explored": true,
+  "E3_model_retrained_for_economics": false,
+  "production_changed": false
+}
