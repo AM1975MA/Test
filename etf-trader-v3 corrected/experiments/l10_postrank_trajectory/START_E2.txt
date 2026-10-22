@@ -1,0 +1,1 @@
+L10.E2 fixed 0.45 efficiency21 conditional E1 veto, 101 months, source and protocol commit precede run; ML rank frozen.
