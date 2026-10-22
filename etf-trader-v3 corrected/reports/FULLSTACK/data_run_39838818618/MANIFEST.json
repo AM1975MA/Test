@@ -1,0 +1,23 @@
+{
+  "status": "EXPLORATORY_NO_PROMOTION",
+  "source_only_input_run": 39836842157,
+  "source_only_risk_artifact": "v3-fullstack-model-agreement-500",
+  "raw_input_run": 39482809691,
+  "frozen_pair_run": 39700865721,
+  "n_etfs": 149,
+  "n_baskets": 500,
+  "n_months": 114,
+  "risk_gross_unchanged": true,
+  "selection_names_unchanged": true,
+  "original_V2_daily_NAV_exact_parity": true,
+  "original_ETF_TRAINER_V2_daily_NAV_exact_parity": true,
+  "label_and_future_return_not_used_in_sizing": true,
+  "matched_fee_one_way_bps": 10,
+  "date_start": "2017-02-01",
+  "date_end": "2026-07-01",
+  "original_riskoff_confirmed_action_basket_days": 41965,
+  "majority_2of3_action_basket_days": 52715,
+  "increment_new_basket_days": 10750,
+  "no_bps_or_threshold_search": true,
+  "production_unchanged": true
+}
