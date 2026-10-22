@@ -1,0 +1,1 @@
+Test source-audited FS02 original 500-basket ETF_TRAINER_V2 risk-off ET+XGB model consensus versus majority 2/3 (ET XGB frozen V3 Pair127). No rank name/weight/macro gross changes except selective risk-off Top1 conviction. One variable predeclared.
