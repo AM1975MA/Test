@@ -1,0 +1,58 @@
+name: V3 L10.D1 durable audit data archive
+on:
+  push:
+    branches: [research-v3-l10d-analytic-signal-20261022]
+    paths: ['etf-trader-v3 corrected/experiments/l10_analytic_discriminator/START_ARCHIVE.txt']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Download successful D1 outputs and verify provenance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/l10d1_source
+          gh run download 39738471945 --repo AM1975MA/Test --name v3-l10d1-analytical-discriminator --dir /tmp/l10d1_source
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          p=Path("/tmp/l10d1_source")
+          assert sum(1 for _ in csv.DictReader(open(p/"ANALYTIC_MONTHLY.csv")))==101
+          m=json.loads((p/"MANIFEST.json").read_text())
+          assert m["expected_mature_months"]==101
+          assert m["frozen_scores_run"]==39700865721
+          assert m["raw_run"]==39482809691
+          assert m["no_model_training"] and m["no_CAGR"] and m["no_production_change"]
+          PY
+      - name: Commit unmodified artifacts to main, isolating prior results
+        env:
+          GH_TOKEN: GITHUB_TOKEN_PLACEHOLDER
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.parse import quote
+          import subprocess,base64
+          src=Path("/tmp/l10d1_source")
+          dest="etf-trader-v3 corrected/reports/L10/data_run_39738471945"
+          names=["MANIFEST.json","COVERAGE.json","ANALYTIC_MONTHLY.csv",
+              "ANALYTIC_SIGNAL_AND_TARGET_AUDIT.csv","ANALYTIC_SUMMARY.csv",
+              "ANALYTIC_YEARLY.csv","ANALYTIC_BOOTSTRAP.csv"]
+          for name in names:
+              file=src/name
+              assert file.is_file(),file
+              content=base64.b64encode(file.read_bytes()).decode("ascii")
+              path=quote(dest+"/"+name,safe="/")
+              subprocess.run(["gh","api","--method","PUT",
+                  "repos/AM1975MA/Test/contents/"+path,
+                  "-f","branch=main",
+                  "-f","message=L10.D1 archive immutable analytical diagnostic: "+name,
+                  "-f","content="+content],check=True,stdout=subprocess.DEVNULL)
+              print(name,flush=True)
+          PY
