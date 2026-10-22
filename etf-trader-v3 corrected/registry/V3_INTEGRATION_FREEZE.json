@@ -218,6 +218,49 @@
         "no_CAGR_ranking": true,
         "no_trading_promotion": true,
         "next_hypothesis": "Train-only conditional risk/reversal utility of rejecting original selected ETF versus specific replacement; new preregistered E3 needed"
+      },
+      "postrank_pairwise_E3": {
+        "status": "E3_COMPLETED_NOT_PROMOTED; FIRST_MATCHED_10BP_ECONOMIC_TEST_COMPLETED",
+        "architecture": "Freeze original CORRECTED Pairwise127 ML Top3, optional E1-selected trajectory pair exception challenger from next highest original ML rank4+, logistic mature-only confidence >=0.70",
+        "experiment_run": 39752940429,
+        "artifact_id": 12414128295,
+        "predictive_archive": 39753447149,
+        "economic_run": 39753426512,
+        "economic_artifact_id": 12413574353,
+        "economic_archive": 39753612579,
+        "original_ranker_frozen": true,
+        "all_149_ETFs": true,
+        "canonical_500x24": true,
+        "mature_dates": 101,
+        "functional_original_vs_E3_top3_winner": [
+          0.354713,
+          0.353327
+        ],
+        "functional_original_vs_E3_loss10_weight": [
+          0.084861,
+          0.084026
+        ],
+        "economic_full_common_dates": [
+          "2018-02-01",
+          "2026-06-01"
+        ],
+        "economic_long_original_vs_E3_aggregate_CAGR": [
+          0.15650410951308125,
+          0.15613229879534463
+        ],
+        "economic_recent_original_vs_E3_aggregate_CAGR": [
+          0.21434619905689933,
+          0.20982310238012247
+        ],
+        "risk_probability_miscalibration": "high confidence selected pairs predicted mean 74.96% versus 60.61% observed >=1pp relative win",
+        "outcome": "No convincing functional uplift; economic aggregate CAGR worse full and recent; do not deploy or incorporate into frozen reference",
+        "report": "etf-trader-v3 corrected/reports/L10/20261022_L10E3_PAIRWISE_POSTRANK_RESULTS_AND_CAGR.md",
+        "monthly_and_pairs": "etf-trader-v3 corrected/reports/L10/data_run_39752940429/",
+        "cost_mature_calendar": "etf-trader-v3 corrected/reports/L10/economics_run_39753426512/",
+        "last_mature_signal": "2026-05-29",
+        "cost_fee_one_way_bps": 10,
+        "reuse_2018_2026_not_virgin": true,
+        "production_V2_unchanged": true
       }
     }
   },
