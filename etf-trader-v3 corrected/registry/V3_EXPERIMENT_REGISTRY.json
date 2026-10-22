@@ -488,6 +488,55 @@
       },
       "virgin_holdout": false,
       "production_change": false
+    },
+    {
+      "layer": "L10",
+      "id": "l10-candidate-union-size-matched",
+      "status": "COMPLETED_RETRIEVAL_COMPLEMENTARITY_ONLY_NOT_PROMOTED",
+      "hypothesis": "Novel Top5 Top3 candidates add actual basket winners beyond capacity-matched corrected next-ranked candidates",
+      "parent_run": 39700865721,
+      "parent_artifact": 12392758288,
+      "experimental_branch": "research-v3-l10-candidate-union-20261022",
+      "run": 39703702242,
+      "artifact": 12394450375,
+      "archival_run": 39705218877,
+      "source": "etf-trader-v3 corrected/experiments/l10_pairwise_risk/candidate_union.py",
+      "report": "etf-trader-v3 corrected/reports/L10/20261022_CANDIDATE_UNION_DIAGNOSTIC.md",
+      "durable_data_directory": "etf-trader-v3 corrected/reports/L10/data_run_39703702242/",
+      "controls": "CORRECTED Top3 + exact same number of CORRECTED rank4+ additions",
+      "causal_change": "Top5 proposed distinct candidate membership ONLY; no portfolio weight, no refit, no risk veto",
+      "n_etfs": 149,
+      "n_baskets": 500,
+      "n_mature_months": 101,
+      "mean_added_candidates": 1.192930693069307,
+      "basket_winner_recall": {
+        "corrected_top3": 0.3547128712871288,
+        "matched_next_corrected": 0.4537821782178218,
+        "top5_union": 0.506
+      },
+      "delta_union_vs_matched": 0.05221782178217823,
+      "bootstrap_month_6_CI95_union_vs_matched": [
+        0.03271188118811881,
+        0.07144653465346533
+      ],
+      "added_candidate_loss10_rate": {
+        "top5_union": 0.10482793262650696,
+        "matched_corrected": 0.07175094139201761
+      },
+      "delta_loss10_rate": 0.03307699123448935,
+      "bootstrap_month_6_CI95_added_loss10_delta": [
+        0.021301850741682796,
+        0.04552670167565992
+      ],
+      "added_candidate_bottom3_rate": {
+        "top5_union": 0.2698872727213028,
+        "matched_corrected": 0.20242056066782468
+      },
+      "delta_mean_realized_return21": -0.00008476483541634572,
+      "interpretation": "Retrieval complementarity confirmed descriptively; extra candidates have worse severe-loss exposure. Not an investable strategy; separate past-only second-stage re-ranking needed.",
+      "research_history_reused": true,
+      "production_V2_unchanged": true,
+      "V3_reference_unchanged": true
     }
   ],
   "pending_experiments": [
@@ -538,6 +587,14 @@
       "run": 39700865721,
       "goal": "Does top selection pair mining and then severe loss tier ranking improve Top3 winner recall / regret without large weight-on-winner cost?",
       "economic_run": 39701813167
+    },
+    {
+      "layer": "L10",
+      "id": "l10-second-stage-risk-aware-reranking",
+      "status": "NOT_EXECUTED",
+      "goal": "Freeze L10C candidate pool and test exactly one chronological train-only second-stage ranking intervention with loss-aware safeguards against corrected baseline; no CAGR fitting; use genuine new vintage for independent validation.",
+      "prerequisite_run": 39703702242,
+      "no_promotion_without_independent_confirmation": true
     }
   ]
 }
