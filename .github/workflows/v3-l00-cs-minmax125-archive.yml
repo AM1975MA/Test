@@ -1,0 +1,57 @@
+name: "V3 L00 minmax125 preserve full 149 OOS results to main"
+on:
+  push:
+    branches: [research-v3-l00-daily-crosssectional-minmax-20261023]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_crosssectional_minmax/START_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Retrieve completed ranking results and verify 149 x 101 source/labels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/csminmax
+          gh run download 40000704024 -R AM1975MA/Test -n v3-l00-all125-daylocal-minmax-results -D /tmp/csminmax
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          p=Path("/tmp/csminmax")
+          m=json.loads((p/"MANIFEST.json").read_text())
+          assert m["n_months"]==101 and m["n_tickers"]==149
+          assert m["n_baskets"]==500 and m["frozen_feature_count"]==125
+          assert m["no_cross_date_scaling_or_fits"]
+          a=list(csv.DictReader(open(p/"RESULTS.csv")))
+          assert {r["variant"] for r in a}=={"CORRECTED","L00_CS_MINMAX125"}
+          assert len(list(csv.DictReader(open(p/"PAIRED_MONTHLY.csv"))))==202
+          print("DATA CONTRACT PASS")
+          PY
+      - name: Preserve original-ref frozen experiment source and numeric data in main
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git switch -c archive-l00-cs origin/main
+          git checkout origin/research-v3-l00-daily-crosssectional-minmax-20261023 -- \
+            'etf-trader-v3 corrected/experiments/l00_crosssectional_minmax/normalize.py' \
+            'etf-trader-v3 corrected/experiments/l00_crosssectional_minmax/evaluate.py' \
+            'etf-trader-v3 corrected/experiments/l00_crosssectional_minmax/aggregate.py' \
+            'etf-trader-v3 corrected/reports/L00/20261023_L00_CROSSSECTIONAL_DAILY_MINMAX_PREREG.md' \
+            '.github/workflows/v3-l00-cs-minmax125.yml'
+          p='etf-trader-v3 corrected/reports/L00/data_run_40000704024'
+          mkdir -p "$p"
+          cp /tmp/csminmax/* "$p/"
+          git add 'etf-trader-v3 corrected/experiments/l00_crosssectional_minmax' "$p" \
+            'etf-trader-v3 corrected/reports/L00/20261023_L00_CROSSSECTIONAL_DAILY_MINMAX_PREREG.md' \
+            '.github/workflows/v3-l00-cs-minmax125.yml'
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'V3 source exact 149 asof date cross-sectional all125 feature minmax ranker annual retrain versus frozen original: archives and statistics'
+          git push origin HEAD:main
