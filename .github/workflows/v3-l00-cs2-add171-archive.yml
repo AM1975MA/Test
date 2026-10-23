@@ -45,14 +45,14 @@ jobs:
             'etf-trader-v3 corrected/experiments/l00_cs_add171/aggregate.py' \
             'etf-trader-v3 corrected/reports/L00/20261023_L00_CS2_171_FEATURE_ADDITION_ADAPTIVE_PREREG.md' \
             '.github/workflows/v3-l00-cs2-add171.yml' \
-            '.github/workflows/v3-l00-cs2-aggregate-only.yml' \
             '.github/workflows/v3-l00-cs2-aggregate-only.yml'
           p='etf-trader-v3 corrected/reports/L00/data_run_40003064949'
           mkdir -p "$p"
           cp /tmp/csadd171/* "$p/"
           git add 'etf-trader-v3 corrected/experiments/l00_cs_add171' "$p" \
             'etf-trader-v3 corrected/reports/L00/20261023_L00_CS2_171_FEATURE_ADDITION_ADAPTIVE_PREREG.md' \
-            '.github/workflows/v3-l00-cs2-add171.yml'
+            '.github/workflows/v3-l00-cs2-add171.yml' \
+            '.github/workflows/v3-l00-cs2-aggregate-only.yml'
           git -c user.name='github-actions[bot]' \
               -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
               commit -m 'V3 source exact 149 asof date cross-sectional all125 feature minmax ranker annual retrain versus frozen original: archives and statistics'
