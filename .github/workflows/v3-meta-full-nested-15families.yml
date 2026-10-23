@@ -1,0 +1,50 @@
+name: V3 mature-only nested all-family meta learning comparison
+on:
+  push:
+    branches: [research-v3-meta-tree-ensemble-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/NESTED_15_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3'
+      - name: Rehydrate old certified tree selector and original 36 tree monthly OOS metrics
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_algo_base runs/v3_algo_incumbent runs/v3_algo_new
+          gh run download 40031144599 -R AM1975MA/Test -n v3-meta-tree-results -D runs/v3_algo_base
+          gh run download 40032282233 -R AM1975MA/Test -n v3-nested-meta-tree-validation -D runs/v3_algo_incumbent
+          for family in DT RF ET HGB XGB LGB CAT XGB_RET LGB_RET; do
+            mkdir -p "runs/v3_algo_new/$family"
+            gh run download 40037256111 -R AM1975MA/Test \
+              -n "v3-meta-tree-algorithm-$family" -D "runs/v3_algo_new/$family"
+          done
+          for family in DT_PAYOFF DT_LOSS RF_PAYOFF XGB_PAYOFF CAT_PAYOFF LGB_PAYOFF; do
+            mkdir -p "runs/v3_algo_new/$family"
+            gh run download 40037627099 -R AM1975MA/Test \
+              -n "v3-meta-payoff-tree-$family" -D "runs/v3_algo_new/$family"
+          done
+      - name: Exact baseline parity and all family as-of 60-day mature selection
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/nested_full_15family_selector.py' \
+            --base runs/v3_algo_base --incumbent runs/v3_algo_incumbent \
+            --new runs/v3_algo_new --out runs/v3_algo_full_nested
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-meta-all-family-nested-selector
+          path: runs/v3_algo_full_nested/
+          retention-days: 90
