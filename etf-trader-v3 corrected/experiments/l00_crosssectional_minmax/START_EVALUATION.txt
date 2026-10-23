@@ -1,0 +1,1 @@
+Run preregistered 149 ETF 125-feature daily-asof cross-sectional minmax relative ranking refit, original Pairwise127 3 seeds/360 trees maturity-safe label, 500 canonical baskets matched primary metric, unchanged full V2 risk production.
