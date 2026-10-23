@@ -65,7 +65,7 @@ jobs:
       - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy tabulate
       - uses: actions/download-artifact@v4
         with:
-          pattern: l00-cs2-s*
+          pattern: l00-cs-s*
           merge-multiple: true
           path: runs/v3_l00_cs2_shards/
       - name: Verify 101 matched OOS months and rank skill 500 baskets
