@@ -20,7 +20,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p /tmp/csadd171
-          gh run download 40002047219 -R AM1975MA/Test -n v3-l00-cs2-original125-plus46-results -D /tmp/csadd171
+          gh run download 40003064949 -R AM1975MA/Test -n v3-l00-cs2-original125-plus46-results -D /tmp/csadd171
           python - <<'PY'
           import csv,json
           from pathlib import Path
@@ -44,8 +44,10 @@ jobs:
             'etf-trader-v3 corrected/experiments/l00_cs_add171/evaluate.py' \
             'etf-trader-v3 corrected/experiments/l00_cs_add171/aggregate.py' \
             'etf-trader-v3 corrected/reports/L00/20261023_L00_CS2_171_FEATURE_ADDITION_ADAPTIVE_PREREG.md' \
-            '.github/workflows/v3-l00-cs2-add171.yml'
-          p='etf-trader-v3 corrected/reports/L00/data_run_40002047219'
+            '.github/workflows/v3-l00-cs2-add171.yml' \
+            '.github/workflows/v3-l00-cs2-aggregate-only.yml' \
+            '.github/workflows/v3-l00-cs2-aggregate-only.yml'
+          p='etf-trader-v3 corrected/reports/L00/data_run_40003064949'
           mkdir -p "$p"
           cp /tmp/csadd171/* "$p/"
           git add 'etf-trader-v3 corrected/experiments/l00_cs_add171' "$p" \
