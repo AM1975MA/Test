@@ -67,6 +67,8 @@ def causal_fusion(scores, membership):
         d=pd.Timestamp(dt)
         g=frame.reset_index(level=0,drop=True)
         g=g.dropna(subset=["fwd_ret_21","CORRECTED"]).sort_index()
+        if len(g) < 10:  # Latest as-of may have no fully matured 21D outcome.
+            continue
         lookup={t:i for i,t in enumerate(g.index)}
         mat=g[["CORRECTED","REG_REL125","REG_REL101","REG_ABS125"]].to_numpy(float)
         assert np.isfinite(mat).all()
