@@ -32,3 +32,16 @@ La sorgente OHLCV congelata è in Actions **39482809691**; il benchmark OOS orig
 4. Decisione esplicita di promozione soltanto dopo audit e controprove.
 
 **Checkpoint di ricerca immutabile:** i risultati non vanno sovrascritti da esperimenti successivi; usare nuove cartelle, commit e run ID.
+
+
+## Aggiornamento: stress test del 24 ottobre 2026
+
+È stato completato e archiviato un secondo lotto di 9 esperimenti senza ritarare il ranker CORRECTED125, il meta-albero né le soglie di rischio. [Rapporto di robustezza](experiments/l00_rank_reg_fusion/ROBUSTNESS_COST_RISK_20261024.md); [risultati integrali e audit SHA256](experiments/l00_rank_reg_fusion/results/robustness_20261024/).
+
+- Costi next-open da 0 a 100 bps: il vantaggio storico tree vs ranker persiste anche a fee elevate, ma la redditività assoluta collassa.
+- Tree come solo trigger e secondo candidato originale: prestazione del 21D forward simile, ma backtest 2022–26 Top1 a 10 bps 24,27% contro 24,62% dell'albero completo; conservarli entrambi come alternative di ricerca.
+- Risk overlay originale, soglie non cambiate: Top2 2022–26 ranker 16,23% vs ranker+tree 17,62% CAGR con risk ON (contro 19,82% vs 21,45% risk OFF). Nel periodo 2018–26 risk ON migliora molto il MaxDD aggregato, ma il vantaggio tree con risk ON non è statisticamente confermato.
+- 2.209 modifiche fra 50.500 scelte dei 500 panieri si riducono a 786 diversi eventi coppia ETF/data; l'analisi non deve contarle come osservazioni indipendenti.
+- Vantaggio di extra rendimento 21D +0,1432 punti percentuali intero periodo, +0,0404 pp con differenze ETF limitate a ±5%, +0,0212 pp escludendo insieme gli anni 2022, 2025, 2026. Rischio di concentrazione di regime e di eventi estremi tuttora presente.
+
+**Stato invariato: ricerca promettente, NON modello autorizzato per produzione.** I moduli `src`, il full-stack preesistente e i layer operativi non hanno subito modifiche. Il prossimo test prioritario richiede informazioni veramente successive o indipendenti dal calendario già sfruttato.
