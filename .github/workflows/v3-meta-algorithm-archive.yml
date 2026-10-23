@@ -20,7 +20,7 @@ jobs:
       - name: Download all verified successful frozen-signal OOS research artifacts
         env:
           GH_TOKEN: ${{ github.token }}
-          FINAL_NESTED_RUN: "TO_BE_CONFIRMED"
+          FINAL_NESTED_RUN: "40038509415"
         run: |
           python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/archive_tree_algorithms_20261024.py'
       - name: Check all 26 result bundles into V3 without touching trading modules
