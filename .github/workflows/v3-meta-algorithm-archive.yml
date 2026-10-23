@@ -1,0 +1,38 @@
+name: V3 store all meta-tree algorithm results and checksums under corrected project
+on:
+  push:
+    branches: [research-v3-meta-tree-ensemble-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/ARCHIVE_ALGO_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          ref: research-v3-meta-tree-ensemble-20261024
+      - name: Download all verified successful frozen-signal OOS research artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FINAL_NESTED_RUN: "TO_BE_CONFIRMED"
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/archive_tree_algorithms_20261024.py'
+      - name: Check all 26 result bundles into V3 without touching trading modules
+        run: |
+          git config user.name 'v3-research-archive[bot]'
+          git config user.email 'v3-research-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024'
+          git diff --cached --name-status
+          git diff --cached --quiet && { echo 'Already archived'; exit 0; }
+          git commit -m 'V3: preserve 26 tree family bakeoff and nested validation bundles with SHA256'
+          git push origin HEAD:research-v3-meta-tree-ensemble-20261024
+      - name: Verify critical checkpoint archive
+        run: |
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/ARCHIVE_MANIFEST.json'
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/tables/v3-meta-definitive-23-family-nested/SELECTOR_SUMMARY.csv'
