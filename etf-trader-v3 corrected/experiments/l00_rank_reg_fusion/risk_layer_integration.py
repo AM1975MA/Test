@@ -54,7 +54,7 @@ def main():
     assert len(original)==50500 and original.signal_date.nunique()==101
     assert original.groupby("signal_date").basket.nunique().eq(500).all()
     assert original.top1_changed.sum()==2209
-    predictions=pd.read_csv(a.score,parse_dates=["signal_date"])
+    predictions=pd.concat([pd.read_csv(x,parse_dates=["signal_date"]) for x in sorted(Path(a.score).glob("regression/s*/OOS_SCORES.csv"))],ignore_index=True) if Path(a.score).is_dir() else pd.read_csv(a.score,parse_dates=["signal_date"])
     predictions=predictions[predictions.variant.eq("CORRECTED")]
     assert predictions.signal_date.nunique()==102 and predictions.ticker.nunique()==149
     assert not predictions.duplicated(["signal_date","ticker"]).any()
