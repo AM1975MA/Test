@@ -88,6 +88,9 @@ def training_by_month(months):
             base=int(idx[orig[0]])
             for alt in orig[1:3]:
                 i=int(idx[alt]);key=(base,i)
+                if key in seen:
+                    np.testing.assert_allclose(seen[key][0],event_features(v,idx,orig,alt),rtol=0,atol=0,
+                       err_msg="Event feature must be IDENTICAL across overlapping baskets")
                 if key not in seen:
                     delta=float(v["fwd"][i]-v["fwd"][base])
                     seen[key]=(event_features(v,idx,orig,alt),int(delta>0),np.clip(delta,-.20,.20))
@@ -99,11 +102,11 @@ def training_by_month(months):
     return data
 
 def inference_month(v,baskets):
-    # Ensure identical feature specification to original meta-tree, including
-    # the 24-name basket local ranker dispersion.
+    # Pair features are deterministic from ordered ETF identifiers and same-date
+    # universe-wide first-stage model scores, not the surrounding basket.
     features=[]; eval_choices=[]; bidx=[]
     for idx,orig in baskets:
-        features.extend([pair_features(v,idx,orig,a) for a in orig[1:3]])
+        features.extend([event_features(v,idx,orig,a) for a in orig[1:3]])
         bidx.append((idx,orig))
         yy=v["fwd"][idx]
         base=metric_for_order(orig,yy)[:6]
