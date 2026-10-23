@@ -1,0 +1,1 @@
+Pin all 9 verified additional experiment artifacts inside V3 before merging only research files to main, no source strategy changes.

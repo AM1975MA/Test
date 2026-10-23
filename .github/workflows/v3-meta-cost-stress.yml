@@ -1,0 +1,54 @@
+name: V3 meta-tree economic cost and regime robustness
+on:
+  push:
+    branches: [research-v3-meta-robustness-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/COST_STRESS_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fee_stress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        fee_bps: [0, 10, 25, 50, 100]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Frozen replay numerical environment
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scikit-learn==1.9.1' 'xgboost==3.0.5' scipy matplotlib tabulate
+      - name: Rehydrate frozen 149-ETF OHLCV and unchanged 101-month OOS predictions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v3_rrf runs/v3_nested_input
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+          for shard in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$shard -D runs/v3_rrf
+          done
+          gh run download 40032282233 -R AM1975MA/Test -n v3-nested-meta-tree-validation -D runs/v3_nested_input
+      - name: Prove monthly 500-basket decision parity and replay fee variants
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/stress_economic_cost.py' \
+            --raw etf_trader_raw --shards runs/v3_rrf \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --nested runs/v3_nested_input \
+            --fee-bps '${{ matrix.fee_bps }}' \
+            --out 'runs/v3_cost_stress_${{ matrix.fee_bps }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-meta-cost-${{ matrix.fee_bps }}bps
+          path: runs/v3_cost_stress_${{ matrix.fee_bps }}/
+          retention-days: 90

@@ -1,0 +1,53 @@
+name: V3 meta-tree unchanged source-only risk overlay ablation
+on:
+  push:
+    branches: [research-v3-meta-robustness-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/RISK_INTEGRATION_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  risk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reproduce source-only environment
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy matplotlib
+      - name: Retrieve canonical raw prices, immutable first-stage model scores, meta decisions and parity reference
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v3_frozen runs/v3_meta_decision runs/v3_meta_economics
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+          for shard in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$shard -D runs/v3_frozen
+          done
+          gh run download 40032693599 -R AM1975MA/Test -n v3-nested-meta-tree-nextopen-economics -D runs/v3_meta_economics
+          test -s runs/v3_meta_economics/ACTUAL_DECISION_LOG.csv
+          test -s runs/v3_meta_economics/DAILY_ENSEMBLE_NAV.csv
+      - name: Reconstruct and certify risk-off parity before original risk overlay
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/risk_layer_integration.py' \
+            --raw etf_trader_raw \
+            --membership regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --score runs/v3_frozen \
+            --decisions runs/v3_meta_economics/ACTUAL_DECISION_LOG.csv \
+            --prior-economic runs/v3_meta_economics/DAILY_ENSEMBLE_NAV.csv \
+            --out runs/v3_meta_risk_integration
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-meta-risk-integration
+          path: runs/v3_meta_risk_integration/
+          retention-days: 90
