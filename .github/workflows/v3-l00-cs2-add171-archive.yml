@@ -1,0 +1,57 @@
+name: "V3 L00 CS2 add171 preserve full 149 OOS results to main"
+on:
+  push:
+    branches: [research-v3-l00-relative-additive171-20261023]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_cs_add171/START_ARCHIVE.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Retrieve completed ranking results and verify 149 x 101 source/labels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/csadd171
+          gh run download 40002047219 -R AM1975MA/Test -n v3-l00-cs2-original125-plus46-results -D /tmp/csadd171
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          p=Path("/tmp/csadd171")
+          m=json.loads((p/"MANIFEST.json").read_text())
+          assert m["n_months"]==101 and m["n_tickers"]==149
+          assert m["n_baskets"]==500 and m["frozen_feature_count"]==125 and m["model_features"]==171 and m["additional_feature_channels"]==46
+          assert m["no_cross_date_scaling_or_fits"]
+          a=list(csv.DictReader(open(p/"RESULTS.csv")))
+          assert {r["variant"] for r in a}=={"CORRECTED","L00_CS_ADD171"}
+          assert len(list(csv.DictReader(open(p/"PAIRED_MONTHLY.csv"))))==202
+          print("DATA CONTRACT PASS")
+          PY
+      - name: Preserve original-ref frozen experiment source and numeric data in main
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git switch -c archive-l00-cs2 origin/main
+          git checkout origin/research-v3-l00-relative-additive171-20261023 -- \
+            'etf-trader-v3 corrected/experiments/l00_cs_add171/normalize.py' \
+            'etf-trader-v3 corrected/experiments/l00_cs_add171/evaluate.py' \
+            'etf-trader-v3 corrected/experiments/l00_cs_add171/aggregate.py' \
+            'etf-trader-v3 corrected/reports/L00/20261023_L00_CS2_171_FEATURE_ADDITION_ADAPTIVE_PREREG.md' \
+            '.github/workflows/v3-l00-cs2-add171.yml'
+          p='etf-trader-v3 corrected/reports/L00/data_run_40002047219'
+          mkdir -p "$p"
+          cp /tmp/csadd171/* "$p/"
+          git add 'etf-trader-v3 corrected/experiments/l00_cs_add171' "$p" \
+            'etf-trader-v3 corrected/reports/L00/20261023_L00_CS2_171_FEATURE_ADDITION_ADAPTIVE_PREREG.md' \
+            '.github/workflows/v3-l00-cs2-add171.yml'
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'V3 source exact 149 asof date cross-sectional all125 feature minmax ranker annual retrain versus frozen original: archives and statistics'
+          git push origin HEAD:main
