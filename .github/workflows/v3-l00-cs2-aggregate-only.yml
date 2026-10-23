@@ -1,0 +1,39 @@
+name: "V3 L00 CS2 aggregate saved 171-feature annual fits only"
+on:
+  push:
+    branches: [research-v3-l00-relative-additive171-20261023]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_cs_add171/START_AGGREGATE_SAVED_SHARDS.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy tabulate
+      - name: Retrieve original immutable successful 3 chronological 171-feature fit shards, NO RETRAIN
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_l00_cs2_shards
+          for sh in s1 s2 s3; do
+            gh run download 40002047219 -R AM1975MA/Test -n "l00-cs-$sh" -D runs/v3_l00_cs2_shards
+          done
+          test -s runs/v3_l00_cs2_shards/s1/PAIRED_MONTHLY.csv
+          test -s runs/v3_l00_cs2_shards/s2/PAIRED_MONTHLY.csv
+          test -s runs/v3_l00_cs2_shards/s3/PAIRED_MONTHLY.csv
+      - name: Full 101-month 500-overlapping-basket bootstrap and invariant audits
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_cs_add171/aggregate.py' \
+            --root runs/v3_l00_cs2_shards --out runs/v3_l00_cs2_complete
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l00-cs2-original125-plus46-results
+          path: runs/v3_l00_cs2_complete/
+          retention-days: 90
