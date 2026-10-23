@@ -84,7 +84,7 @@ def main():
             tables[arm].append(dict(entry_date=entry_mapping[date],
                 basket=int(row.basket),top1=chosen[0],top2=chosen[1],
                 w1=w1,w2=1.-w1))
-    reference=pd.read_csv(a.prior-economic,parse_dates=["date"])
+    reference=pd.read_csv(a.prior_economic,parse_dates=["date"])
     results=[]; curves=[];annual=[];contrasts=[]
     for period,(start,end) in WINDOWS.items():
         paths={}
