@@ -1,0 +1,1301 @@
+{
+  "checkpoint_date": "2026-10-24",
+  "project": "etf-trader-v3 corrected",
+  "compare_type": "same frozen 149 ETFs,500 overlapping 24-member baskets",
+  "n_matured_test_months": 101,
+  "first_stage_model_run": 40016809498,
+  "first_stage_model_modified": false,
+  "incumbent_tree_run": 40031144599,
+  "incumbent_nested_selection_run": 40032282233,
+  "production_modules_unchanged": true,
+  "historical_reuse": true,
+  "proof_of_independent_holdout": false,
+  "archive_count": 26,
+  "verified_archives": [
+    {
+      "workflow_run": 40037256111,
+      "artifact": "v3-meta-tree-algorithm-DT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037256111",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-tree-algorithm-DT.zip",
+      "zip_size_bytes": 18515,
+      "zip_sha256": "ca7e65b5e8472373bf169c36c98d942a08a5503453a2784095698223ae0973c1",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 26370,
+          "sha256": "15913814b2a6fe1d26594ae6bbd398b46a90b351e9b7b30f737a7429d36dbdc9"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 18036,
+          "sha256": "b75c3d07792d2faa1a9b77451784b0e9d6bca247c79198e9f66048e021120b8c"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2374,
+          "sha256": "2eaafea5251f0a3a1bdd6b958dfeeda28b271deb7980ace8a0aa2b9133be71df"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 825,
+          "sha256": "300e6d75e9daf56ddfdef5823dd1581dbb5a2e0cbf4074c50ef4f70bc859ab08"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2448,
+          "sha256": "5ed7918aaf2bb541a48d84f3744c95f8026dcec2d030ffb22ce271b0ea0bc4d9"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 66595,
+          "sha256": "e1fc2f235568ebb649387f544cca86f1b882b0811e1b8c5768918781062e724e"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1331,
+          "sha256": "01237211713081f1b9963e5b617b6d9ad24b34aa25ba5acecbf9a87d5a5ff408"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6729,
+          "sha256": "57f31dfc13ce0dc9230724f9c0721e63e924fc14ec793b90dce764d394ce85c7"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037256111,
+      "artifact": "v3-meta-tree-algorithm-RF",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037256111",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-tree-algorithm-RF.zip",
+      "zip_size_bytes": 26959,
+      "zip_sha256": "8012eb1f775d50cd94a6183859728eef951ffab60f4761888a2e44c5c6a9cddb",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 27883,
+          "sha256": "024d78a176ff7b337cd4b381be07c5f110b0c2f0f99b291349892546a0ff9d68"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 18221,
+          "sha256": "1cf67b8d27b9809d6c4fbb0379c980a3c78b43982b578f4907fdf8864dbe452b"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2374,
+          "sha256": "315913949b522965605ec7c97e4e765627b2905fc1b85c5546eeac9df908e340"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 862,
+          "sha256": "83e7cced90314a2447dc8b5eb1286a2911bf8d8421f76ad402d3600598496ea1"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2459,
+          "sha256": "ce68972bc18e1d2b456f787daca40b112e37421b919d55f1add561a919157836"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 66587,
+          "sha256": "1a53841262392dde68d14c6d4939a5028bcb287518bf82cb4f600592f40a6403"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1344,
+          "sha256": "11918e40f82468465dd0576e8d2c8f79f9c2d7a73dfa0005c9ec73455116a3d7"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6662,
+          "sha256": "704df2e9ba45081e4c12fd60686d991d3d16175d539b5fe89beb1bee20088916"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037256111,
+      "artifact": "v3-meta-tree-algorithm-ET",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037256111",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-tree-algorithm-ET.zip",
+      "zip_size_bytes": 25333,
+      "zip_sha256": "81f764c47d2e1ec50184874d00a2df457d9655a3ba292c7f863c7f8762a10855",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 26878,
+          "sha256": "31ec4ace9a09752a1f6d78f1869d649ca1d3d08a3b50c565497bbf6d3e9275db"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 18028,
+          "sha256": "4bb8ab88e8c3e384c749deb4162ef655f1c71f6b5e11453e4c7afc624aefa6e9"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2374,
+          "sha256": "52b8f699704b19cefaa903f1d617f7aeee97f61833d97437c6b350b526867ca3"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 862,
+          "sha256": "b5d0e858ac1b1438115580344f031d914eeabb979660ee1929a28ab1817f11fd"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2466,
+          "sha256": "1d8ca18fce6ec87d63f9f1fffde9a49ff9494a08506faaeb35bb364e8b8f98eb"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 66563,
+          "sha256": "be32923c8fc60b776c83a0a57d5c61a932bd3f713a64e47ccf17cc482fdba230"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1341,
+          "sha256": "74e75eb2024ca722a3b48ecc89465156d4635ba70263ce922cfbe2f24f442849"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6627,
+          "sha256": "aedcf21831f348d634919fafc7cc42b081fc492e7c52b91b6aa8792f1a072e48"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037256111,
+      "artifact": "v3-meta-tree-algorithm-HGB",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037256111",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-tree-algorithm-HGB.zip",
+      "zip_size_bytes": 31622,
+      "zip_sha256": "e7fc5139ce6174500a4fd0417105050853f67fc10e20c3beecabaae5c2bf4edc",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 29784,
+          "sha256": "112135bd5eb234833bea87ff0220890e4df15ec513a3081820580c12150bb293"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 19042,
+          "sha256": "c860bfbdd7e6d8eda880570c30df9520c69772b1330e23affe97c5abbb6905dc"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2399,
+          "sha256": "e1ac1364dde68b2e9830c565315637065ef5c7ae923c3f6fade21d624ca5d39a"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 929,
+          "sha256": "79a6ad889dac313860077aef53785e2a452a1762a154219bc8d423e8c3d82154"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2475,
+          "sha256": "75a36e51e66aac9af9c14a65ed96f8d74ee80ebebdcbfc7322aaebc22968c004"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 67056,
+          "sha256": "a753d206e47983187ac24be19555e9c6995a84074fd1e267797c5e37f6cbbe14"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1352,
+          "sha256": "93ffe4b5220355726dd54aa4474f82ac018527815c5e0b85e4c2236a467bcdbb"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6675,
+          "sha256": "4e53bfbf9983275758e04d97d33a31dad8955cc689e171ebb79c3f3f87bde432"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037256111,
+      "artifact": "v3-meta-tree-algorithm-XGB",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037256111",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-tree-algorithm-XGB.zip",
+      "zip_size_bytes": 32288,
+      "zip_sha256": "c6f3efd83200ad57f37e732c9d0d75ec780f30bad378e5517824f1d06c697114",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 30027,
+          "sha256": "7f635957786b11290adcd744b993f308dee1930b9a0adf58c1fd4a15540b39ce"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 19053,
+          "sha256": "13954c14bd955c5c0e45ff65fa57f984ae81a5e128d4b0092ec19516a1a0fe54"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2399,
+          "sha256": "d267a49cc56afef3759de581af53684a6f04ff599e8539b02592c29fc483a798"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 967,
+          "sha256": "86e52ea39adf5e8375dea66b58cb45341ebb5c43344647b8f3dabdfdc28dcabe"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2489,
+          "sha256": "79be08c863676d7094249ed7b160ec24b7d800b2942125eff7677548cc935c16"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 67079,
+          "sha256": "9242918655c568e5671c54cc0b6898b55ceaf670d43e7f27e83f008f914fa7b1"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1358,
+          "sha256": "1286e475c4c58624aaa1df46d3a3421c43c6401059092bf01180c73a96cf102c"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6803,
+          "sha256": "1dcb7be32271eea1525f8b9bb701c519e16e303086e70cf0142dd5983345f41f"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037256111,
+      "artifact": "v3-meta-tree-algorithm-LGB",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037256111",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-tree-algorithm-LGB.zip",
+      "zip_size_bytes": 32071,
+      "zip_sha256": "944d7f87db512adce471ed13643cdc3ad30da5b2ef2f7d9cb516c3eb99e482f8",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 29854,
+          "sha256": "d68edb1ff67f26e58854faf499b86651daa5e940509ebe72b635679c5f54df8f"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 19054,
+          "sha256": "3639494873bcb1b158d01b361e3429a9a8870030df57dff53bb6007a65288d0f"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2399,
+          "sha256": "f7a2c1dffa69ca739d322b4d5b45de23d0f2556c618dbe1e94004287cde97414"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1009,
+          "sha256": "ea31207e39a172a47f991c1d9ecd27e8baf7b3e96e70c22f96f7b18a79e0d236"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2480,
+          "sha256": "99c6963064e8decdeef51449f448b486281325275333626e423b866702cb192d"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 67081,
+          "sha256": "44c0370de69807b68324ae1027aa84b10f09653c0faac5979b219b41501c7cce"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1359,
+          "sha256": "0ec3020fa2903c1a702667a6a875a72e49ec4f54c92b5c076f3d1a64f1335bb0"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6794,
+          "sha256": "e7eb5cab53f0e86cf792911b4f220ea2ff8def5fb1b1d79d8870c2aebc3ee1dc"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037256111,
+      "artifact": "v3-meta-tree-algorithm-CAT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037256111",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-tree-algorithm-CAT.zip",
+      "zip_size_bytes": 27151,
+      "zip_sha256": "467e9f33b5575a38c31aadd9dc3b5c458aa7f02fa8e31e7e8ffd654b5f9dd380",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 28312,
+          "sha256": "b68dcf4df732003f211c30f0e2b258a54df3aef0018e12cbc3c56c7b6c7c6434"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 18678,
+          "sha256": "38e7eeea74710f3984e4313791ce6bbbd2b319a46ca66d490ae8bdf4c6721aa1"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2399,
+          "sha256": "cf16b7f56575e6e285199dd8f9c500f0bf9364beb43e98bd26080cdea9f46e3f"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 977,
+          "sha256": "3f7c278256692c94dababbc7a43ce75fda1a016d37a84d749cb9bc34f4b37f3c"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2484,
+          "sha256": "31c07d4071ff845154ae8328097d8ac3bfecfd6d3c91f07739f571d0b3e7de1f"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 67118,
+          "sha256": "69413a37660a772201a647d5fadf60c1a2b5db7999dd24cd8a321d2a3fd932ec"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1349,
+          "sha256": "14794fc38349701394dbfe8376af652fb8717c370792b43715126bb45e5c886f"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6777,
+          "sha256": "acdddbefa72dc63344fdaf8ed652bd97454e28578cd00632d3acb239ab8f7e41"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037256111,
+      "artifact": "v3-meta-tree-algorithm-XGB_RET",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037256111",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-tree-algorithm-XGB_RET.zip",
+      "zip_size_bytes": 30070,
+      "zip_sha256": "d53a2347bd301ca693056b7fba1ea29af5ffc468c06d07c0bd114653133ff30a",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 26941,
+          "sha256": "5f12b81ff5516f7fd8802c63cd769ad67d385a9a08ca89458c038bd46139480d"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 17201,
+          "sha256": "190e930c8b3939a5d9b112dde38c91f711fce8a62217f505f370969392bdb190"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2499,
+          "sha256": "b4d96bbffd1e3c8438887212161873651b9b4c9b8729e29ce270c79c0b028989"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 971,
+          "sha256": "56ee1f977bc7e476277627c93412274549f0f090ba2800984582f6b0fdf2fa8e"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2074,
+          "sha256": "36b77b2913232a41a5d69b3b1be9a4b70654b48548e409ed87d2805a01ed1260"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 57381,
+          "sha256": "487e23e6d3b9767c515e6a89d9bed3d2d565f7267eb7f4ff8783df84b30b867b"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1173,
+          "sha256": "43f31d748c042117f00ad7e5dc5e8bf2fdb67fbe6ea5b24b39fdc0bf7c32087f"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 5791,
+          "sha256": "38803bce04a16365fc3b7e9047ab37fd397ba171221db11cf7df9df0d9350b2b"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037256111,
+      "artifact": "v3-meta-tree-algorithm-LGB_RET",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037256111",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-tree-algorithm-LGB_RET.zip",
+      "zip_size_bytes": 30075,
+      "zip_sha256": "7c46345490bb2953234235aedffd07a4f7c1fdd43cedf8efde543af639f2cfc6",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 26933,
+          "sha256": "8b86d0c744f07779643acadd3edb4adea51c92b67d4b9ec98cc835f8462838e9"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 17208,
+          "sha256": "bdb72b8f8eba369e4a10d375d7289846cdb648af83f9b2bea4396f1172be4e37"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2499,
+          "sha256": "61f8542c4dc66cf742f33749ea48a49cadfa509a3b510f434389baac62c28cba"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1013,
+          "sha256": "4716371c542bcbaba37d9336afae20ba282c8fb3c2de6427d41a5b61f8fa429d"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2070,
+          "sha256": "3ce625dd0975a7701d53df3758420a7cce4c29efacc954164969f30f16f12b4e"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 57345,
+          "sha256": "9927403a635957ea40b634e6497719916d2f3aaa68f40692abed01e35002047c"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1177,
+          "sha256": "f07e23345053c5c8a7092560530ad75804c56d350acffb0d892353f0d79d19e6"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 5803,
+          "sha256": "cce9cc363a17fb19f3cf35da39f71ed87bf5f2391ddf8c44c4627802c1f40cba"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037463931,
+      "artifact": "v3-meta-boosted-algorithms-nested-selector",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037463931",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-boosted-algorithms-nested-selector.zip",
+      "zip_size_bytes": 42976,
+      "zip_sha256": "aef315f9771e2efd03dd8865facaf6134435ec024d7d067370a86e0dab318be3",
+      "contents": [
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 482,
+          "sha256": "35516a3193c8f160cd5c100b47d6d43c49d6ac0fa732f7f262a42a95905fc018"
+        },
+        {
+          "file": "SELECTOR_CHOICE_AUDIT.csv",
+          "size_bytes": 102734,
+          "sha256": "0fb0cca909cc2e26771a597c3f041b78b7f3164f7d790ddf8ce318b510c72635"
+        },
+        {
+          "file": "SELECTOR_MONTHLY.csv",
+          "size_bytes": 151152,
+          "sha256": "1f8418e7276dd7d5705db7bbdc3172f6347f3ebdcd44e5879da73c0808cdde23"
+        },
+        {
+          "file": "SELECTOR_PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 15844,
+          "sha256": "e4fdb94fd4a52b3f2c15f5f2eaa9fbf21881a7ab9f39f78c22782f82a942dfb1"
+        },
+        {
+          "file": "SELECTOR_SUMMARY.csv",
+          "size_bytes": 4254,
+          "sha256": "87ddb7052f36747be415f122298a0be77c4d7f7a972d20bcd7e1dc71abeb4d22"
+        },
+        {
+          "file": "SELECTOR_YEARLY.csv",
+          "size_bytes": 13754,
+          "sha256": "c042395ef24fb12285aebe7b92ba0c646fa805a72025e71f875d3e5dafc4c647"
+        },
+        {
+          "file": "SINGLE_MODEL_SKILL.csv",
+          "size_bytes": 11174,
+          "sha256": "4bb28dc69d9a1f042c89b67e07e91ae64de84f6347de857e7714032933aea9b6"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037653615,
+      "artifact": "v3-meta-payoff-tree-DT_PAYOFF",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037653615",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-payoff-tree-DT_PAYOFF.zip",
+      "zip_size_bytes": 18864,
+      "zip_sha256": "b77cf1f6d43e93239c7ed02e7d18e6bb9a47ad481d0de66618faf68b8173919e",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 30050,
+          "sha256": "381647b01e5f8a84ecc721de03f7cdb078a9814e6e623bc1b5ca2e8354748c94"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 21535,
+          "sha256": "801a7bfed5279d9fb08e7aba77504b39f5e359f3d84311bf59ad231101803304"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2548,
+          "sha256": "77123f316a6c7156b45fdb0ba1be964ebab148ca9480b180de545666565b9683"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 952,
+          "sha256": "f8ec525bbf6c8586c77aa2c7f5c54dbc78c816eba252d1b42137a1cd4f185c3e"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2627,
+          "sha256": "89248257d693229d7f8b18152f8bfdb41e594eac19652cc055e95598cf877f80"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 70108,
+          "sha256": "7afe3597ec729d79e2da524c39b181e98dace3b7626e931d1d1f7301165203b8"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1384,
+          "sha256": "7b7f0f679c4d1da20c1441ddfe50d17b8c31367ad76c4f71c26df2dded0f59c2"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7085,
+          "sha256": "107959d77c6deff0df97724e99a8720d4c445a7f237beb7db575daa14f938d6f"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037653615,
+      "artifact": "v3-meta-payoff-tree-DT_LOSS",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037653615",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-payoff-tree-DT_LOSS.zip",
+      "zip_size_bytes": 16041,
+      "zip_sha256": "7b1c7fead21856685c0560b07b886a9a98ca7f0b235ba5db79bca27478844673",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 27862,
+          "sha256": "5d9754b43c1cbe70f069226b607e88648d50b6831d2c580dbe22de1b5dd93bff"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 20329,
+          "sha256": "682dd5fdd87e596c7ac9e88c0ec7dc1dccde3eeb33a82fe9f39f87cd30f5b304"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2497,
+          "sha256": "510ec8da518a5f625445d738804bbe9da992bd11cecfebbab8bfa5d394afc3e7"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 950,
+          "sha256": "4e2389873ff6c6214403f46b5036442c5634008456add1f9f9d1192fb94f352d"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2590,
+          "sha256": "139221a6f9a335c4d14946760dd63957793fbecd7e8503412474d2741290eed0"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 69085,
+          "sha256": "43a645ca73a7ccc42f4c39d4429a82c087c6a260be1fff422a1e6a2273c9898e"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1365,
+          "sha256": "612962bdae1385be67cebe4fa578e4b05e69beb6484f3ae57c4c78a092648a46"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6868,
+          "sha256": "6e209f8b0be2391a5a71993b4a6a348cb4eff3e034d087c602d5f49ef3acd7b8"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037653615,
+      "artifact": "v3-meta-payoff-tree-RF_PAYOFF",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037653615",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-payoff-tree-RF_PAYOFF.zip",
+      "zip_size_bytes": 29488,
+      "zip_sha256": "eeefccd111e7ec333803b10b2ef63207bb77415dc12fd1b1b3cb6f46d6e49331",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 32076,
+          "sha256": "276a032523ce6fb0c026b2ce946ad6052d5943b84cef59cfab64b6b26729c9c1"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 21883,
+          "sha256": "adb2aa3c9e9c8f2cf740110cfe331524a043929b67ad69ed8b2d67fb2164a7cf"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2548,
+          "sha256": "0267635143699c7216374ee64c6d9e145544244c645366169ded79c78531cb4d"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 989,
+          "sha256": "d3e1ad7868a281f1fc3974f377c1cbb30c939d863279ccbf2b5202a2f42b0331"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2639,
+          "sha256": "d68a53b5f13c556b3320f18925f65b44f7f362cae2ed7e0ba11d5bb9e6ba007d"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 70138,
+          "sha256": "41d54b1777407868dbf0535ca2ed72fd4981fa4dfcd6aa62d67331b0ee7d3820"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1391,
+          "sha256": "7233bd48ee6bef7d586570a72d91b79e0a75b27a4be5a21693104bb007368313"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6950,
+          "sha256": "8571a32e1f02287632b4ed806e744139c68c92054379ad3156e282961f0c9cb4"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037653615,
+      "artifact": "v3-meta-payoff-tree-XGB_PAYOFF",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037653615",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-payoff-tree-XGB_PAYOFF.zip",
+      "zip_size_bytes": 33392,
+      "zip_sha256": "9bef43acd867944b2d7877925009841d7c1c058ef4a8562b80005e8a5ee4d6fb",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 33833,
+          "sha256": "bbf124c324aec7918a1c21a073fb7d8d5e11a47fe8aa5f475af970ec6a16c24a"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 22785,
+          "sha256": "1bb0b85212def38269605aa53d5b196f29f8324471a0bcaa91c0bb37c01e0bf8"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2573,
+          "sha256": "bfd8c447a7beafdfa2e7034dc5e237f980dfa6fb8804d341effee015b2daa9b2"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1094,
+          "sha256": "9a5b3eba193730d0068ba314d51c22e3130810db0cdacea9a5cf923b0ef8af9b"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2662,
+          "sha256": "c766666a0cdd5d5905294ad5817d34ca4836b2b772437cd87243ee3c2ae62900"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 70637,
+          "sha256": "27e8ec5fe8097396d574f27ab722c1911633754f2b97c0ee04e5145b70dda51f"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1375,
+          "sha256": "626f97ad81e17e029e34ab7f5a33497c9ee343a975fc5ef55b045399cd05c828"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7066,
+          "sha256": "2c1a432e70f61abf38072bd774c2627c227395cdb0190bbf7ac1072a159bea4a"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037653615,
+      "artifact": "v3-meta-payoff-tree-CAT_PAYOFF",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037653615",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-payoff-tree-CAT_PAYOFF.zip",
+      "zip_size_bytes": 30110,
+      "zip_sha256": "bef302a6ea0d90b7c81826a0ad619a8702bd9d163fbf529c2ecc5e640f60690a",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 32706,
+          "sha256": "a4c4b4e8ac030cc50071446a1530c96dbb943d41c0d9488b7a56d4ae5c817e48"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 22450,
+          "sha256": "e1d758c63984e9344901478d1f1da4c51dd07ef37dc7fea812c2cbd388b2f632"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2573,
+          "sha256": "d018ebc05f034c8dabdc9f92236c9303887f5657f38329697ac81fde42284308"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1104,
+          "sha256": "700eeb6d13c04f223f1b9f194b2fc6e16a1613772f48202f6f1c66ad8dda4cef"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2663,
+          "sha256": "c601b3ccbdc4731644c9f0136346a65d517851cf08ddda9a8b535f47e699d990"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 70638,
+          "sha256": "55f4aa6addbc90568d3634f1d6fb60860113cd2e032fdbc7f08266cb519988fd"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1396,
+          "sha256": "d721a38f639ddc9bbb39330cc571289ad415e0693ec98c24278fc837869e3e29"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7023,
+          "sha256": "aa50fa7e7c42c95e54560c7bb3928e56df1c018dc4063553e1292c2ca0fb0475"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037653615,
+      "artifact": "v3-meta-payoff-tree-LGB_PAYOFF",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037653615",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-payoff-tree-LGB_PAYOFF.zip",
+      "zip_size_bytes": 33536,
+      "zip_sha256": "d78e6b291f537047833dbb5b717018fa76503d987439bcf05d5d3b18e309443a",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 33810,
+          "sha256": "d91165c1555b47c5c7faa14d697d5b172707eb18a5bcb23e83432841aba78210"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 22785,
+          "sha256": "e0852efeee0531ca6cb8b9d1bc221f88b5f942ce21024a4257b3b30a125855d1"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2573,
+          "sha256": "0cc4b93c300c4ff9cae3ba44b62ea7d189bfc3a91eb496df4ffc71e8e14a8849"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1136,
+          "sha256": "d40bf7cec62f9813b3980dd610e1bb27ba1f7bc518f16ae2a6687d52e6ddc4f1"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2653,
+          "sha256": "ff0992bac34c4ddbda587e0ef202a2cb4c1830b35e4411b92d2db78df1f473d2"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 70618,
+          "sha256": "f423b7f2da1fbc66299027a2710a8e1cf4a86b52921626cf9e462d8c7027bbc9"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1400,
+          "sha256": "4066244fbb94e4ec2f907e61c947267575f939471ef8933388e193fbac422734"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7077,
+          "sha256": "9cc366021c41314f069c40bda2f9b3917f1a1a5e3a482fedde6dae5a9383b502"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037957355,
+      "artifact": "v3-meta-all-family-nested-selector",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037957355",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-all-family-nested-selector.zip",
+      "zip_size_bytes": 44050,
+      "zip_sha256": "335b234e2ad7a536771e9ce2c13484144217656b2fc83d0b2fc59fb426187981",
+      "contents": [
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 482,
+          "sha256": "7c36c41a7602083c091d29aa6ec9f81d4c1d0bfba87b4961c601e6b924cd4563"
+        },
+        {
+          "file": "SELECTOR_CHOICE_AUDIT.csv",
+          "size_bytes": 103091,
+          "sha256": "68e4310524a6352b9e0df20c5d4dd78465b51710c7730057d14fc39c23d6f0f0"
+        },
+        {
+          "file": "SELECTOR_MONTHLY.csv",
+          "size_bytes": 151509,
+          "sha256": "10caa288736dd3311139269ce96efccdf0097c8f81736ab0f496074962d9f8af"
+        },
+        {
+          "file": "SELECTOR_PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 15898,
+          "sha256": "6a4893b3225fdcc49877d51aa8dc5065f17fafbce76e13121d987f24c07781b7"
+        },
+        {
+          "file": "SELECTOR_SUMMARY.csv",
+          "size_bytes": 4261,
+          "sha256": "db8e1bd72a68424f46125adc46d581c02e1e538690384a65efbefbc4058f78da"
+        },
+        {
+          "file": "SELECTOR_YEARLY.csv",
+          "size_bytes": 13752,
+          "sha256": "2a66073d2d4d23a8072d12e4471eed0f0dda5dd225defd17fdea16e2422d0485"
+        },
+        {
+          "file": "SINGLE_MODEL_SKILL.csv",
+          "size_bytes": 15351,
+          "sha256": "d71e29955dd0464f18ce5c4ab29be152c35e0cab2d5a943a20993bbc70aa477f"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037938627,
+      "artifact": "v3-meta-event-tree-DT_EVENT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037938627",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-event-tree-DT_EVENT.zip",
+      "zip_size_bytes": 19246,
+      "zip_sha256": "926eeee0724a84aff77e04fb9826900f96ac943df673aec9500ebad566aba155",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 30355,
+          "sha256": "f07a4e8c34a81b9c1339640d36573efb5a822c6d8d1900869e3a8a9fd4f7e4cb"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 21053,
+          "sha256": "2350db3afe197e95b372656039f0bdaf362a88f01dc8b61c1795f1f074c7e094"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2524,
+          "sha256": "787a4c119c6ba9585cbfc117f73d45d8070fdf78c701a619a31c1c1e472ab384"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 927,
+          "sha256": "f6612cceaa56dc5d80273a544f268ad0b473173a63529315e0d986aeab1bd603"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2615,
+          "sha256": "b3d476ed5541e417b4dd78484b9393f0fb5d1924e684cc8653b335a30f08f63e"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 69650,
+          "sha256": "e33637fa7ac0e7504e0457c47562fe4d65bfea3657e600d4b725dadd8d6c2a6a"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1380,
+          "sha256": "d54cf09104dd822b1747ad1fed09ed22016a667b34fe3667b0e055ca2599650f"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 6908,
+          "sha256": "6d44662b889a3df90384208c07c042d33628053288e2b34ac59045ccacce945b"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037938627,
+      "artifact": "v3-meta-event-tree-RF_EVENT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037938627",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-event-tree-RF_EVENT.zip",
+      "zip_size_bytes": 27391,
+      "zip_sha256": "900e94e98b07c06f27ba00e3021d6fd7af3faa94261b2de06d3e9de11220429a",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 31068,
+          "sha256": "9ca86be5aef15cee2d994a1f2890ddd2be43239f06344ef6f0ae61179b1fcec8"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 21242,
+          "sha256": "e34e85f64bf5a95c2a9c1254cd01210f26c9188071f036a1001b89207e2ed753"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2524,
+          "sha256": "b0c2e3fc57868e10c5d4b47ff2ff4dfa020f2d3f6c57d0aad6bf291c426a4989"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 964,
+          "sha256": "a94164492a6f9f51be63da758e37cb9cd82cd7a9a4b63e38a9d8d35f7f34daff"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2618,
+          "sha256": "2253581d8be360bb1b22190061e9b570b0f0b77ed1b222d934867b78675b35be"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 69637,
+          "sha256": "ce983c58eec79dd80fb5dcf618ecf2043f5325e1443a33a96ad4359f6d1980c4"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1382,
+          "sha256": "25474a8543e9c9c73d8d3924d1d1984c7b3be774c1b89c3745b7c8da28759d74"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7013,
+          "sha256": "191371bd22b42b61650c8eb4decb63f6c739df93bd106f57854d6d656f500b2c"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037938627,
+      "artifact": "v3-meta-event-tree-XGB_EVENT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037938627",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-event-tree-XGB_EVENT.zip",
+      "zip_size_bytes": 32328,
+      "zip_sha256": "60422cd0a8fd522a0d014d7094f57f368bf7bb57a624304de76503abb3260eb9",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 32924,
+          "sha256": "f2c33789f6a44bf025f24cf148d77d8b2c7560c37a52649c9b959aec92d4d8e4"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 22090,
+          "sha256": "426219624f47e71c41638ce7316b9dc3d7f88af79a59a043a9207408fa8434ce"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2549,
+          "sha256": "d9246fa2fd92ad5eba6d4650e3aeaf698069d7e210687dba6f045095cf0d8608"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1069,
+          "sha256": "62fbe03878e6336befe1f22a794de1b124e6446299784469c6c1c04a112d1807"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2639,
+          "sha256": "edbd436d8081fd680debf2bb3be563b088c638718569fdcf08095ff3c755d043"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 70137,
+          "sha256": "4140c82ccade40fa35f5da43a8bce510a1bdb023a0605d5561727a9b096f00c9"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1387,
+          "sha256": "c83d7e69d506ca370b5453bb53ca3a12b08861bfafa0aecbf99f31495850b246"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7009,
+          "sha256": "36274732af981fdb5a716b3f93d01193940a9a74a6ae942ae213d8d4adc752cd"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40037938627,
+      "artifact": "v3-meta-event-tree-CAT_EVENT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40037938627",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-event-tree-CAT_EVENT.zip",
+      "zip_size_bytes": 29008,
+      "zip_sha256": "c16acdf16bbc4a3d20da2dccd2dc9121466067a689d4a182f7326cdd673690de",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 31913,
+          "sha256": "f0fb9ce11489803b56cabf11e4208cd302c2e0acddece2e32bd9290b88d88d5b"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 21819,
+          "sha256": "6bf0bce448ad911e4244145ad8b01b1210c693afcccd4ad551e274ebd8c36c04"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2549,
+          "sha256": "8339cdb5aa1651e21839edaad54c635c999e7f5cc909192130ea6e8f1585c5e0"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1079,
+          "sha256": "2cb50f9587602ce5c21adc4a9f2d9c22f4063caf2b9fa8dcab30764db106961f"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2639,
+          "sha256": "95062dd3e310583b05d08bcf2a9c3e8496b94520907dc4424bff19f377b64e4f"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 70144,
+          "sha256": "c938f80372c5ec1586326e946877ab51890b23f17c69fc89e49b790ab382dd71"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1386,
+          "sha256": "4801855cd3c95aa043ef4286bffb0fbfd6889dc76ac01f63f4c8deecb5e51330"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7007,
+          "sha256": "c74509af2e676f65f56216bb3ed38508d27b840fb9fa8aa845d9fe0789a3cfe5"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40038182585,
+      "artifact": "v3-meta-context-tree-DT_CONTEXT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40038182585",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-context-tree-DT_CONTEXT.zip",
+      "zip_size_bytes": 18808,
+      "zip_sha256": "de20c108a8fc1cb70a6b2d2da8b29b1a2ea19ca6db9cdd25d885620c83400cc9",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 30473,
+          "sha256": "3625b42e5e325901f4d122429d701f5294ed0912a74aa63e28be18fe11e4b08f"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 22071,
+          "sha256": "b23762aefb5d0c42dd9ba0c4dcb8ff8028b116f498dc00f2a348594a1518c509"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2750,
+          "sha256": "837fb4e0214d04c4a0029b3f8e082af9cd03d13c208e3bc8e16d48a1000d5b8a"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1021,
+          "sha256": "d34b48c8e05a89d83f710e67da5bf9b7eddd2cbe2305675f8dfdba94d94742f8"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2645,
+          "sha256": "d169f21998c93f4d39cb27909729495ab8abe18410cd261e3f7e93432ce42cd4"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 70644,
+          "sha256": "d4529387c40d2c49fd9e83fc14fbabc8e17473267a36d29b78e4409e5b1f6eb7"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1382,
+          "sha256": "731b300a81a96fcf53febb4c94fedb966cde14e12a39deccd6d5de873a137e0e"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7087,
+          "sha256": "48c7e28c64a3bdd794fa55bdfef69a8609c18b88bd9fbbdaf35c7a1481cfddd4"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40038182585,
+      "artifact": "v3-meta-context-tree-RF_CONTEXT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40038182585",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-context-tree-RF_CONTEXT.zip",
+      "zip_size_bytes": 28022,
+      "zip_sha256": "b82cae32836af3f5b5e7e5272f8fa23a10a3a973be8f910bcbb16359aaa228e7",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 32172,
+          "sha256": "d7583dce73b55bf3b0c6b08a9e44ef912b0592271058e16592fbeb72b2789aa3"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 22306,
+          "sha256": "f00023e37a9a73760613194ccc224f2d0ccd6ffc4db5f856bf49c6d421a6f884"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2750,
+          "sha256": "aaa18310dee6590ec0916098dfce17a7b3ab3828e0703b5733a6a2b5299cc505"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1058,
+          "sha256": "d5a9a592691292c843ecfc2e15441d6cb5d10994a56992ccf0f77fc09a170682"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2656,
+          "sha256": "d32913881a5facef1b93f8b6e27f8c569aec93fda4497505a09a219a9b2c2ded"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 70628,
+          "sha256": "4023b0e5f2b34a63bf3069a62723d1bbc8a162f09f44b3df0e499d4cba98db8e"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1385,
+          "sha256": "f667de700a38cfe5b58efb2b9b7952634975d3c491bbf33085d51c28955695e8"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7035,
+          "sha256": "7028cf436e35661b1001141f5fbb8827d5ff213f0bc3d571caa7b81acf6e1dd1"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40038182585,
+      "artifact": "v3-meta-context-tree-XGB_CONTEXT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40038182585",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-context-tree-XGB_CONTEXT.zip",
+      "zip_size_bytes": 31717,
+      "zip_sha256": "13e6bb0cffda6ec5f28c3a1886de6e72c19d880b598aa70ef6c508afd0c021f7",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 33724,
+          "sha256": "fbfd404d25598e9c47d7128f1579bc767892fa240d7fc28405b1f56c682f55e6"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 23030,
+          "sha256": "a392959c481f4be85ad89199e927a71331b9c4fb9e53b901cc8d2dd14bd35eeb"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2775,
+          "sha256": "d6aea045842c1a5aea40e24d9975577161397548f8488756da0e80a5fa40b500"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1163,
+          "sha256": "8fad4df62fc4da40a4265320772365b568e2a3228a3bc61b8c9ae2eecfaae0f9"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2677,
+          "sha256": "d10ca7e2cb8ed042099c1ba0e14fbb79d511130807dcac2da54d699959eaa844"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 71139,
+          "sha256": "41f5c8dca45cba29a5c442d55147e80c61e65b74c23e9e6836ea04dff3621dd9"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1399,
+          "sha256": "e16d8aac52bc5fed0c70202e136b8a392cdba7f006c139623287254e9ddf0046"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7134,
+          "sha256": "373967d5d4339dda46f8e65cb35014a5a9a90727077e3096f079c4b8da323932"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40038182585,
+      "artifact": "v3-meta-context-tree-CAT_CONTEXT",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40038182585",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-context-tree-CAT_CONTEXT.zip",
+      "zip_size_bytes": 28231,
+      "zip_sha256": "371f6198faf6f62b5438315b4cdcbceb96aceb92be2662efb5e5c79cb4398d83",
+      "contents": [
+        {
+          "file": "CONFIDENCE_TIMELINE.csv",
+          "size_bytes": 32575,
+          "sha256": "158171d6ee328751d5586df9a234b3942d31f669079123b264ed1b15d6917952"
+        },
+        {
+          "file": "CORRECTIONS.csv",
+          "size_bytes": 22770,
+          "sha256": "3eeb4a0de7a69d1f109ac90837fc587ce47a282e042f4274b72bd51666bd6880"
+        },
+        {
+          "file": "FITTING_AUDIT.csv",
+          "size_bytes": 2775,
+          "sha256": "078194fc48127278949cc6f4d081611d3b7042a9eae024d21d1ffdff177e694c"
+        },
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 1173,
+          "sha256": "d86c91c962ebe831c1f859f0154e4feefe03bd9da51339bc587ad642e01cce7c"
+        },
+        {
+          "file": "PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 2679,
+          "sha256": "0a8aab8877dcf3140bc7d948c5dbbaf4d0fbf9a178fe86cb7d5efa7023e2b8c6"
+        },
+        {
+          "file": "PAIRED_MONTHLY.csv",
+          "size_bytes": 71141,
+          "sha256": "719f10b6e05da5986b0998cfc653c585c364e4580f67e919fc4f83cb6b92e6ac"
+        },
+        {
+          "file": "SUMMARY.csv",
+          "size_bytes": 1395,
+          "sha256": "e091d401f8905d0aa139cc177515ab470882f041b30d726cf7e105678c866ec8"
+        },
+        {
+          "file": "YEARLY.csv",
+          "size_bytes": 7166,
+          "sha256": "2dde33e3a4905a1a33217006a521ca51204a13a6212689189d080bf574b0cccd"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40038509415,
+      "artifact": "v3-meta-definitive-23-family-nested",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40038509415",
+      "zip_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/archives/v3-meta-definitive-23-family-nested.zip",
+      "zip_size_bytes": 46244,
+      "zip_sha256": "8ca734d4266857061b186bdf13aa8861843fc0a138d92f30cf940f8ecc35aa35",
+      "contents": [
+        {
+          "file": "MANIFEST.json",
+          "size_bytes": 483,
+          "sha256": "ae81e296f7c9236ba6519551175dd9ea241bb61daade75de0d921aeb33bcab0e"
+        },
+        {
+          "file": "SELECTOR_CHOICE_AUDIT.csv",
+          "size_bytes": 103821,
+          "sha256": "29ddbf207060a4e8e036507ee7c6175e1f07353d3eb2ebb3af2195c6ed25a894"
+        },
+        {
+          "file": "SELECTOR_MONTHLY.csv",
+          "size_bytes": 151936,
+          "sha256": "4f34ca95726cf283c2d6c92548e614da3431877d378285cd082d56562742d864"
+        },
+        {
+          "file": "SELECTOR_PAIRED_BOOTSTRAP.csv",
+          "size_bytes": 15913,
+          "sha256": "9ef527fc42ef1b3fffe2392fb726efd519be6e7daed0d4ce6bd69cd423a1668a"
+        },
+        {
+          "file": "SELECTOR_SUMMARY.csv",
+          "size_bytes": 4274,
+          "sha256": "db66281272eec85c7d8f0dd0b5a2e1d96e00003a62d3342f0b296d9e5e0cc5b4"
+        },
+        {
+          "file": "SELECTOR_YEARLY.csv",
+          "size_bytes": 13859,
+          "sha256": "4137b34bba01607c1ea2ad44f0622b15e34ae24fbfa41682fce808fcfe224c8d"
+        },
+        {
+          "file": "SINGLE_MODEL_SKILL.csv",
+          "size_bytes": 20929,
+          "sha256": "ba2d95d42df58d719fa3fa27f4c277057e38d8875677faeff9ff90cecc550cc7"
+        }
+      ]
+    }
+  ]
+}

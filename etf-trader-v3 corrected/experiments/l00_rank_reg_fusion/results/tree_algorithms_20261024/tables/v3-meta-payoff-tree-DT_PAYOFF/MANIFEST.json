@@ -1,0 +1,31 @@
+{
+  "family": "DT_PAYOFF",
+  "task": "binary",
+  "algorithm_config": {
+    "max_depth": 3,
+    "min_samples_leaf": 100,
+    "criterion": "log_loss"
+  },
+  "training_objective": "payoff_magnitude_weighted_binary_classifier_clipped_to_20pct",
+  "weighted_loss_penalty": 1.0,
+  "frozen_first_stage_run": 40016809498,
+  "original_tree_run": 40031144599,
+  "original_nested_selector_run": 40032282233,
+  "original_economic_run": 40032693599,
+  "n_months": 101,
+  "n_etfs": 149,
+  "n_baskets": 500,
+  "basket_members": 24,
+  "pair_deduplicated_by_calendar_month": true,
+  "sample_weight_equal_calendar_month": true,
+  "quarterly_refit": true,
+  "maturity_embargo_calendar_days": 60,
+  "first_stage_retraining": false,
+  "all_predictors_as_of_date": true,
+  "historical_reuse": true,
+  "virgin_holdout": false,
+  "production_modified": false,
+  "use_future_returns_only_for_labels": true,
+  "chronological_tuning": false,
+  "selected_cagr_for_tuning": false
+}
