@@ -32,7 +32,7 @@ jobs:
           done
           for family in DT_PAYOFF DT_LOSS RF_PAYOFF XGB_PAYOFF CAT_PAYOFF LGB_PAYOFF; do
             mkdir -p "runs/v3_algo_new/$family"
-            gh run download 40037627099 -R AM1975MA/Test \
+            gh run download 40037653615 -R AM1975MA/Test \
               -n "v3-meta-payoff-tree-$family" -D "runs/v3_algo_new/$family"
           done
       - name: Exact baseline parity and all family as-of 60-day mature selection
