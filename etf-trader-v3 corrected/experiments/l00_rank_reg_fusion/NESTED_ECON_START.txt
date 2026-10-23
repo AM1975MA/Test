@@ -1,0 +1,1 @@
+Launch economic diagnostic only AFTER 101-month nested meta validation; no model selection by CAGR. 2026-10-24.

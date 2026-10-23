@@ -1,0 +1,3 @@
+Start isolated research suite 2026-10-23. Protocol and code frozen before outcome; do not promote to production.
+
+Rerun 1: CI dependency matplotlib added; all data/features/objectives unchanged.

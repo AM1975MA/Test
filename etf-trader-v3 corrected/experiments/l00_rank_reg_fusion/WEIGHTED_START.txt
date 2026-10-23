@@ -1,0 +1,2 @@
+Run frozen ranker-score multiplicative weighting counterfactual, 2026-10-23. No refits; same 500 baskets, 101 months.
+Retest maturity gate: exclude 2026-06 unmatured signal; use certified 101 months.

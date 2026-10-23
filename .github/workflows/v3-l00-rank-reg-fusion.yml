@@ -1,0 +1,87 @@
+name: "V3 L00 multi-direction feature, volatility, regression, fusion research"
+on:
+  push:
+    branches: [research-v3-l00-rank-reg-fusion-20261023]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  refit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {mode: feature, shard: s1, years: '2018,2019,2020'}
+          - {mode: feature, shard: s2, years: '2021,2022,2023'}
+          - {mode: feature, shard: s3, years: '2024,2025,2026'}
+          - {mode: regression, shard: s1, years: '2018,2019,2020'}
+          - {mode: regression, shard: s2, years: '2021,2022,2023'}
+          - {mode: regression, shard: s3, years: '2024,2025,2026'}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Freeze tested numerical environment
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' scipy scikit-learn matplotlib tabulate
+      - name: Read immutable OHLCV, canonical baskets, frozen corrected reference
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v2_corrected_oracle
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          gh run download 39515716383 -R AM1975MA/Test -n v2-formula-retrain-complete -D runs/v2_corrected_oracle
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/v2_corrected_oracle/OOS_SCORES.csv
+      - name: Isolated matured annual training
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/evaluate.py' \
+            --mode '${{ matrix.mode }}' \
+            --years '${{ matrix.years }}' \
+            --raw etf_trader_raw \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --prior runs/v2_corrected_oracle \
+            --out runs/v3_rrf/${{ matrix.mode }}/${{ matrix.shard }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rrf-${{ matrix.mode }}-${{ matrix.shard }}
+          path: runs/v3_rrf/
+          retention-days: 90
+  aggregate:
+    needs: refit
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' scipy tabulate
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: rrf-*
+          merge-multiple: true
+          path: runs/v3_rrf/
+      - name: Validate paired source, 101 matured months, six-month block intervals and causal fusion
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/aggregate.py' \
+            --root runs/v3_rrf/ \
+            --membership regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_rrf_complete
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-l00-rank-reg-fusion-results
+          path: runs/v3_rrf_complete/
+          retention-days: 90

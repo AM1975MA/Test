@@ -1,0 +1,53 @@
+name: "V3 nested meta-tree next-open economic parity replay"
+on:
+  push:
+    branches: [research-v3-l00-rank-reg-fusion-20261023]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/NESTED_ECON_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  economic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical and source engine deps
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scikit-learn==1.9.1' 'xgboost==3.0.5' matplotlib scipy tabulate
+      - name: Fetch immutable raw snapshot, first-stage OOS and nested OOS policy audit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v3_rrf runs/v3_nested_input
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+          for s in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$s -D runs/v3_rrf
+          done
+          gh run download 40032282233 -R AM1975MA/Test -n v3-nested-meta-tree-validation -D runs/v3_nested_input
+          test -s runs/v3_nested_input/NESTED_MONTHLY.csv
+          test -s runs/v3_nested_input/NESTED_SELECTION_AUDIT.csv
+      - name: Reconstruct every real ETF choice and prove equal to independent prior monthly test
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          NUMEXPR_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/nested_economic.py' \
+            --raw etf_trader_raw \
+            --shards runs/v3_rrf \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --nested runs/v3_nested_input \
+            --out runs/v3_nested_economic
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-nested-meta-tree-nextopen-economics
+          path: runs/v3_nested_economic/
+          retention-days: 90

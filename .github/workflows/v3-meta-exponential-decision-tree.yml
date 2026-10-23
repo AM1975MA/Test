@@ -1,0 +1,53 @@
+name: "V3 parallel lambda expansion and chronological decision-tree meta learning"
+on:
+  push:
+    branches: [research-v3-l00-rank-reg-fusion-20261023]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/PARALLEL_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  meta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [exponential, tree]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reproducible numerical dependencies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scikit-learn==1.9.1'
+      - name: Retrieve unchanged validated OOS ranker and regressions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_rrf
+          for s in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$s -D runs/v3_rrf
+          done
+          test -s runs/v3_rrf/regression/s1/OOS_SCORES.csv
+          test -s runs/v3_rrf/regression/s2/OOS_SCORES.csv
+          test -s runs/v3_rrf/regression/s3/OOS_SCORES.csv
+      - name: Evaluate and certify oracle concordance
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/parallel_meta.py' \
+            --mode '${{ matrix.mode }}' \
+            --shards runs/v3_rrf \
+            --membership regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out 'runs/v3_meta_${{ matrix.mode }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-meta-${{ matrix.mode }}-results
+          path: runs/v3_meta_${{ matrix.mode }}/
+          retention-days: 90

@@ -1,0 +1,455 @@
+{
+  "archive_date": "2026-10-24",
+  "project_path": "etf-trader-v3 corrected/",
+  "frozen_raw_github_actions_run": 39482809691,
+  "frozen_baseline_github_actions_run": 39515716383,
+  "canonical_universe_etfs": 149,
+  "canonical_baskets": 500,
+  "membership_sha256": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+  "fully_matured_months": 101,
+  "best_chronological_candidate": "NESTED_24_TOP1_GUARD",
+  "candidate_not_production_approved": true,
+  "research_only_no_operational_module_changed": true,
+  "archived_artifacts": [
+    {
+      "workflow_run": 40016809498,
+      "artifact_name": "rrf-feature-s1",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40016809498",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/rrf-feature-s1.zip",
+      "bundle_sha256": "e6d8ff510b1015567643281e48a7bff27f2f1b2723532a65200e886699932cf7",
+      "bundle_size_bytes": 614177,
+      "files": [
+        {
+          "filename": "feature/s1/FIT_AUDIT.json",
+          "bytes": 8483,
+          "sha256": "98428726be6c75e4bcd5fbb4c1a691389f65e402ed9de49d6ecd3209fb9b9aa5"
+        },
+        {
+          "filename": "feature/s1/MANIFEST.json",
+          "bytes": 18547,
+          "sha256": "d811d0a9fe356a66061a44a2b916299d6076acc57eba80c5bf5fa57274712a35"
+        },
+        {
+          "filename": "feature/s1/OOS_SCORES.csv",
+          "bytes": 1868832,
+          "sha256": "483e4c68b1833d6dd9728b932e07496233eb6f09864ad81e3164bc342578e5af"
+        },
+        {
+          "filename": "feature/s1/PAIRED_MONTHLY.csv",
+          "bytes": 29891,
+          "sha256": "be8d0b568a84622db1367ded2400d10bfd10a609203556d9d070ded233638849"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40016809498,
+      "artifact_name": "rrf-feature-s2",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40016809498",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/rrf-feature-s2.zip",
+      "bundle_sha256": "bcf6f46cb1502820098eb0344a0b82f9ad5be7cf7461fcf146dc7a13fec814ac",
+      "bundle_size_bytes": 613323,
+      "files": [
+        {
+          "filename": "feature/s2/FIT_AUDIT.json",
+          "bytes": 8495,
+          "sha256": "5d0bec0ab97c852800d85df5cf2be6d3d5ba00997e96233279f6fbde0aa4cc9e"
+        },
+        {
+          "filename": "feature/s2/MANIFEST.json",
+          "bytes": 18547,
+          "sha256": "099ce7469038b4f14963941edef8bfb5623f24a019f023eda87e46bcbc2e8211"
+        },
+        {
+          "filename": "feature/s2/OOS_SCORES.csv",
+          "bytes": 1868672,
+          "sha256": "3b29fcce4581802343a4128dae4467ec62d5944146db48f981b612becf3a95aa"
+        },
+        {
+          "filename": "feature/s2/PAIRED_MONTHLY.csv",
+          "bytes": 29905,
+          "sha256": "c7fc4b1aa4d87837e75a08f73037c2b14e4f74f4db31d4e77e03f31a2b364a5d"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40016809498,
+      "artifact_name": "rrf-feature-s3",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40016809498",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/rrf-feature-s3.zip",
+      "bundle_sha256": "dad25f0b721755706c80f58277d67489fa2741e5c83d351deacd19f6c6c94405",
+      "bundle_size_bytes": 505186,
+      "files": [
+        {
+          "filename": "feature/s3/FIT_AUDIT.json",
+          "bytes": 8491,
+          "sha256": "b1eb7321be7f6aa0831240b49e8fdd8a8a8f9eb3c61c1c22eac264d1be1f60c6"
+        },
+        {
+          "filename": "feature/s3/MANIFEST.json",
+          "bytes": 18547,
+          "sha256": "96494eaf5eaaa85a77019e6d04997c2b66aac09646c78b72bb55ae6f4e563d88"
+        },
+        {
+          "filename": "feature/s3/OOS_SCORES.csv",
+          "bytes": 1541696,
+          "sha256": "daadf0dc674ddc3e1c04cbf5b30597f160859ef70f4c115eec5e59f05d5371a3"
+        },
+        {
+          "filename": "feature/s3/PAIRED_MONTHLY.csv",
+          "bytes": 24126,
+          "sha256": "9c34297e23efde38a9c1448aaeb117e51dc1cc123e695ea68df18149012d2971"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40016809498,
+      "artifact_name": "rrf-regression-s1",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40016809498",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/rrf-regression-s1.zip",
+      "bundle_sha256": "978a9ab93ae38ef2fc1bb6ce0536c271189825db8efea61241f7271ae5c17453",
+      "bundle_size_bytes": 736014,
+      "files": [
+        {
+          "filename": "regression/s1/FIT_AUDIT.json",
+          "bytes": 10670,
+          "sha256": "8f143c9a7673a1c3951bc68ab0eaff47edbce17d2735ab69689ab4539b097b6e"
+        },
+        {
+          "filename": "regression/s1/MANIFEST.json",
+          "bytes": 13293,
+          "sha256": "d5478dab4153839f8fa4d9d1afdd970f938e30d950f55e7bfdd7cc7307158ee7"
+        },
+        {
+          "filename": "regression/s1/OOS_SCORES.csv",
+          "bytes": 2098586,
+          "sha256": "96a475fff9c9e3507811a2a73cad5402ca667f68d7e45a7764b495f0281ef18d"
+        },
+        {
+          "filename": "regression/s1/PAIRED_MONTHLY.csv",
+          "bytes": 35010,
+          "sha256": "2a302b7586ac424d7d711015d7f4d5a3384ba29b455be670f4068caec941cbbc"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40016809498,
+      "artifact_name": "rrf-regression-s2",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40016809498",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/rrf-regression-s2.zip",
+      "bundle_sha256": "5b1ba33b3737ad7b9ed6c8b77fef5e8472c704416e6dad7a3ea53ed245a600bd",
+      "bundle_size_bytes": 735247,
+      "files": [
+        {
+          "filename": "regression/s2/FIT_AUDIT.json",
+          "bytes": 10685,
+          "sha256": "76a7191243868dad33ceb6d77244f280cc04668407e0cbecd99b02d4ba7c80a3"
+        },
+        {
+          "filename": "regression/s2/MANIFEST.json",
+          "bytes": 13293,
+          "sha256": "0d464c8801d2ad4a7be6ff8cdb1f81eeb692d58e0e8ac9067f9795f0ca269733"
+        },
+        {
+          "filename": "regression/s2/OOS_SCORES.csv",
+          "bytes": 2100197,
+          "sha256": "82f30886e8d01880d9ca933fd1aafd828957396fee63e98f772ee2691a67e4f1"
+        },
+        {
+          "filename": "regression/s2/PAIRED_MONTHLY.csv",
+          "bytes": 34881,
+          "sha256": "52feaa531094d39cfa2ce7ba434573dab94e8b82394cb5fee939788dee0399a9"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40016809498,
+      "artifact_name": "rrf-regression-s3",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40016809498",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/rrf-regression-s3.zip",
+      "bundle_sha256": "514c7049dd126c18cd2a31ca766274a97a536b95cd55ba94ef4a96f497d1fb9c",
+      "bundle_size_bytes": 605940,
+      "files": [
+        {
+          "filename": "regression/s3/FIT_AUDIT.json",
+          "bytes": 10680,
+          "sha256": "eb6763882d7d312d6738d163548f1883ce99ae6913f520d34ede933ddd1496e3"
+        },
+        {
+          "filename": "regression/s3/MANIFEST.json",
+          "bytes": 13293,
+          "sha256": "4633244503b4b2422088fb29bcae5d8a9905d772068189bd62591704dfb69fc6"
+        },
+        {
+          "filename": "regression/s3/OOS_SCORES.csv",
+          "bytes": 1733149,
+          "sha256": "2cd4ca0a975d41a1c586fe0f985420443a96e977fa856785d2cd050206b23736"
+        },
+        {
+          "filename": "regression/s3/PAIRED_MONTHLY.csv",
+          "bytes": 28184,
+          "sha256": "61ed14efc0ea544381257a59519b4c88016100a6c0bf578f23207d2891d59280"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40016809498,
+      "artifact_name": "v3-l00-rank-reg-fusion-results",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40016809498",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/v3-l00-rank-reg-fusion-results.zip",
+      "bundle_sha256": "65f6eee9e2ed1d1b3a0c6507110f57ca53b005e848a705946247c34bfb7b33db",
+      "bundle_size_bytes": 122758,
+      "files": [
+        {
+          "filename": "FIT_AUDIT.json",
+          "bytes": 57494,
+          "sha256": "f2e379c7eb0a7a47c7778182e7616dad0e2a8ab906d1d34d45a82c423380ef34"
+        },
+        {
+          "filename": "FUSION_CORRECTIONS.csv",
+          "bytes": 25657,
+          "sha256": "afbd0c3a3bdbec95cda7422b76013829573cc95e29c20a9ab68652b886cfca84"
+        },
+        {
+          "filename": "FUSION_MONTHLY.csv",
+          "bytes": 81780,
+          "sha256": "bc7e20d03456bf3228e8caab61f9c116b2913e29f0174ae689e238876c9ce115"
+        },
+        {
+          "filename": "MANIFEST.json",
+          "bytes": 564,
+          "sha256": "a339728703d97cbada498fe1f6b8c3bc41d5fb91e0a42c0d88cd9751b67b4365"
+        },
+        {
+          "filename": "PAIRED_BOOTSTRAP.csv",
+          "bytes": 8000,
+          "sha256": "54014dc11a785f11a44f3e8b82544d756fc442af7083539464acf4eaf2c888f6"
+        },
+        {
+          "filename": "PAIRED_MONTHLY.csv",
+          "bytes": 239826,
+          "sha256": "fdb61d1a8f8039e4094e651272b45437119cc2f1bfc183c4600f3fbb1fa36a9a"
+        },
+        {
+          "filename": "SUMMARY.csv",
+          "bytes": 1973,
+          "sha256": "51e822d24ffb08302ff7adadb64c98010b5ab851c38bd6a875b2519a9f42fb9a"
+        },
+        {
+          "filename": "YEARLY.csv",
+          "bytes": 16316,
+          "sha256": "4aa655ee23df3884edfb9ba212adb06a02ae07270e46e5e3c00cfb8d553719f0"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40030122839,
+      "artifact_name": "v3-weighted-ranker-regressor-results",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40030122839",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/v3-weighted-ranker-regressor-results.zip",
+      "bundle_sha256": "eeba1d2099a959b115e6ca7431e26f36af0cc44bc2abf3ffe74e2291ae1efe70",
+      "bundle_size_bytes": 339587,
+      "files": [
+        {
+          "filename": "CORRECTIONS.csv",
+          "bytes": 315812,
+          "sha256": "b77fe2f0f3d91900700641be7dda26049a73b3882a68650168e322c90160b410"
+        },
+        {
+          "filename": "MANIFEST.json",
+          "bytes": 721,
+          "sha256": "8a8381d9bb25f21351509e80db4aecff634d60fda36912e70eaef32069315b33"
+        },
+        {
+          "filename": "PAIRED_BOOTSTRAP.csv",
+          "bytes": 36940,
+          "sha256": "ecb6461fb677378d123831d78963e1dbc7e661525cfe40e6edbf99b1847bfa6b"
+        },
+        {
+          "filename": "PAIRED_MONTHLY.csv",
+          "bytes": 830248,
+          "sha256": "1eb10173f80c2db2d48bf01477cfcaa96e3d9eb7b67d3e0755082a461fe86bc4"
+        },
+        {
+          "filename": "SUMMARY.csv",
+          "bytes": 13638,
+          "sha256": "9d89e553bb40dad02657f7179d6bbfd353ac5279e55679b78ab9a1b768d15e66"
+        },
+        {
+          "filename": "YEARLY.csv",
+          "bytes": 73733,
+          "sha256": "354d278e3a506045c2387bc2227dae3e5da496b1c2ab4afcc463845ef9a36af5"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40031144599,
+      "artifact_name": "v3-meta-exponential-results",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40031144599",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/v3-meta-exponential-results.zip",
+      "bundle_sha256": "09741a9b2eb3db725d9df140865a1d50e2140d48b4320556389d439c92451894",
+      "bundle_size_bytes": 222796,
+      "files": [
+        {
+          "filename": "AUDIT.json",
+          "bytes": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "filename": "CORRECTIONS.csv",
+          "bytes": 236775,
+          "sha256": "e93736d303d128d39dd3fb4e9ce3053cbfa31142888f3863b11879f85b49748b"
+        },
+        {
+          "filename": "MANIFEST.json",
+          "bytes": 434,
+          "sha256": "7af4c80e72f3444b1e31652ed967c4f63caca3c7e7e76f55a34b0be1e1faa60c"
+        },
+        {
+          "filename": "PAIRED_BOOTSTRAP.csv",
+          "bytes": 25129,
+          "sha256": "e183324712603e72113ed567909fe5a6a6dfb2ba7774b3b4e3aad3653ac86490"
+        },
+        {
+          "filename": "PAIRED_MONTHLY.csv",
+          "bytes": 578325,
+          "sha256": "5bfa256692dc1ad93f2016aa0f1eaeeadb0453ad816d5c488bf49f9c59a6f2d7"
+        },
+        {
+          "filename": "SUMMARY.csv",
+          "bytes": 10263,
+          "sha256": "ccf25dc2108ffe0ff1bbd6ae0b971c3710efef711c9bcc3f408dcdeae8eb84a6"
+        },
+        {
+          "filename": "YEARLY.csv",
+          "bytes": 58018,
+          "sha256": "348084d6968f5db41cf406612531851b8ceea91e63facf28bc03aa6f4bd69894"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40031144599,
+      "artifact_name": "v3-meta-tree-results",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40031144599",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/v3-meta-tree-results.zip",
+      "bundle_sha256": "d348891f43dc4e7453ea7720436df50ed701b8e2473ed3d6d674fbc0827d2ca1",
+      "bundle_size_bytes": 54740,
+      "files": [
+        {
+          "filename": "AUDIT.json",
+          "bytes": 95711,
+          "sha256": "2450cad039ccbc754f4466cda14bbac5d1b24b305993c97b4530234573e5adc5"
+        },
+        {
+          "filename": "CORRECTIONS.csv",
+          "bytes": 177601,
+          "sha256": "6cb5842122ebca4aed93f8469ed2c64960aacbb52f773caf0aa2becf84ffa042"
+        },
+        {
+          "filename": "MANIFEST.json",
+          "bytes": 427,
+          "sha256": "6c5a9032704484aefafc9db48649d910379d20986e00ae2d441081d32978da12"
+        },
+        {
+          "filename": "PAIRED_BOOTSTRAP.csv",
+          "bytes": 19678,
+          "sha256": "aa38ca68efa33872fd253f5cb2efe25670cd49646def3ede21424819e00d1ef0"
+        },
+        {
+          "filename": "PAIRED_MONTHLY.csv",
+          "bytes": 460602,
+          "sha256": "31f0b65b5dee71fa7f31185c97ca03d6d95e5694b5d7815d333ce4f507df832a"
+        },
+        {
+          "filename": "SUMMARY.csv",
+          "bytes": 8076,
+          "sha256": "da99f6dffb39d1d179462c57378be750082c487f1e53debc37eee540d40b84f2"
+        },
+        {
+          "filename": "YEARLY.csv",
+          "bytes": 45410,
+          "sha256": "4f2b360d2fdbf747cdf49a0d555eac7fb93b3a117977985128eaaaa0f9f47471"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40032282233,
+      "artifact_name": "v3-nested-meta-tree-validation",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40032282233",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/v3-nested-meta-tree-validation.zip",
+      "bundle_sha256": "eb17cd87ff05e806ec390371201020d4e530e8d5c29f971c5fd5f543ad60f731",
+      "bundle_size_bytes": 17774,
+      "files": [
+        {
+          "filename": "NESTED_BOOTSTRAP.csv",
+          "bytes": 3073,
+          "sha256": "2ab8a994cb804c627db6e5d5207434083122c56e8b4f8514a6b59fc31a95192c"
+        },
+        {
+          "filename": "NESTED_MANIFEST.json",
+          "bytes": 776,
+          "sha256": "b80c536b9ae3a72c25cb4cdd29f43dd4bd6c441aafc32e97f6160d1e7f7a5a74"
+        },
+        {
+          "filename": "NESTED_MONTHLY.csv",
+          "bytes": 68506,
+          "sha256": "96e3568b20b472e5e10130b186b99f4d1ddc0221bf0350edf5dda28f9404760a"
+        },
+        {
+          "filename": "NESTED_SELECTION_AUDIT.csv",
+          "bytes": 38592,
+          "sha256": "052b3a336ddf6134b43cf8159f6c2933fd654b8657c43f93e75dae06c6ee9469"
+        },
+        {
+          "filename": "NESTED_SUMMARY.csv",
+          "bytes": 4823,
+          "sha256": "7378c63fe0b2795d380ee5144dbcdec5583587207ebcf634c3e7bfc6a8b5fff7"
+        }
+      ]
+    },
+    {
+      "workflow_run": 40032693599,
+      "artifact_name": "v3-nested-meta-tree-nextopen-economics",
+      "artifact_url": "https://github.com/AM1975MA/Test/actions/runs/40032693599",
+      "bundle_repo_path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/v3-nested-meta-tree-nextopen-economics.zip",
+      "bundle_sha256": "b6b631395fe32bb775512943d2ae398aab0928bb0b3c162f9b9305d92e1b9725",
+      "bundle_size_bytes": 577888,
+      "files": [
+        {
+          "filename": "ACTUAL_DECISION_LOG.csv",
+          "bytes": 2824994,
+          "sha256": "dd7056fadbb3414bf3a4189445b0bf648f3af23d19d7023fb3de05873602a9e8"
+        },
+        {
+          "filename": "DAILY_ENSEMBLE_NAV.csv",
+          "bytes": 973962,
+          "sha256": "8a37619491ee839e923c2f1f415d15acce7954cd87735d205733281ec0ed8c0c"
+        },
+        {
+          "filename": "DECISION_VALIDATION.csv",
+          "bytes": 5193,
+          "sha256": "69bb87e66b73c11529df1a9f59e36b5a6440232c888f1d504cb56da5aeae4531"
+        },
+        {
+          "filename": "ECONOMIC_MANIFEST.json",
+          "bytes": 1199,
+          "sha256": "c701516a1ec4e0a29e86505616c6517570b8fdf54e5810b5cc86e099e04e16a6"
+        },
+        {
+          "filename": "ECONOMIC_SCORECARD.csv",
+          "bytes": 2720,
+          "sha256": "f636537cc9b1388c7ace29b0b32ef449cef10378839e6cc6b25a4efd02d11338"
+        },
+        {
+          "filename": "PAIRED_21DAY_BLOCK.csv",
+          "bytes": 614,
+          "sha256": "5652447167dec56fb54d3debe462b588e77208f914fca6cbe6ae10db5b2b1e68"
+        },
+        {
+          "filename": "YEARLY_ENSEMBLE.csv",
+          "bytes": 3858,
+          "sha256": "886e759896ee7baec606a7185a9cb8a85f61fce95c0a192a7f97f58937b3a4f1"
+        }
+      ]
+    }
+  ]
+}

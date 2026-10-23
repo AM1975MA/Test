@@ -1,0 +1,43 @@
+name: "V3 ranker multiplied by OOS regression weights"
+on:
+  push:
+    branches: [research-v3-l00-rank-reg-fusion-20261023]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/WEIGHTED_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3'
+      - name: Recover frozen 101-month OOS regressions from validated run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_rrf
+          for s in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$s -D runs/v3_rrf
+          done
+          test -s runs/v3_rrf/regression/s1/OOS_SCORES.csv
+          test -s runs/v3_rrf/regression/s2/OOS_SCORES.csv
+          test -s runs/v3_rrf/regression/s3/OOS_SCORES.csv
+      - name: Compare multiplicative weights and original Top3-only conditioning
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/weighted_ranker.py' \
+            --shards runs/v3_rrf \
+            --membership regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v3_rrf_weighted
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-weighted-ranker-regressor-results
+          path: runs/v3_rrf_weighted/
+          retention-days: 90

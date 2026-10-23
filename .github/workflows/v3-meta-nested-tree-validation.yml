@@ -1,0 +1,43 @@
+name: "V3 nested chronological meta-tree selection validation"
+on:
+  push:
+    branches: [research-v3-l00-rank-reg-fusion-20261023]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/NESTED_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  nested_validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3'
+      - name: Retrieve immutable OOS tree predictions from prior validated execution
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_nested_input
+          gh run download 40031144599 -R AM1975MA/Test -n v3-meta-tree-results -D runs/v3_nested_input
+          test -s runs/v3_nested_input/PAIRED_MONTHLY.csv
+          test -s runs/v3_nested_input/CORRECTIONS.csv
+      - name: Enforce chronology, 60-day maturity, paired uncertainty, baseline control
+        env:
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/nested_tree_selector.py' \
+            --monthly runs/v3_nested_input/PAIRED_MONTHLY.csv \
+            --corrections runs/v3_nested_input/CORRECTIONS.csv \
+            --out runs/v3_nested_verified
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-nested-meta-tree-validation
+          path: runs/v3_nested_verified/
+          retention-days: 90
