@@ -1,0 +1,1 @@
+Compare 23 basket-invariant ETF pair consensus features (guaranteed same for same ordered ticker pair) against original 14-feature baseline. Four models, 101 matured OOS months. 2026-10-24.
