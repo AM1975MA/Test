@@ -1,0 +1,1 @@
+Compute fixed overlapping baskets, unique ticker pair month events, outlier caps and leave-years-out robustness; no fitting or changing the model.
