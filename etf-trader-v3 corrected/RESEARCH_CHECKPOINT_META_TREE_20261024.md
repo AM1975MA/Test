@@ -45,3 +45,16 @@ La sorgente OHLCV congelata è in Actions **39482809691**; il benchmark OOS orig
 - Vantaggio di extra rendimento 21D +0,1432 punti percentuali intero periodo, +0,0404 pp con differenze ETF limitate a ±5%, +0,0212 pp escludendo insieme gli anni 2022, 2025, 2026. Rischio di concentrazione di regime e di eventi estremi tuttora presente.
 
 **Stato invariato: ricerca promettente, NON modello autorizzato per produzione.** I moduli `src`, il full-stack preesistente e i layer operativi non hanno subito modifiche. Il prossimo test prioritario richiede informazioni veramente successive o indipendenti dal calendario già sfruttato.
+
+
+## Nuova evidenza — benchmark di 23 famiglie di decision tree (24 ottobre 2026)
+
+La seconda ricerca amplia il controllo sul livello meta, **senza cambiare la strategia selezionata**. Sono stati testati 113 sfidanti da 23 famiglie, fra cui XGBoost, LightGBM, CatBoost, Random Forest, Extra Trees, histogram gradient boosting, regressione del vantaggio economico, classificazione loss-sensitive, feature event-level invarianti per coppia ETF e training contestuale con deduplicazione ponderata. Tutti i job di training e il confronto `as of` 60 giorni sono terminati con successo.
+
+- [Report tecnico completo](experiments/l00_rank_reg_fusion/TREE_ALGORITHM_COMPARISON_20261024.md)
+- [26 ZIP integrali, 127 tabelle e manifest SHA-256](experiments/l00_rank_reg_fusion/results/tree_algorithms_20261024/)
+- [Verifica definitiva su 23 famiglie](https://github.com/AM1975MA/Test/actions/runs/40038509415)
+
+**Risultato:** la selezione cronologica combinata `ALL__GUARD24` perde **0,1280 punti percentuali di excess forward 21D e 0,7921 punti di hit rate Top1** rispetto all'attuale `NESTED_24_TOP1_GUARD`. Il selettore solo sfidanti perde 0,1508 punti di forward selected excess. Il benchmark vecchio `PRIOR_ONLY__GUARD24` è stato ricostruito con **parità numerica esatta su tutti i 101 mesi**. Top3 invariato per tutti i modelli. Gli intervalli bootstrap mostrano peggioramenti compatibili con un calo reale, ma lo storico resta ampiamente riusato e non costituisce un holdout indipendente.
+
+**Decisione:** mantenere **CORRECTED125 + decision tree cronologico NESTED_24_TOP1_GUARD** come unico candidato di riferimento (research-only). Non promuovere alcuna variante nuova; sospendere il tuning di algoritmi sul medesimo calendario in favore di holdout temporali realmente non utilizzati. La V2, i kernel e i layer operativi V3 rimangono invariati.
