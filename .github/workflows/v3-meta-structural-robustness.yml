@@ -1,0 +1,45 @@
+name: V3 meta-tree frozen-signal robustness and year-exclusion audit
+on:
+  push:
+    branches: [research-v3-meta-robustness-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/ROBUSTNESS_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3'
+      - name: Retrieve identical OOS scores, committed decisions and nested selector scores
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_frozen runs/v3_decisions runs/v3_nested
+          for shard in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$shard -D runs/v3_frozen
+          done
+          gh run download 40032693599 -R AM1975MA/Test -n v3-nested-meta-tree-nextopen-economics -D runs/v3_decisions
+          gh run download 40032282233 -R AM1975MA/Test -n v3-nested-meta-tree-validation -D runs/v3_nested
+      - name: Verify 50,500 decisions and calculate no-retuning structural stress diagnostics
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/robustness_frozen_signals.py' \
+            --scores runs/v3_frozen \
+            --decisions runs/v3_decisions/ACTUAL_DECISION_LOG.csv \
+            --nested-monthly runs/v3_nested/NESTED_MONTHLY.csv \
+            --out runs/v3_robustness_stress
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-meta-structural-robustness
+          path: runs/v3_robustness_stress/
+          retention-days: 90
