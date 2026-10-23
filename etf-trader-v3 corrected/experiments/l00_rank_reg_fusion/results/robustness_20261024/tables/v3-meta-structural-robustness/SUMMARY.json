@@ -1,0 +1,17 @@
+{
+  "months": 101,
+  "dependent_basket_decisions": 50500,
+  "monthly_n_baskets": 500,
+  "decisions_changed": 2209,
+  "months_with_changes": 41,
+  "unique_ticker_pairs_per_month": 786,
+  "tree_change_winrate": 0.6002716161158895,
+  "tree_mean_selected_forward_excess_change": 0.0014320174823204772,
+  "trigger_second_mean_forward_excess_change": 0.0014549951919452578,
+  "tree_vs_runnerup_mean_change": -2.2977709624780538e-05,
+  "original_top1_forward_excess_mean": 0.007121716708460601,
+  "clipped_plus_minus_5pct_mean": 0.0004036929770476207,
+  "clipped_plus_minus_10pct_mean": 0.0007584858184779958,
+  "unique_pair_unweighted_mean": 0.015683383967359202,
+  "unique_pair_winrate": 0.5419847328244275
+}

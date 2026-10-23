@@ -1,0 +1,24 @@
+{
+  "original_frozen_input_run": 40016809498,
+  "tree_config_run": 40032282233,
+  "meta_economic_parity_run": 40032693599,
+  "frozen_raw_run": 39482809691,
+  "source_replay": "etf_trader_v3.source_only.execution.replay",
+  "risk_params_unmodified": true,
+  "distress_close_rolling63": true,
+  "breadth_threshold": 0.55,
+  "z5_threshold": -2,
+  "cooldown_days": 3,
+  "risk_exposure_factor": 0.25,
+  "risk_defensives": [
+    "BIL",
+    "SHV"
+  ],
+  "risk_off_behavior": "same source-only risk engine, no parameter search",
+  "allocation_policy": "original percentile gap 0.12, 75/25 else 100/0",
+  "true_next_open_execution": true,
+  "fees_oneway_bps": 10,
+  "baseline_without_risk_parity_1e_10": true,
+  "production_unchanged": true,
+  "historical_calendar_reused": true
+}
