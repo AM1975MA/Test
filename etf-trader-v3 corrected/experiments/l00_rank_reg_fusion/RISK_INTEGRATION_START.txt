@@ -1,1 +1,2 @@
 Unchanged original V3 risk-overlay replay over frozen 101-month ranker and nested meta-tree signals, 10bps next-open costs, strict risk-free parity check.
+Rerun after argparse property fix, same immutable sources and fixed original risk policy.
