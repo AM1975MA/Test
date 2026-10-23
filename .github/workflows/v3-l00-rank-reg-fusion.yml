@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Freeze tested numerical environment
-        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' scipy scikit-learn tabulate
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' scipy scikit-learn matplotlib tabulate
       - name: Read immutable OHLCV, canonical baskets, frozen corrected reference
         env:
           GH_TOKEN: ${{ github.token }}
