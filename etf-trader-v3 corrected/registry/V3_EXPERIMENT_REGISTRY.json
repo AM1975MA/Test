@@ -1251,6 +1251,43 @@
         "Time-series future data never used in selection"
       ],
       "verdict": "Reject unconditional same-basket rank-fallback after absolute downtrend veto; return and drawdown jointly worsened. Continue conditional ex-ante value/risk study only as distinct hypothesis with new source/time holdout."
+    },
+    {
+      "layer": "L00",
+      "id": "l00cs1-149day-minmax125-pairwise-20261023",
+      "status": "COMPLETED_TOP3_UPLIFT_NOT_SIGNIFICANT; NDCG_AND_IC_WORSE; NOT_PROMOTED",
+      "prereg": "etf-trader-v3 corrected/reports/L00/20261023_L00_CROSSSECTIONAL_DAILY_MINMAX_PREREG.md",
+      "report": "etf-trader-v3 corrected/reports/L00/20261023_L00_CS125_ALL_FEATURES_NORMALIZED_RESULTS.md",
+      "source": "etf-trader-v3 corrected/experiments/l00_crosssectional_minmax/",
+      "raw_data_run": 39482809691,
+      "control_original_run": 39515716383,
+      "eval_run": 40000704024,
+      "eval_artifact_id": 12521274938,
+      "archive_run": 40001591861,
+      "n_etf": 149,
+      "n_baskets": 500,
+      "n_monthly_mature_signals": 101,
+      "n_feature_channels": 125,
+      "original_pairwise_hyperparameters_same": true,
+      "mature_only_annual_fit": true,
+      "daily_asof_relative_normalization": true,
+      "supervision_frequency": "monthly",
+      "control_basket_top3": 0.3547128712871288,
+      "normalized_basket_top3": 0.369861,
+      "control_basket_ndcg3": 0.542279,
+      "normalized_basket_ndcg3": 0.52775,
+      "control_global_ic": 0.038536,
+      "normalized_global_ic": 0.01436,
+      "delta_top3_ci95": [
+        -0.012079,
+        0.041802
+      ],
+      "delta_ic_ci95": [
+        -0.046422,
+        -0.003623
+      ],
+      "status_note": "Improved coverage but worse ordering, no demonstrated economic gain, do not replace productive full V2 or freeze.",
+      "no_production_change": true
     }
   ],
   "pending_experiments": [
