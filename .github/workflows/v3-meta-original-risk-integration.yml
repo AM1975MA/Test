@@ -41,7 +41,7 @@ jobs:
           python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/risk_layer_integration.py' \
             --raw etf_trader_raw \
             --membership regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
-            --score runs/v3_frozen/regression/s1/OOS_SCORES.csv \
+            --score runs/v3_frozen \
             --decisions runs/v3_meta_economics/ACTUAL_DECISION_LOG.csv \
             --prior-economic runs/v3_meta_economics/DAILY_ENSEMBLE_NAV.csv \
             --out runs/v3_meta_risk_integration
