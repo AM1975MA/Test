@@ -19,7 +19,16 @@ V3 = HERE.parents[1]
 ROOT = V3.parent
 sys.path.insert(0, str(V3 / "experiments" / "l00_cs_add171"))
 sys.path.insert(0, str(V3 / "src"))
-from evaluate import freeze_data, scores_for_month, v3, SEEDS, BASKET_SHA
+import importlib.util
+_source = V3 / "experiments" / "l00_cs_add171" / "evaluate.py"
+_spec = importlib.util.spec_from_file_location("cs2_eval_reference", _source)
+_reference = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_reference)
+freeze_data = _reference.freeze_data
+scores_for_month = _reference.scores_for_month
+v3 = _reference.v3
+SEEDS = _reference.SEEDS
+BASKET_SHA = _reference.BASKET_SHA
 from normalize import normalize_same_day, unit_contract
 from etf_trader_v3.source_only.raw_io import load_ticker_csv_folder
 
