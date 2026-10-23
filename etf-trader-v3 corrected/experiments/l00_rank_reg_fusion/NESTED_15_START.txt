@@ -1,0 +1,1 @@
+The nine baseline family and six payoff weighted family runs completed. Nested chooser compares all 15 candidate families + old 36 trees only via historic matured labels vs frozen incumbent.

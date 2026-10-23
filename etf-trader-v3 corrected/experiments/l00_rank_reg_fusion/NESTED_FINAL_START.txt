@@ -1,0 +1,1 @@
+All 23 model-family tests (9 regular,6 payoff,4 event-invariant,4 inverse-pair-weighted context) succeeded, evaluate as-of 60day 113 challengers vs archived V3 incumbent. No production changes.

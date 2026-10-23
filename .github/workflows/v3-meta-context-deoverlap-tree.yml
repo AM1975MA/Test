@@ -1,0 +1,52 @@
+name: V3 unique ETF pair weighted conditional-context decision tree
+on:
+  push:
+    branches: [research-v3-meta-tree-ensemble-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/CONTEXT_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        family: [DT_CONTEXT, RF_CONTEXT, XGB_CONTEXT, CAT_CONTEXT]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Pinned ML dependencies
+        run: |
+          pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scikit-learn==1.9.1' 'xgboost==3.0.5'
+          if [ "${{ matrix.family }}" = "CAT_CONTEXT" ]; then pip install 'catboost==1.2.8'; fi
+      - name: Rehydrate frozen OOS predictions and original baskets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_rrf
+          for shard in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$shard -D runs/v3_rrf
+          done
+      - name: Preserve varied basket contexts with exactly inverse pair-frequency weights
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/context_weighted_tree_bakeoff.py' \
+            --family '${{ matrix.family }}' --shards runs/v3_rrf \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out 'runs/v3_context_tree_${{ matrix.family }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-meta-context-tree-${{ matrix.family }}
+          path: runs/v3_context_tree_${{ matrix.family }}/
+          retention-days: 90
