@@ -1,0 +1,1 @@
+Pre-registered after CS1 inspected exploratory CS2: use exact original 125 corrected features unchanged plus 46 daily date-local relative [-1,+1] raw base views, original 149 source, unchanged 360-trees Pairwise127 annual three-seed 2018-2026 historical OOS labels, 500 original basket top3 metric, no full V2 promotion.
