@@ -1,0 +1,1 @@
+Retain all basket-local contexts while exact ordered ticker pair retains total unit weight within month; evaluate DT RF XGB CAT trained quarterly on 101 matured OOS months. 2026-10-24.
