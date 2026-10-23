@@ -1,0 +1,1 @@
+Test all nine tree algorithms on 149 ETFs, 500 same frozen baskets, 101 mature months. Quarterly meta fit with 60 day delay. Preserve V2/V3 original checkpoints. Version 2026-10-24.
