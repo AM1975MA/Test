@@ -106,6 +106,10 @@ def main():
     target=s[s.variant=="CORRECTED"].set_index(["signal_date","ticker"])["fwd_ret_21"]
     wide=wide.join(target,how="inner")
     assert wide.index.is_unique
+    # Original saved scores also include 2026-06, which has no fully matured
+    # 21-day outcome. Use EXACTLY the 101 certified evaluation months.
+    mature_dates=set(ref.loc[ref.variant=="CORRECTED","signal_date"])
+    wide=wide.loc[wide.index.get_level_values("signal_date").isin(mature_dates)]
     assert len(wide.index.get_level_values("signal_date").unique())==101
     result=[]; corrections=[]
     for date,group in wide.groupby(level=0,sort=True):
