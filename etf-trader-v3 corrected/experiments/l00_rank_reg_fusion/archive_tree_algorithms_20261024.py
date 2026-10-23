@@ -42,7 +42,7 @@ def main():
             files=sorted(p for p in directory.rglob("*") if p.is_file())
             assert len(files)>=5,(run,name,files)
             names={p.name for p in files}
-            expected=({"SELECTOR_SUMMARY.csv","SELECTOR_CHOICE_AUDIT.csv"} if "selector" in name
+            expected=({"SELECTOR_SUMMARY.csv","SELECTOR_CHOICE_AUDIT.csv"} if "nested" in name
                  else {"SUMMARY.csv","PAIRED_MONTHLY.csv","PAIRED_BOOTSTRAP.csv","FITTING_AUDIT.csv"})
             assert expected <= names,(run,name,expected-names)
             arc=ZIPS/(name+".zip")
@@ -50,7 +50,7 @@ def main():
                 for f in files:z.write(f,f.relative_to(directory).as_posix())
             with zipfile.ZipFile(arc) as z:
                 assert z.testzip() is None and len(z.namelist())==len(files)
-            exposed=({"SELECTOR_SUMMARY.csv","SELECTOR_PAIRED_BOOTSTRAP.csv","SELECTOR_YEARLY.csv","SELECTOR_CHOICE_AUDIT.csv"} if "selector" in name
+            exposed=({"SELECTOR_SUMMARY.csv","SELECTOR_PAIRED_BOOTSTRAP.csv","SELECTOR_YEARLY.csv","SELECTOR_CHOICE_AUDIT.csv"} if "nested" in name
                  else {"SUMMARY.csv","PAIRED_BOOTSTRAP.csv","YEARLY.csv","FITTING_AUDIT.csv","MANIFEST.json"})
             for fname in exposed:
                 matches=[f for f in files if f.name==fname]
