@@ -1,0 +1,28 @@
+{
+  "layer": "L00 CS_MINMAX 125 corrected daily cross-section",
+  "preregistered": "all 125 input feature columns per as-of signal date min/max to -1/+1, otherwise SAME 127-leaf pairwise model 360 rounds 3 seeds",
+  "baseline_source_run": 39515716383,
+  "raw_source_run": 39482809691,
+  "frozen_feature_count": 125,
+  "n_months": 101,
+  "n_tickers": 149,
+  "n_baskets": 500,
+  "primary_metrics": [
+    "basket_top3",
+    "basket_ndcg3",
+    "basket_regret"
+  ],
+  "other_metrics": [
+    "universe_ic",
+    "basket_top1",
+    "basket_mrr_selected"
+  ],
+  "model": "same 3 seeds, same 360 rounds, same 127 leaves, chronological expanding annual fit",
+  "normalization": "same day observable ETF cross-sectional minmax, keep NaNs, zero for constant",
+  "training_labels_frequency": "monthly 21-trading-day future labels, daily-compatible transforms",
+  "no_cross_date_scaling_or_fits": true,
+  "no_tail_macro_blend_allocation_risk": true,
+  "return_metrics_evaluated": false,
+  "cagr_evaluated": false,
+  "historical_data_explored_not_virgin_holdout": true
+}
