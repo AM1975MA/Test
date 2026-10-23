@@ -1,1 +1,2 @@
 All 26 completed successful V3 model-family and selection experiment artifacts including final 40038509415 ready for checksum-pinned archiving under V3. 2026-10-24.
+Repeat after verified nested bundle detection correction; do not overwrite research results.
