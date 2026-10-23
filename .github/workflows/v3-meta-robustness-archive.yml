@@ -1,0 +1,38 @@
+name: V3 persist all meta-tree robustness experiments inside V3
+on:
+  push:
+    branches: [research-v3-meta-robustness-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/ROBUST_ARCHIVE_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive_followup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          ref: research-v3-meta-robustness-20261024
+      - name: Download completed evidence and enforce manifest integrity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/archive_robustness_20261024.py'
+      - name: Persist archives and audit tables in V3 research folder
+        run: |
+          git config user.name 'v3-research-archive[bot]'
+          git config user.email 'v3-research-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/robustness_20261024'
+          git diff --cached --name-status
+          git diff --cached --quiet && { echo 'Already archived'; exit 0; }
+          git commit -m 'V3: archive 9 meta-tree robustness experiment bundles and checksums'
+          git push origin HEAD:research-v3-meta-robustness-20261024
+      - name: Verify critical preserved results
+        run: |
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/robustness_20261024/ARCHIVE_MANIFEST.json'
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/robustness_20261024/tables/v3-meta-risk-integration/RISK_SCORECARD.csv'
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/robustness_20261024/archives/v3-meta-cost-100bps.zip'
