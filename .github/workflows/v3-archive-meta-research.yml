@@ -1,0 +1,39 @@
+name: V3 archive all verified decision-tree and ranking research inside project
+on:
+  push:
+    branches: [research-v3-l00-rank-reg-fusion-20261023]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/ARCHIVE_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive_verified:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          ref: research-v3-l00-rank-reg-fusion-20261023
+      - name: Download and integrity-check all prior successful experiments
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/archive_verified_results.py'
+      - name: Make archives persistent V3 repository files
+        run: |
+          git config user.name 'v3-research-archive[bot]'
+          git config user.email 'v3-research-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results'
+          git diff --cached --name-status
+          git diff --cached --quiet && { echo 'Nothing new to archive'; exit 0; }
+          git commit -m 'research: preserve all V3 L00 ranker-regression-meta-tree data, checksums and economic replay'
+          git push origin HEAD:research-v3-l00-rank-reg-fusion-20261023
+      - name: Verify archive commit and tree contents
+        run: |
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/ARCHIVE_MANIFEST.json'
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/tables/v3-nested-meta-tree-nextopen-economics/ECONOMIC_SCORECARD.csv'
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/archives/v3-nested-meta-tree-nextopen-economics.zip'
+          git rev-parse HEAD
