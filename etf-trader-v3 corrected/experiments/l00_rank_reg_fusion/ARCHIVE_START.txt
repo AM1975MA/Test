@@ -1,0 +1,1 @@
+Archive every successful 2026-10-23 V3 L00 validated experiment in the actual V3 project directory, and pin original run IDs and SHA256. Never touch trading production.
