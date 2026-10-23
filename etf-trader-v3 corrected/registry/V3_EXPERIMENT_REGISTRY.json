@@ -1288,6 +1288,53 @@
       ],
       "status_note": "Improved coverage but worse ordering, no demonstrated economic gain, do not replace productive full V2 or freeze.",
       "no_production_change": true
+    },
+    {
+      "layer": "L00",
+      "id": "l00cs2-original125-plus46-daily-cs-20261023",
+      "status": "COMPLETED_ADAPTIVE_CS2_TOP3_HISTORY_UP_BUT_NO_SIGNIFICANT_EDGE_AND_IC_WORSE; NOT_PROMOTED",
+      "origin": "User asks 149 ETF same-date minmax all observable feature values [-1,+1], retains unchanged original 125 as additional CS2 candidate after first all125 replacement tested",
+      "is_adaptive_followup_after_cs1": true,
+      "prereg": "etf-trader-v3 corrected/reports/L00/20261023_L00_CS2_171_FEATURE_ADDITION_ADAPTIVE_PREREG.md",
+      "report": "etf-trader-v3 corrected/reports/L00/20261023_L00_CS2_171_FEATURES_RESULTS.md",
+      "source": "etf-trader-v3 corrected/experiments/l00_cs_add171/",
+      "raw_data_run": 39482809691,
+      "original_corrected_control_run": 39515716383,
+      "all_nine_year_original_fit_shards_run": 40002047219,
+      "source_only_aggregate_run": 40003064949,
+      "artifact_id": 12522887492,
+      "permanent_archive_run": 40003374170,
+      "n_etf": 149,
+      "monthly_eval_months": 101,
+      "annual_refits": 9,
+      "canonical_baskets": 500,
+      "original_features_untouched": 125,
+      "new_raw_feature_crosssectional_minmax_channels": 46,
+      "total_model_features": 171,
+      "frozen_original_pairwise_127leaves_360trees_three_seeds": true,
+      "label_horizon_21trading_days": true,
+      "train_labels_only_strictly_mature_by_year_cutoff": true,
+      "daily_asof_normalization_applied_on_month_end_supervised_signals": true,
+      "original_control_top3": 0.3547128712871288,
+      "cs2_top3": 0.368713,
+      "top3_delta": 0.014,
+      "top3_delta_ci95": [
+        -0.006119,
+        0.034713
+      ],
+      "original_ndcg3": 0.542279,
+      "cs2_ndcg3": 0.532253,
+      "original_global_rank_ic": 0.038536,
+      "cs2_global_rank_ic": 0.019145,
+      "ic_delta_ci95": [
+        -0.034551,
+        -0.004536
+      ],
+      "top1_regret_original": 0.104115,
+      "top1_regret_cs2": 0.106405,
+      "production_V2_and_V3_unchanged": true,
+      "acceptance": "FAIL_NO_500_TOP3_CONFIDENT_IMPROVEMENT_AND_OTHER_RANK_QUALITY_WORSE",
+      "no_new_portfolio_cagr_test": true
     }
   ],
   "pending_experiments": [
