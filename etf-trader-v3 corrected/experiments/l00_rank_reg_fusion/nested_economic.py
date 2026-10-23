@@ -37,7 +37,7 @@ STRATEGY="NESTED_24_TOP1_GUARD"
 POLICIES=("TOP1","TOP2","TOP3")
 WINDOWS={"FULL101":("2018-02-01","2026-06-30"),
          "MATCHED_2022":("2022-02-01","2026-06-30")}
-PARSE=re.compile(r"^TREE_(expanding|last36)_D([123])_N(100|300)_P(0\\.(?:55|6|65))$")
+PARSE=re.compile(r"^TREE_(expanding|last36)_D([123])_N(100|300)_P(0\.(?:55|6|65))$")
 
 def main():
     p=argparse.ArgumentParser()
