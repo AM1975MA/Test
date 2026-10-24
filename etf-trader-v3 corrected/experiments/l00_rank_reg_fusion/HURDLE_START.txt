@@ -1,0 +1,1 @@
+Fixed 4 models x 2 downside risk penalties. Training quarterly on mature-only unique event pair OOS data, global as-of 21/63-day price regime, monthly bootstrap against verified NESTED_24_TOP1_GUARD. No performance-based tuning or production changes.
