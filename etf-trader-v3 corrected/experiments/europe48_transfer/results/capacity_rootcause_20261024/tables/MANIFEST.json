@@ -1,0 +1,20 @@
+{
+  "nETF": 48,
+  "year": 2022,
+  "months_fit": 58,
+  "months_OOS": 12,
+  "target": "21day next-open rank pct",
+  "training_records": 2784,
+  "model_params_fixed_except_capacity": true,
+  "base_original_model": "depth4",
+  "V3_original_model": "max_leaves127 lossguide",
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "n_estimators": 360,
+  "source_labels_reproduced": true,
+  "parity_of_old125_and_127_selected_top1": true,
+  "retrospective_diagnostic_not_hyperparam_selection": true
+}

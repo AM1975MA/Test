@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-24",
+  "source_run": 40111851199,
+  "source_url": "https://github.com/AM1975MA/Test/actions/runs/40111851199",
+  "source_job_success": true,
+  "pricing_and_original_125_127_top1_parity": true,
+  "n_source_files": 12,
+  "n_archives": 1,
+  "archive_sha256": "6be11823c12855857efa1db1052cdf06156ea5b502374fd74b91fa37a8ceb739",
+  "files": [
+    {
+      "path": "2022_ALL_SCORES.csv",
+      "size": 179442,
+      "sha256": "97f51c9e13c65d61d43a31379aeaf80c0a98409b47bfdc25e96ab405ed72d2b3"
+    },
+    {
+      "path": "2022_CAPACITY_DIAGNOSTIC.csv",
+      "size": 1549,
+      "sha256": "c967057e0951cd3aa4bc5fa7e4360ef2baff53a68ed83583231f80a11c34d422"
+    },
+    {
+      "path": "2022_EACH_MONTH_TOP1.csv",
+      "size": 3059,
+      "sha256": "a62a446bf35592c985cf4c5e50ae49f0703ae57f4d4a2d125d2cdf6afca9ff7f"
+    },
+    {
+      "path": "LEAVES127_ACTUAL_LEAF_COUNTS.csv",
+      "size": 295,
+      "sha256": "a53f83db455ccfa61a5d25175946913272b5799a3d3ffc352588bba538638da4"
+    },
+    {
+      "path": "LEAVES15_ACTUAL_LEAF_COUNTS.csv",
+      "size": 185,
+      "sha256": "87a81b6a2509f2c7d41aeda673a45a41dd956095ab7c3578a4779e9a7d0ed33e"
+    },
+    {
+      "path": "LEAVES31_ACTUAL_LEAF_COUNTS.csv",
+      "size": 185,
+      "sha256": "8118a0462bb964817d59a6b4286f180ef84bb39f82c439fa8b91e12c4a364d5d"
+    },
+    {
+      "path": "LEAVES63_ACTUAL_LEAF_COUNTS.csv",
+      "size": 229,
+      "sha256": "a62066bf2c0b04cadf81980cf487940f516252c21b80612c8549fdc5a6436b31"
+    },
+    {
+      "path": "MANIFEST.json",
+      "size": 485,
+      "sha256": "400bc4df5072d4ad51d781a021fb0070fd84a4ae2aa4d114e633ff0b3ed66c14"
+    },
+    {
+      "path": "ORIGINAL_DEPTH4_ACTUAL_LEAF_COUNTS.csv",
+      "size": 332,
+      "sha256": "75350b45845b4bcebd31abe80eed4d86b505eea16409c999ccc86c99937afc98"
+    },
+    {
+      "path": "SPY_REF/SOURCE_REFERENCE_AUDIT.json",
+      "size": 2420,
+      "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+    },
+    {
+      "path": "SPY_REF/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+      "size": 563893,
+      "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+    },
+    {
+      "path": "SPY_REF/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+      "size": 427476,
+      "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+    }
+  ],
+  "production_models_changed": false
+}

@@ -1,0 +1,4 @@
+config,seed,mean_leaves,early_mean,last60_mean,max_leaves_actual,theoretical_limit
+LEAVES31,101,31.0,31.0,31.0,31,31
+LEAVES31,202,31.0,31.0,31.0,31,31
+LEAVES31,303,31.0,31.0,31.0,31,31
