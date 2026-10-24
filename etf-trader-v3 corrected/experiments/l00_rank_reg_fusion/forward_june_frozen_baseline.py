@@ -11,7 +11,7 @@ import argparse,json,re
 from pathlib import Path
 import numpy as np,pandas as pd
 import sys
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"src"))
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/"src"))
 from sklearn.tree import DecisionTreeClassifier
 from parallel_meta import load,prepare_tree_months,pair_features,METRICS,REGS
 from aggregate import metric_for_order
