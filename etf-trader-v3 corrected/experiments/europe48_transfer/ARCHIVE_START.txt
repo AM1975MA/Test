@@ -1,1 +1,2 @@
 All six EU48 annual V3 127-head fits passed run 40086216896. Both economic/meta nested trials run 40086735687 (original) and 40087054494 (batch vectorized) were SUCCESS and identical, reproducing EU48 old Compact125 account within 1e-10. Archive seven complete research artifacts into V3.
+Archive reconciliation: audited output column/files are named EUR48_* in verified successful economic run. SHA/per-file gates unchanged.
