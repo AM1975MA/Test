@@ -1,0 +1,37 @@
+name: V3 Europe148 candidate discovery and historic ISIN quality audit
+on:
+  push:
+    branches:
+      - research/v3-europe148-historical-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/DISCOVERY_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  discovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Acquire canonical 48 European reference ISIN archive from separate fixed research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/canonical-v2-source-us149-eu48-20261020
+          path: _europe48_verified
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'requests==2.32.5'
+      - name: Pin large public ISIN database and audit six European macro clusters and historical inception
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/universe_discovery.py' \
+             --reference '_europe48_verified/isin_first2026/full_eu_2017/results/STRICT_EUROPE_2017_WARM_2016_UNIQUE_ISIN.csv' \
+             --out 'runs/europe148/discovery'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe148-universe-discovery
+          path: runs/europe148/discovery/
+          retention-days: 90
