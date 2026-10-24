@@ -1,2 +1,3 @@
 Download official-ISIN-verified active EUR XETRA ETF adjusted OHLCV from 2010 forward, respecting first class trading dates. Six parallel original macro-cluster cohorts, no fabricated 2012 history; audit all rejected and accepted instruments. Reference Xetra run 40135053797.
 Second pass: classify valid quote bars separately from unavailable Xetra vendor Volume; mark illiquid/volume-unverified so not used as broker-executable, and allow actual later funds to join dynamically without prelisting backfill. Same ISIN/exposure filters.
+Final six-cluster 100 ISIN quota is 16/22/21/18/18/5: reject false EX-REITS fund classifications and replace with true factor ETFs. Same rigorous OHLC and true listing-date gates.
