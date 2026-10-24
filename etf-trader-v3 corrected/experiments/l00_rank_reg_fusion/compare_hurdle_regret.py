@@ -95,7 +95,7 @@ def main():
         preregistered_families=FAMILIES,
         variants=8,selected_winner=False,
         historic_period_already_researched=True,virgin_holdout=False,
-        149_etfs=True,canonical_baskets=500,
+        n_etfs=149,canonical_baskets=500,
         fixed_incumbent="NESTED_24_TOP1_GUARD",monthly_block_bootstrap=6,
         production_modified=False),indent=2))
     print("HURDLE_AGGREGATE_PASS",flush=True)
