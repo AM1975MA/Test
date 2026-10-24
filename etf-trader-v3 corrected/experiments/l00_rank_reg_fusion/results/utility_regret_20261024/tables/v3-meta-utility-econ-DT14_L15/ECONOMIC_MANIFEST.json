@@ -1,0 +1,43 @@
+{
+  "research_only": true,
+  "reference_ranker_run": 40016809498,
+  "meta_tree_run": 40031144599,
+  "nested_selection_run": 40032282233,
+  "alternative_origin_run": 40079852872,
+  "alt_family": "DT14",
+  "alt_risk_penalty": 1.5,
+  "models_fitted_in_economic_replay": false,
+  "validated_against_utility_101months": true,
+  "preregistered_candidate_comparison": false,
+  "frozen_raw_run": 39482809691,
+  "reference_baskets_sha": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+  "n_baskets": 500,
+  "n_etfs": 149,
+  "n_signals": 101,
+  "full_exact_ticker_decision_metrics_verified": true,
+  "baseline_top2_verifies_original_allocator_via_make_schedules": true,
+  "next_open_execution": true,
+  "cost_oneway_bps": 10,
+  "risk_layers_on": false,
+  "execution_start_stop": {
+    "FULL101": [
+      "2018-02-01",
+      "2026-06-30"
+    ],
+    "MATCHED_2022": [
+      "2022-02-01",
+      "2026-06-30"
+    ]
+  },
+  "trading_policy": {
+    "TOP1": "100 percent first",
+    "TOP2": "75/25 first-second; use 100/0 if original base ranker top1-top2 gap >=.12",
+    "TOP3": "50/30/20 original candidates in tree-corrected ordering"
+  },
+  "top2_gap_from_original_ranker": true,
+  "return_target_not_used_in_selection": true,
+  "meta_config_selected_before_date_using_60day_maturity": true,
+  "historical_calendar_previously_researched": true,
+  "cannot_claim_pristine_holdout": true,
+  "V2_V3_production_modified": false
+}

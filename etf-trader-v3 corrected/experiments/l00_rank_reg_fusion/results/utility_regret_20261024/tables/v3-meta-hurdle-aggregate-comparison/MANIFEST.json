@@ -1,0 +1,17 @@
+{
+  "preregistered_families": [
+    "DT14",
+    "DT_REGIME",
+    "HGB_REGIME",
+    "RF_REGIME"
+  ],
+  "variants": 8,
+  "selected_winner": false,
+  "historic_period_already_researched": true,
+  "virgin_holdout": false,
+  "n_etfs": 149,
+  "canonical_baskets": 500,
+  "fixed_incumbent": "NESTED_24_TOP1_GUARD",
+  "monthly_block_bootstrap": 6,
+  "production_modified": false
+}

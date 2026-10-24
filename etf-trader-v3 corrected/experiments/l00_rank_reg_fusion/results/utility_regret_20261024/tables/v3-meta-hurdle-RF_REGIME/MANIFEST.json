@@ -1,0 +1,28 @@
+{
+  "family": "RF_REGIME",
+  "models": "hurdle_p_positive_gain_negative_loss",
+  "risk_multipliers": [
+    1.0,
+    1.5
+  ],
+  "switch_cost_proxy": 0.002,
+  "per_pair_label_clip": 0.2,
+  "price_lookback_trading_days": [
+    21,
+    63
+  ],
+  "raw_price_features_only_pre_signal": true,
+  "frozen_raw_run": 39482809691,
+  "frozen_first_stage_run": 40016809498,
+  "frozen_incumbent_run": 40032282233,
+  "quarterly_meta_refit": true,
+  "maturity_lag_calendar_days": 60,
+  "distinct_pair_month_training": true,
+  "equal_month_training_weight": true,
+  "original_etfs": 149,
+  "canonical_baskets": 500,
+  "mature_months": 101,
+  "expected_gain_not_portfolio_CAGR": true,
+  "historical_reused_not_holdout": true,
+  "production_strategy_changed": false
+}

@@ -1,0 +1,11 @@
+{
+  "evaluation_only_no_new_model": true,
+  "incumbent_run": 40032693599,
+  "utility_economic_run": 40080407962,
+  "includes_2026_vs_excludes_2026": true,
+  "budget_constraint": 10,
+  "exact_next_open": true,
+  "estimator": "aggregate_500_basket_NAV_with_21_trading_day_block_bootstrap",
+  "calendar_not_independent_holdout": true,
+  "production_changed": false
+}
