@@ -1,0 +1,1 @@
+Preserve 2026-10-24 SUCCESS test run 40092281559 and 8 full OOS/EUR next-open CSV source results. Distinguish V3 original allocator Top2 75/25 from older equal-weight experiment. Only research folders.
