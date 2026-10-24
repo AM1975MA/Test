@@ -1,0 +1,1 @@
+Post-hoc DIAGNOSTIC only (not confirmatory ranking): previously investigated utility DT14-L1.5, HGB_REGIME-L1.5 and RF_REGIME-L1.0. Reconstruct 500x101 actual ETF decisions with exact month metric parity before economic execution, compare frozen base NAV. No refitting, no production changes.
