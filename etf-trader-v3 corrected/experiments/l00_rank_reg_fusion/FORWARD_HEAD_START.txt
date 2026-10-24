@@ -2,3 +2,4 @@
 Trace evaluate and aggregate imports; initial run stopped on incorrect imported argument parser before training.
 Fix sys.path collision: load local OOS aggregate before evaluate modifies Python import priority. Full source/model params unchanged.
 Audit uncovered original 2026-06-30 OOS predictions archived before June targets matured. Compare 6 prediction months while only Jan–May historical target parity, then new June–August labels.
+Correct source code quoting of June OOS pre-label reference check, no rule or data parameter changes.
