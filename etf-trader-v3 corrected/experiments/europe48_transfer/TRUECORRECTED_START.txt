@@ -1,0 +1,1 @@
+Source audit detected genuine V3 corrected kernel differs from legacy V2 Europe48 source; rerun original frozen XGB 127 leaf and 5 regressors on same 48 ISIN and true corrected 125 features for all six annual OOS years, isolate code effect without tune. 2026-10-24.
