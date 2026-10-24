@@ -43,15 +43,17 @@ def main():
     close=mats["Close"]
     observed=close.notna().astype(int).cumsum()
     warm_month=observed.reindex(index=dates).stack(dropna=False).rename("prior_observed_closes")
-    original=original.merge(warm_month.reset_index().rename(columns={"level_0":"signal_date","level_1":"ticker"}),
-                 on=["signal_date","ticker"],how="left",validate="one_to_one")
+    prior_obs=warm_month.reset_index()
+    prior_obs.columns=["signal_date","ticker","prior_observed_closes"]
+    original=original.merge(prior_obs,on=["signal_date","ticker"],how="left",validate="one_to_one")
     assert "prior_observed_closes" in original.columns
     valid=(original.prior_observed_closes>=252) & (original[K.F2D_FEATURES].notna().sum(axis=1)>=75)
     # A signal is legitimate only on an actual Euro venue quote date, not on
     # a holiday-aligned filled synthetic row. Dates before inception are NaN.
     dates_m=mats["Close"].reindex(dates).stack(dropna=False).rename("market_close")
-    original=original.merge(dates_m.reset_index().rename(columns={"level_0":"signal_date","level_1":"ticker"}),
-                on=["signal_date","ticker"],how="left",validate="one_to_one")
+    venue_close=dates_m.reset_index()
+    venue_close.columns=["signal_date","ticker","market_close"]
+    original=original.merge(venue_close,on=["signal_date","ticker"],how="left",validate="one_to_one")
     valid &= original.market_close.notna()
     original["eligible_asof"]=valid
     audit=[]
