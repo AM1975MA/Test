@@ -16,11 +16,10 @@ from xgboost import XGBRanker,XGBRegressor
 HERE=Path(__file__).resolve().parent
 V3=HERE.parents[1]
 sys.path.insert(0,str(HERE))
-print("FORWARD_IMPORT_EVALUATE", __name__,flush=True)
-import evaluate as E
-print("FORWARD_IMPORT_AGGREGATE", __name__,flush=True)
+# Load the LOCAL aggregate module before evaluate.py mutates sys.path to add
+# its cs_add171 reference directory (which contains a conflicting aggregate.py).
 from aggregate import read_shards
-print("FORWARD_IMPORTED_REFERENCES",__name__,flush=True)
+import evaluate as E
 from etf_trader_v3.source_only.raw_io import load_ticker_csv_folder
 REFERENCE_CUTOFF=pd.Timestamp("2026-05-31")
 MATURED_TO=pd.Timestamp("2026-08-31")
