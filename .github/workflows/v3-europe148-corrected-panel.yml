@@ -23,7 +23,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p runs/euro148_ohlcv
-          gh run download 40135988905 -R AM1975MA/Test \
+          gh run download 40136324144 -R AM1975MA/Test \
              -n v3-europe148-2010-vintage-verified-ohlcv -D runs/euro148_ohlcv
           test -s runs/euro148_ohlcv/MANIFEST.json
       - name: Exact source-native V3 corrected kernel features no V2 downside logic, European daily calendar and dynamic 252-observed-bar eligibility
