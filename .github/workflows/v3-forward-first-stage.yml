@@ -1,0 +1,49 @@
+name: V3 locked 2026 first-stage reconstitution and new June-Aug OOS
+on:
+  push:
+    branches: [research-v3-forward-locked-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/FORWARD_HEAD_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Lock exact previous model training package versions
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' 'scikit-learn==1.9.1' scipy matplotlib tabulate
+      - name: Recover new append-only OHLCV snapshot, original history and reference heads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p forward_raw etf_trader_raw runs/v3_reference
+          gh run download 40082539622 -R AM1975MA/Test -n v3-forward-frozen-149-raw-20261024 -D forward_raw
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+          for shard in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$shard -D runs/v3_reference
+          done
+          test -s forward_raw/PROVENANCE.json
+      - name: Original annual 2026 first-stage fit, prove Jan-May OOS raw score parity before accepting June-Aug
+        env:
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/forward_score_2026.py' \
+            --raw forward_raw --original-raw etf_trader_raw \
+            --old-shards runs/v3_reference --out runs/v3_forward_2026
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-forward-2026-frozen-first-stage
+          path: runs/v3_forward_2026/
+          retention-days: 90
