@@ -1,0 +1,60 @@
+name: V3 Europe48 36 nested tree algorithm and EUR next-open 10bp economics
+on:
+  push:
+    branches:
+      - research/v3-europe48-tree-transfer-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/META_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  NUMEXPR_NUM_THREADS: '1'
+jobs:
+  meta:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Exact existing EU48 source environment
+        run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'numba==0.65.1' 'pyarrow==23.0.1' 'matplotlib==3.10.8'
+      - name: Download all six genuinely refitted V3 Europe48 OOS head artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for year in 2021 2022 2023 2024 2025 2026; do
+            mkdir -p "_V3_EU48_$year"
+            gh run download 40086216896 -R AM1975MA/Test \
+              -n "v3-europe48-127leaf-heads-$year" -D "_V3_EU48_$year"
+            test -s "_V3_EU48_$year/EU48_V3_FIRSTSTAGE_SCORES.csv"
+          done
+      - name: Build exactly same 48 ISIN European EUR next-open prices and costed original reference
+        run: |
+          python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_PREP
+          test -s _EU48_PREP/raw_ticker_csv/universe.csv
+      - name: Chronologically refit original 36 tree configs and select via exact 24mo/60d top1 guard
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/v3_europe48_meta_economics.py' \
+            --prep _EU48_PREP \
+            --head _V3_EU48_2021/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_EU48_2022/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_EU48_2023/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_EU48_2024/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_EU48_2025/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_EU48_2026/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --out _V3_EU48_META_ECONOMICS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe48-nested36-real-EUR10bp-economic-results
+          path: _V3_EU48_META_ECONOMICS/
+          retention-days: 90

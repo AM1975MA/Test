@@ -1,0 +1,58 @@
+name: V3 EU48 archive native allocator matched tree economics
+on:
+  push:
+    branches:
+      - research/v3-europe48-tree-transfer-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/NATIVE_ALLOC_ARCHIVE_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/v3-europe48-tree-transfer-20261024
+          persist-credentials: true
+      - name: Download original verified 8-file V3 75/25 Top2 50/30/20 Top3 economic artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _EU48_NATIVE_OUT
+          gh run download 40092281559 -R AM1975MA/Test \
+            -n v3-europe48-nested36-real-EUR10bp-economic-results \
+            -D _EU48_NATIVE_OUT
+          test "$(find _EU48_NATIVE_OUT -maxdepth 1 -type f | wc -l)" = 8
+          test -s _EU48_NATIVE_OUT/EUR48_V3_NET_SCORECARD.csv
+          test -s _EU48_NATIVE_OUT/EUR48_V3_NET_DAILY_NAV.csv
+          test -s _EU48_NATIVE_OUT/EU48_V3_MONTHLY_NESTED_TREE.csv
+          test -s _EU48_NATIVE_OUT/EU48_V3_RESULTS_MANIFEST.json
+      - name: Permanently archive full outputs plus SHA256 provenance under V3 research only
+        run: |
+          path='etf-trader-v3 corrected/experiments/europe48_transfer/results/native_alloc_20261024'
+          mkdir -p "$path/tables" "$path/archives"
+          cp _EU48_NATIVE_OUT/* "$path/tables/"
+          ( cd _EU48_NATIVE_OUT; zip -q -9 -r "../$path/archives/v3-europe48-nested36-native-allocator-economics.zip" . )
+          ( cd "$path/tables"; sha256sum * > ../TABLE_SHA256.txt )
+          ( cd "$path/archives"; sha256sum * > ../ARCHIVE_SHA256.txt )
+          cat > "$path/README.md" <<'EOF'
+          # ETF Trader V3 corrected: 48 European ETFs native V3 allocator
+          Exact original decision tree family; 65 OOS months, 48 legal ISIN in EUR.
+          10bp one-way; V3 native Top2 75/25 (or 100/0 for rank gap >=.12),
+          Top3 50/30/20, Top5 equal weight.
+          Original source GitHub Actions run 40092281559.
+          IMPORTANT: prior report EU48_V3_TREE_RESULTS_20261024.md used equal
+          Top2/Top3 weights and is separate, with different Top2 and Top3 CAGR.
+          See EU48_NATIVE_ALLOCATIONS_20261024.md.
+          EOF
+          test -s "$path/archives/v3-europe48-nested36-native-allocator-economics.zip"
+          git config user.name 'v3-eu48-research[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- "$path"
+          git diff --cached --quiet && exit 0
+          git commit -m 'V3 EU48: archive separate 75/25 native allocator next-open economic replay'
+          git push origin HEAD:research/v3-europe48-tree-transfer-20261024
