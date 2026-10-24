@@ -1,0 +1,42 @@
+name: V3 archive verified EU48 rootcause six annual leaves and economics
+on:
+  push:
+    branches:
+      - research/v3-europe48-rootcause-leaves-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/ROOTCAUSE_ARCHIVE_START.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  save:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          ref: research/v3-europe48-rootcause-leaves-20261024
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install frozen audit dependencies
+        run: pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Recover all seven complete original Actions result artifacts with SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/archive_rootcause_capacity.py'
+      - name: Preserve only V3 research results with original checksums
+        run: |
+          git config user.name 'v3-research-archive[bot]'
+          git config user.email 'v3-research-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/europe48_transfer/results/rootcause_capacity_20261024'
+          git diff --cached --name-status
+          git diff --cached --quiet && { echo 'Already archived'; exit 0; }
+          git commit -m 'V3: preserve all 7 EU48 ranker leaf rootcause ablation and economic parity archives'
+          git push origin HEAD:research/v3-europe48-rootcause-leaves-20261024
+      - name: Assert archives present
+        run: |
+          test -s 'etf-trader-v3 corrected/experiments/europe48_transfer/results/rootcause_capacity_20261024/ARCHIVE_MANIFEST.json'
+          test -s 'etf-trader-v3 corrected/experiments/europe48_transfer/results/rootcause_capacity_20261024/tables/CAPACITY_OVERALL_SKILL.csv'
