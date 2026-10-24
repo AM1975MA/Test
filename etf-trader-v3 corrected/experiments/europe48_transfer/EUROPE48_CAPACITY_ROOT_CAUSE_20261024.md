@@ -2,6 +2,12 @@
 
 **Status:** analisi sorgenti completata e diagnosi 2022 riprodotta con cinque diverse capacità XGBoost. Nessuna modifica al codice operativo V2/V3, nessuna promozione di un nuovo numero di foglie.
 
+## Correzione critica della classificazione del test (feature mismatch)
+
+L'audit successivo [GitHub Actions 40112742559](https://github.com/AM1975MA/Test/actions/runs/40112742559) ha identificato **una differenza implementativa sostanziale**. `v3_europe48_heads.py` usava il kernel legacy `etf_trader.source_only.kernel` di V2, mentre il vero `etf_trader_v3.source_only.kernel` contiene correzioni del calcolo della downside volatility. Nonostante lo stesso array di 125 nomi, su 65×48×125=390.000 celle OOS, **9 feature differiscono, con 11.236 valori numerici diversi e 16.724 transizioni da NaN a valore presente**. Nel legacy downvol considera soltanto giorni negativi con std; nel corrected usa il lower partial moment di tutti i giorni validi, contribuendo zero per i non-negativi. Differenze nei calcoli RSI/entropia del kernel non generano altre celle numericamente modificate nel pannello 125F su queste date.
+
+**Perciò ogni numero qui sotto relativo alla configurazione 127 foglie è valido SOLO per il modello 127-leaf con feature legacy V2. Il modello V3 fully corrected NON era stato ancora testato da questa campagna.** Il mismatch di feature è un difetto della riproduzione applicativa del test EU48, non necessariamente del codice operativo V3. La vera pipeline V3 corretta viene sottoposta a un nuovo test separato con identico calendario e prezzi; soltanto quello può determinare l'impatto dei dati mancanti e del nuovo algoritmo di downvol.
+
 ## Sintomo verificato su identica contabilità in EUR
 
 Benchmark EU48 certificato a un solo conto, 48 ISIN strettamente europei, prezzi adjusted Open in EUR, 65 segnali gennaio 2021–maggio 2026, ingressi next-open, 10 bp one-way, 1.374 sedute 2021-02-01–2026-07-01.
