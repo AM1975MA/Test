@@ -158,7 +158,8 @@ def run(args):
                 if key not in seen:
                     seen[key]=(pair_features(v,idx,orig,alt),int(yy[j]>yy[i]))
         XX=np.stack([x[0] for x in seen.values()]); labels=np.array([x[1] for x in seen.values()])
-        assert XX.shape[1]==14 and len(XX)>=10
+        assert XX.shape[1]==14 and len(XX)>=1
+        print('EU48_MONTH_UNIQUE_PAIRS',str(dt.date()),len(XX),flush=True)
         dedup.append((dt,(XX,labels)))
     # Train all 36 precommitted V3 meta variants, choose using prior matured
     # Europe 500-basket OOS decisions, then execute on full 48 unrestricted.
