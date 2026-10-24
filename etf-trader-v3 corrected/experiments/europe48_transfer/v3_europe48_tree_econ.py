@@ -188,15 +188,36 @@ def main():
             audits.append(dict(quarter_start=str(date.date()),last_eligible_train=str(
                 (date-pd.Timedelta(days=60)).date()),mature_months=training_months,
                 models=len(models)))
-        monthscore={}
-        for arm in ("CORRECTED",)+tuple(TREE_NAMES):monthscore[arm]=[]
-        for idx,orig in basket_rows:
+        # Batch infer on the 1,000 candidate events ONCE per month.
+        # No differences in features/probabilities/thresholds; avoids
+        # re-evaluating 14 features and predict_proba 36x for 500 baskets.
+        candidates=np.asarray([pair_features(vals,idx,orig,alt)
+           for idx,orig in basket_rows for alt in orig[1:3]],dtype=float)
+        assert candidates.shape==(1000,14)
+        p_by_key={}
+        for model_key,model in cache.items():
+            if len(model.classes_)==2:
+                p_by_key[model_key]=model.predict_proba(candidates)[:,
+                    list(model.classes_).index(1)].reshape(500,2)
+            else:p_by_key[model_key]=np.zeros((500,2),float)
+        monthscore={arm:[] for arm in ("CORRECTED",)+tuple(TREE_NAMES)}
+        for ib,(idx,orig) in enumerate(basket_rows):
             f=vals["fwd"][idx];base=metric(orig,f)
             monthscore["CORRECTED"].append(base[:6])
-            for arm in TREE_NAMES:
-                key,t=parse(arm)
-                order=order_for(cache.get(key),t,vals,idx,orig)
-                monthscore[arm].append(metric(order,f)[:6])
+            for model_key in [(w,d,n) for w in WINDOWS for d in DEPTHS for n in LEAVES]:
+                prob=p_by_key.get(model_key)
+                if prob is None:
+                    candidate_idx=int(orig[0]);pmax=0.
+                else:
+                    ibest=int(np.argmax(prob[ib]))
+                    candidate_idx=int(orig[ibest+1]);pmax=float(prob[ib,ibest])
+                for threshold in THRESHOLDS:
+                    w,d,n=model_key
+                    arm=f"TREE_{w}_D{d}_N{n}_P{threshold:g}"
+                    if pmax>threshold and candidate_idx!=orig[0]:
+                        order=np.r_[candidate_idx,orig[orig!=candidate_idx]]
+                    else:order=orig
+                    monthscore[arm].append(metric(order,f)[:6])
         for arm,arr in monthscore.items():
             m=np.asarray(arr,float).mean(axis=0)
             history.append(dict(signal_date=date,variant=arm,n_baskets=500,
