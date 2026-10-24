@@ -1,1 +1,2 @@
 149 ETF append-only frozen history passed 40082539622. Reproduce 2026 CORRECTED125 and five regressors with original mature-only data, verify all Jan-May raw scores and Top1 baskets, then release June-Aug 21D matured signal predictions. 
+Trace evaluate and aggregate imports; initial run stopped on incorrect imported argument parser before training.
