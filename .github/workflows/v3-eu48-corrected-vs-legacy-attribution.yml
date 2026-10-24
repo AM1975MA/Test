@@ -1,0 +1,40 @@
+name: V3 EU48 source defect isolated actual corrected versus legacy monthly paths
+on:
+  push:
+    branches:
+      - research/v3-europe48-tree-transfer-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/CODE_ROOTCAUSE_COMPARE_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  comparison:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install 'numpy==2.3.5' 'pandas==2.2.3'
+      - name: Retrieve immutable real corrected model economic experiment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _EU48_CORRECTED
+          gh run download 40113201316 -R AM1975MA/Test \
+            -n v3-eu48-actual-corrected-127-nested-realEUR-10bp -D _EU48_CORRECTED
+          test -s _EU48_CORRECTED/EUR48_V3_NET_DAILY_NAV.csv
+      - name: Certify exact matched EUR prices, compare model porting and tree yearwise
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/compare_eu48_corrected_vs_legacy.py' \
+            --corrected _EU48_CORRECTED --out _EU48_CORRECTED_VS_LEGACY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-eu48-verified-truecorrected-vs-legacy-attribution
+          path: _EU48_CORRECTED_VS_LEGACY/
+          retention-days: 90
