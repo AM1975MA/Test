@@ -1,0 +1,38 @@
+name: V3 Europe148 official Xetra EUR legal ISIN verification
+on:
+  push:
+    branches:
+      - research/v3-europe148-historical-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/XETRA_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  crosswalk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'requests==2.32.5'
+      - name: Retrieve original 618 shortlisted and 100 proposed ISINs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_catalog
+          gh run download 40134688075 -R AM1975MA/Test -n v3-europe148-universe-discovery -D runs/eu148_catalog
+          test -s runs/eu148_catalog/EU_CANDIDATE_CATALOG_AUDITED.csv
+      - name: Match each legal ISIN against official live Deutsche Boerse Xetra instrument mnemonic and EUR currency
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/xetra_isin_crosswalk.py' \
+            --discovery runs/eu148_catalog --out runs/eu148_xetra
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe148-official-xetra-audit
+          path: runs/eu148_xetra/
+          retention-days: 90
