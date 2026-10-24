@@ -1,0 +1,1 @@
+Download official-ISIN-verified active EUR XETRA ETF adjusted OHLCV from 2010 forward, respecting first class trading dates. Six parallel original macro-cluster cohorts, no fabricated 2012 history; audit all rejected and accepted instruments. Reference Xetra run 40135053797.
