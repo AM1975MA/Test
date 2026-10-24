@@ -1,0 +1,15 @@
+{
+  "project": "ETF Trader V3 corrected",
+  "geographic_universe": "48 unique Europe exposed UCITS EUR listed ISIN",
+  "train_start": "2017-01-01",
+  "years": [
+    2024
+  ],
+  "exact_125feature_source_spy_market_prior_europe_open": true,
+  "frozen_127_leaf_ranker_and_five_regressor_config": true,
+  "source_125_europe_reference_65_months_validated": true,
+  "baskets_not_in_learner_training": true,
+  "forward_21d_label_maturity_annual": true,
+  "research_only": true,
+  "no_V2_modifications": true
+}

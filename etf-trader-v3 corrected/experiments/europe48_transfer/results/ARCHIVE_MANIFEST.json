@@ -1,0 +1,379 @@
+{
+  "version": "2026-10-24",
+  "source_branch": "research/v3-europe48-tree-transfer-20261024",
+  "universe": "48 EUR-listed strict Europe exposure distinct legal ISIN",
+  "original_EUR48_source_comparability_true": true,
+  "full_stage19_previous_europe_CAGR": -0.001548735494856131,
+  "certified_old_EUR48_compact125_standalone_top1_CAGR": 0.04727914934059951,
+  "original_ranker_149_pretrained_reused": false,
+  "n_months": 65,
+  "source_only_training": true,
+  "source_only_economic_replay": true,
+  "fees_per_side": 0.001,
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "no_production_changes": true,
+  "archives": [
+    {
+      "run": 40086216896,
+      "artifact": "v3-europe48-127leaf-heads-2021",
+      "archive": "etf-trader-v3 corrected/experiments/europe48_transfer/results/archives/v3-europe48-127leaf-heads-2021.zip",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40086216896",
+      "zipped_size": 374189,
+      "zipped_SHA256": "6114b0724a704662d780a5ef6328d8d3387fd301865e7b1c4f6d55d85db879f4",
+      "files": [
+        {
+          "path": "EU48_V3_FIRSTSTAGE_SCORES.csv",
+          "bytes": 215261,
+          "sha256": "086b19281b1e6a99682a5af522c3abfde3f335254ad22b5a82ae69766a3f4a67"
+        },
+        {
+          "path": "FIT_AUDIT.json",
+          "bytes": 4741,
+          "sha256": "f6d03dac884a8d88ef74f90e08bbe474fa399c9a8130cf53c76b4b034d5c66ab"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 502,
+          "sha256": "65de7bc67ded7a72b4e278f52eae6d94cc62bdba6da2a6ff7a8d42030d23f91d"
+        },
+        {
+          "path": "SPY_REFERENCE/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SPY_REFERENCE/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run": 40086216896,
+      "artifact": "v3-europe48-127leaf-heads-2022",
+      "archive": "etf-trader-v3 corrected/experiments/europe48_transfer/results/archives/v3-europe48-127leaf-heads-2022.zip",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40086216896",
+      "zipped_size": 373905,
+      "zipped_SHA256": "19e6cc51bd3338eb2aa344def6057f71630bd436c42536ce9c9ac1f3b9ea686e",
+      "files": [
+        {
+          "path": "EU48_V3_FIRSTSTAGE_SCORES.csv",
+          "bytes": 213371,
+          "sha256": "002d28e90e7db5cf8ff01910a9fffa0de454c56652aa1f409901a91f4661aa1b"
+        },
+        {
+          "path": "FIT_AUDIT.json",
+          "bytes": 4741,
+          "sha256": "356a6046b126c86b75852d8d0f5626d36ae873ee72e542e5a51bf6c8cb9d2b9d"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 502,
+          "sha256": "67f1dc4bf411bc15d58ffc41cc80203564eaa35c862e50e70cb537c44b8c41c5"
+        },
+        {
+          "path": "SPY_REFERENCE/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SPY_REFERENCE/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run": 40086216896,
+      "artifact": "v3-europe48-127leaf-heads-2023",
+      "archive": "etf-trader-v3 corrected/experiments/europe48_transfer/results/archives/v3-europe48-127leaf-heads-2023.zip",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40086216896",
+      "zipped_size": 374074,
+      "zipped_SHA256": "be47d7a0dc6f36cee72a1ef92eed31f6a311aed66142349b106f3a1bf076a973",
+      "files": [
+        {
+          "path": "EU48_V3_FIRSTSTAGE_SCORES.csv",
+          "bytes": 215489,
+          "sha256": "4db94d21b5bbfc4a1b323ff5c2b0e04a59dd715cefed88d4954709f8238bb534"
+        },
+        {
+          "path": "FIT_AUDIT.json",
+          "bytes": 4741,
+          "sha256": "505b3100a44a12a6a47cde2575b3d9824771c6df96ad1ea7607c6bbf969e400d"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 502,
+          "sha256": "af0200d5f8f89d2239014bbf65d6ad04a96b21ad96cbb52631c30cfddb508f9a"
+        },
+        {
+          "path": "SPY_REFERENCE/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SPY_REFERENCE/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run": 40086216896,
+      "artifact": "v3-europe48-127leaf-heads-2024",
+      "archive": "etf-trader-v3 corrected/experiments/europe48_transfer/results/archives/v3-europe48-127leaf-heads-2024.zip",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40086216896",
+      "zipped_size": 373998,
+      "zipped_SHA256": "adfde3c64f9d644f654bf9490057f963b9b0997b475ede18df146ec3cbb4370c",
+      "files": [
+        {
+          "path": "EU48_V3_FIRSTSTAGE_SCORES.csv",
+          "bytes": 215314,
+          "sha256": "6b4cd790785c09d62072c1aba8d3596e0a68c5501fe1f6b1d02c021595355af8"
+        },
+        {
+          "path": "FIT_AUDIT.json",
+          "bytes": 4741,
+          "sha256": "990fbdb5b3ed81afc2b79028b90cb3df92f38b37b3f78753205d9257e389ebc1"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 502,
+          "sha256": "9c3366df40fd94d829a63ce1d103f0aa79385f05b5ca9f6981abb299c556fd96"
+        },
+        {
+          "path": "SPY_REFERENCE/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SPY_REFERENCE/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run": 40086216896,
+      "artifact": "v3-europe48-127leaf-heads-2025",
+      "archive": "etf-trader-v3 corrected/experiments/europe48_transfer/results/archives/v3-europe48-127leaf-heads-2025.zip",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40086216896",
+      "zipped_size": 374073,
+      "zipped_SHA256": "69c59d3daa58a4f7bd70456aa3f8713ff0890d4250422f99fef8ed7ce0dadfb6",
+      "files": [
+        {
+          "path": "EU48_V3_FIRSTSTAGE_SCORES.csv",
+          "bytes": 215211,
+          "sha256": "45a9add51e62eea66f8d467aa814560d97a7274fcd653db1c6f0040cd9a21047"
+        },
+        {
+          "path": "FIT_AUDIT.json",
+          "bytes": 4741,
+          "sha256": "2a10bb3fa6df2026b2fbc7198a2dad5b99b4bb91a1695aa9abe4d635ecb98a9e"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 502,
+          "sha256": "16cff37e15c36fbaddb521d1a83b252209b6753e2a7708a6a1282cef39d9c806"
+        },
+        {
+          "path": "SPY_REFERENCE/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SPY_REFERENCE/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run": 40086216896,
+      "artifact": "v3-europe48-127leaf-heads-2026",
+      "archive": "etf-trader-v3 corrected/experiments/europe48_transfer/results/archives/v3-europe48-127leaf-heads-2026.zip",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40086216896",
+      "zipped_size": 325150,
+      "zipped_SHA256": "a7c2573c7004853a11f518f37ac3c21566454604bf790a5e19d3ba09b7082201",
+      "files": [
+        {
+          "path": "EU48_V3_FIRSTSTAGE_SCORES.csv",
+          "bytes": 89684,
+          "sha256": "780191f1b94fa0b08484819dedc5f933cd079718cab1e6ba63e159daf15bad4a"
+        },
+        {
+          "path": "FIT_AUDIT.json",
+          "bytes": 4747,
+          "sha256": "db083d718262679cca511b1e1896b3f40d00a5bcdf334483e87786bedff19c61"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 502,
+          "sha256": "c21f17e9e4163ce417eab32156d363c32b68b9356010d15b2513cb0f32d5a3e5"
+        },
+        {
+          "path": "SPY_REFERENCE/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SPY_REFERENCE/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run": 40087054494,
+      "artifact": "v3-europe48-127leaf-tree-economic-benchmark",
+      "archive": "etf-trader-v3 corrected/experiments/europe48_transfer/results/archives/v3-europe48-127leaf-tree-economic-benchmark.zip",
+      "url": "https://github.com/AM1975MA/Test/actions/runs/40087054494",
+      "zipped_size": 256704,
+      "zipped_SHA256": "fcb408943a6bd11c74e78dea3f82afe4d73301007403c8b2ef1c458a27bf4fd6",
+      "files": [
+        {
+          "path": "EU48_COSTED_ECONOMIC_SCORECARD.csv",
+          "bytes": 2463,
+          "sha256": "0bee496cf6b2229bec02f4c54d153957c4a8878a61960c56c1d6decb53614f49"
+        },
+        {
+          "path": "EU48_PAIRED_SKILL_BOOTSTRAP.csv",
+          "bytes": 662,
+          "sha256": "a6b29ce6245e973a35882a349c7b9a7e11b1c2cc4ec90a401aaa290da3f5cd8f"
+        },
+        {
+          "path": "EU48_TRADE_LOG_NEXT_OPEN.csv",
+          "bytes": 108364,
+          "sha256": "a28305aea18ea45d2377393fa4ac2890719b7baa678a4dbbd3d2dd6c1145b5a9"
+        },
+        {
+          "path": "EU48_UNRESTRICTED_48_PREDICTIVE_SKILL_MONTHLY.csv",
+          "bytes": 14892,
+          "sha256": "0145c273a37d2db0a5e1b9e63a8b532c082fbd45f31bbd04c9ba2cd0293ab679"
+        },
+        {
+          "path": "EUR48_ALL37_META_TREE_MONTHLY.csv",
+          "bytes": 280188,
+          "sha256": "36b096a4c30c9d1201acca027daaf3a52378a9e407dc965b8b3d35e8963ff94e"
+        },
+        {
+          "path": "EUR48_MATURE_META_FIT_AUDIT.csv",
+          "bytes": 653,
+          "sha256": "8d1a92e0eb8a9122ec08b056c87fe043ac16a798b907113a7ca486f20ebc2d9e"
+        },
+        {
+          "path": "EUR48_NESTED_TREE_SELECTION_AUDIT.csv",
+          "bytes": 6132,
+          "sha256": "f6fca86817baf35d4d6471e4895ae7b1d6c4e954ec47b708a94897aead6a2da7"
+        },
+        {
+          "path": "EUR48_PAIRED_500_BASKET_MONTHLY.csv",
+          "bytes": 13275,
+          "sha256": "86af649873d362690e2a23221fc35f6818a2565f9d28044e270b511a5124044b"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 1163,
+          "sha256": "bc45283ea728d9bf2408b690181ae1c66fbc343371bdce01e80a48fdeefc45ad"
+        },
+        {
+          "path": "NAV_EU48_V2_ORIGINAL_125F_Top1.csv",
+          "bytes": 40928,
+          "sha256": "51479de6c0f128cbd0f465dbcf76a847704096bb3b61ba715f3e0820e8bed9e2"
+        },
+        {
+          "path": "NAV_EU48_V2_ORIGINAL_125F_Top2.csv",
+          "bytes": 40955,
+          "sha256": "0b42654e5ab3ce827288032a996bb4d16fb881a736ccc1249d0f9f452cda3d0b"
+        },
+        {
+          "path": "NAV_EU48_V2_ORIGINAL_125F_Top3.csv",
+          "bytes": 40994,
+          "sha256": "f75e1804e3abfb891b31ea4ecaf058d98df068b96e89142c7c3fcbfd0b45ad74"
+        },
+        {
+          "path": "NAV_EU48_V2_ORIGINAL_125F_Top5.csv",
+          "bytes": 40901,
+          "sha256": "c6daaafac1ae747eee57db6b168cb908bc638788e18f5d49fc4f1cbb435da0e7"
+        },
+        {
+          "path": "NAV_EU48_V3_127LEAF_TREE_Top1.csv",
+          "bytes": 40936,
+          "sha256": "94350a7cb0ef4866c77f5a034121ac53e1cfbcb30e250fb5eb50a66c0a21f083"
+        },
+        {
+          "path": "NAV_EU48_V3_127LEAF_TREE_Top2.csv",
+          "bytes": 40966,
+          "sha256": "819f3d30e9bd2808cc508b7e2ddb78b0d0ec9f5740858ee3db92b0b35ea3969b"
+        },
+        {
+          "path": "NAV_EU48_V3_127LEAF_TREE_Top3.csv",
+          "bytes": 40950,
+          "sha256": "3808f40c21ef72874d7abfd930a63307e27ae6bcd4dafba6d626d60e93f8b1f8"
+        },
+        {
+          "path": "NAV_EU48_V3_127LEAF_TREE_Top5.csv",
+          "bytes": 40925,
+          "sha256": "4a41049cdc82ddc806f157e8c16708d5e82658054896266655fe52541d4721c3"
+        },
+        {
+          "path": "NAV_EU48_V3_127LEAF_Top1.csv",
+          "bytes": 41009,
+          "sha256": "a8c89b05d0dc1f98d2e9fb45a1d3bdd8a77dc024bde8aac0c8b30868a9c2b070"
+        },
+        {
+          "path": "NAV_EU48_V3_127LEAF_Top2.csv",
+          "bytes": 40954,
+          "sha256": "2e856502f7893a4f2c18241268e45ed9603d4cae7fa4225c8a3b56c40ed1c320"
+        },
+        {
+          "path": "NAV_EU48_V3_127LEAF_Top3.csv",
+          "bytes": 40945,
+          "sha256": "5648b102d5c358971d071035faa478bb748e9765b546eda6b80f2523ee765685"
+        },
+        {
+          "path": "NAV_EU48_V3_127LEAF_Top5.csv",
+          "bytes": 40920,
+          "sha256": "9e9beb13f624051ebc219d759a435717b8919998908058af2ef989bc204e12d9"
+        }
+      ]
+    }
+  ]
+}
