@@ -1,0 +1,55 @@
+name: V3 EU48 genuine corrected features nested tree matched EUR economics
+on:
+  push:
+    branches:
+      - research/v3-europe48-tree-transfer-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/TRUECORRECTED_META_START.txt'
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: '.:vendor/etf_trader_v2/src:etf-trader-v3 corrected/src'
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  PYTHONHASHSEED: '0'
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'numba==0.65.1' 'pyarrow==23.0.1' 'matplotlib==3.10.8'
+      - name: Load six annual heads from ACTUAL V3 corrected 125 features
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for year in 2021 2022 2023 2024 2025 2026; do
+            mkdir -p "_V3_ACTUAL_$year"
+            gh run download 40112844351 -R AM1975MA/Test \
+              -n "v3-europe48-truecorrected-127leaf-heads-$year" -D "_V3_ACTUAL_$year"
+            test -s "_V3_ACTUAL_$year/EU48_V3_FIRSTSTAGE_SCORES.csv"
+          done
+      - name: Recover original Europe48 EUR market calendar and 48 valid ISIN holdings
+        run: python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_PREP
+      - name: Strict-asof nested decision tree and matched 10bp real EUR portfolio
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/v3_europe48_meta_economics.py' \
+            --prep _EU48_PREP \
+            --head _V3_ACTUAL_2021/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_ACTUAL_2022/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_ACTUAL_2023/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_ACTUAL_2024/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_ACTUAL_2025/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --head _V3_ACTUAL_2026/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --out _V3_EU48_ACTUAL_CORRECTED_ECONOMICS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-eu48-actual-corrected-127-nested-realEUR-10bp
+          path: _V3_EU48_ACTUAL_CORRECTED_ECONOMICS/
+          retention-days: 90
