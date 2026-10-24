@@ -14,7 +14,7 @@ PUBLIC_SHA="a75a11330ac1825946ae1c37c60ec2135d03cf77"
 PUBLIC_ROOT=f"https://raw.githubusercontent.com/albertored/etfdb/{PUBLIC_SHA}/csv"
 CLUSTERS=("EU_EQUITY_BROAD","EU_EQUITY_SECTOR","EU_EQUITY_COUNTRY",
           "EU_EQUITY_FACTOR","SOVEREIGN_EUR","EU_PROPERTY")
-ADD_QUOTAS=dict(zip(CLUSTERS,(16,22,21,16,18,7)))
+ADD_QUOTAS=dict(zip(CLUSTERS,(16,22,21,18,18,5)))
 REGION=set("Andorra Austria Belgium Bulgaria Croatia Cyprus Czech Republic Denmark Estonia Finland France Germany Greece Hungary Iceland Ireland Italy Latvia Liechtenstein Lithuania Luxembourg Malta Monaco Netherlands Norway Poland Portugal Romania Slovakia Slovenia Spain Sweden Switzerland United Kingdom United_Kingdom".split(" "))
 REGION.update({"United Kingdom","Bosnia and Herzegovina","North Macedonia","Serbia","Montenegro","Jersey","Guernsey"})
 NONSTRICT=re.compile(r"global|world|north america|latin america|emerging markets|asia|pacific|africa|japan|united states|u\.s\.|china|india|bitcoin|crypto|leveraged|short\b|inverse|3x\b|2x\b",re.I)
