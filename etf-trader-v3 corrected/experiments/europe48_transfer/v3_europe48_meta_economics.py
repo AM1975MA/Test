@@ -300,7 +300,7 @@ def run(args):
        no_new_model_hyperparam_optimization=True,
        original_V3_meta_rule="20261024 frozen tree family and selector",
        original_EU48_risk_Stage19_not_equal_to_standalone_V3=True,
-       500_basket_results_depend_not_independent=True,
+       baskets500_results_depend_not_independent=True,
        survivor_2026_universe_yahoo_backfilled=True,
        macro_spy_last_US_close_prior_EU_open=True,
        genuine_independent_holdout=False,
