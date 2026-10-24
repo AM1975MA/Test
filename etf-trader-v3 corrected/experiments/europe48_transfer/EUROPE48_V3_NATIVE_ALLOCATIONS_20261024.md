@@ -1,5 +1,9 @@
 # ETF Trader V3 Europa48 — verifica dell'allocazione nativa Top2/Top3
 
+> **ERRATUM METODOLOGICO — 24 ottobre 2026.** Il primo stadio UE48 originale di questo rapporto è `XGBRanker` V3 a 127 foglie ma alimentato dalle **125 feature calcolate dal kernel legacy V2**, non dal kernel `etf_trader_v3.source_only.kernel` realmente corrected. L'audit sul medesimo pannello 48 ETF ×65 mesi ([run 40112742559](https://github.com/AM1975MA/Test/actions/runs/40112742559)) dimostra 9 feature downside-volatility differenti, 11.236 celle con valori numerici diversi e 16.724 differenze di disponibilità dato. I risultati finanziari qui presentati sono riproducibili ma descrivono **V3 127 foglie + feature legacy V2**, NON la V3 fully corrected. Non interpretarli come prova della capacità V3 corrected europea. Il test del vero kernel corrected viene eseguito separatamente, senza modificare dati, target, costi o iperparametri.
+
+
+
 **24 ottobre 2026 — nuovo replay SUCCESS:** [run 40092281559](https://github.com/AM1975MA/Test/actions/runs/40092281559), [artifact originale](https://github.com/AM1975MA/Test/actions/runs/40092281559/artifacts/12558449697).
 
 Si tratta di un **esperimento complementare**, NON della sostituzione del rapporto Europa48 già certificato in `EUROPE48_V3_TREE_RESULTS_20261024.md`. Il rapporto precedente usava pesi uniformi per il Top2 (50/50) e Top3 (1/3 ciascuno). Questo replay riproduce invece l'allocazione del test economico americano V3 `nested_economic.py`: **Top2 = 75/25, salvo gap percentile originale >=0.12 quando 100/0; Top3 = 50/30/20**. Stesso V3 EU48 127 foglie, stessi 5 regressori e 36 tree nested, stesse predizioni e 65 mesi; la decisione Top1 rimane rigorosamente identica nei due replay. Il Top5 rimane equal-weight 20%.
