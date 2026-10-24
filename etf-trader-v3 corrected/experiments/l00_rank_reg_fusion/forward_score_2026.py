@@ -64,6 +64,9 @@ def main():
     params=dict(E.v3.COMPACT_PARAMS,max_depth=0,grow_policy="lossguide",max_leaves=127)
     oldscores,oldmonthly,olda=read_shards(args.old_shards,"regression")
     oldscores=oldscores.loc[oldscores.signal_date.dt.year.eq(2026)].copy()
+    print("FROZEN_REF_SOURCE_INFO",dict(actual_variants=sorted(set(oldscores.variant)),expected_variants=sorted(NAMES),
+        last_date=str(oldscores.signal_date.max()),max_allowed=str(REFERENCE_CUTOFF),
+        unique_months=oldscores.signal_date.nunique(),rows=len(oldscores)),flush=True)
     assert set(NAMES)==set(oldscores.variant) and oldscores.signal_date.max()<=REFERENCE_CUTOFF
     control_dates=sorted(oldscores.signal_date.unique())
     assert len(control_dates)==5 and len(te[te.signal_date.isin(control_dates)])==len(control_dates)*149
