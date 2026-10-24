@@ -43,7 +43,7 @@ def main():
         for sep in [";",",","\t","|"]:
             try:
                 table=pd.read_csv(io.BytesIO(data),dtype=str,low_memory=False,
-                            encoding=enc,sep=sep,on_bad_lines="warn")
+                            encoding=enc,sep=sep,skiprows=2,on_bad_lines="warn")
                 if len(table.columns)>6:
                     m=official_cols(table)
                     attempts.append((enc,sep,len(table.columns),len(table),m))
@@ -68,15 +68,20 @@ def main():
         eur=eu[eu[mapping["currency"]].astype(str).str.upper().str.strip().eq("EUR")].copy()
     else:
         raise RuntimeError("Official Xetra CSV has no verifiable quote currency field")
+    # Respect official product type/status; never select equities or ETC under a fund ISIN.
+    eur=eur[eur["Instrument Type"].astype(str).eq("ETF") & eur["Instrument Status"].astype(str).eq("Active") & eur["MIC Code"].astype(str).eq("XETR")].copy()
     # When same ISIN lists several mnemonics, assign lexicographically earliest
     # EUR XETRA ticker: no duplicate share class counted as an additional ISIN.
     eur=eur.sort_values([mapping["isin"],mapping["symbol"]]).drop_duplicates(mapping["isin"])
     matched=eur[[mapping["isin"],mapping["symbol"]]].copy()
     matched.columns=["isin","official_xetra_mnemonic"]
+    matched["official_first_trade_date"]=eur["First Trading Date"].astype(str).to_numpy()
     for k in ("currency","instrument","market"):
         matched["official_"+k]=eur[mapping[k]].astype(str).to_numpy() if mapping[k] else "UNKNOWN"
     merged=catalog.merge(matched,on="isin",how="left",validate="one_to_one")
     merged["official_eur_xetra_verified"]=merged.official_xetra_mnemonic.notna()
+    merged["first_xetra_trading_date"]=pd.to_datetime(merged["official_first_trade_date"],errors="coerce")
+    merged["quote_available_at_2012"]=merged["first_xetra_trading_date"].le(pd.Timestamp("2012-01-01"))
     merged["yahoo_symbol"]=merged.official_xetra_mnemonic.fillna("").apply(lambda x:x+".DE" if x else "")
     merged.to_csv(out/"OFFICIAL_XETRA_ISIN_MATCHES.csv",index=False)
     selected=[];stats=[]
