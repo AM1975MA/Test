@@ -1,1 +1,2 @@
 Freeze source public ETF ISIN database a75a113..., preserve exact 48 existing historical European ISIN; investigate availability of exactly 100 additional true-EUR Europe-exposed ETF legal ISIN in six clusters and 2012 inception. No fake pre-inception histories.
+Retry with corrected pandas isin and index column access; no source selection changes.
