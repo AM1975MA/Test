@@ -110,8 +110,10 @@ def run(args):
     assert len(names)==48 and set(mats["Open"].columns)==set(names)
     names=list(mats["Open"].columns)
     assert master["isin"].nunique()==48 and master.ticker.nunique()==48
-    mem=build_canonical_baskets(master[["ticker","macro_category","isin"]],names)
-    mem=mem.merge(master[["ticker","macro_category"]],on="ticker",how="left",
+    roster=pd.read_csv(prep/"raw_ticker_csv/universe.csv")
+    assert roster.ticker.nunique()==roster["isin"].nunique()==48
+    mem=build_canonical_baskets(roster,names)
+    mem=mem.merge(roster[["ticker","macro_category"]],on="ticker",how="left",
                   validate="many_to_one")
     assert len(mem)==12000 and mem.basket.nunique()==500
     bidx=[]
