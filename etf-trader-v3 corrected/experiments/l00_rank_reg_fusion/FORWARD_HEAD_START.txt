@@ -1,3 +1,4 @@
 149 ETF append-only frozen history passed 40082539622. Reproduce 2026 CORRECTED125 and five regressors with original mature-only data, verify all Jan-May raw scores and Top1 baskets, then release June-Aug 21D matured signal predictions. 
 Trace evaluate and aggregate imports; initial run stopped on incorrect imported argument parser before training.
 Fix sys.path collision: load local OOS aggregate before evaluate modifies Python import priority. Full source/model params unchanged.
+Audit uncovered original 2026-06-30 OOS predictions archived before June targets matured. Compare 6 prediction months while only Jan–May historical target parity, then new June–August labels.
