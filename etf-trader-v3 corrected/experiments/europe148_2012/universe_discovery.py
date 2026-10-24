@@ -87,7 +87,7 @@ def main():
     # The original 48 are legally VERIFIED via provider and exchange but
     # are not automatically interchangeable with today's catalog listing.
     ref=pd.read_csv(a.reference)
-    ref=ref[ref.decision.eq("A")].copy()
+    ref=ref[ref.decision.isin(["A","B"])].copy()
     assert ref["isin"].nunique()==len(ref)==48, (len(ref),ref["isin"].nunique())
     assert ref["isin"].map(isin_valid).all()
     originals=set(ref["isin"])
