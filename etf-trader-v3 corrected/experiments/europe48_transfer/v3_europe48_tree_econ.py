@@ -63,7 +63,12 @@ def train_month(dt,v,selections):
                             int(v["fwd"][b]>v["fwd"][a]))
     x=np.asarray([q[0] for q in found.values()],float)
     y=np.asarray([q[1] for q in found.values()],np.int8)
-    assert len(x)>=40 and x.shape[1]==14
+    # With 48 ETFs, highly correlated baskets are not 500 independent
+    # observations. Retain and disclose the ACTUAL unique ETF-pair count,
+    # including months where fewer than 40 distinct pairs exist.
+    assert len(x)>=2 and x.shape[1]==14
+    print("EU48_EFFECTIVE_UNIQUE_PAIR_MONTH",str(dt.date()),len(x),
+          "positive_rate",float(y.mean()),flush=True)
     return dt,x,y
 def fit_tree_family(prepared,cutoff):
     prior=[row for row in prepared if row[0]<cutoff-pd.Timedelta(days=60)]
