@@ -1,0 +1,1 @@
+Permanently archive complete SUCCESS run 40111851199 historical 2022 diagnosis with all 12 source result files, actual tree counts and per-file sha, preserving V2/V3 production. 2026-10-24.
