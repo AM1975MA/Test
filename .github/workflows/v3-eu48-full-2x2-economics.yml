@@ -1,0 +1,45 @@
+name: V3 EU48 65-month 2x2 actual EUR10bp economic forensic
+on:
+  push:
+    branches: [research/eu48-source-forensics-20261024]
+    paths: ['etf-trader-v3 corrected/experiments/europe48_transfer/ECON_2X2_START.txt']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PYTHONPATH: .:vendor/etf_trader_v2/src
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'numba==0.65.1' 'pyarrow==23.0.1' matplotlib
+      - name: Recover all exact 2021-2026 four-arm causal OOS model outputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _EU48_ANNUAL
+          for year in 2021 2022 2023 2024 2025 2026; do
+            mkdir -p "_EU48_ANNUAL/$year"
+            gh run download 40112901061 -R AM1975MA/Test \
+              -n "v3-eu48-forensic-2x2-$year" -D "_EU48_ANNUAL/$year"
+            test -s "_EU48_ANNUAL/$year/EU48_${year}_MONTHLY_CHOICE_AND_LABEL.csv"
+          done
+      - name: Reconstruct immutable EURO48 125F original book and new corrected books using same EUR execution
+        run: python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_PREP
+      - name: One-account next-open EUR10bp 65-month replay with exact archived old 125F and 127-leaf parity
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/forensic_2x2_economics.py' \
+            --prep _EU48_PREP --year-results _EU48_ANNUAL \
+            --out _EU48_FULL_2X2_ECONOMICS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-eu48-full-65-month-2x2-net-economics
+          path: _EU48_FULL_2X2_ECONOMICS/
+          retention-days: 90
