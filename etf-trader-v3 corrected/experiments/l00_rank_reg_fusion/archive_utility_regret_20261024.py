@@ -15,6 +15,7 @@ ARTIFACTS=[
  (40080407962,"v3-meta-utility-econ-DT14_L15"),
  (40080407962,"v3-meta-utility-econ-HGB_REGIME_L15"),
  (40080407962,"v3-meta-utility-econ-RF_REGIME_L10"),
+ (40080774850,"v3-meta-utility-calendar-exclusion"),
 ]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
@@ -34,6 +35,8 @@ def main():
                 if "-econ-" in name else
                 {"AGGREGATE_SCORECARD.csv","FULL_COMPARISON_BOOTSTRAP.csv"}
                 if "aggregate" in name else
+                {"THROUGH_2025_VS_FULL2026.csv","YEAR_BY_YEAR_PATHS.csv"}
+                if "calendar-exclusion" in name else
                 {"SUMMARY.csv","CHANGED_DECISIONS.csv","FIT_AUDIT.csv",
                  "PAIRED_MONTHLY.csv","PAIRED_BOOTSTRAP.csv"}
             )
@@ -56,7 +59,7 @@ def main():
                 files=[dict(path=f.relative_to(inp).as_posix(),bytes=f.stat().st_size,
                     sha256=sha(f)) for f in files]))
             print("UTILITY_ARCHIVE_OK",run,name,len(files),archive.stat().st_size,flush=True)
-    assert len(audit)==8
+    assert len(audit)==9
     (BASE/"ARCHIVE_MANIFEST.json").write_text(json.dumps(dict(
         checkpoint_date="2026-10-24",
         prior_source_first_stage_run=40016809498,
@@ -68,7 +71,7 @@ def main():
         n_verified_archives=len(audit),artifacts=audit),indent=2)+"\n")
     (BASE/"README.md").write_text(
        "# V3 2026-10-24 — expected-regret hurdle model\n\n"
-       "Eight verified immutable experiment archives, including all original changed "
+       "Nine verified immutable experiment archives, including all original changed "
        "ETF decisions and monthly OOS outcomes; SHA256 in ARCHIVE_MANIFEST.json.\n\n"
        "## Method\n\n"
        "4 families (Decision Tree original features, Decision Tree as-of-price-regime, "
