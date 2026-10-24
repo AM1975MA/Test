@@ -1,0 +1,50 @@
+name: V3 Euro148 checked ISIN dynamic-availability historical price cohort
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/ASSEMBLE_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  assemble:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: research/canonical-v2-source-us149-eu48-20261020
+          path: _original_europe48
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3'
+      - name: Fetch six source quote audited new 100 Xetra ISIN plus 48 existing 2010 refetched
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_verified runs/eu48_extended
+          for cl in EU_EQUITY_BROAD EU_EQUITY_SECTOR EU_EQUITY_COUNTRY EU_EQUITY_FACTOR SOVEREIGN_EUR EU_PROPERTY; do
+            mkdir -p "runs/eu148_verified/$cl"
+            gh run download 40135761945 -R AM1975MA/Test \
+              -n "v3-europe148-ohlcv-$cl" -D "runs/eu148_verified/$cl"
+            test -s "runs/eu148_verified/$cl/PRICE_QUALITY_PASS.csv"
+          done
+          gh run download 40135335448 -R AM1975MA/Test -n v3-europe48-original2010-real-price-audit -D runs/eu48_extended
+      - name: Verify 148 unique ISIN coverage, six clusters, exact original vintage vs new Xetra OHLCV, no prelisting values
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/assemble_history.py' \
+            --original runs/eu48_extended \
+            --oldref '_original_europe48/isin_first2026/full_eu_2017/results/STRICT_EUROPE_2017_WARM_2016_UNIQUE_ISIN.csv' \
+            --newroot runs/eu148_verified \
+            --out runs/eu148_historical_assembled
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe148-2010-vintage-verified-ohlcv
+          path: runs/eu148_historical_assembled/
+          retention-days: 90
