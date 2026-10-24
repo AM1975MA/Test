@@ -3,3 +3,5 @@ All 6 yearly locked source V3 EU48 fit jobs SUCCESS run 40086216896. Execute 65 
 Rerun after syntax-only fix of numeric-first manifest key, no algorithm changes.
 
 Fix 500 EU basket six-category roster to prepared legal ISIN universe source; input quotes and model parameters untouched.
+
+Retain original 100/300 min leaf regularization and deduplicated Europe events. Log genuine per-month unique pairs (may be <10 due to 48 ticker concentration), never inflate by basket copies.
