@@ -1,0 +1,42 @@
+name: V3 June originally-unlabeled archived OOS verification
+on:
+  push:
+    branches: [research-v3-forward-locked-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/JUNE_FROZEN_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  june:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scikit-learn==1.9.1' 'xgboost==3.0.5' scipy
+      - name: Load original June unlabelled signals, 101 fitted months, and new July realized adjusted prices
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_ref runs/v3_tree forward_raw
+          for shard in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$shard -D runs/v3_ref
+          done
+          gh run download 40031144599 -R AM1975MA/Test -n v3-meta-tree-results -D runs/v3_tree
+          gh run download 40082539622 -R AM1975MA/Test -n v3-forward-frozen-149-raw-20261024 -D forward_raw
+      - name: Use only already archived June first-stage signal and frozen original nested tree parameters
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/forward_june_frozen_baseline.py' \
+            --shards runs/v3_ref --tree runs/v3_tree --raw forward_raw \
+            --out runs/v3_june_frozen_test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-forward-june-2026-archived-head-predictions
+          path: runs/v3_june_frozen_test/
+          retention-days: 90
