@@ -1,0 +1,99 @@
+{
+  "branch": "research-v3-forward-locked-20261024",
+  "first_stage_source": "CORRECTED125 plus five original regression heads",
+  "frozen_train_before": "2026-01-01",
+  "last_train_label_maturity": "2025-12-31",
+  "n_train_rows": 24663,
+  "n_train_months": 167,
+  "replays_months": [
+    "2026-01-30 00:00:00",
+    "2026-02-27 00:00:00",
+    "2026-03-31 00:00:00",
+    "2026-04-30 00:00:00",
+    "2026-05-29 00:00:00",
+    "2026-06-30 00:00:00"
+  ],
+  "replay_matured_label_months": 5,
+  "original_june_predictions_archived_unlabeled": true,
+  "new_matured_signal_dates": [
+    "2026-06-30",
+    "2026-07-31",
+    "2026-08-31"
+  ],
+  "future_unmatured_signal": "2026-09-30",
+  "floating_raw_score_tolerance": {
+    "atol": 3e-05,
+    "rtol": 4e-05
+  },
+  "original_rank_head_parity_for_500_baskets": true,
+  "earliest_prospective_lock": "2026-10-24",
+  "new_months_are_retrospective_holdout_not_prospective": true,
+  "original_raw_run": 39482809691,
+  "original_shards_run": 40016809498,
+  "production_modified": false,
+  "history_revision_forbidden": true,
+  "price_provenance_source": "forward_raw/PROVENANCE.json",
+  "outcomes_measured_from_next_open_21_sessions": true,
+  "parity_checks": [
+    {
+      "arm": "CORRECTED",
+      "original_months": 6,
+      "raw_mae": 1.083872440958316e-08,
+      "raw_max_abs": 8.482360858153015e-08,
+      "within_tolerance_fraction": 1.0,
+      "basket_top1_ranking_mismatch": 0,
+      "tolerance_atol": 3e-05,
+      "tolerance_rtol": 4e-05
+    },
+    {
+      "arm": "REG_REL125",
+      "original_months": 6,
+      "raw_mae": 3.681048288704477e-17,
+      "raw_max_abs": 8.881784197001252e-16,
+      "within_tolerance_fraction": 1.0,
+      "basket_top1_ranking_mismatch": 0,
+      "tolerance_atol": 3e-05,
+      "tolerance_rtol": 4e-05
+    },
+    {
+      "arm": "REG_REL101",
+      "original_months": 6,
+      "raw_mae": 3.235433919288286e-17,
+      "raw_max_abs": 8.881784197001252e-16,
+      "within_tolerance_fraction": 1.0,
+      "basket_top1_ranking_mismatch": 0,
+      "tolerance_atol": 3e-05,
+      "tolerance_rtol": 4e-05
+    },
+    {
+      "arm": "REG_ABS125",
+      "original_months": 6,
+      "raw_mae": 3.9013117216711973e-17,
+      "raw_max_abs": 8.881784197001252e-16,
+      "within_tolerance_fraction": 1.0,
+      "basket_top1_ranking_mismatch": 0,
+      "tolerance_atol": 3e-05,
+      "tolerance_rtol": 4e-05
+    },
+    {
+      "arm": "REG_ABS101",
+      "original_months": 6,
+      "raw_mae": 3.8742521456381067e-17,
+      "raw_max_abs": 8.881784197001252e-16,
+      "within_tolerance_fraction": 1.0,
+      "basket_top1_ranking_mismatch": 0,
+      "tolerance_atol": 3e-05,
+      "tolerance_rtol": 4e-05
+    },
+    {
+      "arm": "REG_HUBER125",
+      "original_months": 6,
+      "raw_mae": 2.8502632146111095e-17,
+      "raw_max_abs": 4.440892098500626e-16,
+      "within_tolerance_fraction": 1.0,
+      "basket_top1_ranking_mismatch": 0,
+      "tolerance_atol": 3e-05,
+      "tolerance_rtol": 4e-05
+    }
+  ]
+}

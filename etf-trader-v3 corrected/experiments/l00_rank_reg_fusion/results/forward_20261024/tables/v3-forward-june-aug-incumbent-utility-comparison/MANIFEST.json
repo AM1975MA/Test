@@ -1,0 +1,26 @@
+{
+  "first_stage_parity_6_months": true,
+  "first_stage_frozen_june_pre_label": true,
+  "incumbent_selection_replayed_for_may_original_exact": true,
+  "incumbent_all_36_may_metrics_identical": true,
+  "prior_hurdle_may_metrics_identical": true,
+  "meta_months": [
+    "2026-06-30",
+    "2026-07-31",
+    "2026-08-31"
+  ],
+  "pure_june_original_pred_already_archived_unlabeled": true,
+  "first_stage_new_predictions": [
+    "2026-07-31",
+    "2026-08-31"
+  ],
+  "n_etfs": 149,
+  "n_baskets": 500,
+  "target_maturity": 21,
+  "meta_refit_quarterly": true,
+  "embargo_calendar_days": 60,
+  "research_only": true,
+  "retro_holdout_not_prospective": true,
+  "evaluate_three_months_not_significant": true,
+  "production_changed": false
+}

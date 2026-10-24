@@ -1,0 +1,1 @@
+Check whether Yahoo Finance provides adjusted post-July-2026 rows for key ETF symbols, before touching any V3 production sources. Data-only smoke test, 2026-10-24.

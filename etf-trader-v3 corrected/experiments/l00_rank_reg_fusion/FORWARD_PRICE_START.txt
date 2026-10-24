@@ -1,0 +1,1 @@
+Fetch all 149 original ETF historical OHLCV anchored on frozen 2026-07-01 adjusted close; append only post-anchor observations. Refuse missing/stale/inconsistent symbols; no silent legacy modifications. 2026-10-24.

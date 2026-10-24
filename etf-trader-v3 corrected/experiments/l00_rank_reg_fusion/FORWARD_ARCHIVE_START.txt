@@ -1,0 +1,1 @@
+Archive all four completed SUCCESS jobs: full 149 ETF post-July adjusted prices 40082539622, first stage 6/6 January-June parity 40083752344, June-Aug nested/utility 40084221662, independent June prelabel 40084390775. Keep all raw and audit digests, no production changes.

@@ -1,0 +1,26 @@
+name: V3 forward first-stage fresh price source probe
+on:
+  push:
+    branches: [research-v3-forward-locked-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/FORWARD_PROBE_START.txt'
+permissions:
+  contents: read
+jobs:
+  price:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'yfinance==0.2.66'
+      - name: Check post snapshot historical pricing before expensive model work
+        run: python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/forward_price_probe.py'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-forward-price-probe
+          path: forward_probe/
+          retention-days: 90
