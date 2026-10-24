@@ -27,7 +27,7 @@ jobs:
           mkdir -p _LEAF _EU48_PREP
           for year in 2021 2022 2023 2024 2025 2026; do
             mkdir -p "_LEAF/$year"
-            gh run download 40093395123 -R AM1975MA/Test \
+            gh run download 40111997235 -R AM1975MA/Test \
               -n "v3-eu48-diagnostic-leaf-$year" -D "_LEAF/$year"
           done
           python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_REGEN
