@@ -1,0 +1,37 @@
+name: V3 permanently archive 48 ETF euro 127leaf tree economic research
+on:
+  push:
+    branches:
+      - research/v3-europe48-tree-transfer-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/ARCHIVE_START.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/v3-europe48-tree-transfer-20261024
+          persist-credentials: true
+      - name: Persist all six verified OOS Euro annual heads and V3 causal tree real EUR account
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/archive_europe48_tree.py'
+      - name: Store seven complete archives plus checksum manifest in V3 research directory
+        run: |
+          git config user.name 'v3-eu48-archive[bot]'
+          git config user.email 'v3-eu48-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/europe48_transfer/results'
+          git diff --cached --stat
+          git diff --cached --quiet && { echo 'Already archived'; exit 0; }
+          git commit -m 'V3 EUR48: preserve six genuine annual OOS refits and matching nextopen tree replay with SHA256'
+          git push origin HEAD:research/v3-europe48-tree-transfer-20261024
+      - name: Verify report evidence
+        run: |
+          test -s 'etf-trader-v3 corrected/experiments/europe48_transfer/results/ARCHIVE_MANIFEST.json'
+          test -s 'etf-trader-v3 corrected/experiments/europe48_transfer/results/tables/v3-europe48-127leaf-tree-economic-benchmark/EU48_COSTED_ECONOMIC_SCORECARD.csv'
