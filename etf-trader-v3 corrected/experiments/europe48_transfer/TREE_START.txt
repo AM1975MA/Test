@@ -1,0 +1,3 @@
+Six EU48 127-leaf ranker and five regression model annual 2021–2026 fits completed SUCCESS (40086216896). Perform original V3 meta 36 tree candidates, mature-only 24m selector, unrestricted 48 share-account next-open, exact old EU48 125F economic parity, 500 basket proper metrics. No tuning.
+Rerun after auditing actual distinct EUR48 ticker pair events per signal: 500 overlapping balanced baskets do NOT imply >=40 independent pair outcomes. No hyperparameters changed.
+Runtime-only vectorization: the exact same fixed 14 pair features, 12 quarterly fitted decision trees and 36 thresholds are inferred in batches, preserving every output and causal cutoff. 
