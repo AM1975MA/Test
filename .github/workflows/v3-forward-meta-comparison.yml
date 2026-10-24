@@ -1,0 +1,59 @@
+name: V3 three new matured monthly rank and utility OOS 2026
+on:
+  push:
+    branches: [research-v3-forward-locked-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/FORWARD_META_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Pin established statistical environment
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' 'scikit-learn==1.9.1' scipy matplotlib tabulate
+      - name: Fetch locked original 101 mature months, 149 ETF extended raw and parity passed future head scores
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_reference runs/v3_old_tree runs/v3_old_nested runs/v3_new_head forward_raw runs/v3_old_utility
+          for shard in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$shard -D runs/v3_reference
+          done
+          gh run download 40031144599 -R AM1975MA/Test -n v3-meta-tree-results -D runs/v3_old_tree
+          gh run download 40032282233 -R AM1975MA/Test -n v3-nested-meta-tree-validation -D runs/v3_old_nested
+          gh run download 40083752344 -R AM1975MA/Test -n v3-forward-2026-frozen-first-stage -D runs/v3_new_head
+          gh run download 40082539622 -R AM1975MA/Test -n v3-forward-frozen-149-raw-20261024 -D forward_raw
+          for family in DT14 RF_REGIME HGB_REGIME; do
+            mkdir -p "runs/v3_old_utility/$family"
+            gh run download 40079852872 -R AM1975MA/Test -n "v3-meta-hurdle-$family" -D "runs/v3_old_utility/$family"
+          done
+          test -s runs/v3_new_head/REPRODUCTION_AUDIT.csv
+          test -s runs/v3_new_head/NEW_MATURED_2026_JUN_AUG_SCORES.csv
+      - name: Verify 500 basket June pre-label heads, original May selector and all locked challenger parity
+        env:
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/forward_meta_comparison.py' \
+            --old-shards runs/v3_reference \
+            --original-tree runs/v3_old_tree \
+            --original-nested runs/v3_old_nested \
+            --original-utility runs/v3_old_utility \
+            --first-stage runs/v3_new_head/NEW_MATURED_2026_JUN_AUG_SCORES.csv \
+            --extended-raw forward_raw \
+            --out runs/v3_forward_jun_aug_results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-forward-june-aug-incumbent-utility-comparison
+          path: runs/v3_forward_jun_aug_results/
+          retention-days: 90
