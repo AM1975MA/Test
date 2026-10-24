@@ -1,3 +1,5 @@
 All 6 yearly locked source V3 EU48 fit jobs SUCCESS run 40086216896. Execute 65 EU months, 36 tree models, 500 category-balanced training baskets, 24 month trailing selector 60d embargo, real EU EUR Open next-month daily trades 10bp per side, original Compact125 economic parity. No V2/production edits.
 
 Rerun after syntax-only fix of numeric-first manifest key, no algorithm changes.
+
+Fix 500 EU basket six-category roster to prepared legal ISIN universe source; input quotes and model parameters untouched.
