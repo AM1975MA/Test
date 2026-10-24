@@ -28,7 +28,7 @@ jobs:
           mkdir -p runs/eu148_verified runs/eu48_extended
           for cl in EU_EQUITY_BROAD EU_EQUITY_SECTOR EU_EQUITY_COUNTRY EU_EQUITY_FACTOR SOVEREIGN_EUR EU_PROPERTY; do
             mkdir -p "runs/eu148_verified/$cl"
-            gh run download 40135761945 -R AM1975MA/Test \
+            gh run download 40135828700 -R AM1975MA/Test \
               -n "v3-europe148-ohlcv-$cl" -D "runs/eu148_verified/$cl"
             test -s "runs/eu148_verified/$cl/PRICE_QUALITY_PASS.csv"
           done
