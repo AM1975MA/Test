@@ -1,0 +1,54 @@
+name: V3 EU48 source forensic legacy versus real corrected 125 features
+on:
+  push:
+    branches: [research/eu48-source-forensics-20261024]
+    paths: ['etf-trader-v3 corrected/experiments/europe48_transfer/FORENSIC_START.txt']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONPATH: .:vendor/etf_trader_v2/src
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: |
+          pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' matplotlib
+      - name: Recover actual V3 corrected kernel from immutable main ref
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _kernel
+          gh api -H 'Accept: application/vnd.github+json' \
+            'repos/AM1975MA/Test/contents/etf-trader-v3%20corrected/src/etf_trader_v3/source_only/kernel.py?ref=main' \
+            --jq .content | base64 -d > _kernel/v3_corrected_kernel.py
+          test -s _kernel/v3_corrected_kernel.py
+      - name: Reconstruct unchanged 48 source and exactly prior US SPY asof prices
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_PREP
+          mkdir -p _SPY2026
+          gh run download 40086216896 -R AM1975MA/Test \
+            -n v3-europe48-127leaf-heads-2026 -D _SPY2026
+          test -s _SPY2026/SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv
+      - name: Check every 125 original feature value 65 dates and 48 tickers
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/forensic_corrected_features.py' \
+            --prep _EU48_PREP \
+            --strict _SPY2026/SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv \
+            --v3kernel _kernel/v3_corrected_kernel.py \
+            --out _EU48_FEATURE_FORENSIC
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-eu48-v2-v3-feature-forensic
+          path: _EU48_FEATURE_FORENSIC/
+          retention-days: 90
