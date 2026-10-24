@@ -71,7 +71,7 @@ def main():
     countries=pd.read_csv(files["countries.csv"],low_memory=False,dtype={"isin":str})
     print("OPEN_ETFDB_COLS",catalog.columns.tolist(),flush=True)
     assert "isin" in catalog and "inception_date" in catalog
-    assert countries.isin.is_unique and catalog.isin.is_unique
+    assert countries["isin"].is_unique and catalog["isin"].is_unique
     eu_cols=[c for c in countries.columns if c in REGION]
     assert len(eu_cols)>=24,eu_cols
     score=countries[["isin"]+eu_cols].copy()
@@ -88,26 +88,26 @@ def main():
     # are not automatically interchangeable with today's catalog listing.
     ref=pd.read_csv(a.reference)
     ref=ref[ref.decision.eq("A")].copy()
-    assert ref.isin.nunique()==len(ref)==48, (len(ref),ref.isin.nunique())
-    assert ref.isin.map(isin_valid).all()
-    originals=set(ref.isin)
+    assert ref["isin"].nunique()==len(ref)==48, (len(ref),ref["isin"].nunique())
+    assert ref["isin"].map(isin_valid).all()
+    originals=set(ref["isin"])
     candidates=[]
-    for d in src.itertuples(index=False):
-        v=d._asdict()
+    for _,d in src.iterrows():
+        v=d.to_dict()
         if not v["isin_valid"]:continue
         c,why=cluster(v)
         if not c:continue
-        if d.isin in originals:continue
+        if v["isin"] in originals:continue
         if pd.isna(v["inception_date"]):continue
-        if d.inception_date>pd.Timestamp("2025-01-01"):continue
-        if not str(d.ticker).strip() or str(d.ticker)=="nan":continue
-        if str(d.currency) not in ("EUR","GBP","CHF","USD"):continue
-        rec=dict(isin=d.isin,ticker=d.ticker,name=d.name,isin_valid=True,
-             index=d.index,asset_class=d.asset_class,
-             inception_date=d.inception_date.date().isoformat(),
-             fund_provider=d.fund_provider,currency=d.currency,
-             fund_size_millions_eur=pd.to_numeric(d.size,errors="coerce"),
-             europe_weight_percent=float(d.europe_weight),
+        if v["inception_date"]>pd.Timestamp("2025-01-01"):continue
+        if not str(v["ticker"]).strip() or str(v["ticker"])=="nan":continue
+        if str(v["currency"]) not in ("EUR","GBP","CHF","USD"):continue
+        rec=dict(isin=v["isin"],ticker=v["ticker"],name=v["name"],isin_valid=True,
+             index=v["index"],asset_class=v["asset_class"],
+             inception_date=v["inception_date"].date().isoformat(),
+             fund_provider=v["fund_provider"],currency=v["currency"],
+             fund_size_millions_eur=pd.to_numeric(v["size"],errors="coerce"),
+             europe_weight_percent=float(v["europe_weight"]),
              cluster=c,selection_reason=why,
              reference="etfdb_"+PUBLIC_SHA,
              actual_yahoo_venue_unverified=True,
@@ -115,7 +115,7 @@ def main():
              quote_2012_not_yet_verified=True)
         candidates.append(rec)
     pool=pd.DataFrame(candidates)
-    assert pool.isin.is_unique
+    assert pool["isin"].is_unique
     pool["fund_size_millions_eur"]=pool.fund_size_millions_eur.fillna(0)
     pool["inception_date"]=pd.to_datetime(pool.inception_date)
     pool["since_2012"]=pool.inception_date.le(pd.Timestamp("2012-01-01"))
