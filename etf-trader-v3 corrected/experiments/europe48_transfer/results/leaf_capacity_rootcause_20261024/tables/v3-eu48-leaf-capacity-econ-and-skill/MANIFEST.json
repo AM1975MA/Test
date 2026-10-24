@@ -1,0 +1,23 @@
+{
+  "n_funds": 48,
+  "unique_legal_Europe_exposed_ISIN": 48,
+  "trading_calendar_matches_original_EU48": true,
+  "original_V2_source_Economic_125F_cagr_parity_1e_10": true,
+  "original_V3_127_raw_scores_per_year_parity": true,
+  "only_max_leaves_varied": [
+    15,
+    31,
+    63,
+    127
+  ],
+  "same_360rounds_same_three_seeds": true,
+  "original_2017_training_start": true,
+  "price_source": "2026 snapshot, EUR priced original",
+  "n_months_2021_2026": 65,
+  "fee_per_side_bps": 10,
+  "same_125_predictors": true,
+  "experiment_hypothesis": "excessive capacity of 127 leaves on 48-fund ranking task",
+  "multiple_comparisons_unadjusted": true,
+  "virgin_holdout": false,
+  "production_unchanged": true
+}
