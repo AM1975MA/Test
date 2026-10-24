@@ -1,0 +1,1 @@
+Precommitted 4x6 factorial EU48 study: legacy V2 vs actual V3 corrected risk features, shallow maxdepth4 vs 127leaf original algorithms, 3seeds, 2017-to-year annual fully matured datasets, exact reference signal reproduction gates. No trading source changes.
