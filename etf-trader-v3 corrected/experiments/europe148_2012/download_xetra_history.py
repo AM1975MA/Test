@@ -50,13 +50,15 @@ def quote(row):
         price["Low"]=np.minimum(price.Low,price[["Open","Close"]].min(axis=1))
         price["High"]=np.maximum(price.High,price[["Open","Close"]].max(axis=1))
     volzero=float((price.Volume<=0).mean())
-    if volzero>.15:raise ValueError("Thin or inactive Xetra history (zero volume)")
+    # Yahoo often omits Xetra ETF volume even with valid Open/Close bars.
+    # Preserve prices only; treat broker execution/liquidity as UNVERIFIED.
+    volume_quality="UNVERIFIED" if volzero>.15 else "QUOTED_VOLUME_AVAILABLE"
     pre2012=int((price.date<pd.Timestamp("2012-01-01")).sum())
     bars2012=int(price.date.dt.year.eq(2012).sum())
     bars2017=int(price.date.dt.year.eq(2017).sum())
     bars2018=int(price.date.dt.year.eq(2018).sum())
-    if max(bars2012,bars2017,bars2018)<100:
-        raise ValueError("No trustworthy training/cross-validation-year bars")
+    # Later funds join only after actual quote history; no 2012 backfill.
+    if len(price)<400:raise ValueError("Not enough genuinely observed sessions")
     report=dict(isin=row["isin"],ticker=t,first_vendor_bar=str(price.date.iloc[0].date()),
         first_xetra_bar=str(date.date()),catalog_fund_inception=str(launch.date()),
         earliest_legal_price=str(first_allowed.date()),
@@ -64,6 +66,8 @@ def quote(row):
         pre2012_bars=pre2012,year2012_bars=bars2012,year2017_bars=bars2017,
         year2018_bars=bars2018,ohlc_envelope_repairs=outlier,
         nontrading_gap_max_days=int(gap.max()),zero_volume_fraction=volzero,
+        volume_quality_status=volume_quality,
+        execution_liquidity_certified=(volume_quality=="QUOTED_VOLUME_AVAILABLE"),
         valid_2012_start=(pre2012>=126 and bars2012>=180),
         can_train_from_2012=(bars2012>=180),
         can_evaluate_from_2018=(price.date.iloc[0]<=pd.Timestamp("2017-01-01") and bars2017>200),
