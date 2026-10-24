@@ -78,8 +78,9 @@ def quote(row):
     return price,report
 def eligible(row):
     desc=str(row["name"])+" "+str(row["index"])
-    if row["cluster"]=="EU_PROPERTY" and not PROPERTY.search(desc):
-        return False,"FALSE_PROPERTY_INDEX"
+    if row["cluster"]=="EU_PROPERTY":
+        if re.search(r"\bex[ -]?reits?\b|\bexcludes? reits?\b",desc,re.I) or not re.search(r"\bproperty\b|\breal estate\b|\bepra\b|\bnareit\b|\breits?\b",desc,re.I):
+            return False,"NOT_ACTUALLY_PROPERTY_OR_EXCLUDES_REIT"
     if row["cluster"]=="SOVEREIGN_EUR" and re.search(r"\bUK\b|united kingdom|gilt|swiss|us treasury",desc,re.I):
         return False,"NON_EURO_SOVEREIGN"
     if row["cluster"] in ("EU_EQUITY_BROAD","EU_EQUITY_SECTOR","EU_EQUITY_COUNTRY","EU_EQUITY_FACTOR","EU_PROPERTY"):
