@@ -1,1 +1,2 @@
 Source European ETF database pinned 2026-09-13 with 618 eligible unique legal ISIN (100 target). Match every ticker/ISIN with official XETRA instrument list and EUR trading currency; do not use unverified Yahoo guessed symbols. Source run 40134688075.
+Official CSV starts with Market/Date metadata header; skip first two lines and require ETF/Active, EUR currency, XETR MIC and listing date.
