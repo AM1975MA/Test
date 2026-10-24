@@ -1,0 +1,17 @@
+{
+  "score_generated_in_old_snapshot_before_21d_labels": true,
+  "source_run": 40016809498,
+  "original_scores_forward_21d_missing": true,
+  "signal_date": "2026-06-30",
+  "entry": "2026-07-01",
+  "exit": "2026-07-31",
+  "n_etfs": 149,
+  "canonical_baskets": 500,
+  "incumbent_tree_variant": "TREE_expanding_D1_N100_P0.55",
+  "historical_selector_latest_eligible": "2026-04-30",
+  "decision_model_fit_quarter_start": "2026-04-30",
+  "monthly_horizon_trading_days": 21,
+  "new_labels_from_appended_only_149_OHLCV": true,
+  "source_calendar_already_past_research_date": "2026-10-24",
+  "production_changed": false
+}
