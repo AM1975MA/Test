@@ -1,0 +1,1 @@
+Assemble 100 of 100 real EUR official-Xetra 2010-2026 histories from PASS run 40135828700: 16 broad, 22 sector, 21 country, 18 factor, 18 sovereign, 5 genuine property; 53 with true pre2012 warmup; merge 48 certified original (42 Xetra fresh, 6 original source), preserve no synthetic pre-ISIN prices and exact ISIN dedup.
