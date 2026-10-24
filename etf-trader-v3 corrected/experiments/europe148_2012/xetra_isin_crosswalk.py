@@ -59,7 +59,7 @@ def main():
     print("XETRA_OFFICIAL_COLS",list(df.columns),flush=True)
     print("XETRA_MAP",mapping,"rows",len(df),flush=True)
     catalog=pd.read_csv(Path(a.discovery)/"EU_CANDIDATE_CATALOG_AUDITED.csv")
-    assert catalog.isin.nunique()==len(catalog) if "isix" in catalog else catalog["isin"].nunique()==len(catalog)
+    assert catalog["isin"].nunique()==len(catalog)
     assert len(catalog)>200
     df[mapping["isin"]]=df[mapping["isin"]].astype(str).str.strip().str.upper()
     df[mapping["symbol"]]=df[mapping["symbol"]].astype(str).str.strip().str.upper()
