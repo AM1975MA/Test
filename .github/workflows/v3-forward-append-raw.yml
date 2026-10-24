@@ -1,0 +1,38 @@
+name: V3 append-only 149 ETF adjusted OHLCV July–October 2026 snapshot
+on:
+  push:
+    branches: [research-v3-forward-locked-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/FORWARD_PRICE_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'yfinance==0.2.66'
+      - name: Recover independently certified original OHLCV exact history
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+      - name: Append independently fetched adjusted prices without modifying historical rows
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/forward_append_raw.py' \
+            --old etf_trader_raw --out forward_raw
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-forward-frozen-149-raw-20261024
+          path: forward_raw/
+          retention-days: 90
