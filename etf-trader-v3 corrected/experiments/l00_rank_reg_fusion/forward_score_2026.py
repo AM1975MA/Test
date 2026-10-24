@@ -21,7 +21,7 @@ sys.path.insert(0,str(HERE))
 from aggregate import read_shards
 import evaluate as E
 from etf_trader_v3.source_only.raw_io import load_ticker_csv_folder
-REFERENCE_CUTOFF=pd.Timestamp("2026-05-31")
+REFERENCE_CUTOFF=pd.Timestamp("2026-06-30")
 MATURED_TO=pd.Timestamp("2026-08-31")
 YEARS_CUTOFF=pd.Timestamp("2026-01-01")
 NAMES=("CORRECTED","REG_REL125","REG_REL101","REG_ABS125","REG_ABS101","REG_HUBER125")
@@ -69,14 +69,14 @@ def main():
         unique_months=oldscores.signal_date.nunique(),rows=len(oldscores)),flush=True)
     assert set(NAMES)==set(oldscores.variant) and oldscores.signal_date.max()<=REFERENCE_CUTOFF
     control_dates=sorted(oldscores.signal_date.unique())
-    assert len(control_dates)==5 and len(te[te.signal_date.isin(control_dates)])==len(control_dates)*149
+    assert len(control_dates)==6 and len(te[te.signal_date.isin(control_dates)])==len(control_dates)*149
     exact_hash={}
     for d in control_dates:
         slice_=te[te.signal_date.eq(d)].sort_values("ticker")
         control=oldscores[(oldscores.signal_date.eq(d))&(oldscores.variant.eq("CORRECTED"))].sort_values("ticker")
         assert slice_.ticker.tolist()==control.ticker.tolist()
         # The historical 21-day adjusted next-open realized outcome is frozen.
-        np.testing.assert_allclose(slice_.fwd_ret_21,control.fwd_ret_21,rtol=0,atol=1e-11)
+        if d<=pd.Timestamp("2026-05-29"):\n            np.testing.assert_allclose(slice_.fwd_ret_21,control.fwd_ret_21,rtol=0,atol=1e-11)\n        else:\n            assert control.fwd_ret_21.isna().all(), "Archived June score had no future label"
         exact_hash[str(d.date())]=hashlib.sha256(slice_.fwd_ret_21.to_numpy(float).tobytes()).hexdigest()
     rows=[];audits=[]
     for arm in NAMES:
@@ -134,7 +134,7 @@ def main():
             raise RuntimeError("STOP: original corrected 2026 first-stage prediction reproduction failed "+arm)
         assert np.isfinite(pred).all()
         test_future=df[df.signal_date.gt(REFERENCE_CUTOFF)]
-        assert set(test_future.signal_date.unique())>={pd.Timestamp("2026-06-30"),pd.Timestamp("2026-07-31"),pd.Timestamp("2026-08-31")}
+        assert set(test_future.signal_date.unique())>={pd.Timestamp("2026-07-31"),pd.Timestamp("2026-08-31")}
         assert test_future[test_future.signal_date.le(MATURED_TO)].fwd_ret_21.notna().all()
         rows.append(df)
     all_2026=pd.concat(rows,ignore_index=True)
@@ -147,7 +147,7 @@ def main():
     september=all_2026[all_2026.signal_date.ge(pd.Timestamp("2026-09-30"))]
     assert september.fwd_ret_21.isna().all()
     all_2026.to_csv(out/"YEAR2026_ALL_SCORES.csv",index=False)
-    all_2026[all_2026.signal_date.gt(REFERENCE_CUTOFF)&all_2026.signal_date.le(MATURED_TO)].to_csv(
+    all_2026[all_2026.signal_date.ge(pd.Timestamp("2026-06-30"))&all_2026.signal_date.le(MATURED_TO)].to_csv(
         out/"NEW_MATURED_2026_JUN_AUG_SCORES.csv",index=False)
     september[["variant","signal_date","ticker","pred"]].to_csv(out/"SEPTEMBER_2026_UNMATURED_PREDICTIONS.csv",index=False)
     pd.DataFrame(audits).to_csv(out/"REPRODUCTION_AUDIT.csv",index=False)
@@ -157,7 +157,7 @@ def main():
         frozen_train_before="2026-01-01",
         last_train_label_maturity=str(tr.exit_date_21.max().date()),
         n_train_rows=len(tr),n_train_months=tr.signal_date.nunique(),
-        replays_months=list(map(str,control_dates)),
+        replays_months=list(map(str,control_dates)),\n        replay_matured_label_months=5,original_june_predictions_archived_unlabeled=True,
         new_matured_signal_dates=["2026-06-30","2026-07-31","2026-08-31"],
         future_unmatured_signal="2026-09-30",
         floating_raw_score_tolerance=dict(atol=TARGET_PARITY_ABS,rtol=TARGET_PARITY_REL),
