@@ -1,0 +1,57 @@
+name: V3 expected-regret hurdle tree and causal regime experiment
+on:
+  push:
+    branches: [research-v3-utility-regret-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/HURDLE_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      matrix:
+        family: [DT14, DT_REGIME, HGB_REGIME, RF_REGIME]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fixed environment
+        run: python -m pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scikit-learn==1.9.1' 'xgboost==3.0.5'
+      - name: Recover immutable 149 ticker OHLCV, monthly OOS scores and causal incumbent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p etf_trader_raw runs/v3_rrf runs/v3_incumbent
+          gh run download 39482809691 -R AM1975MA/Test -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          python regeneration/certify_etf_trader_raw.py
+          for shard in s1 s2 s3; do
+            gh run download 40016809498 -R AM1975MA/Test -n rrf-regression-$shard -D runs/v3_rrf
+          done
+          gh run download 40032282233 -R AM1975MA/Test -n v3-nested-meta-tree-validation -D runs/v3_incumbent
+          test -s runs/v3_incumbent/NESTED_MONTHLY.csv
+      - name: Assert as-of raw features, equal-month unique-pair weights, mature-only fits and frozen basket parity
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          NUMEXPR_NUM_THREADS: '1'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/hurdle_expected_regret.py' \
+            --family '${{ matrix.family }}' \
+            --shards runs/v3_rrf --raw etf_trader_raw \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --incumbent runs/v3_incumbent \
+            --out 'runs/v3_hurdle_${{ matrix.family }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-meta-hurdle-${{ matrix.family }}
+          path: runs/v3_hurdle_${{ matrix.family }}/
+          retention-days: 90
