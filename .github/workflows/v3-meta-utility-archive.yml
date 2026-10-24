@@ -1,0 +1,38 @@
+name: V3 archive expected regret model experiments under corrected project
+on:
+  push:
+    branches: [research-v3-utility-regret-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/UTILITY_ARCHIVE_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          ref: research-v3-utility-regret-20261024
+      - name: Rehydrate and verify every successful completed research output
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/archive_utility_regret_20261024.py'
+      - name: Persist full zipped results, checksum manifest and CSV audits inside V3
+        run: |
+          git config user.name 'v3-research-archive[bot]'
+          git config user.email 'v3-research-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/utility_regret_20261024'
+          git diff --cached --name-status
+          git diff --cached --quiet && { echo 'Already archived'; exit 0; }
+          git commit -m 'V3: archive nine expected-regret studies, economic replays and immutable checksums'
+          git push origin HEAD:research-v3-utility-regret-20261024
+      - name: Assert permanent original outputs and manifest
+        run: |
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/utility_regret_20261024/ARCHIVE_MANIFEST.json'
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/utility_regret_20261024/archives/v3-meta-hurdle-DT14.zip'
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/utility_regret_20261024/archives/v3-meta-utility-calendar-exclusion.zip'

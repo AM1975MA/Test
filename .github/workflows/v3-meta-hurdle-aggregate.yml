@@ -1,0 +1,46 @@
+name: V3 compare eight expected-regret models with immutable incumbent
+on:
+  push:
+    branches: [research-v3-utility-regret-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/HURDLE_COMPARE_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'numpy==2.2.6' 'pandas==2.2.3'
+      - name: Retrieve four fixed policy OOS outputs and certified nested incumbent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_hurdle_runs runs/v3_incumbent
+          for fam in DT14 DT_REGIME HGB_REGIME RF_REGIME; do
+            mkdir -p "runs/v3_hurdle_runs/$fam"
+            gh run download 40079852872 -R AM1975MA/Test \
+              -n "v3-meta-hurdle-$fam" -D "runs/v3_hurdle_runs/$fam"
+            test -s "runs/v3_hurdle_runs/$fam/SUMMARY.csv"
+          done
+          gh run download 40032282233 -R AM1975MA/Test \
+             -n v3-nested-meta-tree-validation -D runs/v3_incumbent
+      - name: Monthly bootstrap, fixed regime exclusions, correction pair overlap diagnostics
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/compare_hurdle_regret.py' \
+           --research runs/v3_hurdle_runs --incumbent runs/v3_incumbent \
+           --out runs/v3_hurdle_comparison
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-meta-hurdle-aggregate-comparison
+          path: runs/v3_hurdle_comparison/
+          retention-days: 90
