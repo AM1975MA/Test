@@ -1,0 +1,1 @@
+Root cause diagnostic only, capacity max_leaves=15,31,63,127 across every annual EU48 OOS fold; no parameter selection using outcomes, original 127 scores must replay numerically; compare extremes and 2022 risk.
