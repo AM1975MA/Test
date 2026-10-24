@@ -1,0 +1,54 @@
+name: V3 EU48 full period 2021-2026 legacy versus corrected features and leaf capacity
+on:
+  push:
+    branches: [research/eu48-source-forensics-20261024]
+    paths: ['etf-trader-v3 corrected/experiments/europe48_transfer/ALL_YEARS_START.txt']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  four_way:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2021, 2022, 2023, 2024, 2025, 2026]
+    env:
+      PYTHONPATH: .:vendor/etf_trader_v2/src
+      OPENBLAS_NUM_THREADS: '2'
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Original Europe pinning
+        run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'numba==0.65.1' 'pyarrow==23.0.1' matplotlib
+      - name: Load exact corrected reference implementation via immutable main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _kernel _HEADS
+          gh api -H 'Accept: application/vnd.github+json' \
+            'repos/AM1975MA/Test/contents/etf-trader-v3%20corrected/src/etf_trader_v3/source_only/kernel.py?ref=main' \
+            --jq .content | base64 -d > _kernel/v3_corrected_kernel.py
+          gh run download 40086216896 -R AM1975MA/Test \
+            -n 'v3-europe48-127leaf-heads-${{ matrix.year }}' -D _HEADS
+      - name: Original certified 48 legal ISIN adjusted EUR dataset
+        run: python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_PREP
+      - name: Four precommitted rankers, annual maturity, exact legacy output checks
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/forensic_full_year_feature_capacity.py' \
+            --year '${{ matrix.year }}' --prep _EU48_PREP \
+            --v3kernel _kernel/v3_corrected_kernel.py \
+            --strict _HEADS/SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv \
+            --v3stored _HEADS/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --out '_EU48_FULL_YEAR_${{ matrix.year }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-eu48-forensic-2x2-${{ matrix.year }}
+          path: _EU48_FULL_YEAR_${{ matrix.year }}/
+          retention-days: 90
