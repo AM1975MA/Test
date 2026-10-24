@@ -1,5 +1,9 @@
 # ETF Trader V3 Corrected — test autentico 48 ETF europei in EUR, V3 127 foglie + decision tree
 
+> **ERRATUM METODOLOGICO — 24 ottobre 2026.** Il primo stadio UE48 originale di questo rapporto è `XGBRanker` V3 a 127 foglie ma alimentato dalle **125 feature calcolate dal kernel legacy V2**, non dal kernel `etf_trader_v3.source_only.kernel` realmente corrected. L'audit sul medesimo pannello 48 ETF ×65 mesi ([run 40112742559](https://github.com/AM1975MA/Test/actions/runs/40112742559)) dimostra 9 feature downside-volatility differenti, 11.236 celle con valori numerici diversi e 16.724 differenze di disponibilità dato. I risultati finanziari qui presentati sono riproducibili ma descrivono **V3 127 foglie + feature legacy V2**, NON la V3 fully corrected. Non interpretarli come prova della capacità V3 corrected europea. Il test del vero kernel corrected viene eseguito separatamente, senza modificare dati, target, costi o iperparametri.
+
+
+
 **Esito verificato il 24 ottobre 2026.** Due run complete `40086735687` e `40087054494` riproducono gli stessi valori numerici (comprese curve economiche, scelta mensile nested, KPI basket e punteggi predictivi). Six first-stage annual jobs `40086216896` tutti PASS.
 
 ## Domanda e benchmark corretto
