@@ -1,0 +1,17 @@
+{
+  "year": 2026,
+  "leaf_values": [
+    15,
+    31,
+    63,
+    127
+  ],
+  "immutable_125F": true,
+  "yearly_walkforward": true,
+  "training_from": "2017-01-01",
+  "original_euro48_label_ticker_parity": true,
+  "original_v3_127_reference_parity_passed": true,
+  "previous_2021_2026_historical_data_reused": true,
+  "independent_holdout": false,
+  "production_unchanged": true
+}

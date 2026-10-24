@@ -1,0 +1,297 @@
+{
+  "checkpoint": "2026-10-24",
+  "original_base_EU48_48_ISINs": true,
+  "n_model_years": 6,
+  "all_v3_127_parity_passed": true,
+  "one_way_fee_bps": 10,
+  "no_lookahead_annual_training": true,
+  "n_months": 65,
+  "leaf_caps": [
+    15,
+    31,
+    63,
+    127
+  ],
+  "OOS_quarterly_v3_meta_not_refit_for_alternative_leaves": true,
+  "original_production_untouched": true,
+  "source_archive": [
+    {
+      "run": 40111997235,
+      "artifact": "v3-eu48-diagnostic-leaf-2021",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40111997235",
+      "archive_sha256": "eeb9a19301e39c916a768c99b4ba58252808dfb70c46078351e1c1294de81956",
+      "archive_bytes": 333392,
+      "files": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "700fb312d14a9a01d3efc645e6ea7219dc352656b9c07f56fa946396b2f0d60f",
+          "bytes": 378
+        },
+        {
+          "name": "SPY_REF/SOURCE_REFERENCE_AUDIT.json",
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995",
+          "bytes": 2420
+        },
+        {
+          "name": "SPY_REF/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805",
+          "bytes": 563893
+        },
+        {
+          "name": "SPY_REF/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279",
+          "bytes": 427476
+        },
+        {
+          "name": "TRAIN_AUDIT.csv",
+          "sha256": "d68d1a6bb9dcb399816ffa6d37c54514f5fe3be67d5e3d070599b21743406f59",
+          "bytes": 383
+        },
+        {
+          "name": "YEAR_OOS_ALL_LEAVES.csv",
+          "sha256": "6463fc9d38e861086b520db0783c1aff25d44f41fcaad5c4d49bd7ad1f9469b7",
+          "bytes": 126975
+        }
+      ]
+    },
+    {
+      "run": 40111997235,
+      "artifact": "v3-eu48-diagnostic-leaf-2022",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40111997235",
+      "archive_sha256": "86ce35c4c3850970da6dadf0e5c58297bf5a02158ac7b91e6f53d93356ab2678",
+      "archive_bytes": 336226,
+      "files": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "5f7304b87ddebd6ab63aef133ebd1d13896aeb43dee3124652214a0139d8ddbb",
+          "bytes": 378
+        },
+        {
+          "name": "SPY_REF/SOURCE_REFERENCE_AUDIT.json",
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995",
+          "bytes": 2420
+        },
+        {
+          "name": "SPY_REF/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805",
+          "bytes": 563893
+        },
+        {
+          "name": "SPY_REF/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279",
+          "bytes": 427476
+        },
+        {
+          "name": "TRAIN_AUDIT.csv",
+          "sha256": "0990d2e35c1af9f95cadc8397737a305b544abae5df84a1ea9fd873404d5bfd3",
+          "bytes": 383
+        },
+        {
+          "name": "YEAR_OOS_ALL_LEAVES.csv",
+          "sha256": "3fe222bf236d2a193a558b8678bb235a48f28c1126db73eb61673ac668a5c867",
+          "bytes": 126538
+        }
+      ]
+    },
+    {
+      "run": 40111997235,
+      "artifact": "v3-eu48-diagnostic-leaf-2023",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40111997235",
+      "archive_sha256": "f1a45926882a08518e637bc39017e5f80c93b24ba8759e8fbb470f207ff5de18",
+      "archive_bytes": 336210,
+      "files": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "33b8bbdf19295e1d1590500810ca91ee51dc3cbc5030466b8de61ccd7711fd63",
+          "bytes": 378
+        },
+        {
+          "name": "SPY_REF/SOURCE_REFERENCE_AUDIT.json",
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995",
+          "bytes": 2420
+        },
+        {
+          "name": "SPY_REF/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805",
+          "bytes": 563893
+        },
+        {
+          "name": "SPY_REF/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279",
+          "bytes": 427476
+        },
+        {
+          "name": "TRAIN_AUDIT.csv",
+          "sha256": "eb8d3e4b9f0eb47a286776eec14aac4e4bfdd136dbaad9ad168b01156e520372",
+          "bytes": 383
+        },
+        {
+          "name": "YEAR_OOS_ALL_LEAVES.csv",
+          "sha256": "6dd7060241867316edfa5df46cdf7a104082f26d0fa32c9b9930495a82138085",
+          "bytes": 127353
+        }
+      ]
+    },
+    {
+      "run": 40111997235,
+      "artifact": "v3-eu48-diagnostic-leaf-2024",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40111997235",
+      "archive_sha256": "9d666388c8b98c34c583796ace60744900f99a5b4ec26752337430191ac10569",
+      "archive_bytes": 336268,
+      "files": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "29570a4f3633e5c027a9aeaa71326105a49d0f9c39f9f3ee0588f8888e63e4c3",
+          "bytes": 378
+        },
+        {
+          "name": "SPY_REF/SOURCE_REFERENCE_AUDIT.json",
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995",
+          "bytes": 2420
+        },
+        {
+          "name": "SPY_REF/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805",
+          "bytes": 563893
+        },
+        {
+          "name": "SPY_REF/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279",
+          "bytes": 427476
+        },
+        {
+          "name": "TRAIN_AUDIT.csv",
+          "sha256": "137a2dbee0f55c4af5bc9812d312345e96160bc037f5e7a4e7d33a71af27a06c",
+          "bytes": 383
+        },
+        {
+          "name": "YEAR_OOS_ALL_LEAVES.csv",
+          "sha256": "413670dc13c44bc15297a756cac02059dd90a78ee697055a252ae4794e1ef1ea",
+          "bytes": 127307
+        }
+      ]
+    },
+    {
+      "run": 40111997235,
+      "artifact": "v3-eu48-diagnostic-leaf-2025",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40111997235",
+      "archive_sha256": "ef83e00990b2cb02ea8445e1e9fac289ba966c6d280c3e15b5f7b376eedb002e",
+      "archive_bytes": 336234,
+      "files": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "e91587268a3b65c4711257beedaf904899cbbf399347bcc29d3b57f63b8f236e",
+          "bytes": 378
+        },
+        {
+          "name": "SPY_REF/SOURCE_REFERENCE_AUDIT.json",
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995",
+          "bytes": 2420
+        },
+        {
+          "name": "SPY_REF/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805",
+          "bytes": 563893
+        },
+        {
+          "name": "SPY_REF/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279",
+          "bytes": 427476
+        },
+        {
+          "name": "TRAIN_AUDIT.csv",
+          "sha256": "1c1c5674ff4479e5dbcd674a17cac715eb86018403b171f2a43cb914faf8a879",
+          "bytes": 383
+        },
+        {
+          "name": "YEAR_OOS_ALL_LEAVES.csv",
+          "sha256": "cbbce4522453e22d169f3fba18def3c0aa7417ca4d284150366b0e90042e45df",
+          "bytes": 127204
+        }
+      ]
+    },
+    {
+      "run": 40111997235,
+      "artifact": "v3-eu48-diagnostic-leaf-2026",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40111997235",
+      "archive_sha256": "9cfcc292f3f4e61d27c54afe528f053c6afe3c061e0e5b4e120da0567465ddb3",
+      "archive_bytes": 319544,
+      "files": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "22f8af291b3fb7f8f74a93f54c03c3dd32ddfe75bf31f750a7d2b7a36ca7efc5",
+          "bytes": 378
+        },
+        {
+          "name": "SPY_REF/SOURCE_REFERENCE_AUDIT.json",
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995",
+          "bytes": 2420
+        },
+        {
+          "name": "SPY_REF/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805",
+          "bytes": 563893
+        },
+        {
+          "name": "SPY_REF/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279",
+          "bytes": 427476
+        },
+        {
+          "name": "TRAIN_AUDIT.csv",
+          "sha256": "8759264c6f02a4f16a2e6985393c18288390e5d12344b03dffecc5c1173b27c8",
+          "bytes": 383
+        },
+        {
+          "name": "YEAR_OOS_ALL_LEAVES.csv",
+          "sha256": "0451aa9329b100b463d3822ec9d46a905359b6f1a550ee2f5b75144184f2ed92",
+          "bytes": 53067
+        }
+      ]
+    },
+    {
+      "run": 40112390505,
+      "artifact": "v3-eu48-leaf-capacity-econ-and-skill",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40112390505",
+      "archive_sha256": "fd3e677fcdd25c2a86b2e4b8b45b1f6257240f6a9ef14d83451b3cd68437ef99",
+      "archive_bytes": 222539,
+      "files": [
+        {
+          "name": "DAILY_NAV.csv",
+          "sha256": "ec73560c60a38b23ff51310ed46d5aa5acd3e187a993d6e0fcf1dd33fdabc4c7",
+          "bytes": 402325
+        },
+        {
+          "name": "EUR48_ECONOMIC_CAGR_DD.csv",
+          "sha256": "f92f03a74bae7655f824f60efdcdd884b0c977bf3bcab11ab439358e9bf2897d",
+          "bytes": 2965
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "40d4cefbc72b7cf69d30697df0bf5a5c8f737788d86cd6ab4550561c79f67046",
+          "bytes": 707
+        },
+        {
+          "name": "MONTHLY_65_ETF_PICKS.csv",
+          "sha256": "738ba38e294646dffb7eb572e0f0b9e45042dfcf231408a6abb114bdd4a1b947",
+          "bytes": 39912
+        },
+        {
+          "name": "MONTHLY_TRADE_LEDGER.csv",
+          "sha256": "256c16cec4b51b95b71f338a7bdd7c22f6775feb23241357ca44c7745fc0ca17",
+          "bytes": 131440
+        },
+        {
+          "name": "PAIRED_BLOCK_BOOTSTRAP.csv",
+          "sha256": "bf3b27fc68d122166dfa2d798d10e8ae1aa05bacc8895eb087f5e1b8eb6076e5",
+          "bytes": 637
+        },
+        {
+          "name": "SKILL_COMPARISON.csv",
+          "sha256": "0551f73e8cb5225174b9703cc3e67e648b66859d7c5a169dddf08335ebe149ab",
+          "bytes": 1277
+        }
+      ]
+    }
+  ]
+}
