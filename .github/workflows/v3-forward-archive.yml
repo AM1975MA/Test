@@ -1,0 +1,37 @@
+name: V3 preserve entire forward 2026 source and experimental evidence
+on:
+  push:
+    branches: [research-v3-forward-locked-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/FORWARD_ARCHIVE_START.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          ref: research-v3-forward-locked-20261024
+      - name: Preserve all four verified experiment results and original full price inputs with SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/archive_forward_20261024.py'
+      - name: Check in original price snapshot and inspectable source/proof files under V3 only
+        run: |
+          git config user.name 'v3-research-archive[bot]'
+          git config user.email 'v3-research-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/forward_20261024'
+          git diff --cached --stat
+          git diff --cached --quiet && { echo 'Already archived'; exit 0; }
+          git commit -m 'V3: preserve June-Aug prospective-control OOS evidence, 149 ETF frozen append-only prices, SHA256'
+          git push origin HEAD:research-v3-forward-locked-20261024
+      - name: Final content evidence
+        run: |
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/forward_20261024/ARCHIVE_MANIFEST.json'
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/forward_20261024/archives/v3-forward-frozen-149-raw-20261024.zip'
+          test -s 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/results/forward_20261024/tables/v3-forward-june-aug-incumbent-utility-comparison/THREE_MONTHS_SUMMARY.csv'
