@@ -37,7 +37,7 @@ TARGET_CLIP=.20
 SOURCE_SHA="36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e"
 
 def make_models(family):
-    core=family.split("_")[0]
+    core="DT" if family=="DT14" else family.split("_")[0]
     if core=="DT":
         kw=dict(max_depth=3,min_samples_leaf=100,random_state=20261024)
         return (DecisionTreeClassifier(criterion="log_loss",**kw),
