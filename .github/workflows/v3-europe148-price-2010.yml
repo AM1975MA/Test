@@ -1,0 +1,47 @@
+name: V3 Europe148 historic 2010-2026 live Xetra EUR ETF OHLCV six-cluster audit
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/PRICES_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  cluster:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      matrix:
+        cluster: [EU_EQUITY_BROAD, EU_EQUITY_SECTOR, EU_EQUITY_COUNTRY, EU_EQUITY_FACTOR, SOVEREIGN_EUR, EU_PROPERTY]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'yfinance==0.2.66' 'requests==2.32.5'
+      - name: Recover exact official Xetra legal ISIN mnemonic EUR listing snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_xetra
+          gh run download 40135053797 -R AM1975MA/Test -n v3-europe148-official-xetra-audit -D runs/eu148_xetra
+          test -s runs/eu148_xetra/OFFICIAL_XETRA_ISIN_MATCHES.csv
+      - name: Download available since 2010, refuse synthetic pre-share-class XETRA returns
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/download_xetra_history.py' \
+            --input runs/eu148_xetra --cluster '${{ matrix.cluster }}' \
+            --out 'runs/eu148_ohlc_${{ matrix.cluster }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe148-ohlcv-${{ matrix.cluster }}
+          path: runs/eu148_ohlc_${{ matrix.cluster }}/
+          retention-days: 90
