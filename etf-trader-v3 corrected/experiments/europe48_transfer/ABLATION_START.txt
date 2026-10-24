@@ -1,0 +1,1 @@
+Precommitted 2x2 matching EU48 2022 ranks: legacy vs actual V3 corrected features; original depth4 versus 127leaf; original maturity and 3seed. No selection tuning.
