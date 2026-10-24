@@ -1,1 +1,2 @@
 Run exact side by side V2 imported 125-feature kernel and true V3 corrected kernel on same certified 48 EU ETF OHLCV and original prior-US-SPY closes, 65 OOS months. No changes to original EU models.
+Recheck after installing LightGBM dependency of original Euro48 source module; feature and data audit unchanged.
