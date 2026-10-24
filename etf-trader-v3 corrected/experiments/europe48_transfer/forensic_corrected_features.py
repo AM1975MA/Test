@@ -74,7 +74,7 @@ def main():
         x=a.xs(dt,level="signal_date").to_numpy(float)
         y=b.xs(dt,level="signal_date").to_numpy(float)
         flips=int((np.isfinite(x)!=np.isfinite(y)).sum())
-        changes=int((np.abs(x-y)>1e-12*np.maximum(1,np.abs(y))&(np.isfinite(x)&np.isfinite(y))).sum())
+        changes=int(((np.abs(x-y)>1e-12*np.maximum(1,np.abs(y))) & (np.isfinite(x)&np.isfinite(y))).sum())
         month.append(dict(signal_date=str(dt.date()),year=dt.year,n_features=125,
             cells=48*125,na_changes=flips,changed_cells=changes))
     pd.DataFrame(month).to_csv(out/"MONTHLY_FEATURE_MISMATCH.csv",index=False)
