@@ -117,7 +117,7 @@ def main():
          original_V3_127_raw_scores_per_year_parity=True,
          only_max_leaves_varied=[15,31,63,127],same_360rounds_same_three_seeds=True,
          original_2017_training_start=True,price_source="2026 snapshot, EUR priced original",
-         2021_2026_month_count=65,fee_per_side_bps=10,
+         n_months_2021_2026=65,fee_per_side_bps=10,
          same_125_predictors=True,experiment_hypothesis="excessive capacity of 127 leaves on 48-fund ranking task",
          multiple_comparisons_unadjusted=True,virgin_holdout=False,
          production_unchanged=True),indent=2))
