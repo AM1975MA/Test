@@ -1,0 +1,1 @@
+Source investigation 2022: original V2 depth4 versus V3 capped leaves 15,31,63,127 on identical certified 48 European ETFs, 58 mature 2017–2021 train months, 2022 OOS, 3 original seeds and frozen 125 features. Audit actual trees, score parity, return and next-open drawdown; no tuning or production changes.
