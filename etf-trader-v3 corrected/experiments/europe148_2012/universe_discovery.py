@@ -83,7 +83,7 @@ def main():
     src["name"]=src.name.fillna("")
     src["index"]=src["index"].fillna("")
     src["asset_class"]=src.asset_class.fillna("")
-    src["isin_valid"]=src.isin.apply(isin_valid)
+    src["isin_valid"]=src['isin'].apply(isin_valid)
     # The original 48 are legally VERIFIED via provider and exchange but
     # are not automatically interchangeable with today's catalog listing.
     ref=pd.read_csv(a.reference)
