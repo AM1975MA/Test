@@ -1,0 +1,1 @@
+Independently fetch OHLCV for all 48 legally certified original Europe ISIN from XETRA EUR as early as real venue listing permits, preserving original EUR48 dataset. Official listing snapshot 40135053797.
