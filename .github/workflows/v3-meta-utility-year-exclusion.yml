@@ -1,0 +1,46 @@
+name: V3 realized calendar omission check for expected-regret model
+on:
+  push:
+    branches: [research-v3-utility-regret-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/UTILITY_YEAR_START.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3'
+      - name: Retrieve actually executed 500-basket NAV paths
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/v3_incumbent_econ runs/v3_utility_econ
+          gh run download 40032693599 -R AM1975MA/Test \
+            -n v3-nested-meta-tree-nextopen-economics -D runs/v3_incumbent_econ
+          for spec in 'DT14_L15' 'HGB_REGIME_L15' 'RF_REGIME_L10'; do
+            mkdir -p "runs/v3_utility_econ/$spec"
+            gh run download 40080407962 -R AM1975MA/Test \
+              -n "v3-meta-utility-econ-$spec" -D "runs/v3_utility_econ/$spec"
+          done
+      - name: Freeze elapsed-session CAGR and paired CI through year-end 2025 vs mid 2026
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/hurdle_exclude_2026.py' \
+             --incumbent runs/v3_incumbent_econ \
+             --candidates runs/v3_utility_econ \
+             --out runs/v3_utility_year_exclusion
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-meta-utility-calendar-exclusion
+          path: runs/v3_utility_year_exclusion/
+          retention-days: 90
