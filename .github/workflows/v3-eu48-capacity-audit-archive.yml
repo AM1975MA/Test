@@ -1,0 +1,72 @@
+name: V3 EU48 archive verified 2022 capacity and source root cause audit
+on:
+  push:
+    branches:
+      - research/v3-europe48-tree-transfer-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/CAPACITY_ARCHIVE_START.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/v3-europe48-tree-transfer-20261024
+          persist-credentials: true
+      - name: Recover original verified 2022 ablation artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _EU48_CAPACITY_SOURCE
+          gh run download 40111851199 -R AM1975MA/Test \
+            -n v3-europe48-source-capacity-2022-audit -D _EU48_CAPACITY_SOURCE
+      - name: Immutable archive with per-file hashes and inspectable tables in V3
+        run: |
+          python - <<'PY'
+          import hashlib,json,zipfile,shutil
+          from pathlib import Path
+          source=Path('_EU48_CAPACITY_SOURCE')
+          output=Path('etf-trader-v3 corrected/experiments/europe48_transfer/results/capacity_rootcause_20261024')
+          archive=output/'archives';tables=output/'tables'
+          archive.mkdir(parents=True,exist_ok=True);tables.mkdir(parents=True,exist_ok=True)
+          files=sorted(f for f in source.rglob('*') if f.is_file())
+          assert len(files)>=10
+          names={f.name for f in files}
+          assert {'2022_CAPACITY_DIAGNOSTIC.csv','2022_EACH_MONTH_TOP1.csv',
+                  '2022_ALL_SCORES.csv','MANIFEST.json'}<=names
+          p=archive/'v3-europe48-source-capacity-2022-audit.zip'
+          with zipfile.ZipFile(p,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+              for f in files:z.write(f,f.relative_to(source).as_posix())
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+          for f in files:
+              if f.suffix.lower() in ('.csv','.json') and f.parent==source:
+                  shutil.copy2(f,tables/f.name)
+          def sha(f):return hashlib.sha256(f.read_bytes()).hexdigest()
+          manifest=dict(date='2026-10-24',source_run=40111851199,
+              source_url='https://github.com/AM1975MA/Test/actions/runs/40111851199',
+              source_job_success=True,pricing_and_original_125_127_top1_parity=True,
+              n_source_files=len(files),n_archives=1,archive_sha256=sha(p),
+              files=[dict(path=f.relative_to(source).as_posix(),size=f.stat().st_size,sha256=sha(f)) for f in files],
+              production_models_changed=False)
+          (output/'ARCHIVE_MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          (output/'README.md').write_text('# V3 EU48 — 2022 capacity root-cause audit\n\n'
+             'See ../../EUROPE48_CAPACITY_ROOT_CAUSE_20261024.md for interpretation.\n'
+             'Contains exact 5 model configurations, full 2022 OOS scores, all EUR trades, '
+             'actual booster leaf counts by seed and full source audits.\n'
+             'This is historical retrospective diagnosis, not prospective optimization.\n')
+          print('SOURCE_AUDIT_ARCHIVED',len(files),len(list(tables.iterdir())),p.stat().st_size)
+          PY
+      - name: Commit only the new V3 research outputs
+        run: |
+          git config user.name 'v3-research-archive[bot]'
+          git config user.email 'v3-research-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/europe48_transfer/results/capacity_rootcause_20261024'
+          git diff --cached --stat
+          git diff --cached --quiet && { echo 'already'; exit 0; }
+          git commit -m 'V3 EU48: save original five-capacity 2022 root cause diagnostics with SHA256'
+          git push origin HEAD:research/v3-europe48-tree-transfer-20261024
