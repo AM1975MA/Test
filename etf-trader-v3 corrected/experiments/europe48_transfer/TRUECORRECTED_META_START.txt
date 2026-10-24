@@ -1,0 +1,1 @@
+Six annual TRUE corrected-V3 European 127leaf ranker + 5 regression heads passed 40112844351, original 48 ISIN 125f target dates and 3seeds. Now run strict 36-config nested decision tree with same EUR Open costed account, and verify previous Compact125 benchmark as independent economic reference. No parameter search.
