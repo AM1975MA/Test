@@ -1,0 +1,47 @@
+name: V3 EU48 source kernels real corrected versus legacy 125F forensic
+on:
+  push:
+    branches:
+      - research/v3-europe48-tree-transfer-20261024
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/SOURCE_COMPARE_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    env:
+      PYTHONPATH: .:vendor/etf_trader_v2/src
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install all original EU48 compiled dependencies including numba
+        run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'numba==0.65.1' 'pyarrow==23.0.1' 'matplotlib==3.10.8'
+      - name: Recover immutable EU48 2022 price source and original external as-of SPY
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _US149_ORIG _V3_2022
+          gh run download 36551650325 -R AM1975MA/Test -n etf-trader-raw-149 -D _US149_ORIG
+          gh run download 40086216896 -R AM1975MA/Test -n v3-europe48-127leaf-heads-2022 -D _V3_2022
+          python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_PREP
+          test -s _V3_2022/SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv
+      - name: Numerically compare all 390000 V2 versus real corrected V3 feature cells
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/audit_eu48_corrected_feature_gap.py' \
+            --prep _EU48_PREP \
+            --strict _V3_2022/SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv \
+            --v3kernel 'etf-trader-v3 corrected/src/etf_trader_v3/source_only/kernel.py' \
+            --out _EU48_KERNEL_FORENSIC
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe48-corrected-feature-gap-audit
+          path: _EU48_KERNEL_FORENSIC/
+          retention-days: 90
