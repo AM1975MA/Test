@@ -1,0 +1,286 @@
+{
+  "date": "2026-10-24",
+  "archived_bundles": 7,
+  "n_mature_months": 65,
+  "etfs": 48,
+  "original_127_fits_reproduced": true,
+  "original_v2_v3_tree_econ_parity": true,
+  "future_holdout": false,
+  "historical_already_analysed": true,
+  "production_unmodified": true,
+  "source_runs": [
+    {
+      "run_id": 40112204947,
+      "source_url": "https://github.com/AM1975MA/Test/actions/runs/40112204947",
+      "artifact": "v3-europe48-capacity-diagnostic-2021",
+      "zip_size": 309469,
+      "zip_sha256": "14d623f3ed7f7405415f84d7ab5d2536a027770be7a141c458553a53b3e898c4",
+      "source_files": [
+        {
+          "path": "EUR48_CAPACITY_MONTHLY.csv",
+          "bytes": 6982,
+          "sha256": "bb72bfe64738ceaa845f8395dead605c45a02f7bda21f06962e323c112675525"
+        },
+        {
+          "path": "EUR48_CAPACITY_SCORECARD.csv",
+          "bytes": 425,
+          "sha256": "2091a498992726d70e83b5b0a1af14fbdee402054f593090b26b4d32270f1f55"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 869,
+          "sha256": "443d83542f8b37bc66611eaba3193ff8ebd04a609fac523f1072359a82e6ea56"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run_id": 40112204947,
+      "source_url": "https://github.com/AM1975MA/Test/actions/runs/40112204947",
+      "artifact": "v3-europe48-capacity-diagnostic-2022",
+      "zip_size": 309747,
+      "zip_sha256": "bbdfa4e6d202189e6f89065f42b16b489a3c7fa48023d007ed28e3f9e5c2d2a9",
+      "source_files": [
+        {
+          "path": "EUR48_CAPACITY_MONTHLY.csv",
+          "bytes": 6907,
+          "sha256": "9420b758e3df412daf159eca11efe8a77491904bfbcd7ad7f56ad88db8ebc8e8"
+        },
+        {
+          "path": "EUR48_CAPACITY_SCORECARD.csv",
+          "bytes": 556,
+          "sha256": "25b4d0224c2ebf32aa33ab3fbd3994573277c160cf5b978f6c42e78d23abc232"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 869,
+          "sha256": "b1017adcfb93c548aca77a5b0a1637b8298c9372ad14003cde33bd7a8a322baf"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run_id": 40112204947,
+      "source_url": "https://github.com/AM1975MA/Test/actions/runs/40112204947",
+      "artifact": "v3-europe48-capacity-diagnostic-2023",
+      "zip_size": 309851,
+      "zip_sha256": "d6e791e02175f4f09c7e7e2d6c8eaab6e027b488e7e9b39086c86bb2400b47e9",
+      "source_files": [
+        {
+          "path": "EUR48_CAPACITY_MONTHLY.csv",
+          "bytes": 7028,
+          "sha256": "12485d1037a87ae115a905283ea233fbe317b8e869087a3a59c81840737999a8"
+        },
+        {
+          "path": "EUR48_CAPACITY_SCORECARD.csv",
+          "bytes": 491,
+          "sha256": "8187e19dc971230789fab3b6929a91bc46ff5110ebfeb0abf4f7b12c81ff05c3"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 869,
+          "sha256": "9dbb6ebaa7764a261780038116c9d2eca0b99e1187378883628fa6885b7fee73"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run_id": 40112204947,
+      "source_url": "https://github.com/AM1975MA/Test/actions/runs/40112204947",
+      "artifact": "v3-europe48-capacity-diagnostic-2024",
+      "zip_size": 309603,
+      "zip_sha256": "86268390b04c55eced48e52fea2a4ce1674908f75b5f3026f194cc1960bd85b5",
+      "source_files": [
+        {
+          "path": "EUR48_CAPACITY_MONTHLY.csv",
+          "bytes": 6968,
+          "sha256": "3ef550c9ab2ed130e9ed9bac40f229aa6c8c7f7906aec25a653ff2d55c30dfd4"
+        },
+        {
+          "path": "EUR48_CAPACITY_SCORECARD.csv",
+          "bytes": 482,
+          "sha256": "069803e31a985bc3bf96bf36d43ab2ea0298781ac7dac83e95477c53ac4dc188"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 869,
+          "sha256": "e621253ae595f43337e8c231e633e71430fa1b13e685f5549dff7a808598d8e0"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run_id": 40112204947,
+      "source_url": "https://github.com/AM1975MA/Test/actions/runs/40112204947",
+      "artifact": "v3-europe48-capacity-diagnostic-2025",
+      "zip_size": 309820,
+      "zip_sha256": "d3a8befcee8af9c0e8f54582ca2727dd51c8b34561a08facf31a4046b6d5a4b5",
+      "source_files": [
+        {
+          "path": "EUR48_CAPACITY_MONTHLY.csv",
+          "bytes": 7014,
+          "sha256": "cb3ace3df8341217771fbc49ed6324a64e50a40d034a878d67b89c0378856404"
+        },
+        {
+          "path": "EUR48_CAPACITY_SCORECARD.csv",
+          "bytes": 461,
+          "sha256": "8ae62bcff4213dffc14a2d5ce4317d6aac655dbb164cda8111744d5e40f63b87"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 869,
+          "sha256": "d892c7838f79d40249ef9b87b9e05a377f63f37f17ef038f1f5229e1294fbd23"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run_id": 40112204947,
+      "source_url": "https://github.com/AM1975MA/Test/actions/runs/40112204947",
+      "artifact": "v3-europe48-capacity-diagnostic-2026",
+      "zip_size": 308728,
+      "zip_sha256": "ec8800bff457de4837f5f8f79f36ce63b3a561c3090d67b31b2c526f5636773d",
+      "source_files": [
+        {
+          "path": "EUR48_CAPACITY_MONTHLY.csv",
+          "bytes": 3052,
+          "sha256": "80e0dad4d3d97c49d307d894182a3f24e34cbce6dff87e1d9153f190a1405b88"
+        },
+        {
+          "path": "EUR48_CAPACITY_SCORECARD.csv",
+          "bytes": 423,
+          "sha256": "d60245e17ab7908f23bbb5c1ac98ada7d8430ab563e7c5b4c0717c4c2373c638"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 870,
+          "sha256": "b45e58020ea4ab6056f48555b1a8dff3e09af6ce5ea1b14e6c9ffbed889478f4"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/SOURCE_REFERENCE_AUDIT.json",
+          "bytes": 2420,
+          "sha256": "1e5806fd314b5d383f51a60cdc4c47acc2cc1bb34abb161ba6738cff15835995"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv",
+          "bytes": 563893,
+          "sha256": "50977a3221c2caeaa37ba2cc549588f8dfdbb1faf517880e18e919b5f93f3805"
+        },
+        {
+          "path": "SOURCE_SPY_PRIOR/US_USD_REFERENCE_FOR_ORIGINAL_DD_V6_WITH_PRIOR_DAY_SHIFT.csv",
+          "bytes": 427476,
+          "sha256": "04e769646b2d6aaebd2f140526be330a9005316cce2bc66917663ef4e3d16279"
+        }
+      ]
+    },
+    {
+      "run_id": 40112595040,
+      "source_url": "https://github.com/AM1975MA/Test/actions/runs/40112595040",
+      "artifact": "v3-europe48-capacity-exact-portfolio",
+      "zip_size": 93371,
+      "zip_sha256": "6e400c176a76edd0ec6358f5e87eea27976eb49f96b77ca8c236eb8cea967e8e",
+      "source_files": [
+        {
+          "path": "CAPACITY_REAL_65_SIGNAL_OOS.csv",
+          "bytes": 35558,
+          "sha256": "50938651e3207bed4479befceec42b247d009a622e10f591e1d03cd273604191"
+        },
+        {
+          "path": "CAPACITY_REAL_EUR_CALENDAR_YEARLY.csv",
+          "bytes": 1869,
+          "sha256": "d4ea4f8e017fd0c93d82862b345cc8622037735f7c315f40f3e56de54e6bbfcb"
+        },
+        {
+          "path": "CAPACITY_REAL_EUR_DAILY_NAV.csv",
+          "bytes": 169901,
+          "sha256": "5a0bdda3cd20bda85d3e10fb53bc4ab6a586c259b53736c86dbb785da54f5472"
+        },
+        {
+          "path": "CAPACITY_REAL_EUR_MONTHLY_LEDGER.csv",
+          "bytes": 49847,
+          "sha256": "595e7ef82f2685b5b6fc0da5fc21c010568c55871ebc339a8505ccfe8c4cf98f"
+        },
+        {
+          "path": "CAPACITY_REAL_EUR_SCORECARD.csv",
+          "bytes": 1183,
+          "sha256": "a64e6d2ccb9bf375b17b984e9ecd77e1617e8bdd9f5467c2f757ddd7f415a939"
+        },
+        {
+          "path": "MANIFEST.json",
+          "bytes": 546,
+          "sha256": "bfea68b946ea7d0100942faaecae7314af22ec31b88692766b012feaf78f61b6"
+        }
+      ]
+    }
+  ]
+}

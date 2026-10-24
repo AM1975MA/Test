@@ -1,0 +1,15 @@
+{
+  "same_48_europe_unique_isin": true,
+  "same_65_months": true,
+  "no_meta_policy_except_certified_tree_reference": true,
+  "EUR_next_open_execution": true,
+  "identical_original_costed_path": true,
+  "original_V2_original_V3_original_tree_parity_1e_10": true,
+  "n_sessions": 1374,
+  "one_way_trade_fee": 0.001,
+  "train_first_stage_125features_equal": true,
+  "reference_first_stage_127_exact_reproduction": true,
+  "comparison_is_posthoc_explanatory_not_holdout": true,
+  "model_promotion_authorized": false,
+  "production_unchanged": true
+}

@@ -1,0 +1,40 @@
+{
+  "year": 2021,
+  "leaves": [
+    15,
+    31,
+    63,
+    127
+  ],
+  "source_v2_train_params": {
+    "objective": "rank:pairwise",
+    "eval_metric": "ndcg@3",
+    "n_estimators": 360,
+    "max_depth": 4,
+    "learning_rate": 0.035,
+    "subsample": 0.85,
+    "colsample_bytree": 0.8,
+    "min_child_weight": 8.0,
+    "reg_lambda": 8.0,
+    "reg_alpha": 0.1,
+    "tree_method": "hist",
+    "n_jobs": 2,
+    "verbosity": 0
+  },
+  "three_original_seeds": [
+    101,
+    202,
+    303
+  ],
+  "original_V3_127_head_exact_replay": true,
+  "same_125_europe_features": true,
+  "training_cutoff": "2021-01-01",
+  "train_signals": 46,
+  "train_rows": 2208,
+  "latest_train_exit": "2020-12-01",
+  "no_meta_model": true,
+  "no_risk_layer": true,
+  "historic_already_used_for_research": true,
+  "explanatory_ablation_not_new_model_selection": true,
+  "production_changed": false
+}
