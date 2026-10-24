@@ -76,7 +76,10 @@ def main():
         control=oldscores[(oldscores.signal_date.eq(d))&(oldscores.variant.eq("CORRECTED"))].sort_values("ticker")
         assert slice_.ticker.tolist()==control.ticker.tolist()
         # The historical 21-day adjusted next-open realized outcome is frozen.
-        if d<=pd.Timestamp("2026-05-29"):\n            np.testing.assert_allclose(slice_.fwd_ret_21,control.fwd_ret_21,rtol=0,atol=1e-11)\n        else:\n            assert control.fwd_ret_21.isna().all(), "Archived June score had no future label"
+        if d<=pd.Timestamp("2026-05-29"):
+            np.testing.assert_allclose(slice_.fwd_ret_21,control.fwd_ret_21,rtol=0,atol=1e-11)
+        else:
+            assert control.fwd_ret_21.isna().all(), "Archived June score had no future label"
         exact_hash[str(d.date())]=hashlib.sha256(slice_.fwd_ret_21.to_numpy(float).tobytes()).hexdigest()
     rows=[];audits=[]
     for arm in NAMES:
@@ -157,7 +160,8 @@ def main():
         frozen_train_before="2026-01-01",
         last_train_label_maturity=str(tr.exit_date_21.max().date()),
         n_train_rows=len(tr),n_train_months=tr.signal_date.nunique(),
-        replays_months=list(map(str,control_dates)),\n        replay_matured_label_months=5,original_june_predictions_archived_unlabeled=True,
+        replays_months=list(map(str,control_dates)),
+        replay_matured_label_months=5,original_june_predictions_archived_unlabeled=True,
         new_matured_signal_dates=["2026-06-30","2026-07-31","2026-08-31"],
         future_unmatured_signal="2026-09-30",
         floating_raw_score_tolerance=dict(atol=TARGET_PARITY_ABS,rtol=TARGET_PARITY_REL),
