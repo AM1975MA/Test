@@ -1,0 +1,52 @@
+name: V3 EU48 exact 2022 source versus depth four-arm ablation
+on:
+  push:
+    branches: [research/eu48-source-forensics-20261024]
+    paths: ['etf-trader-v3 corrected/experiments/europe48_transfer/ABLATION_START.txt']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PYTHONPATH: .:vendor/etf_trader_v2/src
+      OPENBLAS_NUM_THREADS: '2'
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: |
+          pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' matplotlib
+      - name: Frozen corrected V3 kernel without altering older source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _kernel
+          gh api -H 'Accept: application/vnd.github+json' \
+            'repos/AM1975MA/Test/contents/etf-trader-v3%20corrected/src/etf_trader_v3/source_only/kernel.py?ref=main' \
+            --jq .content | base64 -d > _kernel/v3_corrected_kernel.py
+      - name: Original Europe source input and pre-EU-open SPY
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_PREP
+          mkdir -p _V3_2022
+          gh run download 40086216896 -R AM1975MA/Test -n v3-europe48-127leaf-heads-2022 -D _V3_2022
+      - name: Four exact 2022 XGBRanker 3-seed annual fits, freeze head parity
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/forensic_2022_feature_capacity.py' \
+            --prep _EU48_PREP --v3kernel _kernel/v3_corrected_kernel.py \
+            --strict _V3_2022/SPY_REFERENCE/STRICT_PRIOR_US_CLOSE_FOR_EU_FEATURES_AND_CASH_EUR.csv \
+            --v3stored _V3_2022/EU48_V3_FIRSTSTAGE_SCORES.csv \
+            --out _EU48_2022_2X2_RESEARCH
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-eu48-2022-corrected-feature-versus-depth-2x2
+          path: _EU48_2022_2X2_RESEARCH/
+          retention-days: 90
