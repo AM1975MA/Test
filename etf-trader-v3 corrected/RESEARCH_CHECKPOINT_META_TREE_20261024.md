@@ -58,3 +58,17 @@ La seconda ricerca amplia il controllo sul livello meta, **senza cambiare la str
 **Risultato:** la selezione cronologica combinata `ALL__GUARD24` perde **0,1280 punti percentuali di excess forward 21D e 0,7921 punti di hit rate Top1** rispetto all'attuale `NESTED_24_TOP1_GUARD`. Il selettore solo sfidanti perde 0,1508 punti di forward selected excess. Il benchmark vecchio `PRIOR_ONLY__GUARD24` è stato ricostruito con **parità numerica esatta su tutti i 101 mesi**. Top3 invariato per tutti i modelli. Gli intervalli bootstrap mostrano peggioramenti compatibili con un calo reale, ma lo storico resta ampiamente riusato e non costituisce un holdout indipendente.
 
 **Decisione:** mantenere **CORRECTED125 + decision tree cronologico NESTED_24_TOP1_GUARD** come unico candidato di riferimento (research-only). Non promuovere alcuna variante nuova; sospendere il tuning di algoritmi sul medesimo calendario in favore di holdout temporali realmente non utilizzati. La V2, i kernel e i layer operativi V3 rimangono invariati.
+
+
+## Aggiornamento — Hurdle decisionale expected-regret del 24 ottobre 2026
+
+Sulla stessa storia OOS congelata 2018–2026, sono state eseguite **4 famiglie di meta modelli di utilità economica (8 regole fisse)**. Ogni modello separa la probabilità di battere il Top1, il vantaggio atteso condizionato al successo e la perdita attesa condizionata all'errore. Sono state aggiunte feature causali di momentum, volatilità e regime SPY/breadth 21/63 sedute, con controlli di massimo timestamp e refit solo trimestrale su label maturati >=60 giorni prima.
+
+- [Rapporto di ricerca completo](experiments/l00_rank_reg_fusion/EXPECTED_REGRET_RESULTS_20261024.md).
+- [Tutti i nove archivi, 50 tabelle leggibili e checksum SHA256](experiments/l00_rank_reg_fusion/results/utility_regret_20261024/).
+- [Protocollo bloccato di test futuri non contaminati](experiments/l00_rank_reg_fusion/PROSPECTIVE_VALIDATION_LOCK_20261024.md).
+- GitHub Actions [modelli](https://github.com/AM1975MA/Test/actions/runs/40079852872), [confronto strutturale](https://github.com/AM1975MA/Test/actions/runs/40080236687), [replay economico](https://github.com/AM1975MA/Test/actions/runs/40080407962), [stress calendariale](https://github.com/AM1975MA/Test/actions/runs/40080774850).
+
+**Fatti:** `UTILITY_DT14_L1.5` migliora Top1 dal 14,54 al 14,87%, ma non il rendimento selezionato in misura dimostrabile e peggiora la frequenza di grandi perdite. `UTILITY_RF_REGIME_L1` presenta selected excess forward +1,002%, ma Top1 solo 13,72% e correzioni ~29%. Il Top2 economico della RF 2022–2026 è 22,71% contro 21,45% del checkpoint, ma **escludendo il 2026 perde** 19,10% contro 20,23%; tutti gli IC dell'alpha RF vs checkpoint comprendono zero. Il calendario resta storico riusato; non esiste in questa campagna un holdout esterno successivo a maggio 2026 del first-stage.
+
+**Decisione:** mantenere `CORRECTED125 + NESTED_24_TOP1_GUARD` checkpoint di ricerca, nessun challenger promosso. Non cambiare V2, kernel o layer operativi. Per adottare altri modelli, bloccare le impostazioni e ottenere first-stage OOS realmente nuovi prima delle label.
