@@ -1,1 +1,3 @@
 Reproduce 127 originally certified EU48 ranker and test same 125 feature three-seed annual XGBRanker 360 rounds with leaf15 leaf31 leaf63 leaf127. Do not tune risk or new policy; source-only independent root-cause audit.
+
+Dependency-only retry: add matplotlib required by unmodified Euro48 feature kernel.
