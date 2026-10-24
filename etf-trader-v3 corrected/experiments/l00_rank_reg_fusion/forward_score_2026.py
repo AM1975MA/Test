@@ -16,8 +16,11 @@ from xgboost import XGBRanker,XGBRegressor
 HERE=Path(__file__).resolve().parent
 V3=HERE.parents[1]
 sys.path.insert(0,str(HERE))
+print("FORWARD_IMPORT_EVALUATE", __name__,flush=True)
 import evaluate as E
+print("FORWARD_IMPORT_AGGREGATE", __name__,flush=True)
 from aggregate import read_shards
+print("FORWARD_IMPORTED_REFERENCES",__name__,flush=True)
 from etf_trader_v3.source_only.raw_io import load_ticker_csv_folder
 REFERENCE_CUTOFF=pd.Timestamp("2026-05-31")
 MATURED_TO=pd.Timestamp("2026-08-31")
@@ -26,6 +29,7 @@ NAMES=("CORRECTED","REG_REL125","REG_REL101","REG_ABS125","REG_ABS101","REG_HUBE
 TARGET_PARITY_ABS=3e-5
 TARGET_PARITY_REL=4e-5
 def main():
+    print("FORWARD_MAIN_ENTRY",sys.argv,flush=True)
     ap=argparse.ArgumentParser()
     ap.add_argument("--raw",required=True)
     ap.add_argument("--old-shards",required=True)
