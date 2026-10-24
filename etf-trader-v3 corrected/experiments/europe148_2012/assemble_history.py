@@ -88,7 +88,18 @@ def main():
         arr=d[COLS[:4]].to_numpy(float)
         assert len(d)>300 and (np.isfinite(arr)&(arr>0)).all(),isin
         assert d.date.is_monotonic_increasing and d.date.is_unique
-        d=d[["date"]+COLS]
+        d=d[["date"]+COLS].copy()
+        # Preserve authentic EUR Open/Close; only correct derived High/Low
+        # containing historical vendor OHLC envelope errors. Separately log
+        # every change; original source files are never overwritten.
+        invalid=(d.Low>d[["Open","Close"]].min(axis=1)+1e-8)|(
+                 d.High<d[["Open","Close"]].max(axis=1)-1e-8)
+        nbad=int(invalid.sum())
+        if nbad/len(d)>.01:raise RuntimeError(f"Bad price envelope over 1% for {isin}: {nbad}")
+        if nbad:
+            d["High"]=np.maximum(d.High,d[["Open","Close"]].max(axis=1))
+            d["Low"]=np.minimum(d.Low,d[["Open","Close"]].min(axis=1))
+        rec["derived_OHLC_envelope_fixes"]=nbad
         d.date=d.date.dt.strftime("%Y-%m-%d")
         # Filename by legal ISIN so exchange ticker changes do not split a fund.
         q=universe/(isin+".csv")
