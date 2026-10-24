@@ -1,0 +1,44 @@
+name: V3 Euro48 original legal ISIN historical 2010 venue data audit
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/ORIGINAL48_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  extend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: research/canonical-v2-source-us149-eu48-20261020
+          path: _eu48_verified
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'yfinance==0.2.66' 'requests==2.32.5'
+      - name: Recover official XETRA current ISIN list
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_xetra
+          gh run download 40135053797 -R AM1975MA/Test -n v3-europe148-official-xetra-audit -D runs/eu148_xetra
+      - name: Add real pre-2015 EUR quoted Xetra bars for original 48, never change original source
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/download_original48_history.py' \
+            --reference '_eu48_verified/isin_first2026/full_eu_2017/results/STRICT_EUROPE_2017_WARM_2016_UNIQUE_ISIN.csv' \
+            --xetra runs/eu148_xetra/XETRA_OFFICIAL_ALL_TRADABLE.csv \
+            --out runs/eu48_2010
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe48-original2010-real-price-audit
+          path: runs/eu48_2010/
+          retention-days: 90
