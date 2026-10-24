@@ -1,0 +1,30 @@
+name: V3 persist Europe48 ranker 127 root cause and 7 evidence bundles
+on:
+  push:
+    branches: [research/eu48-ranker-rootcause-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/ROOT_ARCHIVE_START.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          ref: research/eu48-ranker-rootcause-20261024
+      - name: Verify all six annual OOS fits and one real-economics archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/archive_eu48_rootcause.py'
+      - name: Save versioned research evidence inside V3
+        run: |
+          git config user.name 'v3-research-archive[bot]'
+          git config user.email 'v3-research-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/europe48_transfer/results/leaf_capacity_rootcause_20261024'
+          git diff --cached --quiet && exit 0
+          git commit -m 'V3: retain Euro48 root cause 7 zip archives and SHA256 manifest'
+          git push origin HEAD:research/eu48-ranker-rootcause-20261024
