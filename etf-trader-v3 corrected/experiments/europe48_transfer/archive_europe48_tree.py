@@ -23,8 +23,8 @@ def main():
                            "-n",name,"-D",str(input)],check=True)
             files=sorted(x for x in input.rglob("*") if x.is_file())
             need={"EU48_V3_FIRSTSTAGE_SCORES.csv","FIT_AUDIT.json","MANIFEST.json"} if name.startswith("v3-europe48-127leaf-heads-") else {
-                "EU48_COSTED_ECONOMIC_SCORECARD.csv","EU48_PAIRED_500_BASKET_MONTHLY.csv",
-                "EU48_NESTED_TREE_SELECTION_AUDIT.csv","EU48_UNRESTRICTED_48_PREDICTIVE_SKILL_MONTHLY.csv",
+                "EU48_COSTED_ECONOMIC_SCORECARD.csv","EUR48_PAIRED_500_BASKET_MONTHLY.csv",
+                "EUR48_NESTED_TREE_SELECTION_AUDIT.csv","EU48_UNRESTRICTED_48_PREDICTIVE_SKILL_MONTHLY.csv",
                 "EU48_PAIRED_SKILL_BOOTSTRAP.csv","MANIFEST.json"}
             assert need <= {x.name for x in files},(name,files)
             if not name.startswith("v3-europe48-127leaf-heads-"):
