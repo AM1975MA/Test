@@ -1,0 +1,1 @@
+Numerically compare every 125F cell for all 48 Europe ETF and 65 OOS month dates for legacy V2 feature builder versus actual corrected V3 kernel source with identical raw and last-prior SPY. Separate feature discrepancy from overfit. 2026-10-24.
