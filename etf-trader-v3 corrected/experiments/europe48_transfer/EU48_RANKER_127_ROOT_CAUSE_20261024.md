@@ -75,3 +75,16 @@ La variante 31 ha battuto la versione 127 nei rendimenti annuali nel 2021, 2022,
 5. Confermare su periodi nuovi e ISIN pre-esistenti alla data di formazione, e con quote corrette e stabili di broker/provider.
 
 **Nessun modello operativo modificato. Risultati e ablation conservati nella cartella V3 della branch di ricerca.**
+
+
+## Addendum verificato il 25 ottobre 2026: `VERO` feature kernel V3 e capacità 15/31/63/127
+
+Il test precedente con 15/31 foglie e feature legacy NON era una V3 corrected autentica. Abbiamo rifatto i sei fit annuali 2021–2026 sul **kernel V3 corretto originale**, lasciando immutati 48 ISIN, prior-close USA, 125 feature, seed, 360 round, regole cronologiche e 10 bps one-way sul portafoglio EUR unica NAV.
+
+- [Report genuino kernel corrected con costi, rischio e bootstrap](EU48_TRUE_CORRECTED_CAPACITY_20261025.md).
+- [7 archivi con 6 OOS annuali e confronto economico completo](results/true_corrected_leaf_capacity_20261025/).
+- [Sei fit riusciti](https://github.com/AM1975MA/Test/actions/runs/40189199418), [replay economico riuscito](https://github.com/AM1975MA/Test/actions/runs/40189614773).
+
+CAGR Top1 del ranker realmente corretto: **leaf15 +1,40%, leaf31 +8,39%, leaf63 +5,00%, leaf127 +3,85%**; V2 depth4 originale **+4,73%**. Top2 equal-weight leaf31 +6,27% vs V2 +3,73%, Top5 leaf31 +7,19% vs V2 +4,96%. Tuttavia **MaxDD Top1 leaf31 −34,61% vs V2 −25,89%**, ancora peggiore, e il vantaggio del leaf31 presenta IC95% paired a blocchi mensili comprendenti zero sia rispetto al leaf127 corretto sia rispetto al V2. La selected excess forward21D del leaf31 è solo +0,35% sulla media dei 48, e il Top1 sceglie il vincitore assoluto soltanto **2/65** mesi.
+
+**Decisione invariata: non promuovere leaf31 o altri modelli dalla sola prova sul calendario storico già studiato.** La correzione del codice feature è essenziale e separata dall'iperparametro max_leaves; rischio e selezione EU48 restano problemi aperti. Il test è standalone, **non** il full Stage19.
