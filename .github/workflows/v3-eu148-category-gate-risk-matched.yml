@@ -1,0 +1,52 @@
+name: V3 EU148 causal category-gate and matched beta-vol monthly economics
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/GATE_RISK_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  category-risk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Pinned numerical environment
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scipy==1.17.0'
+      - name: Download exact already-frozen corporate-action-corrected OHLCV and paired real V3 predictions/trades
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/input/raw runs/input/economics runs/category_input
+          gh run download 40218758892 -R AM1975MA/Test \
+            -n v3-europe148-2010-vintage-verified-ohlcv -D runs/input/raw
+          gh run download 40227417589 -R AM1975MA/Test \
+            -n v3-paired-127-real-eur-economics-full-equity -D runs/input/economics
+          test -s runs/input/raw/EU148_VERIFIED_LEGAL_ISIN_CATALOG.csv
+          test -s runs/input/economics/PAIRED_V3_127_REAL_TRADES.csv
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile,ZIP_DEFLATED
+          out=Path('runs/category_input')
+          for name,folder in [('eu148_final_corrected_ohlcv','runs/input/raw'),('paired_v3_us149_eu148_economics','runs/input/economics')]:
+              with ZipFile(out/(name+'.zip'),'w',compression=ZIP_DEFLATED,compresslevel=3) as z:
+                  for p in Path(folder).rglob('*'):
+                      if p.is_file():z.write(p,p.relative_to(folder))
+          PY
+      - name: Frozen 101-month exact portfolio replays, causal 126day+21day gate, beta/vol cash, 10/25/50/100bps and block bootstrap
+        run: |
+          python -m py_compile 'etf-trader-v3 corrected/experiments/europe148_2012/category_gate_controlled_audit.py'
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/category_gate_controlled_audit.py' \
+            --root runs/category_input \
+            --out runs/category_results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-eu148-causal-category-gate-risk-matched-cost-sensitivity
+          path: runs/category_results/
+          retention-days: 90
