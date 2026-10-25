@@ -1,0 +1,55 @@
+name: V3 paired actual 127 leaf US149 EU148 annual 3seed 2018-2026
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/PAIRED_FIT_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  annual-127:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 9
+      matrix:
+        market: [US149,EU148]
+        year: [2018,2019,2020,2021,2022,2023,2024,2025,2026]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Pinned same native V3 127 leaf 125F ranker for both geographies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' 'scikit-learn==1.9.1' scipy matplotlib pyarrow
+      - name: Obtain same-date EU and US native 125F panels from successful paired build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/paired_125F_panels
+          gh run download 40226846660 -R AM1975MA/Test \
+            -n v3-us149-eu148-strict-common-calendar-125F-panels \
+            -D runs/paired_125F_panels
+          test -s 'runs/paired_125F_panels/US149/CORRECTED125_PANEL.parquet'
+          test -s 'runs/paired_125F_panels/EU148/CORRECTED125_PANEL.parquet'
+      - name: Strict matured-only annual genuine V3 127 leaves full-universe and no future-label screening
+        env:
+          PYTHONPATH: etf-trader-v3 corrected/src
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/fit_paired_v3_127_annual.py' \
+            --market '${{ matrix.market }}' --year '${{ matrix.year }}' \
+            --panel runs/paired_125F_panels \
+            --out 'runs/paired_127_${{ matrix.market }}-${{ matrix.year }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-paired-native127-${{ matrix.market }}-${{ matrix.year }}
+          path: runs/paired_127_${{ matrix.market }}-${{ matrix.year }}/
+          retention-days: 90
