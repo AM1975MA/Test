@@ -1,2 +1,3 @@
 Assemble 100 of 100 real EUR official-Xetra 2010-2026 histories from PASS run 40135828700: 16 broad, 22 sector, 21 country, 18 factor, 18 sovereign, 5 genuine property; 53 with true pre2012 warmup; merge 48 certified original (42 Xetra fresh, 6 original source), preserve no synthetic pre-ISIN prices and exact ISIN dedup.
 Rebuild audited derived OHLC: existing EU48 historic original 49 vendor High/Low envelope repairs, preserving original EUR Open/Close verbatim; downstream corrected V3 loader requires exact envelope.
+2026-10-25 REBUILD: 26:1 share split LU0192223062 original vendor OHLCV, source documented July 6 2018; no raw mutation; split-adjusted derived tradeable series.
