@@ -263,7 +263,7 @@ def main():
         no_holdout_independence_500_contexts=True,
         tree_family_n=36,quarterly_refits=True,embargo_days=60,
         selector_24_mature_months=True,selection_observable_asof=True,
-        31_leaf_prior_candidate_from_EU48_not_preregistered_fresh_holdout=True,
+        leaf31_prior_candidate_from_EU48_not_preregistered_fresh_holdout=True,
         EUR_next_open_single_portfolio=True,
         one_way_fee_bps=10,no_stage19_risk=True,
         original_operation_untouched=True),indent=2))
