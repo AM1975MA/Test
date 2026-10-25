@@ -36,9 +36,10 @@ def main():
     first=pd.Timestamp(f"{a.year}-01-01")
     tr=z[z.signal_date.lt(first)&z.signal_date.ge("2012-01-01")&
          z.exit_date_21.lt(first)&z.fwd_ret_21.notna()].copy()
+    # Eligibility must never depend on a yet-to-be-realized forward label.
+    # Keep all ex-ante feature-eligible ISIN in the prediction set.
     te=z[z.signal_date.dt.year.eq(a.year)&
-         z.signal_date.between("2018-01-01","2026-05-31")&
-         z.fwd_ret_21.notna()].copy()
+         z.signal_date.between("2018-01-01","2026-05-31")].copy()
     tr=tr.sort_values(["signal_date","ticker"]).reset_index(drop=True)
     te=te.sort_values(["signal_date","ticker"]).reset_index(drop=True)
     # The 125-feature pack's original target rank includes other partial-
@@ -119,6 +120,8 @@ def main():
         annual_mature_label_cutoff=str(first.date()),
         training_only_2012_or_later=True,
         months=len(valid_dates),test_rows=len(te),
+       test_missing_future_label_count=int(te.fwd_ret_21.isna().sum()),
+       test_universe_selected_without_using_future_labels=True,
         model_seeds=list(SEEDS),
         no_models_promoted_to_production=True),indent=2))
     print("EU148_CORRECTED_V3_ANNUAL_PASS",a.year,len(te),len(group),flush=True)
