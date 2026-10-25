@@ -74,3 +74,37 @@ L'albero viene scelto in 42/101 mesi ma sostituisce concretamente il Top1 solo i
 2. Isolare kernel / feature target vs dato reale usando baseline momentum predeterminate; analizzare distribuzione feature e calibrazione per cluster, missingness, instabilità 2018–2026, gap di proxy mercato SPY vs mediana EU.
 3. Riesaminare orizzonte target esatto 21 sedute vs durata economica fra due segnali; eseguire test di skill sul rendimento fino al successivo ribilanciamento, e test closed-form senza ML.
 4. Solo se la prima fase dimostra skill OOS positiva e robusta, riattivare meta-tree e livelli di allocazione/risk su holdout non usato per tuning. Non confondere la performance media di 500 panieri con portafoglio realmente implementabile.
+
+
+## Verifiche supplementari completate nella stessa sessione
+
+### Frozen tree anche sul vero ranker V3 a 127 foglie
+
+Il primo controllo tree era su 31 foglie, configurazione già testata su EU48. È stata replicata l'identica metodologia su **127 foglie**, che era il miglior first-stage EU148:
+
+| Base | CAGR Top1 netto | Top2 | Top3 | Top5 | MaxDD Top1 |
+|---|---:|---:|---:|---:|---:|
+| V3 127 senza albero | +3,27% | +4,01% | +4,75% | +5,88% | −46,53% |
+| V3 127 + albero nested | **+2,44%** | +3,91% | +4,75% | +5,88% | −46,53% |
+
+L'albero a 127 foglie viene scelto 27 mesi, ma modifica concretamente Top1 solo **5 mesi su 101**. Il contributo 21D medio di questi interventi, diluito sui 101 segnali, è **−0,0641 punti percentuali**. Anche a 127 foglie il layer meta-tree è **respinto** per mancanza di alpha incrementale. Azione riproducibile: https://github.com/AM1975MA/Test/actions/runs/40221385515.
+
+### Ablation causa potenziale di mismatch SPY USA contro mediana ETF EU
+
+Il kernel di produzione sceglie SPY come proxy se disponibile, altrimenti la mediana trasversale di tutti gli ETF. Per EU148 questa mediana comprende azioni, settoriali, real estate e bond. Esperimento controllato: sostituire **solo nel kernel delle feature** il fattore con `DE0002635307` (ampio indice azionario europeo EXSA), rinominato temporaneamente SPY per il calcolo delle feature e ripristinato all'ISIN reale prima di target, pannello e training. **Nessun ETF aggiunto, nessun cambiamento a split, date, fwd labels, featurizzazione restante, hyperparametri, costi, simulazione**. Nove nuovi refit anno-per-anno PASS.
+
+Correlazione giornaliera osservata, 2018–maggio 2026, fra i rendimenti del proxy originale (mediana EU148) e EXSA: **0,9843** su **2133 sedute**. Quindi i due fattori sono già molto simili.
+
+| Ranker / portafoglio | CAGR mediana EU | CAGR fattore EXSA | Δ punti CAGR |
+|---|---:|---:|---:|
+| V3 15 foglie Top1 | +0,94% | +5,89% | +4,94 |
+| V3 31 foglie Top1 | +1,47% | −4,53% | −6,00 |
+| V3 127 foglie Top1 | +3,27% | −1,45% | −4,72 |
+| **V3 127 foglie Top3** | **+4,75%** | **+7,90%** | **+3,15** |
+| V3 127 foglie Top5 | +5,88% | +5,11% | −0,76 |
+
+**Competenza del ranker V3 127:** Spearman originale **−0,00960**, con EXSA **−0,00892** (nessun miglioramento significativo); eccesso forward21 Top1 originale **+0,054 punti %**, con EXSA **−0,271 punti %**. La configurazione EXSA Top3 è un miglioramento storico isolato, **non robusto attraverso Top1/Top5** e **comunque sotto** il benchmark EXSA buy&hold +8,84% CAGR e con drawdown molto peggiore (Top3 EXSA −46,15%, benchmark −35,22%). Non va promossa in base al picco Top3 sullo stesso OOS già esaminato.
+
+Artefatti: pannello EXSA https://github.com/AM1975MA/Test/actions/runs/40220816710; fitting anni 2018–2026 https://github.com/AM1975MA/Test/actions/runs/40220925576; scorecard EUR https://github.com/AM1975MA/Test/actions/runs/40221553338.
+
+**Conclusione aggiuntiva:** la definizione del proxy di mercato **non spiega da sola** il divario con gli USA. Il modello appare sensibile a piccole variazioni della costruzione delle feature e manca un vantaggio cross-sectional stabile. Il 127 foglie Top3 con fattore EXSA è una scoperta esplorativa, non un criterio valido per procedere a produzione.
