@@ -1,0 +1,42 @@
+name: V3 EU148 127-leaf 36-tree nested 101-month EUR economics
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/TREE127_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  tree:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 160
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen meta tree and economic dependencies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.9.1'
+      - name: Recover final clean 148 ISIN OHLCV and nine independent annual fitted heads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_meta_raw
+          gh run download 40218758892 -R AM1975MA/Test -n v3-europe148-2010-vintage-verified-ohlcv -D runs/eu148_meta_raw
+          for year in 2018 2019 2020 2021 2022 2023 2024 2025 2026; do
+            mkdir -p "runs/eu148_heads/$year"
+            gh run download 40219002667 -R AM1975MA/Test -n "v3-europe148-corrected-heads-$year" -D "runs/eu148_heads/$year"
+            test -s "runs/eu148_heads/$year/YEARLY_EU148_ALL_HEADS.csv"
+          done
+      - name: 500 24-ISIN baskets, de-duplicated pairs, 60d label embargo, nested 24 OOS and single EUR next-open NAV
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/meta_tree_eu148_nested127.py' \
+            --heads runs/eu148_heads --raw runs/eu148_meta_raw \
+            --out runs/eu148_meta_tree127_results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe148-101-month-36-tree-nested-127leaf-eur
+          path: runs/eu148_meta_tree127_results/
+          retention-days: 90
