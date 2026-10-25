@@ -28,7 +28,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p runs/eu148_panel
-          gh run download 40217690734 -R AM1975MA/Test -n v3-europe148-corrected-125F-dynamic-panel -D runs/eu148_panel
+          gh run download 40218835822 -R AM1975MA/Test -n v3-europe148-corrected-125F-dynamic-panel -D runs/eu148_panel
           test -s runs/eu148_panel/CORRECTED125_PANEL.parquet
           test -s runs/eu148_panel/ASOF_148_UNIVERSE_MONTHLY.csv
       - name: Refit fixed 3seed/360round V2-like depth4 and V3 15/31/127 corrected kernels plus five 125/101 meta regressors
