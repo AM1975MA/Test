@@ -30,7 +30,28 @@ def main():
     cal=mats["Close"][REFERENCE_ISIN].dropna().index
     assert len(cal)>3700 and cal.min()<pd.Timestamp("2011-01-01")
     mats={field:table.reindex(cal).sort_index() for field,table in mats.items()}
-    dates,compact,tail,features=K.build_features(mats)
+    # PRICE-SOURCE FORENSIC FIX (2026-10-25): exactly 59 otherwise liquid
+    # EUR Xetra ISIN lack only 2026-03-06 in vendor bars; the missing return
+    # triggers strict 21/63-day feature-window invalidation through May 2026.
+    # Use PREVIOUS OBSERVED CLOSE for feature calculation *only* at this one
+    # known bad vendor day, without touching raw EUR Open execution/label data.
+    # This is a causal stale-quote robustness sensitivity, NOT a reconstructed
+    # tradeable quote or a correction of source data. Keep volume missing.
+    gap_day=pd.Timestamp("2026-03-06")
+    previous_day=cal[cal.get_loc(gap_day)-1]
+    missing=mats["Close"].loc[gap_day].isna()
+    assert int(missing.sum())==59 and len(mats["Close"].columns)==148
+    assert mats["Close"].loc[previous_day,missing].notna().all()
+    tech={k:v.copy() for k,v in mats.items()}
+    stale=mats["Close"].loc[previous_day,missing]
+    for field in ("Open","High","Low","Close"):
+        tech[field].loc[gap_day,missing]=stale
+    assert tech["Volume"].loc[gap_day,missing].isna().all()
+    (out/"SINGLE_DAY_VENDOR_GAP_REPAIR.csv").write_text(
+        pd.DataFrame({"ticker":list(stale.index),"missing_vendor_day":str(gap_day.date()),
+            "asof_previous_day":str(previous_day.date()),"feature_only_stale_close":stale.to_numpy(),
+            "execution_quote_unmodified":True}).to_csv(index=False))
+    dates,compact,tail,features=K.build_features(tech)
     assert len(K.F2D_FEATURES)==125
     dates=dates[dates>=pd.Timestamp("2012-01-01")]
     # Correct V3 native source produces EU cross-sectional market median
@@ -70,6 +91,10 @@ def main():
     test=audit[audit.signal_date.between("2018-01-01","2026-05-31")]
     assert len(test)==101,(len(test),test.signal_date.tolist()[:2],test.signal_date.tolist()[-2:])
     assert test.eligible_isin.ge(24).all() and test.n_mature_21d.ge(24).all()
+    # Regression gate: the 59-fund 2026-03-06 vendor gap must not
+    # remove 57 investable names from March, April, and May signals.
+    assert test[test.signal_date.isin(["2026-03-31","2026-04-30","2026-05-29"])].eligible_isin.ge(140).all()
+    assert test.eligible_isin.iloc[-1]>=140
     # Group adaptive monthly eligible cohort, do not train in a month where
     # fewer than 4 eligible ISIN remain in a macro category.
     groups=sorted(roster.macro_category.unique())
@@ -93,7 +118,9 @@ def main():
        n_oos_months=101,
        catalog_2026_survivorship_bias=True,
        provider_adjusted_price_vintage_not_point_in_time=True,
-       no_synthetic_history=True,no_missing_days_filled=True,
+       no_synthetic_history=True,no_missing_days_filled_in_raw_or_execution=True,
+       feature_only_one_day_causal_stale_close="2026-03-06_59_ISIN",
+       technical_quote_not_tradeable=True,
        no_V2_or_V3_production_modification=True,
        source_us149_original_not_retrained=True),indent=2))
     print("CORRECTED_EU148_PANEL_SUCCESS",len(original),
