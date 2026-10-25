@@ -23,12 +23,12 @@ jobs:
           python-version: '3.11'
       - name: Pinned V3 corrected ranker fitting environment
         run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' 'scikit-learn==1.9.1' scipy matplotlib pyarrow
-      - name: Fetch immutable dynamic 148 legal Euro ISIN 125F panel and as-of metadata
+      - name: Fetch verified causal-gap-repaired dynamic 148 legal Euro ISIN corrected 125F panel
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p runs/eu148_panel
-          gh run download 40136528505 -R AM1975MA/Test -n v3-europe148-corrected-125F-dynamic-panel -D runs/eu148_panel
+          gh run download 40217690734 -R AM1975MA/Test -n v3-europe148-corrected-125F-dynamic-panel -D runs/eu148_panel
           test -s runs/eu148_panel/CORRECTED125_PANEL.parquet
           test -s runs/eu148_panel/ASOF_148_UNIVERSE_MONTHLY.csv
       - name: Refit fixed 3seed/360round V2-like depth4 and V3 15/31/127 corrected kernels plus five 125/101 meta regressors
