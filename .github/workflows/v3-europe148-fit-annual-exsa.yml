@@ -1,0 +1,52 @@
+name: V3 Europe148 EXSA-factor 2018-2026 OOS 125F annual rankers
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/EXSA_ANNUAL_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  yearly:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      max-parallel: 9
+      matrix:
+        year: [2018,2019,2020,2021,2022,2023,2024,2025,2026]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Pinned V3 corrected ranker fitting environment
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' 'scikit-learn==1.9.1' scipy matplotlib pyarrow
+      - name: Fetch verified causal-gap-repaired dynamic 148 legal Euro ISIN corrected 125F panel
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_panel
+          gh run download 40220816710 -R AM1975MA/Test -n v3-europe148-exsa-benchmark-factor-panel -D runs/eu148_panel
+          test -s runs/eu148_panel/CORRECTED125_PANEL.parquet
+          test -s runs/eu148_panel/ASOF_148_UNIVERSE_MONTHLY.csv
+      - name: Refit fixed 3seed/360round V2-like depth4 and V3 15/31/127 corrected kernels plus five 125/101 meta regressors
+        env:
+          PYTHONPATH: etf-trader-v3 corrected/src
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/fit_corrected_annual.py' \
+            --year '${{ matrix.year }}' \
+            --panel runs/eu148_panel \
+            --out 'runs/eu148_annual_${{ matrix.year }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe148-exsa-heads-${{ matrix.year }}
+          path: runs/eu148_annual_${{ matrix.year }}/
+          retention-days: 90
