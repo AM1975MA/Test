@@ -1,3 +1,4 @@
 148 distinct ISIN assembled and checked, real historical 2012 warmup available for 81 funds, no pseudo-histories for later listings; dynamic 2018–May 2026 EU venue calendar, native source-only V3 corrected 125F kernel 101 OOS months. Source complete run 40135988905.
 Re-run with 2012-2026 148 unique ISIN rebuilt original vendor OHLC envelope checks, no revised Open/Close, full 125 corrected source feature set. Run 40136324144.
 2026-10-25 causal feature-only gap sensitivity: 59 missing 2026-03-06 Xetra bars; prohibit March-May collapse without altering raw labels or executable prices.
+2026-10-25 FINAL PRICE AUDIT PANEL: 40218758892 fixed IM2A 26-for-1, quarantined XASX and XMEU pre-2018 price defects, preserve March 2026 technical gap fix.
