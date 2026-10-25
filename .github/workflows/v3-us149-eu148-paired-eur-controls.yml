@@ -28,7 +28,7 @@ jobs:
           git archive origin/parity_original_149 \
             evidence_v1/data/original149 \
             europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv | tar -x -C runs/us_original
-          test "$(ls runs/us_original/evidence_v1/data/original149/*.csv | wc -l)" -eq 150
+          test "$(ls runs/us_original/evidence_v1/data/original149/*.csv | wc -l)" -eq 151
           test -s runs/us_original/evidence_v1/data/original149/SPY.csv
           test -s runs/us_original/europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv
       - name: Fetch repaired 148 original European OHLCV
