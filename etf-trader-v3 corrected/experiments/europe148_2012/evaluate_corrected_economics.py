@@ -28,7 +28,7 @@ def load_predictions(heads):
     assert not q.duplicated(["signal_date","ticker","variant"]).any()
     return q
 
-def nav_sim(q,quotes,cal,rank,n):
+def nav_sim(q,quotes,volume,cal,rank,n):
     months=sorted(q.signal_date.unique())
     portfolio={}
     target={}
@@ -54,6 +54,7 @@ def nav_sim(q,quotes,cal,rank,n):
     fee_total=0.
     turnover_total=0.
     n_stale_marks=0
+    n_trades_with_zero_reported_volume=0
     for dt in daily:
         price=mark.loc[dt]
         market=quotes.loc[dt]
@@ -81,11 +82,17 @@ def nav_sim(q,quotes,cal,rank,n):
             fee=pre-after
             fee_total+=fee
             turnover_total+=notion/pre
+            reportable=[t for t in set(old)|set(weights)
+              if abs(weights.get(t,0)*after-old.get(t,0))>1e-10]
+            vol0=[t for t in reportable if not np.isfinite(volume.loc[dt,t]) or volume.loc[dt,t]<=0]
+            n_trades_with_zero_reported_volume+=len(vol0)
             holdings={t:float(w*after/market[t]) for t,w in weights.items()}
             trades.append(dict(date=str(dt.date()),signal_date=str(
                 months[list(target).index(dt)].date()),variant=rank,top_n=n,
                 positions="|".join(weights),nav_before=pre,nav_after=after,
-                euro_fee=fee,turnover=notion/pre))
+                euro_fee=fee,turnover=notion/pre,
+                zero_volume_tradeable_quote_isins="|".join(vol0),
+                n_zero_volume_tradeable_quote_isins=len(vol0)))
         wealth=float(sum(holdings[t]*price[t] for t in holdings))
         nav_rows.append((dt,wealth))
     nav=pd.DataFrame(nav_rows,columns=["date","nav"])
@@ -100,7 +107,8 @@ def nav_sim(q,quotes,cal,rank,n):
         sharpe_log=float(np.sqrt(252)*logrets.mean()/logrets.std(ddof=1)),
         terminal_nav=last,
         total_fees_eur_unit=fee_total,turnover_oneway_sum=turnover_total,
-        n_stale_valuation_marks=n_stale_marks)
+        n_stale_valuation_marks=n_stale_marks,
+        n_rebalance_orders_on_zero_reported_volume=n_trades_with_zero_reported_volume)
     nav["variant"]=rank;nav["top_n"]=n
     return score,nav,pd.DataFrame(trades)
 
@@ -152,17 +160,28 @@ def main():
     assert q.groupby("variant").signal_date.nunique().eq(101).all()
     assert q.variant.nunique()==4
     cat=pd.read_csv(Path(a.raw)/"EU148_VERIFIED_LEGAL_ISIN_CATALOG.csv")
-    quotes={}
+    quotes={};volumes={}
     for isin in cat.ticker:
         d=pd.read_csv(Path(a.raw)/"raw_ticker_csv"/(isin+".csv"),parse_dates=["date"])
         quotes[isin]=d.set_index("date").Open
+        volumes[isin]=d.set_index("date").Volume
     O=pd.concat(quotes,axis=1).sort_index()
+    V=pd.concat(volumes,axis=1).sort_index()
+    # Corporate-action source parity: never replay phantom -96% ETF split.
+    split_isin="LU0192223062"
+    split_day=pd.Timestamp("2018-07-06")
+    prev=pd.Timestamp("2018-07-05")
+    ratio=float(O.loc[split_day,split_isin]/O.loc[prev,split_isin])
+    assert 0.90<ratio<1.10,(split_isin,ratio)
+    # The one-day 2014 ghost quote is not an executable observation.
+    assert pd.Timestamp("2014-11-06") not in quotes["LU0274209237"].index
     cal=O[REF].dropna().index
     O=O.reindex(cal)
+    V=V.reindex(cal)
     sc=[];navs=[];ledgers=[]
     for v in RANKERS:
         for n in TOPS:
-            a1,nv,l=nav_sim(q,O,cal,v,n)
+            a1,nv,l=nav_sim(q,O,V,cal,v,n)
             print("EURA148_REAL_NAV",json.dumps(a1),flush=True)
             sc.append(a1);navs.append(nv);ledgers.append(l)
     score=pd.DataFrame(sc)
@@ -180,6 +199,8 @@ def main():
       no_use_of_future_labels_for_selection=True,
       only_one_stale_date_in_feature_kernel="2026-03-06",
       execution_marks_only_forward_filled_not_executable_quotes=True,
+      zero_reported_volume_orders_audited_not_claimed_as_broker_executable=True,
+      documented_26_for_1_2018_share_split_parity_asserted=True,
       stage19_and_meta_tree_not_tested=True,
       101_month_window_research_not_independent_holdout=True,
       original_production_unmodified=True),indent=2))
