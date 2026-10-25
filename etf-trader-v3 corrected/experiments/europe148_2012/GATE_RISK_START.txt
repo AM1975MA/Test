@@ -1,0 +1,1 @@
+RUN category gate frozen EU148 V3 127 101m causal momentum, beta matched / vol matched cash, strict replay, costs 10 25 50 100bps, 3/6/12m bootstraps
