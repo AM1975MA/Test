@@ -85,11 +85,42 @@ def main():
         # Old certified quotes kept as they are; current external vintage
         # strictly cannot precede the venue's legal first quote date.
         d=d.loc[d.date>=first].copy()
+        # KNOWN CORPORATE ACTION (BNP Paribas Easy prospectus, April 2020):
+        # LU0192223062 QD-DIS share class was split 26-for-1 on 2018-07-06.
+        # Vendor unadjusted pre-split OHLC create a fictitious ~-96% daily
+        # loss, corrupting 21D labels and EU148 cross-sectional features.
+        # Work only on derived research bars, never on archived provider raw.
+        rec["corporate_action_split_adjusted"]=False
+        if isin=="LU0192223062":
+            split_date=pd.Timestamp("2018-07-06")
+            prior=d[d.date<split_date]
+            later=d[d.date>=split_date]
+            assert len(prior)>120 and len(later)>120,isin
+            before=float(prior.Close.iloc[-1])
+            after=float(later.Close.iloc[0])
+            assert 24.0<before/after<28.0,(isin,before,after)
+            mask=d.date<split_date
+            for f in ("Open","High","Low","Close"):
+                d.loc[mask,f]=d.loc[mask,f]/26.0
+            # Proportional share-unit adjustment preserves EUR volume notional.
+            d.loc[mask,"Volume"]=d.loc[mask,"Volume"]*26.0
+            rec["corporate_action_split_adjusted"]=True
+            rec["split_effective_date"]="2018-07-06"
+            rec["split_factor_new_shares_per_old_share"]=26
+            rec["split_source"]="https://www.ciireland.com/wp-content/uploads/2019/09/BNP-PARIBAS_Prospectus_042020.pdf"
+            rec["pre_split_close_raw"]=before
+            rec["post_split_close_raw"]=after
+            rec["pre_split_close_backadjusted"]=before/26.0
         arr=d[COLS[:4]].to_numpy(float)
         assert len(d)>300 and (np.isfinite(arr)&(arr>0)).all(),isin
         assert d.date.is_monotonic_increasing and d.date.is_unique
         d=d[["date"]+COLS].copy()
-        # Preserve authentic EUR Open/Close; only correct derived High/Low
+        # Catch unadjusted nominal corporate events before modeling returns.
+        z=d[d.date>=pd.Timestamp("2018-01-01")].Close.pct_change(fill_method=None).abs()
+        if z.max()>0.40:
+            raise RuntimeError(f"Unresolved >40% single-day return in EUR adjusted ISIN {isin}: {z.max():.4f}")
+        # Preserve authentic EUR Open/Close except source-documented split
+        # adjustment above; only correct derived High/Low
         # containing historical vendor OHLC envelope errors. Separately log
         # every change; original source files are never overwritten.
         invalid=(d.Low>d[["Open","Close"]].min(axis=1)+1e-8)|(
@@ -134,6 +165,8 @@ def main():
     pd.DataFrame(quality).to_csv(out/"VINTAGE_COHORT_COUNTS.csv",index=False)
     (out/"MANIFEST.json").write_text(json.dumps(dict(
         original_48=48,new_100=100,unique_legal_isin=148,
+        documented_share_split_repairs=[{"isin":"LU0192223062","ratio":26,"date":"2018-07-06"}],
+        raw_vendor_files_unchanged=True,
         all_6_cluster_counts=counts.to_dict(),pre2012_genuine_126_warmup=int(len(source_cut)),
         reference_first_model_month="2018-01",
         last_same_US_OOS_month="2026-05",
