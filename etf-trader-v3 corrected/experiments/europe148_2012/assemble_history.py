@@ -85,6 +85,31 @@ def main():
         # Old certified quotes kept as they are; current external vintage
         # strictly cannot precede the venue's legal first quote date.
         d=d.loc[d.date>=first].copy()
+        # Quarantine two independently observed PRE-2018 vendor discontinuities.
+        # No split data available for XASX: rather than assume a corporate
+        # conversion factor for the 2015-07-30 permanent +43.6% jump on zero
+        # volume, discard its older unhomogeneous price vintage altogether.
+        # Both instruments remain in EU148 for eligible as-of 2018+ testing.
+        rec["historical_vendor_quarantine"]=None
+        if isin=="LU0292097747":
+            pre=d[d.date==pd.Timestamp("2015-07-29")]
+            post=d[d.date==pd.Timestamp("2015-07-30")]
+            assert len(pre)==len(post)==1 and int(post.Volume.iloc[0])==0
+            assert 1.40<float(post.Close.iloc[0]/pre.Close.iloc[0])<1.48
+            d=d[d.date>=pd.Timestamp("2015-07-30")].copy()
+            rec["historical_vendor_quarantine"]="before_2015-07-30_unresolved_xasx_zero_volume_level_break"
+        if isin=="LU0274209237":
+            bad=d[d.date==pd.Timestamp("2014-11-06")]
+            prev=d[d.date==pd.Timestamp("2014-11-05")]
+            nxt=d[d.date==pd.Timestamp("2014-11-07")]
+            assert len(bad)==len(prev)==len(nxt)==1
+            assert int(bad.Volume.iloc[0])==0
+            assert float(bad.Close.iloc[0]/prev.Close.iloc[0])>1.20
+            assert abs(float(nxt.Close.iloc[0]/prev.Close.iloc[0])-1)<0.03
+            # Remove a proven isolated non-executable 0-volume quote.
+            # Reindex later leaves genuine NaN; no interpolation/price fill.
+            d=d[d.date!=pd.Timestamp("2014-11-06")].copy()
+            rec["historical_vendor_quarantine"]="2014-11-06_single_zero_volume_xmeu_transient_quote"
         # KNOWN CORPORATE ACTION (BNP Paribas Easy prospectus, April 2020):
         # LU0192223062 QD-DIS share class was split 26-for-1 on 2018-07-06.
         # Vendor unadjusted pre-split OHLC create a fictitious ~-96% daily
@@ -167,6 +192,7 @@ def main():
         original_48=48,new_100=100,unique_legal_isin=148,
         documented_share_split_repairs=[{"isin":"LU0192223062","ratio":26,"date":"2018-07-06"}],
         raw_vendor_files_unchanged=True,
+        pre_2018_vendor_quarantines=["LU0292097747_before_2015-07-30","LU0274209237_2014-11-06"],
         all_6_cluster_counts=counts.to_dict(),pre2012_genuine_126_warmup=int(len(source_cut)),
         reference_first_model_month="2018-01",
         last_same_US_OOS_month="2026-05",
