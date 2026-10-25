@@ -1,0 +1,1 @@
+Controlled Euro148 V3 125F feature ablation: replace heterogeneous 148 mixed median beta/correlation factor only with native Xetra broad equity reference DE0002635307, preserve all other 125 features, OHLC, labels, groups, dates.
