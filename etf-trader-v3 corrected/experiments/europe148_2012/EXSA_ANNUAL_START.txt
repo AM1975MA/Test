@@ -1,0 +1,1 @@
+Controlled EXSA EU broad market beta/correlation factor only changed; panel from PASS 40220816710, 9 independent chronological yearly refits 2018-2026, preserve original kernel baseline and source/cost/label definitions.
