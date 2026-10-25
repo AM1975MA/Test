@@ -202,7 +202,7 @@ def main():
       zero_reported_volume_orders_audited_not_claimed_as_broker_executable=True,
       documented_26_for_1_2018_share_split_parity_asserted=True,
       stage19_and_meta_tree_not_tested=True,
-      101_month_window_research_not_independent_holdout=True,
+      research_101_month_window_not_independent_holdout=True,
       original_production_unmodified=True),indent=2))
     print("EURA148_101_MONTH_OOS_SCORECARD_PASS",score.to_string(index=False),flush=True)
     print("EURA148_101_MONTH_OOS_SKILL_PASS",skills.to_string(index=False),flush=True)
