@@ -1,1 +1,2 @@
 All six annual 2021-2026 OOS genuine V3 corrected feature kernel 15 31 63 127 plus V2 depth4 and legacy 127 head checks passed in run 40189199418. Diagnose comparable EUR next-open Top1 Top2 Top5 with 10bp fees and no risk overlay. No retuning.
+Rerun: archived original raw prediction has float32 1.4e-8 rounding; compare scores at 3e-8, require exact same Top1 and original economic CAGR 1e-10. No parameter or dataset changes.
