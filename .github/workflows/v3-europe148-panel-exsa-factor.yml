@@ -1,0 +1,41 @@
+name: V3 Euro148 EXSA factor-only corrected panel comparison
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/EXSA_PANEL_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  exsa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' 'scikit-learn==1.9.1' scipy matplotlib pyarrow numba
+      - name: Fetch identical corrected legal EU148 2010-2026 prices
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/euro148_price
+          gh run download 40218758892 -R AM1975MA/Test -n v3-europe148-2010-vintage-verified-ohlcv -D runs/euro148_price
+      - name: Build same 125F/labels/asof with only market factor EXSA substituting mixed median
+        env:
+          PYTHONPATH: etf-trader-v3 corrected/src
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/build_corrected_panel_exsa_factor.py' \
+            --raw runs/euro148_price --out runs/euro148_exsa125
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe148-exsa-benchmark-factor-panel
+          path: runs/euro148_exsa125/
+          retention-days: 90
