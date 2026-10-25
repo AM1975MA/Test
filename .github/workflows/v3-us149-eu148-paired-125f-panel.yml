@@ -1,0 +1,55 @@
+name: V3 US149 EU148 strict same-calendar native 125F panels
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/PAIRED_PANEL_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  paired-125f:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'xgboost==3.0.5' 'scikit-learn==1.9.1' scipy matplotlib pyarrow numba
+      - name: Checkout frozen original 149 US daily OHLCV through 2026-07-31
+        run: |
+          git fetch --filter=blob:none --no-tags --depth=1 origin \
+            refs/heads/research/canonical-v2-source-us149-eu48-20261020:refs/remotes/origin/parity_original_149
+          mkdir -p runs/us_original
+          git archive origin/parity_original_149 evidence_v1/data/original149 | tar -x -C runs/us_original
+          test -s runs/us_original/evidence_v1/data/original149/SPY.csv
+      - name: Download validated corporate-action-adjusted EU148 original 2010-2026 prices
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_source
+          gh run download 40218758892 -R AM1975MA/Test \
+            -n v3-europe148-2010-vintage-verified-ohlcv -D runs/eu148_source
+          test -s runs/eu148_source/EU148_VERIFIED_LEGAL_ISIN_CATALOG.csv
+      - name: Both genuine V3 kernel panels on exactly same 101 monthly joint trading days
+        env:
+          PYTHONPATH: etf-trader-v3 corrected/src
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/build_paired_v3_panels.py' \
+            --us runs/us_original/evidence_v1/data/original149 \
+            --eu runs/eu148_source \
+            --out runs/paired_125F_panels
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-us149-eu148-strict-common-calendar-125F-panels
+          path: runs/paired_125F_panels/
+          retention-days: 90
