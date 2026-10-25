@@ -23,10 +23,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p runs/eu148_economic_raw
-          gh run download 40136324144 -R AM1975MA/Test -n v3-europe148-2010-vintage-verified-ohlcv -D runs/eu148_economic_raw
+          gh run download 40218758892 -R AM1975MA/Test -n v3-europe148-2010-vintage-verified-ohlcv -D runs/eu148_economic_raw
           for year in 2018 2019 2020 2021 2022 2023 2024 2025 2026; do
             mkdir -p "runs/eu148_heads/$year"
-            gh run download 40218000034 -R AM1975MA/Test -n "v3-europe148-corrected-heads-$year" -D "runs/eu148_heads/$year"
+            gh run download 40219002667 -R AM1975MA/Test -n "v3-europe148-corrected-heads-$year" -D "runs/eu148_heads/$year"
             test -s "runs/eu148_heads/$year/YEARLY_EU148_ALL_HEADS.csv"
           done
       - name: Reconstruct single EUR portfolio next-open 10bps per-side costs and 101 signal-mature months
