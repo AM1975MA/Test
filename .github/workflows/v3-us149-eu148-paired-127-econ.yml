@@ -1,0 +1,60 @@
+name: V3 paired US149 EU148 actual 127 leaf 101m net EUR full/equity economics
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/PAIRED_EVAL_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  real-economic-pair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scipy==1.17.0'
+      - name: Bring original 149 US daily adjusted OHLCV and EURUSD as-of prior US close
+        run: |
+          git fetch --filter=blob:none --no-tags --depth=1 origin \
+            refs/heads/research/canonical-v2-source-us149-eu48-20261020:refs/remotes/origin/parity_original_149
+          mkdir -p runs/us_original
+          git archive origin/parity_original_149 evidence_v1/data/original149 \
+            europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv | tar -x -C runs/us_original
+      - name: Retrieve 148 repaired European original OHLCV, 18 chronological annual fit heads, no-ML control benchmark
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_source runs/paired_controls
+          gh run download 40218758892 -R AM1975MA/Test \
+            -n v3-europe148-2010-vintage-verified-ohlcv -D runs/eu148_source
+          gh run download 40226379195 -R AM1975MA/Test \
+            -n v3-us149-eu148-paired-101month-eur-nonml-controls -D runs/paired_controls
+          for market in US149 EU148; do
+            for year in 2018 2019 2020 2021 2022 2023 2024 2025 2026; do
+              mkdir -p "runs/paired_heads/$market/$year"
+              gh run download 40227138117 -R AM1975MA/Test \
+                -n "v3-paired-native127-$market-$year" -D "runs/paired_heads/$market/$year"
+              test -s "runs/paired_heads/$market/$year/PAIRED_127_PREDICTIONS.csv"
+              test -s "runs/paired_heads/$market/$year/FIT_AUDIT.json"
+            done
+          done
+      - name: Exactly paired common-day EUR NAV actual V3 127 Top1 Top3 Top5 and equity-only sensitivity
+        run: |
+          python -m py_compile 'etf-trader-v3 corrected/experiments/europe148_2012/evaluate_paired_v3_127_economics.py'
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/evaluate_paired_v3_127_economics.py' \
+            --us runs/us_original/evidence_v1/data/original149 \
+            --eu runs/eu148_source \
+            --fx runs/us_original/europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv \
+            --heads runs/paired_heads \
+            --control runs/paired_controls \
+            --out runs/paired_v3_native_econ
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-paired-127-real-eur-economics-full-equity
+          path: runs/paired_v3_native_econ/
+          retention-days: 90
