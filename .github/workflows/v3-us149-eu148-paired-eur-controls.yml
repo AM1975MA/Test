@@ -1,0 +1,56 @@
+name: V3 US149 versus EU148 same-calendar 101m EUR nonML controls
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/PARITY_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  paired-controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scipy==1.17.0'
+      - name: Fetch original canonical 149 unique US OHLCV from its exact frozen GitHub branch
+        run: |
+          git fetch --filter=blob:none --no-tags --depth=1 origin \
+            refs/heads/research/canonical-v2-source-us149-eu48-20261020:refs/remotes/origin/parity_original_149
+          mkdir -p runs/us_original
+          git archive origin/parity_original_149 \
+            evidence_v1/data/original149 \
+            europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv | tar -x -C runs/us_original
+          test "$(ls runs/us_original/evidence_v1/data/original149/*.csv | wc -l)" -eq 150
+          test -s runs/us_original/evidence_v1/data/original149/SPY.csv
+          test -s runs/us_original/europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv
+      - name: Fetch repaired 148 original European OHLCV
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_source
+          gh run download 40218758892 -R AM1975MA/Test \
+            -n v3-europe148-2010-vintage-verified-ohlcv -D runs/eu148_source
+          test "$(ls runs/eu148_source/raw_ticker_csv/*.csv | wc -l)" -ge 148
+          test -s runs/eu148_source/EU148_VERIFIED_LEGAL_ISIN_CATALOG.csv
+      - name: Same 101 monthly signals exact common calendar, EUR numeraire, 10bps both markets, original 149 and 148
+        run: |
+          python -m py_compile 'etf-trader-v3 corrected/experiments/europe148_2012/paired_us149_eu148_controls.py'
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/paired_us149_eu148_controls.py' \
+            --us runs/us_original/evidence_v1/data/original149 \
+            --eu runs/eu148_source \
+            --fx runs/us_original/europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv \
+            --out runs/paired_101m
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-us149-eu148-paired-101month-eur-nonml-controls
+          path: runs/paired_101m/
+          retention-days: 90
