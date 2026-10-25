@@ -1,0 +1,47 @@
+name: EU48 economic evaluation genuine corrected V3 15 31 63 127
+on:
+  push:
+    branches: [research/v3-eu48-real-corrected-leaf15-31-20261025]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/TRUE_ECON_START.txt'
+permissions:
+  contents: read
+  actions: read
+env:
+  PYTHONPATH: .:vendor/etf_trader_v2/src
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install same European source deps
+        run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.8.0' 'xgboost==3.1.3' 'lightgbm==4.6.0' 'numba==0.65.1' 'pyarrow==23.0.1' 'matplotlib==3.10.8'
+      - name: Prepare independent frozen European legal-ISIN inputs
+        run: python -m isin_first2026.v2_unrestricted48.prepare --out _EU48_PREP
+      - name: Gather six proven annual corrected 15/31/63/127 fitted ranker outputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for year in 2021 2022 2023 2024 2025 2026; do
+            mkdir -p "_TRUE_CAPACITY/$year"
+            gh run download 40189199418 -R AM1975MA/Test \
+              -n "eu48-true-corrected-capacity-$year" -D "_TRUE_CAPACITY/$year"
+            test -s "_TRUE_CAPACITY/$year/EU48_${year}_CORRECTED_15_31_63_127_OOS.csv"
+          done
+      - name: Same 65 EUR monthly signals, next-open 10bp costs, economic paired calendar blocks
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/forensic_true_corrected_economics.py' \
+             --shards _TRUE_CAPACITY --prep _EU48_PREP \
+             --out _TRUE_CORRECTED_EU48_ECONOMICS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eu48-true-corrected-15-31-63-127-economics
+          path: _TRUE_CORRECTED_EU48_ECONOMICS/
+          retention-days: 90

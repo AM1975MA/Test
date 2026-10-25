@@ -1,0 +1,35 @@
+name: V3 persist genuine corrected EU48 leaf capacity 7 artifacts in project
+on:
+  push:
+    branches: [research/v3-eu48-real-corrected-leaf15-31-20261025]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe48_transfer/TRUE_ARCHIVE_START.txt'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/v3-eu48-real-corrected-leaf15-31-20261025
+          persist-credentials: true
+      - name: Verify seven source results and pin annual OOS and economic manifests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -u 'etf-trader-v3 corrected/experiments/europe48_transfer/archive_true_corrected_capacity_20261025.py'
+      - name: Permanently save checksummed bundles and human-readable CSV under V3 research
+        run: |
+          git config user.name 'v3-research-archive[bot]'
+          git config user.email 'v3-research-archive@users.noreply.github.com'
+          git add -- 'etf-trader-v3 corrected/experiments/europe48_transfer/results/true_corrected_leaf_capacity_20261025'
+          git diff --cached --stat
+          git diff --cached --quiet && { echo 'Archives already present'; exit 0; }
+          git commit -m 'V3: archive real corrected EU48 15/31/63/127 fits and matching 65-month EUR economics'
+          git push origin HEAD:research/v3-eu48-real-corrected-leaf15-31-20261025
+      - name: Assert archive manifest
+        run: |
+          test -s 'etf-trader-v3 corrected/experiments/europe48_transfer/results/true_corrected_leaf_capacity_20261025/ARCHIVE_MANIFEST.json'
+          test -s 'etf-trader-v3 corrected/experiments/europe48_transfer/results/true_corrected_leaf_capacity_20261025/archives/eu48-true-corrected-15-31-63-127-economics.zip'
