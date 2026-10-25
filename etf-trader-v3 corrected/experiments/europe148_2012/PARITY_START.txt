@@ -1,2 +1,4 @@
 RUN: 2026-10-25
 MODEL_FREE_PARITY_CONTROLS: matched 101 asof joint-calendar dates, native real OHLVC, EUR FX prior day, 10bps each side, SPY/EXSA benchmark, 21/63/126/252d momentum, original source frozen US149 and corrected EU148.
+
+RETRY_1: original 149 files + coverage metadata = 151 CSV.
