@@ -1,0 +1,238 @@
+{
+  "checkpoint": "2026-10-25",
+  "original_base_EU48_48_ISINs": true,
+  "n_model_years": 6,
+  "all_v3_127_parity_passed": true,
+  "one_way_fee_bps": 10,
+  "no_lookahead_annual_training": true,
+  "n_months": 65,
+  "leaf_caps": [
+    15,
+    31,
+    63,
+    127
+  ],
+  "true_v3_corrected_feature_kernel_used": true,
+  "existing_V3_meta_not_refit_for_alternative_leaves": true,
+  "original_production_untouched": true,
+  "source_archive": [
+    {
+      "run": 40189199418,
+      "artifact": "eu48-true-corrected-capacity-2021",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40189199418",
+      "archive_sha256": "55eb874f0f2c6dce8711f0ae3dc94a648b64764911f4252f619896648539f13f",
+      "archive_bytes": 70067,
+      "files": [
+        {
+          "name": "EU48_2021_CORRECTED_15_31_63_127_OOS.csv",
+          "sha256": "1ae1892283487a74ea47a3d9ad5b4db06ae73983e6114c6003cd7c2053eef1a5",
+          "bytes": 234574
+        },
+        {
+          "name": "EU48_2021_FEATURE_VS_CAPACITY.csv",
+          "sha256": "3a9aee862a7864f5895835004b35cde743c88ead3607b55518630d4ced164c31",
+          "bytes": 1221
+        },
+        {
+          "name": "EU48_2021_MONTHLY_CHOICE_AND_LABEL.csv",
+          "sha256": "f94212a08df334d9607f1e5c1f4c37ab7c75c5c8b3061759a88c2bde4b317853",
+          "bytes": 5791
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "a07bfe0d385df8847a55e9db720c61cf18a9ca0d53120f05a4aee07787b7cafb",
+          "bytes": 554
+        }
+      ]
+    },
+    {
+      "run": 40189199418,
+      "artifact": "eu48-true-corrected-capacity-2022",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40189199418",
+      "archive_sha256": "e40a9785fc6ece7b7178baa6af2ff2e9cef32dc35233b9785b8690bcea9c429a",
+      "archive_bytes": 70292,
+      "files": [
+        {
+          "name": "EU48_2022_CORRECTED_15_31_63_127_OOS.csv",
+          "sha256": "ac7dae10437a95251484abfd675fdb91c2cbdb405cae3538d0dbbef98f3670cf",
+          "bytes": 233957
+        },
+        {
+          "name": "EU48_2022_FEATURE_VS_CAPACITY.csv",
+          "sha256": "30b034180d33189bb4a4ca13f3a6515397e4c9bbdc73a5215e723193e3822110",
+          "bytes": 1204
+        },
+        {
+          "name": "EU48_2022_MONTHLY_CHOICE_AND_LABEL.csv",
+          "sha256": "9cf382fc0019276c5cdfc8af2fb36b59b5f5cfe3ccde396ff2367086b7d222ee",
+          "bytes": 5755
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "dfe4946f957d75c7baf14b9878a47be01b25338a141ce5fb0930285384df9d95",
+          "bytes": 554
+        }
+      ]
+    },
+    {
+      "run": 40189199418,
+      "artifact": "eu48-true-corrected-capacity-2023",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40189199418",
+      "archive_sha256": "9074195669f4ad5b3a5b60c3ebe43ae62077c1f55d5e7bddae8ba9d7486372d5",
+      "archive_bytes": 70534,
+      "files": [
+        {
+          "name": "EU48_2023_CORRECTED_15_31_63_127_OOS.csv",
+          "sha256": "d2d9d8ea4ef44048895338082e0419158826bf94e1e0a819891b720e0e66217b",
+          "bytes": 235152
+        },
+        {
+          "name": "EU48_2023_FEATURE_VS_CAPACITY.csv",
+          "sha256": "29ec1abd4561d962d5e46039761060d1406739c0163ad924b4c2b9e204f123e9",
+          "bytes": 1213
+        },
+        {
+          "name": "EU48_2023_MONTHLY_CHOICE_AND_LABEL.csv",
+          "sha256": "c06ffc448e878a8d9529198066fa423069e001d0e9154c4c3f864d50e0a09aa3",
+          "bytes": 5781
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "64b3047a386ee9fdf8b2e9dc5e7582646b2a17999a67952047e006395e5e7a94",
+          "bytes": 554
+        }
+      ]
+    },
+    {
+      "run": 40189199418,
+      "artifact": "eu48-true-corrected-capacity-2024",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40189199418",
+      "archive_sha256": "6f3c363ab8369afb5a606ba760a6d1c4e6061e573d9f9caf4dd8c427542a2412",
+      "archive_bytes": 70371,
+      "files": [
+        {
+          "name": "EU48_2024_CORRECTED_15_31_63_127_OOS.csv",
+          "sha256": "520e04efa80a102390e2e02879f70aeb85ac2b672614712d762e78d7dd19fe22",
+          "bytes": 235031
+        },
+        {
+          "name": "EU48_2024_FEATURE_VS_CAPACITY.csv",
+          "sha256": "d88901a2c15f5dc001167f0698dccc94be0f6dfeb2cf1ff4e3d0523915214333",
+          "bytes": 1219
+        },
+        {
+          "name": "EU48_2024_MONTHLY_CHOICE_AND_LABEL.csv",
+          "sha256": "9faaddafd9397b318f263172b08652410d5b794bed257ab62d9387c758772d78",
+          "bytes": 5811
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "a63428bd77811d8b5cee50b3f64e08ea3fc1b35386344801754749600ac48c8f",
+          "bytes": 554
+        }
+      ]
+    },
+    {
+      "run": 40189199418,
+      "artifact": "eu48-true-corrected-capacity-2025",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40189199418",
+      "archive_sha256": "ff01fe375ae2b8fa46ce2bc1397158ad25988c18dfefa23d4c61872b5dbd5e6a",
+      "archive_bytes": 70350,
+      "files": [
+        {
+          "name": "EU48_2025_CORRECTED_15_31_63_127_OOS.csv",
+          "sha256": "b2cd2acac3563f6db9fc53bfa62d8655382a1c847be2c875878c1f26d8783a61",
+          "bytes": 234895
+        },
+        {
+          "name": "EU48_2025_FEATURE_VS_CAPACITY.csv",
+          "sha256": "a8a20dfb026e46e653999186334c0c04141ca1594f96fe394052477d735d7f47",
+          "bytes": 1220
+        },
+        {
+          "name": "EU48_2025_MONTHLY_CHOICE_AND_LABEL.csv",
+          "sha256": "d00e83ceb7802022b4834ab17d6a28b076ca6cb05708a307538d48ba36ca5383",
+          "bytes": 5815
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "ad3f81f7fa001e3d939acde84a2feda829760ac25079cab87636563f8f18ec5f",
+          "bytes": 554
+        }
+      ]
+    },
+    {
+      "run": 40189199418,
+      "artifact": "eu48-true-corrected-capacity-2026",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40189199418",
+      "archive_sha256": "b3b3efa5eafd81e03001fb2e3242beccdfd0b7d294fa4156acace660364339c9",
+      "archive_bytes": 18267,
+      "files": [
+        {
+          "name": "EU48_2026_CORRECTED_15_31_63_127_OOS.csv",
+          "sha256": "4247c18eef312e39599c7b138fe8b5b1ac035cd8e952f60234dc696f3134a68b",
+          "bytes": 97984
+        },
+        {
+          "name": "EU48_2026_FEATURE_VS_CAPACITY.csv",
+          "sha256": "440a98ed810a2dcd6c9c64ce27e0a34793df9f91cbe1149ce6aa804e25659e1d",
+          "bytes": 1195
+        },
+        {
+          "name": "EU48_2026_MONTHLY_CHOICE_AND_LABEL.csv",
+          "sha256": "5ff108fc04aef3dbd384d89d1d366a7c47eb60add6169ab0230512ffe533cd14",
+          "bytes": 2445
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "8ee3c1dc5c8a871325f93405dbb09117c039fd7cf9ae62dafbbbc4d8009518b5",
+          "bytes": 554
+        }
+      ]
+    },
+    {
+      "run": 40189614773,
+      "artifact": "eu48-true-corrected-15-31-63-127-economics",
+      "original_url": "https://github.com/AM1975MA/Test/actions/runs/40189614773",
+      "archive_sha256": "7a61d5dc627d7799622ef66a24d83dd1a0e64da13b4827d3b60648c9b86b3c68",
+      "archive_bytes": 272922,
+      "files": [
+        {
+          "name": "DAILY_NAV.csv",
+          "sha256": "418ae9f8afa14d82d3448fdab9d3543a2a34c7a3ac81ca51529c7f12cc17a15f",
+          "bytes": 557580
+        },
+        {
+          "name": "EUR48_ECONOMIC_CAGR_DD.csv",
+          "sha256": "d11253c5fe77cfa57e889330f44ea61ab3c77d71ebed2ca617b9bc4aa3c17ea0",
+          "bytes": 4133
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "e67692a7b4637fdd8314338242916decaff6888e1c8fddc784c4e1094ea76d7d",
+          "bytes": 813
+        },
+        {
+          "name": "MONTHLY_65_ETF_PICKS.csv",
+          "sha256": "10f7d112a1b35b29669fc2b43fbea2025fdddfa2d1c0606d96a1d47753c77631",
+          "bytes": 56368
+        },
+        {
+          "name": "MONTHLY_TRADE_LEDGER.csv",
+          "sha256": "fea5c540cccc45635a2475ee94d9c1f3b251a95516dd21f4e4396b98d7b4c06f",
+          "bytes": 185571
+        },
+        {
+          "name": "PAIRED_BLOCK_BOOTSTRAP.csv",
+          "sha256": "2253c7482a09e4571e0baeb2e7b4019aab223e743e97a52030cb37889afd4e1e",
+          "bytes": 908
+        },
+        {
+          "name": "SKILL_COMPARISON.csv",
+          "sha256": "038476ef1a4f485557b8313c6a2e62435e748e77fe003f282274e5124b8a118b",
+          "bytes": 1782
+        }
+      ]
+    }
+  ]
+}

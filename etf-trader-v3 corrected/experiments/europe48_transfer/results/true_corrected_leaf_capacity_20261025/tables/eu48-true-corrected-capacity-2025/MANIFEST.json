@@ -1,0 +1,16 @@
+{
+  "isolated_model_year": 2025,
+  "original_ISINs": 48,
+  "original_annual_fully_mature_labels": true,
+  "same_model_seeds": [
+    101,
+    202,
+    303
+  ],
+  "model_capacity_only_difference": "depth4 legacy vs lossguide 15,31,63,127 corrected; legacy127 parity",
+  "feature_only_difference": "actual V3 corrected feature implementation vs legacy source",
+  "benchmark_orig_v2_and_v3_reproduced_without_top1_disagreement": true,
+  "old_48_months_pre_2022_mature_training_unchanged": true,
+  "not_full_period_CAGR": true,
+  "production_changed": false
+}
