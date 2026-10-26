@@ -1,0 +1,1 @@
+Predeclare 2026-10-26 global-investible Xetra UCITS ETF 2018-2026 comparison versus EU148 on same as-of 252 63d 50k filters, exact 101 month fills, fixed top3/5 and no model tuning.
