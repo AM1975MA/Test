@@ -1,0 +1,53 @@
+name: V3 EU148 US149 actual signed future trajectories LM LGBM 21 42 63 annual
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/START_TRAJECTORY_20261026.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  trajectory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 85
+    strategy:
+      fail-fast: false
+      max-parallel: 9
+      matrix:
+        market: [US149,EU148]
+        year: [2018,2019,2020,2021,2022,2023,2024,2025,2026]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Pinned linear LM and LightGBM native data dependencies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scikit-learn==1.7.2' 'lightgbm==4.6.0' 'pyarrow' scipy
+      - name: Frozen same 125F corrected native panels US/EU
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/paired_125F_panels
+          gh run download 40226846660 -R AM1975MA/Test \
+            -n v3-us149-eu148-strict-common-calendar-125F-panels -D runs/paired_125F_panels
+          test -s "runs/paired_125F_panels/${{ matrix.market }}/CORRECTED125_PANEL.parquet"
+      - name: Annual matured 63-session signed trajectory LM and LGBM, no future test feature
+        env:
+          PYTHONPATH: etf-trader-v3 corrected/src
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/fit_multihorizon_trajectory_lm_20261026.py' \
+            --market '${{ matrix.market }}' --year '${{ matrix.year }}' \
+            --panel runs/paired_125F_panels \
+            --out 'runs/trajectory_${{ matrix.market }}_${{ matrix.year }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-signed-trajectory-${{ matrix.market }}-${{ matrix.year }}
+          path: runs/trajectory_${{ matrix.market }}_${{ matrix.year }}/
+          retention-days: 90
