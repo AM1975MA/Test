@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Pinned linear LM and LightGBM native data dependencies
-        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scikit-learn==1.7.2' 'lightgbm==4.6.0' 'pyarrow' scipy matplotlib
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scikit-learn==1.7.2' 'lightgbm==4.6.0' 'pyarrow' scipy matplotlib 'xgboost==3.0.5'
       - name: Frozen same 125F corrected native panels US/EU
         env:
           GH_TOKEN: ${{ github.token }}
