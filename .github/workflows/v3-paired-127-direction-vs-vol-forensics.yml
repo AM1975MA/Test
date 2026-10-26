@@ -1,0 +1,50 @@
+name: V3 paired frozen 127 predictor direction vs volatility and feature integrity
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/RUN_PREDICTIVE_FORENSICS_20261026.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  predictive-diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Matched pinned numerical library
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scipy==1.17.0' 'pyarrow'
+      - name: Download original frozen 125F source panel and all 18 genuine annual V3 127 predictions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/paired_125F_panels runs/paired_127_heads
+          gh run download 40226846660 -R AM1975MA/Test \
+            -n v3-us149-eu148-strict-common-calendar-125F-panels \
+            -D runs/paired_125F_panels
+          for market in US149 EU148; do
+            for year in 2018 2019 2020 2021 2022 2023 2024 2025 2026; do
+              mkdir -p "runs/paired_127_heads/$market/$year"
+              gh run download 40227138117 -R AM1975MA/Test \
+                -n "v3-paired-native127-$market-$year" -D "runs/paired_127_heads/$market/$year"
+              test -s "runs/paired_127_heads/$market/$year/PAIRED_127_PREDICTIONS.csv"
+            done
+          done
+          test -s runs/paired_125F_panels/US149/CORRECTED125_PANEL.parquet
+          test -s runs/paired_125F_panels/EU148/CORRECTED125_PANEL.parquet
+      - name: Predictive signed rank vs volatility, all 125F as-of integrity and vol-only placebo
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/audit_predictive_direction_volatility_20261026.py' \
+            --panels runs/paired_125F_panels \
+            --heads runs/paired_127_heads \
+            --out runs/predictive_diagnostics
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-eu-us-original-125f-predictive-direction-volatility
+          path: runs/predictive_diagnostics/
+          retention-days: 90
