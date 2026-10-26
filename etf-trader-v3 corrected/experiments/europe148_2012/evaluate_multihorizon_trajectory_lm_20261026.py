@@ -122,7 +122,7 @@ def main():
                         for topn in (1,3,5):
                             stats,nav,tr=compute_nav(O,V,dates,picks,joint,dates,market,scope,key,topn)
                             assert stats['signal_months']==101 and stats['end']==END
-                            econrows.append(stats)
+                            econrows.append(dict(stats,scope=scope,model=key))
                             navs.append(nav);trades.append(tr)
                             print('TRAJECTORY_RESULT',market,scope,key,'TOP',topn,
                                   'CAGR_EUR',round(stats['cagr_eur']*100,3),
