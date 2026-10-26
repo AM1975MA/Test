@@ -1,0 +1,43 @@
+name: ETF V3 Xetra global UCITS opportunity versus Europe-only EU148, 101m
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/START_GLOBAL_UCITS_20261026.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  eu-global-ucits:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fixed data and numeric dependencies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scipy==1.17.0' 'scikit-learn==1.7.2' 'yfinance==0.2.66'
+      - name: Load original EU148 fixed daily price and ISIN catalog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_original
+          gh run download 40218758892 -R AM1975MA/Test \
+             -n v3-europe148-2010-vintage-verified-ohlcv \
+             -D runs/eu148_original
+          test -s runs/eu148_original/EU148_VERIFIED_LEGAL_ISIN_CATALOG.csv
+      - name: Fetch independent Xetra EUR global UCITS and execute before-registered diagnostics
+        env:
+          PYTHONUNBUFFERED: '1'
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/ucits_global_opportunity_predeclared_20261026.py' \
+            --eu runs/eu148_original --out runs/eu_ucits_global
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eu-148-vs-xetra-global-ucits-predeclared-opportunity
+          path: runs/eu_ucits_global/
+          retention-days: 90
