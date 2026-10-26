@@ -1,1 +1,3 @@
 Evaluate completed genuine 18/18 annual 21/42/63 LM Ridge and LGBM signed trajectories from GitHub Actions run 40394516018, compare model IC and true net EUR 101 month top1 top3 top5 FULL/EQUITY with original 127 V3 ranker 40227417589
+
+Run corrected scorecard schema for exact full and equity LM/LGBM comparisons, no model retraining.
