@@ -1,0 +1,1 @@
+RUN 2026-10-26 frozen native V3 EU148 category/signal ex-ante 63day ADV median Q90 veto; EXSA same cash; HAC3; 101m 2076 marks; no tuning
