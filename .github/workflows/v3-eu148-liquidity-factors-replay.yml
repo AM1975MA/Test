@@ -1,0 +1,51 @@
+name: V3 EU148 frozen ranker liquidity ADV and matched factor audit 20261026
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/LIQUIDITY_FACTORS_START.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reproducible numerical dependencies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scipy==1.17.0' 'statsmodels==0.14.5'
+      - name: Restore 148 original corporate-action-corrected source and frozen 127leaf real paired portfolio
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/raw runs/paired runs/input
+          gh run download 40218758892 -R AM1975MA/Test \
+            -n v3-europe148-2010-vintage-verified-ohlcv -D runs/raw
+          gh run download 40227417589 -R AM1975MA/Test \
+            -n v3-paired-127-real-eur-economics-full-equity -D runs/paired
+          python - <<'PY'
+          import pathlib,zipfile
+          d=pathlib.Path('runs/input')
+          for src,name in [('runs/raw','eu148_final_corrected_ohlcv.zip'),('runs/paired','paired_v3_us149_eu148_economics.zip')]:
+              with zipfile.ZipFile(d/name,'w',zipfile.ZIP_DEFLATED,compresslevel=3) as f:
+                  for p in pathlib.Path(src).rglob('*'):
+                      if p.is_file():f.write(p,p.relative_to(src))
+          import pandas as pd
+          original=pd.read_csv('runs/paired/PAIRED_V3_127_ECONOMIC_SCORECARD.csv')
+          original.to_csv(d/'ORIGINAL_PAIRED_ECONOMIC_SCORECARD.csv',index=False)
+          PY
+      - name: Replay exact previous original economics, then ex-ante 63day ADV thresholds and three-factor HAC
+        run: |
+          python -m py_compile 'etf-trader-v3 corrected/experiments/europe148_2012/liquidity_factor_replay_20261026.py'
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/liquidity_factor_replay_20261026.py' \
+            --root runs/input --out runs/eu148_liquidity_factor_replay
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-eu148-101month-frozen-ADV-factors-matched-exsa-audit
+          path: runs/eu148_liquidity_factor_replay/
+          retention-days: 90
