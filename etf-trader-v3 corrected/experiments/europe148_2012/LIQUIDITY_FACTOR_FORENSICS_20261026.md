@@ -6,7 +6,7 @@
 
 - Originale paired V3 USA–EU: [PAIRED_US149_EU148_RESULTS_20261025.md](PAIRED_US149_EU148_RESULTS_20261025.md)
 - Originale controllo categorie/beta: [CATEGORY_GATE_RISK_MATCHED_RESULTS_20261025.md](CATEGORY_GATE_RISK_MATCHED_RESULTS_20261025.md)
-- Sorgenti e output locali consegnati nel bundle di conversazione v3_category_liquidity_factor_20261026_REPRODUCIBLE.zip. Include source/v3_category_gate_20261026_liquidity_factors.py, source/matched_exsa_benchmark.py, source/category_gate_audit.py, 20 file risultati, hash SHA256, istruzioni. Il bundle non è stato committato in GitHub: questo report è persistito in GitHub e i file sorgente/CSV si scaricano dalla conversazione.
+- Replay core indipendente committato in GitHub: [liquidity_factor_replay_20261026.py](liquidity_factor_replay_20261026.py) e [.github/workflows/v3-eu148-liquidity-factors-replay.yml](../../../.github/workflows/v3-eu148-liquidity-factors-replay.yml). **GitHub Actions run PASS**: https://github.com/AM1975MA/Test/actions/runs/40287122251 ; l'artefatto contiene i CSV di decisioni, NAV, benchmark EXSA con stesso cash, regressioni HAC e manifest. Riproduce tutti i 13 CAGR della tabella con gli stessi dati originali. Bundle di conversazione v3_category_liquidity_factor_20261026_REPRODUCIBLE.zip: sorgenti Python estesi, stress AUM, CSV, hash SHA256 e README.
 - Prezzi derivati 148 Xetra verificati e dati del matched V3 127 frozen 2026-10-25, non ricalibrati; zero uso di futuri nella logica dei gate.
 
 ## 1. Liquidità ex ante: 63 sessioni, tre soglie
