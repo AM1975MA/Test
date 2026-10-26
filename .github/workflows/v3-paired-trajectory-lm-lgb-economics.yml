@@ -1,0 +1,61 @@
+name: V3 US EU signed trajectory LM LGBM predictive skill and real net EUR economics
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/START_TRAJECTORY_ECON_20261026.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  trajectory-economics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 85
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: same economic computation dependencies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scipy==1.17.0'
+      - name: Get original USA149 source, EURUSD as-of US prior close and EU148 prices
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git fetch --filter=blob:none --no-tags --depth=1 origin \
+            refs/heads/research/canonical-v2-source-us149-eu48-20261020:refs/remotes/origin/parity_original_149
+          mkdir -p runs/us_original runs/eu_source runs/old_v3_economics runs/trajectory_heads runs/v3heads
+          git archive origin/parity_original_149 evidence_v1/data/original149 \
+            europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv | tar -x -C runs/us_original
+          gh run download 40218758892 -R AM1975MA/Test \
+            -n v3-europe148-2010-vintage-verified-ohlcv -D runs/eu_source
+          gh run download 40227417589 -R AM1975MA/Test \
+            -n v3-paired-127-real-eur-economics-full-equity -D runs/old_v3_economics
+          for market in US149 EU148; do
+            for year in 2018 2019 2020 2021 2022 2023 2024 2025 2026; do
+              mkdir -p "runs/trajectory_heads/$market/$year" "runs/v3heads/$market/$year"
+              gh run download 40394516018 -R AM1975MA/Test \
+                -n "v3-signed-trajectory-$market-$year" -D "runs/trajectory_heads/$market/$year"
+              gh run download 40227138117 -R AM1975MA/Test \
+                -n "v3-paired-native127-$market-$year" -D "runs/v3heads/$market/$year"
+              test -s "runs/trajectory_heads/$market/$year/ANNUAL_TRAJECTORY_FORECASTS.csv"
+              test -s "runs/trajectory_heads/$market/$year/ANNUAL_FIT_AUDIT.json"
+              test -s "runs/v3heads/$market/$year/PAIRED_127_PREDICTIONS.csv"
+            done
+          done
+      - name: Same 101-month EUR account actual open-to-open evaluation vs unaltered V3
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/evaluate_multihorizon_trajectory_lm_20261026.py' \
+            --us runs/us_original/evidence_v1/data/original149 \
+            --eu runs/eu_source \
+            --fx runs/us_original/europe_only75/f3h1_original_transfer/results/EURUSD_PRIOR_US_CLOSE.csv \
+            --heads runs/trajectory_heads \
+            --v3heads runs/v3heads \
+            --v3econ runs/old_v3_economics \
+            --out runs/trajectory_eval
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-us-eu-signed-trajectory-lm-lgbm-vs-frozen-ranker-economics
+          path: runs/trajectory_eval/
+          retention-days: 90
