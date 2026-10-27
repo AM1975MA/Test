@@ -1,0 +1,55 @@
+name: V3 exact parity full original 500 V2 Hybrid24 mathematical veto before Top2
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/START_FULLSTACK500_MATH_20261027.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-fullstack-500-physics-veto:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Match original source runtime for 500-basket intraday numba simulator
+        run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'numba==0.65.1' 'scipy>=1.13' 'scikit-learn==1.8.0'
+      - name: Retrieve immutable original V2 149 ETF raw snapshot + original trained FS02 V2 fullscore and exact historical reference equity
+        env:
+          GH_${{ github.token }}: TOKEN
+        run: |
+          mkdir -p etf_trader_raw runs/original_v2_fullstack
+          gh run download 39482809691 -R AM1975MA/Test \
+            -n v2-deep-leaf-frozen-raw -D etf_trader_raw
+          gh run download 39836842157 -R AM1975MA/Test \
+            -n v3-fullstack-model-agreement-500 -D runs/original_v2_fullstack
+          python regeneration/certify_etf_trader_raw.py
+          test -s runs/original_v2_fullstack/PATH.npz
+          test -s runs/original_v2_fullstack/ENSEMBLE_TAIL_OOS.csv
+      - name: Rebuild and verify original 500x2366 allocations+NAV before evaluating 3 preregistered mathematical veto variants
+        env:
+          PYTHONUNBUFFERED: '1'
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMBA_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+          PYTHONPATH: etf-trader-v3 corrected/fullstack_legacy/src
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/v5_fullstack500_pure_math_veto_20261027.py' \
+            --raw etf_trader_raw \
+            --fs02-path runs/original_v2_fullstack/PATH.npz \
+            --fs02-result runs/original_v2_fullstack/RESULT.json \
+            --fs02-pred runs/original_v2_fullstack/ENSEMBLE_TAIL_OOS.csv \
+            --baskets regeneration/SUPER_GOLD_BASKET_MEMBERSHIP.csv \
+            --out runs/v5_v2_fullstack_math
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-original-v2-complete-500-math-veto-risk-economics
+          path: runs/v5_v2_fullstack_math/
+          retention-days: 90
