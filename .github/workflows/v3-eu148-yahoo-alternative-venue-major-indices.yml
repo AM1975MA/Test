@@ -1,0 +1,42 @@
+name: ETF EU148 same ISIN Yahoo alternate venues and European national indices
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/START_YAHOO_ALT_EU_20261027.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  eu148-source-repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch-dependencies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'yfinance==0.2.66'
+      - name: Download original complete 148 legal ISIN freeze
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/eu148_verified_2010
+          gh run download 40218758892 -R AM1975MA/Test \
+            -n v3-europe148-2010-vintage-verified-ohlcv \
+            -D runs/eu148_verified_2010
+          test -s runs/eu148_verified_2010/EU148_VERIFIED_LEGAL_ISIN_CATALOG.csv
+      - name: Compare issuer verified same-ISIN alternate Yahoo quotations and expand country markets
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/eu148_yahoo_alt_venue_indices_20261027.py' \
+            --eu runs/eu148_verified_2010 \
+            --out runs/eu148_yahoo_fixed_expanded
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-europe148-yahoo-same-isin-repair-major-index-expanded
+          retention-days: 90
+          path: runs/eu148_yahoo_fixed_expanded/
