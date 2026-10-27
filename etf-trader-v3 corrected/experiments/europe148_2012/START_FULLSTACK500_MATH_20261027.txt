@@ -1,1 +1,3 @@
 Run original V2 exact full 500x24 V2 architecture: verify frozen daily parity, apply only math veto worst six of 24 before unchanged Top2 score, simulate V6 DDfirst HighCAGR and original costs; separate non-ML Ridge experiment already exists.
+
+Retry after fixing GitHub CLI GH_TOKEN environment key.
