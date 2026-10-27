@@ -218,7 +218,7 @@ def main():
     ts=Odf.reindex(index=dayindex).to_numpy(float)
     output=[]
     for i,sig in enumerate(months):
-        if sig<pd.Timestamp("2018-01-01"):continue
+        if sig<pd.Timestamp("2018-01-01") or sig>pd.Timestamp("2026-05-31"):continue
         j=int(dayindex.searchsorted(sig,side="right"))
         j21=min(j+21,len(dayindex)-1)
         actual=ts[j21]/ts[j]-1.
