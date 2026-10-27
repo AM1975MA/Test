@@ -20,7 +20,7 @@ jobs:
         run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'numba==0.65.1' 'scipy>=1.13' 'scikit-learn==1.8.0'
       - name: Retrieve immutable original V2 149 ETF raw snapshot + original trained FS02 V2 fullscore and exact historical reference equity
         env:
-          GH_${{ github.token }}: TOKEN
+          GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p etf_trader_raw runs/original_v2_fullstack
           gh run download 39482809691 -R AM1975MA/Test \
