@@ -91,7 +91,7 @@ def main():
         assert isin in base or isin in ADDITIONS
         if isin in base:
             old=base[isin]
-            alternatives.append(dict(isin=isin,ticker="ORIGINAL",**summ(old,"ORIGINAL"),status="KEEP"))
+            alternatives.append(dict(isin=isin,**summ(old,"ORIGINAL"),status="KEEP"))
         else:old=None
         for t in tickers:
             try:
