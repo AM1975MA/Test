@@ -1,3 +1,5 @@
 Predeclare 2026-10-27 issuer-confirmed EUR venue aliases and EU Europe-exposed national index ETF enrichment, original 148 legal ISIN set untouched; no OOS outcome selection.
 
 Repeat source audit after preventing duplicate dict ticker key.
+
+Second full source screening: eight existing legal ISIN euro cross listings on Paris/Milan issuer verified (no future performance selection).
