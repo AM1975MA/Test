@@ -1,0 +1,56 @@
+name: V3 canonical 500x24 US baskets mathematical veto before frozen Ridge 101m
+on:
+  push:
+    branches: [research/v3-europe148-historical-20261024]
+    paths:
+      - 'etf-trader-v3 corrected/experiments/europe148_2012/START_CANONICAL500_MATH_20261027.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  canonical500-math-veto-before-ridge:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Native mathematical test dependencies
+        run: pip install 'numpy==2.2.6' 'pandas==2.2.3' 'scipy==1.17.0'
+      - name: Download frozen certified V2 raw snapshot and nine frozen 2018-26 US Ridge annual forecasts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p runs/canonical500_raw runs/frozen_US_Ridge
+          gh run download 39482809691 -R AM1975MA/Test \
+             -n v2-deep-leaf-frozen-raw -D runs/canonical500_raw
+          test -s runs/canonical500_raw/universe.csv
+          test -s runs/canonical500_raw/SPY.csv
+          for year in 2018 2019 2020 2021 2022 2023 2024 2025 2026; do
+            mkdir -p "runs/frozen_US_Ridge/$year"
+            gh run download 40394516018 -R AM1975MA/Test \
+                -n "v3-signed-trajectory-US149-$year" -D "runs/frozen_US_Ridge/$year"
+            test -s "runs/frozen_US_Ridge/$year/ANNUAL_TRAJECTORY_FORECASTS.csv"
+            test -s "runs/frozen_US_Ridge/$year/ANNUAL_FIT_AUDIT.json"
+          done
+      - name: Test exact original 500 baskets no changes to membership, first stage physics then 125F US LM
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+          MKL_NUM_THREADS: '2'
+          NUMEXPR_NUM_THREADS: '2'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u 'etf-trader-v3 corrected/experiments/europe148_2012/v5_canonical500_math_veto_before_frozen_us_lm_20261027.py' \
+            --raw runs/canonical500_raw \
+            --pred runs/frozen_US_Ridge \
+            --membership 'etf-trader-v3 corrected/reports/FULLSTACK/data_run_39834445061/GENERATED_CANONICAL_BASKETS.csv' \
+            --out runs/canonical500_veto
+      - name: Upload full per-basket results and exact provenance
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v3-original-500-baskets-math-first-layer-before-us-lm
+          retention-days: 90
+          path: runs/canonical500_veto/
