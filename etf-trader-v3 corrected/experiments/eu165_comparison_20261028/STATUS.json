@@ -1,0 +1,17 @@
+{
+  "state": "EXPLORATORY_RESEARCH_NOT_PRODUCTION",
+  "date": "2026-10-28",
+  "dataset": "EU165 six-cluster selected 2026",
+  "benchmark": "Frozen archived B0 EU155",
+  "replay_window": [
+    "2021-02-01",
+    "2026-07-01"
+  ],
+  "source_code_full": "separate conversation zip artifact",
+  "source_zip_sha256": "1038d5a99fd6cb1f30c98daa3fa298ce1120688634ad6825202c29502385171f",
+  "native_V2_fullstack_complete": false,
+  "native_V3_fullstack_complete": false,
+  "original_controls_unchanged": true,
+  "confidence": "nominal CI only; historical period already mined",
+  "production_promotion": false
+}
