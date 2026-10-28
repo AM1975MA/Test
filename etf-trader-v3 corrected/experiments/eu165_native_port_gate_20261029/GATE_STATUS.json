@@ -1,0 +1,25 @@
+{
+  "status": "NATIVE_FULLSTACK_NOT_EXECUTED",
+  "date": "2026-10-29",
+  "eu165_etfs": 165,
+  "clusters": 6,
+  "canonical_baskets": 500,
+  "names_per_basket": 24,
+  "pit_signals": 101,
+  "native_rng_new_basket_sha": "124f47247142b8b00759d6961d6adeef3711dfc7437bf2af1176c1ee043cad9e",
+  "historically_eligible_slot_fraction": 0.681,
+  "dates_with_no_fully_eligible_basket": 87,
+  "mean_random_sampler_basket_change_pct": 70.54,
+  "mean_stable_hash_basket_change_pct": 4.15,
+  "mean_top2_random_sampler_change_pct": 90.01,
+  "mean_top2_stable_hash_change_pct": 34.27,
+  "missing_required_native_symbols": [
+    "SPY",
+    "BIL",
+    "SHV"
+  ],
+  "V3_original_predictions_incompatible_with_165": true,
+  "native_V2_v3_profit_comparison": "NOT_RUN",
+  "source_artifact_sha256": "cc8e72813b7c1e56c821af2bc15cb1dc0d1fa652b9bda9c1678b1da1fb6c5c44",
+  "production_changes": false
+}
