@@ -1,0 +1,14 @@
+strategy,cagr_pct,max_drawdown_pct,sharpe_rf0,provenance
+FROZEN_B0_ARCHIVED_2021_26,17.1750,-28.338,0.8916,original archived EU155 B0
+PASSIVE_SXR8,16.2785,-25.008,1.0085,EU165 price replay
+MOM_GLOBAL1_VOL15,15.2331,-18.906,0.9340,exploratory global eligibility policy
+MOM_GLOBAL1,15.1522,-19.847,0.9249,exploratory global eligibility policy
+MOM_CORRGUARD,14.0007,-20.015,0.8757,exploratory concentration policy
+MOM_EU_ONLY,12.8418,-22.482,0.8369,exploratory within original EU exposure
+MOM252_FREE5,12.2698,-20.184,0.7693,2026 selected six-cluster cohort
+RIDGE21_BALANCED6,9.1337,-23.288,0.6894,first-stage ML partial
+BALANCED24_EQUAL,8.7050,-23.665,0.7350,6 cluster equally represented
+V2_CORE_PROXY_BALANCED6,8.6669,-28.513,0.6363,NOT native full-stack V2
+V3_RANKER_PROXY_BALANCED6,6.3225,-29.627,0.5035,NOT native full-stack V3
+LOW_VOL_BALANCED6,6.4341,-16.994,0.6665,low-risk price only
+REVERSAL21_BALANCED6,2.6519,-24.296,0.2560,reversal price only
