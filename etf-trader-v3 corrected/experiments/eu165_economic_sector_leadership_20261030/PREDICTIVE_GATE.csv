@@ -1,0 +1,7 @@
+criterion,period,months,model,value,baseline,paired_CI_low,paired_CI_high
+sector_top1_hit_5plus_groups,2019_2024,30,V3_PAIR25_HYBRID,0.333333,0.266667,-0.06667,0.20000
+sector_top1_excess_pp_5plus_groups,2019_2024,30,V3_PAIR25_HYBRID,0.801836,-0.902920,0.070848,3.268086
+sector_top1_hit_3plus_groups,2019_2024,48,V3_PAIR25_HYBRID,0.395833,0.354167,-0.08333,0.16667
+sector_top1_excess_pp_3plus_groups,2019_2024,48,V3_PAIR25_HYBRID,0.703059,-0.431399,-0.261495,2.462992
+selected_group_excess_pp_anti_singleton,2019_2024,65,V3_PAIR25_HYBRID,0.339735,0.179469,-0.093297,0.435009
+selected_wrapper_leave_one_out_pp,2019_2024,26,V3_PAIR25_HYBRID,0.238882,0,-0.194691,0.810733
