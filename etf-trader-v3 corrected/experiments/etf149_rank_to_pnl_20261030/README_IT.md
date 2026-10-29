@@ -111,3 +111,17 @@ Dipendenze: `numpy`, `pandas`, `scipy`. Il codice non usa API di mercato durante
 - `manifest.json`: firme dei quattro input e conteggi del campione.
 
 Gli input pesanti sono archivi di dati già esistenti o archivi delle ricerche precedenti; non vengono duplicati inutilmente. **La pubblicazione nel repository `Test` va verificata prima di considerare questo rapporto versionato.**
+
+## Input congelati inclusi nel repository e riproduzione autonoma
+
+Sono versionati nella stessa cartella:
+- **v2_255_frozen_scores.csv**: 15.198 punteggi originali V2 su 102 date.
+- **ridge_frozen_scores.csv**: 6.556 punteggi Ridge su 44 date.
+- **ridge_original_top15_holdings.csv**: 660 posizioni storiche Ridge, congelate e confrontate con il precedente file dei pesi.
+- **run_rank_to_pnl.py** e **run_equal_k.py**, risultati di ranking, date, quintili, bootstrap e confronti a pari K.
+
+Gli script aggiornati preferiscono automaticamente questi CSV invece degli ZIP dei modelli precedenti. Per ricostruire l'audit è richiesto ancora il **ZIP dei prezzi adjusted Open**, il cui archivio originale esiste nel repo nell'esperimento forward_20261024. Mettere il ZIP dei prezzi con il nome etf149_forward_20261023.zip in una cartella ed esportare la variabile ETF149_DATA_ROOT verso quella cartella; eseguire gli script dalla cartella del repository contenente i CSV.
+
+Se manca il vecchio NPZ dei pesi, run_rank_to_pnl.py controlla le selezioni Ridge contro ridge_original_top15_holdings.csv, senza riaddestramento. Il manifest fissa anche gli SHA-256 dei CSV di score; i digest degli ZIP precedenti rimangono tracciati nella relazione e nei report originali.
+
+Il confronto a pari K è **diagnostico e post-selezione**: sei varianti (5/10/15 posizioni, cap3 o nessun limite), 42 mesi in comune, 10 bp per valore negoziato e turnover di portafoglio drifted, nessuna correzione ulteriore delle molteplici ipotesi precedenti.
