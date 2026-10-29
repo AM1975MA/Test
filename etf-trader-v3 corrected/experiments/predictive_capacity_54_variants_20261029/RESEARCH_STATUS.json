@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-29",
+  "status": "EXPLORATORY_PREDICTIVE_ONLY",
+  "recoverable_models_by_universe": {
+    "USA149": 24,
+    "EU155": 14,
+    "EU165_NATIVE_2025": 10,
+    "EU165_PROXY_2021_26": 6
+  },
+  "months_by_universe": {
+    "USA149": 101,
+    "EU155_common_OOS": 65,
+    "EU165_NATIVE_2025": 12,
+    "EU165_PROXY": 65
+  },
+  "original_us_basket_sha": "36a45916b5d8191f3ccd206f39bf3fd3f1ed4bcaffd474e352b69c598f2b6a5e",
+  "full_history_EU165_native_V2V3_done": false,
+  "ranker_skill_tested": true,
+  "economic_stage_rewrite_done": false,
+  "no_new_fit": true,
+  "source_archive_zip_sha": "e0e30c196d48e8a48064bf93b319e5c0f7df3a2d06c22889fb6884ed3a9ead49",
+  "production_changed": false
+}
