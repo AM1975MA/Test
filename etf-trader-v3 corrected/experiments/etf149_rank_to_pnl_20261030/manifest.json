@@ -2,14 +2,23 @@
   "analysis_date": "2026-10-30",
   "inputs_sha256": {
     "prices": "29d63efc647f113d6fb1aa9ade57983a711e78bb3b375d556fdcb340504f2be2",
-    "v2_scores": "c81ffc723572c6218638f925e1d696896876067fc2f6a10d15312325d17a70ee",
-    "ridge_scores": "1bfd21d20ebb3377cd6c90d4ae1f7586257ea9abeeded12d741b589f49b82373",
-    "frozen_weights": "13c66a452bb5e9c75c5704a83bac551970b39d37ec2ec4eb8f9d88335d25b616"
+    "v2_scores": "c464d33f744d6d42ffb4e08034a7b8b2f8f739ad32fbec3da1f946d2ede19284",
+    "ridge_scores": "8330cd9b68a315b07d59705b2d4cfd6f59ee289fac715f34b61a9d03725718d0",
+    "frozen_weights": "13c66a452bb5e9c75c5704a83bac551970b39d37ec2ec4eb8f9d88335d25b616",
+    "ridge_holdings_fallback": "11287427f08b6ffe87c56cf75081933304645bccc27e074d8651d01289eb856a"
   },
   "n_etfs": 149,
-  "models": {"RIDGE_2026": 44, "V2_255": 102},
+  "models": {
+    "RIDGE_2026": 44,
+    "V2_255": 102
+  },
   "common_months": 42,
   "no_training_or_parameter_search": true,
   "prices_last_date": "2026-10-23",
-  "research_contamination": "Historical data reused in prior model search; descriptive audit, NOT independent OOS."
+  "research_contamination": "Historical data reused in prior model search; descriptive audit, NOT independent OOS.",
+  "score_sources_in_repo": [
+    "v2_255_frozen_scores.csv",
+    "ridge_frozen_scores.csv",
+    "ridge_original_top15_holdings.csv"
+  ]
 }
