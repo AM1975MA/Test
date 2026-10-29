@@ -1,0 +1,38 @@
+{
+  "status": "research_only_not_live",
+  "date": "2026-10-29",
+  "universe": "EU165",
+  "data_years": "2009-2026",
+  "fit_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "forecast_horizons": [
+    21,
+    42,
+    63
+  ],
+  "annual_fits": 18,
+  "monthly_signals": 65,
+  "market_sessions": 1429,
+  "baskets": 500,
+  "etfs": 165,
+  "rebalancing_skipped_december_years": [
+    2021,
+    2024,
+    2025
+  ],
+  "pre2025_sample": "Feb2021-Dec2024",
+  "cost_one_way": 0.001,
+  "mark_to_market_missing_price_ffill": true,
+  "returns_total_return_certified": false,
+  "survivorship_free": false,
+  "untouched_holdout": false,
+  "production_changed": false,
+  "all_label_cutoffs_matured": true,
+  "zip_sha256": "ef15b8c734d79a580cca29d3a05814951929814d2e334131c917162ebb2006dd"
+}
