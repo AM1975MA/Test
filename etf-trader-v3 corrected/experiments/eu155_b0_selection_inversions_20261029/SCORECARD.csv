@@ -1,0 +1,10 @@
+strategy,cagr,maxdd,interpretation
+B0_ORIGINAL_SOURCE_REPLAY,0.087995,-0.352840,frozen momentum252 Top5
+MACRO_CLUSTER_MAX3,0.091959,-0.328399,exploratory no significant CAGR uplift
+MARKET_EXSA_200DMA_CASH,0.081056,-0.269738,exploratory drawdown hedge
+SELECTED_MOM63_POSITIVE_CASH,0.081647,-0.364415,exploratory rejected
+BOTH_CASH,0.079039,-0.279112,exploratory
+TOP8_RANK_HYSTERESIS,0.070416,-0.342697,exploratory rejected
+TOP10_RANK_HYSTERESIS,0.078599,-0.342697,exploratory rejected
+BANK_MAX2,0.059752,-0.352840,expost exposure cap rejected
+BANK_MAX3,0.075283,-0.352840,exploratory
