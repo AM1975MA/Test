@@ -1,0 +1,6 @@
+model,n_months,corr_crosssection_IC_vs_portfolio_active,corr_category_IC_vs_top_category_residual,ic_positive_and_active_negative,ic_negative_and_active_positive,both_positive,both_negative,metric,difference,ci95_low,ci95_high
+RIDGE_2026,44,0.4972602914905229,0.7876593834503561,11.0,6.0,18.0,9.0,,,,
+V2_255,102,0.2883258716629398,0.3958348808776749,18.0,15.0,39.0,30.0,,,,
+RIDGE_MINUS_V2,42,,,,,,,spearman_all,0.07938557203211893,0.010752136731522382,0.14223026472865288
+RIDGE_MINUS_V2,42,,,,,,,top_minus_spy,-0.00029105226950159994,-0.010563133310285577,0.010262677810470943
+RIDGE_MINUS_V2,42,,,,,,,top_minus_category,-9.366013922939359e-05,-0.007959625072743719,0.008113534003266145
