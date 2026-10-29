@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-29",
+  "research_only": true,
+  "native_us_unchanged": true,
+  "eu165_year_fitted": 2025,
+  "period": [
+    "2025-02-03",
+    "2026-02-02"
+  ],
+  "unique_signals": 12,
+  "master_sessions": 255,
+  "clusters": 6,
+  "monthly_baskets": 500,
+  "etfs_per_basket": 24,
+  "per_cluster": 4,
+  "dec2025_pit_signal_mismatch_fixed": true,
+  "original_V2_path_preJan_2026_parity_maxdiff": 4.440892098500626e-16,
+  "original_V3_path_preJan_2026_parity_maxdiff": 6.661338147750939e-16,
+  "missing_open_ticker": "SXRY.DE",
+  "fallback": "LYQ2.DE on relevant basket for rest of monthly allocation",
+  "global_6cluster_B0_live_equivalence": false,
+  "full_history_V2_V3_not_run": true,
+  "source_zip": "B0_V2_V3_PARALLEL_RANKER_AND_RISK_20261029.zip",
+  "source_zip_sha256": "0185fa29efeb9f1b4ae9cbd4ad61f594b68f6ff3aee056f30bddf50aa9e85b12",
+  "promotion": false
+}
