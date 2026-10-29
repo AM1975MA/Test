@@ -1,0 +1,29 @@
+name: EU165 native source export (research branch only)
+on:
+  push:
+    branches:
+      - research/eu165-v2v3-execution-20261029
+    paths:
+      - .github/workflows/eu165-source-export.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create source archive
+        shell: bash
+        run: |
+          mkdir -p archive
+          cp -a "etf-trader-v3 corrected/fullstack_legacy" archive/fullstack_legacy
+          cp -a "etf-trader-v3 corrected/src" archive/v3_src
+          find archive -type f | wc -l
+          tar -czf eu165-native-sources.tar.gz archive
+      - name: Upload source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: eu165-native-source-tree
+          path: eu165-native-sources.tar.gz
+          retention-days: 7
