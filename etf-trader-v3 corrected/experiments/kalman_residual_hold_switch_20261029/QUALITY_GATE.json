@@ -1,0 +1,30 @@
+{
+  "scope": "EU155 frozen 2026-10-27",
+  "date": "2026-10-29",
+  "signals": 101,
+  "etfs": 155,
+  "trading_days": 2076,
+  "dates": [
+    "2018-02-01",
+    "2026-07-01"
+  ],
+  "annual_oos_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "lookahead_prefix_test": true,
+  "label_maturity_gate": true,
+  "dividend_adjustment_certified": false,
+  "executable_spreads_certified": false,
+  "survivorship_free": false,
+  "monthly_top5": true,
+  "commission_one_way": 0.001,
+  "original_b0_nav_max_abs_difference": 0.0023507076894542234,
+  "native_v2_v3_multi_year_test": false,
+  "production_changed": false,
+  "artifact_sha256": "57a1f69a57523b06ba9bd5fe6580dc1bfec28dca97e7370fd69ea5bd47e1b6dc"
+}
