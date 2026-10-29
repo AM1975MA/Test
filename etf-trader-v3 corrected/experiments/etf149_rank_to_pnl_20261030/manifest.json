@@ -1,0 +1,15 @@
+{
+  "analysis_date": "2026-10-30",
+  "inputs_sha256": {
+    "prices": "29d63efc647f113d6fb1aa9ade57983a711e78bb3b375d556fdcb340504f2be2",
+    "v2_scores": "c81ffc723572c6218638f925e1d696896876067fc2f6a10d15312325d17a70ee",
+    "ridge_scores": "1bfd21d20ebb3377cd6c90d4ae1f7586257ea9abeeded12d741b589f49b82373",
+    "frozen_weights": "13c66a452bb5e9c75c5704a83bac551970b39d37ec2ec4eb8f9d88335d25b616"
+  },
+  "n_etfs": 149,
+  "models": {"RIDGE_2026": 44, "V2_255": 102},
+  "common_months": 42,
+  "no_training_or_parameter_search": true,
+  "prices_last_date": "2026-10-23",
+  "research_contamination": "Historical data reused in prior model search; descriptive audit, NOT independent OOS."
+}
