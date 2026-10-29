@@ -1,0 +1,5 @@
+period,months,wins_excess_vs_eligible,mean_monthly_excess_pp,bootstrap_low_pp,bootstrap_high_pp,mean_selected_return_percentile,bank_slots
+2018-2026,101,59,0.2444,-0.3922,0.9357,0.5402,139
+2018-2024,84,48,-0.0198,-0.4939,0.4229,0.5130,74
+2025,12,10,3.3646,2.5293,4.1998,0.8076,57
+2026_JAN_MAY,5,1,-2.8041,,,0.3543,8
