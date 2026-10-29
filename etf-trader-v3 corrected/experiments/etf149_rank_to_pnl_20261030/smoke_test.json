@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-30",
+  "scenario": "Isolated directory with only the price ZIP plus repository-frozen score/holdings CSVs; original V2/Ridge model ZIPs and strategy_target_weights.npz absent",
+  "result": "PASS",
+  "score_source_lines": {
+    "v2_255_frozen_scores.csv": 15199,
+    "ridge_frozen_scores.csv": 6557,
+    "ridge_original_top15_holdings.csv": 661
+  },
+  "exact_reproduced_files": {
+    "monthly_rank_and_pnl.csv": 146,
+    "ic_vs_realized_pnl.csv": 5,
+    "equal_k_summary.csv": 12,
+    "score_quintile_summary.csv": 10
+  },
+  "script_runner_requires": [
+    "numpy",
+    "pandas",
+    "scipy"
+  ],
+  "price_snapshot_sha256": "29d63efc647f113d6fb1aa9ade57983a711e78bb3b375d556fdcb340504f2be2",
+  "note": "Historical calculation reproduction only, not a new prospective validation of investment performance."
+}
