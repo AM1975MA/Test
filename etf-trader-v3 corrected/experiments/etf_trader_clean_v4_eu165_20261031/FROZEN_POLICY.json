@@ -1,0 +1,23 @@
+{
+  "strategy": "ETF_TRADER_CLEAN_V4",
+  "date": "2026-10-31",
+  "status": "RESEARCH_ONLY",
+  "universe": "EU165 European-listed UCITS",
+  "pit_pool": "union of 500 PIT monthly baskets",
+  "score_percentiles": {
+    "V3_PAIR25_HYBRID": 0.6,
+    "V2_FULL_HYBRID": 0.25,
+    "MOM252": 0.15
+  },
+  "max_positions": 5,
+  "keep_if_rank_at_most": 7,
+  "weighting": "inverse vol 63 causal closes",
+  "max_single_holding_weight": 0.35,
+  "half_exposure_if_EXSA_below_MA200": true,
+  "execution": "actual next Open",
+  "cost_one_way": 0.001,
+  "scored_years": "2019-2026",
+  "primary_evaluation": "2019-2024",
+  "source_native_rankers_refitted": false,
+  "production_changed": false
+}
