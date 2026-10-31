@@ -1,0 +1,90 @@
+{
+  "scope": {
+    "unique_markdown_versions_indexed": 667,
+    "markdown_versions_with_targeted_critical_review": 42,
+    "coverage_limit": "Targeted reading may concern selected relevant sections. Not all reports, all code, all binaries or all Git history critically reviewed. Inventory is not substantive validation. Six V5 source scripts also inspected; independent numeric checks separately enumerated.",
+    "numeric_note": "The 90 V5 predictive summary checks include 87 numeric means and 3 consistently unavailable alpha-IC entries for the factor-only model."
+  },
+  "files": [
+    {
+      "path": "ARTIFACT_GUIDE.md",
+      "bytes": 493,
+      "sha256": "e088d44aca3215dfaa2114394730a01d99fd53a16cc31d2fdcc460e5e59436cf"
+    },
+    {
+      "path": "MARKDOWN_CATALOG.csv",
+      "bytes": 239314,
+      "sha256": "377124a7beb5500d4b60b25534eb7d09d3669340bca6879be252ecb8af5792eb"
+    },
+    {
+      "path": "REPORT_IT.md",
+      "bytes": 21381,
+      "sha256": "0c692d90618280c5f14d7ef28e5e2466b3d79edbad3aa75e6d00552917f5d5bc"
+    },
+    {
+      "path": "REVIEW_COVERAGE.json",
+      "bytes": 548,
+      "sha256": "41224946dd15cbd0c9ace2981881e679130d41348b5601ca1fad85484f81a341"
+    },
+    {
+      "path": "SOURCE_REVIEW.csv",
+      "bytes": 16302,
+      "sha256": "8a50815a4633f5eefb3e534eda956097de2a9b11a467bce9fc6345585b2977ea"
+    },
+    {
+      "path": "audit_checks.py",
+      "bytes": 8013,
+      "sha256": "7318fe04756392626d36e10f12c5503931ac147b55bd3f96d6d8d94821d320b3"
+    },
+    {
+      "path": "checks/SUMMARY.json",
+      "bytes": 879,
+      "sha256": "dd3107079b866890930dea6b0529d9e32b36d079979038bc27e3cb1f99a1f631"
+    },
+    {
+      "path": "checks/blob_integrity.csv",
+      "bytes": 238095,
+      "sha256": "7565e5f96e69dbb20735f117e82c0794cf381cfef6137b1fe85af3f9d0025d59"
+    },
+    {
+      "path": "checks/branch_inventory.csv",
+      "bytes": 27634,
+      "sha256": "bda6ef093117ad1428b295dac88309327c135029b744ecd861c420b6b1fd6fdb"
+    },
+    {
+      "path": "checks/equal_k_reconciliation.csv",
+      "bytes": 1671,
+      "sha256": "de9fed75f68bcf7398bdc71887dfa959af8194a1c8833fedbb5a58ce669fccd8"
+    },
+    {
+      "path": "checks/v5_adapter_probe.json",
+      "bytes": 291,
+      "sha256": "1a38fad90d52356c5dde20c1cd2f509256b1f3d1f255286f7861a5dc73be8798"
+    },
+    {
+      "path": "checks/v5_independent_block_bootstrap.csv",
+      "bytes": 639,
+      "sha256": "04537c691a27369bdabb4a4083adebc283b5728e2ba3d44bafa260ffedce4cd4"
+    },
+    {
+      "path": "checks/v5_label_maturity_checked.csv",
+      "bytes": 4776,
+      "sha256": "94808ee4b7824f69a6d0b9c3c4afddfd29d9def7a9ac5dcfe6311bcaeef7daa4"
+    },
+    {
+      "path": "checks/v5_nav_reconciliation.csv",
+      "bytes": 13116,
+      "sha256": "c9e09c16e5af5c716adaccc1bcefeceb7da74abd3d271472b12f20cb58623a17"
+    },
+    {
+      "path": "checks/v5_predictive_means_reconciliation.csv",
+      "bytes": 8910,
+      "sha256": "e1b1ce760c6fdfb6e91aca10bcdff88a6e5ad9a490dab57be3e785b1a3c236f7"
+    },
+    {
+      "path": "input_manifest.json.gz",
+      "bytes": 9926699,
+      "sha256": "3e02e7cd2ee630221a591a0a9858fd9456ccc73a93ef83566a7b8d6e6793bdfd"
+    }
+  ]
+}
