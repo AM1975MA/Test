@@ -1,0 +1,17 @@
+{
+  "paths": 112,
+  "daily_intervals_checked": 210504,
+  "metrics_recomputed": 4368,
+  "maximum_nav_error": 3.552713678800501e-15,
+  "maximum_metric_error": 2.2026824808563106e-13,
+  "unobserved_executions": 0,
+  "previous_paths_reexecuted_unchanged": 72,
+  "real_prefix_checks": 8,
+  "source_chronology": [
+    {"market": "EU", "forecast_rows": 13781, "source_after_signal": 0},
+    {"market": "USA", "forecast_rows": 13410, "source_after_signal": 0}
+  ],
+  "new_model_fits": 0,
+  "date_convention": "primary uses actual next-Open valuation date, excludes terminal flat observation; legacy-decision-label metric separately retained",
+  "scope": "synthetic alias audit plus capital transition; not certified real economic group map, survival/time-to-event predictor or live execution"
+}
