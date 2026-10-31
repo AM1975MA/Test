@@ -1,0 +1,29 @@
+{
+  "research_date": "2026-10-31",
+  "universe": "EU165",
+  "factor_proxies": [
+    "F4",
+    "F9"
+  ],
+  "instrumentsF4": 4,
+  "instrumentsF9": 9,
+  "factor_months": 102,
+  "factor_etf_month_rows": 873,
+  "annual_oos_fit_count": 72,
+  "first_fit": 2021,
+  "last_fit": 2026,
+  "training_2021_months": 33,
+  "horizons": [
+    21,
+    42,
+    63
+  ],
+  "prices_total_return_certified": false,
+  "delisted_etfs_included": false,
+  "selection_9_factors_posthoc": true,
+  "prediction_alpha_improvement_validated": false,
+  "has_independent_holdout": false,
+  "nav_frozen_reference_max_diff": 0,
+  "production_changed": false,
+  "primary_archive_sha256": "2c3f15e1c62efca0be6fdd2f37112c8f4d40e5d712ed6a45a6abe8521c331e51"
+}
