@@ -1,0 +1,73 @@
+name: Verify frozen repository evidence 20261031
+on:
+  push:
+    branches: [audit-repository-evidence-20261031]
+    paths: ['.github/workflows/audit-evidence-verify-20261031.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit-repository-evidence-20261031
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy==2.3.5 pandas==2.2.3
+      - uses: actions/download-artifact@v4
+        with:
+          name: repository-evidence-20261031
+          run-id: 41157260582
+          github-token: ${{ github.token }}
+          path: /tmp/audit-download
+      - name: Restore immutable evidence and selected source trees
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,zipfile,gzip
+          z=Path('/tmp/audit-download/repository-evidence.zip')
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='f4633169e5dd1f510fad4be123fe064f17119f59bb0c1ab4059b602d59ba6d53'
+          root=Path('/tmp/etf-audit');ev=root/'evidence';ev.mkdir(parents=True)
+          with zipfile.ZipFile(z) as a:
+              assert all(not Path(n).is_absolute() and '..' not in Path(n).parts for n in a.namelist())
+              a.extractall(ev)
+          m=json.loads((ev/'manifest.json').read_text())
+          selected={'refs/remotes/origin/main':root/'main','refs/remotes/origin/research/etf-v5-hierarchical-factor-forecast-eu165-20261031':root/'branch_sources'/'v5'}
+          for ref in m['refs']:
+              if ref['ref'] not in selected:continue
+              dest=selected[ref['ref']]
+              for e in ref['entries']:
+                  p=Path(e['path']);assert not p.is_absolute() and '..' not in p.parts
+                  src=ev/'blobs'/e['sha']
+                  if src.exists():
+                      out=dest/p;out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(src.read_bytes())
+          out=Path('audit/20261031/input_manifest.json.gz')
+          out.parent.mkdir(parents=True,exist_ok=True)
+          out.write_bytes(gzip.compress((ev/'manifest.json').read_bytes(),compresslevel=9,mtime=0))
+          PY
+      - name: Independently verify hashes and reported arithmetic
+        env:
+          AUDIT_EVIDENCE_ROOT: /tmp/etf-audit
+        run: python audit/20261031/audit_checks.py
+      - name: Preserve audit outputs only, not original strategy files
+        run: |
+          cp -r /tmp/etf-audit/checks audit/20261031/
+          git config user.name 'repository-audit[bot]'
+          git config user.email 'repository-audit@users.noreply.github.com'
+          git add -- audit/20261031/checks audit/20261031/input_manifest.json.gz
+          git diff --cached --quiet && exit 0
+          git commit -m 'audit: preserve verified branch inventory and independent arithmetic checks'
+          git fetch origin audit-repository-evidence-20261031
+          git rebase origin/audit-repository-evidence-20261031
+          git push origin HEAD:audit-repository-evidence-20261031
+      - uses: actions/upload-artifact@v4
+        with:
+          name: independent-audit-checks-20261031
+          path: audit/20261031/
+          retention-days: 30
+          if-no-files-found: error
