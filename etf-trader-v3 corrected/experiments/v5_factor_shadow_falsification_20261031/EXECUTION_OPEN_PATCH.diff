@@ -1,0 +1,9 @@
+--- a/source_v4/run_v4_clean.py
++++ b/source_v4/run_v4_clean.py
+@@ -115,7 +115,7 @@
+             # Choose only from as-of historically eligible pool and executable quotes.
+             base=np.array([idx[t] for t in pool if t in idx and
+                     np.isfinite(o[idx[t]]) and o[idx[t]]>0 and
+-                    np.isfinite(c[idx[t]]) and c[idx[t]]>0 and
++                    np.isfinite(mark[idx[t]]) and mark[idx[t]]>0 and
+                     np.isfinite(sc.loc[t,[m+'_PCT' for m in ['MOM252','V2_BASELINE','V3_PAIR127','V3_TAIL_RIDGE45']]].to_numpy(float)).all()],int) if gate else np.array([],int)
