@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-31",
+  "universe": "EU165 European-listed UCITS",
+  "from": "2021-02-01",
+  "to": "2024-12-31",
+  "matched_monthly_statistical_units": 47,
+  "block_months": 6,
+  "replications": 5000,
+  "conditional_clones": [
+    "GEO",
+    "TRACK4",
+    "TRACK9",
+    "STYLE",
+    "STATIC_US",
+    "STATIC_TECH"
+  ],
+  "independent_proxy_policies": [
+    "FACTOR4_EQUAL",
+    "FACTOR4_MOM252_TOP2",
+    "FACTOR9_EQUAL",
+    "FACTOR9_MOM252_TOP3",
+    "FACTOR9_MOM126_TOP3",
+    "FACTOR9_MOM63_TOP3"
+  ],
+  "main_original_v5_cagr": 0.220256,
+  "tracking4_cagr": 0.179921,
+  "tracking4_dd": -0.096724,
+  "independent_factor9_equal_cagr": 0.1612,
+  "interval_v5_minus_tracking4_annual_log_pp": [
+    -4.963,
+    12.335
+  ],
+  "same_day_close_corrected_replay_max_nav_delta": 0,
+  "coincident_source_tickers_STYLE_2023_mean_out_of5": 4.916667,
+  "independent_universe_not_hypothesis_mined": false,
+  "total_returns_certified": false,
+  "survivorship_free": false,
+  "pristine_holdout": false,
+  "original_main_changed": false,
+  "original_input_sha256": "333286dc00398f39ebcebec984919b3c0bdb2234024f12595d24b7997048b465",
+  "new_artifact_sha256": "8eafeda30fb305e913ec93c3fb8603dee5cb47c4ca31096f292786c88cbd04e6"
+}
