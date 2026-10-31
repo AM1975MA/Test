@@ -1,0 +1,21 @@
+# Opportunity lifecycle — focused diagnostic before a new decision model
+
+31 October 2026. User prioritizes capturing opportunities, assigning capital, and deciding when to persist or leave. Preserve paired USA149/EU165 verification and full uncertainty; no automatic rejection because an interval includes zero. This stage diagnoses the current CL01 decisions and defines the next research specification; it does NOT claim a newly improved strategy or execute live trading.
+
+## Why not repeat previous HOLD/SWITCH
+Read the archived 20261029 incremental-pairwise and Specialist V2 reports. They already test conditional return differences at 21/42/63, risk vetoes, buffering and persistence. Fixed prior-MOM incumbents, weak discrimination, restrictive vetoes and phase-sensitive holding periods limit those results. Renaming a meta-Ridge 'decision engine' is not innovation. The next action model must use the actual incumbent portfolio, marginal remaining payoff and capital changes, with honest post-selection uncertainty.
+
+## Immutable references and scope
+Use calendar-rebuilt CL01 forecasts from the paired-frontier delivery. Reproduce the CL01 original-weight and half-weight portfolios on both universes before interpreting actual incumbent states. No changes to rankers, protections, costs or execution in this diagnostic. Forecasts, raw prices and source hashes are retained. Legacy same-Open risk timing, survival and total-return limitations are not fixed or concealed by this task.
+
+## Questions fixed before diagnostic outcomes
+1. Opportunity discovery versus final selection. At each monthly signal build the union of Top5 Return, Top5 Hybrid, Top5 trailing momentum63 and Top5 momentum252, restricted to the same contemporaneous finite CL01 support. Compare observed future Top5 capture over21/42/63 local union sessions with baseline Top2, baseline TopK of equal shortlist size, and high-volatility TopK. No future return defines selection or eligibility. Wider shortlist recall alone is not alpha. Report missing evaluation labels and distinguish a hindsight ceiling from an executable rule.
+2. Capital assignment. For the same proposed pair, compare original relative weight versus50/50 on future fixed-horizon returns. Isolate selection from sizing; this is a static diagnostic, not a new compounded return. Check score gap, first-minus-second return and opportunity cost. Do not present a rank gap as probability.
+3. Persist or switch. At scheduled rebalance dates read actual held leader positions from the preceding execution-ledger row, not a hypothetical prior momentum leader. Match outgoing and incoming names by the contemporaneous score, never by future performance. Measure future replacement-minus-hold payoff at21/42/63 and exact standardized one-off sell/buy friction at10/30bp per side. Freeze hypothetical holdings over the diagnostic horizon; do not call this the counterfactual return of the whole stateful strategy. Separate open/reentry, continued names and replace decisions. Do not sum overlapping labels into CAGR.
+
+Signals and shortlisted sets use only information available by signal date. Diagnostic entry and exit require observed positive Open on the declared dates; missing outcomes remain missing, without substituting another winner. Prefix perturbation tests must leave decisions unchanged. Evaluation is historical and already researched, not a pristine holdout.
+
+## Reporting and next decision
+Primary diagnostic window is signals before2025 with fully observed outcomes; later data shown separately. Unit for uncertainty is calendar month, not ticker or overlapping pair; paired block bootstrap where useful. A high switch hit rate does not guarantee positive expected payoff, and negative average replacement value does not justify never switching. Preserve both signs and magnitude.
+
+Deliver observed bottlenecks and a versioned proposal for a stateful opportunity lifecycle model (discover, enter, retain/increase, reduce/replace), with explicit HOLD/CASH alternatives, partial switching, actual portfolio state, multiple horizons and independent risk constraints. No probability thresholds, model architecture or new performance is silently selected from this diagnostic. Implementation of the new action model is distinct from the diagnostic and must earn its improvement in both universes.
