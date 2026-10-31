@@ -24,4 +24,13 @@ Data: EU165 European-listed UCITS survivor-curated 2026 universe, 159 ticker his
 
 Full 209-entry standalone executable ZIP `ETF_TRADER_V5_GERARCHICA_EU165_20261031.zip` (31,989,538 bytes), SHA256 **333286dc00398f39ebcebec984919b3c0bdb2234024f12595d24b7997048b465**. Original 165 raw price histories, native per-ticker scores, PIT basket pool and historical V4 benchmark replay engine included with V5 source scripts, all OOS predictions, sample data, NAV/trade ledgers, bootstrap, uncertainty calibration and Italian report. ZIP CRC and script compilation verified; replay executed FROM portable package with exit 0.
 
-**NO PROMOTION**. Next gate is point-in-time factor data, meaningful distributional/conditional expected uplift of candidate vs endogenous incumbent and passive benchmark, plus as-yet-unseen chronological data; do not retune parameters based on best 2023–24 CAGR. 
+**NO PROMOTION**. Next gate is point-in-time factor data, meaningful distributional/conditional expected uplift of candidate vs endogenous incumbent and passive benchmark, plus as-yet-unseen chronological data; do not retune parameters based on best 2023–24 CAGR.
+
+## Files now actually committed in this research branch (31 October 2026)
+
+- All **six original V5 Python scripts** (`prepare_v5.py`, `fit_v5.py`, `evaluate_v5.py`, `replay_v5.py`, `diagnose_v5.py`, `calibrate_v5.py`). The repository copy of `diagnose_v5.py` fixes the original reference typo `ROOT` → `R`, without changing any reported numerical result.
+- `results/` holds **15 inspectable CSVs**, including the complete daily NAV (1,939 rows), complete trade ledger, monthly model predictive skill, annual maturity audit, bootstrap confidence intervals, ranker ablation, calibration and factor-loading attribution.
+- `RAPPORTO_IT.md`, `README_RUN.md`, and `MANIFEST.json` document all conclusions, execution commands, input-file hashes and qualifications.
+- **Not checked into Git:** original 165 OHLCV vendor files, frozen native-score data, other large binary inputs and full multihorizon predictions. The source-pinned **31.99MB ZIP** is attached to the ChatGPT study; its SHA256 is `333286dc00398f39ebcebec984919b3c0bdb2234024f12595d24b7997048b465`. Extract the ZIP to run the scripts without separately reconstructing inputs. Do not treat a browser-only ChatGPT sandbox URI as a durable GitHub asset.
+
+**No changes to default `main` or trading production; all historical results are exploratory and the V2/V3 score ablation is negative.**
