@@ -1,0 +1,7 @@
+FINISHED B_T1_H1 vintage 1 n_replays 64 seconds 11.26
+FINISHED B_T1_H1 vintage 2 n_replays 128 seconds 18.11
+FINISHED B_T1_H1 vintage 3 n_replays 192 seconds 24.93
+FINISHED R_T0_H1 vintage 1 n_replays 256 seconds 31.73
+FINISHED R_T0_H1 vintage 2 n_replays 320 seconds 38.54
+FINISHED R_T0_H1 vintage 3 n_replays 384 seconds 45.4
+ALL_DONE 384 45.51339364051819

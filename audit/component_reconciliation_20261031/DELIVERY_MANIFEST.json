@@ -1,0 +1,198 @@
+{
+  "commit_before_results": "ccd0e1a2e8c34217e243c7b0700ff6236be4afbb",
+  "run_id": "41160544978",
+  "complete_paths": 384,
+  "n_fit": 0,
+  "files": [
+    {
+      "path": "PROTOCOL.md",
+      "bytes": 4425,
+      "sha256": "53a9b18658e40b7c560cc44451263bd64310cd12b8251424f6cf8647d300aa5d"
+    },
+    {
+      "path": "analyze_reconciliation.py",
+      "bytes": 10925,
+      "sha256": "35f21af38fc385e64fd33a322563be26511beb82263a5673a703d20a56c898d5"
+    },
+    {
+      "path": "build_instrumented.py",
+      "bytes": 3019,
+      "sha256": "c5935101b82bb435ad284f8b84b1b3fbb5e20bcca2519e6778da0a1da99fb8ac"
+    },
+    {
+      "path": "engine_prepare.py",
+      "bytes": 4318,
+      "sha256": "e963fb70b7a820c781d8f8eed0cf7d03553ad915cbb2dc8f2b54365aef0c57d7"
+    },
+    {
+      "path": "inputs/CANONICAL_SOURCE.tar.gz",
+      "bytes": 54159,
+      "sha256": "5c843f648ffa93105620aaae6849c148696ac4b9cce514ed3ca6c4bb96d0b700"
+    },
+    {
+      "path": "inputs/MANIFEST.json",
+      "bytes": 775,
+      "sha256": "1ac066504f68094693c1f5bc37205f48b7ee2fdaab28467154e5e604fe2dc0c1"
+    },
+    {
+      "path": "inputs/compact21-tail-factorial-full.zip",
+      "bytes": 10838455,
+      "sha256": "f9877538d6e0b4b4deccf8c568540b4e4be1d9a1da18aeac0657360740979aea"
+    },
+    {
+      "path": "inputs/tail-only-allocation-counterfactual-full.zip",
+      "bytes": 12147095,
+      "sha256": "00dcd8ab6de984e989475e812187c683723da74627449bfad27778f214e1c829"
+    },
+    {
+      "path": "inputs/yfinance-repeatability-v1-raw.zip",
+      "bytes": 77881275,
+      "sha256": "fcc02918b3a42c3fecde273c4639ca4eed1b5f31e4b8c32aeea4c2a8e4c00f86"
+    },
+    {
+      "path": "instrumented_engine.py",
+      "bytes": 4449,
+      "sha256": "893eb1b08db058bd55122d8384156b988626aa978f7cbb69735716817f676d61"
+    },
+    {
+      "path": "reconcile_math.py",
+      "bytes": 1411,
+      "sha256": "73caaea7b2dc9f77092cc09d83586a212ca49df055d57fa4e2c01f85d17aa7d9"
+    },
+    {
+      "path": "results/ACCOUNTING_RECONCILIATION.csv",
+      "bytes": 1100,
+      "sha256": "188991eff16016e9e664e066b76c40685fe514d4b13f4787c8dae9daed304224"
+    },
+    {
+      "path": "results/ALL_384_POLICY_PATHS.zip",
+      "bytes": 36473522,
+      "sha256": "eda86f9aac140174f1fd595312cf16d748a20c85a2f5bba305dd4be4f0d81b57"
+    },
+    {
+      "path": "results/ANALYSIS.txt",
+      "bytes": 3570,
+      "sha256": "60849b80aabf83c1f0ddf4605efc0af94616b785da31ffcaee3a4a55e8774df0"
+    },
+    {
+      "path": "results/ARCHIVED_51_PATHS_RECONCILIATION.csv",
+      "bytes": 6128,
+      "sha256": "c77e5fd55cf1695ddcd8f8710a75e64636f75d4e42e372d1db6731e9f5fe93ee"
+    },
+    {
+      "path": "results/ATTRIBUTION_CONFIDENCE_INTERVALS.csv",
+      "bytes": 7695,
+      "sha256": "9888575c9217c7564c0c988f161e69f9b006d34bbc698ee880470301cf8a28df"
+    },
+    {
+      "path": "results/DECISION_TO_EXECUTION_LEDGER.csv",
+      "bytes": 777820,
+      "sha256": "ab9a0fc9125052be5abadb497a355da100f2d328e7fc58312b9d67496c9dd032"
+    },
+    {
+      "path": "results/DRAWDOWN_SHAPLEY.csv",
+      "bytes": 477,
+      "sha256": "9c6e526992be614cc3addd9cbde4f19d9c61a5db96971e2c383529d1a43d2e04"
+    },
+    {
+      "path": "results/ENVIRONMENT.txt",
+      "bytes": 287,
+      "sha256": "af2746ba26181d817fb1746605ee54f57b0eaa276ddd815753a3c8e1cfa58a8e"
+    },
+    {
+      "path": "results/EXACT_FINAL_BRIDGE.csv",
+      "bytes": 237,
+      "sha256": "c9648d6391ca90acecba9b349cabe548ed1ceae9b270ed1117d227bd62eb50be"
+    },
+    {
+      "path": "results/FINAL_CONTRAST_MONTHLY.csv",
+      "bytes": 5469,
+      "sha256": "a8c4f8d4dd047d6be2f20a7e36af9e46b109e2d876bb27b3911499526343501d"
+    },
+    {
+      "path": "results/FINAL_CONTRAST_YEARLY.csv",
+      "bytes": 960,
+      "sha256": "c48e0a93cdcf2a9302172318a580003732c13b533b5e5111dd26aa7e2e310a47"
+    },
+    {
+      "path": "results/LEDGER_COLUMNS.json",
+      "bytes": 437,
+      "sha256": "bf3fe3f6daea9ac0d2f036ad46f3f8ea2d0dd409377d5d4d294376585797d3f7"
+    },
+    {
+      "path": "results/MEDIATION_DAILY_LOG.csv",
+      "bytes": 181582,
+      "sha256": "06958227e7131f42b5aa16d22eb5183aa6f232c5aab691e8530f79a2646cd7ee"
+    },
+    {
+      "path": "results/PARITY.json",
+      "bytes": 2252,
+      "sha256": "18ee8d4212493bbaaa8bf11bf3e6f2e2a51a742fa3beb87148e9da8a48062aec"
+    },
+    {
+      "path": "results/POLICY_DAILY_SHAPLEY_B_T1_H1.csv",
+      "bytes": 318866,
+      "sha256": "636f41bf944d0e6a5f445e727f08f39ab4a437a0a25cffc906992c82ce811d10"
+    },
+    {
+      "path": "results/POLICY_DAILY_SHAPLEY_R_T0_H1.csv",
+      "bytes": 318437,
+      "sha256": "b148203e1da62668b9fcf7fb83ba68f5ef03de43eeaa831560c43479005d9d24"
+    },
+    {
+      "path": "results/POLICY_FACTORIAL.csv",
+      "bytes": 65484,
+      "sha256": "f89feca05246c139545b49fd9c234db57df7404b527d8b2fab206d4ae0ac410c"
+    },
+    {
+      "path": "results/POLICY_LEAVE_ONE_OUT.csv",
+      "bytes": 2501,
+      "sha256": "6d85f94081e01657d4c7d86c4f6fb508f579cbacfd4d080ee5f7487944b09c22"
+    },
+    {
+      "path": "results/POLICY_YEAR_ATTRIBUTION.csv",
+      "bytes": 7253,
+      "sha256": "7c153719421a077929aade8e56d938d149d60a6c788dc7ddfca9a744ce0fffff"
+    },
+    {
+      "path": "results/REPLAYS.txt",
+      "bytes": 359,
+      "sha256": "14b60cc1bc2b1b2ed46f4e1a9d3227b7ca0ea227ffd34899d8d49ce2e5d60f73"
+    },
+    {
+      "path": "results/RUN_MANIFEST.json",
+      "bytes": 1986,
+      "sha256": "71842a0a4e36d4a53c97b5b670951cb41bc08c940dda2b323f82e4b6c5d1324f"
+    },
+    {
+      "path": "results/SCORE_FACTORIAL_RECOMPUTED.csv",
+      "bytes": 2215,
+      "sha256": "c1db02b6ebd7041fb09678019955a260e25eaaedba4de0e00fc20073dbb4b18d"
+    },
+    {
+      "path": "results/SCORE_INTERACTIONS.csv",
+      "bytes": 1332,
+      "sha256": "c77bc2f5d7aafce7ab046681927444fcf10f847a880d2243eb9c5a2222934ce2"
+    },
+    {
+      "path": "results/TESTS.txt",
+      "bytes": 98,
+      "sha256": "6b3d1f0242a91d3f2a4c4ae7e79027a393c4643c11eb038779122863bbd61ae0"
+    },
+    {
+      "path": "results/VERIFIED_SUMMARY.json",
+      "bytes": 917,
+      "sha256": "5faa16bc3c886cb034447d947fd8f4ebe8e65e6b6fa5643d1e796490befe7f64"
+    },
+    {
+      "path": "run_policy_factorial.py",
+      "bytes": 4859,
+      "sha256": "98d01f75ed6103dbac1a8bb962910345f0037e71d7d872bcebd8e0932da3b171"
+    },
+    {
+      "path": "test_reconciliation.py",
+      "bytes": 2048,
+      "sha256": "7052172885f389323e4f26d9eb73301a89dd0fe2a3e25a62a6de5c1b3491d615"
+    }
+  ]
+}

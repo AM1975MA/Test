@@ -1,0 +1,42 @@
+{
+  "archived_paths_recomputed": 51,
+  "new_policy_replays": 384,
+  "raw_revisions": 3,
+  "sessions": 2366,
+  "first": "2017-02-01",
+  "last": "2026-07-01",
+  "max_archived_cagr_error": 1.1102230246251565e-16,
+  "max_archived_dd_error": 2.220446049250313e-16,
+  "max_shapley_daily_identity_error": 5.551115123125783e-17,
+  "all_on_replays_verified": 6,
+  "new_model_fits": 0,
+  "annualization_convention": "252/2366; initial NAV=1 included; last flat observation retained exactly as canonical engine",
+  "time_label_warning": "Canonical E[k] values next-open wealth for decision date k; ledger explicitly retains next valuation date. Monthly/yearly attribution follows canonical decision-date label, not brokerage settlement accounting.",
+  "statistical_status": "Exploratory historical paired time-block inference; vintage mean first; simultaneous intervals are per declared family, not across all prior research."
+}
+                           family                       component  annual_log_pp  ci95_low  ci95_high
+               BASE_tail_packages                   TITANIUM_TAIL      -0.866996 -6.603418   4.972719
+               BASE_tail_packages                  HYBRID_PACKAGE       7.398366 -7.570372  21.757485
+             RETURN_tail_packages                   TITANIUM_TAIL      -2.295297 -8.449850   4.031877
+             RETURN_tail_packages                  HYBRID_PACKAGE      18.753292  1.639601  36.027245
+BASE_full_to_RETURN_without_ridge         RETURN_RANK_REPLACEMENT       4.867601 -4.640209  14.331196
+BASE_full_to_RETURN_without_ridge            REMOVE_TITANIUM_TAIL       0.729809 -2.711036   4.005072
+         FULL_three_score_changes         RETURN_RANK_REPLACEMENT      -1.174690 -8.746495   6.517829
+         FULL_three_score_changes                   TITANIUM_TAIL      -1.945974 -6.741439   2.812964
+         FULL_three_score_changes                  HYBRID_PACKAGE      12.711002 -1.766305  27.048005
+       TAIL_only_to_RETURN_Hybrid                       SELECTION      12.248751  1.869746  22.652802
+       TAIL_only_to_RETURN_Hybrid               WEIGHT_AND_MARGIN      -0.819990 -2.825064   1.178572
+            mediation_interaction              SELECTION_x_WEIGHT      -1.299453 -5.031213   2.371743
+                   policy_B_T1_H1                   CONCENTRATION      -1.760383 -6.329249   2.835071
+                   policy_B_T1_H1                        DD_GROSS      -0.186256 -2.067947   1.933775
+                   policy_B_T1_H1                              V6       0.069794 -0.003405   0.195405
+                   policy_B_T1_H1                    SYSTEMIC_GAP       2.778414 -1.152474   8.875041
+                   policy_B_T1_H1                           STOPS       1.078194 -2.208980   6.073691
+                   policy_B_T1_H1                           COSTS      -1.260574 -1.382052  -1.152276
+                   policy_R_T0_H1                   CONCENTRATION       0.668294 -4.243457   5.618133
+                   policy_R_T0_H1                        DD_GROSS      -0.786145 -2.558285   0.933155
+                   policy_R_T0_H1                              V6       0.045736  0.000389   0.106563
+                   policy_R_T0_H1                    SYSTEMIC_GAP       2.162428 -1.918684   7.843759
+                   policy_R_T0_H1                           STOPS       0.752769 -2.687744   5.772780
+                   policy_R_T0_H1                           COSTS      -1.232791 -1.375138  -1.105663
+          final_strategy_contrast RETURN_no_RIDGE_minus_BASE_full       5.597410 -4.116437  15.134615

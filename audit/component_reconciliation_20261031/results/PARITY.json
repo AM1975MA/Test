@@ -1,0 +1,122 @@
+[
+  {
+    "arm": "B_T1_H1",
+    "vintage": 1,
+    "original_vs_archive": {
+      "dates": 0.0,
+      "equity": 0.0,
+      "turnover": 0.0,
+      "d1": 0.0,
+      "d2": 0.0,
+      "weight1": 0.0,
+      "margin": 0.0,
+      "alt_idx": 0.0
+    },
+    "instrumented_vs_original": {
+      "equity": 0.0,
+      "turnover": 0.0,
+      "gross": 0.0,
+      "alt_weight": 0.0
+    }
+  },
+  {
+    "arm": "B_T1_H1",
+    "vintage": 2,
+    "original_vs_archive": {
+      "dates": 0.0,
+      "equity": 0.0,
+      "turnover": 0.0,
+      "d1": 0.0,
+      "d2": 0.0,
+      "weight1": 0.0,
+      "margin": 0.0,
+      "alt_idx": 0.0
+    },
+    "instrumented_vs_original": {
+      "equity": 0.0,
+      "turnover": 0.0,
+      "gross": 0.0,
+      "alt_weight": 0.0
+    }
+  },
+  {
+    "arm": "B_T1_H1",
+    "vintage": 3,
+    "original_vs_archive": {
+      "dates": 0.0,
+      "equity": 0.0,
+      "turnover": 0.0,
+      "d1": 0.0,
+      "d2": 0.0,
+      "weight1": 0.0,
+      "margin": 0.0,
+      "alt_idx": 0.0
+    },
+    "instrumented_vs_original": {
+      "equity": 0.0,
+      "turnover": 0.0,
+      "gross": 0.0,
+      "alt_weight": 0.0
+    }
+  },
+  {
+    "arm": "R_T0_H1",
+    "vintage": 1,
+    "original_vs_archive": {
+      "dates": 0.0,
+      "equity": 0.0,
+      "turnover": 0.0,
+      "d1": 0.0,
+      "d2": 0.0,
+      "weight1": 0.0,
+      "margin": 0.0,
+      "alt_idx": 0.0
+    },
+    "instrumented_vs_original": {
+      "equity": 0.0,
+      "turnover": 0.0,
+      "gross": 0.0,
+      "alt_weight": 0.0
+    }
+  },
+  {
+    "arm": "R_T0_H1",
+    "vintage": 2,
+    "original_vs_archive": {
+      "dates": 0.0,
+      "equity": 0.0,
+      "turnover": 0.0,
+      "d1": 0.0,
+      "d2": 0.0,
+      "weight1": 0.0,
+      "margin": 0.0,
+      "alt_idx": 0.0
+    },
+    "instrumented_vs_original": {
+      "equity": 0.0,
+      "turnover": 0.0,
+      "gross": 0.0,
+      "alt_weight": 0.0
+    }
+  },
+  {
+    "arm": "R_T0_H1",
+    "vintage": 3,
+    "original_vs_archive": {
+      "dates": 0.0,
+      "equity": 0.0,
+      "turnover": 0.0,
+      "d1": 0.0,
+      "d2": 0.0,
+      "weight1": 0.0,
+      "margin": 0.0,
+      "alt_idx": 0.0
+    },
+    "instrumented_vs_original": {
+      "equity": 0.0,
+      "turnover": 0.0,
+      "gross": 0.0,
+      "alt_weight": 0.0
+    }
+  }
+]

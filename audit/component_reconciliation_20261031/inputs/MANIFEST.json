@@ -1,0 +1,25 @@
+{
+  "frozen_source_commit": "13443836649d0f107d2063eb7acc1039135d6e9b",
+  "files": [
+    {
+      "name": "CANONICAL_SOURCE.tar.gz",
+      "bytes": 54159,
+      "sha256": "5c843f648ffa93105620aaae6849c148696ac4b9cce514ed3ca6c4bb96d0b700"
+    },
+    {
+      "name": "compact21-tail-factorial-full.zip",
+      "bytes": 10838455,
+      "sha256": "f9877538d6e0b4b4deccf8c568540b4e4be1d9a1da18aeac0657360740979aea"
+    },
+    {
+      "name": "tail-only-allocation-counterfactual-full.zip",
+      "bytes": 12147095,
+      "sha256": "00dcd8ab6de984e989475e812187c683723da74627449bfad27778f214e1c829"
+    },
+    {
+      "name": "yfinance-repeatability-v1-raw.zip",
+      "bytes": 77881275,
+      "sha256": "fcc02918b3a42c3fecde273c4639ca4eed1b5f31e4b8c32aeea4c2a8e4c00f86"
+    }
+  ]
+}
