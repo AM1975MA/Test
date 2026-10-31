@@ -1,0 +1,18 @@
+{
+  "paths": 92,
+  "daily_accounting_rows": 172914,
+  "metric_values": 3588,
+  "max_metric_error": 2.220446049250313e-15,
+  "max_revaluation_error": 3.552713678800501e-15,
+  "max_accumulation_error": 1.2256862191861728e-13,
+  "real_prefix_checks": 6,
+  "new_direct_model_fits": 0,
+  "scope": "Inherited simulator remains uncertified for real execution, total return and surviving universe; author self-review only.",
+  "utility_paths_exactly_equal_baseline": 32,
+  "new_tests_passed": 26,
+  "parent_scoped_tests_passed": 23,
+  "exact_parent_parity_paths": 28,
+  "max_parent_parity_error": 0.0,
+  "sequential_calibration_fits": 720,
+  "protocol_commit": "e0f4a02517dd8a93254dfd487c4f401dd1d351c5"
+}
