@@ -1,0 +1,14 @@
+{
+  "static_switch_rows_checked": 2586,
+  "distinct_actual_replacements_verified": 443,
+  "max_cash_accounting_delta_error": 2.0990154059319366e-16,
+  "sizing_rows_checked": 518,
+  "max_sizing_arithmetic_error": 1.249000902703301e-16,
+  "actual_holding_history_verified": true,
+  "final_flat_day_excluded": true,
+  "late_payoff": [
+    {"market":"EU","n":18,"median_continuous_intervals":21.0,"left_before21":1,"left_before63":18},
+    {"market":"USA","n":6,"median_continuous_intervals":20.0,"left_before21":4,"left_before63":5}
+  ],
+  "caveat": "Selling before later hypothetical payoff is not necessarily a mistake; a replacement may do better, and risk/execution changes matter. No oracle timing strategy is claimed."
+}

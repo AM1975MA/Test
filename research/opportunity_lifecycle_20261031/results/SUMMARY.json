@@ -1,0 +1,17 @@
+{
+  "markets": ["EU", "USA"],
+  "reference_replays": 4,
+  "new_predictive_models": 0,
+  "new_strategy_variants": 0,
+  "reference_aggregate_metrics_checked": 156,
+  "max_reference_metric_error": 1.9428902930940242e-16,
+  "opportunity_rows": 534,
+  "sizing_rows": 534,
+  "switch_rows_including_cost_horizon_weight_repeats": 2658,
+  "decision_events_including_two_weights": 356,
+  "horizon_reversals": [
+    {"market":"EU","pairs":81,"negative21_positive63":18,"positive21_negative63":10,"positive_both":29,"negative_both":24},
+    {"market":"USA","pairs":72,"negative21_positive63":6,"positive21_negative63":7,"positive_both":31,"negative_both":28}
+  ],
+  "method": "Common identical replacement pairs across21/42/63; labels matured before window cutoff. Means first average pairs within calendar month. Static holding-at-horizon outcomes, not portfolio CAGR. Block bootstrap6 and3 months,10000,seed20261031,exploratory only."
+}
