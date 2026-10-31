@@ -1,13 +1,16 @@
 {
-  "commit_before_results": "ccd0e1a2e8c34217e243c7b0700ff6236be4afbb",
-  "run_id": "41160544978",
-  "complete_paths": 384,
-  "n_fit": 0,
+  "replay_run_id": 41160544978,
+  "scope": "All unique 384 policy paths plus 51 archived arithmetic checks; no new model fitting and no prospective validation.",
   "files": [
     {
       "path": "PROTOCOL.md",
       "bytes": 4425,
       "sha256": "53a9b18658e40b7c560cc44451263bd64310cd12b8251424f6cf8647d300aa5d"
+    },
+    {
+      "path": "REPORT_IT.md",
+      "bytes": 19119,
+      "sha256": "eef4b78c610135ccbfc193b4ba0a71dd46a16a7841d79ea756b511d17ea2d6af"
     },
     {
       "path": "analyze_reconciliation.py",
@@ -60,6 +63,11 @@
       "sha256": "73caaea7b2dc9f77092cc09d83586a212ca49df055d57fa4e2c01f85d17aa7d9"
     },
     {
+      "path": "render_bridge.py",
+      "bytes": 1877,
+      "sha256": "939dea6c794e8faae04b8f1bf792aba97f165e42dcd18d001bbac59296602f03"
+    },
+    {
       "path": "results/ACCOUNTING_RECONCILIATION.csv",
       "bytes": 1100,
       "sha256": "188991eff16016e9e664e066b76c40685fe514d4b13f4787c8dae9daed304224"
@@ -83,6 +91,16 @@
       "path": "results/ATTRIBUTION_CONFIDENCE_INTERVALS.csv",
       "bytes": 7695,
       "sha256": "9888575c9217c7564c0c988f161e69f9b006d34bbc698ee880470301cf8a28df"
+    },
+    {
+      "path": "results/CONTRIBUTION_BRIDGE.png",
+      "bytes": 128714,
+      "sha256": "e426f7ebc0dc764b38a5e8a1b0afb2a685fb10f5cb3d5f5c84b4a1ef4063b12c"
+    },
+    {
+      "path": "results/CONTRIBUTION_BRIDGE.svg",
+      "bytes": 74976,
+      "sha256": "8e4e2b507d8090cff3b4484ad20068d4ab105c5dbda36765529586d11f3235f4"
     },
     {
       "path": "results/DECISION_TO_EXECUTION_LEDGER.csv",
