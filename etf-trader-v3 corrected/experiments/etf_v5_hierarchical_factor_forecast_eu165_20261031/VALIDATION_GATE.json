@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-31",
+  "universe": "EU165",
+  "original_etfs": 165,
+  "etfs_with_features": 159,
+  "feature_etf_month_rows": 9706,
+  "source_training_period": "2019-2020 and subsequent years strictly before fit cutoff",
+  "annual_yearly_fits": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "horizons_days": [
+    21,
+    42,
+    63
+  ],
+  "factor_proxies": [
+    "EXSA.DE",
+    "SXR8.DE minus EXSA.DE",
+    "EXX1.DE minus EXSA.DE",
+    "LYQ2.DE"
+  ],
+  "price_only": true,
+  "pit_universe_survivorship_free": false,
+  "total_return_certified": false,
+  "replay_baseline_max_error": 6.661338147750939e-16,
+  "rankers_natively_refit_in_this_experiment": false,
+  "ranker_expert_incremental_alpha_proven": false,
+  "predictive_intervals_fully_validated": false,
+  "independent_holdout": false,
+  "production_modified": false,
+  "zip_sha256": "333286dc00398f39ebcebec984919b3c0bdb2234024f12595d24b7997048b465"
+}
