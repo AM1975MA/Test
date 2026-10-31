@@ -1,0 +1,70 @@
+name: Repository evidence snapshot 20261031
+on:
+  push:
+    branches: [audit-repository-evidence-20261031]
+    paths: ['.github/workflows/audit-repository-evidence-20261031.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Export inventories and text evidence without executing research code
+        shell: bash
+        run: |
+          python - <<'PY'
+          import subprocess, pathlib, json, hashlib, zipfile
+          def git(*args):
+              return subprocess.check_output(['git', *args])
+          root=pathlib.Path('/tmp/repository-evidence'); root.mkdir()
+          (root/'blobs').mkdir()
+          refs=[]; unique={}
+          lines=git('for-each-ref','--format=%(refname) %(objectname)','refs/remotes/origin').decode().splitlines()
+          for line in lines:
+              ref,commit=line.split(' ',1)
+              if ref.endswith('/HEAD') or 'audit-repository-evidence-20261031' in ref: continue
+              entries=[]
+              for raw in git('ls-tree','-r','-l','-z',commit).split(b'\0'):
+                  if not raw: continue
+                  meta,path=raw.split(b'\t',1); mode,kind,sha,size=meta.decode().split()
+                  path=path.decode('utf-8','replace')
+                  item={'path':path,'sha':sha,'size':int(size) if size!='-' else None,'type':kind}
+                  entries.append(item)
+                  if kind=='blob': unique.setdefault(sha,item)
+              refs.append({'ref':ref,'commit':commit,'entries':entries})
+          extensions={'.py','.md','.json','.jsonl','.yaml','.yml','.toml','.ini','.cfg','.txt','.csv','.tsv','.sh','.html','.ipynb'}
+          blobs=[]
+          for sha,item in unique.items():
+              ext=pathlib.PurePosixPath(item['path']).suffix.lower()
+              limit=500000 if ext in {'.csv','.tsv','.jsonl'} else 2000000
+              record={'sha':sha,'example_path':item['path'],'size':item['size']}
+              if ext not in extensions or item['size'] is None or item['size']>limit:
+                  record['status']='not_exported_type_or_size'; blobs.append(record); continue
+              data=git('cat-file','blob',sha)
+              try: data.decode('utf-8')
+              except UnicodeDecodeError:
+                  record['status']='not_exported_non_utf8'; blobs.append(record); continue
+              (root/'blobs'/sha).write_bytes(data)
+              record.update(status='exported',sha256=hashlib.sha256(data).hexdigest())
+              blobs.append(record)
+          manifest={'repository':'AM1975MA/Test','frozen_main':'77f7a4706f934e7061541cd62c1c0ce64ab7135d','scope':'All remote branch tip trees; not complete historical deleted revisions. Text export bounded by file type and size. No research code or backtest executed.','refs':refs,'blobs':blobs}
+          (root/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
+          summary={'branches':len(refs),'unique_blobs':len(unique),'exported_blobs':sum(x['status']=='exported' for x in blobs),'main_files':len(next(x for x in refs if x['ref']=='refs/remotes/origin/main')['entries'])}
+          (root/'SUMMARY.json').write_text(json.dumps(summary,indent=2)); print(json.dumps(summary,indent=2))
+          with zipfile.ZipFile('/tmp/repository-evidence.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in root.rglob('*'):
+                  if p.is_file(): z.write(p,p.relative_to(root))
+          print('archive_bytes',pathlib.Path('/tmp/repository-evidence.zip').stat().st_size)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: repository-evidence-20261031
+          path: /tmp/repository-evidence.zip
+          retention-days: 30
+          if-no-files-found: error
