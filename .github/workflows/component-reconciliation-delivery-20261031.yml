@@ -1,0 +1,60 @@
+name: Component reconciliation report 20261031
+on:
+  push:
+    branches: [research/component-reconciliation-20261031]
+    paths: ['.github/workflows/component-reconciliation-delivery-20261031.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/component-reconciliation-20261031
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - run: python -m pip install numpy==2.3.5 pandas==2.2.3 matplotlib==3.10.8
+      - name: Render from verified values and validate package references
+        run: |
+          python audit/component_reconciliation_20261031/render_bridge.py
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,re,zipfile
+          import pandas as pd
+          p=Path('audit/component_reconciliation_20261031');s=json.loads((p/'results/VERIFIED_SUMMARY.json').read_text())
+          assert s['new_policy_replays']==384 and s['archived_paths_recomputed']==51
+          assert s['all_on_replays_verified']==6 and s['max_shapley_daily_identity_error']<1e-12
+          r=pd.read_csv(p/'results/EXACT_FINAL_BRIDGE.csv');q=pd.read_csv(p/'results/ATTRIBUTION_CONFIDENCE_INTERVALS.csv')
+          total=q[(q.family=='final_strategy_contrast')&(q.block_sessions==21)].annual_log_pp.iloc[0]
+          assert abs(r.annual_log_pp.sum()-total)<1e-10
+          for name in re.findall(r'\]\(([^)]+)\)',(p/'REPORT_IT.md').read_text()):
+              if not name.startswith('http'):assert (p/name).exists(),name
+          with zipfile.ZipFile(p/'results/ALL_384_POLICY_PATHS.zip') as z:assert sum(n.endswith('.npz') for n in z.namelist())==384
+          manifest={'replay_run_id':41160544978,'scope':'All unique 384 policy paths plus 51 archived arithmetic checks; no new model fitting and no prospective validation.','files':[{'path':str(f.relative_to(p)),'bytes':f.stat().st_size,'sha256':hashlib.sha256(f.read_bytes()).hexdigest()} for f in sorted(p.rglob('*')) if f.is_file() and f.name!='DELIVERY_MANIFEST.json']}
+          (p/'DELIVERY_MANIFEST.json').write_text(json.dumps(manifest,indent=2))
+          print('PASS: report references, 384 path files, additive bridge, parity metadata and persistent input hashes')
+          PY
+      - name: Save final report figure and verified manifest
+        run: |
+          git config user.name 'component-reconciliation[bot]'
+          git config user.email 'component-reconciliation@users.noreply.github.com'
+          git add -- audit/component_reconciliation_20261031/results/CONTRIBUTION_BRIDGE.png audit/component_reconciliation_20261031/results/CONTRIBUTION_BRIDGE.svg audit/component_reconciliation_20261031/DELIVERY_MANIFEST.json
+          git diff --cached --quiet || git commit -m 'research: preserve final reconciliation figure and complete verified delivery manifest'
+          git fetch origin research/component-reconciliation-20261031
+          git rebase origin/research/component-reconciliation-20261031
+          git push origin HEAD:research/component-reconciliation-20261031
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ETF_Trader_Component_Reconciliation_FINAL_20261031
+          path: |
+            audit/component_reconciliation_20261031/*.py
+            audit/component_reconciliation_20261031/*.md
+            audit/component_reconciliation_20261031/DELIVERY_MANIFEST.json
+            audit/component_reconciliation_20261031/inputs/MANIFEST.json
+            audit/component_reconciliation_20261031/results/
+          if-no-files-found: error
+          retention-days: 90
