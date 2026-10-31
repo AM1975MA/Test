@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-31",
+  "universe": "EU165 European-listed UCITS",
+  "branch": "research/etf-v5-hierarchical-factor-forecast-eu165-20261031",
+  "original_v2_v3_ranking_scores_refit_in_this_experiment": false,
+  "source_zip_filename": "ETF_TRADER_V5_GERARCHICA_EU165_20261031.zip",
+  "source_zip_sha256": "333286dc00398f39ebcebec984919b3c0bdb2234024f12595d24b7997048b465",
+  "source_files_sha256": {
+    "source_v4/run_v4_clean.py": "96df1bb242f887b4bc956e7ca948e150055862b9f23d9347056a130d4af91522",
+    "source_v4/input/EU165_SPECIALISTS_20261029/input/EU165_NATIVE_MODEL_SCORES_AND_LABELS.csv.gz": "0c035875cb92a5712eb3c00d99129606421baedeb7a9fe52e8ca7b7bc26953ef",
+    "source_v4/input/EU165_STRUCTURAL_V4/EXTENDED_NAV.csv": "dcd501a62823476c9798abc67c2826f183503852499b4d0c09dd7b6f87087189"
+  },
+  "replayed_v3_nav_parity_max_abs": 6.661338147750939e-16,
+  "annual_label_maturity_check": true,
+  "raw_OHLCV_committed_to_GitHub": false,
+  "raw_native_scores_committed_to_GitHub": false,
+  "price_total_returns_certified": false,
+  "pristine_holdout": false,
+  "production_modified": false
+}
