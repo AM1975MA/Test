@@ -1,0 +1,15 @@
+market,strategy,period,cagr_pct,maxdd_pct,measure_note
+EU,ORIGINAL39,2019-02-01_to_2026-07-01,18.2577586,-35.9464138,declared_European_port
+EU,RH50,2019-02-01_to_2026-07-01,14.9442803,-36.3017503,declared_European_port
+EU,ORIGINAL39,2019-02-01_to_2024-12-31,8.2664,-35.9464,declared_European_port
+EU,RH50,2019-02-01_to_2024-12-31,6.9322,-36.3018,declared_European_port
+EU,HYBRID_MATCHED_HALF,2019-02-01_to_2024-12-31,14.5565,-31.6879,same_eligible_support
+EU,RETURN_MATCHED_HALF,2019-02-01_to_2024-12-31,1.0997,-32.9242,same_eligible_support
+EU,ORIGINAL39_no_risk,2019-02-01_to_2024-12-31,11.2226,-36.7461,diagnostic_not_promoted
+EU,RH50_no_risk,2019-02-01_to_2024-12-31,8.1497,-37.7572,diagnostic_not_promoted
+EU,ORIGINAL39_zero_cost,2019-02-01_to_2024-12-31,9.7004,-34.8401,diagnostic_not_promoted
+EU,RH50_zero_cost,2019-02-01_to_2024-12-31,8.3491,-35.2877,diagnostic_not_promoted
+EU,ASOF1_ORIGINAL,2019-02-01_to_2026-07-01,13.671644,-41.01055,stale_forecast_diagnostic_not_calendar_retrain
+EU,ASOF1_HALF,2019-02-01_to_2026-07-01,10.560443,-42.63412,stale_forecast_diagnostic_not_calendar_retrain
+USA,ORIGINAL39_r1,2017-02-01_to_2026-07-01,40.7078387,-30.1255216,exact_frozen_reference_parity
+USA,RH50_r1,2017-02-01_to_2026-07-01,43.6581,-27.0313,exact_frozen_reference_parity

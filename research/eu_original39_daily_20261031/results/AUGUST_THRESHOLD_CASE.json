@@ -1,0 +1,16 @@
+{
+  "decision_date": "2024-08-02",
+  "tickers": ["QDVE.DE", "VVSM.DE"],
+  "weight1_original": 0.6060001521428389,
+  "gap1": -0.03320376702372696,
+  "gap2": -0.05763957050030022,
+  "weighted_gap_original": -0.04283146987576431,
+  "weighted_gap_half": -0.04542166876201359,
+  "universe_negative_gap_fraction": 0.8143712574850299,
+  "universe_gap_below_minus1pct": 0.40119760479041916,
+  "threshold": -0.044,
+  "breadth_required": 0.75,
+  "original_fires": false,
+  "half_fires": true,
+  "caveat": "same-Open knowledge/fill retained for historical compatibility, not live executability certification"
+}
