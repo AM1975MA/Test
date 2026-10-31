@@ -33,7 +33,10 @@ def election(z,year):
 
 def main():
     o=ROOT/'results';cfg=json.loads((o/'CONFIGURATIONS.json').read_text());byid={x['id']:x for x in cfg}
-    z={m:np.load(o/f'{m}_NAV_30BP.npz',allow_pickle=False) for m in ['USA','EU']}
+    z={}
+    for market in ['USA','EU']:
+        with np.load(o/f'{market}_NAV_30BP.npz',allow_pickle=False) as archive:
+            z[market]={key:archive[key] for key in ['dates','configs','nav']}
     choices={2019:BASELINE,2020:BASELINE,2021:BASELINE};aud=[]
     for year in range(2022,2027):
         choices[year],table=election(z,year)
