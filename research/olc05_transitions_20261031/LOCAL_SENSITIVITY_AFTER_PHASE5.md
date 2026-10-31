@@ -1,0 +1,9 @@
+# Local sensitivity after observing finite-transition results
+
+This is explicitly POST-observation research. The5-session finite passage was favorable for half-weight CAGR in USA and EU on2021-2024, with some drawdown deterioration;21sessions was slower and damaged US growth. Do not call subsequent checks an independent confirmation or select the best duration retroactively.
+
+Fix neighboring3- and7-session passages as sensitivity checks under BOTH weight contracts, costs .001/.003 and markets. Also test the named5-session passage against the already saved immediate reference with downstream risk off and with systemic gap inputs lagged one session, half weights only. Sixteen neighboring-duration paths plus8 risk/timing paths =24additional paths. The baseline and5-session candidate remain the named comparison regardless of which neighbor has the highest CAGR.
+
+The initial-entry countdown implementation issue was fixed by a failing regression before final sensitivity: when no primary holdings exist, a full initial/reentry target cancels the transition clock. All16 finite paths were rerun; outputs before the correction are preserved but not cited as final. No model forecasts or durations were changed by that fix.
+
+Provide paired monthly uncertainty, years, risk/turnover and concentration, quantify primary-slot fee bridge, and diagnose small residual positions in the recursive blend. No claim of a calibrated probability of future outperformance. If improvements depend on one duration, one market, one timing or one already-studied year, state it and do not promote. Time-to-event prediction and real economic-identity mapping still have NOT been implemented in this batch.
