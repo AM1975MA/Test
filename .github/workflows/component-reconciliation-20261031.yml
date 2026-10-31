@@ -1,0 +1,118 @@
+name: Component reconciliation 20261031
+on:
+  push:
+    branches: [research/component-reconciliation-20261031]
+    paths: ['.github/workflows/component-reconciliation-20261031.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      RECONCILIATION_ROOT: /tmp/etf-components/reconciliation
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/component-reconciliation-20261031
+      - uses: actions/checkout@v4
+        with:
+          repository: AM1975MA/Test
+          ref: 13443836649d0f107d2063eb7acc1039135d6e9b
+          path: _frozen_engine
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 numba==0.65.1 scikit-learn==1.8.0 pytest==9.0.2
+      - name: Restore frozen inputs, verify byte identities and preserve nonexpiring copies
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,subprocess,zipfile,shutil,json,tarfile
+          base=Path('/tmp/etf-components');root=base/'reconciliation';root.mkdir(parents=True,exist_ok=True)
+          persistent=Path('audit/component_reconciliation_20261031');inputs=persistent/'inputs';inputs.mkdir(exist_ok=True)
+          specs=[('yfinance-repeatability-v1-raw.zip',11272972639,'fcc02918b3a42c3fecde273c4639ca4eed1b5f31e4b8c32aeea4c2a8e4c00f86','raw'),('compact21-tail-factorial-full.zip',12110461075,'f9877538d6e0b4b4deccf8c568540b4e4be1d9a1da18aeac0657360740979aea','factorial'),('tail-only-allocation-counterfactual-full.zip',12111590600,'00dcd8ab6de984e989475e812187c683723da74627449bfad27778f214e1c829','mediation')]
+          for name,aid,digest,dest in specs:
+              archive=base/name
+              if (inputs/name).exists():shutil.copy2(inputs/name,archive)
+              else:
+                  with archive.open('wb') as f:subprocess.run(['gh','api',f'repos/AM1975MA/Test/actions/artifacts/{aid}/zip'],stdout=f,check=True)
+              assert hashlib.sha256(archive.read_bytes()).hexdigest()==digest,name
+              with zipfile.ZipFile(archive) as z:
+                  assert all(not Path(n).is_absolute() and '..' not in Path(n).parts for n in z.namelist())
+                  z.extractall(root/dest)
+              if not (inputs/name).exists():shutil.copy2(archive,inputs/name)
+          source=inputs/'CANONICAL_SOURCE.tar.gz'
+          with source.open('wb') as f:subprocess.run(['git','-C','_frozen_engine','archive','--format=tar.gz','13443836649d0f107d2063eb7acc1039135d6e9b','vendor/p45','vendor/etf_trader_v2/src'],stdout=f,check=True)
+          target=root/'selected/research/tail-only-and-allocation-ablation-20261017';target.mkdir(parents=True,exist_ok=True)
+          with tarfile.open(source) as t:t.extractall(target,filter='data')
+          work=root/'work';work.mkdir(exist_ok=True)
+          for p in persistent.glob('*.py'):shutil.copy2(p,work/p.name)
+          (inputs/'MANIFEST.json').write_text(json.dumps({'frozen_source_commit':'13443836649d0f107d2063eb7acc1039135d6e9b','files':[{'name':p.name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(inputs.glob('*')) if p.is_file() and p.name!='MANIFEST.json']},indent=2))
+          PY
+      - name: Test instrumentation and exact attribution
+        run: |
+          cd "$RECONCILIATION_ROOT/work"
+          python build_instrumented.py
+          python -m pytest -q | tee /tmp/component-tests.txt
+      - name: Reproduce 384 policy paths and temporal inference
+        run: |
+          set -o pipefail
+          cd "$RECONCILIATION_ROOT/work"
+          python -u run_policy_factorial.py | tee /tmp/component-replays.txt
+          python -u analyze_reconciliation.py | tee /tmp/component-analysis.txt
+      - name: Close additive bridge and persist all outputs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os,shutil,json,hashlib,zipfile,subprocess
+          import numpy as np,pandas as pd
+          root=Path(os.environ['RECONCILIATION_ROOT']);o=root/'results';dest=Path('audit/component_reconciliation_20261031');out=dest/'results';out.mkdir(exist_ok=True)
+          cf=pd.read_csv(o/'ATTRIBUTION_CONFIDENCE_INTERVALS.csv');pol=pd.read_csv(o/'POLICY_FACTORIAL.csv')
+          b=pol[(pol.arm=='B_T1_H1')&(pol['mask']==0)].ann_log.mean()*100
+          r=pol[(pol.arm=='R_T0_H1')&(pol['mask']==0)].ann_log.mean()*100
+          rows=[{'component':'NEUTRAL_POLICY_SELECTION','annual_log_pp':r-b}]
+          for name in ['CONCENTRATION','DD_GROSS','V6','SYSTEMIC_GAP','STOPS','COSTS']:
+              a=cf[(cf.family=='policy_B_T1_H1')&(cf.component==name)&(cf.block_sessions==21)].annual_log_pp.iloc[0]
+              z=cf[(cf.family=='policy_R_T0_H1')&(cf.component==name)&(cf.block_sessions==21)].annual_log_pp.iloc[0]
+              rows.append({'component':name,'annual_log_pp':z-a})
+          total=cf[(cf.family=='final_strategy_contrast')&(cf.block_sessions==21)].annual_log_pp.iloc[0]
+          assert abs(sum(x['annual_log_pp'] for x in rows)-total)<1e-10
+          pd.DataFrame(rows).to_csv(o/'EXACT_FINAL_BRIDGE.csv',index=False)
+          for p in o.iterdir():
+              if p.is_file():shutil.copy2(p,out/p.name)
+          shutil.copy2(root/'work/instrumented_engine.py',dest/'instrumented_engine.py')
+          for src,name in [('/tmp/component-tests.txt','TESTS.txt'),('/tmp/component-replays.txt','REPLAYS.txt'),('/tmp/component-analysis.txt','ANALYSIS.txt')]:shutil.copy2(src,out/name)
+          (out/'ENVIRONMENT.txt').write_text(subprocess.check_output(['python','-m','pip','freeze']).decode())
+          with zipfile.ZipFile(out/'ALL_384_POLICY_PATHS.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in sorted((o/'policy_paths').rglob('*')):
+                  if p.is_file():z.write(p,p.relative_to(o))
+          meta={'commit_before_results':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'run_id':os.environ['GITHUB_RUN_ID'],'complete_paths':384,'n_fit':0,'files':[{'path':str(p.relative_to(dest)),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(dest.rglob('*')) if p.is_file() and p.name!='DELIVERY_MANIFEST.json']}
+          (dest/'DELIVERY_MANIFEST.json').write_text(json.dumps(meta,indent=2))
+          print('Exact bridge',total,'log pp; residual',sum(x['annual_log_pp'] for x in rows)-total)
+          PY
+      - name: Commit evidence only on isolated research branch
+        run: |
+          git config user.name 'component-reconciliation[bot]'
+          git config user.email 'component-reconciliation@users.noreply.github.com'
+          git add -- audit/component_reconciliation_20261031
+          git diff --cached --quiet || git commit -m 'research: preserve 384 verified counterfactual paths, frozen inputs and exact component attribution'
+          git fetch origin research/component-reconciliation-20261031
+          git rebase origin/research/component-reconciliation-20261031
+          git push origin HEAD:research/component-reconciliation-20261031
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ETF_Trader_Component_Reconciliation_20261031
+          path: |
+            audit/component_reconciliation_20261031/*.py
+            audit/component_reconciliation_20261031/*.md
+            audit/component_reconciliation_20261031/DELIVERY_MANIFEST.json
+            audit/component_reconciliation_20261031/inputs/MANIFEST.json
+            audit/component_reconciliation_20261031/results/
+          if-no-files-found: error
+          retention-days: 90
