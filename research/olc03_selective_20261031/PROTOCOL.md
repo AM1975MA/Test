@@ -1,0 +1,32 @@
+# OLC-03: earn the right to reject a CL01 proposal
+
+31 October 2026. User approved testing whether the model can reliably reject damaging changes without discarding good opportunities. Paired USA149/EU165 throughout. Research only; no main/live change. This protocol precedes new policy outcomes.
+
+## Frozen identity
+Parent OLC02 commit 4be73bdc69b769b399c9ef9d1d295d3777558d07. Restore OLC02_Confronto_Diretto_Checkpoint_20261031.zip, SHA256 8bccd2b80956f92de4094d204625d6d1a0f6e2687ef7a7770c9bf10687e83cdb. Verify its internal manifest, model hashes and prepared inputs before deserializing. Do not refit rankers or the 72 direct regressions. Use unchanged CL01 proposals, equal-weight principal sleeve, simulator, V6, risk and cost conventions. Preserve original-weight and equal-weight baselines plus a neutral callback. No extra cash, new ticker discovery, partial-position search or threshold rescue.
+
+## Incremental policies, same procedure in both markets
+For each saved Ridge/HGB family and 21/profile horizon:
+1. RAW: replay exact OLC02 direct model, FULL action (HOLD or full CL01 proposal).
+2. SUPPORT: baseline-anchored controller; allow raw-negative veto only within the contemporaneous training age support. Default to CL01 on missing inputs, insufficient holdings or out-of-support age. This is an abstention guard, not a calendar holding limit.
+3. CAL_MEAN: prequential calibration of the gross direct forecast, then compare expected net SWITCH-minus-HOLD with zero.
+4. CAL_UTILITY: same calibration but compare predicted losses avoided by veto with twice the predicted opportunities lost by veto. Veto only when E[(-Delta)+] > 2*E[(Delta)+], where Delta is net SWITCH-minus-HOLD. Otherwise follow CL01. This is an explicit analyst-chosen opportunity-protection loss function, not the user's risk preference and not a 95% posterior cutoff.
+
+New vetoes are allowed only when the original raw model is also non-positive after cost; calibration cannot invent additional adverse proposals. All controllers retain the actual live simulation incumbents. On no veto return to the current CL01 target, never to a phantom incumbent. Same names imply no additional discretionary trade. HOLD allows unchanged inherited protections to operate. The neutral callback must reproduce CL01 NAV exactly.
+
+## Honest calibration data
+Use only saved annual OUT-OF-SAMPLE OLC02 forecasts for FULL CL01 proposals from the previously declared BASE/BUFFER4/FIXED2 state traces; include both accepted and unchosen proposals. No in-sample training predictions. For each current signal use only rows whose own target exit is strictly before that signal. For PROFILE both forecast and target are arithmetic means of cumulative21/42/63 log-advantages; every constituent must be mature. Do not sum overlapping returns into NAV. Join prediction rows to known pair metadata by unique key/model. Each signal month has total likelihood weight1, not one independent observation per ticker/trace. The retrospective prequential corpus is fixed and not constructed using the new policy's future actions. Domain shift from these reference incumbents to newly held positions remains a limitation.
+
+Two-parameter Bayesian linear calibration y = intercept + slope*forecast, with x=forecast/0.05 and y=advantage/0.05. Normal-inverse-gamma prior: beta_mean=(0,0), V0=I, alpha0=3, beta0=2. Skeptical zero-advantage prior, not assumed perfect forecast. Weighted likelihood counts n_effective = number of distinct matured months. This is a generalized/model-conditional posterior, not proof that correlated ETF rows or overlapping horizons are independent. Require12 matured months to estimate this small calibration; otherwise follow CL01. Prediction must be inside the matured calibration forecast range; no unsupported extrapolation. Age must remain within the current annual direct model's training support.
+
+Posterior predictive Student-t includes residual outcome dispersion and parameter uncertainty. Costs are deducted once using the same ex-ante OLC02 cost estimator. Save predictive mean/scale/df, conditional probability, expected avoided loss and expected missed gain for every evaluated action. Forecast probabilities are model-conditional, not calibrated success claims; assess sequential predictive coverage and score against simple controls.
+
+Prior-scale sensitivity: repeat CAL_UTILITY PROFILE for both families at scales0.025 and0.10 instead of0.05; no selection by later results. This changes the fixed economic regularization scale and is disclosed. Expected primary count:64 model/policy/market/cost paths,12 original/half/neutral controls,16 prior sensitivities =92paths.
+
+## Outcomes and decision
+Primary economic window2021-2024, plus active2021-July2026,2025,2026partial and inherited windows. New calibration necessarily starts later; no claim that identical warmup is alpha. Primary comparator CL01_HALF, secondary exact OLC02 RAW and age guard. Record intervention counts and dates, avoided losses and missed opportunities under matched static horizons, cost stress(.001/.003 legacy turnover, NOT10/30bp per side), turnover and drawdown. An unchanged curve from zero interventions is successful abstention but NOT a new alpha strategy.
+
+Paired monthly block-bootstrap3/6months, same blocks for USA/EU,10000replicates seed20261031. Show whole distributions; no zero-containing interval veto. Report benefits and harms separately per market and keep all attempted policies. Neither an EU-only winner nor a post-2025 rescue becomes a common promoted strategy. Historical research and multiple selection remain extensive.
+
+## Verification
+Tests first for strict outcome maturity, month weighting, predictive positive-part accounting, coldstart/default-to-base, age/input support, no cash, neutral parity, baseline/cost identities and future-prefix invariance. Independently reconstruct all NAV paths and metrics; test probabilities only within their conditional model meaning. Reuse original binaries only after hashes match. Record source and environment. Review by author unless an independent reviewer actually runs. No claim all repository tests pass; run scoped new and parent suites and disclose failures. Persist code/results, not just logs, and document archive versus repository coverage. Legacy same-Open gap fills, survivorship, distributions and real liquidity are not fixed by this test.
