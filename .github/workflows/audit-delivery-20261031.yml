@@ -1,0 +1,64 @@
+name: Package repository audit 20261031
+on:
+  push:
+    branches: [audit-repository-evidence-20261031]
+    paths: ['.github/workflows/audit-delivery-20261031.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit-repository-evidence-20261031
+      - name: Index all Markdown versions and identify critically reviewed sources
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.parse import quote
+          import csv,gzip,hashlib,json
+          p=Path('audit/20261031')
+          m=json.loads(gzip.decompress((p/'input_manifest.json.gz').read_bytes()))
+          reviewed='ec5ae3e4 f79a8f82 4bc58d64 83c19d02 18e1501c 147da8f8 543a66d8 75cb9fa8 8fe5e710 cd722b77 6b19d617 13718d7a 65b173c4 d1d8cfe2 b88a758e c92a4923 2ab251de ec7c470b 0cf6e8bf 26678fcf 6e922184 1338750a 3cd267e4 b72747b4 ec778684 1f538e9d 8815af47 ccd65588 54e498b5 c5f894a0 718f8935 b63f9b0e 802c9b0f 174dde55 1350ccb0 82d8f206 bd3ef20c 6b88c946 bd8e933e ff0f3057 4a624638 9cced180'.split()
+          sources={}
+          for r in sorted(m['refs'],key=lambda r:r['ref']!='refs/remotes/origin/main'):
+              for e in r['entries']:
+                  if not e['path'].endswith('.md'):continue
+                  sha=e['sha']
+                  row=sources.setdefault(sha,{'blob_sha':sha,'path':e['path'],'commit':r['commit'],'example_branch':r['ref'].removeprefix('refs/remotes/origin/'),'branch_occurrences':0,'review_status':'INDEXED_NOT_CRITICALLY_REVIEWED','immutable_url':'https://github.com/AM1975MA/Test/blob/'+r['commit']+'/'+quote(e['path'],safe='/')})
+                  row['branch_occurrences']+=1
+          for prefix in reviewed:
+              hits=[s for s in sources if s.startswith(prefix)]
+              assert len(hits)==1,(prefix,hits)
+              sources[hits[0]]['review_status']='TARGETED_CRITICAL_REVIEW_NOT_FULL_RAW_REPRODUCTION'
+          rows=sorted(sources.values(),key=lambda r:(r['path'],r['blob_sha']))
+          for name,subset in [('MARKDOWN_CATALOG.csv',rows),('SOURCE_REVIEW.csv',[r for r in rows if r['review_status'].startswith('TARGETED')])]:
+              with (p/name).open('w',newline='') as f:
+                  w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(subset)
+          note={'unique_markdown_versions_indexed':len(rows),'markdown_versions_with_targeted_critical_review':len(reviewed),'coverage_limit':'Targeted reading may concern selected relevant sections. Not all reports, all code, all binaries or all Git history critically reviewed. Inventory is not substantive validation. Six V5 source scripts also inspected; independent numeric checks separately enumerated.','numeric_note':'The 90 V5 predictive summary checks include 87 numeric means and 3 consistently unavailable alpha-IC entries for the factor-only model.'}
+          (p/'REVIEW_COVERAGE.json').write_text(json.dumps(note,indent=2))
+          (p/'ARTIFACT_GUIDE.md').write_text('# Contenuto del pacchetto\n\nREPORT_IT.md: rapporto principale.\n\nchecks/: risultati numerici indipendenti; non un nuovo backtest raw.\n\ninput_manifest.json.gz: inventario completo dei tip di 293 branch.\n\nMARKDOWN_CATALOG.csv: indice delle 667 versioni Markdown.\n\nSOURCE_REVIEW.csv e REVIEW_COVERAGE.json: perimetro reale della lettura critica, distinto dall’indicizzazione.\n\nNota: i 90 controlli dei riepiloghi predittivi includono 87 medie numeriche e 3 alpha-IC non disponibili, concordanti.\n')
+          files=[]
+          for f in sorted(p.rglob('*')):
+              if f.is_file() and f.name!='DELIVERY_MANIFEST.json':files.append({'path':str(f.relative_to(p)),'bytes':f.stat().st_size,'sha256':hashlib.sha256(f.read_bytes()).hexdigest()})
+          (p/'DELIVERY_MANIFEST.json').write_text(json.dumps({'scope':note,'files':files},indent=2))
+          print(json.dumps(note,indent=2))
+          PY
+      - name: Commit only audit catalogue and delivery metadata
+        run: |
+          git config user.name 'repository-audit[bot]'
+          git config user.email 'repository-audit@users.noreply.github.com'
+          git add -- audit/20261031/MARKDOWN_CATALOG.csv audit/20261031/SOURCE_REVIEW.csv audit/20261031/REVIEW_COVERAGE.json audit/20261031/ARTIFACT_GUIDE.md audit/20261031/DELIVERY_MANIFEST.json
+          git diff --cached --quiet || git commit -m 'audit: record actual critical-review coverage and report delivery hashes'
+          git fetch origin audit-repository-evidence-20261031
+          git rebase origin/audit-repository-evidence-20261031
+          git push origin HEAD:audit-repository-evidence-20261031
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ETF_Trader_Audit_20261031
+          path: audit/20261031/
+          retention-days: 30
+          if-no-files-found: error
