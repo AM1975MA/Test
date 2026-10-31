@@ -1,0 +1,6 @@
+{
+  "post2020_missing_date_returns_legacy_stub": true,
+  "missing_score_returned": -1000000.0,
+  "missing_score_is_finite": true,
+  "scope": "Verified adapter behavior only; missing parent replay prevents assertion that an invalid ETF was actually bought. No claim of measured PnL impact."
+}

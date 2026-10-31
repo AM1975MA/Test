@@ -1,0 +1,4 @@
+comparison,months,annual_log_difference_pp,block_months,resamples,seed,ci95_low_pp,ci95_high_pp,status
+V5_EXPERT_GBM_21 minus V5_BASIC_GBM_21,47,-0.031798998185632636,6,10000,10312026,-0.772184808251369,0.7159816769670755,exploratory_reused_history_not_independent_market_validation
+V5_EXPERT_GBM_21 minus V5_FACTOR_21,47,0.8690100070938246,6,10000,10312026,-0.9290746848887352,2.7458786849825585,exploratory_reused_history_not_independent_market_validation
+V5_EXPERT_GBM_21 minus REF_V3_PAIR25_HALFMA,47,5.449881348123827,6,10000,10312026,-2.8291773111408847,13.54354465734872,exploratory_reused_history_not_independent_market_validation

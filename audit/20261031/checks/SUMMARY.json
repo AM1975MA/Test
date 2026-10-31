@@ -1,0 +1,23 @@
+{
+  "frozen_main": "77f7a4706f934e7061541cd62c1c0ce64ab7135d",
+  "branches": 293,
+  "unique_blobs": 4689,
+  "exported_verified_blobs": 4251,
+  "unexported_blobs": 438,
+  "main_files": 958,
+  "main_directories": 195,
+  "main_tree_elements": 1153,
+  "main_experiment_files": 608,
+  "main_experiment_subdirectories": 134,
+  "unique_markdown_blobs": 667,
+  "v5_nav_rows_verified": 84,
+  "v5_metric_values_verified": 168,
+  "max_cagr_abs_error": 7.771561172376096e-16,
+  "max_dd_abs_error": 4.163336342344337e-16,
+  "v5_maturity_records_checked": 90,
+  "v5_predictive_mean_checks": 90,
+  "equal_k_summary_rows_checked": 12,
+  "full_raw_data_backtests_rerun": 0,
+  "trained_models": 0,
+  "scope": "All remote branch tips inventoried; deleted historical revisions and nonexported binary evidence not exhaustively inspected. Critical manual review is a subset, distinct from indexing."
+}
