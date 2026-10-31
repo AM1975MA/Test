@@ -1,0 +1,19 @@
+# Shock, prolonged declines and score fusion: fixed diagnostic interventions
+
+31 October 2026. User requests remedies for 2020 and late2021–2023 without sacrificing the existing strategy. This is post-diagnosis historical research, not a pristine holdout. Original39 and RH50 remain untouched controls. No parameter grid, sector-specific veto or year-specific switch.
+
+Inputs: exact delivered EU_Original39_RH50_Checkpoint_20261031.zip, original source commit13443836649d0f107d2063eb7acc1039135d6e9b. Restore and verify baseline parity on USA149 r1 and EU165. Native predictions and calendar coverage remain frozen for these attribution tests; calendar repair/refit is a separate prerequisite, not a hidden part of a remedy.
+
+Three fixed factors, evaluated individually and as all eight combinations for BOTH universes and BOTH weight policies:
+
+A SHOCK_MEMORY: at each open, using only prior observed closes, compute the current proposed pair's weight-averaged five-session return and weight-averaged drawdown from each ETF's trailing63-session close peak. If either <=-5% over5sessions or <=-10% from63peak, cap total risky exposure at25%. Stay protected until trigger conditions are absent AND weighted price/MA20>=1 AND weighted return5>0 for three consecutive decision dates. Carry this state across month changes. These generic thresholds are fixed now, not chosen by maximizing the known episodes. Missing history cannot create a recovery confirmation. Never use the current day's close. No future returns, labels or baseline realized path enter the rule.
+
+B SLOW_TREND: at each open, using the preceding close, mark a proposed ETF weak if close<MA200 AND return63<0. If at least half of the original target weight is in weak ETFs, cap total risky exposure at50%. Do not discard or replace names, and do not infer all high-volatility opportunities are bad. This is a fixed risk overlay, not a forecast that every decline persists.
+
+F RANK_FUSION: use the exact existing Return and smoothed/transformed Hybrid scores, but convert each to its contemporaneous cross-sectional percentile on the same finite common support. Combine .475 ReturnPercentile + .525 HybridPercentile. All eligibility/calendar gaps remain visible. Recompute original top2, original margin-based weights/model agreement and V6 state; RH50 remains half/half. F is a new scoring-policy package, not a pure weight change and not a calibrated probability. No tuned blend weights.
+
+A/B cap the combined risky main and V6 allocation; V6 cannot refill cash deliberately created by protection. Existing gap/stop controls remain for parity, with their same-open execution limitation explicit. No-stop-cost or delayed-execution sensitivity is not a promotion. Run native fee .001 with existing half-turnover convention and stress .003, preserving stop slippage .001:64 paths total. Baseline fee is not described as10bp per side.
+
+Metrics: full history, common2019-02..2026-07, pre2025, 2020 calendar and Feb–Mar stress, late2021–2023, calendar2022, 2023,2025 and2026partial. Show period returns, CAGR only with explicit window, maxDD, total fees, turnover and time/exposure in defense. Report every failed arm, not just best. Paired temporal log-return inference and block sensitivity for relevant increments, no automatic veto based on zero, no claim that bootstrap-positive frequency equals posterior probability. No prior/decision threshold fitted to rescue a result.
+
+Tests: all-off exact NAV parity; new state-machine activates and does not time out blindly; no prelisting backfill; prefix invariance of all new signals; rank-fusion common support; combined risk cap cannot be defeated by V6; daily wealth identity; differences by calendar boundaries; unchanged USA and EU source hashes. TDD for new helper behavior. No new model fitting and no production changes. Protocol saved before any new remedy portfolio result.
