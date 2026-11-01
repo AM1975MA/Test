@@ -1,0 +1,7 @@
+# Feature-by-feature diagnostic, not feature selection on the test set
+
+Added before reading any new OLC08 candidate economic scorecard. Every canonical Compact125 and Hybrid42 input receives formula/domain/availability/redundancy coverage. In addition, quantify the effect of a deterministic within-signal-date permutation of each input on the frozen baseline models' genuinely annual out-of-time 2021-2024 forecasts, in each market. Keep the corresponding future labels fixed for evaluation only. Same-date shuffling never mixes dates; date-seeded permutations preserve past results when future rows are appended.
+
+Report changes in per-month rank correlation and Top2 realized21-session excess payoff. Hybrid is evaluated as its current .6 ET percentile+.4 XGB percentile, not as a new tradeable strategy; Return is its original three-seed average. Exactly correlated inputs can hide each other's influence in one-column permutation, so exact duplicates and grouped ablations must accompany the ranking. This diagnostic does not establish causality, robustness across data vintages or a tradable feature-removal benefit. Test-set importances are not used to select new variants or tune weights in this lot. A single seeded permutation per date is a bounded screening diagnostic, not a calibrated uncertainty distribution; month-level contributions are retained.
+
+Original predictions are reconstructed first from saved models with the exact input/parsing precision. No training or strategy outcomes are altered by the diagnostic.
