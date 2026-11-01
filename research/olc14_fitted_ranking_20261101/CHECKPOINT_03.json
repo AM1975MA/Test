@@ -1,0 +1,45 @@
+{
+  "status": "COMPLETE_RESTORED_VERIFIED_NO_PROMOTION",
+  "protocol_commit": "facad01242bca20502dcf5563b84c9f60d0bd015",
+  "source_commit": "037f0dd8446a049a1eef6a9f671847b76b2086ee",
+  "new_base_models": 480,
+  "original_parity_refits": 4,
+  "inner_fits": 198,
+  "outer_fits": 12,
+  "target_selections": 6,
+  "paths": 96,
+  "exact_parent_controls": 16,
+  "new_tests": 19,
+  "inherited_tests": [15, 23],
+  "clean_restore": {
+    "manifest_entries_verified": [848, 220],
+    "test_pass_count": 19,
+    "real_replay_count": 12,
+    "all_replay_arrays_exact": true,
+    "library_verification_file": "file_000000007a4c824681d13eff7cd87521"
+  },
+  "archives": [
+    {
+      "name": "OLC14_Heads_Checkpoint_20261101.zip",
+      "bytes": 364165692,
+      "sha256": "a8f2c1770dfdd329676293788180b96a92f79a598d1394a0aaaeb5d91346e458",
+      "file_id": "file_00000000eb948210a3df9d84061c95f5",
+      "library_file_id": "libfile_3ab36a8bba50819198777477a9ff7a06",
+      "library_path": "/ETF_Research/OLC14_Fitting_Ranking_20261101/OLC14_Heads_Checkpoint_20261101.zip"
+    },
+    {
+      "name": "OLC14_Fitting_Risultati_20261101.zip",
+      "bytes": 40006829,
+      "sha256": "4259b9e756ce02b48b473988a3467cd8c2f2c93394df6f3040698aa06e17c6e1",
+      "file_id": "file_00000000509881f4b4993ebea74aeb7b",
+      "library_file_id": "libfile_85e82da151cc81918d26e743f3573776",
+      "library_path": "/ETF_Research/OLC14_Fitting_Ranking_20261101/OLC14_Fitting_Risultati_20261101.zip"
+    }
+  ],
+  "report_file_id": "file_00000000e0ac81f4956f3f3ba53ce926",
+  "binary_github_release_assets": false,
+  "scope": "Both archives extracted together restore prepared panels, all models, ranking fits, predictions and replay; raw-source rebuild remains separate.",
+  "external_reviewer": false,
+  "main_modified": false,
+  "local_training_left_running": false
+}
