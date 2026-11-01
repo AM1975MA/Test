@@ -1,0 +1,22 @@
+{
+  "stage": "matched_learning_objectives",
+  "state": "complete",
+  "new_models": 240,
+  "annual_seed_batches": 48,
+  "markets": ["EU165", "USA149"],
+  "years": [2019,2020,2021,2022,2023,2024,2025,2026],
+  "seeds": [101,211,307],
+  "learners": ["ET_REG","XGB_REG","ET_CLASS","XGB_CLASS","XGB_RANK"],
+  "original_control_refits": 4,
+  "original_2022_raw_prediction_error": {"EU_ET":0.0,"EU_XGB":0.0,"USA_ET":0.0,"USA_XGB":0.0},
+  "feature_order": "unchanged Hybrid42",
+  "new_portfolios": 0,
+  "archive": {
+    "surface": "Library, not GitHub release",
+    "path": "/ETF_Research/OLC11_Obiettivi_Selezione_20261101/OLC11_02_Modelli_Verificati_20261101.zip",
+    "file_id": "file_00000000511481f4b664f59d2766aca0",
+    "bytes": 111111856,
+    "sha256": "cf4117dabc66dbd0d9f672410759e69fc69c0077416a3b83b885b5a80a18d5a4"
+  },
+  "note": "Training completion is not a claim of improved selection. Native learner diagnostics and downstream score diagnostics are separate; no CAGR ranking is used."
+}
