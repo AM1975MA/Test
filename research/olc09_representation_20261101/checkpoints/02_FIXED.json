@@ -1,0 +1,19 @@
+{
+  "status": "five_complete_families_both_markets",
+  "new_models": 160,
+  "annual_batches": 80,
+  "years": [2019,2020,2021,2022,2023,2024,2025,2026],
+  "markets": ["USA149","EU165"],
+  "configurations": ["FIXED_CORE_S101","FIXED_PATH_S101","FIXED_NULL7101_S101","FIXED_NULL7102_S101","FIXED_NULL7103_S101"],
+  "ET_feature_budget": 16,
+  "XGB_nominal_columns_per_tree": 37,
+  "new_economic_results": false,
+  "archive": {
+    "surface": "Library, not GitHub release",
+    "file_id": "file_00000000919081f49f5923478e8d0dfc",
+    "path": "/ETF_Research/OLC09_Rappresentazione_20261101/OLC09_02_Budget_Fisso_20261101.zip",
+    "bytes": 94089864,
+    "sha256": "fc9a8017e64a9fde5169982b6c7b858b4755c8caaaebbe55ba73d9f03c25b200"
+  },
+  "note": "Every annual completed batch contains model binaries, train-only imputer, same-support forecasts and hash-bound audit. All-columns and seed sensitivities remain running in this current response; no success claimed for them yet."
+}
