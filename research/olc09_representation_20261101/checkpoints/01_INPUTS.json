@@ -1,0 +1,22 @@
+{
+  "status": "inputs_verified_no_new_economic_claim",
+  "annual_batches": 16,
+  "canonical_reorder_alias_matrix_checks": 32,
+  "baseline_saved_models_read": 32,
+  "actual_baseline_models_refit": 4,
+  "baseline_forecast_error": 0,
+  "verified_parent_files": 4026,
+  "new_tests_passed": 17,
+  "parent_feature_lab_tests_passed": 20,
+  "initial_schema_tests_observed_failing": 12,
+  "input_audit_sha256": "20a9119767ba63d6b83ef08422b7e26ae404bc8bbdf0409c0cc9079ce05e858a",
+  "baseline_parity_sha256": "7f8492219257452289467d8da180312eacacf5858c36281be916ed23bcbdc143",
+  "archive": {
+    "surface": "Library, not GitHub release",
+    "file_id": "file_000000002d8481f4abc1a6ccfd6a7945",
+    "path": "/ETF_Research/OLC09_Rappresentazione_20261101/OLC09_01_Input_e_Contratti_20261101.zip",
+    "bytes": 159242354,
+    "sha256": "e17536dd65cf5f23fca5e6cd10157704f825739d38d7fc2db2f976e4f4b5fa54"
+  },
+  "scope": "All matched annual Hybrid matrices2019-2026 in both markets; explicit aliases and reorder preserve canonical values. Not a market-data or live-execution certification. New learner fits have started in this response and are checkpointed per batch; no completion claim here."
+}
