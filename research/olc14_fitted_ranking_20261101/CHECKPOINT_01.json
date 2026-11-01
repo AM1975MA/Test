@@ -1,0 +1,23 @@
+{
+  "stage": "INPUTS_AND_BASELINE_VERIFIED",
+  "protocol_commit": "facad01242bca20502dcf5563b84c9f60d0bd015",
+  "verified_parent_files": 1042,
+  "parent_scope": "All 534 OLC11 and 350 OLC12 manifest files, plus 158 files actually delivered in the OLC13 source/results package; 1381 absent OLC13 full-checkpoint entries are not claimed recovered.",
+  "prepared_annual_inputs": 16,
+  "whole_group_maturity_checked": true,
+  "original_label_identity": true,
+  "original_refits": 4,
+  "parity": "ET/XGB, EU/USA, year2022, seed101: all forecast errors exactly0 after identical persisted representation",
+  "new_tests_passed": 10,
+  "parent_OLC11_tests_passed": 15,
+  "parent_OLC12_tests_passed": 23,
+  "source_archives_sha256": {
+    "OLC11": "6802adb5ee54db9142c49b1ea13511c354b200ee84e3cdf3cae8bbd491275eeb",
+    "OLC12": "3e1582d60dfea6a86b45d368ddde1c1466d4d1447873de177636b423690bd50a",
+    "OLC13_results": "f406f36e0628835dacf5d3ef5fa65d45e77a66f8020dd497465cf0944fdbf99f"
+  },
+  "new_horizon_training": "Started locally; not yet asserted complete in this checkpoint",
+  "new_economic_results": false,
+  "binary_remote_copy": "This text checkpoint is not an upload of models or input archives",
+  "main_modified": false
+}
