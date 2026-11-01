@@ -1,0 +1,90 @@
+name: Research preservation 20261101
+on:
+  push:
+    branches: [research/archive-and-calendar-20261101]
+    paths: ['.github/workflows/research-preservation-20261101.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: research/archive-and-calendar-20261101
+      - name: Inventory branch tips and deduplicate all tracked research content
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess,json,hashlib,csv,zipfile
+          def git(*a):return subprocess.check_output(['git',*a])
+          names=['audit-repository-evidence-20261031','research/component-reconciliation-20261031','research/dual-universe-strategy-20261031','research/eu-original39-daily-audit-20261031','research/paired-frontier-20261031','research/opportunity-lifecycle-20261031','research/opportunity-lifecycle-model-20261031','research/olc02-incremental-actions-20261031','research/olc03-selective-veto-20261031','research/olc04-relative-information-20261031','research/olc05-representation-transition-20261031','research/olc06-delay-vs-phase-20261101']
+          root=Path('/tmp/preserved');(root/'blobs').mkdir(parents=True)
+          refs=[];unique={};missing=[]
+          for name in names+['CANONICAL_VENDOR']:
+              ref='13443836649d0f107d2063eb7acc1039135d6e9b' if name=='CANONICAL_VENDOR' else 'refs/remotes/origin/'+name
+              try:commit=git('rev-parse',ref).decode().strip()
+              except subprocess.CalledProcessError:missing.append(name);continue
+              es=[]
+              for raw in git('ls-tree','-r','-l','-z',commit).split(b'\0'):
+                  if not raw:continue
+                  meta,path=raw.split(b'\t',1);mode,kind,sha,size=meta.decode().split();path=path.decode()
+                  keep=path.startswith(('vendor/p45/','vendor/etf_trader_v2/','compact21_return_v1/')) if name=='CANONICAL_VENDOR' else path.startswith(('research/','audit/','.github/workflows/'))
+                  if kind!='blob' or not keep:continue
+                  item={'path':path,'sha':sha,'bytes':int(size)};es.append(item);unique.setdefault(sha,item)
+              refs.append({'branch':name,'commit':commit,'files':es})
+          hashes=[]
+          for sha,r in unique.items():
+              data=git('cat-file','blob',sha)
+              assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==sha
+              (root/'blobs'/sha).write_bytes(data)
+              hashes.append({'git_blob_sha':sha,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          manifest={'scope':'Tracked research/audit/workflow tip files for named branches, plus original vendor source. Not conversation-only archives, not complete repo Git history.','refs':refs,'missing_branches':missing,'blobs':hashes}
+          (root/'MANIFEST.json').write_text(json.dumps(manifest,indent=2))
+          summary={'branches_requested':len(names),'branches_found':sum(x['branch']!='CANONICAL_VENDOR' for x in refs),'canonical_vendor_included':any(x['branch']=='CANONICAL_VENDOR' for x in refs),'unique_blobs':len(unique),'bytes':sum(x['bytes'] for x in hashes),'missing_branches':missing,'conversation_only_checkpoints_included':False,'scope_warning':manifest['scope']}
+          out=Path('research/archive_audit_20261101');out.mkdir(exist_ok=True)
+          (out/'REMOTE_SNAPSHOT_SUMMARY.json').write_text(json.dumps(summary,indent=2))
+          with (out/'REMOTE_INVENTORY.csv').open('w',newline='') as f:
+              w=csv.writer(f);w.writerow(['branch','commit','path','git_blob_sha','bytes'])
+              for r in refs:
+                  for e in r['files']:w.writerow([r['branch'],r['commit'],e['path'],e['sha'],e['bytes']])
+          target=Path('/tmp/ETF_Research_Tracked_Snapshot_20261101.zip')
+          with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as z:
+              for p in root.rglob('*'):
+                  if p.is_file():z.write(p,p.relative_to(root))
+          (out/'SNAPSHOT_SHA256.txt').write_text(hashlib.sha256(target.read_bytes()).hexdigest()+'  '+target.name+'\n')
+          print(json.dumps(summary,indent=2));print('ZIP_BYTES',target.stat().st_size)
+          assert not missing,missing
+          PY
+      - name: Preserve tracked inventory on the isolated audit branch
+        run: |
+          git config user.name 'research-preservation[bot]'
+          git config user.email 'research-preservation@users.noreply.github.com'
+          git add -- research/archive_audit_20261101/REMOTE_SNAPSHOT_SUMMARY.json research/archive_audit_20261101/REMOTE_INVENTORY.csv research/archive_audit_20261101/SNAPSHOT_SHA256.txt
+          git diff --cached --quiet || git commit -m 'audit: preserve verified remote research inventory and snapshot digest'
+          git fetch origin research/archive-and-calendar-20261101
+          git rebase origin/research/archive-and-calendar-20261101
+          git push origin HEAD:research/archive-and-calendar-20261101
+      - name: Publish archival prerelease without overwriting an existing asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG=research-preserved-20261101
+          if ! gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$(git rev-parse HEAD)" --prerelease --title 'Research tracked-source snapshot 2026-11-01' --notes 'Verified content-addressed snapshot of tracked research and audit files from 12 research branches, plus original vendor source. This DOES NOT include all conversation-only checkpoints/models/daily ledgers and is NOT a production release or strategy promotion. See manifest and audit inventory for exact scope.'
+          fi
+          gh release upload "$TAG" /tmp/ETF_Research_Tracked_Snapshot_20261101.zip research/archive_audit_20261101/SNAPSHOT_SHA256.txt --repo "$GITHUB_REPOSITORY"
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url,assets
+      - uses: actions/upload-artifact@v4
+        with:
+          name: research-preservation-inventory-20261101
+          path: |
+            research/archive_audit_20261101/REMOTE_INVENTORY.csv
+            research/archive_audit_20261101/REMOTE_SNAPSHOT_SUMMARY.json
+            research/archive_audit_20261101/SNAPSHOT_SHA256.txt
+          retention-days: 90
+          if-no-files-found: error
