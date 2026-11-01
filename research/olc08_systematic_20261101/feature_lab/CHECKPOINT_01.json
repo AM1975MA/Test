@@ -1,0 +1,26 @@
+{
+  "stage": "OLC08F_01_feature_generation",
+  "status": "complete",
+  "reference": "RSI-corrected Compact125 plus unchanged Hybrid42",
+  "new_measurements": 18,
+  "groups": ["PATH6", "SESSION6", "LEADERSHIP6"],
+  "source_scope": "New representations of existing authenticated OHLC histories and eligible-universe ranks; no external fundamental information.",
+  "EU_return_rows": 34650,
+  "EU_hybrid_rows": 22050,
+  "USA_return_rows": 40230,
+  "USA_hybrid_rows": 31375,
+  "new_unit_tests": 11,
+  "inherited_recovery_tests": 12,
+  "real_prefix_and_future_perturbation_checks": 8,
+  "whole_repository_green": false,
+  "collection_limit": "Unscoped pytest collected restored historical source tests and symlink duplicates, producing 111 import/path collection errors. Log retained; the new tests and inherited recovery tests passed in their explicit roots.",
+  "persistent_archive": {
+    "surface": "Library, not GitHub release",
+    "path": "/ETF_Research/OLC08_Ripristino_20261101/OLC08F_01_FeaturePack_20261101.zip",
+    "file_id": "file_000000009b7081f49d11f80d1a29248f",
+    "bytes": 51576183,
+    "sha256": "420faa56547721fd58db9f75ceef1370483047073d91c1b675587bd2d2e9db6c"
+  },
+  "economic_results_at_this_stage": "not yet inspected or claimed",
+  "training_scope": "11 fixed first-layer variants, paired markets, annual mature-label batches. Progress is saved per completed batch. No automatic promotion."
+}
