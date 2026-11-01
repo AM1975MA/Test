@@ -1,0 +1,22 @@
+{
+  "paths": 48,
+  "unchanged_references": 32,
+  "new_delay_paths": 16,
+  "intervals": 90216,
+  "metrics_recomputed": 1872,
+  "maximum_nav_error": 3.552713678800501e-15,
+  "maximum_metric_error": 1.794120407794253e-13,
+  "maximum_daily_log_identity_error": 4.909267437014364e-16,
+  "unobserved_trades": 0,
+  "prefix_checks": 6,
+  "new_training_fits": 0,
+  "signal_calendar_refits": 0,
+  "main_unchanged_expected": "77f7a4706f934e7061541cd62c1c0ce64ab7135d",
+  "tests_passed_in_complete_package": 49,
+  "local_distinct_episodes": 156,
+  "local_policy_cost_rows": 1404,
+  "local_missing_quote_exclusions": 4,
+  "local_unfinished_exclusions": 2,
+  "review": "author_self_review_not_independent",
+  "scope": "Full scripts, tests, all NAV/daily ledgers and input dependencies in delivered checkpoint; GitHub contains core and compact evidence, not all large binaries."
+}
