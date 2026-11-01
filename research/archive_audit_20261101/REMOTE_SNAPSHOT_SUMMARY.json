@@ -1,0 +1,10 @@
+{
+  "branches_requested": 12,
+  "branches_found": 12,
+  "canonical_vendor_included": true,
+  "unique_blobs": 346,
+  "bytes": 151006301,
+  "missing_branches": [],
+  "conversation_only_checkpoints_included": false,
+  "scope_warning": "Tracked research/audit/workflow tip files for named branches, plus original vendor source. Not conversation-only archives, not complete repo Git history."
+}
