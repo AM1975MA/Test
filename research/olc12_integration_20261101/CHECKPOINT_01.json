@@ -1,0 +1,13 @@
+{
+  "stage":"01_integrated_scores",
+  "date":"2026-11-01",
+  "completed":true,
+  "new_base_models":0,
+  "variants":13,
+  "markets":[{"market":"EU","forecast_rows":13781,"signal_months":90,"common_live_support_rows":13630},{"market":"USA","forecast_rows":13410,"signal_months":90,"common_live_support_rows":13410}],
+  "control_parity":"MATCHED_REG and NAIVE_CLASS exactly equal corresponding OLC11 MEAN3 final scores in both universes, including NaNs; four controls.",
+  "new_tests_passed":11,
+  "test_history":"11 tests observed failing before implementation, then passing; no portfolio result computed at this checkpoint.",
+  "persistent_archive":{"surface":"Library, not GitHub release","path":"/ETF_Research/OLC12_Integrazione_20261101/OLC12_01_Segnali_Integrati_20261101.zip","file_id":"file_000000008f2481f492d8a7db60490fe7","bytes":28435194,"sha256":"477857b8cc6df0f7b16ffef50f7fd742c1bf0b071bec131c19701dc8402390aa"},
+  "status":"The candidate interfaces are implemented. Integration quality, portfolio outcomes and robustness are not yet established. No main or live strategy changes."
+}
