@@ -1,0 +1,14 @@
+{
+  "stage":"01_integrated_layer_contracts",
+  "state":"complete",
+  "tests_passed":21,
+  "new_test_failures_observed_before_implementation":13,
+  "real_canonical_matrix_parity_checks":32,
+  "markets":["EU165","USA149"],
+  "years":[2019,2020,2021,2022,2023,2024,2025,2026],
+  "integration":"Research module: RSI domain convention, explicit schema/alias identity, exact legacy42 view and atomic hash completion markers. No main or production modification.",
+  "new_portfolio_improvement_claimed":false,
+  "archive":{"surface":"Library, not GitHub release","file_id":"file_00000000b93081f49b373b40a3e0965a","path":"/ETF_Research/OLC10_Contratti_Layer_20261101/OLC10_01_Contratti_Integrati_20261101.zip","bytes":12022,"sha256":"c3dc2b692fdebf0bf2b0e895e1bd5eb9d4659a70c95731d7c324a930086e4f47"},
+  "not_adopted":["PATH as proven alpha","best historical seed","reversed column order","unmatched duplicate removal"],
+  "next":"Evaluate each layer's native task; annual calibration on strictly prior matured OOF predictions, not CAGR optimization."
+}
