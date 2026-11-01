@@ -1,0 +1,13 @@
+{
+ "stage":"02_fixed_integration_replays",
+ "completed":true,
+ "new_base_fits":0,
+ "paths":188,
+ "exact_OLC06_engine_controls":12,
+ "accounting_intervals_reconstructed":353346,
+ "layer_comparator":"OLC11 matched full-mature-group mean-of-three regressors; archived single-seed remains separate",
+ "primary_example_2021_2024_immediate_legacy_cost001":{"MATCHED_REG":{"EU_cagr_pct":20.03,"USA_cagr_pct":39.92},"NAIVE_CLASS":{"EU_cagr_pct":14.75,"USA_cagr_pct":11.13},"SPECIALIST20_CURRENT":{"EU_cagr_pct":19.02,"USA_cagr_pct":37.98},"SPECIALIST20_MEMORY":{"EU_cagr_pct":25.00,"USA_cagr_pct":35.65}},
+ "interpretation":"A native classifier improvement is not a general portfolio gain. No fixed integration is declared universally better. Layer and portfolio metrics remain distinct. Final independent metric audit and uncertainty not yet completed at this checkpoint.",
+ "archive":{"surface":"Library, not GitHub release","file_id":"file_00000000544081f48141ab826b2ca11c","path":"/ETF_Research/OLC12_Integrazione_20261101/OLC12_02_Integrazione_Fissa_20261101.zip","bytes":50905845,"sha256":"88c9717fba00ecab8dec96caf5d29f32a553be863755bfed8440a11788061985"},
+ "failures":"Streaming terminal unsupported; an initial process found its runner absent. Failure log preserved. Runner was written before the successful complete replay. No incomplete output was taken as a result."
+}
