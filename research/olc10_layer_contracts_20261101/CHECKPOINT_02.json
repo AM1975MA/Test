@@ -1,0 +1,25 @@
+{
+  "stage":"02_layer_native_evaluation_and_calibration",
+  "state":"complete",
+  "date":"2026-11-01",
+  "base_model_fits":0,
+  "archived_configurations_reassessed":16,
+  "annual_calibrator_fits":24,
+  "portfolio_replays":0,
+  "new_source_modules":10,
+  "source_commit":"e68551743163f224f483b6eec62fecf3621fc6bd",
+  "all_source_modules_and_test_blob_verified_exact":true,
+  "integration":{"research_only":true,"RSI_contract":true,"canonical_schema_and_aliases":true,"legacy42_compatibility":true,"atomic_hash_checkpoints":true,"rank_and_target_expectation_separated":true,"main_modified":false},
+  "verification":{"tests_passed":26,"real_matrix_parity_checks":32,"exact_combined_score_cells":28260,"forward_labels_checked":334647,"source_target_rows_checked":27191,"independent_monthly_losses":1368,"summary_rows_checked":184,"independent_ndcg_checks":400,"future_perturbation_checks":6,"max_metric_error":3.3306690738754696e-16,"clean_restore_tests_passed":26,"clean_restore_tables":16,"clean_restore_max_numeric_error":2.220446049250313e-16,"clean_restore_rank_outputs_exact":true,"review":"author, not independent reviewer"},
+  "primary_period":"signals2021-2024 with complete outcomes matured before2025",
+  "primary_target_months":{"EU":44,"USA":45,"paired_calendar_months":44},
+  "PATH_vs_FIXED_CORE":{"mse_relative_reduction_pct":{"EU":0.05197,"USA":0.12292},"top2_best_quintile_precision":{"EU_core":0.3522727,"EU_PATH":0.2727273,"USA_core":0.3666667,"USA_PATH":0.3777778},"decision":"small target-error benefit, not a verified common selection improvement; three null controls remain material"},
+  "calibration_decision":"No new default. Target loss improves inUSA but worsensEU; STACK2 weakens native Top2 discrimination. AFFINE/SHRINK retain the native rank output; no new winning tickers implied.",
+  "existing_fusion_diagnostic":{"unit":"mean static Top2 forward return above same-universe mean, decimal; no costs, no compounding","horizon":21,"EU":{"Return":0.004290,"Hybrid_current":-0.001410,"Hybrid_smoothed":0.010354,"Fusion":0.012881},"USA":{"Return":0.017507,"Hybrid_current":0.010983,"Hybrid_smoothed":0.010462,"Fusion":0.023790}},
+  "persistent_archives":[
+    {"surface":"Library, NOT GitHub release","file_id":"file_000000007bf081f487fa47f1d9645efc","path":"/ETF_Research/OLC10_Contratti_Layer_20261101/OLC10_Layer_Risultati_20261101.zip","bytes":7308284,"sha256":"4bcd6ff18660d9f2c65dd2492d7e7407b8da03e6d6e3a2f2c278126a2a2190fe"},
+    {"surface":"Library, NOT GitHub release","file_id":"file_0000000086e08210a950362bf484d865","path":"/ETF_Research/OLC10_Contratti_Layer_20261101/OLC10_Layer_Checkpoint_20261101.zip","bytes":44003208,"sha256":"33b454c843421a8154818c746966ff371226ca7722004b555ac9abe4b0e05783","scope":"Self-contained for new layer diagnostics and calibrator fits from included CSVs, not for original raw-data base-model training."}
+  ],
+  "unresolved":["raw total-return/dividends and delisting survival","economic duplicate mapping","real spreads and legacy fill assumptions","historical binary archive backlog on GitHub","independent human or separate-agent review"],
+  "no_background_training":true
+}
