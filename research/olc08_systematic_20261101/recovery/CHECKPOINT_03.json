@@ -1,0 +1,28 @@
+{
+  "stage": "03_RSI_domain_only",
+  "state": "complete",
+  "persistent_archive": {"surface":"Library, not GitHub release", "file_id":"file_00000000a83082109f18576966ae82ba", "path":"/ETF_Research/OLC08_Ripristino_20261101/OLC08_03_RSI_Confronto_Verificato_20261101.zip", "bytes":7772336, "sha256":"0dbcb8ee93cd0acaefd7505a202fbf30c9fda8df1804d90a0dd1578abd704f4b"},
+  "changed_formula": "Original EWM RSI kept except positive-only mature denominator=0 ->100; mature flat ->50; missing/insufficient remainsNaN. Only RSI and its same-date percentile are changed.",
+  "matched_training": true,
+  "EU_new_models": 24,
+  "USA_new_models": 0,
+  "USA_identity": "Exact equality of all training/prediction inputs and labels to baseline verified for every year; existing authenticated baseline models reused. All USA paths unchanged.",
+  "monthly_top2_changed_EU": 24,
+  "monthly_top2_changed_USA": 0,
+  "primary_window": "2021-2024, actual next-Open valuation dates, HALF target, original risk/V6 and legacy fee0.001",
+  "results": [
+    {"market":"EU","policy":"IMMEDIATE","base_cagr":0.160118,"candidate_cagr":0.173053,"base_maxdd":-0.264251,"candidate_maxdd":-0.257703},
+    {"market":"EU","policy":"DELAY3","base_cagr":0.189057,"candidate_cagr":0.206135,"base_maxdd":-0.286021,"candidate_maxdd":-0.265102},
+    {"market":"EU","policy":"PHASE5","base_cagr":0.176084,"candidate_cagr":0.191120,"base_maxdd":-0.272337,"candidate_maxdd":-0.264065},
+    {"market":"USA","policy":"IMMEDIATE","base_cagr":0.355184,"candidate_cagr":0.355184},
+    {"market":"USA","policy":"DELAY3","base_cagr":0.387156,"candidate_cagr":0.387156},
+    {"market":"USA","policy":"PHASE5","base_cagr":0.379711,"candidate_cagr":0.379711}
+  ],
+  "cost_stress_EU_DELAY3": {"fee":0.003,"base_cagr":0.164150,"candidate_cagr":0.179789},
+  "full_EU_DELAY3": {"base_cagr":0.146048,"candidate_cagr":0.171461,"base_maxdd":-0.362484,"candidate_maxdd":-0.330098},
+  "verified_paths":24,
+  "independently_checked_metrics":936,
+  "maximum_NAV_reconstruction_error":3.552713678800501e-15,
+  "maximum_metric_reconstruction_error":3.552713678800501e-14,
+  "warning":"Only five originally eligible EU training observations had raw RSI NaNs repaired; their same-date percentiles also change. Many later selections change after refitting. This demonstrates sensitivity and a favorable historical contrast, not universal alpha or live executability. Other features/variants are not combined with this result."
+}
