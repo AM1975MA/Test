@@ -1,0 +1,24 @@
+{
+  "stage": "02_baseline_models",
+  "state": "complete",
+  "markets": ["USA149", "EU165"],
+  "years": [2019,2020,2021,2022,2023,2024,2025,2026],
+  "annual_batches": 16,
+  "models": 80,
+  "control_parity": "All annual RETURN_RAW/RETURN/ET_RAW/ET/XGB_RAW/XGB vectors equal archived P0 forecasts after the identical CSV round trip; no tolerance relaxation.",
+  "serialization_issue": {
+    "observed": "Comparing new float32 predictions directly with original CSV parsed as float64 gave a maximum difference of 9.693908697983034e-8 in EU2019 Return.",
+    "diagnosis": "Casting the archived values to float32 yielded exact equality; rank difference was zero. Identical CSV serialization and round_trip parsing yielded zero difference.",
+    "remedy": "Compare identical persisted representations; no change to training, targets, model parameters or prices.",
+    "regression_test": "Observed failing then passing; fresh baseline refit rerun rather than marking incomplete folders complete."
+  },
+  "new_recovery_tests_passed": 12,
+  "persistent_archive": {
+    "surface": "Library, not GitHub release",
+    "path": "/ETF_Research/OLC08_Ripristino_20261101/OLC08_02_Riferimenti_Riprodotti_20261101.zip",
+    "file_id": "file_0000000089fc82468c3e583bed2656c8",
+    "bytes": 31356771,
+    "sha256": "1ba0f0d3438fd2dca22349513efc32a469b29b6eb02ec0aa1dad3e2a51f05c95"
+  },
+  "scope": "Verified control restoration. No new economic improvement claimed at this checkpoint. Earlier all-GitHub binary preservation gap remains explicitly unresolved."
+}
