@@ -1,0 +1,30 @@
+{
+  "state": "lot_complete_no_promotion",
+  "new_models": 544,
+  "baseline_refits": 4,
+  "annual_batches": 272,
+  "authenticated_batch_files": 1360,
+  "portfolio_paths": 312,
+  "exact_archived_controls": 48,
+  "new_portfolio_replays": 264,
+  "daily_intervals_reconstructed": 586404,
+  "metric_values_recomputed": 12168,
+  "max_nav_error": 3.552713678800501e-15,
+  "max_metric_error": 7.105427357601002e-14,
+  "new_project_tests": 28,
+  "parent_feature_lab_tests": 20,
+  "historical_unscoped_collection_errors": 112,
+  "fresh_restore_tests": 28,
+  "fresh_restore_actual_replays": 12,
+  "fresh_restore_max_difference": 0,
+  "scope": "Author-reviewed historical research, no new raw-data/live-execution certification. Source code and compact results on GitHub, full binaries below in Library, not GitHub release assets.",
+  "library_folder": "/ETF_Research/OLC09_Rappresentazione_20261101",
+  "archives": [
+    {"file_id":"file_000000003aa881f4a402f909b3611399","name":"OLC09_Rappresentazione_Risultati_20261101.zip","bytes":60808180,"sha256":"16606b83c94d75b3e5657d946ab5e5d90a40da28c3e40d9f8715cfa686441ee4"},
+    {"file_id":"file_000000005d3c81f4bab492ac6b7de8d7","name":"OLC09_Checkpoint_Volume1_20261101.zip","bytes":175210599,"sha256":"bcf444f5237858148b82e5b9c4eb5319016066c4b5b989c37065b73535381ec3"},
+    {"file_id":"file_00000000b390824681206ff4fe705606","name":"OLC09_Checkpoint_Volume2_20261101.zip","bytes":174621605,"sha256":"6b753246a879df63c49f278086ea7d43842dd4ca191250371d76a2042f8fb121"},
+    {"file_id":"file_00000000655c81f489590904b7a72c21","name":"OLC09_Checkpoint_Volume3_20261101.zip","bytes":174872094,"sha256":"b3b5ab4d91a4cb10a3d92765dbdf1004d67417b805d52f726480b1bda2b56426"}
+  ],
+  "required_parent_volumes": ["OLC08F_Checkpoint_Completo_Volume1_20261101.zip","OLC08F_Checkpoint_Completo_Volume2_20261101.zip"],
+  "background_training_after_response": false
+}

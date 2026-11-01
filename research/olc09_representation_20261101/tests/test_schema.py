@@ -52,3 +52,11 @@ def test_legacy_fraction_kept():assert column_parameters(42,'LEGACY')==(.4,.9)
 def test_bad_configuration_rejected():
     with pytest.raises(ValueError):column_parameters(20,'FIXED')
     with pytest.raises(ValueError):column_parameters(42,'invalid')
+
+def test_infinite_feature_rejected():
+    f=example();f.loc[0,'a']=np.inf
+    with pytest.raises(ValueError,match='Infinite'):canonical_matrix(f,['a','b'])
+
+def test_input_not_mutated():
+    f=example();old=f.copy();canonical_matrix(f,['b','a'])
+    pd.testing.assert_frame_equal(f,old)
