@@ -1,0 +1,13 @@
+{
+  "new_models_reopened": 240,
+  "new_model_prediction_max_error": 0.0,
+  "original_parity_refits": 4,
+  "annual_input_cohorts_independently_checked": 16,
+  "future_inference_perturbations": 10,
+  "ensemble_target_metric_values_independently_recomputed": 28728,
+  "metric_max_error": 4.440892098500626e-16,
+  "table_summary_values_recomputed": 28064,
+  "unchanged_return_and_inference_support_checks": 14,
+  "new_portfolios": 0,
+  "review": "author verification, not independent external review; complete-cohort control covers this target, not all original market-data assumptions"
+}

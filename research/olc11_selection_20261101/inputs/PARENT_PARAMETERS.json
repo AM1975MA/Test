@@ -1,0 +1,22 @@
+{
+  "ET": {
+    "n_estimators": 120,
+    "max_features": 0.4,
+    "min_samples_leaf": 20,
+    "max_depth": 8,
+    "random_state": 211
+  },
+  "XGB": {
+    "n_estimators": 400,
+    "max_depth": 2,
+    "learning_rate": 0.02,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "min_child_weight": 12,
+    "reg_lambda": 12,
+    "reg_alpha": 0.2,
+    "objective": "reg:squarederror",
+    "tree_method": "hist",
+    "random_state": 211
+  }
+}

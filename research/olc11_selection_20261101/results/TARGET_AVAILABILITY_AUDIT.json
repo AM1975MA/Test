@@ -1,0 +1,12 @@
+{
+  "scope": "Original per-row maturity of Hybrid relative target; no claim about other pipelines",
+  "cohorts": [
+    {"market":"EU","fit_year":2019,"signal_date":"2018-09-28","prematurely_accepted_rows":5,"unmatured_peers":128,"max_change":0.15681393799217774},
+    {"market":"EU","fit_year":2025,"signal_date":"2024-09-30","prematurely_accepted_rows":6,"unmatured_peers":146,"max_change":0.17192558569325286},
+    {"market":"EU","fit_year":2026,"signal_date":"2025-09-30","prematurely_accepted_rows":7,"unmatured_peers":157,"max_change":0.176691718144253}
+  ],
+  "affected_rows":18,
+  "rows_changed_by_future_only_perturbation":18,
+  "candidate_contract":"All new OLC11 arms require whole mature cohorts. Historical missing-label cohorts are a separate exclusion, not all called leakage.",
+  "new_portfolios":0
+}
