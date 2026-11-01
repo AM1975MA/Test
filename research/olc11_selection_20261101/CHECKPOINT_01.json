@@ -1,0 +1,22 @@
+{
+  "stage": "authenticated_inputs_and_matched_cohorts",
+  "state": "complete",
+  "annual_batches": 16,
+  "markets": ["EU165", "USA149"],
+  "years": [2019,2020,2021,2022,2023,2024,2025,2026],
+  "feature_contract": "Original ordered Hybrid42; no input removal, additional features or new prices",
+  "parent_cache_digests_verified": 16,
+  "original_training_key_and_target_parity": "exact for all annual inputs",
+  "matched_sample_change": "Whole months required fully matured. EU excludes99 rows in2019,94 in2020-2024,100 in2025,593 in2026; USA loses0 rows. Every new objective has its own regression control on this identical reduced population.",
+  "new_tests_passed": 12,
+  "observed_initial_missing_implementation_failures": 9,
+  "new_models_fitted": 0,
+  "new_economic_claims": false,
+  "archive": {
+    "surface": "Library, not GitHub release",
+    "path": "/ETF_Research/OLC11_Obiettivi_Selezione_20261101/OLC11_01_Input_Verificati_20261101.zip",
+    "file_id": "file_000000008c88821085ae4eaf2f196132",
+    "bytes": 61058314,
+    "sha256": "35df49c3a51f28dd3b216dfc766cc2df0859953f993e341851ad91fd0bd56ed7"
+  }
+}
