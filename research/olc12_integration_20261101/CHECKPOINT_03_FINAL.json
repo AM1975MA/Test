@@ -1,0 +1,24 @@
+{
+ "stage":"03_final_verified_integration",
+ "state":"complete",
+ "new_source_modules":10,
+ "reused_source_modules":5,
+ "new_test_files":3,
+ "new_tests_passed":23,
+ "inherited_OLC11_tests_passed":15,
+ "whole_repository_tests_certified":false,
+ "portfolio_paths":212,
+ "small_meta_fits":24,
+ "base_learner_fits":0,
+ "clean_restoration":{"tests":23,"exact_portfolio_replays":24,"meta_probability_reconstructions":24,"fixed_score_identity":true},
+ "all_full_label_groups_mature_in_meta_training":true,
+ "source_scope":"All 15 src modules and 3 test modules, pytest configuration, report, protocols and registry committed. Full binary archives are in Library, NOT GitHub release assets.",
+ "archives":[
+  {"name":"OLC12_Integrazione_Risultati_20261101.zip","bytes":30738116,"sha256":"f899576dcb3230ceab98cb59a939f4ceb7e9bd9215a7f2c140f0a1df8131b3dd","file_id":"file_00000000bda8820a8fe7e71ef9a1d339","library_path":"/ETF_Research/OLC12_Integrazione_20261101/OLC12_Integrazione_Risultati_20261101.zip"},
+  {"name":"OLC12_Integrazione_Checkpoint_20261101.zip","bytes":57542993,"sha256":"3e1582d60dfea6a86b45d368ddde1c1466d4d1447873de177636b423690bd50a","file_id":"file_000000006328821085759ecac6f5974f","library_path":"/ETF_Research/OLC12_Integrazione_20261101/OLC12_Integrazione_Checkpoint_20261101.zip"}
+ ],
+ "manifest_files":350,
+ "checkpoint_scope":"Self-contained to re-evaluate integrations, refit the 24 small meta models and replay the 212 paths from prepared frozen forecasts. Original base model fitting requires parent archives identified by SHA256.",
+ "promotion":"No promoted trading strategy; classifier integrated as separate specialist and research candidates.",
+ "main_modified":false
+}

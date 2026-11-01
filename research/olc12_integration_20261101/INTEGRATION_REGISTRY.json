@@ -1,0 +1,16 @@
+{
+  "status": "research_only",
+  "promoted_trading_strategy": null,
+  "historical_anchor": "ARCHIVE_S101",
+  "matched_comparator": "MATCHED_REG",
+  "specialist_native_output": "XGB_CLASS probability of top-quintile Hybrid target; not probability of positive return",
+  "integrated_outputs": [
+    "fixed separate channel",
+    "shortlist reranker",
+    "task-trained META3"
+  ],
+  "capital_rule": "HALF 50/50, never scaled by probability",
+  "meta_control": "META2 without classifier, identical training rows",
+  "frozen_protections_and_V6": true,
+  "main_modified": false
+}

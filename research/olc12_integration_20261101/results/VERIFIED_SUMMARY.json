@@ -1,0 +1,13 @@
+{
+  "portfolio_paths": 212,
+  "accounting_intervals": 398454,
+  "independent_metrics": 11024,
+  "max_NAV_error": 3.552713678800501e-15,
+  "max_metric_error": 1.7408297026122455e-13,
+  "sklearn_NDCG_checks": 4361,
+  "max_NDCG_error": 3.3306690738754696e-16,
+  "real_future_perturbation_checks": 8,
+  "base_model_fits": 0,
+  "meta_fits": 24,
+  "self_review_not_independent": true
+}
