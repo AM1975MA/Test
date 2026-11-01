@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-01",
+  "status": "COMPLETED_NO_PROMOTION",
+  "protocol_commit": "d8892583614486703b76c14906aefd04ed8dd911",
+  "report_commit": "2abec07f44802cb5a49eee64eefdbd750b3ed3b2",
+  "remote_scope": "Protocol, result report and delivery receipt. Complete runnable source, data, models and paths are in the delivered checkpoint, not newly uploaded to this branch.",
+  "artifacts": [
+    {
+      "filename": "OLC13_Target_Sorgenti_Risultati_20261101.zip",
+      "scope": "source_results_not_standalone",
+      "files": 159,
+      "bytes": 18765433,
+      "sha256": "f406f36e0628835dacf5d3ef5fa65d45e77a66f8020dd497465cf0944fdbf99f",
+      "zip_crc_pass": true,
+      "all_included_sha256_verified": true
+    },
+    {
+      "filename": "OLC13_Target_Checkpoint_20261101.zip",
+      "scope": "self_contained_checkpoint",
+      "files": 1540,
+      "bytes": 437975920,
+      "sha256": "b9c659dde48e657324b8ef8da2e9888f444131a2009736a35683df61b8fcabf3",
+      "zip_crc_pass": true,
+      "all_included_sha256_verified": true
+    }
+  ],
+  "tests": {"new": 25, "inherited_olc11": 15, "inherited_olc12": 23, "all_pass": true},
+  "verification": {
+    "new_models_reloaded": 288,
+    "exact_prediction_reloads": true,
+    "training_code_checks": 144,
+    "portfolio_paths": 64,
+    "exact_parent_controls": 16,
+    "original_parity_refits": 4,
+    "accounting_intervals": 120288,
+    "independent_portfolio_metrics": 3328,
+    "max_portfolio_metric_error": 1.438849039914203e-13,
+    "max_nav_error": 3.552713678800501e-15,
+    "sklearn_ndcg_checks": 1780,
+    "max_ndcg_error": 4.440892098500626e-16,
+    "independent_payoff_checks": 17800,
+    "max_payoff_error": 2.0816681711721685e-16,
+    "summary_max_error": 1.0083080204115191e-16,
+    "real_data_prefix_checks": 4,
+    "external_independent_review": false
+  }
+}
