@@ -1,0 +1,40 @@
+{
+  "stage": "01_reconstructed_panels_and_source_contracts",
+  "state": "complete",
+  "date": "2026-11-01",
+  "new_economic_results": false,
+  "panels": {"EU": {"compact_rows": 34650, "hybrid_rows": 22050}, "USA": {"compact_rows": 40230, "hybrid_rows": 31375}},
+  "persistent_archive": {
+    "surface": "Library, not GitHub release",
+    "path": "/ETF_Research/OLC08_Ripristino_20261101/OLC08_01_Pannelli_Verificati_20261101.zip",
+    "file_id": "file_00000000b47c821089fc8ea4940ce41b",
+    "bytes": 108334629,
+    "sha256": "945faa5816aa627c398244d1b2a599fc2ba31f35fa6d789379264b0912d0be02"
+  },
+  "tests": {"observed_initial_failures": 11, "current_passes": 11, "scope": "new recovery and formula-contract suite only"},
+  "feature_coverage_rows": 334,
+  "RSI": {
+    "EU_changed_rows": 7,
+    "EU_changed_rows_previously_eligible": 5,
+    "USA_changed_rows": 0,
+    "changed_rows": [
+      ["2018-03-29", "EEAA.DE", 100.0, false],
+      ["2018-04-30", "EEAA.DE", 100.0, true],
+      ["2011-11-30", "IUSQ.DE", 50.0, false],
+      ["2011-12-30", "IUSQ.DE", 50.0, true],
+      ["2012-01-31", "IUSQ.DE", 50.0, true],
+      ["2012-02-29", "IUSQ.DE", 50.0, true],
+      ["2012-03-30", "IUSQ.DE", 50.0, true]
+    ],
+    "note": "All changes are to previously missing values; finite original RSI values preserved. Recomputed percentiles can also alter other rows at affected dates. No predictive or economic benefit claimed."
+  },
+  "Hybrid_exact_duplicates_in_both_panels": [
+    ["cluster_acc_5_21_univ_rank", "cluster_acc_5_21_mean_rank"],
+    ["cluster_eff_63_univ_rank", "cluster_eff_63_mean_rank"],
+    ["cluster_ret_21_univ_rank", "cluster_ret_21_mean_rank"]
+  ],
+  "Hybrid_features_original": 42,
+  "Hybrid_distinct_columns": 39,
+  "downside_statistic": "Conditional negative-return dispersion remains a valid but different quantity from lower partial RMS; its replacement is an experiment, not an automatic bug fix.",
+  "unresolved": ["All historical GitHub binary backup", "Raw total-return and survivorship certification", "Legacy same-Open execution", "Predictive and economic value of these feature interventions"]
+}
