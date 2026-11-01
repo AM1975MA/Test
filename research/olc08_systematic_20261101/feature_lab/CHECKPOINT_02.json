@@ -1,0 +1,21 @@
+{
+  "stage":"OLC08F_02_compression",
+  "status":"complete",
+  "new_models":144,
+  "annual_batches":48,
+  "variants":["R_NO_LIQ","R_RANK46","R_PRUNE"],
+  "replayed_paths":60,
+  "unchanged_parent_paths":24,
+  "primary_period":"2021-2024 actual next-Open valuation dates",
+  "primary_policy":"DELAY3, HALF, original risk/V6, legacy fee0.001",
+  "results":[
+    {"variant":"REF_RSI","EU_cagr":0.20613,"USA_cagr":0.38716,"EU_maxdd":-0.26510,"USA_maxdd":-0.20154},
+    {"variant":"R_NO_LIQ","EU_cagr":0.21910,"USA_cagr":0.35834,"EU_maxdd":-0.19400,"USA_maxdd":-0.23869},
+    {"variant":"R_RANK46","EU_cagr":0.22468,"USA_cagr":0.31759,"EU_maxdd":-0.25875,"USA_maxdd":-0.20857},
+    {"variant":"R_PRUNE","EU_cagr":0.20200,"USA_cagr":0.19423,"EU_maxdd":-0.23225,"USA_maxdd":-0.25309}
+  ],
+  "conclusion":"These reductions do not establish common improvement. Some help Europe, but penalize USA. Correlation is not sufficient justification to delete an input. No thresholds or model parameters retuned after this result.",
+  "remaining_scope":"New information blocks and Hybrid duplicate/addition experiments were preregistered and are not claimed complete here.",
+  "persistent_archive":{"surface":"Library, not GitHub release","path":"/ETF_Research/OLC08_Ripristino_20261101/OLC08F_02_Ridondanza_Verificata_20261101.zip","file_id":"file_000000006ba881f4978db417c199bff8","bytes":33614458,"sha256":"313196b94443901a72c9e20e0ab90d798138f6779ed88ca382612be767ede2a6"},
+  "caveat":"Exploratory reused history; nominal feature-sampling fractions unchanged but absolute feature budgets differ. Neither this checkpoint nor tests certify live execution or a global optimum."
+}
