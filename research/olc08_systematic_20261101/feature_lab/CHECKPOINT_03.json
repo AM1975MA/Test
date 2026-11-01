@@ -1,0 +1,31 @@
+{
+  "stage":"OLC08F_03_main_feature_experiment",
+  "state":"main_fits_and_replays_complete",
+  "new_models":480,
+  "annual_batches":176,
+  "variants":11,
+  "paths":156,
+  "exact_parent_paths":24,
+  "position_accounting_intervals":293202,
+  "independently_recomputed_metric_values":6084,
+  "max_nav_error":3.552713678800501e-15,
+  "max_metric_error":4.618527782440651e-14,
+  "favorable_candidate_not_promoted":{
+    "name":"H_PATH:39 distinct Hybrid inputs plus6 path percentiles; RSI-corrected Return unchanged",
+    "period":"2021-2024",
+    "policy":"IMMEDIATE HALF legacy_fee0.001",
+    "EU_reference_cagr":0.173053,
+    "EU_candidate_cagr":0.20153,
+    "USA_reference_cagr":0.355184,
+    "USA_candidate_cagr":0.37473,
+    "scope_warning":"Benefit depends on execution/window; full-history European drawdown worsens. Null-information same-dimension diagnostics registered after inspecting main results and reported separately."
+  },
+  "persistent_archive":{
+    "surface":"Library, not GitHub release",
+    "path":"/ETF_Research/OLC08_Ripristino_20261101/OLC08F_03_Percorsi_Modelli_20261101.zip",
+    "file_id":"file_0000000015ac820a8edc57e3850aa57d",
+    "bytes":149677976,
+    "sha256":"3b27dd0f9fe440b28a5dbeed9633f5581ca753406973473f38602fabbba7ab9b"
+  },
+  "archive_scope":"All main new models, predictions, paths and available source/evidence. Generated feature panels and immutable parent archives are separate authenticated dependencies. This intermediate archive does not claim the auxiliary null experiment/final verification is complete."
+}
