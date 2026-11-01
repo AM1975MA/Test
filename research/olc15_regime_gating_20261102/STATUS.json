@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-02",
+  "repository": "AM1975MA/Test",
+  "branch": "research/olc15-regime-gating-20261102",
+  "parent_commit": "6fcc215eeaa9834f5bcf8581e1fa6549a403f5b2",
+  "candidate": "CUM_FIT_OLC14",
+  "candidate_status": "PRIORITY_INTEGRATION_CANDIDATE_NOT_PROMOTED",
+  "candidate_registration_commit": "87372c2f22fe64cafe2de95c6b404f75c3e41a71",
+  "regime_analysis_document_commit": "616a1385a17817105349b1fa3f4e9685c8b250d0",
+  "completed": [
+    "Read archived OLC14 report through Files",
+    "Verify OLC14 remote branch tip",
+    "Inspect chrono_fit.py and canonical Hybrid42 input schema",
+    "Register candidate with original metrics and limitations",
+    "Document conditional-ranking design and look-ahead safeguards"
+  ],
+  "new_models_trained": 0,
+  "new_portfolio_replays": 0,
+  "new_regime_parameter_correlations_computed": 0,
+  "runtime_status": "container.exec, python.exec and python_user_visible.exec returned ClientError before useful local execution; bounded attempts stopped",
+  "regime_dependency_empirically_demonstrated": false,
+  "regime_gate_implemented": false,
+  "not_executed": [
+    "Restore and hash-check parent binary archives in this session",
+    "Construct point-in-time regime features",
+    "Test parameter uncertainty and conditional relative utility",
+    "Fit and validate the proposed regime gate on USA and EU",
+    "Run integrated portfolio comparisons"
+  ],
+  "new_binary_archives_uploaded": false,
+  "main_modified_by_this_work": false,
+  "background_jobs_started": false,
+  "next_research_question": "Does observed market context improve the conditional contribution of CUM_FIT beyond a constant mixture or past-skill-only control?"
+}
