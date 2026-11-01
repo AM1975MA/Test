@@ -1,0 +1,29 @@
+{
+  "stage":"layer_native_evaluation_and_delivery",
+  "state":"complete",
+  "source_commit":"22a7183bd1419660b30426271baf8f5ce19416a5",
+  "new_models":240,
+  "original_parity_refits":4,
+  "new_portfolios":0,
+  "new_CAGR_claims":false,
+  "project_tests_passed":15,
+  "inherited_OLC10_tests_passed":26,
+  "saved_models_reopened":240,
+  "prediction_reconstruction_max_error":0.0,
+  "independent_monthly_target_metric_values":28728,
+  "independent_summary_values":28064,
+  "native_XGB_top_quintile_precision_pre2025":{
+    "EU":{"regression":0.32954545454545453,"classification":0.375,"months":44},
+    "USA":{"regression":0.35555555555555557,"classification":0.3888888888888889,"months":45}
+  },
+  "label_availability_audit":{"EU_rows_with_unmatured_peer_dependency":18,"USA_rows_found":0,"fixed_contract":"Whole cohort must be observed and mature, for all new arms. Missing historical cohorts separately excluded. No old CAGR impact quantified."},
+  "decision":"Keep XGB classifier as candidate for native upper-opportunity selection, NOT automatic replacement in original fusion. Preserve regression channel for mean-target estimation. No production promotion.",
+  "clean_restore":{"manifest_file_hashes_verified":534,"project_tests_passed":15,"all_240_model_outputs_reproduced":true,"verification_summary_identical":true,"scope":"Prepared annual inputs included. Raw OHLC feature reconstruction still requires historical parent archives."},
+  "archives":[
+    {"name":"OLC11_Selezione_Risultati_20261101.zip","surface":"Library, not GitHub release","file_id":"file_0000000082dc820ab5ea38d2e7d0d073","bytes":22757877,"sha256":"fc536d786f42f724df8102544c33e3da0e347d216d16b871f805525d9f467b6c"},
+    {"name":"OLC11_Selezione_Checkpoint_20261101.zip","surface":"Library, not GitHub release","file_id":"file_00000000dd8081f4b8f49725d4adea8e","bytes":194890630,"sha256":"6802adb5ee54db9142c49b1ea13511c354b200ee84e3cdf3cae8bbd491275eeb"}
+  ],
+  "library_folder":"/ETF_Research/OLC11_Obiettivi_Selezione_20261101",
+  "github_scope":"All eleven used source modules, both test files, fixed parameters, protocols and compact verified results. Complete binary checkpoint is in Library, not an uploaded release asset.",
+  "review":"Self-review, no independent reviewer; original market-data limitations remain. No ongoing local calculation implied."
+}
