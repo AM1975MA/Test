@@ -1,0 +1,32 @@
+{
+  "stage": "OLC08F_04_final_delivery",
+  "status": "completed_and_restore_verified",
+  "date": "2026-11-01",
+  "source_results_commit": "e4c2608dbe7f7bbd8d00804daf0659474ec6a2e7",
+  "new_models": {"main":480,"null_diagnostics":96,"postresult_interaction":32,"total":608},
+  "paths": {"main_including_24_exact_controls":156,"null":12,"postresult_interaction":12,"total":180},
+  "independent_checks": {"position_accounting_intervals":338310,"reported_metric_values":7020,"max_nav_error":3.552713678800501e-15,"max_metric_error":4.707345624410664e-14},
+  "code_and_compact_results": "GitHub research/olc08_systematic_20261101/feature_lab on this branch",
+  "results_archive": {
+    "storage":"Persistent Library, NOT a GitHub release asset",
+    "path":"/ETF_Research/OLC08_Ripristino_20261101/OLC08F_Features_Risultati_20261101.zip",
+    "file_id":"file_00000000bb8881f4b7c609fecb8dd5ac",
+    "bytes":38210381,
+    "sha256":"02d9f5d622a0fd7e7d3564f91928c2f2305b1ab31b39fee9f187d54d81b61a36",
+    "scope":"Report, new source/tests and complete portfolio evidence; large models and actual parent inputs require the full checkpoint."
+  },
+  "complete_checkpoint": {
+    "storage":"Persistent Library, NOT a GitHub release asset",
+    "required_volumes":2,
+    "restore":"Extract BOTH valid ZIP volumes into the same empty directory, then run RESTORE_LAYOUT.py and set OLC08F_ROOT. No binary concatenation and no new market-price download required.",
+    "volumes":[
+      {"path":"/ETF_Research/OLC08_Ripristino_20261101/OLC08F_Checkpoint_Completo_Volume1_20261101.zip","file_id":"file_00000000480c8246a64e8f11689812a4","bytes":301685661,"sha256":"e2a188488251a1db2c5d6db8c7188f95ca4ec6a9a5487aec45cb183017ac0aaf"},
+      {"path":"/ETF_Research/OLC08_Ripristino_20261101/OLC08F_Checkpoint_Completo_Volume2_20261101.zip","file_id":"file_0000000056448243a378f123c22b982e","bytes":301686477,"sha256":"7afbd101606330179fcc558ffd645c9744ac17451f3c0b631319267d8c193efa"}
+    ],
+    "contains":"All new models/predictions/generated inputs/source/tests/180 paths plus the authenticated parent data and code actually used.",
+    "clean_directory_verification":{"volume_sha256_match":true,"files_verified_by_manifest":4026,"internal_legacy_alias_restored":true,"new_suite_passed":20,"test_seconds":2.30,"whole_repository_green":false},
+    "packaging_issue":"The single603152212-byte ZIP exceeded Library's512MB per-file limit and was NOT uploaded. Both smaller self-valid ZIP volumes above were uploaded successfully and independently hash-checked before the clean-directory restore."
+  },
+  "scope_limits":["Author self-review, not independent reviewer","Historical data/execution certification unchanged","Old full-binary GitHub backup backlog not resolved by these Library uploads","Main/production not modified","No background training or outstanding research process implied"],
+  "decision":"Retain RSI-corrected reference and lossless Hybrid39+aliases; keep H_PATH and R_NO_LIQ as distinct unpromoted research challengers. Do not promote a universal best feature pack from this explored history."
+}
