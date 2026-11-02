@@ -1,0 +1,18 @@
+{
+  "status": "INPUTS_AND_CONTROL_PARITY_VERIFIED",
+  "date": "2026-11-02",
+  "protocol_commit": "681bc11ed9d0732b71c8bf33cc92849cd7b97f14",
+  "parent_files_verified": 436,
+  "new_tests_passed": 15,
+  "parent_OLC15_tests_passed": 25,
+  "parent_portfolio_controls": 48,
+  "maximum_control_array_error": 0.0,
+  "archive": "OLC16_Input_Code_Checkpoint_20261102.zip",
+  "bytes": 31160758,
+  "sha256": "ddc79c174afdbacc4060c1dd94b874f745eda3406fbabe6d0b475784322d3df7",
+  "persistent_library_path": "/ETF_Research/OLC16_Contextual_Ranking_20261102/OLC16_Input_Code_Checkpoint_20261102.zip",
+  "library_file_id": "libfile_a9d37832fd948191aa887f2645fc3eff",
+  "binary_is_github_release_asset": false,
+  "progress_note": "The registered annual fit was interrupted by an execution timeout after intermediate model files were saved. No new evaluation or economic result has been inspected. Restart will use the same frozen specification, not retuned parameters.",
+  "test_scope_note": "A recursive collection included parent copies and found four import collisions. The new project has its own testpaths; the parent suite was run separately. This does not claim the entire historical repository is green."
+}
