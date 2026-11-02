@@ -1,0 +1,24 @@
+{
+  "test_status": "PASS",
+  "accounts": 24,
+  "reference_accounts_identical": 8,
+  "kama_candidate_trials": 2,
+  "causal_prefix_checks": 4,
+  "account_audit_entries": 24,
+  "risk_contracts": [
+    "ALARM",
+    "FAST_LOCK3"
+  ],
+  "fees": [
+    0.001,
+    0.003
+  ],
+  "main_window": "2021-01-04 through 2024-12-31 valuation; EU best QDVE last original observed Open on 2024-12-30 for strictly matched benchmark comparison",
+  "benchmarks": {
+    "EU_MAIN": "QDVE.DE",
+    "USA_MAIN": "ARGT",
+    "EU_FULL": "QDVE.DE",
+    "USA_FULL": "SMH"
+  },
+  "historical_benchmark_selection": "best retrospective ETF, not causal or deployable"
+}
