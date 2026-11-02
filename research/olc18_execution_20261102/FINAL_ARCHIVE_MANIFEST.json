@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-02",
+  "status": "FINAL_ARCHIVES_PERSISTED_AND_CLEAN_RESTORE_VERIFIED",
+  "supersedes": "Archive byte counts, SHA256 and backing file IDs in RESULTS_AND_PRESERVATION.md. All empirical results and executed code are unchanged.",
+  "editorial_correction": "The Investor.gov bulletin displays July 13, 2017. Removed an unsupported August 2026 update date from the report; final packages rebuilt and reverified.",
+  "library_folder": "/ETF_Research/OLC18_Stop_20261102",
+  "archives": [
+    {"name":"OLC18_Stop_Checkpoint_20261102.zip","bytes":148775757,"sha256":"45000d14077625424c917afd32fcfceaa440044d2e5e817b5d599b87a3a83f31","file_id":"file_00000000b0c4824393cb2b075e371635","library_file_id":"libfile_07627e03f3cc81918945a3e3cd7f7b9c"},
+    {"name":"OLC18_Stop_Risultati_20261102.zip","bytes":1782352,"sha256":"e421eefe30b5f184faa893e496fa6716033df82f59d4a112a438e1a104137471","file_id":"file_0000000060988243a471fbd4777df4b4","library_file_id":"libfile_bc763feb55ac81919ff65b5cd2b0a97d"}
+  ],
+  "report_file_id":"file_00000000fefc81f4ab3bc2b870d57a8e",
+  "clean_restore":{"individual_file_hashes_verified":948,"tests_passed":31,"actual_replays_with_all_arrays_identical":4},
+  "workspace_verification":{"paths_replayed_exactly":192,"parent_paths_exact":32,"accounting_intervals":360864,"metric_values":7488,"zero_cost_gross_net_pairs":16,"future_prefix_checks":12},
+  "all_uploads_succeeded":true,
+  "binary_is_github_release_asset":false,
+  "main_changed":false,
+  "new_models_fitted":0,
+  "independent_external_review":false,
+  "full_strategy_validation_complete":false
+}
