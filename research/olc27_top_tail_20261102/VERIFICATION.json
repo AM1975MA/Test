@@ -1,0 +1,137 @@
+{
+  "procedures": 7,
+  "portfolio_accounts": 56,
+  "primary_rows": 56,
+  "models_fitted": 36,
+  "parent_account_exact": 8,
+  "max_abs_cagr_rebuild_error": 2.4424906541753444e-15,
+  "top5_swaps": {
+    "AUTH": {
+      "EU": 0,
+      "USA": 0
+    },
+    "AUTH_ONLY": {
+      "EU": 0,
+      "USA": 0
+    },
+    "LONG_POOL": {
+      "EU": 9,
+      "USA": 12
+    },
+    "LONG_STRAT": {
+      "EU": 10,
+      "USA": 9
+    },
+    "LONG_POOL_NULL27001": {
+      "EU": 1,
+      "USA": 2
+    },
+    "LONG_POOL_NULL27002": {
+      "EU": 4,
+      "USA": 5
+    },
+    "LONG_POOL_NULL27003": {
+      "EU": 1,
+      "USA": 3
+    }
+  },
+  "common_improvements": [
+    {
+      "trial": "AUTH_ONLY",
+      "contract": "ALARM",
+      "fee": 0.001,
+      "EU_delta_cagr_pp": 0.0,
+      "USA_delta_cagr_pp": 0.0,
+      "common_improvement": false
+    },
+    {
+      "trial": "AUTH_ONLY",
+      "contract": "ALARM",
+      "fee": 0.003,
+      "EU_delta_cagr_pp": 0.0,
+      "USA_delta_cagr_pp": 0.0,
+      "common_improvement": false
+    },
+    {
+      "trial": "AUTH_ONLY",
+      "contract": "FAST_LOCK3",
+      "fee": 0.001,
+      "EU_delta_cagr_pp": 0.0,
+      "USA_delta_cagr_pp": 0.0,
+      "common_improvement": false
+    },
+    {
+      "trial": "AUTH_ONLY",
+      "contract": "FAST_LOCK3",
+      "fee": 0.003,
+      "EU_delta_cagr_pp": 0.0,
+      "USA_delta_cagr_pp": 0.0,
+      "common_improvement": false
+    },
+    {
+      "trial": "LONG_POOL",
+      "contract": "ALARM",
+      "fee": 0.001,
+      "EU_delta_cagr_pp": -2.187703263534587,
+      "USA_delta_cagr_pp": -5.683986328184993,
+      "common_improvement": false
+    },
+    {
+      "trial": "LONG_POOL",
+      "contract": "ALARM",
+      "fee": 0.003,
+      "EU_delta_cagr_pp": -2.1504032514043097,
+      "USA_delta_cagr_pp": -5.467977394899684,
+      "common_improvement": false
+    },
+    {
+      "trial": "LONG_POOL",
+      "contract": "FAST_LOCK3",
+      "fee": 0.001,
+      "EU_delta_cagr_pp": -2.2079695462279396,
+      "USA_delta_cagr_pp": -5.576889887087496,
+      "common_improvement": false
+    },
+    {
+      "trial": "LONG_POOL",
+      "contract": "FAST_LOCK3",
+      "fee": 0.003,
+      "EU_delta_cagr_pp": -2.1544386971433696,
+      "USA_delta_cagr_pp": -5.470333664218728,
+      "common_improvement": false
+    },
+    {
+      "trial": "LONG_STRAT",
+      "contract": "ALARM",
+      "fee": 0.001,
+      "EU_delta_cagr_pp": -0.40566219569975814,
+      "USA_delta_cagr_pp": -3.4179485280304576,
+      "common_improvement": false
+    },
+    {
+      "trial": "LONG_STRAT",
+      "contract": "ALARM",
+      "fee": 0.003,
+      "EU_delta_cagr_pp": -0.43039265682869754,
+      "USA_delta_cagr_pp": -3.173232517649126,
+      "common_improvement": false
+    },
+    {
+      "trial": "LONG_STRAT",
+      "contract": "FAST_LOCK3",
+      "fee": 0.001,
+      "EU_delta_cagr_pp": -0.3962983899522925,
+      "USA_delta_cagr_pp": -5.187849695689643,
+      "common_improvement": false
+    },
+    {
+      "trial": "LONG_STRAT",
+      "contract": "FAST_LOCK3",
+      "fee": 0.003,
+      "EU_delta_cagr_pp": -0.41759274119391065,
+      "USA_delta_cagr_pp": -4.916240412323845,
+      "common_improvement": false
+    }
+  ],
+  "status": "evaluated_no_promotion"
+}
