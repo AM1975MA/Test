@@ -1,0 +1,16 @@
+{
+  "completed_procedures": 60,
+  "score_procedures": 58,
+  "account_paths": 480,
+  "scorecard_rows": 6240,
+  "annual_model_files": 342,
+  "parent_reference_accounts_exact": 32,
+  "max_return_csv_reconstruction_error": 9.996344030316351e-17,
+  "tests_passed": 15,
+  "null_summary": [
+    {"contract":"ALARM","fee":0.001,"EU_at_or_above_auth":17,"USA_at_or_above_auth":2,"joint_at_or_above_auth":1},
+    {"contract":"ALARM","fee":0.003,"EU_at_or_above_auth":17,"USA_at_or_above_auth":2,"joint_at_or_above_auth":1},
+    {"contract":"FAST_LOCK3","fee":0.001,"EU_at_or_above_auth":17,"USA_at_or_above_auth":1,"joint_at_or_above_auth":0},
+    {"contract":"FAST_LOCK3","fee":0.003,"EU_at_or_above_auth":16,"USA_at_or_above_auth":1,"joint_at_or_above_auth":0}
+  ]
+}
