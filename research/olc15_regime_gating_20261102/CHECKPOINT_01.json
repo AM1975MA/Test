@@ -1,0 +1,28 @@
+{
+  "stage": "inputs and causal core verified; new gates not fitted at checkpoint",
+  "date": "2026-11-02",
+  "protocol_commit": "e6ae78bb016525645e72c3aaea61e7cc4b49f84d",
+  "parent_manifest_files_verified": 570,
+  "new_tests_passed": 20,
+  "inherited_suites_passed": [23, 19],
+  "parent_replays": 48,
+  "parent_primary_units_defensive_units_cash_targets": "bitwise identical in all48",
+  "parent_risk_and_trade_decisions": "exact",
+  "parent_nav_max_abs_error": 3.552713678800501e-15,
+  "numeric_amendment_before_gate_fitting": "Recomposed smooth scores differ up to1.11e-16; mark-to-market NAV/ledger differ up to3.55e-15, while units/cash/targets and discrete decisions are exact. Require5e-12abs/5e-13relative monetary parity and exact discrete decisions; do not claim bitwise NAV parity or alter values to manufacture it.",
+  "recovery_issues_resolved": "Inherited OLC14 parameter test required exact OLC11 PARENT_PARAMETERS.json; restored from original checkpoint. Separate inherited suites avoid duplicate-module collection across copied projects. Engine dependency methods.py copied unchanged.",
+  "context_rows": 180,
+  "first_adaptive_year_expected_from_counts": 2023,
+  "training_group_counts_at_2023_cutoff": {"EU":21,"USA":20},
+  "archive": {
+    "name":"OLC15_Input_Contracts_Checkpoint_20261102.zip",
+    "bytes":31151503,
+    "sha256":"cb382a4d500e22329106e5e11c902362dec4cf682b5ea87472c350cd81c5f8da",
+    "library_path":"/ETF_Research/OLC15_Regime_Gating_20261102/OLC15_Input_Contracts_Checkpoint_20261102.zip",
+    "library_file_id":"libfile_d58663b179ec819191ca82fc8e60f320",
+    "scope":"prepared inputs,48 original control paths, sources/tests, logs and checks; no new gate models",
+    "github_binary_uploaded":false
+  },
+  "main_changed":false,
+  "live_promotion":false
+}
