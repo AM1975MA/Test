@@ -1,0 +1,88 @@
+{
+  "frozen_protocol": "670546a828d85f9b4ce044239b38bb2573252c99",
+  "models": "ridge alpha10 common pooled markets / weighted month",
+  "years": [
+    {
+      "year": 2021,
+      "train_available": true,
+      "train_rows": 6177,
+      "train_months": {
+        "EU": 20,
+        "USA": 22
+      },
+      "last_maturity": "2020-12-01 00:00:00",
+      "test_rows": 3569
+    },
+    {
+      "year": 2022,
+      "train_available": true,
+      "train_rows": 9744,
+      "train_months": {
+        "EU": 32,
+        "USA": 34
+      },
+      "last_maturity": "2021-12-01 00:00:00",
+      "test_rows": 3576
+    },
+    {
+      "year": 2023,
+      "train_available": true,
+      "train_rows": 13320,
+      "train_months": {
+        "EU": 44,
+        "USA": 46
+      },
+      "last_maturity": "2022-12-01 00:00:00",
+      "test_rows": 3580
+    },
+    {
+      "year": 2024,
+      "train_available": true,
+      "train_rows": 16898,
+      "train_months": {
+        "EU": 56,
+        "USA": 58
+      },
+      "last_maturity": "2023-12-01 00:00:00",
+      "test_rows": 3616
+    },
+    {
+      "year": 2025,
+      "train_available": true,
+      "train_rows": 20495,
+      "train_months": {
+        "EU": 68,
+        "USA": 70
+      },
+      "last_maturity": "2024-12-02 00:00:00",
+      "test_rows": 3756
+    },
+    {
+      "year": 2026,
+      "train_available": true,
+      "train_rows": 24244,
+      "train_months": {
+        "EU": 80,
+        "USA": 82
+      },
+      "last_maturity": "2025-12-01 00:00:00",
+      "test_rows": 1565
+    }
+  ],
+  "input_features": [
+    "FUSION",
+    "RETURN_RAW",
+    "ET_RAW",
+    "XGB_RAW",
+    "C21_ET",
+    "C21_XGB",
+    "C42_ET",
+    "C42_XGB",
+    "C63_ET",
+    "C63_XGB"
+  ],
+  "train_quality_threshold": 0.95,
+  "no_economic_replay": true,
+  "no_market_specific_recipe": true,
+  "n_pred": 19662
+}
