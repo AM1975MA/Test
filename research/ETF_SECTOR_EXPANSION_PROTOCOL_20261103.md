@@ -47,3 +47,22 @@ Tabella macchina leggibile in `research/ETF_SECTOR_EXPANSION_SCREEN_20261103.csv
 ## Limite dell'esecuzione in questa sessione
 
 Questo è uno **screen di strumenti con report registrato**, non un aggiornamento dei panieri in input né un backtest espanso. Le matrici OHLCV e le predizioni OLC19/EU165 archiviate nella Library non risultano nel ramo `main` GitHub sotto forma di input completi eseguibili; il CSV/il rapporto evitano di inventare prezzi o nuove metriche di performance. Il prossimo test da correre quando sono disponibili i prezzi è E1 opportunity oracle — lo stesso diagnostico che determina se l'espansione apre opportunità inaccessibili al paniere attuale.
+
+
+## Addendum OLC43/E2 result — 3 novembre 2026
+
+**E1 è stato eseguito, E2 è stato eseguito, nessun aggiornamento di produzione.** Dati, sorgente e report completi nel ramo di ricerca [sector-opportunity-e1-20261103](https://github.com/AM1975MA/Test/tree/research/sector-opportunity-e1-20261103/research/sector_opportunity_e1_20261103) e nel [rapporto E2](https://github.com/AM1975MA/Test/blob/research/sector-opportunity-e1-20261103/research/sector_opportunity_e1_20261103/RESULTS_E2_CAGR_IT.md).
+
+**OLC19 originale riprodotto bit-per-bit** su NAV, ledger, titoli, quantità difensive, free cash, target. CAGR 2021–2024 a costo 0.001: EU165 **23.1999%**, USA149 **50.7722%**. Due ablation *shadow* con 4 ETF nuovi EU e 3 USA, ranking dei nuovi ETF mediante momentum causalmente disponibile:
+
+| Test 2021–2024 | EU CAGR | USA CAGR |
+|---|---:|---:|
+| OLC19 originale | **23.20%** | **50.77%** |
+| Nuovi settori, MOM63 | 13.76% | 39.57% |
+| Nuovi settori, MOM63 + 126 | 14.66% | 36.72% |
+
+Con fee 0.003: baseline EU19.88%/USA42.73%; MOM63 EU10.53%/USA32.40%; MOM63+126 EU11.51%/USA29.60%. **Nessun modello ampliato promosso**. Non confondere questi due challenger con una riproduzione nativa di OLC19 dopo refit.
+
+**Vincolo qualità aggiuntivo:** CMOD.MI ha 539/2400 barre OHLC incoerenti (129/1019 nel 2021–24); escluso da replay con stop, pur incluso nel test E1 Open-only. Gate V6 `g`/`alt` rimane congelato sul portafoglio originale, per cui E2 non certifica un porting fullstack. Il risultato E1 aveva mostrato opportunità ex-post aggiuntive ma nessun incremento predicibile del CAGR.
+
+Il risultato chiave è **che nuovi asset disponibili non diventano rendimento se il ranking non sa selezionarli**: nuovi ETF spesso sottoperformano i sostituiti nei mesi di switch. La direzione successiva è la ricalibrazione / formazione *nativa* degli score sui nuovi strumenti con dati PIT e warm-up adeguato, non ulteriore ricerca retrospettiva su soglie di momentum.
