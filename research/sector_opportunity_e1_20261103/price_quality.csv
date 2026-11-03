@@ -1,1 +1,8 @@
-The requested file reference is not currently visible. Use files.search or files.list to rediscover the file, then retry with a returned ref_id or file_id.
+market,ticker,n_dates,missing_OLC19,start,end,min_prior_history_2021
+EU,G2X.DE,2411,17,2017-01-02,2026-07-03,1011
+EU,USPY.DE,2412,17,2017-01-02,2026-07-03,1012
+EU,WTIC.DE,2412,17,2017-01-02,2026-07-03,1012
+EU,2B76.DE,2413,16,2017-01-02,2026-07-03,1012
+USA,BOTZ,2387,0,2017-01-03,2026-07-02,1007
+USA,LIT,2387,0,2017-01-03,2026-07-02,1007
+USA,PAVE,2343,0,2017-03-08,2026-07-02,963
