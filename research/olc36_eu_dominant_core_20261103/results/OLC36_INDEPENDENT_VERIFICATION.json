@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "input_sha256": "83b5190501ba79029e1677d719a22893eaa98bddeb6042de2a46a885bca32d16",
+  "months": 90,
+  "main_months": 48,
+  "max_economic_math_error_bp": 2.2737367544323206e-13,
+  "evaluated_policy_pairs": 178,
+  "core_state_hysteresis_checked": 83,
+  "future6_matched_selection_slots_checked": 336,
+  "max_future6_sum_error_bp": 9.094947017729282e-13,
+  "bootstrap_95pct_verified": [
+    -248.7550153883135,
+    -42.38568703620712
+  ],
+  "source_date_asof_verified": true,
+  "no_future_outcome_features": true,
+  "usa_unmodified": true,
+  "baseline_portfolio_contract_not_replayed": true,
+  "result": "STOP"
+}

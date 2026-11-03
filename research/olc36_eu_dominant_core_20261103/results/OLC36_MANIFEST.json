@@ -1,0 +1,76 @@
+{
+  "input": {
+    "OLC32_RESULTS.zip": "aef33c5c1aac60a944f7cf767b7ee637eb4ca254710b431c95b5f13a67fd6b8d",
+    "OLC32_corrected_data_sha256": "83b5190501ba79029e1677d719a22893eaa98bddeb6042de2a46a885bca32d16"
+  },
+  "out": {
+    "figures/OLC36_EU_ACTIONS.png": {
+      "sha256": "de442b712986d456222c1dcc82cc821926fb653fafcc649dcd836f098ac0a2a6",
+      "bytes": 34194
+    },
+    "figures/OLC36_EU_PROXY_CURVES.png": {
+      "sha256": "71753ea174ffe3b572eff804285503ccf662b9a30b28449b7ddb16ab85d7ad67",
+      "bytes": 105973
+    },
+    "figures/OLC36_EU_QDVE_RANK.png": {
+      "sha256": "7b09a5b2f3e4888e935175f01e8d93f8a0896ef3da42fe407e2c0686476f72a3",
+      "bytes": 107557
+    },
+    "results/OLC36_ANNUAL.csv": {
+      "sha256": "c7a951dac4feb701d3c026d3be2e8c825c4d7c3d992be8a986f3c7752f7a1e72",
+      "bytes": 308
+    },
+    "results/OLC36_BOOTSTRAP.csv": {
+      "sha256": "a46bc73b4e0475b4db9777501c9f5082ff77d28e9ae9c5b5d2ee8dabd75b3165",
+      "bytes": 48055
+    },
+    "results/OLC36_EU_ASOF_RANKS.csv": {
+      "sha256": "96496e2b006b752b989dfad70e8446343da115a1b3a2f04f6cce4e548db67f5d",
+      "bytes": 444136
+    },
+    "results/OLC36_EU_CORE_DECISIONS.csv": {
+      "sha256": "47f202ae5035820e9722fb631d5fec08a76286a578b01036820eee187b1834f6",
+      "bytes": 11325
+    },
+    "results/OLC36_FUTURE6_RETENTION_DIAGNOSTIC.csv": {
+      "sha256": "7e6a796d30c053b9e0dbca03a0595398baf0d3c9a62b25a8ecbac1f5641d5336",
+      "bytes": 19921
+    },
+    "results/OLC36_MONTHLY_PROXY.csv": {
+      "sha256": "14be3271bd0ccbbd2fa682abcc1611810772bfbc0999228f77f15b2463277789",
+      "bytes": 25935
+    },
+    "results/OLC36_QDVE_DIAGNOSTIC.csv": {
+      "sha256": "3ec20e1ea09b65d623e6ed1acec56de99a053312fb66ac039f8100c984c56cc4",
+      "bytes": 7501
+    },
+    "results/OLC36_SUMMARY.json": {
+      "sha256": "b9b3099e8afebfac19c4fc0ec0580dc724be01eeaebe874f64154ee4653d9db5",
+      "bytes": 1834
+    }
+  },
+  "code": {
+    "src/run_olc36.py": {
+      "sha256": "d2421d63a9cd13f694f0ee915d49360c3ad8f176242a362778691b8df58c2b50",
+      "bytes": 17005
+    },
+    "src/verify_olc36.py": {
+      "sha256": "a3ae875390510abbe90a79db430776832def3923951716fbfe095ad8903735df",
+      "bytes": 6307
+    }
+  },
+  "final": {
+    "RESULTS_IT.md": {
+      "sha256": "c224ef727f5f383a6d22c0dcfd0e1195a8b3a853c96f1d0bd8982325d4e8fc04",
+      "bytes": 7961
+    },
+    "README_REPRODUCE.md": {
+      "sha256": "74c661164137ed6f7fd75fc7de750ec06bb7aefb74fb3388e6d171f475285210",
+      "bytes": 1330
+    },
+    "results/OLC36_INDEPENDENT_VERIFICATION.json": {
+      "sha256": "f412bd491d74f7ada68dec5a082259c409333803d3e2d583e4a867dfb5899433",
+      "bytes": 627
+    }
+  }
+}

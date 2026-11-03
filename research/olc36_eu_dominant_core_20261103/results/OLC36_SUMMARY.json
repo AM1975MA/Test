@@ -1,0 +1,62 @@
+{
+  "study": "OLC36_DOM_CORE",
+  "preregistered_commit": "6cc8790fec75154dc3a71f1e48e34b2744901166",
+  "scope": "EU only; USA frozen, no USA evaluation or write",
+  "primary_period": "2021-2024",
+  "n_months": 48,
+  "n_months_changed": 41,
+  "n_months_changed_label_valid": 41,
+  "n_paired_label_months": 48,
+  "coverage": 1.0,
+  "mean_monthly_delta_net_bp": -139.31202658851151,
+  "bootstrap_ci95_bp": [
+    -248.7550153883135,
+    -42.38568703620712
+  ],
+  "mean_monthly_abs_delta_bp": 260.0543521728853,
+  "cumulative_net_log_advantage_bp": -6686.977276248553,
+  "proxy_cagr": {
+    "AUTH": 0.2793195295381332,
+    "DOM": 0.08237087218944583
+  },
+  "proxy_maxdd": {
+    "AUTH": -0.18129178915552513,
+    "DOM": -0.22703480243604135
+  },
+  "future6_topdecile_rates_all": {
+    "AUTH": {
+      "slots": 96,
+      "label_available": 96,
+      "hit_rate_matched": 0.2708333333333333,
+      "hits": 26
+    },
+    "DOM": {
+      "slots": 96,
+      "label_available": 96,
+      "hit_rate_matched": 0.21875,
+      "hits": 21
+    }
+  },
+  "future6_matched_slots": 96,
+  "future6_topdecile_rate_matched": {
+    "AUTH": 0.2708333333333333,
+    "DOM": 0.21875
+  },
+  "future6_hit_rate_delta_pp": -5.208333333333331,
+  "n_core_active": 44,
+  "n_core_chosen_as_second": 44,
+  "n_core_new": 17,
+  "n_core_retained": 27,
+  "gates": {
+    "changes_ge_12": true,
+    "paired_coverage_ge_95pct": true,
+    "mean_net_excess_gt_0": false,
+    "bootstrap_95pct_lower_gt_0": false,
+    "forward_6m_topdecile_hits_increase_ge_5pp": false,
+    "monthly_proxy_MaxDD_degradation_le_3pp": false
+  },
+  "decision": "STOP",
+  "reference_usa_olc17_cagr": 0.523006,
+  "reference_usa_olc19_cagr": 0.507722,
+  "caveat": "Retrospective, same history extensively explored; monthly two-ETF equal-weight proxy is not OLC19 NAV, stops/V6/fees/fill are not replicated."
+}
