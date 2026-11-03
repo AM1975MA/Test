@@ -28,6 +28,9 @@ jobs:
       - name: Control quote-vintage comparison against source-frozen OLC32
         run: |
           python research/sector_opportunity_e1_20261103/validate_quote_vintage.py
+      - name: Freeze candidate daily adjusted OHLC for matched trading-engine test
+        run: |
+          python research/sector_opportunity_e1_20261103/download_candidate_daily.py
       - name: Archive QA and any matched results
         if: always()
         uses: actions/upload-artifact@v4
