@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - name: Install dependencies
-        run: python -m pip install "numpy>=1.26,<3" "pandas>=2.2,<3"
+        run: python -m pip install "numpy>=1.26,<3" "pandas>=2.2,<3" "yfinance>=0.2.60,<1"
       - name: Fetch candidate prices on original 2021-2024 calendar
         env:
           GH_TOKEN: ${{ github.token }}
@@ -27,12 +27,16 @@ jobs:
           test -f research/olc45_opportunity_20261103/source_artifact/candidate_monthly_labels.csv
       - name: Compute exact monthly Shapley sector opportunities
         run: python research/olc45_opportunity_20261103/olc45_factor_shapley.py
+      - name: Screen physical-silver and gas-futures ETC separately
+        run: python research/olc45_opportunity_20261103/olc45b_etc_probe.py
       - name: Preserve data and audits
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: olc45-sector-opportunity
-          path: research/olc45_opportunity_20261103/results/
+          path: |
+            research/olc45_opportunity_20261103/results/
+            research/olc45_opportunity_20261103/results_ETC/
           retention-days: 60
 
       - name: Commit reproducible small-text results to isolated research branch
@@ -40,7 +44,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/olc45_opportunity_20261103/results/
+          git add research/olc45_opportunity_20261103/results/ research/olc45_opportunity_20261103/results_ETC/
           if ! git diff --staged --quiet; then
             git commit -m "research(olc45): archive exact Shapley opportunity results"
             git push origin "HEAD:${GITHUB_REF_NAME}"
