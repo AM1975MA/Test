@@ -1,0 +1,3 @@
+market,n_month,avg_top1_bp,avg_top2proxy_bp,avg_top5oracle_bp,avg_marketoracle_bp,note
+EU,48,182.75245464090514,213.3551704824114,571.426252073287,946.7921270134644,"These are mean individual log returns, NOT monthly portfolio NAV with fees and stops."
+USA,48,438.0526977792022,303.8283828014464,976.2340088010333,1706.8725874551935,"These are mean individual log returns, NOT monthly portfolio NAV with fees and stops."

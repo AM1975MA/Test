@@ -1,0 +1,17 @@
+{
+  "market_best_abs_difference": 0.0,
+  "top5_abs_difference": 0.0,
+  "top2_abs_difference": 2.842170943040401e-14,
+  "selected_top2_abs_difference": 2.2737367544323206e-13,
+  "asof_max_abs_difference": 0.0,
+  "max_decomposition_identity_bp": 9.094947017729282e-13,
+  "top2_signal_matches": 96,
+  "matched_months_total": 96,
+  "missing_EU_label_pairs": 2,
+  "unscoreable_expost_months": 1,
+  "USA_OLC17_CAGR": 0.5230058975033359,
+  "USA_OLC19_CAGR": 0.5077220904033045,
+  "USA_strategy_unchanged": true,
+  "investable_new_portfolio_proposed": false,
+  "status": "PASSED"
+}

@@ -1,0 +1,41 @@
+{
+  "total_month_market_rows": 96,
+  "annual_months": {
+    "EU": {
+      "2021": 12,
+      "2022": 12,
+      "2023": 12,
+      "2024": 12
+    },
+    "USA": {
+      "2021": 12,
+      "2022": 12,
+      "2023": 12,
+      "2024": 12
+    }
+  },
+  "olc17_top2_pair_matches": 96,
+  "olc17_top2_pair_compared": 96,
+  "decomposition_max_residual_bp": 4.547473508864641e-13,
+  "num_label_missing_by_market": {
+    "EU": 2
+  },
+  "unscoreable_future_best_cases": [
+    {
+      "market": "EU",
+      "signal_date": "2024-08-30",
+      "best_market_ticker": "LBRE.DE",
+      "asof_best_ticker": "EXV6.DE",
+      "oracle_availability_effect_bp": 17.050054176310027
+    }
+  ],
+  "usa_portfolio_controls_unchanged": true,
+  "live_orders_placed": 0,
+  "comparability_warning": "Oracle log-label opportunity, not causal/live strategy NAV attribution; different OLC17/19 execution contracts.",
+  "source_sha256": {
+    "/mnt/data/olc35/input/OLC32_RESULTS.zip": "aef33c5c1aac60a944f7cf767b7ee637eb4ca254710b431c95b5f13a67fd6b8d",
+    "/mnt/data/olc35/input/OLC17_Validazione_Risultati_20261102.zip": "b780ef1e43c756c5649898ca37170ac66391730a13f8649403a1b68426f5c04f",
+    "/mnt/data/olc35/input/OLC19_Rischio_Rientro_Risultati_20261102.zip": "f574339c8c7ab25e159e83d8fb55fc4be2dc44bdc0ed06a9fbf96e6b24f4a021"
+  },
+  "source_olc32_label_sha256": "83b5190501ba79029e1677d719a22893eaa98bddeb6042de2a46a885bca32d16"
+}

@@ -1,0 +1,50 @@
+{
+  "OLC35_ANNUAL_SUMMARY.csv": {
+    "sha256": "f706b9f4abef5b5803437a15aa7b5b96847db99d53b0361b762e498e8342e837",
+    "bytes": 4994
+  },
+  "OLC35_AUDIT.json": {
+    "sha256": "4b4fb2cb2aff73e630c90f762438e5b9fc3c0a6a61bf51ea9ce4afc6da0e9b18",
+    "bytes": 1395
+  },
+  "OLC35_FROZEN_PORTFOLIO_BASELINES.csv": {
+    "sha256": "7d05f1cc00895e2814655c3ff03fb560d8852e8019a0d9e952037ee8eb15f323",
+    "bytes": 880
+  },
+  "OLC35_GROSS_LABEL_DIAGNOSTIC.csv": {
+    "sha256": "cd83005c2e413af13425ee83c024825f9b6cb5953c44ef3a7cdf900806d76a86",
+    "bytes": 421
+  },
+  "OLC35_LABEL_COVERAGE.csv": {
+    "sha256": "97cb3aee846dd2c10a9a802cb500398c5548a91d2cbc10cda57b5fb6b6a2be6d",
+    "bytes": 2831
+  },
+  "OLC35_MARKET_SUMMARY.csv": {
+    "sha256": "62d90d81a1bddb2bf61cc27ecfbf4794c237f3c73b9018cffdb3fc56a32615a8",
+    "bytes": 1963
+  },
+  "OLC35_MONTHLY_ORACLE_DECOMPOSITION.csv": {
+    "sha256": "e3011e4e99c7608620c82f603bb0a2adde1494d36439d287a3b17cd6b468af4b",
+    "bytes": 38088
+  },
+  "OLC35_SAME_FAMILY_RISK_CONTRACTS.csv": {
+    "sha256": "f33b78f65caa02d102fe016db6cf9e258d9174221ccff77a70027c655f234d37",
+    "bytes": 735
+  },
+  "OLC35_TOP2_RECONCILIATION.csv": {
+    "sha256": "fe7139746a4b3e0d9331fe313e424fb811319a40512e5f543264a692dc24dd73",
+    "bytes": 4299
+  },
+  "figures/OLC35_ORACLE_GAP_EU.png": {
+    "sha256": "1fa58586ff77993713c6d388585892a7c0fa440db3795c3608a65931d38d1538",
+    "bytes": 57397
+  },
+  "figures/OLC35_ORACLE_GAP_USA.png": {
+    "sha256": "f2865e95fb46e5849ba1ce763f32162abcf6758d8766687b4de0f5bf9fbb550d",
+    "bytes": 59187
+  },
+  "figures/OLC35_USA_GUARDRAIL_BASELINES.png": {
+    "sha256": "2f16539ef625783a296d554b9ce7f07cc5e2d4dfdb88f5f8847e779137c8cfef",
+    "bytes": 42583
+  }
+}
