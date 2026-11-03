@@ -28,9 +28,9 @@ BASE = ROOT / "baseline_oracle_2021_2024.csv"
 CANDIDATES = [
     ("EU", "G2X.DE", "IE00BQQP9F84", "gold_miners_equity", "issuer_verified"),
     ("EU", "USPY.DE", "IE00BYPLS672", "cybersecurity", "web_verified"),
-    ("EU", "CMOD.DE", "IE00BD6FTQ80", "diversified_commodity", "venue_unverified"),
-    ("EU", "WCOA.DE", "IE00BYMLZY74", "diversified_commodity", "venue_unverified"),
-    ("EU", "2B76.DE", "IE00BYZK4552", "automation_robotics", "venue_unverified"),
+    ("EU", "CMOD.MI", "IE00BD6FTQ80", "diversified_commodity", "exchange_verified"),
+    ("EU", "WTIC.DE", "IE00BYMLZY74", "diversified_commodity", "issuer_verified"),
+    ("EU", "2B76.DE", "IE00BYZK4552", "automation_robotics", "exchange_verified"),
     ("USA", "BOTZ", "", "robotics", "web_verified"),
     ("USA", "LIT", "", "lithium_batteries", "web_verified"),
     ("USA", "PAVE", "", "infrastructure", "web_verified"),
