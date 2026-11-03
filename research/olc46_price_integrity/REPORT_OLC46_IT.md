@@ -67,3 +67,15 @@ I prezzi originali non sono sovrascritti. `repair_and_crosscheck.py` conferma au
 ## Criterio di passaggio finale
 
 Prima di dire che il paniere ampliato migliora: (a) dati e share class point-in-time, (b) warm-up per data, (c) **parità perfetta sugli score dei vecchi ETF** nella pipeline originale, (d) esecuzione OLC19 uguale prima di aggiungere ticker, (e) nuovi pesi e nuova NAV unica con costi/stop, (f) confronto con stessa finestra e costo, (g) conferma prospettica perché 2019–2026 è uno storico ampiamente esplorato. Lo scopo è un miglioramento dimostrabile, non massimizzare a posteriori il 50%.
+
+
+## Addendum verificato: correzione materiale del vecchio risultato OLC45-B
+
+Il CSV `OLC45_B_ETC_MONTHLY_PIT_RELABELED.csv` è una **nuova versione** dell'audit mensile ETC originale 2021–2024: non altera le colonne prezzo/rendimento, ma aggiunge l'ISIN Natural Gas corretto a ogni data e rettifica il winner ticker/ISIN dell'epoca.
+
+- **35/48** segnali storici hanno ISIN di gas `GB00B15KY104`, non `JE00BN7KB334`.
+- **10/48** mesi che avevano `JE00BN7KB334` marcato come miglior ETC nell'originale vengono **ridenominati con l'ISIN vecchio** perché acquistabili, se del caso, tramite lo strumento di quell'epoca.
+- **1 finestra di detenzione attraversa il consolidamento**: segnale `2023-11-30`, acquisto `2023-12-01`, uscita `2024-01-02`. Questa richiede verifica di unità, 1783:1, prezzo nominale e liquidazione frazioni; il rendimento Yahoo già aggiustato non basta per eseguibilità dell'operazione.
+- Il rendimento Open→Open nei mesi interamente prima del raggruppamento non cambia se le due quotazioni condividono un unico fattore moltiplicativo storico. Questo spiega perché la correzione ISIN non dimostra automaticamente errore nei ritorni dell'oracolo del 2021–2022; il problema è data lineage point-in-time e contabilità di trading, non una revisione meccanica di tutto il CAGR.
+
+**Non è stata prodotta alcuna NAV corretta né un CAGR nuovo** da questo relabelling. Prima di riutilizzare gli ETC in modelli di esecuzione controllare il prezzo per unità realmente negoziabile prima e dopo l'evento con una fonte indipendente.
