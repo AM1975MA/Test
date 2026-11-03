@@ -1,0 +1,20 @@
+market,theme,fund,identifier,distribution,priority,overlap_status,history_gate,source
+EU,CYBERSECURITY,L&G Cyber Security UCITS ETF,IE00BYPLS672,ACC,HIGH,not_in_EU165_by_theme,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-cyber-security.html
+EU,CYBERSECURITY,First Trust Nasdaq Cybersecurity UCITS ETF,IE00BF16M727,ACC,HIGH,compare_index_with_LG,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-cyber-security.html
+EU,ROBOTICS_AUTOMATION,L&G ROBO Global Robotics and Automation UCITS ETF,IE00BMW3QX54,ACC,HIGH,not_in_EU165_by_theme,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-robotics.html
+EU,ROBOTICS_AUTOMATION,iShares Automation & Robotics UCITS ETF,IE00BYWZ0333,DIST,HIGH,keep_if_acc_no_history,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-robotics.html
+EU,WATER,iShares Global Water UCITS ETF,IE00B1TXK627,DIST,HIGH,older_share_class_candidate,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-water.html
+EU,WATER,Amundi MSCI Water UCITS ETF,FR0010527275,DIST,HIGH,check_acc_equivalent,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-water.html
+EU,CLEAN_ENERGY,First Trust Nasdaq Clean Edge Green Energy UCITS ETF,IE00BDBRT036,ACC,MEDIUM,thematic_overlap_check,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-clean-energy.html
+EU,CLEAN_ENERGY,Invesco Global Clean Energy UCITS ETF,IE00BLRB0242,ACC,MEDIUM,thematic_overlap_check,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-clean-energy.html
+EU,BIOTECH,iShares Nasdaq US Biotechnology UCITS ETF,UNKNOWN,TBD,HIGH,verify_isin_and_index,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-biotech.html
+EU,BIOTECH,Invesco Nasdaq Biotech UCITS ETF,UNKNOWN,TBD,HIGH,verify_isin_and_index,check_pre2021_prices,https://www.justetf.com/en/how-to/invest-in-biotech.html
+EU,URANIUM,Global X Uranium UCITS ETF USD Accumulating,IE000NDWFGA5,ACC,LOW_HISTORICAL,launch_later_than_2021_possible,not_for_2021_until_verified,https://www.justetf.com/en/how-to/invest-in-uranium.html
+EU,URANIUM,VanEck Uranium and Nuclear Technologies UCITS ETF,IE000M7V94E1,ACC,LOW_HISTORICAL,check_launch,not_for_2021_until_verified,https://www.justetf.com/en/how-to/invest-in-uranium.html
+EU,SEMICONDUCTORS,VanEck Semiconductor UCITS ETF,IE00BMC38736,ACC,ALREADY_IN_UNIVERSE,VVSM.DE,do_not_duplicate,https://www.justetf.com/en/how-to/invest-in-semiconductors.html
+USA,ROBOTICS_AUTOMATION,Global X Robotics & Artificial Intelligence ETF,US37954Y7159 BOTZ,DIST,HIGH,not_in_US149,inception_2016_09_12,https://www.globalxetfs.com/funds/botz/
+USA,LITHIUM_BATTERY,Global X Lithium & Battery Tech ETF,US37954Y8553 LIT,DIST,HIGH,not_in_US149,inception_2010_07_22,https://www.globalxetfs.com/funds/lit/
+USA,INFRASTRUCTURE,Global X U.S. Infrastructure Development ETF,US37954Y6730 PAVE,DIST,HIGH,not_in_US149,inception_2017_03_06,https://www.globalxetfs.com/funds/pave/
+USA,SEMICONDUCTORS,SMH SOXX,N_A,N_A,ALREADY_IN_UNIVERSE,SMH SOXX,no_addition,https://github.com/AM1975MA/Test/blob/main/etf-trader-v3%20corrected/fullstack_legacy/data/ETF_UNIVERSE.csv
+USA,CYBERSECURITY,HACK,N_A,N_A,ALREADY_IN_UNIVERSE,HACK,no_addition,https://github.com/AM1975MA/Test/blob/main/etf-trader-v3%20corrected/fullstack_legacy/data/ETF_UNIVERSE.csv
+USA,URANIUM,URA,N_A,N_A,ALREADY_IN_UNIVERSE,URA,no_addition,https://github.com/AM1975MA/Test/blob/main/etf-trader-v3%20corrected/fullstack_legacy/data/ETF_UNIVERSE.csv
