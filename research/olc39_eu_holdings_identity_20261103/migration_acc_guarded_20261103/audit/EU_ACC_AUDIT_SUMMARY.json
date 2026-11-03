@@ -1,0 +1,25 @@
+{
+  "original_universe_count": 165,
+  "held_in_2021_2024_classified": 27,
+  "held_distributing_ETFs": 9,
+  "candidate_passes_quote_history_only": 1,
+  "excluded_insufficient_history": 5,
+  "excluded_no_identical_verified_acc": 3,
+  "candidate_verified_at_issuer_product_level_but_not_historical_constituents": true,
+  "candidate_already_in_original_universe": [
+    "EEAA.DE"
+  ],
+  "deduplicated_eu_research_universe_count": 164,
+  "unscreened_original_universe_tickers": 138,
+  "coverage_threshold_first_observed_day": "2019-02-01",
+  "coverage_threshold_min_prior_sessions_before_first_2021_signal": 252,
+  "coverage_threshold_min_observed_2021_2024_pct": 98.0,
+  "original_OLC19_OLC38_OLC39_unchanged": true,
+  "USA149_unchanged": true,
+  "main_unchanged": true,
+  "source_zip_sha256": "6b4d59814dfeaab8fac415498755cdad664e76b20a424eb0e0aac6568a771f8d",
+  "files_sha256": {
+    "EU_ACC_SUBSTITUTION_AUDIT_HELD9.csv": "11fee25ba4e321ba11a48731857e2a87ae3c6121ac114d854bb5d3886a87787c",
+    "EU_ACC_RESEARCH_UNIVERSE_NOT_APPLIED.csv": "757eacee22f76c305cea95e9458f3e493ce33a765589da8267fb1f0cb5845bb4"
+  }
+}
