@@ -1,0 +1,28 @@
+{
+  "NOTE": "Compact original member bytes, not an independent data vendor or a replacement for the historical parent input archives.",
+  "original_OLC19_zip_sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+  "original_OLC32_zip_sha256": "aef33c5c1aac60a944f7cf767b7ee637eb4ca254710b431c95b5f13a67fd6b8d",
+  "compact_snapshot_sha256": "6b4d59814dfeaab8fac415498755cdad664e76b20a424eb0e0aac6568a771f8d",
+  "members": {
+    "olc19_combined_risk_20261102/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/inputs/EU_STATE_HALF.npz": {
+      "raw_member_sha256": "9fd59f7af957576df567a41be99068d1f459ae318e0bde067fecb282b0fcbafb",
+      "size": 7743934
+    },
+    "olc19_combined_risk_20261102/results/paths/EU_TOP2_CONTEXT_REVALUE_FAST_LOCK3_F10_S10.npz": {
+      "raw_member_sha256": "0538779a89eda8660934e52192018e228cbc1e8ef84b627d91b7a6ce38fa6c6d",
+      "size": 125374
+    },
+    "olc19_combined_risk_20261102/results/SCORECARD.csv": {
+      "raw_member_sha256": "c2d465142a545e28814a3ae219e8c13254e48a683b852fde087f5e47a2a92a54",
+      "size": 679273
+    },
+    "results/OLC32_CORRECTED_LABELS_AND_INPUTS.csv.gz": {
+      "raw_member_sha256": "83b5190501ba79029e1677d719a22893eaa98bddeb6042de2a46a885bca32d16",
+      "size": 5149755
+    },
+    "results/REPAIRED_CALENDAR_AUDIT.csv": {
+      "raw_member_sha256": "0dcd137cade3b23b08c8b720512c55a74312962b9711c5a1d488667cf5c01feb",
+      "size": 12794
+    }
+  }
+}

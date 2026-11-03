@@ -1,0 +1,12 @@
+# OLC38 — Registro delle correzioni tecniche (non nuovo protocollo)
+
+Data 2026-11-03. Il protocollo fissato prima dei calcoli rimane l'originale commit `3a335ab57bd38543a41c826806b7632cd4ec010b`. Questa nota documenta modifiche di IMPLEMENTAZIONE intervenute nella preparazione/verifica del test dopo il congelamento; non sono modifiche a factor set, feature, finestre, costi, modello o soglie e **non trasformano un campione storicamente osservato in una conferma indipendente**.
+
+1. `SCORECARD.csv` compare sia in una cartella parent ripristinata sia nel lotto OLC19. Il selettore iniziale per suffisso era ambiguo. È stato sostituito dal path esatto `olc19_combined_risk_20261102/results/SCORECARD.csv`, validando l'identità del punteggio 23,1999% EU.
+2. Nella tabella F2 un selettore NumPy booleano 1D combinato con due indici colonna causava un errore di broadcasting. È stato corretto con due dimensioni esplicite, senza alterare i pesi reali.
+3. La prima generazione del `F1_CLONE_MATCHED_DAILY` non inizializzava i due campi clone alla prima riga e le metriche erano `NaN`. È stato risolto valorizzando il NAV di riferimento a 100 **prima del primo costo ipotetico**; il costo iniziale è addebitato al primo intervallo. Il clone 5 fattori finale riproduce il risultato OLC37 con tolleranza 1e−9.
+4. La prima diagnostica F3 annualizzava erroneamente le 48 osservazioni **mensili** con fattore `252`, generando CAGR privi di significato. È stata corretta a **12 mesi/anno**, senza cambiare alcuna decisione, payoff mensile, rendimento finale o bootstrap preregistrato. Le uniche metriche riportate oggi sono 12,29% vs 17,44% su 48 mesi (e `MaxDD` dalle medesime curve mensili).
+5. La riga terminale del segnale 30 giugno 2026 aveva `entry_date == exit_date == 2026-07-01`. È classificata come `terminal_no_future_label` e non come zero rendimento, senza influenzare le 48 osservazioni 2021–2024.
+6. La distribuzione riproducibile include una copia ridotta dei **5 membri byte-identici** di OLC19/OLC32. Fonte originale verificata su SHA, mini-snapshot con hash autonomo e prove di parity fra replay integrale e ridotto. L'informazione di origine vendor/PIT non è stata certificata o sostituita.
+
+Test finali superati: 515 label OLC32 contro rendimenti raw, sorveglianza dei cut-off annuali, determinismo decisionale con perturbazione dei prezzi futuri, parità del clone 5 originale, statistiche economiche mensili, 4.000 estrazioni bootstrap e replay pulito. Gate A resta **FAIL**, regola F3 resta **FAIL**; nessuna promozione e USA invariato.

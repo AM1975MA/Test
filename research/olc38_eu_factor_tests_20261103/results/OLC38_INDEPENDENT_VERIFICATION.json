@@ -1,0 +1,14 @@
+{
+  "source_checks": "PASS",
+  "clone5_reproduces_OLC37_to_1e-9": true,
+  "max_label_vs_OLC32_bp": 4.547473508864641e-13,
+  "number_factor_month_labels_checked": 515,
+  "max_monthly_simple_return_reconcile_pct": 1.7763568394002505e-15,
+  "max_monthly_log_delta_reconcile_bp": 2.8421709430404007e-13,
+  "audit_dates_and_causality": "PASS",
+  "cloned_portfolio_NAV": "PASS",
+  "independent_F2_coverage": "PASS",
+  "F3_bootstrap_draws": 4000,
+  "olc38_holdings_lookthrough_pit_certified": false,
+  "conclusion": "STOP_NO_PROMOTION"
+}
