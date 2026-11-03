@@ -1,0 +1,28 @@
+{
+  "generated_utc": "2026-11-03T22:44:55.447746+00:00",
+  "source_calendar": "frozen OLC32 48 EU months 2021-2024",
+  "primary_venues": {
+    "silver": "VZLC.DE",
+    "gas": "NGAS.MI"
+  },
+  "alternative_venue_isin_dedup": {
+    "JE00B1VS3333": [
+      "VZLC.DE",
+      "PHAG.MI"
+    ],
+    "JE00BN7KB334": [
+      "NGAS.MI",
+      "OD7L.DE"
+    ]
+  },
+  "min_prior_observed": 500,
+  "pricing": "Yahoo adjusted Open exact entry/exit, NO forward fill",
+  "no_ETC_in_production": true,
+  "caveats": [
+    "ETC legal structure and futures roll/spot risk",
+    "source-adjusted vintage is not broker verified",
+    "venue and ISIN history must be PIT verified",
+    "maturity of old labels never used for strategy",
+    "ex-post upper bound, no new CAGR or predictive skill"
+  ]
+}

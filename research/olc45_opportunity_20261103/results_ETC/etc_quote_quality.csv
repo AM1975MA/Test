@@ -1,0 +1,5 @@
+ticker,isin,theme,venue,status,error,n_dates,first,last,ohlc_bad,daily_jumps_over_60pct,max_abs_close_logjump
+VZLC.DE,JE00B1VS3333,SILVER_PHYSICAL_ETC,XETRA_EUR,missing,ValueError('No Yahoo daily data'),,,,,,
+PHAG.MI,JE00B1VS3333,SILVER_PHYSICAL_ETC,MILAN_EUR_ALTERNATE_SAME_ISIN,quote_download_ok,,2064.0,2017-01-02,2025-02-14,107.0,0.0,0.1298879640066442
+NGAS.MI,JE00BN7KB334,NATURAL_GAS_FUTURES_ETC,MILAN_EUR,quote_download_ok,,2064.0,2017-01-02,2025-02-14,81.0,0.0,0.16303962790191665
+OD7L.DE,JE00BN7KB334,NATURAL_GAS_FUTURES_ETC,XETRA_EUR_ALTERNATE_SAME_ISIN,missing,ValueError('No Yahoo daily data'),,,,,,
