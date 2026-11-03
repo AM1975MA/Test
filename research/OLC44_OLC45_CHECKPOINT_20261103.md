@@ -45,3 +45,20 @@ Fonti di struttura degli strumenti: https://www.wisdomtree.com/it/products/commo
 2. **ETC price QA indipendente:** soluzione degli High/Low, confronto ufficiale emittente/seconda venue, disponibilità cronologica, risk policy distinta per strumenti di debito.
 3. **Due universi di ricerca pre-registrati:** EU152 PIT + ETF UCITS vs EU152 PIT + ETF UCITS + ETC ammessi, senza duplicati, con score ripetuti dal primo stadio e uscite/costi uguali.
 4. **OLC46 separazione fattore/specialista e risk-admission:** valutare la previsione out-of-time del beneficio di ciascun fattore, non il vincitore ex-post, poi usare governance di switching controllata. Niente threshold grid-fit su 2021–2024.
+
+
+## Step 5 — Origine delle barre High/Low anomale, verifica OLC45-C
+
+[Codice](https://github.com/AM1975MA/Test/blob/research/olc45-opportunity-factor-audit-20261103/research/olc45_opportunity_20261103/olc45c_ohlc_integrity.py) · [Risultato grezzo/adjusted](https://github.com/AM1975MA/Test/blob/research/olc45-opportunity-factor-audit-20261103/research/olc45_opportunity_20261103/results_RAW_QA/olc45c_quote_adjustment_diagnostic.csv) · [Esecuzione GitHub](https://github.com/AM1975MA/Test/actions/runs/41734327351).
+
+Confronto sul periodo 2017-01→2025-02 tra Yahoo **raw** `auto_adjust=False`, Yahoo adjusted `auto_adjust=True`, e adjusted ricostruito moltiplicando tutti OHLC per il fattore `Adj Close/Close`. In tutti i casi, gli stessi giorni rimangono incoerenti:
+
+| Ticker | Anomalie raw | Anomalie adjusted | Identità date |
+|---|---:|---:|---|
+| PHAG.MI | 107/2064 | 107/2064 | Sì |
+| NGAS.MI | 81/2064 | 81/2064 | Sì |
+| CMOD.MI | 524/2053 | 524/2053 | Sì |
+
+Quindi gli errori High/Low sono **già nella fonte originale**, non un problema dei dividendi o del fattore di aggiustamento dei prezzi. Non inventare High/Low o stop da dati sintetici. La soluzione è un vendor o una venue indipendente con storico intraday/OHLC verificato. Il beneficio E1/E2 rimane solo storico Open-only se il prezzo di Open è osservato; la qualità dello stop e la negoziabilità non sono certificate.
+
+**Raccomandazione operativa finale:** benchmark OLC19 EU165 **23,1999% CAGR** e USA149 **50,7722% CAGR** restano invariati nel 2021–2024. Nessun CAGR nuovo attribuibile al *modello nativo* ampliato è stato dimostrato. Mantenere OLC44 modello supervisionato come diagnostica negativa/fragile, OLC45 come misura di opportunity, e passare soltanto dopo recupero input nativi + quote indipendenti a fullstack extended.
