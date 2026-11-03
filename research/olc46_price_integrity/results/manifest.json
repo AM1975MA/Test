@@ -6,7 +6,7 @@
     "yahoo_repair_status": "download_ok",
     "yahoo_repair_resolved": 0,
     "repaired_n": 2412,
-    "corrected_sha256": "a51a54199a0a2fc90574b3f78538c4a02c2a6fca0c63b4b361a9bb2263f04903",
+    "corrected_sha256": "8b4c7e848607d0cd8389783ff010c3a1768bc77aca99ad8269e040190e027673",
     "missing_intraday_hl": 109
   },
   "NGAS.MI": {
@@ -16,7 +16,7 @@
     "yahoo_repair_status": "download_ok",
     "yahoo_repair_resolved": 0,
     "repaired_n": 2412,
-    "corrected_sha256": "0a3263dc6eb47d4e3321435795a1b01ac04981ff1ae161a11f9859305c885399",
+    "corrected_sha256": "fbffa4ae5ea516190fc6309d27fb0ce690e0783e12686c44b879072d61ae44a0",
     "missing_intraday_hl": 95
   },
   "CMOD.MI": {
@@ -26,10 +26,10 @@
     "yahoo_repair_status": "download_ok",
     "yahoo_repair_resolved": 0,
     "repaired_n": 2401,
-    "corrected_sha256": "fba73d9e9ec50013fbe4dc5e7b05bebcd3d2dfe9d689901ae3064614690a9fee",
+    "corrected_sha256": "f446b5495b2e2ae47587553bb66a1da1012e91202fd1cd2447f02aae9c1675e4",
     "missing_intraday_hl": 539
   },
-  "generated_at": "2026-11-03T23:20:15.292859+00:00",
+  "generated_at": "2026-11-03T23:23:44.738168+00:00",
   "period": {
     "start": "2017-01-01",
     "end_exclusive": "2026-07-05"

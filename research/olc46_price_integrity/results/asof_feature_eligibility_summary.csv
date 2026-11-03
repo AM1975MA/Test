@@ -1,0 +1,11 @@
+market,ticker,months,eligible_63_oc,eligible_126_oc,eligible_252_oc,eligible_252_full_ohlc,median_bad_hl_252,max_age_days
+EU,2B76.DE,48,48,48,48,48,0.0,3
+EU,CMOD.MI,48,48,48,48,0,36.5,3
+EU,G2X.DE,48,48,48,48,48,0.0,3
+EU,NGAS.MI,48,48,48,48,0,6.0,3
+EU,PHAG.MI,48,48,48,48,0,8.0,3
+EU,USPY.DE,48,48,48,48,48,0.0,3
+EU,WTIC.DE,48,48,48,48,48,0.0,3
+USA,BOTZ,48,48,48,48,48,0.0,4
+USA,LIT,48,48,48,48,48,0.0,4
+USA,PAVE,48,48,48,48,48,0.0,4
