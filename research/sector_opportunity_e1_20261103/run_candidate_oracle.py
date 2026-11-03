@@ -100,9 +100,10 @@ def main() -> None:
                     "single_add_oracle1_gain_logbp": max(0.0, r-row.oracle_top1_logbp),
                     "single_add_oracle2_gain_logbp": max(
                         0.0,
-                        (max(r, row.oracle_top1_logbp) +
-                         sorted([r, row.oracle_top1_logbp, row.oracle_top2_logbp])[-2])/2.0
-                        - row.oracle_top2_logbp,
+                        float(np.mean(sorted(
+                            [r, row.oracle_top1_logbp,
+                             2*row.oracle_top2_logbp - row.oracle_top1_logbp],
+                            reverse=True)[:2])) - row.oracle_top2_logbp,
                     ),
                 })
             records.extend(entries)
@@ -133,10 +134,8 @@ def main() -> None:
         new = accepted[(accepted.market == row.market) &
                        (accepted.signal_date == row.signal_date)]
         prices = new.candidate_logbp.to_list()
-        new_best = sorted(
-            [float(row.oracle_top1_logbp), float(row.oracle_top2_logbp)] + prices,
-            reverse=True
-        )
+        old_second = 2.0*float(row.oracle_top2_logbp) - float(row.oracle_top1_logbp)
+        new_best = sorted([float(row.oracle_top1_logbp),old_second]+prices,reverse=True)
         primary.append({
             "market":row.market,"signal_date":row.signal_date,
             "entry_date":row.entry_date,"exit_date":row.exit_date,
