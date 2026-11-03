@@ -1,0 +1,20 @@
+name: OLC42 EU152 research dedup integrity
+
+on:
+  push:
+    branches:
+      - research/olc42-eu165-dedup-opportunity-20261103
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Rebuild and compare frozen research universe
+        run: python research/olc42_eu165_dedup_opportunity_20261103/build_research_universe.py --check-only
