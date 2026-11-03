@@ -1,0 +1,36 @@
+name: OLC45 sector exposure and incremental opportunity
+on:
+  push:
+    branches: [research/olc45-opportunity-factor-audit-20261103]
+    paths:
+      - research/olc45_opportunity_20261103/**
+      - .github/workflows/olc45-factor-opportunity.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  sector-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Install dependencies
+        run: python -m pip install "numpy>=1.26,<3" "pandas>=2.2,<3"
+      - name: Fetch candidate prices on original 2021-2024 calendar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 41724810594 -R AM1975MA/Test -n sector-opportunity-e1-research -D research/olc45_opportunity_20261103/source_artifact
+          test -f research/olc45_opportunity_20261103/source_artifact/candidate_monthly_labels.csv
+      - name: Compute exact monthly Shapley sector opportunities
+        run: python research/olc45_opportunity_20261103/olc45_factor_shapley.py
+      - name: Preserve data and audits
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olc45-sector-opportunity
+          path: research/olc45_opportunity_20261103/results/
+          retention-days: 60
