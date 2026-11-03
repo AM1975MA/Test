@@ -1,0 +1,25 @@
+{
+  "status": "EXPOST RESEARCH; no investable strategy, not model forecast",
+  "source": "frozen original OLC32 E1 baseline, E1 Yahoo adjusted Open candidates",
+  "period": "48 monthly decisions 2021-2024 per market",
+  "candidate_universes": {
+    "EU": {
+      "G2X.DE": "GOLD_MINERS",
+      "USPY.DE": "CYBERSECURITY",
+      "WTIC.DE": "DIVERSIFIED_COMMODITY",
+      "2B76.DE": "ROBOTICS"
+    },
+    "USA": {
+      "BOTZ": "ROBOTICS",
+      "LIT": "LITHIUM_BATTERY",
+      "PAVE": "INFRASTRUCTURE"
+    }
+  },
+  "excluded_intraday_data": {
+    "CMOD.MI": "Incoherent intraday OHLC despite observed open-only prices."
+  },
+  "shapley": "exact 4! EU and 3! USA permutations for oracle maximum Top1/Top2",
+  "temporal_guard": "no label-based selection in a trading decision; outcomes used ONLY for retrospective opportunity diagnosis",
+  "overlap": "Pearson correlation of realized monthly returns, descriptive not future predictor",
+  "nonindependent_preexisting_research": "all 2021-24 years explored many times"
+}
