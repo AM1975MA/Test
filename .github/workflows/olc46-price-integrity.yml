@@ -7,6 +7,7 @@ on:
       - research/olc46_price_integrity/repair_and_crosscheck.py
       - research/olc46_price_integrity/asof_feature_gate.py
       - research/olc46_price_integrity/olc44_native_preflight.py
+      - research/olc46_price_integrity/ngas_pit_consolidation.py
       - research/olc46_price_integrity/OLC32_FROZEN_2021_2024_CALENDAR.csv
       - .github/workflows/olc46-price-integrity.yml
   workflow_dispatch:
@@ -34,6 +35,9 @@ jobs:
       - name: Validate source and mask unconfirmed High/Low
         run: |
           python research/olc46_price_integrity/repair_and_crosscheck.py
+      - name: Correct NGAS point-in-time ISIN and consolidation lineage
+        run: |
+          python research/olc46_price_integrity/ngas_pit_consolidation.py
       - name: Audit 2021-2024 native-model feature warm-up readiness
         run: |
           python research/olc46_price_integrity/asof_feature_gate.py
