@@ -1,0 +1,32 @@
+{
+  "status": "research-only conditional challenger, not native OLC19 reranking",
+  "baseline": "OLC19 checkpoint 20261102, exact frozen risk/execution engine",
+  "q_sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+  "candidate_daily_zip_sha256": "e0fd364f426ce1daa61422f2c278e5160930a632a7be78d8c4064d3b5fc6c01a",
+  "rules": {
+    "MOM63": "63-day log momentum, new beats BOTH incumbents by 0.05 log and positive",
+    "MOM63_126": "63 & 126 day positive; average log momentum beats BOTH by 0.05 log"
+  },
+  "venue_risk_exclusions": {
+    "CMOD.MI": "539/2400 inconsistent OHLC bars in downloaded quote series; risk stop cannot be reliably replayed"
+  },
+  "candidate_universe": {
+    "EU": [
+      "G2X.DE",
+      "USPY.DE",
+      "WTIC.DE",
+      "2B76.DE"
+    ],
+    "USA": [
+      "BOTZ",
+      "LIT",
+      "PAVE"
+    ]
+  },
+  "min_history_prices_original": 500,
+  "risk_convention": "OLC19 FAST_LOCK3; same g/alt originally frozen, not rescored for new ETFs",
+  "cost": ".001 or .003 legacy rebalance fee + .001 stop friction",
+  "entry": "next monthly opening, calculated at last close prior to event",
+  "historical_period": "2019-02-01 to 2026-07-01; primary 2021\u20132024",
+  "warning": "2021-2024 repeatedly researched; no independent prospective test"
+}
