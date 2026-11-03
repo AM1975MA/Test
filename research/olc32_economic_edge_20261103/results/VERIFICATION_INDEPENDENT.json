@@ -1,0 +1,126 @@
+{
+  "calendar_shift_changed_rows": 2,
+  "repaired_monthly_label_count": 278,
+  "EU_source_open_max_diff_bp": 0.0,
+  "EU_relative_median_max_diff_bp": 0.0,
+  "EU_all_valid_labels": 13612,
+  "USA_source_open_max_diff_bp": 0.0,
+  "USA_relative_median_max_diff_bp": 0.0,
+  "USA_all_valid_labels": 13261,
+  "model_reload_verification": [
+    {
+      "year": 2021,
+      "model": "B1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2020-12-01 00:00:00"
+    },
+    {
+      "year": 2021,
+      "model": "E1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2020-12-01 00:00:00"
+    },
+    {
+      "year": 2021,
+      "model": "E2",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2020-12-01 00:00:00"
+    },
+    {
+      "year": 2022,
+      "model": "B1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2021-12-01 00:00:00"
+    },
+    {
+      "year": 2022,
+      "model": "E1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2021-12-01 00:00:00"
+    },
+    {
+      "year": 2022,
+      "model": "E2",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2021-12-01 00:00:00"
+    },
+    {
+      "year": 2023,
+      "model": "B1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2022-12-01 00:00:00"
+    },
+    {
+      "year": 2023,
+      "model": "E1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2022-12-01 00:00:00"
+    },
+    {
+      "year": 2023,
+      "model": "E2",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2022-12-01 00:00:00"
+    },
+    {
+      "year": 2024,
+      "model": "B1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2023-12-01 00:00:00"
+    },
+    {
+      "year": 2024,
+      "model": "E1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2023-12-01 00:00:00"
+    },
+    {
+      "year": 2024,
+      "model": "E2",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2023-12-01 00:00:00"
+    },
+    {
+      "year": 2025,
+      "model": "B1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2024-12-02 00:00:00"
+    },
+    {
+      "year": 2025,
+      "model": "E1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2024-12-02 00:00:00"
+    },
+    {
+      "year": 2025,
+      "model": "E2",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2024-12-02 00:00:00"
+    },
+    {
+      "year": 2026,
+      "model": "B1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2025-12-01 00:00:00"
+    },
+    {
+      "year": 2026,
+      "model": "E1",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2025-12-01 00:00:00"
+    },
+    {
+      "year": 2026,
+      "model": "E2",
+      "max_diff_bp": 0.0,
+      "training_maturity": "2025-12-01 00:00:00"
+    }
+  ],
+  "future_label_perturbation_cutoff_invariant": true,
+  "matched_primary_rows": {
+    "EU": 7137,
+    "USA": 7152
+  },
+  "matched_months": 48
+}

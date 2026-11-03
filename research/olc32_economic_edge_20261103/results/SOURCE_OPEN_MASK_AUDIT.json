@@ -1,0 +1,23 @@
+{
+  "EU": {
+    "source_dates": 1898,
+    "tickers": 167,
+    "exact_matching_valid_prices": 288657,
+    "max_absolute_diff": 0.0,
+    "original_source_mask_restored_for_ETFs": true,
+    "observed_mask_mismatch_count": 3796,
+    "mismatch_tickers": {
+      "EUR_CASH_A": 1898,
+      "EUR_CASH_B": 1898
+    }
+  },
+  "USA": {
+    "source_dates": 1863,
+    "tickers": 149,
+    "exact_matching_valid_prices": 277587,
+    "max_absolute_diff": 0.0,
+    "original_source_mask_restored_for_ETFs": false,
+    "prepared_panel_finite_fraction": 1.0,
+    "why_not_certified": "Panel is already complete over modeled dates; original observed/filled distinction absent; equal prices do NOT identify actual quote observations"
+  }
+}

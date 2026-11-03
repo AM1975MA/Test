@@ -1,0 +1,53 @@
+{
+  "inputs": {
+    "OLC08_SOURCE": {
+      "name": "OLC08_01_Pannelli_Verificati_20261101.zip",
+      "size": 108334629,
+      "sha256": "945faa5816aa627c398244d1b2a599fc2ba31f35fa6d789379264b0912d0be02",
+      "match": true
+    },
+    "OLC08_PRED": {
+      "name": "OLC08_03_RSI_Confronto_Verificato_20261101.zip",
+      "size": 7772336,
+      "sha256": "0dbcb8ee93cd0acaefd7505a202fbf30c9fda8df1804d90a0dd1578abd704f4b",
+      "match": true
+    },
+    "OLC19": {
+      "name": "OLC19_Rischio_Rientro_Checkpoint_20261102.zip",
+      "size": 165680538,
+      "sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+      "match": true
+    },
+    "OLC20": {
+      "name": "OLC20_Regime_Validation_Final_20261102.zip",
+      "size": 113329619,
+      "sha256": "a81be0fad1da73b48ba0af0080985657ee33e18a10f278db2318f9da06738a9c",
+      "match": true
+    }
+  },
+  "protocol": "730901d603a9a192db6499fc14d8a1e59ae9643a",
+  "fixed_date": "2020-06-02",
+  "open_holiday": "2020-06-01",
+  "LEEU_unobserved": "2024-05-02",
+  "USA_original_observed_mask": "MISSING",
+  "feature_names": [
+    "FUSION",
+    "ret_21",
+    "ret_63",
+    "ret_126",
+    "ret_252",
+    "mom_126_21",
+    "acc_5_21",
+    "acc_21_63",
+    "eff_21",
+    "eff_63",
+    "dd_21",
+    "dd_63",
+    "sma_ratio_50",
+    "sma_ratio_200",
+    "vol_21",
+    "vol_63",
+    "skew_63"
+  ],
+  "notes": "Original archived quotes, signals, models, portfolio NAV unchanged; label overlay only"
+}
