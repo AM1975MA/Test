@@ -1,0 +1,28 @@
+{
+  "olc32_sha": "83b5190501ba79029e1677d719a22893eaa98bddeb6042de2a46a885bca32d16",
+  "vix_clean_blob_sha": "28c334adcf0f8f43477c8df99ae311a12b44d441",
+  "max_abs_p1_olc33_difference": 0.0,
+  "max_abs_p0_olc33_difference": 0.0,
+  "max_abs_spread_difference": 0.0,
+  "olc33_decision_action_mismatches": 0,
+  "olc33_decision_gain_max_diff": 0.0,
+  "original_non_session_asof_signal_dates": [
+    "2022-05-31",
+    "2024-11-29",
+    "2025-11-28"
+  ],
+  "original_non_session_asof_count": 3,
+  "filtered_non_session_asof_count": 0,
+  "monthly_dates_repaired": 30,
+  "max_abs_prediction_change_before_2025_when_2024_labels_altered": {
+    "p1": 8.326672684688674e-17,
+    "p2": 8.326672684688674e-17
+  },
+  "changed_2025_forecasts_after_2024_labels_altered": 94,
+  "main_switches_by_market": {
+    "EU": 4,
+    "USA": 8
+  },
+  "primary_all_gates_pass": false,
+  "primary_decision": "STOP"
+}
