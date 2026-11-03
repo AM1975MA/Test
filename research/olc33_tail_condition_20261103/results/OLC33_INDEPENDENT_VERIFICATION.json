@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "independent_pairs": 720,
+  "eligible_pairs": 712,
+  "max_absolute_pair_label_error_bp": 0.0,
+  "max_pre2025_forecast_change_when_2024_outcomes_are_corrupted": 0.0,
+  "post2024_forecasts_changed_under_corruption": 94,
+  "max_rerun_prediction_difference": 8.326672684688674e-17,
+  "calendar_2020_06_02_repaired": true,
+  "terminal_missing_labels": true,
+  "matched_decisions": true,
+  "no_future_label_leakage_test": true
+}

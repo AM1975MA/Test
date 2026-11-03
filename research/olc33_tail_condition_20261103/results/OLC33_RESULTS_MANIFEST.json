@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-03",
+  "protocol_git_commit": "05b1d1735e2528e0f0512dbf029d1831057cce52",
+  "olc32_correction_commit": "3717924ef11e58263961d0c98a0b806976a3c8fb",
+  "python": "3.13.5",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "sklearn": "1.8.0",
+  "source_sha256": "83b5190501ba79029e1677d719a22893eaa98bddeb6042de2a46a885bca32d16",
+  "sha256": {
+    "OLC33_TRAIN_AUDIT.csv": "d7dd98abda55da5f75cfee10f777547c97fb078b545fcaa3b2992b2c5110a657",
+    "OLC33_RESULTS.json": "36a786315388416cbf15c3dd3d148797d9d4e8cfc973266bcffe66a121f2e8ce",
+    "OLC33_INDEPENDENT_VERIFICATION.json": "8bf33d48e2e04988392868cecd0edd2223fce35684c7e927ed76f1e03216de7c",
+    "OLC33_MARKET_METRICS.csv": "784b842564acc929d8cb7117a292f6734f721e02f79dca8dd75d495a35218ff9",
+    "OLC33_DECISIONS.csv": "10405c98054bb328891839ed3fca815b7322c3ddeb6e5b4396173421c9068795",
+    "OLC33_OOF_PAIRS.csv.gz": "990135a2e842308a4f1032b9f13ea7dd4576e6a5fb74af3cf9b47f39a2d7b5d2",
+    "OLC32_EU_2020_CORRECTED_LABEL_PATCH.csv": "1e85ea8649d6275d94cf1229997c6d2c1d6bfa0ad53e9eec36aee2b0825c4530",
+    "olc33_tail_condition.py": "d0351ef4dcdb5acfd292e15541b8eac3eb9cf32ddceeb2c9d59e96fe8a5fb981",
+    "verify_olc33.py": "82caa23cff2d84e6e602e24b18b1725e87d91506a605d7d1f3fdb2ac3e6bb0b5",
+    "REPORT_OLC33_IT.md": "2b9c4c50e1d6c2f49c99b09afa6e77879e2efcf9df4cbea5823d6ad13f8727ca"
+  }
+}
