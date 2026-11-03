@@ -1,0 +1,36 @@
+{
+  "PHAG.MI": {
+    "raw_n": 2410,
+    "raw_first": "2017-01-02",
+    "raw_last": "2026-07-03",
+    "yahoo_repair_status": "ModuleNotFoundError(\"No module named 'scipy'\")",
+    "corrected_sha256": "a6ff021a1f463d90bb1d7e38d8ef972006af95ef7db111f9a9e76f053d310e25",
+    "missing_intraday_hl": 109
+  },
+  "NGAS.MI": {
+    "raw_n": 2410,
+    "raw_first": "2017-01-02",
+    "raw_last": "2026-07-03",
+    "yahoo_repair_status": "ModuleNotFoundError(\"No module named 'scipy'\")",
+    "corrected_sha256": "a883b354da8881570a79809d69ca54ed4c03556f7465c6a3b54363a0950cfeee",
+    "missing_intraday_hl": 95
+  },
+  "CMOD.MI": {
+    "raw_n": 2400,
+    "raw_first": "2017-01-09",
+    "raw_last": "2026-07-03",
+    "yahoo_repair_status": "ModuleNotFoundError(\"No module named 'scipy'\")",
+    "corrected_sha256": "31814307fada0930e8a67369c042d492af3879d421e45f82b602958b0b6845ac",
+    "missing_intraday_hl": 539
+  },
+  "generated_at": "2026-11-03T23:18:05.550365+00:00",
+  "period": {
+    "start": "2017-01-01",
+    "end_exclusive": "2026-07-05"
+  },
+  "raw_source": "Yahoo historical no auto-adjust no repair",
+  "same_venue_external_source_required_to_rebuild_true_HL": true,
+  "intraday_stop_policy": "block risky ETC until validated; do not use H/L missing days for stop backtests",
+  "repair_definition": "invalid High/Low converted to NaN, O/C retained as unverified Yahoo observations",
+  "no_lookahead_oracle_in_repairs": true
+}

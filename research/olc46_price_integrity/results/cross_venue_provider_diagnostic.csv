@@ -1,0 +1,16 @@
+primary,other,status,n_match,median_abs_close_gap_pct,p95_abs_close_gap_pct,raw_log_close_return_corr,other_invalid_ohlc,first_match,last_match,same_currency,identity_status,error
+PHAG.MI,YAHOO_CROSS_VENUE_PHAG.AS,COMPARE_ONLY,2410.0,0.11512938635584585,44.40324928525084,0.42902238838918394,1.0,2017-01-02,2026-07-03,True,issuer_confirmed_same_isin,
+PHAG.MI,YAHOO_CROSS_VENUE_PHAG.L,COMPARE_ONLY,2373.0,11.801894041831428,19.37093628131943,0.9715848208111791,244.0,2017-01-03,2026-07-03,False,issuer_confirmed_same_isin,
+PHAG.MI,YAHOO_CROSS_VENUE_PHSP.L,COMPARE_ONLY,2373.0,446.1540774743748,450.48753474702556,0.9717032980030085,469.0,2017-01-03,2026-07-03,False,issuer_confirmed_same_isin,
+PHAG.MI,STOOQ_phag.it,PROVIDER_NOT_AVAILABLE,,,,,,,,,,"ValueError('STOOQ_UNAVAILABLE_http200_body\'<!DOCTYPE html><html><head><meta charset=""utf-8""><meta name=""robots"" c\'')"
+PHAG.MI,STOOQ_phag.mi,PROVIDER_NOT_AVAILABLE,,,,,,,,,,"ValueError('STOOQ_UNAVAILABLE_http200_body\'<!DOCTYPE html><html><head><meta charset=""utf-8""><meta name=""robots"" c\'')"
+NGAS.MI,NGAS.PA,PEER_NOT_AVAILABLE,,,,,,,,,,ValueError('NO_YAHOO_HISTORY')
+NGAS.MI,OD7L.DE,PEER_NOT_AVAILABLE,,,,,,,,,,ValueError('NO_YAHOO_HISTORY')
+NGAS.MI,YAHOO_CROSS_VENUE_NGAS.L,COMPARE_ONLY,2373.0,10.938467676721853,19.782569924717695,0.7646642945656199,323.0,2017-01-03,2026-07-03,False,issuer_confirmed_same_isin,
+NGAS.MI,STOOQ_ngas.it,PROVIDER_NOT_AVAILABLE,,,,,,,,,,"ValueError('STOOQ_UNAVAILABLE_http200_body\'<!DOCTYPE html><html><head><meta charset=""utf-8""><meta name=""robots"" c\'')"
+NGAS.MI,STOOQ_ngas.mi,PROVIDER_NOT_AVAILABLE,,,,,,,,,,"ValueError('STOOQ_UNAVAILABLE_http200_body\'<!DOCTYPE html><html><head><meta charset=""utf-8""><meta name=""robots"" c\'')"
+CMOD.MI,YAHOO_CROSS_VENUE_CMOD.L,COMPARE_ONLY,2365.0,11.632100874178187,19.36695881689248,0.5348116717769957,516.0,2017-01-09,2026-07-03,False,issuer_confirmed_same_isin,
+CMOD.MI,CMOD.AS,PEER_NOT_AVAILABLE,,,,,,,,,,ValueError('NO_YAHOO_HISTORY')
+CMOD.MI,CMOD.DE,PEER_NOT_AVAILABLE,,,,,,,,,,ValueError('NO_YAHOO_HISTORY')
+CMOD.MI,STOOQ_cmod.it,PROVIDER_NOT_AVAILABLE,,,,,,,,,,"ValueError('STOOQ_UNAVAILABLE_http200_body\'<!DOCTYPE html><html><head><meta charset=""utf-8""><meta name=""robots"" c\'')"
+CMOD.MI,STOOQ_cmod.mi,PROVIDER_NOT_AVAILABLE,,,,,,,,,,"ValueError('STOOQ_UNAVAILABLE_http200_body\'<!DOCTYPE html><html><head><meta charset=""utf-8""><meta name=""robots"" c\'')"
