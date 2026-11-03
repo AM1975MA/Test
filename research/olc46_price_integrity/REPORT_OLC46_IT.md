@@ -79,3 +79,10 @@ Il CSV `OLC45_B_ETC_MONTHLY_PIT_RELABELED.csv` è una **nuova versione** dell'au
 - Il rendimento Open→Open nei mesi interamente prima del raggruppamento non cambia se le due quotazioni condividono un unico fattore moltiplicativo storico. Questo spiega perché la correzione ISIN non dimostra automaticamente errore nei ritorni dell'oracolo del 2021–2022; il problema è data lineage point-in-time e contabilità di trading, non una revisione meccanica di tutto il CAGR.
 
 **Non è stata prodotta alcuna NAV corretta né un CAGR nuovo** da questo relabelling. Prima di riutilizzare gli ETC in modelli di esecuzione controllare il prezzo per unità realmente negoziabile prima e dopo l'evento con una fonte indipendente.
+
+
+## Chiusura automatica della verifica NGAS del 4 novembre
+
+La [GitHub Action 41740212302](https://github.com/AM1975MA/Test/actions/runs/41740212302) è **SUCCESS**; ultimo output `results/NGAS_PIT_CORPORATE_ACTION_AUDIT.json`. La serie `NGAS.MI` ha **1761 sedute** sotto il vecchio ISIN e **649** sotto il nuovo. Il rapporto `Open 4/12/2023 / Close 1/12/2023 = 0.949354` (circa **−5,06%**) sulla fonte Yahoo, **non circa 1783×**: questo è coerente con una **serie storica retrorettificata per il raggruppamento**, e non con prezzi nominali contemporanei prima del 4 dicembre 2023. Lo stato è esplicitamente `LIKELY...NOT_CERTIFIED` fino a verifica dell'unità nominale con fonte storica ufficiale.
+
+La serie derivata `results/NGAS_MI_PIT_IDENTITY_WITH_QUALITY_MASK.csv.gz` associa a **ogni giorno** il corretto ISIN storico e il fattore di consolidamento. Nessun broker-level import né riattribuzione del ticker `JE...` al 2021. Il registro storico OLC45-B è anche pubblicato separatamente in `OLC45_B_ETC_MONTHLY_PIT_RELABELED.csv` con 10 mesi winner rietichettati e 1 finestra che attraversa la conversione. **Nessun nuovo CAGR da questa correzione**.
