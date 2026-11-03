@@ -3,27 +3,33 @@
     "raw_n": 2410,
     "raw_first": "2017-01-02",
     "raw_last": "2026-07-03",
-    "yahoo_repair_status": "ModuleNotFoundError(\"No module named 'scipy'\")",
-    "corrected_sha256": "a6ff021a1f463d90bb1d7e38d8ef972006af95ef7db111f9a9e76f053d310e25",
+    "yahoo_repair_status": "download_ok",
+    "yahoo_repair_resolved": 0,
+    "repaired_n": 2412,
+    "corrected_sha256": "a51a54199a0a2fc90574b3f78538c4a02c2a6fca0c63b4b361a9bb2263f04903",
     "missing_intraday_hl": 109
   },
   "NGAS.MI": {
     "raw_n": 2410,
     "raw_first": "2017-01-02",
     "raw_last": "2026-07-03",
-    "yahoo_repair_status": "ModuleNotFoundError(\"No module named 'scipy'\")",
-    "corrected_sha256": "a883b354da8881570a79809d69ca54ed4c03556f7465c6a3b54363a0950cfeee",
+    "yahoo_repair_status": "download_ok",
+    "yahoo_repair_resolved": 0,
+    "repaired_n": 2412,
+    "corrected_sha256": "0a3263dc6eb47d4e3321435795a1b01ac04981ff1ae161a11f9859305c885399",
     "missing_intraday_hl": 95
   },
   "CMOD.MI": {
     "raw_n": 2400,
     "raw_first": "2017-01-09",
     "raw_last": "2026-07-03",
-    "yahoo_repair_status": "ModuleNotFoundError(\"No module named 'scipy'\")",
-    "corrected_sha256": "31814307fada0930e8a67369c042d492af3879d421e45f82b602958b0b6845ac",
+    "yahoo_repair_status": "download_ok",
+    "yahoo_repair_resolved": 0,
+    "repaired_n": 2401,
+    "corrected_sha256": "fba73d9e9ec50013fbe4dc5e7b05bebcd3d2dfe9d689901ae3064614690a9fee",
     "missing_intraday_hl": 539
   },
-  "generated_at": "2026-11-03T23:18:05.550365+00:00",
+  "generated_at": "2026-11-03T23:20:15.292859+00:00",
   "period": {
     "start": "2017-01-01",
     "end_exclusive": "2026-07-05"
