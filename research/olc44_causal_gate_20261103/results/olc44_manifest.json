@@ -1,0 +1,26 @@
+{
+  "experiment": "OLC44-A diagnostic prequential score gate",
+  "native_original_olc19_refit": false,
+  "reference": "OLC35 AUTH Top2, not exact OLC19 risk-engine holdings",
+  "price_input": "frozen E1 observed adjusted daily prices, as-of signal close",
+  "target": "candidate minus incumbent2 O2O future monthly log return",
+  "features": [
+    "m63",
+    "m126",
+    "vol63",
+    "dd63"
+  ],
+  "model": "StandardScaler(train only)+Ridge(fixed alpha30)",
+  "alpha": 30.0,
+  "switch_buffer_log": 0.005,
+  "start_validation": "2022-01-01",
+  "cutoff": "matured exit_date < signal_date",
+  "no_ticker_identity_feature": true,
+  "min_price_observations": 500,
+  "e2_incompatibility": "does not use OLC19 risk/execution; no stop, V6, turnover; proxy only",
+  "not_holdout": "2021-2024 inspected many times; ex-post ETF candidate universe",
+  "markets": [
+    "EU",
+    "USA"
+  ]
+}
