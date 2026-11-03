@@ -59,5 +59,7 @@ jobs:
           git add research/olc46_price_integrity/results/
           if git diff --staged --quiet; then echo "No changes"; else
             git commit -m "research(olc46): archive quality-masked data and independent cross-check diagnostics"
+            git fetch origin research/olc46-price-reconciliation-20261104
+            git rebase FETCH_HEAD
             git push origin HEAD:research/olc46-price-reconciliation-20261104
           fi
