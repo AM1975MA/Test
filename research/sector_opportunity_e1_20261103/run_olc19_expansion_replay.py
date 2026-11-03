@@ -12,17 +12,17 @@ Requires the *original* OLC19 checkpoint zip under ../etf_sources, and
 ETF_sector_daily_OHLC_GH.zip in /mnt/data from the frozen GitHub Actions.
 """
 from __future__ import annotations
-import io, hashlib, json, sys
+import io, hashlib, json, sys, os
 from pathlib import Path
 from zipfile import ZipFile
 import numpy as np
 import pandas as pd
 ROOT=Path(__file__).resolve().parent
-SOURCES=ROOT.parent/'etf_sources'
-CK=SOURCES/'OLC19_Rischio_Rientro_Checkpoint_20261102.zip'
-DAILY=ROOT.parent/'ETF_sector_daily_OHLC_GH.zip'
-SRC=ROOT.parent/'etf19_dev/olc19_combined_risk_20261102'
-OUT=ROOT/'replay_e2';OUT.mkdir(exist_ok=True)
+SOURCES=Path(os.environ.get('OLC19_SOURCES',ROOT.parent/'etf_sources'))
+CK=Path(os.environ.get('OLC19_CHECKPOINT_ZIP',SOURCES/'OLC19_Rischio_Rientro_Checkpoint_20261102.zip'))
+DAILY=Path(os.environ.get('E1_PRICE_ARTIFACT',ROOT.parent/'ETF_sector_daily_OHLC_GH.zip'))
+SRC=Path(os.environ.get('OLC19_SOURCE_ROOT',ROOT.parent/'etf19_dev/olc19_combined_risk_20261102'))
+OUT=Path(os.environ.get('E2_OUTPUT_DIR',ROOT/'replay_e2'));OUT.mkdir(parents=True,exist_ok=True)
 sys.path.insert(0,str(SRC/'src'))
 from combined_engine import simulate
 sys.path.append(str(SRC/'restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src'))
