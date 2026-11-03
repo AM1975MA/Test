@@ -1,0 +1,5 @@
+ticker,invalid_bars,close_above_high,close_below_low,open_above_high,open_below_low,hl_crossed,critical_interpretation
+PHAG.MI,109,61,48,0,0,0,Close_vs_intraday_range_mismatch
+NGAS.MI,95,74,21,0,0,0,Close_vs_intraday_range_mismatch
+CMOD.MI,539,253,286,0,0,0,Close_vs_intraday_range_mismatch
+TOTAL,743,388,355,0,0,0,All_failures_in_Close_field_only
