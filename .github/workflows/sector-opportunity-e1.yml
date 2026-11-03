@@ -25,6 +25,9 @@ jobs:
       - name: E1 source-frozen price and oracle test
         run: |
           python research/sector_opportunity_e1_20261103/run_candidate_oracle.py
+      - name: Control quote-vintage comparison against source-frozen OLC32
+        run: |
+          python research/sector_opportunity_e1_20261103/validate_quote_vintage.py
       - name: Archive QA and any matched results
         if: always()
         uses: actions/upload-artifact@v4
