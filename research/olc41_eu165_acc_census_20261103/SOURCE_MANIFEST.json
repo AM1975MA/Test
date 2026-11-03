@@ -1,0 +1,134 @@
+{
+  "study": "OLC41_EU165_ACC_CENSUS",
+  "generated_date": "2026-11-03",
+  "original_universe_path": "research/olc39_eu_holdings_identity_20261103/migration_acc_guarded_20261103/EU165_original_universe.csv",
+  "external_current_catalog": {
+    "repo": "albertored/etfdb",
+    "path": "csv/basic_info.csv",
+    "sha": "adc45320a58233b4e744b95d419df5b454a9f57d",
+    "num_rows": 4651,
+    "ref": "https://github.com/albertored/etfdb/blob/main/csv/basic_info.csv",
+    "warning": "Secondary CURRENT 2026 metadata; does not verify per-venue identity or historical holdings."
+  },
+  "original_observed_state_npz_sha256": "9fd59f7af957576df567a41be99068d1f459ae318e0bde067fecb282b0fcbafb",
+  "original_path_npz_sha256": "0538779a89eda8660934e52192018e228cbc1e8ef84b627d91b7a6ce38fa6c6d",
+  "historical_check": {
+    "first_signal": "2021-01-29",
+    "min_genuine_observed_pre_signal": 500,
+    "observed_main_min": 1021,
+    "main_panel_days": 1026,
+    "initial_observed_date": "2019-02-01"
+  },
+  "manual_12_verified_current": {
+    "BEL.BR": [
+      "FR0000021842",
+      "Distributing",
+      "Amundi BEL 20 UCITS ETF Dist",
+      "BEL 20",
+      "2002-07-30",
+      "Amundi ETF",
+      "https://www.amundietf.be/pdfDocuments/download/05412809-e021-4aa7-b861-47ade7d38415/MonthlyFactsheet_2811039_23790_BEL_ENG_ETF_INSTITUTIONNEL_20240131.pdf"
+    ],
+    "CAC.PA": [
+      "FR0007052782",
+      "Distributing",
+      "Amundi CAC 40 UCITS ETF Dist",
+      "CAC 40",
+      "2000-12-13",
+      "Amundi ETF",
+      "https://www.justetf.com/en-it/etf-profile.html?isin=FR0007052782"
+    ],
+    "CSX5.AS": [
+      "IE00B53L3W79",
+      "Accumulating",
+      "iShares Core EURO STOXX 50 UCITS ETF",
+      "EURO STOXX 50",
+      "2010-01-26",
+      "iShares",
+      "https://www.ishares.com/uk/individual/en/literature/fact-sheet/cssx5e-ishares-core-euro-stoxx-50-ucits-etf-fund-fact-sheet-en-gb.pdf"
+    ],
+    "E40.PA": [
+      "FR0010150458",
+      "Distributing",
+      "BNP Paribas Easy CAC 40 ESG UCITS ETF",
+      "CAC 40 ESG",
+      "2005-03-07",
+      "BNP Paribas Easy",
+      "https://www.justetf.com/uk/etf-profile.html?isin=FR0010150458"
+    ],
+    "EM1015.MI": [
+      "LU1650489385",
+      "Accumulating",
+      "Amundi Euro Government Bond 10-15Y UCITS ETF Acc",
+      "Bloomberg Euro Treasury 50bn 10-15 Year Bond",
+      "2004-01-28",
+      "Amundi ETF",
+      "https://www.justetf.com/en-it/etf-profile.html?isin=LU1650489385"
+    ],
+    "EM35.MI": [
+      "LU1650488494",
+      "Accumulating",
+      "Amundi Euro Government Bond 3-5Y UCITS ETF Acc",
+      "Bloomberg Euro Treasury 50bn 3-5 Year Bond",
+      "2004-01-28",
+      "Amundi ETF",
+      "https://www.justetf.com/en-it/etf-profile.html?isin=LU1650488494"
+    ],
+    "IAEX.AS": [
+      "IE00B0M62Y33",
+      "Distributing",
+      "iShares AEX UCITS ETF",
+      "AEX",
+      "2005-11-18",
+      "iShares",
+      "https://www.ishares.com/uk/individual/en/products/251712/ishares-aex-ucits-etf"
+    ],
+    "IMEU.AS": [
+      "IE00B1YZSC51",
+      "Distributing",
+      "iShares Core MSCI Europe UCITS ETF EUR Dist",
+      "MSCI Europe",
+      "2007-07-06",
+      "iShares",
+      "https://www.justetf.com/en-it/etf-profile.html?isin=IE00B1YZSC51"
+    ],
+    "IMIB.MI": [
+      "IE00B1XNH568",
+      "Distributing",
+      "iShares FTSE MIB UCITS ETF EUR Dist",
+      "FTSE MIB",
+      "2007-07-06",
+      "iShares",
+      "https://www.blackrock.com/it/investitori-privati/products/251805/ishares-ftse-mib-ucits-etf-inc-fund"
+    ],
+    "ISFA.AS": [
+      "IE0005042456",
+      "Distributing",
+      "iShares Core FTSE 100 UCITS ETF GBP Dist",
+      "FTSE 100",
+      "2000-04-27",
+      "iShares",
+      "https://www.ishares.com/nl/particuliere-belegger/nl/literature/fact-sheet/isf-ishares-core-ftse-100-ucits-etf-fund-fact-sheet-en-nl.pdf"
+    ],
+    "TELE.PA": [
+      "LU1834988609",
+      "Accumulating",
+      "Amundi STOXX Europe 600 Telecommunications UCITS ETF Acc",
+      "STOXX Europe 600 Telecommunications",
+      "2006-08-25",
+      "Amundi ETF",
+      "https://www.justetf.com/it/etf-profile.html?isin=LU1834988609"
+    ],
+    "UTI.MI": [
+      "LU1834988864",
+      "Accumulating",
+      "Amundi STOXX Europe 600 Utilities UCITS ETF Acc",
+      "STOXX Europe 600 Utilities",
+      "2006-08-25",
+      "Amundi ETF",
+      "https://www.justetf.com/en/etf-profile.html?isin=LU1834988864"
+    ]
+  },
+  "previous_held9_source": "research/olc39_eu_holdings_identity_20261103/migration_acc_guarded_20261103/audit/EU_ACC_SUBSTITUTION_AUDIT_HELD9.csv",
+  "caveat": "No 2019-2024 issuer PIT constituent verification; no live execution, no US changes"
+}

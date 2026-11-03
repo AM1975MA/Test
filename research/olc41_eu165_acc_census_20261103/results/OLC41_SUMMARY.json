@@ -1,0 +1,48 @@
+{
+  "input_count": 165,
+  "source_catalog_records": 4651,
+  "policy": {
+    "Accumulating": 96,
+    "Distributing": 69
+  },
+  "held_27_confirmed": 27,
+  "held_dist9": 9,
+  "historic_price_gate_full": 141,
+  "historic_price_gate_fail": 24,
+  "dist_with_current_same_index_acc_internal": 25,
+  "dist_internal_acc_history_pass": 17,
+  "dist_states": {
+    "NO_SAME_INDEX_ACC_IN_EU165": 44,
+    "REJECT_ORIGINAL_HISTORY_INCOMPLETE": 4,
+    "INTERNAL_SAME_INDEX_PRICE_PASS_DUPLICATE_REVIEW": 13,
+    "REJECT_ACC_SHORT_HISTORY": 8
+  },
+  "research_only_duplicate_cases": [
+    "E40.PA→GC40.DE",
+    "EL4F.DE→EL4A.DE",
+    "EUN2.DE→CSX5.AS",
+    "EXSA.DE→XSX6.DE",
+    "EXW1.DE→CSX5.AS",
+    "EXXX.DE→XB4A.DE",
+    "IBCM.DE→SXRQ.DE",
+    "IM2A.DE→EEAA.DE",
+    "IMEU.AS→XMEU.DE",
+    "UEFD.DE→SXRJ.DE",
+    "UIM4.DE→SXR7.DE",
+    "UIMA.DE→XMEU.DE",
+    "XESX.DE→XESC.DE"
+  ],
+  "prior_held9_qualified": [
+    "IM2A.DE→EEAA.DE"
+  ],
+  "conversion_applied": 0,
+  "usa_modified": false,
+  "unique_tickers": true,
+  "unique_isins": 165,
+  "distribution_reconciles": true,
+  "held27_keys_correct": true,
+  "prior9_status_rows": 9,
+  "source_policies_resolved": true,
+  "any_conversion_applied": false,
+  "research_only": true
+}
