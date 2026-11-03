@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 permissions:
   actions: read
-  contents: read
+  contents: write
 jobs:
   prequential:
     runs-on: ubuntu-latest
@@ -36,3 +36,14 @@ jobs:
           name: olc44-causal-score-audit
           path: research/olc44_causal_gate_20261103/results/
           retention-days: 60
+
+      - name: Commit reproducible small-text results to isolated research branch
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/olc44_causal_gate_20261103/results/
+          if ! git diff --staged --quiet; then
+            git commit -m "research(olc44): archive prequential score and maturity audits"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
