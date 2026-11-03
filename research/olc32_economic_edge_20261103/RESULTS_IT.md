@@ -13,6 +13,7 @@ La correzione del calendario Xetra ha recuperato 278 etichette economiche EU in 
 - Copertura etichette EU 30/04/2020 **9/148 → 148/148**; EU 29/05/2020 **9/148 → 148/148**. In totale 278 osservazioni mese×ETF recuperate; le quotazioni originali **non sono state modificate**.
 - Il cambio data comune posticipa di una seduta anche gli ETF non tedeschi che erano trattabili il 01/06: è una scelta di convenzione multi-venue valida per la ricerca, non un fill reale garantito.
 - EU `LEEU.DE` al 02/05/2024: Open archiviato non osservato e identico al 30/04. **Non corretto per mancanza di fonte daily Open affidabile; escluso dalle etichette rilevanti**. Non va mascherato come 0% di rendimento.
+- Verifica supplementare: il pannello EU_OPEN originale riproduce esattamente la maschera observed per tutti i 165 ETF. Le 3.796 discrepanze tra le due matrici di 167 simboli appartengono soltanto ai 2 strumenti tecnici EUR_CASH_A/B su 1.898 date; nessuna discrepanza ETF. Il pannello USA_OPEN preparato è interamente finito nelle 1.863 sedute allineate, e non restituisce la maschera originale.
 - USA149: tutti i valori usati sono finiti e positivi nella matrice preparata, ma **manca la maschera originaria `observed`**. Non si dichiara originale/indipendentemente verificata una quotazione solo perché è finita.
 - Segnale terminale 30/06/2026 con 01/07/2026 Open ingresso=uscita resta senza etichetta futura, non “zero”.
 
@@ -83,7 +84,7 @@ Per cercare un miglioramento sostanziale servirebbero **nuova informazione indip
 
 ## File e riproducibilità
 
-- `INPUT_MANIFEST.json`, `REPAIRED_CALENDAR_AUDIT.csv`, `CORRECTION_DELTA_BY_MONTH.csv`, `PER_MONTH_COVERAGE.csv`, `OLC32_CORRECTED_LABELS_AND_INPUTS.csv.gz`.
+- `INPUT_MANIFEST.json`, `REPAIRED_CALENDAR_AUDIT.csv`, `CORRECTION_DELTA_BY_MONTH.csv`, `PER_MONTH_COVERAGE.csv`, `OLC32_CORRECTED_LABELS_AND_INPUTS.csv.gz`, `SOURCE_OPEN_MASK_AUDIT.json`.
 - `models/2021..2026` per B1/E1/E2, `PREQUENTIAL_DIRECT_ECONOMIC_EDGE.csv.gz`, `MATCHED_MONTHLY_MODEL_ERRORS.csv`, `TOP5_PAIRWISE_SPREADS.csv`, `MATCHED_SUMMARY.csv`, `BLOCK6_BOOTSTRAP.csv`, `VERIFICATION_INDEPENDENT.json`.
 - `olc32_economic_edge.py`, `verify_olc32.py`, protocolli e sorgenti originali identificati per SHA256.
 - I binary bytes sono nel pacchetto scaricabile / Library, non implicitamente nel repository GitHub.
