@@ -1,0 +1,44 @@
+name: OLC46 Data Integrity and Cross-Venue Reconciliation
+on:
+  push:
+    branches:
+      - research/olc46-price-reconciliation-20261104
+    paths:
+      - research/olc46_price_integrity/repair_and_crosscheck.py
+      - .github/workflows/olc46-price-integrity.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install price-audit dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "numpy>=1.26,<3" "pandas>=2.2,<3" "requests>=2.31" "yfinance>=0.2.60,<1"
+      - name: Validate source and mask unconfirmed High/Low
+        run: |
+          python research/olc46_price_integrity/repair_and_crosscheck.py
+      - name: Archive QA outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olc46-ohlc-price-integrity
+          path: research/olc46_price_integrity/results/
+          retention-days: 90
+      - name: Persist corrections and audit on this research branch
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/olc46_price_integrity/results/
+          if git diff --staged --quiet; then echo "No changes"; else
+            git commit -m "research(olc46): archive quality-masked data and independent cross-check diagnostics"
+            git push origin HEAD:research/olc46-price-reconciliation-20261104
+          fi
