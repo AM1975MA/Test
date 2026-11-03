@@ -1,0 +1,98 @@
+{
+  "README_REPRODUCE.md": {
+    "sha256": "1ffd45da98f4e7fdd124c5d4550a68e39c90f49e562549c02870bd7971650c64",
+    "bytes": 2581
+  },
+  "REPORT_OLC34_IT.md": {
+    "sha256": "d7b9a240b4fc50b831f44c9cd08df4bad73bbd1b5361c19a8066fd30d8efe535",
+    "bytes": 6992
+  },
+  "olc33_reference/OLC33_DECISIONS.csv": {
+    "sha256": "10405c98054bb328891839ed3fca815b7322c3ddeb6e5b4396173421c9068795",
+    "bytes": 17479
+  },
+  "olc33_reference/OLC33_OOF_PAIRS.csv.gz": {
+    "sha256": "990135a2e842308a4f1032b9f13ea7dd4576e6a5fb74af3cf9b47f39a2d7b5d2",
+    "bytes": 98766
+  },
+  "figures/OLC34_EU_CUMULATIVE_EDGE.png": {
+    "sha256": "79d3f2856a1a2dddf934d84f29620821cecf50a305f3a47f5e2de4b2be456574",
+    "bytes": 62453
+  },
+  "figures/OLC34_BRIER_EU_USA.png": {
+    "sha256": "95d286fcea34232f45ba877eb7b80f6fab185278a3462bb085b979c6e370d369",
+    "bytes": 49004
+  },
+  "figures/OLC34_USA_CUMULATIVE_EDGE.png": {
+    "sha256": "2c884b5c206e3554d9c435b7109a90dbb17727aa925b78d49accf81494ecfc5f",
+    "bytes": 78662
+  },
+  "src/olc34_vix_context_exchange_filtered.py": {
+    "sha256": "cc964331b0618794d52e38aa0de24117632c0bed7ff898e64cd1c7b57dbe7c42",
+    "bytes": 13596
+  },
+  "src/verify_olc34.py": {
+    "sha256": "556dced54ceaef3c9c44958a38edd06b83db38cd1b6485d3f873b3950230cfd9",
+    "bytes": 5737
+  },
+  "src/olc34_vix_context.py": {
+    "sha256": "db426ac34302fdb8a40b72e08fd57a9620c3a6ab94139dc316c5d233e6f8693c",
+    "bytes": 13573
+  },
+  "src/olc33_tail_condition.py": {
+    "sha256": "d0351ef4dcdb5acfd292e15541b8eac3eb9cf32ddceeb2c9d59e96fe8a5fb981",
+    "bytes": 15916
+  },
+  "results/OLC34_VIX_ASOF_SIGNAL.csv": {
+    "sha256": "d153e5b3fbc06e4ca42c52b459272a0d1bd0cfc0b1da97f1d7a7399aaac016e7",
+    "bytes": 5498
+  },
+  "results/OLC34_VIX_ASOF_SIGNAL_EXCHANGE_FILTERED.csv": {
+    "sha256": "1ce06afd23172cb6761a333d7f184c749805f3998f105f4c6692fa15222fa602",
+    "bytes": 5499
+  },
+  "input/OLC32_CORRECTED_LABELS_AND_INPUTS.csv.gz": {
+    "sha256": "83b5190501ba79029e1677d719a22893eaa98bddeb6042de2a46a885bca32d16",
+    "bytes": 5149755
+  },
+  "filtered/OLC34_MARKET_METRICS.csv": {
+    "sha256": "42023bf859fa187c6fd63f599fbf3aed652a62686e5bafdb87b7cb57e025906c",
+    "bytes": 1769
+  },
+  "filtered/OLC34_DECISIONS.csv": {
+    "sha256": "563bbc68b7b69808c2d10cef89949386bf1355d63b45a8a003545ad914ec88bb",
+    "bytes": 17596
+  },
+  "filtered/OLC34_PREQUENTIAL_PAIRS.csv.gz": {
+    "sha256": "d6dea3090c17d0111e483ad57d0cb1676ceaddb757626dc7a3d01408b84f202e",
+    "bytes": 108921
+  },
+  "filtered/OLC34_BLOCK_BOOTSTRAP_DRAWS.csv": {
+    "sha256": "f59f59939440f5e788c438d01335951a21607fb9d14ae14400b0fb6efd283912",
+    "bytes": 119257
+  },
+  "filtered/OLC34_OUTPUT_MANIFEST.json": {
+    "sha256": "60367f4ebd4b09440545abe0fe43679eb8f32efa62cdf4dc2c3afb94d0fb19f6",
+    "bytes": 1102
+  },
+  "filtered/OLC34_INDEPENDENT_VERIFICATION.json": {
+    "sha256": "dab42814fc7b8c97b506952323e59fe394ebf9ae2ed93dcfe605f091cf01a45b",
+    "bytes": 886
+  },
+  "filtered/OLC34_COEFFICIENTS.json": {
+    "sha256": "b9d5fc6835f752283cee85bd41ecfa705021cb569a1bb735f7d0b76cb6bd943b",
+    "bytes": 3365
+  },
+  "filtered/OLC34_MONTHLY_METRICS.csv": {
+    "sha256": "36b8241656e785fa9409d13cd542bf6b80d8db1df6e063aab7d3c20e93270e06",
+    "bytes": 12576
+  },
+  "filtered/OLC34_TRAIN_AUDIT.csv": {
+    "sha256": "a9d83a86410cfc608327f8fd022eafe7a0187d19feeba6f5097a9b6a87a534a7",
+    "bytes": 327
+  },
+  "filtered/OLC34_RESULTS.json": {
+    "sha256": "2582f33e3df8070b1b4a6dc65ebe2600fabad1da8f8ce5f8a6a07848c064d667",
+    "bytes": 7622
+  }
+}
