@@ -1,0 +1,18 @@
+{
+  "instrument": "NGAS.MI",
+  "pre_dec_2023_isin": "GB00B15KY104",
+  "post_dec_2023_isin": "JE00BN7KB334",
+  "last_old_trading_date": "2023-12-01",
+  "first_new_trading_date": "2023-12-04",
+  "old_units_for_1_new_unit": 1783,
+  "n_bars_old_isin": 1761,
+  "n_bars_new_isin": 649,
+  "yahoo_open_post_vs_close_pre_ratio": 0.9493541182364651,
+  "provider_scale_diagnostic": "PRICE_SERIES_LIKELY_ADJUSTED_TO_POST_CONSOLIDATION_UNITS_NOT_CERTIFIED",
+  "do_not_convert_prices_without_independent_reference": true,
+  "corporate_action_requires_fractional_holdings_cash_in_lieu": true,
+  "filing_url": "https://www.lse.co.uk/rns/consolidations-of-cld-commodity-securities-uxn9emovp1a7646.html",
+  "source": "27 Oct 2023 official issuer RNS",
+  "generated_at_utc": "2026-11-03T23:35:00.072993+00:00",
+  "no_forward_looking_isin_used_for_prior_signal": true
+}
