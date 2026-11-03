@@ -6,6 +6,7 @@ on:
     paths:
       - research/olc46_price_integrity/repair_and_crosscheck.py
       - research/olc46_price_integrity/asof_feature_gate.py
+      - research/olc46_price_integrity/olc44_native_preflight.py
       - research/olc46_price_integrity/OLC32_FROZEN_2021_2024_CALENDAR.csv
       - .github/workflows/olc46-price-integrity.yml
   workflow_dispatch:
@@ -17,6 +18,12 @@ jobs:
     timeout-minutes: 16
     steps:
       - uses: actions/checkout@v4
+      - name: Fetch exact historical OLC14 source (not its Library binary datasets)
+        uses: actions/checkout@v4
+        with:
+          ref: research/olc14-fitted-ranking-20261101
+          path: olc14_source
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -30,6 +37,9 @@ jobs:
       - name: Audit 2021-2024 native-model feature warm-up readiness
         run: |
           python research/olc46_price_integrity/asof_feature_gate.py
+      - name: Audit native 42-feature training data prerequisites
+        run: |
+          python research/olc46_price_integrity/olc44_native_preflight.py
       - name: Archive QA outputs
         if: always()
         uses: actions/upload-artifact@v4
