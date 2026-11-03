@@ -1,0 +1,4 @@
+ticker,n_overlapping_days,raw_bad_days,auto_adjust_bad_days,manually_uniform_adjusted_bad_days,same_invalid_dates_raw_and_adjusted,median_adjustment_factor,max_abs_log_change_adjustment_factor,raw_finite_price_rows,status
+PHAG.MI,2064,107,107,107,True,1.0,0.0,2064,ok
+NGAS.MI,2064,81,81,81,True,1.0,0.0,2064,ok
+CMOD.MI,2053,524,524,524,True,1.0,0.0,2053,ok

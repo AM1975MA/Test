@@ -1,0 +1,15 @@
+{
+  "ticker": [
+    "PHAG.MI",
+    "NGAS.MI",
+    "CMOD.MI"
+  ],
+  "source": "Yahoo via yfinance adjusted vs raw",
+  "period": [
+    "2017-01-01",
+    "2025-02-15"
+  ],
+  "purpose": "diagnose integrity only, never repair without independent source",
+  "expected_adjustment": "single positive daily factor preserves O/H/L/C ordering",
+  "interpretation": "if raw and adjusted invalid on same dates, the issue is upstream OHLC itself"
+}
