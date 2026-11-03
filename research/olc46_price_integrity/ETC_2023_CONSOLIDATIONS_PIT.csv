@@ -1,0 +1,6 @@
+product,old_isin,last_old_trade_date,new_isin,first_new_trade_date,old_units_per_new_unit,source,action_type
+WisdomTree Coffee,GB00B15KXP72,2023-12-01,JE00BN7KB557,2023-12-04,23,https://www.lse.co.uk/rns/consolidations-of-cld-commodity-securities-uxn9emovp1a7646.html,consolidation
+WisdomTree Corn,GB00B15KXS04,2023-12-01,JE00BN7KB441,2023-12-04,22,https://www.lse.co.uk/rns/consolidations-of-cld-commodity-securities-uxn9emovp1a7646.html,consolidation
+WisdomTree Lean Hogs,GB00B15KXZ70,2023-12-01,JE00BN7KB771,2023-12-04,75,https://www.lse.co.uk/rns/consolidations-of-cld-commodity-securities-uxn9emovp1a7646.html,consolidation
+WisdomTree Natural Gas,GB00B15KY104,2023-12-01,JE00BN7KB334,2023-12-04,1783,https://www.lse.co.uk/rns/consolidations-of-cld-commodity-securities-uxn9emovp1a7646.html,consolidation
+WisdomTree Wheat,GB00B15KY765,2023-12-01,JE00BN7KB664,2023-12-04,46,https://www.lse.co.uk/rns/consolidations-of-cld-commodity-securities-uxn9emovp1a7646.html,consolidation
