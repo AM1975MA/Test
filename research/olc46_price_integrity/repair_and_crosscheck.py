@@ -178,10 +178,19 @@ def main():
         out["volume"]=h.volume
         out["ohlc_status"]=np.where(raw_bad,"HL_MISSING_SOURCE_INCONSISTENT","RAW_OHLC_VALID")
         out["high_low_confirmed"]=False  # no independent same-venue confirmation
-        out["intraday_stop_eligible"]=~raw_bad
+        out["bar_ohlc_internally_consistent"]=~raw_bad
+        # No instrument-level backtest with intraday stops until independently
+        # validated for EVERY needed future session. Never look ahead to skip
+        # only the days that were later found corrupted.
+        out["instrument_intraday_backtest_eligible"]=False
         out["refit_native_model_eligible_O_C"]=np.isfinite(h.open)&np.isfinite(h.close)&(h.open>0)&(h.close>0)
         # repair performed = reject invalid H/L, not inferred replacement values.
         dest=OUT/(ticker.replace(".","_")+"_quality_masked.csv.gz")
+        # Integrity and no fabricated High/Low are mandatory invariants.
+        assert out.loc[raw_bad,["high","low"]].isna().all().all()
+        assert np.allclose(out.open.to_numpy(),h.open.to_numpy(),equal_nan=True)
+        assert np.allclose(out.close.to_numpy(),h.close.to_numpy(),equal_nan=True)
+        assert not out.instrument_intraday_backtest_eligible.any()
         out.to_csv(dest,index=False,compression="gzip")
         raw_manifest[ticker]["corrected_sha256"]=hashlib.sha256(dest.read_bytes()).hexdigest()
         raw_manifest[ticker]["missing_intraday_hl"]=int(out.high.isna().sum())
