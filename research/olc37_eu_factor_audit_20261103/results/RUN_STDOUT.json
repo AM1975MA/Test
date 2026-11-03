@@ -1,0 +1,144 @@
+{
+  "quality": {
+    "archive19_sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+    "archive32_sha256": "aef33c5c1aac60a944f7cf767b7ee637eb4ca254710b431c95b5f13a67fd6b8d",
+    "EU_state_dates": 1898,
+    "EU_state_tickers_including_technical_cash": 167,
+    "EU_dates_min": "2019-02-01",
+    "EU_dates_max": "2026-07-01",
+    "state_dates_duplicated": 0,
+    "ticker_duplicates": 0,
+    "EU_positive_NAV": true,
+    "EU_2020_06_01_state_observed_count": 11,
+    "EU_2020_06_02_state_observed_count": 150,
+    "EU_2024_05_02_LEEU_observed": false,
+    "EU_2021_2024_raw_dates": 1026,
+    "EU_2021_2024_all_5_proxies_observed_dates": 1021,
+    "EU_2021_2024_all_5_proxies_missing_dates": [
+      "2021-05-24",
+      "2021-12-24",
+      "2021-12-31",
+      "2024-12-24",
+      "2024-12-31"
+    ],
+    "EU_portfolio_primary_exposure_mean": 0.9486899261729287,
+    "EU_portfolio_primary_unobserved_quote_weight_mean": 0.004873294346978557,
+    "EU_portfolio_primary_unobserved_quote_weight_max": 1.0,
+    "EU_original_scorecard": {
+      "first_valuation": "2021-01-04",
+      "last_valuation": "2024-12-31",
+      "cagr": 0.2319991784863642,
+      "maxdd": -0.2860841254241839,
+      "period_return": 1.3383733115893124,
+      "turnover_annual": 12.410155369699822
+    },
+    "EU_scorecard_period_return_recomputed": 1.3383733115893124,
+    "EU_scorecard_CAGR_recomputed": 0.23199917848636423,
+    "original_NAV_valuation_shift": "nav_saved[k] = valuation at dates[k+1]; synced nav_actual[0]=1, nav_actual[i]=nav_saved[i-1]",
+    "USA_reference_frozen": true,
+    "critical_gate_A_pass": false,
+    "critical_gate_A_blockers": [
+      "ETF constituent/sector/ISIN and share-class exposures not certified PIT for all 165 symbols",
+      "portfolio price data not independently reconciled to raw point-in-time total-return/corporate actions",
+      "true executable auction price, bid/ask and market impact not certified",
+      "USA original observed mask absent (not used in EU clone)"
+    ],
+    "clone_status": "DESCRIPTIVE_ONLY_NOT_FACTOR_NEUTRAL_ALPHA_OR_DEPLOYABLE"
+  },
+  "styles": {
+    "eval_first_valid_open": "2021-01-04",
+    "eval_last_valid_open": "2024-12-30",
+    "n_matched_open_dates": 1021,
+    "style_clone_fit_mode": "as-of 252 prior valid paired returns, annual constrained nonnegative weights",
+    "style_clone_initial_fee_frac": 0.0005069230418881693,
+    "style_clone_sum_nominal_fee_fractions": 0.001666930931765787,
+    "rows": {
+      "strategy_OLC19_index": {
+        "start": 100.0,
+        "end": 233.38668463204795,
+        "total_return_pct": 133.38668463204795,
+        "annualized_252_pct": 23.292438432421214,
+        "max_drawdown_pct": -28.60841254241838,
+        "annual_vol_pct": 22.632800441275634,
+        "sessions": 1020
+      },
+      "style_clone_gross_index": {
+        "start": 100.0,
+        "end": 172.96443795581627,
+        "total_return_pct": 72.96443795581627,
+        "annualized_252_pct": 14.495740961428737,
+        "max_drawdown_pct": -22.48402044086195,
+        "annual_vol_pct": 16.01740532946731,
+        "sessions": 1020
+      },
+      "style_clone_fee_index": {
+        "start": 100.0,
+        "end": 172.67628617245995,
+        "total_return_pct": 72.67628617245995,
+        "annualized_252_pct": 14.44858606930961,
+        "max_drawdown_pct": -22.48402044086195,
+        "annual_vol_pct": 16.01792336626231,
+        "sessions": 1020
+      },
+      "EU_broad_EXSA_index": {
+        "start": 100.0,
+        "end": 138.80237957468782,
+        "total_return_pct": 38.80237957468782,
+        "annualized_252_pct": 8.437728956181134,
+        "max_drawdown_pct": -20.487846225720496,
+        "annual_vol_pct": 14.106655053550814,
+        "sessions": 1020
+      },
+      "US_broad_SXR8_index": {
+        "start": 100.0,
+        "end": 195.21846677383283,
+        "total_return_pct": 95.21846677383283,
+        "annualized_252_pct": 17.971133200441614,
+        "max_drawdown_pct": -17.075978141864635,
+        "annual_vol_pct": 14.871525464969537,
+        "sessions": 1020
+      },
+      "US_IT_QDVE_index": {
+        "start": 100.0,
+        "end": 245.13734078081924,
+        "total_return_pct": 145.13734078081924,
+        "annualized_252_pct": 24.797833400911706,
+        "max_drawdown_pct": -26.470889692450495,
+        "annual_vol_pct": 22.785181024025103,
+        "sessions": 1020
+      },
+      "EU_banks_EXX1_index": {
+        "start": 99.99999999999999,
+        "end": 236.27249406393548,
+        "total_return_pct": 136.27249406393554,
+        "annualized_252_pct": 23.667339399761666,
+        "max_drawdown_pct": -35.18354478986348,
+        "annual_vol_pct": 26.479967704223448,
+        "sessions": 1020
+      },
+      "Nasdaq100_SXRV_index": {
+        "start": 100.0,
+        "end": 197.54457178180166,
+        "total_return_pct": 97.54457178180166,
+        "annualized_252_pct": 18.31686992554682,
+        "max_drawdown_pct": -31.20950671965266,
+        "annual_vol_pct": 20.675540103578083,
+        "sessions": 1020
+      }
+    },
+    "baseline_official_cagr_pct": 23.19991784863642,
+    "baseline_official_maxdd_pct": -28.60841254241839,
+    "factor_exposure_claim_not_permitted": true,
+    "strategy_minus_clone_log_pp": 30.127800519922797
+  },
+  "leadership": {
+    "n_signals_evaluable": 48,
+    "same_leader_n": 10,
+    "same_leader_pct": 20.833333333333336,
+    "mean_spearman": 0.012500000000000006,
+    "past_leader_mean_126_return_pct": 6.5118657557903346,
+    "ew_5factor_mean_126_return_pct": 8.639778270962408,
+    "mean_past_leader_minus_ew_pp": -2.127912515172073,
+    "overlapping_windows_not_independent": true
+  }
+}

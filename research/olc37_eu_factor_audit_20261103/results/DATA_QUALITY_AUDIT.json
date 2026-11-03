@@ -1,0 +1,46 @@
+{
+  "archive19_sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+  "archive32_sha256": "aef33c5c1aac60a944f7cf767b7ee637eb4ca254710b431c95b5f13a67fd6b8d",
+  "EU_state_dates": 1898,
+  "EU_state_tickers_including_technical_cash": 167,
+  "EU_dates_min": "2019-02-01",
+  "EU_dates_max": "2026-07-01",
+  "state_dates_duplicated": 0,
+  "ticker_duplicates": 0,
+  "EU_positive_NAV": true,
+  "EU_2020_06_01_state_observed_count": 11,
+  "EU_2020_06_02_state_observed_count": 150,
+  "EU_2024_05_02_LEEU_observed": false,
+  "EU_2021_2024_raw_dates": 1026,
+  "EU_2021_2024_all_5_proxies_observed_dates": 1021,
+  "EU_2021_2024_all_5_proxies_missing_dates": [
+    "2021-05-24",
+    "2021-12-24",
+    "2021-12-31",
+    "2024-12-24",
+    "2024-12-31"
+  ],
+  "EU_portfolio_primary_exposure_mean": 0.9486899261729287,
+  "EU_portfolio_primary_unobserved_quote_weight_mean": 0.004873294346978557,
+  "EU_portfolio_primary_unobserved_quote_weight_max": 1.0,
+  "EU_original_scorecard": {
+    "first_valuation": "2021-01-04",
+    "last_valuation": "2024-12-31",
+    "cagr": 0.2319991784863642,
+    "maxdd": -0.2860841254241839,
+    "period_return": 1.3383733115893124,
+    "turnover_annual": 12.410155369699822
+  },
+  "EU_scorecard_period_return_recomputed": 1.3383733115893124,
+  "EU_scorecard_CAGR_recomputed": 0.23199917848636423,
+  "original_NAV_valuation_shift": "nav_saved[k] = valuation at dates[k+1]; synced nav_actual[0]=1, nav_actual[i]=nav_saved[i-1]",
+  "USA_reference_frozen": true,
+  "critical_gate_A_pass": false,
+  "critical_gate_A_blockers": [
+    "ETF constituent/sector/ISIN and share-class exposures not certified PIT for all 165 symbols",
+    "portfolio price data not independently reconciled to raw point-in-time total-return/corporate actions",
+    "true executable auction price, bid/ask and market impact not certified",
+    "USA original observed mask absent (not used in EU clone)"
+  ],
+  "clone_status": "DESCRIPTIVE_ONLY_NOT_FACTOR_NEUTRAL_ALPHA_OR_DEPLOYABLE"
+}

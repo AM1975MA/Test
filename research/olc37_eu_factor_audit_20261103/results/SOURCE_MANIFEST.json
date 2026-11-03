@@ -1,0 +1,10 @@
+{
+  "protocol_commit": "65cee88b013110a984057314858e34dfbed45e9b",
+  "OLC19_zip_SHA256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+  "OLC32_zip_SHA256": "aef33c5c1aac60a944f7cf767b7ee637eb4ca254710b431c95b5f13a67fd6b8d",
+  "EU_parent_state_member": "olc19_combined_risk_20261102/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/inputs/EU_STATE_HALF.npz",
+  "EU_parent_NAV_member": "olc19_combined_risk_20261102/results/paths/EU_TOP2_CONTEXT_REVALUE_FAST_LOCK3_F10_S10.npz",
+  "source_data": "archived EU Open + observed, original NAV; no downloads/price inventions",
+  "factor_source_metadata": "2026 issuer documentation, not historically PIT holdings",
+  "script_version": "OLC37_EU_STYLE_CLONE_V1"
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASS_INDEPENDENT_ACCOUNTING_AND_PROXY_RECONSTRUCTION",
+  "source19_sha_verified": true,
+  "source32_sha_verified": true,
+  "scorecard_CAGR_absolute_error": 2.7755575615628914e-17,
+  "scorecard_period_return_absolute_error": 0.0,
+  "max_factor_clone_gross_NAV_abs_error": 5.030216243540053e-10,
+  "max_factor_clone_net_NAV_abs_error": 5.054516805103049e-10,
+  "max_126d_leader_excess_error_pp": 1.7763568394002505e-15,
+  "factor_leader_same_n": 10,
+  "fit_annual_cutoffs_are_causal": true,
+  "factor_pit_certified": false,
+  "real_fill_certified": false,
+  "USA_modified": false,
+  "note": "Audit covers reproducibility of descriptive returns, not factor-neutral investing alpha or PIT holdings"
+}

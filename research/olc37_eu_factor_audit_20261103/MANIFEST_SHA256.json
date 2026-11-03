@@ -1,0 +1,117 @@
+{
+  "study": "OLC37",
+  "date": "2026-11-03",
+  "protocol_commit": "65cee88b013110a984057314858e34dfbed45e9b",
+  "accounting_addendum_commit": "0d90c6962aa7cd10186b3a7d34680d28a977a91d",
+  "input_archive_paths": "OLC19_Rischio_Rientro_Checkpoint_20261102.zip; OLC32_RESULTS.zip",
+  "files": {
+    "ACCOUNTING_ALIGNMENT_ADDENDUM.md": {
+      "size": 2420,
+      "sha256": "108faa8382997a4beb08ca5b349c58be272877f05cbc82c5a883534b25d71834"
+    },
+    "PROTOCOL_PRE_METRICS.md": {
+      "size": 6064,
+      "sha256": "91189d24f33b02ee073cfaf58a415cd03861fa6b40b92f6da5b35c47872c84d4"
+    },
+    "README_REPRODUCE.md": {
+      "size": 3338,
+      "sha256": "62a0e850ec8b4f6a5edbe3a83c318fc821977ea0cbef50589069e33ca6c1a668"
+    },
+    "RESULTS_IT.md": {
+      "size": 11690,
+      "sha256": "066889918c1bd639d7f7f9b9e889c5335e985cd8567e1d5ce4fa3eb7d9088091"
+    },
+    "figures/EU_FACTOR_CLONE_VS_PORTFOLIO.png": {
+      "size": 290419,
+      "sha256": "1b265250d91da00c5c3b3451977df573e9b230bd69ba6dadd48b5a105ab4013b"
+    },
+    "figures/EU_FACTOR_LEADERSHIP_HIT_BY_YEAR.png": {
+      "size": 47984,
+      "sha256": "dd7f8832ce843b40952512484ad64768fb60d24b8c853665f0c78e922f539d45"
+    },
+    "figures/EU_STYLE_WEIGHTS_BY_YEAR.png": {
+      "size": 49946,
+      "sha256": "4601612586c3d2f6b31eb223fc995f428b2804b57dbaf76465647b4c2857e6c7"
+    },
+    "figures/EU_TECH_SEMIS_ACTUAL_HOLDINGS.png": {
+      "size": 52940,
+      "sha256": "90922dced13e160000b8ca71c782225f1c969fb9435141cea456f3872405e899"
+    },
+    "results/DATA_QUALITY_AUDIT.json": {
+      "size": 1994,
+      "sha256": "ce27d4d3590503a48e4b704ab852f0ca64e8bbd5601182399e3652cab441ab64"
+    },
+    "results/EU_ACTUAL_PRIMARY_HOLDINGS_BY_YEAR.csv": {
+      "size": 5562,
+      "sha256": "a15a8821ef59beb69b40e92640962182615a0a5a199b2592462ba1119f8f0a83"
+    },
+    "results/EU_FACTOR_ANNUAL_PRICE_DIAGNOSTIC.csv": {
+      "size": 1582,
+      "sha256": "94d0f8c6502612237f33794d141e08ca313b9681f6fb3c58cbfdecaf37bb3442"
+    },
+    "results/EU_FACTOR_CLONE_DAILY.csv": {
+      "size": 129875,
+      "sha256": "f89e8f4045e7dd310c9c5aaa6bb9da59751be1c7822abda1d18f1ad2e1907391"
+    },
+    "results/EU_FACTOR_LEADERSHIP_DIAGNOSTIC.csv": {
+      "size": 6713,
+      "sha256": "94779eba82380055422ad26b576dcb1c1a13740f042cd7d87f08a96721e92bbf"
+    },
+    "results/EU_FACTOR_LEADERSHIP_SUMMARY.json": {
+      "size": 349,
+      "sha256": "f906e9159809ada52f9c5b20278b638efcd82547cfa848df6bf4e8aff003c338"
+    },
+    "results/EU_SEMICONDUCTOR_TECH_EXPOSURE_DIAGNOSTIC.csv": {
+      "size": 613,
+      "sha256": "49d3f36cbc9c67bbb14aee2b1adae00ce92f4f589afb902d1ad82ac12afae91f"
+    },
+    "results/EU_STYLE_REBALANCES.csv": {
+      "size": 272,
+      "sha256": "a84bac74130978dfeb8d5439484a3aaff95e0f0603b4b74a242b90c0166dc0f3"
+    },
+    "results/EU_STYLE_SUMMARY.json": {
+      "size": 2957,
+      "sha256": "d6cd22bc857b107fbdaf0f96d61a221109cddf4b5fca2f4110a8294c6c0c6a76"
+    },
+    "results/EU_STYLE_TRAIN_BY_YEAR.csv": {
+      "size": 700,
+      "sha256": "e0f7e898ad31ea52567d13e79adc89164e1b987faabe468a356bcf76569fee18"
+    },
+    "results/FACTOR_PROXY_CATALOG.csv": {
+      "size": 1450,
+      "sha256": "7d97e520f434604c2c018f8d41ea0cba35e443f617f8cc2a5a63bbb03a1ff6fa"
+    },
+    "results/OLC37_INDEPENDENT_VERIFICATION.json": {
+      "size": 711,
+      "sha256": "9e2f14312c328f9681477f8834c80f41942838bb285738eeeec6328cd0381d2f"
+    },
+    "results/RUN_STDOUT.json": {
+      "size": 5628,
+      "sha256": "377aef23257e8031c1db5dda20b545433180f69086bd00b0e0f589f9f88b34aa"
+    },
+    "results/SOURCE_MANIFEST.json": {
+      "size": 765,
+      "sha256": "3eb59ec3c3c8a2e149894b36d9442dfd254b9ac2b37b9917bcadff74abda086d"
+    },
+    "src/analyze_holdings.py": {
+      "size": 2556,
+      "sha256": "b85fe786a8a7d11c3a9c7249b8c398cd313f6f2f80700e61e9ef46271968ac94"
+    },
+    "src/factor_periods.py": {
+      "size": 1279,
+      "sha256": "eab46a168238aa0982f768e3a387ba3a3a2271f4accc0864725b89bc3f2bf99c"
+    },
+    "src/plot_olc37.py": {
+      "size": 3325,
+      "sha256": "eb5a7512267f8bd6af31a7a8f967fa31c7b56e4865f837e02029284786979179"
+    },
+    "src/run_olc37.py": {
+      "size": 18309,
+      "sha256": "98ee5579f3d646900ae110c15d41d6291a72454c8b352fe7f30828a8c97d0942"
+    },
+    "src/verify_olc37.py": {
+      "size": 6036,
+      "sha256": "373de957e26023c9357349c1b53fb15616a2c6eb1f389c6c06ff283a7627ecd4"
+    }
+  }
+}

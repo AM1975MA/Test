@@ -1,0 +1,10 @@
+{
+  "n_signals_evaluable": 48,
+  "same_leader_n": 10,
+  "same_leader_pct": 20.833333333333336,
+  "mean_spearman": 0.012500000000000006,
+  "past_leader_mean_126_return_pct": 6.5118657557903346,
+  "ew_5factor_mean_126_return_pct": 8.639778270962408,
+  "mean_past_leader_minus_ew_pp": -2.127912515172073,
+  "overlapping_windows_not_independent": true
+}
