@@ -1,0 +1,19 @@
+{
+  "generated_utc": "2026-11-03T23:26:10.435099+00:00",
+  "source_branch": "research/olc14-fitted-ranking-20261101",
+  "input_status": "BLOCKED_MISSING_PREPARED_INPUTS",
+  "full_native_CAGR_available": false,
+  "inputs_from_persistent_library_not_automatically_in_GHA": true,
+  "found_code_files": 4,
+  "expected_code_and_data": 10,
+  "missing_inputs": [
+    "olc11_eu_2021_features_42_input",
+    "olc11_us_2021_features_42_input",
+    "olc11_eu_layer_labels",
+    "olc11_us_layer_labels",
+    "olc14_EU_native_parity_original_scores",
+    "olc14_USA_native_parity_original_scores"
+  ],
+  "bridge_requirement": "restore OLC14 Heads + Results archives in a private trusted runtime, then regenerate 42 inputs for the added ETFs as-of, retrain original annual heads, assert exact score parity on old tickers, then replay unchanged OLC19",
+  "note": "A green CI execution denotes a successful audit, not successful native model training."
+}
