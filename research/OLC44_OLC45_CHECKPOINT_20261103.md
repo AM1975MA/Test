@@ -75,3 +75,16 @@ Quindi gli errori High/Low sono **già nella fonte originale**, non un problema 
 - Gate OLC44: codice sorgente e parametri OLC14 disponibili, ma **sei input di parità/prepared training** non sono versionati nel checkout GitHub. Sono necessari ripristino verificato degli archivi OLC14+OLC11 dalla Library e ricostruzione delle 42 feature sui nuovi fondi per produrre un vero CAGR OLC19 native. Nessun nuovo CAGR nativo in questa fase.
 
 **Conclusione:** è stato sanificato il dataset di ricerca e identificato un grave cambio storico di ISIN/quantità; *non* sono stati inventati prezzi tradeable, riaddestrati i ranker o alterate strategie operative. Benchmark OLC19 EU165 23,1999% e USA149 50,7722% restano i riferimenti 2021–2024. Non chiamare la bonifica una promozione di ETF/ETC o una prova di raggiungimento del 50%.
+
+
+## OLC44-N1 — Contratto dei sei panieri e sorgenti completi (4 novembre 2026)
+
+**Workflow verificato:** [GitHub Actions 41745901183](https://github.com/AM1975MA/Test/actions/runs/41745901183), 12 test unitari verdi; sei roster verificati automaticamente da originali OLC41/42, USA149 e OLC46. [Rapporto e sorgenti](https://github.com/AM1975MA/Test/blob/research/olc44-native-extension-20261104/research/olc44_native_extension_20261104/README_IT.md).
+
+Universi congelati: EU165 (165), EU152 deduplicato solo ricerca (152), EU165+4 (169), EU152+4 (156), USA149 (149), USA149+3 (152). Elenco e SHA input in `results/OLC44N_ARM_MEMBERSHIP.csv` e `results/OLC44N_CONTRACT.json` nel ramo di ricerca.
+
+**Correzione metodologica fondamentale:** OLC19 TOP2_CONTEXT_REVALUE dipende da primi score OLC14, rivalutazione OLC16, alternativa V6 OLC17 e risk/LOCK3 OLC19. Inoltre target e feature includono percentili cross-sectional: aggiungere ETF richiede ricostruire e riaddestrare per **tutti** i componenti, non aggiungere punteggi dei nuovi nomi ai precedenti o chiedere parità sugli ETF vecchi dopo cambiamento di universo. La parità si richiede solo al controllo original-only.
+
+**Limite esplicito:** tutti i sette moduli sorgente chiave sono accessibili dal repository; i checkpoint binari originali OLC14/16/17/19 e i nuovi pannelli completi di 42 feature non sono disponibili nel runner pubblico GitHub. Lo script offline `restore_original_olc14.py` verifica i due archivi OLC14 della Library tramite SHA256 e 848+220 file manifest senza pubblicarli, ma il ripristino e il nuovo addestramento non sono stati ancora eseguiti in questo lotto. Stato machine-readable: `results/OLC44N_FULLSTACK_READINESS.json` = `SOURCE_ONLY_READY_NOT_NATIVE_REFIT`. Non presentare il workflow verde come un training nativo completo.
+
+**Nessun nuovo CAGR OLC19:** rimangono riferimenti 2021–24 EU 23,1999% e USA 50,7722%, senza promozione.
