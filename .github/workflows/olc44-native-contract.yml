@@ -1,0 +1,55 @@
+name: OLC44 Native Extension - Causal Universe/Target Contract
+on:
+  push:
+    branches:
+      - research/olc44-native-extension-20261104
+    paths:
+      - research/olc44_native_extension_20261104/**
+      - .github/workflows/olc44-native-contract.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  causal-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read frozen OLC41/42 EUR universe and dedup audit
+        uses: actions/checkout@v4
+        with:
+          ref: research/olc42-eu165-dedup-opportunity-20261103
+          path: source_olc42
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical/test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "numpy>=1.26,<3" "pandas>=2.2,<3"
+      - name: Causality and full-cohort label tests
+        run: |
+          cd research/olc44_native_extension_20261104
+          python -m unittest discover -v -p 'test_*.py'
+      - name: Freeze six arms from original universe sources
+        run: |
+          python research/olc44_native_extension_20261104/freeze_arm_contract.py
+      - name: Save frozen contract and input-source hashes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olc44-native-arm-contract
+          path: research/olc44_native_extension_20261104/results/
+          retention-days: 90
+      - name: Archive deterministic contract in research branch
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/olc44_native_extension_20261104/results/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "research(olc44): freeze EU/USA six-arm roster and source hashes"
+          git fetch origin research/olc44-native-extension-20261104
+          git rebase FETCH_HEAD
+          git push origin HEAD:research/olc44-native-extension-20261104
