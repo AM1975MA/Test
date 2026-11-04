@@ -1,0 +1,7 @@
+arm,market,member_count,new_tickers,research_only,native_score_retrained,score_PIT_verified,cagr_measured,roster_basis
+EU165_ORIGINAL,EU,165,0,True,False,False,False,EU165
+EU152_DEDUP_RESEARCH,EU,152,0,True,False,False,False,EU152_RESEARCH
+EU165_PLUS4,EU,169,4,True,False,False,False,EU165
+EU152_PLUS4,EU,156,4,True,False,False,False,EU152_RESEARCH
+USA149_ORIGINAL,USA,149,0,True,False,False,False,USA149
+USA149_PLUS3,USA,152,3,True,False,False,False,USA149

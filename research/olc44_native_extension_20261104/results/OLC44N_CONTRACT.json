@@ -1,0 +1,33 @@
+{
+  "arms": [
+    "EU165_ORIGINAL",
+    "EU152_DEDUP_RESEARCH",
+    "EU165_PLUS4",
+    "EU152_PLUS4",
+    "USA149_ORIGINAL",
+    "USA149_PLUS3"
+  ],
+  "dedup_13_pairs_verified_point_in_time": false,
+  "legacy_baseline_cagr_this_run": null,
+  "model_training_completed": false,
+  "new_ETFs_EU": [
+    "2B76.DE",
+    "G2X.DE",
+    "USPY.DE",
+    "WTIC.DE"
+  ],
+  "new_ETFs_USA": [
+    "BOTZ",
+    "LIT",
+    "PAVE"
+  ],
+  "source_OLC42_branch": "research/olc42-eu165-dedup-opportunity-20261103",
+  "source_digests": {
+    "ETF_UNIVERSE.csv": "a9677e600fbb9295ee88550add0b6f45f6fe301c5bfea4c492b46d864d246c90",
+    "EU13_DIST_EXCLUDED_RESEARCH_ONLY.csv": "d212fc478ceac6c03e10d619b2f494c242cee0d432106e9acab52aeeddd1dcda",
+    "EU152_RESEARCH_UNIVERSE_NOT_PROMOTED.csv": "3773b3e1748856cdd8d667d04bce936a314f94d7831e403785414cfd0aa81a28",
+    "EU165_DISTRIBUTION_POLICY_CENSUS.csv": "bd8aa959757acefe9e42533e0f83c92a43561f9d2808e3ee8251a6d395ab8665",
+    "asof_feature_eligibility_summary.csv": "abf236e415a5cad8c8739a458c325de935dfd24e33a7ab30313c881085b12e9f"
+  },
+  "warning": "Rosters are fixed 2026 universe definitions. Historical eligibility must be computed as of signal date. Source labels cannot be reused unchanged after membership changes."
+}
