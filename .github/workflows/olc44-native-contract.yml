@@ -21,6 +21,34 @@ jobs:
           ref: research/olc42-eu165-dedup-opportunity-20261103
           path: source_olc42
           persist-credentials: false
+      - name: OLC14 original ranking producer
+        uses: actions/checkout@v4
+        with:
+          ref: research/olc14-fitted-ranking-20261101
+          path: source_olc14
+          sparse-checkout: research/olc14_fitted_ranking_20261101
+          persist-credentials: false
+      - name: OLC16 original context ranking
+        uses: actions/checkout@v4
+        with:
+          ref: research/olc16-contextual-ranking-20261102
+          path: source_olc16
+          sparse-checkout: research/olc16_contextual_rank_20261102
+          persist-credentials: false
+      - name: OLC17 original V6 candidate gate
+        uses: actions/checkout@v4
+        with:
+          ref: research/olc17-candidate-validation-20261102
+          path: source_olc17
+          sparse-checkout: research/olc17_validation_20261102
+          persist-credentials: false
+      - name: OLC19 original risk and execution
+        uses: actions/checkout@v4
+        with:
+          ref: research/olc19-risk-reentry-20261102
+          path: source_olc19
+          sparse-checkout: research/olc19_combined_risk_20261102
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -35,6 +63,9 @@ jobs:
       - name: Freeze six arms from original universe sources
         run: |
           python research/olc44_native_extension_20261104/freeze_arm_contract.py
+      - name: Audit complete OLC14/16/17/19 native graph
+        run: |
+          python research/olc44_native_extension_20261104/fullstack_dependency_gate.py
       - name: Save frozen contract and input-source hashes
         if: always()
         uses: actions/upload-artifact@v4
