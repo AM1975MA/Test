@@ -1,0 +1,16 @@
+kind,requirement,status,origin
+CODE,OLC14.first_stage_training,AVAILABLE,/home/runner/work/Test/Test/source_olc14/research/olc14_fitted_ranking_20261101/src/train_heads.py
+CODE,OLC14.ranking_fusion,AVAILABLE,/home/runner/work/Test/Test/source_olc14/research/olc14_fitted_ranking_20261101/src/build_scores.py
+CODE,OLC16.context_model,AVAILABLE,/home/runner/work/Test/Test/source_olc16/research/olc16_contextual_rank_20261102/src/context_model.py
+CODE,OLC16.reranking,AVAILABLE,/home/runner/work/Test/Test/source_olc16/research/olc16_contextual_rank_20261102/src/revalue_memory.py
+CODE,OLC17.V6_rebuild,AVAILABLE,/home/runner/work/Test/Test/source_olc17/research/olc17_validation_20261102/src/v6_rebuild.py
+CODE,OLC19.risk_executor,AVAILABLE,/home/runner/work/Test/Test/source_olc19/research/olc19_combined_risk_20261102/src/combined_engine.py
+CODE,OLC19.input_contract,AVAILABLE,/home/runner/work/Test/Test/source_olc19/research/olc19_combined_risk_20261102/src/run_experiment.py
+BINARY_OR_GENERATED,OLC14.prepared_annual_42_feature_panels,NOT_PRESENT_IN_GITHUB_RUNNER,user Library OLC14_Heads_Checkpoint_20261101.zip
+BINARY_OR_GENERATED,OLC14.original_horizon_labels_and_outputs,NOT_PRESENT_IN_GITHUB_RUNNER,user Library OLC14_Fitting_Risultati_20261101.zip
+BINARY_OR_GENERATED,OLC16.reranking_priors_and_context_states,NOT_PRESENT_IN_GITHUB_RUNNER,user Library OLC16 original context checkpoint
+BINARY_OR_GENERATED,OLC17.primary_and_V6_input_states,NOT_PRESENT_IN_GITHUB_RUNNER,user Library OLC17 original checkpoint
+BINARY_OR_GENERATED,OLC19.original_risk_and_execution_path,NOT_PRESENT_IN_GITHUB_RUNNER,user Library OLC19_Rischio_Rientro_Checkpoint_20261102.zip
+BINARY_OR_GENERATED,EXPANDED.full_42_feature_all_tickers_PIT,NOT_PRESENT_IN_GITHUB_RUNNER,NOT YET GENERATED from raw OHLC and original feature code
+BINARY_OR_GENERATED,EXPANDED.target_labels_all_tickers_mature,NOT_PRESENT_IN_GITHUB_RUNNER,NOT YET RECOMPUTED for each signal date
+BINARY_OR_GENERATED,EXPANDED.V6_alternative_selected_from_new_universe,NOT_PRESENT_IN_GITHUB_RUNNER,NOT YET REBUILT

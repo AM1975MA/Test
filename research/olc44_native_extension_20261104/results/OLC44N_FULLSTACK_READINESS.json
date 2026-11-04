@@ -1,0 +1,13 @@
+{
+  "status": "SOURCE_ONLY_READY_NOT_NATIVE_REFIT",
+  "source_files_verified": 7,
+  "expected_source_files": 7,
+  "full_native_OOS_scores_generated": false,
+  "extended_V6_rebuilt": false,
+  "full_native_OLC19_economics_replayed": false,
+  "new_native_CAGR": null,
+  "critical_fact": "OLC19 TOP2_CONTEXT_REVALUE depends on OLC16/17 and V6 as well as OLC14 first-stage; a new score for added ETFs alone is not a native expansion.",
+  "source_repository": "AM1975MA/Test",
+  "expected_time_range": "2019-2026 with 2021-24 primary and untouched prospective signal vintages after frozen research",
+  "next_gate": "Restore original Library binary sources in a private trusted computation environment; rebuild all 42 features and percentile targets on dated expanded roster; match original-only scores, then refit all candidates and rerun OLC19 including V6."
+}
