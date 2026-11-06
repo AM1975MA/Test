@@ -1,0 +1,29 @@
+{
+  "olc19_sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+  "olc56_sha256": "f22b92a5c4b5024d6f8afef6504b794e1f46ff53ffa87adfaa8f3a2e0e3e2573",
+  "EU_IMMEDIATE_daily_maxerr": 9.974659986866641e-17,
+  "EU_olc19_7array_bitwise": true,
+  "EU_DELAY3_daily_maxerr": 9.974659986866641e-17,
+  "EU_monthly_max_error_logbp": 1.8758328224066645e-12,
+  "USA_IMMEDIATE_daily_maxerr": 9.974659986866641e-17,
+  "USA_olc19_7array_bitwise": true,
+  "USA_DELAY3_daily_maxerr": 9.974659986866641e-17,
+  "USA_monthly_max_error_logbp": 1.7621459846850485e-12,
+  "olc19_contains_bid_ask_size_or_volume": false,
+  "olc19_usa_original_observed_mask": false,
+  "temporal_validity": "CHECKPOINT 2019-02 through first opening 2026-07; no independent OOS",
+  "input_original_quote_trade_fills": "NOT AVAILABLE",
+  "output_files": [
+    "OLC58_EVENTS.csv",
+    "OLC58_FEES.csv",
+    "OLC58_FEE_BREAKEVEN.csv",
+    "OLC58_LEAVE_ONE_YEAR.csv",
+    "OLC58_MONTHLY_RECONCILIATION.csv",
+    "OLC58_ORDER_MANIFEST.csv",
+    "OLC58_PHASES.csv",
+    "OLC58_PRIORITY_QUOTES.csv",
+    "OLC58_QUOTE_REQUEST_EVENTS.csv",
+    "OLC58_STOP_AUDIT.csv"
+  ],
+  "no_strategy_promoted": true
+}
