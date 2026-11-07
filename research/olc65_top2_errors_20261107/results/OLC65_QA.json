@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "validated_original_inputs_sha256": {
+    "olc14": "4259b9e756ce02b48b473988a3467cd8c2f2c93394df6f3040698aa06e17c6e1",
+    "olc16": "ddc79c174afdbacc4060c1dd94b874f745eda3406fbabe6d0b475784322d3df7",
+    "olc19": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+    "olc61": "a3cf0d3d6755cefaa1962c0dd96d8ad2bd6b92e973ec9d852d536f78fa171659",
+    "original_reconstruction": "df0a6569e937d9389a03e60e70e8c29725f0f88d509fce24312d9034e7a82bd2",
+    "olc63_monthly": "f6cf047b543904e425f46b0b8c3c4aac13f81b0aea9040f4fb57f4df93759916"
+  },
+  "reference_parity": [
+    {
+      "score_max_abs_error_CURRENT": 1.1102230246251565e-16,
+      "score_max_abs_error_SMOOTH": 1.1102230246251565e-16,
+      "score_max_abs_error_FUSION": 2.220446049250313e-16,
+      "market": "EU",
+      "source_rows": 13781,
+      "unique_signals": 90,
+      "unique_tickers": 165,
+      "eligible_rows": 13630,
+      "matched_olc19_decisions": 90,
+      "full_baseline_ties": 0
+    },
+    {
+      "score_max_abs_error_CURRENT": 1.1102230246251565e-16,
+      "score_max_abs_error_SMOOTH": 1.1102230246251565e-16,
+      "score_max_abs_error_FUSION": 2.220446049250313e-16,
+      "market": "USA",
+      "source_rows": 13410,
+      "unique_signals": 90,
+      "unique_tickers": 149,
+      "eligible_rows": 13410,
+      "matched_olc19_decisions": 90,
+      "full_baseline_ties": 0
+    }
+  ],
+  "olc63_max_abs_return_difference_21": 9.8879238130678e-17,
+  "olc63_max_abs_return_difference_42": 9.8879238130678e-17,
+  "valid_months": [
+    {
+      "market": "EU",
+      "period": "LATE",
+      "n": 10
+    },
+    {
+      "market": "EU",
+      "period": "MAIN",
+      "n": 48
+    },
+    {
+      "market": "USA",
+      "period": "LATE",
+      "n": 12
+    },
+    {
+      "market": "USA",
+      "period": "MAIN",
+      "n": 48
+    }
+  ],
+  "excluded_incomplete": [
+    {
+      "market": "EU",
+      "date": "2025-04-30",
+      "nmissing": 1.0
+    },
+    {
+      "market": "EU",
+      "date": "2025-05-30",
+      "nmissing": 1.0
+    }
+  ],
+  "oracle_top2_events": 472,
+  "selected_weighted_ticker_rows": 236,
+  "full_rank_rows": 17769,
+  "date_range": {
+    "first": "2021-01-29",
+    "last": "2025-12-31"
+  },
+  "opportunity_decomposition_max_error": 5.551115123125783e-17,
+  "model_fit_count": 0,
+  "portfolio_backtests": 0,
+  "independent_new_holdout": false
+}
