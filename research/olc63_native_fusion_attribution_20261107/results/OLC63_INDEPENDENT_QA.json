@@ -1,0 +1,38 @@
+{
+  "EU": {
+    "months_with_complete_labels": 58,
+    "frozen_baseline_mean_max_abs_error": 9.8879238130678e-17,
+    "original_olc19_decisions": 90,
+    "MAIN": {
+      "nmonths": 48,
+      "mean21": 0.021308710798686722,
+      "mean42": 0.03753860739019876
+    },
+    "LATE": {
+      "nmonths": 10,
+      "mean21": 0.0036321479346376447,
+      "mean42": 0.010117101046034953
+    }
+  },
+  "USA": {
+    "months_with_complete_labels": 60,
+    "frozen_baseline_mean_max_abs_error": 9.84455572616838e-17,
+    "original_olc19_decisions": 90,
+    "MAIN": {
+      "nmonths": 48,
+      "mean21": 0.03501001324748996,
+      "mean42": 0.03898673310380909
+    },
+    "LATE": {
+      "nmonths": 12,
+      "mean21": 0.019960427598015362,
+      "mean42": 0.05027820792554699
+    }
+  },
+  "permutation_independent_verification": {
+    "shapley_values_checked": 944,
+    "max_abs_error": 1.3877787807814457e-16,
+    "status": "PASS"
+  },
+  "olc60_original_baseline_reconciliation": "EXACT"
+}
