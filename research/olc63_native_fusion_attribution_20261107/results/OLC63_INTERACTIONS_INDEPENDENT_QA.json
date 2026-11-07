@@ -1,0 +1,8 @@
+{
+  "source": "OLC63 frozen 16-coalition output",
+  "num_interactions_checked": 1416,
+  "max_pair_abs_error": 1.249000902703301e-16,
+  "max_shapley_abs_error": 1.5092094240998222e-16,
+  "method": "independent Harsanyi inclusion-exclusion decomposition",
+  "status": "PASS"
+}
