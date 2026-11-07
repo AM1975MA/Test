@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "fit_models": 20,
+  "rows": 18099,
+  "selection_rows": 965,
+  "monthly_rows": 480,
+  "baseline_source_parity": [
+    {
+      "stage": "CURRENT",
+      "rows": 196,
+      "max_weight_diff": 0.0,
+      "max_score_diff": 0.0
+    },
+    {
+      "stage": "FUSION",
+      "rows": 192,
+      "max_weight_diff": 0.0,
+      "max_score_diff": 0.0
+    }
+  ],
+  "monthly_unit_weights_max_dev": 2.220446049250313e-16,
+  "no_future_labels_used_in_fit": true,
+  "candidate_42_features": true,
+  "main_unchanged": true
+}
