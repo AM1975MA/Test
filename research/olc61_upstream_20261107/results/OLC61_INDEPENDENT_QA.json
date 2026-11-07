@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "recomputed_monthly_portfolio_cells": 600,
+  "baseline_olc60_matched": true,
+  "source_month_count_each_market": 60,
+  "models": 30,
+  "prequential_predictions": 18099,
+  "full_out_of_fit_year_test_support_unchanged": true,
+  "no_lookahead_cutoff_violation_in_fitting_key_dates": true,
+  "units": "forward 21/42 session static returns, not portfolio CAGR"
+}
