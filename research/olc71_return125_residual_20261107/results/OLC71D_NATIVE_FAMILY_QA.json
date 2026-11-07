@@ -1,0 +1,67 @@
+{
+  "source": "EU original XGBoost R_RSI_DOMAIN; original native OLC19 FUSION",
+  "status": "research_only_no_promotion",
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "families": 46,
+  "permutation_seeds": [
+    71101,
+    71102
+  ],
+  "all_years_return_rank_parity": true,
+  "all_years_fusion_parity": true,
+  "records": 5520,
+  "audit": [
+    {
+      "year": 2021,
+      "n_months": 12,
+      "n_tickers": 1788,
+      "exact_original_return_rank_parity": true,
+      "max_raw_score_diff": 5.9532165419540206e-08,
+      "max_return_rank_diff": 0.0,
+      "original_fusion_parity": true
+    },
+    {
+      "year": 2022,
+      "n_months": 12,
+      "n_tickers": 1788,
+      "exact_original_return_rank_parity": true,
+      "max_raw_score_diff": 1.0731506350225573e-07,
+      "max_return_rank_diff": 0.0,
+      "original_fusion_parity": true
+    },
+    {
+      "year": 2023,
+      "n_months": 12,
+      "n_tickers": 1800,
+      "exact_original_return_rank_parity": true,
+      "max_raw_score_diff": 5.947113046467223e-08,
+      "max_return_rank_diff": 0.0,
+      "original_fusion_parity": true
+    },
+    {
+      "year": 2024,
+      "n_months": 12,
+      "n_tickers": 1928,
+      "exact_original_return_rank_parity": true,
+      "max_raw_score_diff": 5.855560303302809e-08,
+      "max_return_rank_diff": 0.0,
+      "original_fusion_parity": true
+    },
+    {
+      "year": 2025,
+      "n_months": 12,
+      "n_tickers": 1972,
+      "exact_original_return_rank_parity": true,
+      "max_raw_score_diff": 5.944061287621594e-08,
+      "max_return_rank_diff": 0.0,
+      "original_fusion_parity": true
+    }
+  ],
+  "warning": "Off-manifold causal model sensitivity, not true feature conditional importance or alpha, USA original models not present"
+}
