@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "preregistered_prior_to_outcome": true,
+  "no_model_fit": true,
+  "no_policy_modified": true,
+  "months_eu": 58,
+  "months_usa": 60,
+  "hypotheses": 2,
+  "horizons": 2,
+  "row_count": 472,
+  "source_factorial_sha256": "f6cf047b543904e425f46b0b8c3c4aac13f81b0aea9040f4fb57f4df93759916",
+  "source_correlations_sha256": "6babac02ce71b1e0d1d974b5cee670ef7bee013dfb342221461d9ee80c89d00c",
+  "protocol_sha256": "57d00c60a186f4e46debf1edb37d743bb49f75adcee95e6e9c88d8d653f8fb53"
+}
