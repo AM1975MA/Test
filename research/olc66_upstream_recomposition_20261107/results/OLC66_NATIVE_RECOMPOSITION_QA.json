@@ -1,0 +1,95 @@
+{
+  "market_checks": [
+    {
+      "market": "EU",
+      "entry_dates": 92,
+      "native_events": 90,
+      "variants": 4
+    },
+    {
+      "market": "USA",
+      "entry_dates": 90,
+      "native_events": 90,
+      "variants": 4
+    }
+  ],
+  "archive_rows": 1248,
+  "native_event_rows": 720,
+  "old_original_parity": 180,
+  "context_comparison": [
+    {
+      "market": "EU",
+      "period": "MAIN",
+      "months": 48,
+      "pair_changed_count": 21,
+      "original21": 0.021308710798686722,
+      "context21": 0.021670706938460894,
+      "delta21": 0.0003619961397741698,
+      "original42": 0.03753860739019876,
+      "context42": 0.032224826745193974,
+      "delta42": -0.005313780645004794
+    },
+    {
+      "market": "EU",
+      "period": "LATE",
+      "months": 10,
+      "pair_changed_count": 5,
+      "original21": 0.0036321479346376447,
+      "context21": -0.0015078228816877003,
+      "delta21": -0.005139970816325345,
+      "original42": 0.010117101046034953,
+      "context42": 0.012539372149308819,
+      "delta42": 0.002422271103273868
+    },
+    {
+      "market": "EU",
+      "period": "FULL_21_25",
+      "months": 58,
+      "pair_changed_count": 26,
+      "original21": 0.018261027546264467,
+      "context21": 0.017674408693607688,
+      "delta21": -0.000586618852656781,
+      "original42": 0.032810761468791215,
+      "context42": 0.028830782849351706,
+      "delta42": -0.003979978619439507
+    },
+    {
+      "market": "USA",
+      "period": "MAIN",
+      "months": 48,
+      "pair_changed_count": 23,
+      "original21": 0.03501001324748996,
+      "context21": 0.04196073438543141,
+      "delta21": 0.006950721137941444,
+      "original42": 0.03898673310380909,
+      "context42": 0.04665423962271781,
+      "delta42": 0.007667506518908727
+    },
+    {
+      "market": "USA",
+      "period": "LATE",
+      "months": 12,
+      "pair_changed_count": 3,
+      "original21": 0.019960427598015362,
+      "context21": 0.03494729413529328,
+      "delta21": 0.014986866537277918,
+      "original42": 0.05027820792554699,
+      "context42": 0.09787117361962255,
+      "delta42": 0.04759296569407557
+    },
+    {
+      "market": "USA",
+      "period": "FULL_21_25",
+      "months": 60,
+      "pair_changed_count": 26,
+      "original21": 0.032000096117595044,
+      "context21": 0.04055804633540379,
+      "delta21": 0.008557950217808741,
+      "original42": 0.041245028068156664,
+      "context42": 0.05689762642209876,
+      "delta42": 0.015652598353942095
+    }
+  ],
+  "selection_comparison_is_static_only": true,
+  "engine_rerun": false
+}
