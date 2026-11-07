@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "rows": 5520,
+  "n_families": 46,
+  "n_seeds": 2,
+  "n_years": 5,
+  "n_months": 60,
+  "max_return_recompute_abs": 1.0408340855860843e-16,
+  "monthly_summary_tieout": true,
+  "original_fusion_top2_parity": true,
+  "limitations": "EU-only, off-manifold permutation of cross-section, no native context/V6/stop, historical 2021-25 already mined"
+}
