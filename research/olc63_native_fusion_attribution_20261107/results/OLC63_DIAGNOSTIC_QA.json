@@ -1,0 +1,15 @@
+{
+  "source": "OLC63_MONTHLY_FACTORIAL.csv and OLC63_MONTHLY_SHAPLEY.csv fixed original outputs",
+  "purpose": "post-result exploratory interaction and contribution stability, not a new strategy",
+  "no_new_learner": true,
+  "no_new_market_prices": true,
+  "no_optimized_weight_or_threshold": true,
+  "number_monthly_coalitions": 1888,
+  "number_interaction_rows": 1416,
+  "nmarkets": 2,
+  "source_hashes": {
+    "OLC63_MONTHLY_FACTORIAL.csv": "f6cf047b543904e425f46b0b8c3c4aac13f81b0aea9040f4fb57f4df93759916",
+    "OLC63_MONTHLY_SHAPLEY.csv": "72bb4b75319100428d33acd6a331ecddb45e695caf06270d4281728016619672",
+    "OLC63_LEAVE_ONE_OUT.csv": "40e7c0f1214444b0c00f2119a23c6494448ce7dba57c3b49d7820594f731bcc4"
+  }
+}
