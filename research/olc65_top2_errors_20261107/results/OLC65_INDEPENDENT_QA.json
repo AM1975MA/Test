@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "method": "independent pandas ranking, future oracle and group reconciliations",
+  "monthly_checks": 118,
+  "oracle_event_checks": 472,
+  "matched_original_fusion": true,
+  "max_abs_gap_reconstruction": 0,
+  "no_new_fit_or_trading": true
+}
