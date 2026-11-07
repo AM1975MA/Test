@@ -1,0 +1,5 @@
+market,period,nmonths,ordering_share,bootstrap_ci_low,bootstrap_ci_high,months_ordering_gap_gt_discovery,years_ordering_gap_gt_discovery
+EU,MAIN,48,0.6053277906528616,0.5457707053730187,0.6698065978299765,32,4
+EU,LATE,10,0.5527347941181135,,,6,1
+USA,MAIN,48,0.5669027312353534,0.5127725702412502,0.6215674137679188,27,3
+USA,LATE,12,0.8071176639500209,,,11,1
