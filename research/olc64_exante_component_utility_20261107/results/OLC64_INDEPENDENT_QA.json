@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "rows": 472,
+  "max_row_error": 7.105427357601002e-15,
+  "max_spearman_abs_error": 6.938893903907228e-17,
+  "method": "per-row mask/market/date join and independent Pearson-on-ranks Spearman computation",
+  "no_model_fit": true,
+  "production_unchanged": true
+}
