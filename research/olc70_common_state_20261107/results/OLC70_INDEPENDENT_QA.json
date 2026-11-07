@@ -1,0 +1,33 @@
+{
+  "OLC70A": {
+    "periods_recalculated": 20,
+    "max_abs_cagr_error": 2.4424906541753444e-15,
+    "max_abs_maxdd_error": 1.27675647831893e-15
+  },
+  "OLC70B": {
+    "periods_recalculated": 20,
+    "max_abs_cagr_error": 5.995204332975845e-15,
+    "max_abs_maxdd_error": 1.27675647831893e-15
+  },
+  "chronology": {
+    "all_164_asof_before_signal": true,
+    "full_train_count_and_route_reconciled": true,
+    "2month_maturity_strict": true,
+    "fallback_before_24": true
+  },
+  "labels": {
+    "onpolicy": 178,
+    "A_base": 178,
+    "four_forks_same_start": true,
+    "arithmetic_checks": true
+  },
+  "forecast_skill": {
+    "negative_vs_mean_n_of_6_olc70A": 5,
+    "negative_vs_mean_n_of_6_olc70B": 5
+  },
+  "comparison": {
+    "n_scorecard": 48,
+    "n_annual": 96,
+    "n_forecast_skill_arms": 12
+  }
+}
