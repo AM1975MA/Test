@@ -32,6 +32,7 @@ for (market,date),d in p.groupby(['market','date'],sort=True):
         assert abs(u-row[f'oracle_universe{h}'])<1e-12
         assert abs((k-a)-row[f'ordering_gap{h}'])<1e-12
         assert abs((u-k)-row[f'discovery_gap{h}'])<1e-12
+        errors.extend([abs(a-row[f'actual{h}']),abs(k-row[f'oracle_top10_{h}']),abs(u-row[f'oracle_universe{h}']),abs((k-a)-row[f'ordering_gap{h}']),abs((u-k)-row[f'discovery_gap{h}'])])
         got=o[(o.market==market)&(o.date==date)&(o.horizon==h)]
         assert len(got)==2 and set(got.oracle_ticker)==set(all_o.ticker)
         for x in got.itertuples():
@@ -64,6 +65,6 @@ for q in s.itertuples():
             assert (g.classification==a.upper()).sum()==getattr(q,f'oracle{h}_{a}')
 qa={'status':'PASS','method':'independent pandas ranking, future oracle and group reconciliations',
     'monthly_checks':monthchecks,'oracle_event_checks':evtchecks,'matched_original_fusion':True,
-    'max_abs_gap_reconstruction':0,'no_new_fit_or_trading':True}
+    'max_abs_gap_reconstruction':float(max(errors)),'no_new_fit_or_trading':True}
 (D/'OLC65_INDEPENDENT_QA.json').write_text(json.dumps(qa,indent=2))
 print(json.dumps(qa))
