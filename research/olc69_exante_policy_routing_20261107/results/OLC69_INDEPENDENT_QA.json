@@ -1,0 +1,8 @@
+{
+  "manual_ridge_max_error_bp": 1.1368683772161603e-13,
+  "years_checked": 32,
+  "periods_checked": 20,
+  "routes_checked": 164,
+  "maturity_checks": 164,
+  "status": "PASS"
+}
