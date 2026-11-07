@@ -1,0 +1,63 @@
+{
+  "verification": "PASS",
+  "total_forecasts": 18099,
+  "parent_panel_max_errors": {
+    "pred_ECON21": 0.0,
+    "pred_STAY2": 0.0,
+    "pred_ECO_STAY": 0.0,
+    "ORIGINAL_CURRENT": 0.0,
+    "ORIGINAL_FUSION": 0.0,
+    "fwd_ret_21": 0.0,
+    "fwd_ret_42": 0.0,
+    "g1_bp": 4.547473508864641e-13,
+    "g2_bp": 4.547473508864641e-13,
+    "near": 0.0,
+    "persist": 0.0,
+    "disjoint_positive": 0.0,
+    "target_rank_21": 0.0,
+    "target_rank_42": 0.0
+  },
+  "selected_months": {
+    "selection_weight_max_err": 5.551115123125783e-17,
+    "monthly_max_err": {
+      "fwd_ret_21": 9.93129189996722e-17,
+      "fwd_ret_42": 9.93129189996722e-17,
+      "g1_bp": 4.547473508864641e-13,
+      "g2_bp": 2.2737367544323206e-13,
+      "near": 0.0,
+      "persist": 0.0,
+      "disjoint_positive": 0.0
+    },
+    "monthly_events": 480,
+    "selection_rows": 965
+  },
+  "model_and_lag_replay_samples": [
+    {
+      "market": "EU",
+      "year": 2021,
+      "rows": 1781,
+      "max_abs_prediction_error": 2.220446049250313e-16
+    },
+    {
+      "market": "EU",
+      "year": 2025,
+      "rows": 1970,
+      "max_abs_prediction_error": 2.220446049250313e-16
+    },
+    {
+      "market": "USA",
+      "year": 2021,
+      "rows": 1788,
+      "max_abs_prediction_error": 2.220446049250313e-16
+    },
+    {
+      "market": "USA",
+      "year": 2025,
+      "rows": 1788,
+      "max_abs_prediction_error": 2.220446049250313e-16
+    }
+  ],
+  "historical_overlap_integrity": true,
+  "training_maturity": true,
+  "no_new_oos": true
+}
