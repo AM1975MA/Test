@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "source_frozen_olc63_pairs": 118,
+  "max_b0_diffs": {
+    "mean21_max_err": 0.0,
+    "mean42_max_err": 0.0,
+    "persistent_max_err": 0.0,
+    "negative21_max_err": 0.0
+  },
+  "independent_selection_groups": 826,
+  "early_blend_max_error": 1.1102230246251565e-16,
+  "n_yearly_ml_fits": 10,
+  "risk_archive_engine_reexecuted": false,
+  "original_olc19_unchanged": true,
+  "compared_main_years": "2021-2024",
+  "future_labels_used_for_train": false
+}
