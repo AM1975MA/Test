@@ -1,0 +1,150 @@
+{
+  "name": "OLC70_Controfattuale_Stato_Comune_20261107_VERIFICATO",
+  "date": "2026-11-07",
+  "research_only": true,
+  "original_OLC19_main_unchanged": true,
+  "outcome": "NO_PROMOTION",
+  "inputs": {
+    "inputs/OLC67_Strategia_ETF_Verificata.zip": "dbfb2cec587fa7b1a118209856d474236707692b6f7ed68fa99c1c27df9661c4",
+    "inputs/OLC68_PRESIGNAL_EVENT_DIAGNOSTIC.csv": "b7911d1346f6d78a19513547fd4b91b8a68a1806b2332f3a95815fcaf2caf330",
+    "inputs/OLC67_NATIVE_DEPENDENCIES.zip": "3fc500be03c53b45a5a04325d8a982a4baaad085704a66cda617cde3e50935d3"
+  },
+  "files": {
+    "README.md": {
+      "sha256": "421ad34ca09c05d4d2be68a5fc95c30fad5122dd12070248111c473917e7bf1c",
+      "bytes": 3116
+    },
+    "REPORT_OLC70_IT.md": {
+      "sha256": "89a24b5bf836529e6746b2b9e93d5a12f51dd711d968db4b6c2249ffdd96b17f",
+      "bytes": 8211
+    },
+    "run_olc70.py": {
+      "sha256": "830fd12a60ca36d229704d5aaedbfcb8c1e036ecc26055eb14ad6ea93fb9b6e8",
+      "bytes": 17185
+    },
+    "run_olc70b.py": {
+      "sha256": "ccdba43af9482c3000997a713d728e3ed6d6432a0b1fd8ffe7f37fdbc79337e3",
+      "bytes": 9788
+    },
+    "restore_inputs.py": {
+      "sha256": "39f9a56d43f3cfbfd1466318d86c0ba7f4bd302b5df8c7998c4d1dc00a1841c3",
+      "bytes": 1292
+    },
+    "verify_and_summarize.py": {
+      "sha256": "285f352828e1bd4f4c6ac27101beda2f78a27283add7028344984080d60ff4ce",
+      "bytes": 8389
+    },
+    "build_report.py": {
+      "sha256": "1221baeae886a5f98435b3fc70ef1701e023d807a9aa5d64fa2df762284d57b4",
+      "bytes": 9641
+    },
+    "engine_olc70_instrumented.py.txt": {
+      "sha256": "641e7d34b1ba9ae5c466397970d9950cb6793058d308c12dc8c233ce17fd10c4",
+      "bytes": 15380
+    },
+    "inputs/OLC67_Strategia_ETF_Verificata.zip": {
+      "sha256": "dbfb2cec587fa7b1a118209856d474236707692b6f7ed68fa99c1c27df9661c4",
+      "bytes": 884014
+    },
+    "inputs/OLC68_PRESIGNAL_EVENT_DIAGNOSTIC.csv": {
+      "sha256": "b7911d1346f6d78a19513547fd4b91b8a68a1806b2332f3a95815fcaf2caf330",
+      "bytes": 64617
+    },
+    "inputs/OLC67_NATIVE_DEPENDENCIES.zip": {
+      "sha256": "3fc500be03c53b45a5a04325d8a982a4baaad085704a66cda617cde3e50935d3",
+      "bytes": 16434469
+    },
+    "results/OLC70B_ACTION_COUNTS_ANNUAL.csv": {
+      "sha256": "fd68566ca9c5446d920311a08e719f0785c736209e3192ff223da2e41f379bb1",
+      "bytes": 451
+    },
+    "results/OLC70B_ACTION_OUTCOMES_ANNUAL.csv": {
+      "sha256": "4e25c4dd0f9cc05552fbb77775304d43d623002b48165a865206668e744584da",
+      "bytes": 552
+    },
+    "results/OLC70B_ANNUAL.csv": {
+      "sha256": "9431e6128e98c6fc7e30479a23226e860adb6be1ab7b16c57a444d339b1bd783",
+      "bytes": 1262
+    },
+    "results/OLC70B_DAILY_LOGRET.csv.gz": {
+      "sha256": "30ab504db965c602222b261fe7df1a9776fe4e227e0ded6d4bf4b21fc8e3c523",
+      "bytes": 95414
+    },
+    "results/OLC70B_FORECAST_SKILL.csv": {
+      "sha256": "a74fdbbe50bfbeea64d4c618949135ea7e80a21cd9f7ffde90d8be79c2ee393b",
+      "bytes": 50381
+    },
+    "results/OLC70B_ON_POLICY_LABELS.csv": {
+      "sha256": "eaf507c3bdea129873019617f0e6cac282108b7760c5449cb7cceb75f723f768",
+      "bytes": 32962
+    },
+    "results/OLC70B_QA.json": {
+      "sha256": "cabfe829df24ee75c19201d119bfe56e8cd9edcae8601fb41a4b72881ff3f26e",
+      "bytes": 782
+    },
+    "results/OLC70B_ROUTE.csv": {
+      "sha256": "cf9b2d755211802da73029f446b34f68f5205ef3a52ff0ea0591bdc04930114f",
+      "bytes": 12857
+    },
+    "results/OLC70B_SCORECARD.csv": {
+      "sha256": "ff336f3a6f8b2dad6c2179c904621ce9d3d6a5a4d648288b702b1bc22b6133ab",
+      "bytes": 4968
+    },
+    "results/OLC70B_STATE_SHIFT_VS_BASELINE.csv": {
+      "sha256": "bffe1b239466ebe39633324e22c8cb2de8d042e1645dc012fa3c43f9fcf5e7e7",
+      "bytes": 34436
+    },
+    "results/OLC70_ANNUAL.csv": {
+      "sha256": "13f2ae218bd99a82a6bd242e2a8f2e251e9ab1032d4bd2ad71268ccc1780d7b9",
+      "bytes": 2035
+    },
+    "results/OLC70_ANNUAL_COMPARISON.csv": {
+      "sha256": "30880820575c16c6991c70e9a64c78cceed15740e492c2877aa7b2f5d73548be",
+      "bytes": 3890
+    },
+    "results/OLC70_COMMON_STATE_LABELS.csv": {
+      "sha256": "e12a3f9be5e11cabd0ab30ac7e7e1c9cc497ffce145662e98d3e6a70c231666a",
+      "bytes": 55753
+    },
+    "results/OLC70_COMPARISON.csv": {
+      "sha256": "367246909221e6004ea4ea41b08bb4235b9b6f05ca055445f867c2512d9da848",
+      "bytes": 3266
+    },
+    "results/OLC70_DAILY_LOGRET.csv.gz": {
+      "sha256": "2b806de9e28bfdf4de8e8cf2968c39afd1774e53788be69fa8a69ed4077dc478",
+      "bytes": 99553
+    },
+    "results/OLC70_FORECAST_SKILL.csv": {
+      "sha256": "2959821762d2af412a876367e94cf6eca02147d1ec101e958203c1b9c2f796cc",
+      "bytes": 24846
+    },
+    "results/OLC70_FORECAST_SKILL_SUMMARY.csv": {
+      "sha256": "c6c10c8871eec2d17509e5fabcac570fdd5e625d8f6722527e274b486655727e",
+      "bytes": 1194
+    },
+    "results/OLC70_INDEPENDENT_QA.json": {
+      "sha256": "b49f85b921a1b4423c81c2ec7b0a250eb0a7ff76d5145a83026780cbac041213",
+      "bytes": 810
+    },
+    "results/OLC70_LABEL_BRIDGE_OLC69.csv": {
+      "sha256": "7d2e5446651a9b8fe469a3063668d54014a50e1cd72e74d2f66c1be8f6b2151f",
+      "bytes": 35214
+    },
+    "results/OLC70_QA.json": {
+      "sha256": "17ec4eb7d218ceb018edcf51c6d264396609c7d50af8cb9df92be0139a2054e6",
+      "bytes": 1194
+    },
+    "results/OLC70_ROUTING.csv": {
+      "sha256": "9bd4adb1901326602a91b72518917aab613b5d1aeefa2732c6a58a9ae85346bf",
+      "bytes": 12878
+    },
+    "results/OLC70_SCORECARD.csv": {
+      "sha256": "f04a4fe327693b9c4ff84fc7d40a2b5ba5d9eb39dc20a31e13fba2b189a72f9e",
+      "bytes": 5124
+    },
+    "results/OLC70_STATE_SHIFT_SUMMARY.csv": {
+      "sha256": "885b9e2c7d2ae25379cd09931656a5ce966da2bf89e39003126168c687dc79d1",
+      "bytes": 480
+    }
+  }
+}
