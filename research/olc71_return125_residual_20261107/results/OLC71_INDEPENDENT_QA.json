@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "rows_oof": 18099,
+  "top10_oof_rows": 1200,
+  "score_parity_checks": [
+    {
+      "market": "EU",
+      "period": "LATE_2025",
+      "months": 12,
+      "original_payoff21": 0.015033960574412248,
+      "original_payoff42": 0.03483567487957671,
+      "max_static_parity_abs": 4.683753385137379e-17
+    },
+    {
+      "market": "EU",
+      "period": "MAIN_2021_2024",
+      "months": 48,
+      "original_payoff21": 0.021308710798686722,
+      "original_payoff42": 0.037538607390198764,
+      "max_static_parity_abs": 6.245004513516506e-17
+    },
+    {
+      "market": "USA",
+      "period": "LATE_2025",
+      "months": 12,
+      "original_payoff21": 0.01996042759801536,
+      "original_payoff42": 0.05027820792554699,
+      "max_static_parity_abs": 9.020562075079397e-17
+    },
+    {
+      "market": "USA",
+      "period": "MAIN_2021_2024",
+      "months": 48,
+      "original_payoff21": 0.035010013247489966,
+      "original_payoff42": 0.03898673310380908,
+      "max_static_parity_abs": 8.326672684688674e-17
+    }
+  ],
+  "train_label_maturity_cutoffs_pass": true,
+  "original_score_in_bp_mse_excluded": true,
+  "feature_family_counts": {
+    "RAW": 46,
+    "PCT": 46,
+    "DEV": 33
+  },
+  "prior_feature_set_identical": true,
+  "source_sha256": {
+    "OLC08F_01_FeaturePack_20261101.zip": "420faa56547721fd58db9f75ceef1370483047073d91c1b675587bd2d2e9db6c",
+    "OLC14_Fitting_Risultati_20261101.zip": "4259b9e756ce02b48b473988a3467cd8c2f2c93394df6f3040698aa06e17c6e1",
+    "OLC19_Rischio_Rientro_Checkpoint_20261102.zip": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540"
+  },
+  "limitation": "Internal independent output recomputation only; no new external prices/OOS and no full NAV accounting"
+}
