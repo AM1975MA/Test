@@ -99,14 +99,41 @@ Le 125 migliorano il correttore score-only, ma **non battono FUSION**. L'interva
 
 Nel **2025 USA**, il Top2 del correttore +125 produce +7,35% per finestra contro +2,00% FUSION, ma la differenza si concentra in pochi mesi: gennaio, maggio e settembre spiegano **circa l'86,8% del vantaggio netto annuale**. Nel 2024 USA lo stesso correttore rende **−1,93%** contro **+4,85%** FUSION. Siamo di fronte a un'interazione storica non stabile fra rappresentazione e regime, non alla conferma di un vantaggio generale. Tutto il 2025 era già stato esplorato prima del protocollo.
 
-## 8. Decisione e prossimo esperimento metodologicamente corretto
+## 8. OLC71D — Test *nativo* XGBoost Return europeo, senza riaddestrare
 
-**Non promuovere nessuna nuova combinazione e non calcolare un CAGR non simulato.** Gli score e la FUSION originali sono più efficienti nell'ordinare i Top2 dell'intero universo sul periodo principale. Gli schemi con 125 input espandono la rappresentazione ma introducono sovra-adattamento/dimensionalità, sparsità e una diversa obiettivo economico rispetto al ranker Return nativo. Non abbiamo dimostrato che il *contenuto informativo* della Return125 sia privo di residui: abbiamo falsificato diversi modi semplicistici di estrarlo.
+Questo ultimo approfondimento è stato **registrato dopo OLC71A/B/C ma prima di eseguirne gli esiti** (addendum GitHub OLC71D). È una verifica della sensibilità della FUSION originale alle 46 famiglie, non una prova di migliore alpha. Ho recuperato i **modelli Return125 originali EU**, non un correttore Ridge: per il 2021–2025 le previsioni con i tre modelli annuali riproducono **esattamente i ranghi Return e il punteggio FUSION archiviato in OLC19**, su tutte le date. Gli score grezzi differiscono al massimo di pochi punti nell'ottava cifra decimale per la precisione numerica di inferenza.
 
-**Passo seguente prioritario (progetto, non outcome realizzato):** misurare sul **learner Return125 nativo** il contributo condizionale di ciascuna delle **46 famiglie economiche** con permutazione **a blocchi congiunti RAW/PCT/DEV**, nello stesso mese, preservando la stessa selezione e l'esposizione; confrontare la perdita del Top2 a21/42 nel modello originale e, soltanto dopo, nel TOP2_CONTEXT_REVALUE autentico. Questo separa l'effetto di duplicazione delle rappresentazioni dalla loro reale informazione economica. In seguito, un solo refit **family-aware** del Return XGBoost con budget di campionamento equo per famiglia e controllo anti-leakage, prima del motore OLC19; niente griglia di pesi/timing o ottimizzazione sul 2025. Richiede i modelli nativi di entrambi i mercati e date fuori dal perimetro già esplorato per una prova di alpha credibile.
+Per ciascun indicatore economico ho permutato congiuntamente le versioni RAW/PCT/DEV, **solo fra ticker nella stessa data**, per due repliche con seed fissati, poi ho ricalcolato XGBoost Return e FUSION con il ramo ET/XGB+memoria invariato. L'esperimento comprende **46 gruppi × 2 repliche × 60 mesi = 5.520** combinazioni mensili, con metriche verificabili e ricalcolo indipendente dei rendimenti dei Top2 (errore massimo 1,05e−16).
+
+### Quali famiglie muovono davvero la FUSION?
+
+| Gruppo di feature Return | % mesi 2021–24 con Top2 FUSION diverso dopo la permutazione | Δ payoff Top2 21 sedute originale−permutato, pp | Δ payoff 2025, pp |
+|---|---:|---:|---:|
+| `acc_mom_5_21` | 63,5% | +0,06 | −0,14 |
+| `mom5` | 59,4% | +0,27 | −0,08 |
+| `autocorr1_63` | 46,9% | +0,20 | ≈0,00 |
+| `corr_mkt63` | 45,8% | +0,03 | −0,16 |
+| `beta_mkt126` | 42,7% | +0,20 | −0,17 |
+| `acc_mom_21_63` | 27,1% | **+0,45** | **−0,42** |
+| `vol21` | 29,2% | +0,44 | +0,41 |
+| `vol63` | 14,6% | −0,13 | +0,24 |
+
+Valori medi sulle **due permutazioni**, sample di 48 mesi MAIN e 12 mesi 2025; l'esito `+` significa soltanto che *in questa perturbazione* rimuovere/rompere la relazione del blocco con il ticker ha peggiorato il Top2. Il segno `−` significa miglioramento ex post dopo permutazione. **Non equivale** a beneficio causalmente attribuibile né autorizza a rimuovere le famiglie negative.
+
+Tutte e 46 le famiglie perturbate cambiano almeno una volta i Top2 nel 2021–24: la frequenza media delle modifiche di Top2 è circa **25,0%** delle decisioni mensili; il minimo per famiglia è **9,4%**, il massimo 63,5%. Dunque il ramo Return originale è effettivamente sensibile a tutta la rappresentazione, non ignora semplicemente i 125 campi.
+
+**Diagnosi nuova:** alcuni blocchi che nel 2021–24 sembrano economicamente utili nel ranking FUSION diventano contrari nel 2025 (es. accelerazione 21→63). È una vulnerabilità coerente con la **non-stazionarietà dell'associazione fra feature e successi Top2**, ma una permutazione nel modello congelato NON prova che una regola dinamica possa anticipare questa inversione. Inoltre il dato 2025 è già stato esplorato; i 46 confronti multipli non consentono di promuovere le famiglie col miglior Δ storico. La permutazione può creare combinazioni di feature fuori dalla distribuzione di training, poiché lascia altri blocchi intatti, e non certifica la dipendenza causale del rendimento da una singola famiglia. Sono disponibili soltanto i modelli Return EU: nessuna inferenza nativa analoga è certificata per USA.
+
+Questo distingue chiaramente le due domande: **le 125 feature sono usate? Sì, e modificano in modo significativo le scelte. Sappiamo estrarne un'informazione residua stabile rispetto alla FUSION? Non ancora.**
+
+## 9. Decisione e prossimo esperimento metodologicamente corretto
+
+**Non promuovere nessuna nuova combinazione e non calcolare un CAGR non simulato.** Gli score e la FUSION originali sono più efficienti nell'ordinare i Top2 dell'intero universo sul periodo principale. Gli schemi con 125 input espandono la rappresentazione ma introducono sovra-adattamento/dimensionalità, sparsità e un obiettivo economico diverso rispetto al ranker Return nativo. Non abbiamo dimostrato che il *contenuto informativo* della Return125 sia privo di residui: abbiamo falsificato diversi modi semplicistici di estrarlo.
+
+**Passo seguente prioritario (progetto, non outcome realizzato):** OLC71D ha ora misurato la sensibilità del **learner Return125 europeo nativo** con permutazioni **a blocchi RAW/PCT/DEV** per tutte le **46 famiglie**, senza dimostrarne il valore predittivo causale. Servono quindi test di importanza **condizionale** che rispettino le dipendenze fra famiglie (anziché ricampionamenti potenzialmente fuori distribuzione), la replica con i **modelli originali USA**, e un confronto nel TOP2_CONTEXT_REVALUE autentico con validazione prospettica. Solo così si può separare la ridondanza delle rappresentazioni dalla loro reale informazione economica. In seguito, un solo refit **family-aware** del Return XGBoost con budget di campionamento equo per famiglia e controllo anti-leakage, prima del motore OLC19; niente griglia di pesi/timing o ottimizzazione sul 2025. Richiede i modelli nativi di entrambi i mercati e date fuori dal perimetro già esplorato per una prova di alpha credibile.
 
 Una nuova selezione eventuale deve superare FUSION/CONTEXT autentici sul Top2, preservare l'anno 2024 USA e dimostrare performance più ampia di pochi mesi 2025, prima di essere sottoposta a replay OLC19. Nessun effetto riportato qui prova eseguibilità reale degli stop, prezzi delle aste o qualità della maschera USA.
 
-## 9. Riproduzione
+## 10. Riproduzione
 
-Vedere `README.md`. Codice: `run_olc71.py`, `run_family_diagnostics.py`, `run_top10_residual.py`, `feature_geometry.py`, `original_xgb_gain_audit.py`, `verify_olc71.py`. Tutti gli output CSV/JSON, previsioni OOF e QA si trovano in `results/`. Per i gain europei occorre anche l'archivio separato `OLC08_03_RSI_Confronto_Verificato_20261101.zip` (riutilizza solo modelli originali, nessun training). Le tre sorgenti originali sono *richieste* per rieseguire gli esperimenti, ma non vengono incluse nel nuovo pacchetto per evitare duplicare centinaia di megabyte di checkpoint già salvati nella Library.
+Vedere `README.md`. Codice: `run_olc71.py`, `run_family_diagnostics.py`, `run_top10_residual.py`, `feature_geometry.py`, `original_xgb_gain_audit.py`, `verify_olc71.py`, `run_native_family_permutation.py`, `verify_native_family_permutation.py`. Tutti gli output CSV/JSON, previsioni OOF e QA si trovano in `results/`. Per i gain europei occorre anche l'archivio separato `OLC08_03_RSI_Confronto_Verificato_20261101.zip` (riutilizza solo modelli originali, nessun training). Le tre sorgenti originali sono *richieste* per rieseguire gli esperimenti, ma non vengono incluse nel nuovo pacchetto per evitare duplicare centinaia di megabyte di checkpoint già salvati nella Library.
