@@ -1,0 +1,23 @@
+{
+  "source_hash_heads": "a8f2c1770dfdd329676293788180b96a92f79a598d1394a0aaaeb5d91346e458",
+  "source_hash_results": "4259b9e756ce02b48b473988a3467cd8c2f2c93394df6f3040698aa06e17c6e1",
+  "protocol_sha": "68b4dfd9b119a2ecf2fb2d0c9db0eafb05fbea592688ba49becdc5e0d198e674",
+  "code_sha": "d23d5efbf5de3ef59700a5356108364c29afc420c23c171699ef87f9ff4ec4ad",
+  "number_models": 30,
+  "forecast_rows": 18099,
+  "per_market": {
+    "EU": 9159,
+    "USA": 8940
+  },
+  "monthly_events": 600,
+  "same_support": true,
+  "baseline_parity": {
+    "matched_rows": 485,
+    "max_abs_score_diff": 0.0,
+    "max_abs_weight_diff": 5.551115123125783e-17
+  },
+  "all_models_reload_predict_equal": true,
+  "all_training_groups_mature": true,
+  "trade_engine_rerun": false,
+  "main_modified": false
+}
