@@ -37,3 +37,7 @@ python verify_olc71.py
 - `OLC71_OOF_PREDICTIONS.csv.gz`, `OLC71C_TOP10_OOF.csv.gz`: per-row audit and recomputation of headline numbers.
 
 Only 21/42-session *static forward* Top2 payoff and label-level errors are measured. **No new OLC19 portfolio replay, MaxDD or CAGR is claimed.** No live recommendation. See the detailed report for existing research OLC08F and Q/A limitations.
+
+## OLC71D — original EU native-XGB family test
+
+`python run_native_family_permutation.py` ricostruisce i Return XGB EU originali dal checkpoint `OLC08_03_RSI_Confronto_Verificato_20261101.zip` (oltre ai tre checkpoint originali OLC71A), verifica parità esatta Return e FUSION, quindi ricampiona insieme RAW/PCT/DEV per 46 gruppi in due repliche fissate. `python verify_native_family_permutation.py` ripete le verifiche indipendenti sui Top2 e riepiloghi. Output: `results/OLC71D_NATIVE_FAMILY_MONTHLY.csv`, `_SUMMARY.csv`, `_QA.json`, `_INDEPENDENT_QA.json`. Ricerca solo EU: gli originali XGB USA non sono nell'archivio disponibile.
