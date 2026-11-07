@@ -4,6 +4,6 @@
   "monthly_checks": 118,
   "oracle_event_checks": 472,
   "matched_original_fusion": true,
-  "max_abs_gap_reconstruction": 0,
+  "max_abs_gap_reconstruction": 9.974659986866641e-17,
   "no_new_fit_or_trading": true
 }
