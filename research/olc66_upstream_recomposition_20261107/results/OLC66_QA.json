@@ -1,0 +1,44 @@
+{
+  "source_sha256": {
+    "olc11": "fc536d786f42f724df8102544c33e3da0e347d216d16b871f805525d9f467b6c",
+    "olc14": "4259b9e756ce02b48b473988a3467cd8c2f2c93394df6f3040698aa06e17c6e1",
+    "olc16": "ddc79c174afdbacc4060c1dd94b874f745eda3406fbabe6d0b475784322d3df7",
+    "olc19": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540"
+  },
+  "markets": [
+    {
+      "score_max_abs_error_CURRENT": 1.1102230246251565e-16,
+      "score_max_abs_error_SMOOTH": 1.1102230246251565e-16,
+      "score_max_abs_error_FUSION": 2.220446049250313e-16,
+      "market": "EU",
+      "source_rows": 13781,
+      "unique_signals": 90,
+      "unique_tickers": 165,
+      "eligible_rows": 13630,
+      "matched_olc19_decisions": 90,
+      "full_baseline_ties": 0
+    },
+    {
+      "score_max_abs_error_CURRENT": 1.1102230246251565e-16,
+      "score_max_abs_error_SMOOTH": 1.1102230246251565e-16,
+      "score_max_abs_error_FUSION": 2.220446049250313e-16,
+      "market": "USA",
+      "source_rows": 13410,
+      "unique_signals": 90,
+      "unique_tickers": 149,
+      "eligible_rows": 13410,
+      "matched_olc19_decisions": 90,
+      "full_baseline_ties": 0
+    }
+  ],
+  "total_original_decisions": 180,
+  "n_raw_rows": 27040,
+  "n_monthly_rows": 826,
+  "number_fits": 10,
+  "model_train_only_before_cutoff": true,
+  "same_support": true,
+  "max_static_return_tieout_error": 1.734723475976807e-18,
+  "main_modified": false,
+  "trading_engine_rerun": false,
+  "protocol": "research/olc66_upstream_recomposition_20261107/PROTOCOL_PRE_RESULTS.md"
+}
