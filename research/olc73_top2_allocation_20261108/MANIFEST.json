@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-08",
+  "tag": "OLC73",
+  "protocol_git": "https://github.com/AM1975MA/Test/blob/research/olc73-top2-allocation-20261108/research/olc73_top2_allocation_20261108/PROTOCOL_PRE_RESULTS.md",
+  "git_protocol_preoutcome_commit": "49e5f625d372677b7c0e0349ab2c8fcc8d993db7",
+  "original_dependencies": {
+    "OLC19": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+    "OLC56": "f22b92a5c4b5024d6f8afef6504b794e1f46ff53ffa87adfaa8f3a2e0e3e2573",
+    "OLC67": "dbfb2cec587fa7b1a118209856d474236707692b6f7ed68fa99c1c27df9661c4"
+  },
+  "files": {
+    "README.md": {
+      "sha256": "b0f3902fb8d54b77f4dc2bd4d890d36adb59f08e96775316c2f7270427df3584",
+      "bytes": 2289
+    },
+    "REPORT_OLC73_IT.md": {
+      "sha256": "4f38e39bad14bb8b64744ac91213ecf9d2602284a8c152c4cd64e38fe4759a90",
+      "bytes": 8651
+    },
+    "run_olc73.py": {
+      "sha256": "a061a6abd8886542461392db04db32631154d1754598b23e64f1516babddcb34",
+      "bytes": 9625
+    },
+    "analyze_olc73.py": {
+      "sha256": "caee44d5839ffdcc479b1eac909b02fdec59cc056f3a389cc11b722ae17b9483",
+      "bytes": 5603
+    },
+    "build_report.py": {
+      "sha256": "3be694e2363abfac9b853dcd26f193fd97f32a00ab774718f5d38cec6fed5d26",
+      "bytes": 9082
+    },
+    "run.log": {
+      "sha256": "31cb084ee47c68f89bbf59394b30f3b47a2fa49e231a66350af7dc0eeb7463a0",
+      "bytes": 3430
+    },
+    "analysis.log": {
+      "sha256": "f1f567cb8fade38ab6325461b95c1aa9e24abd0753d2ba251d4f0807af2155d8",
+      "bytes": 3097
+    },
+    "extraction.log": {
+      "sha256": "cfc1aa19708b61efaa450f45750144e67dabb3f03dfa03af2603d5dd455a667d",
+      "bytes": 1761
+    },
+    "results/OLC73_QA.json": {
+      "sha256": "12764b8945290acdc164c2d3548a7f3dae5a07ab772689f9fb0adf6e1e4f9b83",
+      "bytes": 4063
+    },
+    "results/OLC73_SCORECARD.csv": {
+      "sha256": "01192394cb6a55c67b73603beb5ba1079f6afe0f042392e3b26fffc0bc94af81",
+      "bytes": 152025
+    },
+    "results/OLC73_MONTHLY_LOGRET.csv": {
+      "sha256": "7d261a33425243432a4e346364cc2d3eaea9775fe81115633b3f0ff52581fa0e",
+      "bytes": 342390
+    },
+    "results/OLC73_PAIRED_BLOCK6.csv": {
+      "sha256": "427fcf88a2e2ce0b0f5c8d67cbdf6fafec24beac636c40b1d15ed0378bb1bc17",
+      "bytes": 31342
+    },
+    "results/OLC73_GATE.csv": {
+      "sha256": "20f3284f953604e2caed343070be4bcb043721f2272009868877a74e9ebfcf2c",
+      "bytes": 2329
+    },
+    "results/OLC73_EVENT_WEIGHTS.csv": {
+      "sha256": "748cc6122ab97d83e48a59f605b4dcdaf2f9919b313ecea59cf747893d632a2e",
+      "bytes": 88255
+    },
+    "results/OLC73_RANK_FLIPS_2024_2026.csv": {
+      "sha256": "427b7c110c429bcf0200158a006a38c260b3af89d2b52c6e23d66d31a8549c81",
+      "bytes": 2614
+    },
+    "results/OLC73_INDEPENDENT_QA.json": {
+      "sha256": "42a978409c19e15e125538fbe285769fa99637a58e26f7c11a5554adfeadf3e9",
+      "bytes": 4480
+    },
+    "results/OLC73_ANNUAL.csv": {
+      "sha256": "a9994619a94539a343a9a5bb1b2152a383ad56a5991804cb31a297dbdb4b9b94",
+      "bytes": 29127
+    },
+    "results/OLC73_DAILY_LOGRET.csv.gz": {
+      "sha256": "8a8e2b22e5e32cea805c1a092aa9c558752b7f163e959a97b2cf6688baeae542",
+      "bytes": 1620759
+    },
+    "OLC67/extract_inputs.py": {
+      "sha256": "58bbf8657e193331fdc73b5e77dab225c5e6e7f2dc914d01bc23aca53b7a9afb",
+      "bytes": 2190
+    },
+    "OLC67/run_olc67.py": {
+      "sha256": "31a7e58347d25c79a3d0bdee0bb50d207ee767b2e7e792e6cef960849e0e4e69",
+      "bytes": 8245
+    }
+  },
+  "research_only": true
+}
