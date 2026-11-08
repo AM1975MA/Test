@@ -1,0 +1,23 @@
+{
+  "checks": [
+    {
+      "market": "EU",
+      "fit_year": 2024,
+      "seed": 101,
+      "native_retrain_prediction_exact": true,
+      "max_abs_diff": 0.0,
+      "n_train": 19627,
+      "n_test": 1928
+    },
+    {
+      "market": "USA",
+      "fit_year": 2024,
+      "seed": 101,
+      "native_retrain_prediction_exact": true,
+      "max_abs_diff": 0.0,
+      "n_train": 30107,
+      "n_test": 1788
+    }
+  ],
+  "status": "PASS"
+}
