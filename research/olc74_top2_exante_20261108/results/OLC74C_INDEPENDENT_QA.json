@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "same_state_event_triplets": 178,
+  "on_policy_refits": 128,
+  "model_feature_asof_checked_in_OLC74A": true,
+  "train_lag_two_events": true,
+  "native_replay_7arrays_bitwise_confirmed_in_OLC74C_QA": true,
+  "independently_recomputed_periods": 36,
+  "recomputed_annual_rows": 32,
+  "max_abs_cagr_or_dd_error": 4.218847493575595e-15,
+  "price_fixed_counterfactual_only": true
+}
