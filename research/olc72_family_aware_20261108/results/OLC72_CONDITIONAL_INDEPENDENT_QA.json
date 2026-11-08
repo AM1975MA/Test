@@ -1,0 +1,10 @@
+{
+  "n_month_family_replicates": 1440,
+  "n_market_months": 120,
+  "all_replicas_consistent_native_top2": true,
+  "all_change_flags_verified": true,
+  "matched_family_input_signatures": "six preregistered families, 2 seeds, 5 matched donors from other 45 raw rank distances",
+  "bootstrap_resamples": 4000,
+  "bootstrap_month_level_not_individual_etf_or_seed": "correct",
+  "status": "PASS_RESEARCH_ONLY"
+}
