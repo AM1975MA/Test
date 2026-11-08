@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "engine_paths": 72,
+  "annual_return_recalculations": 576,
+  "period_CAGR_MaxDD_recalculations": 648,
+  "max_abs_cagr_drawdown_error": 1.2434497875801753e-14,
+  "max_train_pos_at_least_two_events_before_current": true,
+  "score_source_dates_prior_to_event": true,
+  "static_original_parity_keys": 4,
+  "market_source_mask_USA_absent": true
+}
