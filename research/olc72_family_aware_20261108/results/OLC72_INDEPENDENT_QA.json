@@ -1,0 +1,49 @@
+{
+  "n_predictions": 18216,
+  "n_monthly_decisions": 240,
+  "original_return_fusion_parity": true,
+  "family_fusion_parity": true,
+  "model_reload_sample_n": 6,
+  "independently_recomputed_months": 240,
+  "max_model_raw_prediction_error": 8.796691908230514e-08,
+  "max_top2_payoff_error": 0,
+  "model_verification": [
+    {
+      "market": "EU",
+      "year": 2021,
+      "n_records": 1788,
+      "max_model_prediction_diff": 8.796691908230514e-08
+    },
+    {
+      "market": "EU",
+      "year": 2024,
+      "n_records": 1928,
+      "max_model_prediction_diff": 5.9379577699303354e-08
+    },
+    {
+      "market": "EU",
+      "year": 2025,
+      "n_records": 1972,
+      "max_model_prediction_diff": 5.91278075390278e-08
+    },
+    {
+      "market": "USA",
+      "year": 2021,
+      "n_records": 1788,
+      "max_model_prediction_diff": 5.915069589690347e-08
+    },
+    {
+      "market": "USA",
+      "year": 2024,
+      "n_records": 1788,
+      "max_model_prediction_diff": 5.7548523058059686e-08
+    },
+    {
+      "market": "USA",
+      "year": 2025,
+      "n_records": 1788,
+      "max_model_prediction_diff": 5.948638914787807e-08
+    }
+  ],
+  "status": "QA_PASS_RESEARCH_ONLY"
+}
