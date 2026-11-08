@@ -1,0 +1,93 @@
+{
+  "original_native_EU_USA_parity": true,
+  "matched_family_block": true,
+  "families": [
+    "mom5",
+    "acc_mom_5_21",
+    "acc_mom_21_63",
+    "vol21",
+    "vol63",
+    "beta_mkt126"
+  ],
+  "seeds": [
+    72001,
+    72002
+  ],
+  "months": 120,
+  "rows": 1440,
+  "method": "donor from 5 closest same-date peers on other 45 raw family ranks, no future label in matching",
+  "warning": "Approximate conditional perturbation, not causal importance; donor swaps still may be off-manifold; families exploratory based on prior OLC71 EU.",
+  "parity": [
+    {
+      "market": "EU",
+      "year": 2021,
+      "n_months": 12,
+      "n_tickers": 1788,
+      "max_parity_error": 0.0
+    },
+    {
+      "market": "EU",
+      "year": 2022,
+      "n_months": 12,
+      "n_tickers": 1788,
+      "max_parity_error": 0.0
+    },
+    {
+      "market": "EU",
+      "year": 2023,
+      "n_months": 12,
+      "n_tickers": 1800,
+      "max_parity_error": 0.0
+    },
+    {
+      "market": "EU",
+      "year": 2024,
+      "n_months": 12,
+      "n_tickers": 1928,
+      "max_parity_error": 0.0
+    },
+    {
+      "market": "EU",
+      "year": 2025,
+      "n_months": 12,
+      "n_tickers": 1972,
+      "max_parity_error": 0.0
+    },
+    {
+      "market": "USA",
+      "year": 2021,
+      "n_months": 12,
+      "n_tickers": 1788,
+      "max_parity_error": 0.0
+    },
+    {
+      "market": "USA",
+      "year": 2022,
+      "n_months": 12,
+      "n_tickers": 1788,
+      "max_parity_error": 0.0
+    },
+    {
+      "market": "USA",
+      "year": 2023,
+      "n_months": 12,
+      "n_tickers": 1788,
+      "max_parity_error": 0.0
+    },
+    {
+      "market": "USA",
+      "year": 2024,
+      "n_months": 12,
+      "n_tickers": 1788,
+      "max_parity_error": 0.0
+    },
+    {
+      "market": "USA",
+      "year": 2025,
+      "n_months": 12,
+      "n_tickers": 1788,
+      "max_parity_error": 0.0
+    }
+  ],
+  "elapsed_seconds": 10.334714651107788
+}
