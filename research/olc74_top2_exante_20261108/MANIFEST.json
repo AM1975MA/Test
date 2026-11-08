@@ -1,0 +1,234 @@
+{
+  "project": "OLC74",
+  "date": "2026-11-08",
+  "status": "EXPLORATORY_NO_PROMOTION",
+  "native_full_replays": 76,
+  "same_state_forks_3_per_month": 534,
+  "market_monthly_counterfactuals": 178,
+  "independent_CAGR_and_DD_checks": 684,
+  "independent_annual_return_checks": 608,
+  "input_hashes": {
+    "OLC73_ZIP": "af6fe36e5a2d6f2ea202d48800316ecbae5872c7ca89caf10bd343b1bf9899c6",
+    "OLC16_ZIP": "ddc79c174afdbacc4060c1dd94b874f745eda3406fbabe6d0b475784322d3df7",
+    "OLC19_ZIP": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540"
+  },
+  "files": [
+    {
+      "path": "PROTOCOL_A_REFERENCE.md",
+      "sha256": "2bce38172d2d0bdb006544b87808a2455859b64075ca006a2aa1a0ef2ee2b273",
+      "size": 650
+    },
+    {
+      "path": "PROTOCOL_B_PRE_RESULTS.md",
+      "sha256": "782f023b6635e7234c2809fccb81ca3419bc1cbc237dc735e1cf3de6ade1ce71",
+      "size": 3476
+    },
+    {
+      "path": "PROTOCOL_C_PRE_RESULTS.md",
+      "sha256": "f73e5fcdd02bbaecd0b82290eaa326eaf42da7c381fb4669df6c979c310ce29a",
+      "size": 3449
+    },
+    {
+      "path": "README.md",
+      "sha256": "ed6702fb522ee9c90461b00c9abffb47cf20de31985b3e8f549b591e3ad3f2fe",
+      "size": 3961
+    },
+    {
+      "path": "REPORT_OLC74_IT.md",
+      "sha256": "bf3212043f94fc9aa56b43d3b9816019f774c4b36d57ac98634d0e890ef2ec39",
+      "size": 13485
+    },
+    {
+      "path": "analyze_olc74.py",
+      "sha256": "12afe3d133b5bff280b0f12fe6989e74b3899410ee42873ac68961d32a8b1908",
+      "size": 5264
+    },
+    {
+      "path": "build_report.py",
+      "sha256": "60f62e1a191367357b8e092b444adc7839314c25ff640832bf2f7b16ade7da6e",
+      "size": 16077
+    },
+    {
+      "path": "original_olc70_reference/run_olc70.py",
+      "sha256": "830fd12a60ca36d229704d5aaedbfcb8c1e036ecc26055eb14ad6ea93fb9b6e8",
+      "size": 17185
+    },
+    {
+      "path": "results/OLC74B_ANNUAL.csv",
+      "sha256": "5cb815f7608e581f07f37363726023e594b75e965e24d6403806cc4fa95229f4",
+      "size": 7568
+    },
+    {
+      "path": "results/OLC74B_DAILY_LOGRET.csv.gz",
+      "sha256": "87e8261d393499fee9f69cddf13e99a23e328237b114a47746ad238034507871",
+      "size": 406226
+    },
+    {
+      "path": "results/OLC74B_EVENT_WEIGHTS.csv",
+      "sha256": "3aee2ac22cb3b67c5f4841d10c36ba2c662a88fd06efa52337d185bfdacece12",
+      "size": 28088
+    },
+    {
+      "path": "results/OLC74B_FORECAST_SKILL.csv",
+      "sha256": "b71412c16124bd7fc5e40e11a90a2603651ffff47d04d1f7d979006ec037842e",
+      "size": 1181
+    },
+    {
+      "path": "results/OLC74B_PAIR_FORECASTS.csv",
+      "sha256": "3dcf9cbda0ff4683b0fbe3fd3825cd0d2b81df3cf6f6d10885d930d58ba9b18e",
+      "size": 16888
+    },
+    {
+      "path": "results/OLC74B_QA.json",
+      "sha256": "3a2326f42a259a9bd8c11527b283822d776cc488b03ce6d7e90216873f893d9a",
+      "size": 311
+    },
+    {
+      "path": "results/OLC74B_SCORECARD.csv",
+      "sha256": "a601b5b71ed4c51d809a29b612cfc213e60556606c9c00b4528288d20d3f9b75",
+      "size": 38682
+    },
+    {
+      "path": "results/OLC74B_TOP10_PAIR_POOL.csv.gz",
+      "sha256": "0ba31199ae4bd94d8085b8691e2dc11568a1efa6d29dde502f29afbca87fe61b",
+      "size": 411010
+    },
+    {
+      "path": "results/OLC74C_ANNUAL.csv",
+      "sha256": "c07d0bef3549226ac2ae279eef88855d7fdefa0eb63413b6a35684f44cb47cd4",
+      "size": 2099
+    },
+    {
+      "path": "results/OLC74C_DAILY_LOGRET.csv.gz",
+      "sha256": "102ced0cb447cca64b208f8b1cc9ab794030d3feb81d8ecf2f5eb3dfb82c446a",
+      "size": 102310
+    },
+    {
+      "path": "results/OLC74C_FORECAST_SKILL.csv",
+      "sha256": "ee8e26be1617692ff1602107a0b4ce50f100ee3e0e5b3088c5e09aa1e402cd28",
+      "size": 12680
+    },
+    {
+      "path": "results/OLC74C_FORECAST_SKILL_SUMMARY.csv",
+      "sha256": "8d0424605c312f624d7880509a18dc7ce68be10c23b13872202f6a57185a16c7",
+      "size": 965
+    },
+    {
+      "path": "results/OLC74C_INDEPENDENT_QA.json",
+      "sha256": "1d2fd11bdd4da02e54df76a593794f16328ecd61f07a06172540c1e6466629ca",
+      "size": 399
+    },
+    {
+      "path": "results/OLC74C_ON_POLICY_COUNTERFACTUAL_LABELS.csv",
+      "sha256": "9209ad1039ed767cff705631b66f867241a00cdb75b55542b78575a1daac7ee6",
+      "size": 28942
+    },
+    {
+      "path": "results/OLC74C_ON_POLICY_ROUTE.csv",
+      "sha256": "c1f30e9272f3d5bf91f357c11c6668dd853460491423b3c0d59a022bebba8629",
+      "size": 19294
+    },
+    {
+      "path": "results/OLC74C_QA.json",
+      "sha256": "ca1d9657c402c0df14f024b3403ff9cabe84d95bd6e4f6057aa8e066cd813aa0",
+      "size": 700
+    },
+    {
+      "path": "results/OLC74C_SCORECARD.csv",
+      "sha256": "4a37645d9f18d12874c5df2d7ec58f3eae89231fc42ad979cd38d41104fba708",
+      "size": 10225
+    },
+    {
+      "path": "results/OLC74_ANNUAL.csv",
+      "sha256": "7812298837fec199cd73097b406f4ff724aaf3062287f7915288f4c80f2b83dd",
+      "size": 25829
+    },
+    {
+      "path": "results/OLC74_ANNUAL_2024_26_WIDE.csv",
+      "sha256": "f3cd99ccb88b74592193db74201be270b3e6b3a6fbee7b40ca21fa0dd0179351",
+      "size": 2362
+    },
+    {
+      "path": "results/OLC74_ASSOCIATIONS.csv",
+      "sha256": "31d3622fb3eb99df5d9b7a3ed719ef864ac6860d7d7e29061810cd72da54d4e5",
+      "size": 4078
+    },
+    {
+      "path": "results/OLC74_DAILY_LOGRET.csv.gz",
+      "sha256": "dd60de76a32cd4187d72501f38536c1f8ee1b7544c626f481dc2bb7bdc971146",
+      "size": 1418738
+    },
+    {
+      "path": "results/OLC74_EVENT_WEIGHTS.csv",
+      "sha256": "833b3f16eecb01bec261b285acd49609f5746d641e92ad16692ec02e37b1dd5b",
+      "size": 85867
+    },
+    {
+      "path": "results/OLC74_FORECAST_SKILL.csv",
+      "sha256": "b92d827d815ad851370e31e0f7575951bec94afeb47fc72d817b8269dbae6fe1",
+      "size": 1914
+    },
+    {
+      "path": "results/OLC74_INDEPENDENT_QA.json",
+      "sha256": "8c659e94d63d24861668b1ca3b62ec241cf13720df80abf13b49316ad0bcfda0",
+      "size": 365
+    },
+    {
+      "path": "results/OLC74_MONTHLY_DELTAS.csv",
+      "sha256": "5ed4c5ee34656caf47e14b57879ce1e64b4e2c2d3703017959bc30bfae3ab5ce",
+      "size": 125424
+    },
+    {
+      "path": "results/OLC74_PAIRED_BLOCK6.csv",
+      "sha256": "3058b279650d78c283d2773e79a0d19c4e47e14aca281cdf3319ca8dc81a308f",
+      "size": 8774
+    },
+    {
+      "path": "results/OLC74_PAIR_PANEL.csv",
+      "sha256": "e8865e34b484c8b85b5b4a92db597c5d1a56b685fc5695ad19ce16aa8a08e3d4",
+      "size": 55147
+    },
+    {
+      "path": "results/OLC74_POLICY_GATES.csv",
+      "sha256": "4af6ed5cab99fe51f630e64f8a71262b7615ad5cf5178393501fa4e0bee5a485",
+      "size": 2448
+    },
+    {
+      "path": "results/OLC74_QA.json",
+      "sha256": "85fe06c86e7a58432ced15ca5892af551a351d5de5d49a7a1ecd3aec5f871fe3",
+      "size": 3640
+    },
+    {
+      "path": "results/OLC74_SCORECARD.csv",
+      "sha256": "2c9c22100d6b7b8bb6da04c8008e4fac2882b658cbee2b0a4b5436551f1bbbbe",
+      "size": 133824
+    },
+    {
+      "path": "run_olc74.py",
+      "sha256": "ac314fe2756d4793cecbe8ed9f002b806c0ab061b568f89fa2d78207dbcf6eb5",
+      "size": 17215
+    },
+    {
+      "path": "run_olc74b.py",
+      "sha256": "62849e2025f72eb28b7bbdf26e6e718f733bb65779e8cde86efc89716b339102",
+      "size": 10651
+    },
+    {
+      "path": "run_olc74c.py",
+      "sha256": "13aeec84ac4a9efb13a87201ef6a4e6227a184fd218ae26081a64ca57765914e",
+      "size": 8970
+    },
+    {
+      "path": "verify_olc74_independent.py",
+      "sha256": "64100272ef86483e1f85fb0109f5cda7e673bb3474e75684486baed4a7a89b2b",
+      "size": 3883
+    },
+    {
+      "path": "verify_olc74c_independent.py",
+      "sha256": "9627e24071081f6ed3c21c723b1dfe56a835b2fc59f307a4878d8032b250d75b",
+      "size": 2803
+    }
+  ],
+  "source_presignal_protocol": "research/olc74_top2_exante_20261108/PROTOCOL_PRE_RESULTS.md, commit aa759ae2c239b05e03cb0eb9ad98a31760a229d4",
+  "full_data_sources_external": "already in user Library, not duplicated to this zip"
+}
