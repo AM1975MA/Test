@@ -1,0 +1,18 @@
+{
+  "EU": {
+    "events": 90,
+    "pairs": 4050,
+    "actual_pair_in_pool": 90
+  },
+  "USA": {
+    "events": 90,
+    "pairs": 4050,
+    "actual_pair_in_pool": 90
+  },
+  "train_gap_min_events": 2,
+  "n_fits": 128,
+  "pool_rows": 8100,
+  "replays": 16,
+  "source_observed_issue_USA": true,
+  "QA_status": "PASS"
+}
