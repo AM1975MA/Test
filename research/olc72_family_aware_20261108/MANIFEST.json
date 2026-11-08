@@ -1,0 +1,291 @@
+{
+  "report_date": "2026-11-08",
+  "status": "complete_failed_economic_gate_no_promotion",
+  "source_sha256": {
+    "OLC08F_01_FeaturePack_20261101.zip": "420faa56547721fd58db9f75ceef1370483047073d91c1b675587bd2d2e9db6c",
+    "OLC08_03_RSI_Confronto_Verificato_20261101.zip": "0dbcb8ee93cd0acaefd7505a202fbf30c9fda8df1804d90a0dd1578abd704f4b",
+    "OLC08F_Checkpoint_Completo_Volume1_20261101.zip": "e2a188488251a1db2c5d6db8c7188f95ca4ec6a9a5487aec45cb183017ac0aaf",
+    "OLC08F_Checkpoint_Completo_Volume2_20261101.zip": "7afbd101606330179fcc558ffd645c9744ac17451f3c0b631319267d8c193efa",
+    "OLC19_Rischio_Rientro_Checkpoint_20261102.zip": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540"
+  },
+  "artifact_count": 55,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1895,
+      "sha256": "88c5b0e44d6ab40dac789d262d761bcad6e7d9e05019a8f0bd39181fddc208ed"
+    },
+    {
+      "path": "REPORT_OLC72_IT.md",
+      "bytes": 10503,
+      "sha256": "4afaab523adb5c9d6e55e8a3cb23a9b1d4ef7a14cc61bb3c841629e6f07db71b"
+    },
+    {
+      "path": "build_report.py",
+      "bytes": 14294,
+      "sha256": "065c9b40263856ea8ee4ef7e2011bb9f79d6e6699254a8958e0e971d0189b54a"
+    },
+    {
+      "path": "conditional_family.py",
+      "bytes": 6505,
+      "sha256": "61334316c34802227d8c23644bceecc65e3e6956c6267a13f25d6caeffbeebde"
+    },
+    {
+      "path": "diagnose_family_usage.py",
+      "bytes": 2288,
+      "sha256": "eceef73d4b89992b95677b6558ad6ec0cf12ce7e8c43e5d8902f6d805eed5658"
+    },
+    {
+      "path": "models/EU/2021/FAMILY_101.ubj",
+      "bytes": 514607,
+      "sha256": "294520b01edbae854b4da1376ca11b2937b248eb27c0a09ed870fe3a94ea4a8e"
+    },
+    {
+      "path": "models/EU/2021/FAMILY_202.ubj",
+      "bytes": 510935,
+      "sha256": "12c311ece7e6b9df8f86172f93fcecd241ddecc032ce4e9ae1addb639ab1d2a7"
+    },
+    {
+      "path": "models/EU/2021/FAMILY_303.ubj",
+      "bytes": 525487,
+      "sha256": "8ff6daa944622a14c102c4b500915b608792ba412ecda66ed7234bc4b4d0ef9d"
+    },
+    {
+      "path": "models/EU/2022/FAMILY_101.ubj",
+      "bytes": 516307,
+      "sha256": "0a7a5c6df38e5b9f481525b1f3e0e74cd3cb90a31585e78469a3724e92341e8f"
+    },
+    {
+      "path": "models/EU/2022/FAMILY_202.ubj",
+      "bytes": 530247,
+      "sha256": "80059b03b7fd27725d46ffa7455aef957d4b806e13d4f53f7205ba9d616fe3d2"
+    },
+    {
+      "path": "models/EU/2022/FAMILY_303.ubj",
+      "bytes": 515287,
+      "sha256": "6835687f9935515de7ea2dfef29a6a96f8a44bc97d96808654624b0d15a6d04d"
+    },
+    {
+      "path": "models/EU/2023/FAMILY_101.ubj",
+      "bytes": 533443,
+      "sha256": "8a7be91951e827b412a144316699850d815c8ddd182608c78a6c454bd1af70eb"
+    },
+    {
+      "path": "models/EU/2023/FAMILY_202.ubj",
+      "bytes": 534259,
+      "sha256": "d4748e388d344ed99da202040fb789c14b4e3fb9eaaea96a252858142a57c868"
+    },
+    {
+      "path": "models/EU/2023/FAMILY_303.ubj",
+      "bytes": 531539,
+      "sha256": "026b2b16aac69449f23bca4a7689aeb52ceb387a0b0a10888022a442679ccb6f"
+    },
+    {
+      "path": "models/EU/2024/FAMILY_101.ubj",
+      "bytes": 543303,
+      "sha256": "db9d2327d9c8e44f8d0f8ea00da9b3e8e22f777db1cbe4b66b0fbbef533378f0"
+    },
+    {
+      "path": "models/EU/2024/FAMILY_202.ubj",
+      "bytes": 541467,
+      "sha256": "ecbac21de728a74d2048dc3b6948ff6a01108901c4d1eedf456cf7bb57474ddf"
+    },
+    {
+      "path": "models/EU/2024/FAMILY_303.ubj",
+      "bytes": 543235,
+      "sha256": "312f8e5f4bf85b74d1ce559ed03271beea6899a926f47e64f48b5256c0ad0a13"
+    },
+    {
+      "path": "models/EU/2025/FAMILY_101.ubj",
+      "bytes": 545139,
+      "sha256": "976c4ee8aadd80403fdd5f64ea1858fab37c9e15346a9378d569f4ba73bd8e4c"
+    },
+    {
+      "path": "models/EU/2025/FAMILY_202.ubj",
+      "bytes": 542623,
+      "sha256": "a4cd18a30245f886da36c084909cc42548a92aaa0a5417952d6495d88d7fa121"
+    },
+    {
+      "path": "models/EU/2025/FAMILY_303.ubj",
+      "bytes": 549287,
+      "sha256": "83a7d4063b1427a13ecd4c258c412d171a0caef356d25d0b7516e3c3d8e97d61"
+    },
+    {
+      "path": "models/USA/2021/FAMILY_101.ubj",
+      "bytes": 562683,
+      "sha256": "d53ce944a2faafb767777c3602f4a1bbe1ec229455c275dcd8aecaba8ca59af2"
+    },
+    {
+      "path": "models/USA/2021/FAMILY_202.ubj",
+      "bytes": 561935,
+      "sha256": "598d86bd9022dcb3c84d66aceffd4ae30dc81e4c64c6a58abb1bc880686658c5"
+    },
+    {
+      "path": "models/USA/2021/FAMILY_303.ubj",
+      "bytes": 564315,
+      "sha256": "3a9418b251be8dd5c34c379345ad6d25dcb1aa2a3d7b3db42403610995b1941b"
+    },
+    {
+      "path": "models/USA/2022/FAMILY_101.ubj",
+      "bytes": 565810,
+      "sha256": "22819a587baae2e3ac77eeeaba47ba3c2c85afe4791a7689b28e9fe10ab287b1"
+    },
+    {
+      "path": "models/USA/2022/FAMILY_202.ubj",
+      "bytes": 562138,
+      "sha256": "ef1fdb35c98e47e7c870971f4755c76876a04e1fd792c757258154627296201c"
+    },
+    {
+      "path": "models/USA/2022/FAMILY_303.ubj",
+      "bytes": 571250,
+      "sha256": "955d83f2f9224dd149d80f4febd2f75cde054855877705118efd34d71f3245fd"
+    },
+    {
+      "path": "models/USA/2023/FAMILY_101.ubj",
+      "bytes": 557853,
+      "sha256": "6e6eb584cbea98fd6e03bc554c398cd76d5d42d722f735d221dc995734156d53"
+    },
+    {
+      "path": "models/USA/2023/FAMILY_202.ubj",
+      "bytes": 565129,
+      "sha256": "1e1d7b06756a9abf986cf5cbe042abc792e705b6690ed17d437a2c4a372ce6c8"
+    },
+    {
+      "path": "models/USA/2023/FAMILY_303.ubj",
+      "bytes": 562953,
+      "sha256": "e8e880e90397d5b9bdaf1c4c53d8afb5e41474a38580bb3f4de31633f582eb8c"
+    },
+    {
+      "path": "models/USA/2024/FAMILY_101.ubj",
+      "bytes": 574311,
+      "sha256": "69215dabc6b93cbb793d7ac02f831dad923ecf7d22898f4351d5027429d00307"
+    },
+    {
+      "path": "models/USA/2024/FAMILY_202.ubj",
+      "bytes": 557311,
+      "sha256": "6bff8907b89cdba6c463db59ae32acca10dc72d06bc399a606e68aff5613cd9d"
+    },
+    {
+      "path": "models/USA/2024/FAMILY_303.ubj",
+      "bytes": 569347,
+      "sha256": "c0321356f832f35f5b5ca6271fa725eb800820e2e3bc96b8da105161de11f0ca"
+    },
+    {
+      "path": "models/USA/2025/FAMILY_101.ubj",
+      "bytes": 570299,
+      "sha256": "c70d19ae25d21e72779aa9201cf5fc370c8bffb9d701607157c2ab6c8603c90b"
+    },
+    {
+      "path": "models/USA/2025/FAMILY_202.ubj",
+      "bytes": 564791,
+      "sha256": "09e1c42ec02bdaf85c016237c03e0176fad0901a819d1a3ce5731d1956124473"
+    },
+    {
+      "path": "models/USA/2025/FAMILY_303.ubj",
+      "bytes": 574923,
+      "sha256": "aa11a47c330089936a973967b64c05ad2746b30486af6064a90dd1788d7f7f4e"
+    },
+    {
+      "path": "results/OLC72_ANNUAL.csv",
+      "bytes": 1611,
+      "sha256": "f96a845822aa3151987d0711989ad1ef7946df594edabe1a1e0348dede1a8412"
+    },
+    {
+      "path": "results/OLC72_AUDIT.json",
+      "bytes": 2947,
+      "sha256": "6e8e18491fa73a4003b1c4c228cd6271b7d401e3456fbaffcdcc9ad9f2981add"
+    },
+    {
+      "path": "results/OLC72_BOOTSTRAP.csv",
+      "bytes": 480,
+      "sha256": "cabd84cc376350de9de6267a955fd7091772b5b57dfa3bd1ea176eb0acedee6d"
+    },
+    {
+      "path": "results/OLC72_CONDITIONAL_FAMILY_MONTHLY.csv",
+      "bytes": 223541,
+      "sha256": "260ff52076ecf34490f098ece764db40f7f014e35e5790ea43e09f7eec81d195"
+    },
+    {
+      "path": "results/OLC72_CONDITIONAL_FAMILY_SUMMARY.csv",
+      "bytes": 3283,
+      "sha256": "402da340091b17215e8a56f83aca4f64fe55dc63a313d67496f35803c69c67cb"
+    },
+    {
+      "path": "results/OLC72_CONDITIONAL_INDEPENDENT_QA.json",
+      "bytes": 406,
+      "sha256": "f307b5d3d68558bd280e88a2e020d18644521450f5281ce8aaa6348d64477159"
+    },
+    {
+      "path": "results/OLC72_CONDITIONAL_PAIRED_CI.csv",
+      "bytes": 1067,
+      "sha256": "3de5d68d6d51ec461a80f0db8cc475b7863f53f5ca608aed8d653964d21be532"
+    },
+    {
+      "path": "results/OLC72_CONDITIONAL_QA.json",
+      "bytes": 1921,
+      "sha256": "fba7a1879b91e4e0dac47ea1679ab5a9db560dfa782f22f84719c6588db5f859"
+    },
+    {
+      "path": "results/OLC72_DECISION_CHANGES.csv",
+      "bytes": 352,
+      "sha256": "937fa56dbb7a393a6103169ba06f4ade22417f9bcf139a27335bdb1b09c673e8"
+    },
+    {
+      "path": "results/OLC72_INDEPENDENT_QA.json",
+      "bytes": 1185,
+      "sha256": "175b26b3b63562441b2c77af807072217ec8e3fb05cb4764a6f0f79ed3c4fe12"
+    },
+    {
+      "path": "results/OLC72_MODEL_USAGE.csv",
+      "bytes": 1699,
+      "sha256": "03a4afd69080a2aea44ae09685f5266fee69adbda6f82e04e65f8adde850191f"
+    },
+    {
+      "path": "results/OLC72_MONTHLY.csv",
+      "bytes": 23393,
+      "sha256": "82177470a6a86a488521a0234aeaa1b68cf0709b6c42540d72f269d7a2dd2236"
+    },
+    {
+      "path": "results/OLC72_NATIVE_REFIT_PARITY.json",
+      "bytes": 435,
+      "sha256": "0221f923616978811d1db2f5b9b450e1ae07cda17bd9d3029dbe8ecd22fab496"
+    },
+    {
+      "path": "results/OLC72_PREDICTIONS.csv.gz",
+      "bytes": 1134159,
+      "sha256": "c661022b98b2a4d0715552195acd3026eee49528a2564dd7ce2a6a84f4c097c2"
+    },
+    {
+      "path": "results/OLC72_QA.json",
+      "bytes": 1301,
+      "sha256": "aff6307427b31716d6ab30fbc7f5f089bfe0ba08ed9f0906e7ed16399db966fe"
+    },
+    {
+      "path": "results/OLC72_SUMMARY.csv",
+      "bytes": 1015,
+      "sha256": "ec8ee604cd8d0518b7cc16f570c77ba66a5c03351e083ac8125a9c0e21d940e3"
+    },
+    {
+      "path": "run_olc72.py",
+      "bytes": 9317,
+      "sha256": "0f3a4439aeb0d0a5d273377edbdb64d8dd959d4378fd92fef9c205303543c043"
+    },
+    {
+      "path": "verify_conditional.py",
+      "bytes": 2015,
+      "sha256": "3cb6fa9072a2acb1267d352d4d886e2e3eed2cb7b4f88053bc9eab8abc8083c9"
+    },
+    {
+      "path": "verify_exact_native_recipe.py",
+      "bytes": 1349,
+      "sha256": "26d0e75d142b141409826898d040fa0063ba8f529bb5ba01ee0384df25ed3af3"
+    },
+    {
+      "path": "verify_olc72.py",
+      "bytes": 3039,
+      "sha256": "8f47fbf1581ccc6d9a05781db61aebc76e6797173140088bd4ab6a04aac374f9"
+    }
+  ],
+  "github_branch": "research/olc72-return125-family-aware-20261108",
+  "git_preregister_commit": "3d9b9aef78cfaafa2d295270a4bf0ed6def0e153"
+}
