@@ -1,0 +1,34 @@
+{
+  "n_predictions": 18216,
+  "n_market_months": 120,
+  "n_new_boosters": 30,
+  "original_rank_parity_EU_USA": true,
+  "n_families": 46,
+  "original_125_features_unchanged": true,
+  "main_2021_2024": true,
+  "source_hashes": {
+    "OLC08F_01_FeaturePack_20261101.zip": "420faa56547721fd58db9f75ceef1370483047073d91c1b675587bd2d2e9db6c",
+    "OLC08_03_RSI_Confronto_Verificato_20261101.zip": "0dbcb8ee93cd0acaefd7505a202fbf30c9fda8df1804d90a0dd1578abd704f4b",
+    "OLC08F_Checkpoint_Completo_Volume1_20261101.zip": "e2a188488251a1db2c5d6db8c7188f95ca4ec6a9a5487aec45cb183017ac0aaf",
+    "OLC08F_Checkpoint_Completo_Volume2_20261101.zip": "7afbd101606330179fcc558ffd645c9744ac17451f3c0b631319267d8c193efa",
+    "OLC19_Rischio_Rientro_Checkpoint_20261102.zip": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540"
+  },
+  "param_recipe": {
+    "objective": "rank:ndcg",
+    "ndcg_exp_gain": false,
+    "lambdarank_pair_method": "topk",
+    "lambdarank_num_pair_per_sample": 5,
+    "eval_metric": "ndcg@5",
+    "max_depth": 4,
+    "learning_rate": 0.035,
+    "subsample": 0.85,
+    "colsample_bytree": 0.8,
+    "min_child_weight": 8,
+    "reg_lambda": 8,
+    "reg_alpha": 0.1,
+    "tree_method": "hist",
+    "nthread": 1
+  },
+  "elapsed_seconds": 168.47280168533325,
+  "research_only": true
+}
