@@ -1,0 +1,25 @@
+{
+  "EU": {
+    "market": "EU",
+    "baseline_7arrays_exact": true,
+    "adaptive_full_vs_segment_7arrays_bitwise": true,
+    "events_with_label": 89,
+    "branch_forks": 267,
+    "onpolicy_path": true,
+    "train_min_history_months": 24,
+    "train_maturity_2months": true
+  },
+  "USA": {
+    "market": "USA",
+    "baseline_7arrays_exact": true,
+    "adaptive_full_vs_segment_7arrays_bitwise": true,
+    "events_with_label": 89,
+    "branch_forks": 267,
+    "onpolicy_path": true,
+    "train_min_history_months": 24,
+    "train_maturity_2months": true
+  },
+  "status": "PASS",
+  "conditional_market_contrast": "AS_OF_ORIGINAL_OLC19",
+  "fixed_prices_causality_scope": "simulator intervention only"
+}
