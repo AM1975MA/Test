@@ -1,0 +1,77 @@
+{
+  "EU": {
+    "score_rows": 13781,
+    "score_last_date": "2026-06-30",
+    "eligible_rows": 13630,
+    "original_current_parity_max": 1.1102230246251565e-16,
+    "events": 90,
+    "asof_pass": true
+  },
+  "USA": {
+    "score_rows": 13410,
+    "score_last_date": "2026-06-30",
+    "eligible_rows": 13410,
+    "original_current_parity_max": 1.1102230246251565e-16,
+    "events": 90,
+    "asof_pass": true
+  },
+  "source_sha256": {
+    "OLC74": "1e85d2b734ededff8d30075df0cbc36e327cf8b81b045a35a60da989e519a2f3",
+    "OLC16": "ddc79c174afdbacc4060c1dd94b874f745eda3406fbabe6d0b475784322d3df7",
+    "OLC14_RESULTS": "4259b9e756ce02b48b473988a3467cd8c2f2c93394df6f3040698aa06e17c6e1",
+    "OLC19": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540"
+  },
+  "main_training_lag_months": 2,
+  "source_holdout_end": "2026-07-01",
+  "new_aug_oct_2026_data": false,
+  "full_replays": 40,
+  "replay_parity": {
+    "EU_HALF_IMMEDIATE_10": {
+      "reference_OLC74_half_logr_max": 9.974659986866641e-17,
+      "reference_OLC19_bitwise_arrays": 7
+    },
+    "EU_HALF_IMMEDIATE_30": {
+      "reference_OLC74_half_logr_max": 9.974659986866641e-17
+    },
+    "EU_HALF_DELAY3_10": {
+      "reference_OLC74_half_logr_max": 9.974659986866641e-17
+    },
+    "EU_HALF_DELAY3_30": {
+      "reference_OLC74_half_logr_max": 9.974659986866641e-17
+    },
+    "USA_HALF_IMMEDIATE_10": {
+      "reference_OLC74_half_logr_max": 9.974659986866641e-17,
+      "reference_OLC19_bitwise_arrays": 7
+    },
+    "USA_HALF_IMMEDIATE_30": {
+      "reference_OLC74_half_logr_max": 9.974659986866641e-17
+    },
+    "USA_HALF_DELAY3_10": {
+      "reference_OLC74_half_logr_max": 9.974659986866641e-17
+    },
+    "USA_HALF_DELAY3_30": {
+      "reference_OLC74_half_logr_max": 9.974659986866641e-17
+    }
+  },
+  "score_reconstruction_pass": true,
+  "n_predictions": 180,
+  "no_new_feature_sources": true,
+  "nonindependent_historical_research": true,
+  "gate": {
+    "EU": {
+      "reliability_brier_better_prior": false,
+      "reliability_brier_better_scoreonly": false,
+      "full_cagr_gte_half": false,
+      "full_dd_degradation_le_3pp": true,
+      "main_cagr_gte_half": true
+    },
+    "USA": {
+      "reliability_brier_better_prior": false,
+      "reliability_brier_better_scoreonly": false,
+      "full_cagr_gte_half": false,
+      "full_dd_degradation_le_3pp": true,
+      "main_cagr_gte_half": true
+    }
+  },
+  "gate_paper_pass": false
+}
