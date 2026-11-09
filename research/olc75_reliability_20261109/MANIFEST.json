@@ -1,0 +1,264 @@
+{
+  "study": "OLC75_Top2_Reliability",
+  "date": "2026-11-09",
+  "experiment": "preregistered_historical_diagnostic",
+  "original_main_unchanged": true,
+  "source_sha256": {
+    "OLC74": "1e85d2b734ededff8d30075df0cbc36e327cf8b81b045a35a60da989e519a2f3",
+    "OLC16": "ddc79c174afdbacc4060c1dd94b874f745eda3406fbabe6d0b475784322d3df7",
+    "OLC14_RESULTS": "4259b9e756ce02b48b473988a3467cd8c2f2c93394df6f3040698aa06e17c6e1",
+    "OLC19": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540"
+  },
+  "source_max_signal": "2026-06-30",
+  "last_event": "2026-07-01",
+  "outcomes_matured": {
+    "EU": 87,
+    "USA": 89
+  },
+  "replays": 40,
+  "scorecard_period_rows": 360,
+  "paper_gate": false,
+  "independent_validation": true,
+  "archive_contents": [
+    {
+      "path": "PROTOCOL_PRE_RESULTS.md",
+      "size_bytes": 4625,
+      "sha256": "869d0f107fdc3d1ef9aac420ac6b5037155b338d5433617945165b077a2a6cae"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 3355,
+      "sha256": "dd935e252a6ba5bee6ba01c3720fef0f699db852838b1e8517f5014240f14400"
+    },
+    {
+      "path": "REPORT_OLC75_IT.md",
+      "size_bytes": 9246,
+      "sha256": "f2bb8c0d789419c4560e68aeafb7f53d4129ca2e97913debe46a46dd36007437"
+    },
+    {
+      "path": "prepare_native.py",
+      "size_bytes": 1740,
+      "sha256": "c3f52b60505bf2e63160f11d75f2e33d2f29cc2ed99228521bf3a460ba7c262d"
+    },
+    {
+      "path": "run_olc75.py",
+      "size_bytes": 17184,
+      "sha256": "22bbaf7533af5d259cd62ce77b8a4cc411d29ff990dab75e95a69d05d33d3242"
+    },
+    {
+      "path": "verify_olc75_independent.py",
+      "size_bytes": 4456,
+      "sha256": "1d5befbc148dd4170b8ed2be3c833a3bb7607dd4a4909125ba791364f3741c08"
+    },
+    {
+      "path": "build_report.py",
+      "size_bytes": 11568,
+      "sha256": "1e33615be2e17c6a53e80f6e0f2bf5125efa31b257457d8dab4ac91873299719"
+    },
+    {
+      "path": "INPUT_SHA256.json",
+      "size_bytes": 2829,
+      "sha256": "acfd7612385b5f9258c386a1ba2125b7881fe9cd2bb5afbcdb5d605ea1a2cada"
+    },
+    {
+      "path": "results/OLC75_ANNUAL.csv",
+      "size_bytes": 18954,
+      "sha256": "8930ac8a3d555176bf52eea6ec83d51b0b1399956428be5296092d048c707e54"
+    },
+    {
+      "path": "results/OLC75_CONSENSUS_DIAGNOSTIC.csv",
+      "size_bytes": 11754,
+      "sha256": "c03229e96e280d77a8294a6cfc5b0195d10372be4655b5143de2fc64e2d15506"
+    },
+    {
+      "path": "results/OLC75_CONSENSUS_PANEL.csv",
+      "size_bytes": 70286,
+      "sha256": "e449df12f540ed32a42b3a25b3ce1b77a4524120140240a2c96d9245cc2e48e0"
+    },
+    {
+      "path": "results/OLC75_DAILY_LOGRET.csv.gz",
+      "size_bytes": 1015737,
+      "sha256": "79e50c2f121ba738099cbb606814276d14314ab703f4b6f237d9c8a8cabbe068"
+    },
+    {
+      "path": "results/OLC75_EVENT_FORECASTS.csv",
+      "size_bytes": 79938,
+      "sha256": "b769f3564226a0c497b57c4a2e46973cb6598cf9a8bf912ff046c917910c779d"
+    },
+    {
+      "path": "results/OLC75_EVENT_WEIGHTS.csv",
+      "size_bytes": 53911,
+      "sha256": "92214970a9a292b7a69324b2f9f610f6ac3efea21b0c51c8be03b53c648f03d8"
+    },
+    {
+      "path": "results/OLC75_FORECAST_SKILL.csv",
+      "size_bytes": 3339,
+      "sha256": "41cb44949d22d267a72fc75e289892b4d4b935197b455133cee9566cef0dfcf6"
+    },
+    {
+      "path": "results/OLC75_INDEPENDENT_QA.json",
+      "size_bytes": 455,
+      "sha256": "d861f4fea2713ae410ae8fea55dc4df90280082d24834d8434db5b4b5362f84c"
+    },
+    {
+      "path": "results/OLC75_PAIRED_BRIER_CI.csv",
+      "size_bytes": 488,
+      "sha256": "a7a1265776cd8f3082bd19462ff635429f4a2f4d394fa1173a4ee6914daaf6de"
+    },
+    {
+      "path": "results/OLC75_QA.json",
+      "size_bytes": 2422,
+      "sha256": "549a46c079098876d45d599d60ef192ddeff5f537a1d3989623f0d300d2f7eef"
+    },
+    {
+      "path": "results/OLC75_SCORECARD.csv",
+      "size_bytes": 96747,
+      "sha256": "2ee50877fdb74e93cdb4bc19d79e048ce8544ffacdfaeff38dca97ab7769004b"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/inputs/EU_TOP2_CONTEXT_REVALUE.npz",
+      "size_bytes": 7744350,
+      "sha256": "93f4387515d0ab3257996ddd938d8528497d6b0a02dc99046a649d915e3f54a6"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/inputs/USA_TOP2_CONTEXT_REVALUE.npz",
+      "size_bytes": 8225133,
+      "sha256": "c06b0c8cdfb7ef6d3d396464ad89fa9c8a069a4361d85037540cca01c1df44f5"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/accounting.py",
+      "size_bytes": 2446,
+      "sha256": "6598f39012c86612304fabc45b2d79b9081b34393e6475e63d25e0e3d252e5d4"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/analyze_results.py",
+      "size_bytes": 5115,
+      "sha256": "e2f1263722b41930036c9e4b8d9b4b47d60ab371b44b2f19b17c9406a15189ab"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/context_model.py",
+      "size_bytes": 6595,
+      "sha256": "286f7d915751c7e5f0b2e746ae40bfeca2df36c8f121aa20f09747bd0fdce15e"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/core.py",
+      "size_bytes": 5015,
+      "sha256": "2f705e593f53ba2e5d64b65153298addbe2f12f93462af033651801d7454bf0f"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/evaluate_all.py",
+      "size_bytes": 5082,
+      "sha256": "b8b0ab79585f4e56581ff31d731327863ef437615d14f3774f169534c59faafd"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/experiment.py",
+      "size_bytes": 6153,
+      "sha256": "39b47abd26f1dd85c538edb87ed92c2b6230d4b09feb064ab3607c15a122da09"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/layer_metrics.py",
+      "size_bytes": 3963,
+      "sha256": "bad095c6eed3f10a7585bacf3b48679d75cb558601cb253b0586a23226d8490e"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/methods.py",
+      "size_bytes": 2116,
+      "sha256": "b852fbd8c1773374a860a2db740e83ca9f43ab8c877281ca4c11093604ceb46d"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/parent_chrono.py",
+      "size_bytes": 4607,
+      "sha256": "9269a2239595bf69df3ea11c568dc0670122bc8a04bb6e18e05e06740359bdbb"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/portfolio_adapter.py",
+      "size_bytes": 1808,
+      "sha256": "2cbd5e6a6f678d49614e7f6d03f2c87497066a14ad07581d02e4eec31f868c5a"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/portfolio_metrics_parent.py",
+      "size_bytes": 2553,
+      "sha256": "e69fcd694b41a78dfb5dc2a619bea249a9d581a26d7820eda2503559dece157a"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/ranking_core.py",
+      "size_bytes": 4001,
+      "sha256": "18e7b2b974ea56dd90588fc3019b931d0243914a635268254e449f4505dbc5b5"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/replay_all.py",
+      "size_bytes": 3804,
+      "sha256": "c2d03d7b65abb79b55822755b3527af61939754d09db1579b41a4fd2fe8283bb"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/revalue_memory.py",
+      "size_bytes": 1300,
+      "sha256": "ee1393ec195a600a311ddd366c1a66c54c17e0266b2f769d00d3c305997d4d97"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/run.py",
+      "size_bytes": 5806,
+      "sha256": "e6482c729eafc63462d49ae492d397458b04ef60e5d7ba520e4707073c30397e"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/run_revalue.py",
+      "size_bytes": 1525,
+      "sha256": "e8f0eea5cb5f01021a096a882da34aa1a8e90a2b7639cafe6498bbf1592168a5"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/vector_engine.py",
+      "size_bytes": 8624,
+      "sha256": "a6dbe479353ba8edf7922f564a6e53827b5c74611371c84e803aaf0342703d2e"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/parent/olc16_contextual_rank_20261102/src/verify_results.py",
+      "size_bytes": 7315,
+      "sha256": "d2cde178ad4317d16969452e6dc356c4ad8c11d740b10990071a62a988efdc86"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/parent_archive/src/validated_engine.py",
+      "size_bytes": 2368,
+      "sha256": "b5c579482237b1ecd9910fdc9b2e824906e7cf2fa5ee29846924aaa8e9fb77ef"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/src/analyze.py",
+      "size_bytes": 5177,
+      "sha256": "220167ad731f5890a9636b8b2cbe0744ed070259bf6ec6d13b5e57e8b6675b02"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/src/run_experiment.py",
+      "size_bytes": 4822,
+      "sha256": "48c097d1f73ab621ff317236ed1d8a7f081aea948f5dff1663a2923be7f31b6c"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/src/stop_contract.py",
+      "size_bytes": 2107,
+      "sha256": "45e244b90140e87fa8915a910be7db601b23b294f9d29019e0b0c5b2a0361536"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/src/stop_engine.py",
+      "size_bytes": 4569,
+      "sha256": "77764747a5098b34c8c34ec4e8ffae370eef7673ce2010f7752130e24c1a0713"
+    },
+    {
+      "path": "native/restore/olc18_execution_20261102/src/verify.py",
+      "size_bytes": 2242,
+      "sha256": "74f0e165549550060c531548833fb08b596d7fbe2428044b96c2d6a6f7ffa1b4"
+    },
+    {
+      "path": "native/results/paths/EU_TOP2_CONTEXT_REVALUE_FAST_LOCK3_F10_S10.npz",
+      "size_bytes": 125374,
+      "sha256": "0538779a89eda8660934e52192018e228cbc1e8ef84b627d91b7a6ce38fa6c6d"
+    },
+    {
+      "path": "native/results/paths/USA_TOP2_CONTEXT_REVALUE_FAST_LOCK3_F10_S10.npz",
+      "size_bytes": 135707,
+      "sha256": "5985cf932f49b2fe59e1ea6328fe89a7b0bd9c6610bda7d2a2a4e09c9b134632"
+    },
+    {
+      "path": "native/src/combined_engine.py",
+      "size_bytes": 5798,
+      "sha256": "82725b36cee6d5b1f8c9c4cdd1bda29d84c4bfb0e375b6d8a0bf810d68940d9f"
+    }
+  ]
+}
