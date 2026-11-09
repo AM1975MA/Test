@@ -1,0 +1,50 @@
+name: OLC76 PIT US holdings coverage (research)
+on:
+  push:
+    branches:
+      - research/olc76-pit-economic-data-pilot-20261109
+    paths:
+      - .github/workflows/olc76-pit-holdings.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install minimal public-source dependencies
+        run: pip install --disable-pip-version-check pandas numpy requests
+      - name: Recover original OLC75 event keys
+        run: |
+          git fetch --depth=1 origin research/olc75-top2-reliability-20261109:refs/remotes/origin/olc75
+          git show origin/olc75:research/olc75_reliability_20261109/results/OLC75_EVENT_FORECASTS.csv > /tmp/OLC75_EVENT_FORECASTS.csv
+          python - <<'PY'
+          import pandas as pd, json
+          x=pd.read_csv('/tmp/OLC75_EVENT_FORECASTS.csv')
+          x=x[(x.market=='USA')&(x.signal_date>='2024-01-01')&(x.signal_date<='2026-06-30')]
+          commodity={'DBO','UNG','GLD','IAU','PALL','PPLT'}
+          z=[{'market':r.market,'signal_date':r.signal_date,'ticker1':r.ticker1,'ticker2':r.ticker2,
+              'future_log_return_spread':None if pd.isna(r.diff_month_log) else float(r.diff_month_log)}
+             for r in x.itertuples() if r.ticker1 not in commodity and r.ticker2 not in commodity]
+          assert len(z)==18
+          open('olc76_us_candidate_events.json','w').write(json.dumps(z,indent=2))
+          print('US candidate events',len(z))
+          PY
+      - name: Fetch historical fund holdings and check original publication dates
+        run: python research/olc76_pit_source_audit_20261109/acquire_us_pit.py --events olc76_us_candidate_events.json --out olc76_remote_pit
+      - name: Archive source and failure logs, no trading
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: OLC76-US-PIT-coverage
+          path: |
+            olc76_remote_pit/
+            olc76_us_candidate_events.json
+          retention-days: 30
