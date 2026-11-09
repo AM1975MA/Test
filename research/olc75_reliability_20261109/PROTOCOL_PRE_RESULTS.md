@@ -21,3 +21,6 @@ Sempre stessi due ETF selezionati da OLC19, stesse barriere di rischio. Cinque b
 
 ## Ortogonalità e limiti
 Cercare nelle fonti disponibili composizione ETF e overlap, settori/fattori, valutazioni e flussi *point-in-time*; valori odierni non possono essere retrodatati. Se assenti per i due mercati, segnare UNAVAILABLE e non simulare l'utilizzo. Nessun dato di bid/ask o prezzo stop eseguito; USA original observation mask mancante, universe survivorship e total return non certificati.
+
+## Rettifica qualità dati PRE-OUTCOME (2026-11-09)
+Il controllo del pannello OLC74 ha identificato 87 etichette finite EU (mancano 2020-05-04 e 2020-06-01 e il mese finale 2026-07-01) e 89 USA (manca soltanto 2026-07-01). Il conteggio iniziale di 89 per entrambi era errato. Nessuna etichetta mancante viene imputata; training e metriche includono soltanto label effettive. Correzione senza osservare esiti predittivi OLC75.
