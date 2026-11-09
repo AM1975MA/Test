@@ -1,0 +1,18 @@
+{
+  "verified": true,
+  "n_event_rows": 180,
+  "event_labels_by_market": {
+    "EU": 87,
+    "USA": 89
+  },
+  "n_policy_paths": 40,
+  "n_scorecard_periods": 360,
+  "n_annual_verified": 320,
+  "n_skill_verified": 30,
+  "native_reference_parity": "verified separately in OLC75_QA",
+  "prequential_label_maturity": "PASS",
+  "pair_source_parity": "PASS",
+  "numerical_accounting": "PASS",
+  "asof_dates": "PASS",
+  "untouched_aug_oct_2026": "NOT_AVAILABLE"
+}
