@@ -1,0 +1,31 @@
+{
+  "status": "USA_PRICE_BRIDGE_SOURCE_PASS__STRATEGY_FORWARD_BLOCKED",
+  "source": "V3 raw adjusted OHLCV Github Action 40082539622, artifact 12555507287, retrieved 2026-11-12",
+  "artifact_sha256": "29d63efc647f113d6fb1aa9ade57983a711e78bb3b375d556fdcb340504f2be2",
+  "universe_count": 149,
+  "raw_tickers_matched": 149,
+  "new_trading_sessions_per_ticker": 80,
+  "new_rows_total": 11920,
+  "latest_session": "2026-10-23",
+  "max_overlap_drift_after_constant_scale": 3.201811371589258e-07,
+  "n_anchor_open_gaps_over_1bp_before_scale": 3,
+  "anchor_gap_tickers_over_1bp": [
+    "BKLN",
+    "DIA",
+    "SPLV"
+  ],
+  "eu_prices_available": false,
+  "eu_updated_signals_available": false,
+  "usa_updated_olc19_signals_available": false,
+  "new_forecast_model_parity_verified": false,
+  "new_v6_exposure_verified": false,
+  "olc100_forward_native_replays_completed": 0,
+  "claims_genuine_prospective_oos": false,
+  "blocking_gates": [
+    "updated EU 167-column observed/quote panel not supplied",
+    "updated USA+EU OLC19 original and contextual Top2 signals not supplied",
+    "V6 exposure & risk inputs not certified after July 1",
+    "timestamped pre-outcome live signal receipts unavailable",
+    "USA adjusted-price variation must be explicitly anchored; do not revise historical observations"
+  ]
+}
