@@ -1,0 +1,171 @@
+{
+  "archive_sha256": "7dd938b0f662998dce7e4d83aec7516d99bd14b72e37a4c1aa8e54675504dfb0",
+  "bars_by_market": {
+    "EU": {
+      "count": 165,
+      "max": 96,
+      "min": 95,
+      "sum": 15839
+    },
+    "USA": {
+      "count": 149,
+      "max": 94,
+      "min": 94,
+      "sum": 14006
+    }
+  },
+  "branch": "research/olc100-forward-freeze-20261112",
+  "date": "2026-11-12",
+  "deficiencies": [
+    "Seven EU and eight USA quote series show provider OHLC geometry inconsistencies; no silent repair.",
+    "No parity-certified OLC19 first-stage predictor for post-June 2026 ETF signals.",
+    "No completed post-July 2026 V6 exposure and FAST_LOCK3 state from actual original selected path.",
+    "USA native observed-quote mask and actual order fill/slippage remain unvalidated.",
+    "Data acquired after its historical outcome is known are not a new prospective model evaluation."
+  ],
+  "diagnostic_action_url": "https://github.com/AM1975MA/Test/actions/runs/43312770318",
+  "diagnostic_run": 43312770318,
+  "downloaded_tickers": 314,
+  "forward_cagr_available": false,
+  "frozen_olc19_source_sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+  "model_prediction_generated": false,
+  "original_tickers": {
+    "EU": 165,
+    "USA": 149
+  },
+  "overlap_max_relative_error": {
+    "EU": 0.0015560100359572,
+    "USA": 2.475064857510034e-07
+  },
+  "price_bars": 29845,
+  "provider_dates_by_market": {
+    "EU": [
+      "2026-11-12"
+    ],
+    "USA": [
+      "2026-11-12"
+    ]
+  },
+  "repo": "AM1975MA/Test",
+  "runner_commit": "f838a00245b984a42164b3c7a2a1d2fcb2416119",
+  "sha256_mismatches": [],
+  "sha256_validated_files": 316,
+  "source_action_url": "https://github.com/AM1975MA/Test/actions/runs/43313096224",
+  "source_asof": "2026-11-12",
+  "source_capture_completed_utc": "2026-11-12T21:44:21.183402+00:00",
+  "source_capture_start_utc": "2026-11-12T21:44:01.612433+00:00",
+  "source_qa": {
+    "EU": {
+      "OHLC_ANOMALY": 7,
+      "OK": 158
+    },
+    "USA": {
+      "OHLC_ANOMALY": 8,
+      "OK": 141
+    }
+  },
+  "source_run": 43313096224,
+  "status": "DATA_CAPTURE_COMPLETE_SOURCE_QA_INCOMPLETE_NO_MODEL_SIGNAL",
+  "suspect_tickers": [
+    {
+      "last_invalid_date": "2026-10-14",
+      "market": "EU",
+      "raw_ohlc_invalid_rows": 12,
+      "ticker": "BEL.BR"
+    },
+    {
+      "last_invalid_date": "2026-08-14",
+      "market": "EU",
+      "raw_ohlc_invalid_rows": 1,
+      "ticker": "EM1015.MI"
+    },
+    {
+      "last_invalid_date": "2026-11-10",
+      "market": "EU",
+      "raw_ohlc_invalid_rows": 10,
+      "ticker": "IMIB.MI"
+    },
+    {
+      "last_invalid_date": "2026-11-10",
+      "market": "EU",
+      "raw_ohlc_invalid_rows": 11,
+      "ticker": "ISFA.AS"
+    },
+    {
+      "last_invalid_date": "2026-11-10",
+      "market": "EU",
+      "raw_ohlc_invalid_rows": 29,
+      "ticker": "LYXIB.MC"
+    },
+    {
+      "last_invalid_date": "2026-10-27",
+      "market": "EU",
+      "raw_ohlc_invalid_rows": 4,
+      "ticker": "TELE.PA"
+    },
+    {
+      "last_invalid_date": "2026-11-11",
+      "market": "EU",
+      "raw_ohlc_invalid_rows": 8,
+      "ticker": "UTI.MI"
+    },
+    {
+      "last_invalid_date": "2026-11-12",
+      "market": "USA",
+      "raw_ohlc_invalid_rows": 1,
+      "ticker": "CORN"
+    },
+    {
+      "last_invalid_date": "2026-11-12",
+      "market": "USA",
+      "raw_ohlc_invalid_rows": 1,
+      "ticker": "DGS"
+    },
+    {
+      "last_invalid_date": "2026-11-12",
+      "market": "USA",
+      "raw_ohlc_invalid_rows": 1,
+      "ticker": "EPP"
+    },
+    {
+      "last_invalid_date": "2026-11-12",
+      "market": "USA",
+      "raw_ohlc_invalid_rows": 1,
+      "ticker": "EWD"
+    },
+    {
+      "last_invalid_date": "2026-11-12",
+      "market": "USA",
+      "raw_ohlc_invalid_rows": 1,
+      "ticker": "EWI"
+    },
+    {
+      "last_invalid_date": "2026-11-12",
+      "market": "USA",
+      "raw_ohlc_invalid_rows": 1,
+      "ticker": "RWO"
+    },
+    {
+      "last_invalid_date": "2026-11-12",
+      "market": "USA",
+      "raw_ohlc_invalid_rows": 1,
+      "ticker": "RWX"
+    },
+    {
+      "last_invalid_date": "2026-11-12",
+      "market": "USA",
+      "raw_ohlc_invalid_rows": 1,
+      "ticker": "USL"
+    }
+  ],
+  "top2_generated": false,
+  "total_suspect_ohlc_bars": 83,
+  "trade_authorized": false,
+  "undercoverage_vs_market_maximum": [
+    {
+      "market": "EU",
+      "n_sessions": 95,
+      "ticker": "18MN.DE"
+    }
+  ]
+}
