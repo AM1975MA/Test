@@ -1,0 +1,63 @@
+name: OLC91 - Download futures cluster ETF via yfinance
+
+on:
+  push:
+    branches:
+      - research/olc91-yfinance
+    paths:
+      - '.github/workflows/olc91-yfinance-futures.yml'
+      - 'research/olc91/**'
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: 'Data iniziale inclusiva (YYYY-MM-DD)'
+        type: string
+        required: false
+        default: '2018-01-01'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: olc91-yfinance-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  download:
+    name: Download e audit futures Yahoo
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout del ramo
+        uses: actions/checkout@v4
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: 'research/olc91/requirements.txt'
+
+      - name: Installazione librerie
+        run: python -m pip install --disable-pip-version-check -r research/olc91/requirements.txt
+
+      - name: Validazione catalogo e parametri
+        run: python research/olc91/fetch_yfinance_futures.py --check-only
+
+      - name: Scaricamento serie storiche
+        env:
+          OLC91_START: ${{ inputs.start_date || '2018-01-01' }}
+        run: |
+          python research/olc91/fetch_yfinance_futures.py \
+            --catalog research/olc91/cluster_catalog.csv \
+            --out research/olc91/output \
+            --start "$OLC91_START"
+
+      - name: Artifact (anche in caso di copertura parziale)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olc91-yfinance-futures-${{ github.run_number }}
+          path: research/olc91/output/
+          retention-days: 7
+          if-no-files-found: warn
