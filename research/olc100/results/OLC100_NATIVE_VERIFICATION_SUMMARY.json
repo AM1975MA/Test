@@ -1,0 +1,52 @@
+{
+  "status": "RETROSPECTIVE_NATIVE_REPLAY_PASS_NOT_PROSPECTIVE",
+  "asof_quote": "2026-11-12",
+  "created_utc": "2026-11-13",
+  "baseline": "OLC19 50/50 IMMEDIATE FAST_LOCK3",
+  "candidate": "OLC67 MINVAR63 DELAY3 FAST_LOCK3",
+  "market_data_quality": "NOT_CERTIFIED",
+  "forward_period": "2026-08-03/2026-11-02",
+  "completed_new_signal_months": 3,
+  "n_native_paths": 48,
+  "n_native_reference_daily_checks": 20,
+  "max_ref_daily_log_abs_error": 6.670011765130823e-16,
+  "max_independent_return_abs_error": 1.3487475025719677e-15,
+  "sources": {
+    "frozen_olc19_sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+    "new_prices_asof": "2026-11-12",
+    "source_quotes_bad_OHLC": 79,
+    "source_quotes_bad_OHLC_tickers": 15,
+    "new_primary_ticker_bad_OHLC_overlap": 0,
+    "new_V6_alt_activations": 0,
+    "new_quote_missing_ticker_days_EU": 1,
+    "new_quote_missing_ticker_days_USA": 0
+  },
+  "comparison": {
+    "EU": {
+      "baseline_net_cumulative": -0.0325009839170741,
+      "candidate_net_cumulative": 0.0023803341950781,
+      "delta_pp": 3.48813181121522,
+      "baseline_maxdd_from_openings": -0.1327040635899755,
+      "candidate_maxdd_from_openings": -0.1007904883752022
+    },
+    "USA": {
+      "baseline_net_cumulative": 0.0035455735321308,
+      "candidate_net_cumulative": 0.1176759338943191,
+      "delta_pp": 11.41303603621883,
+      "baseline_maxdd_from_openings": -0.2063220887136055,
+      "candidate_maxdd_from_openings": -0.2135384084009333
+    }
+  },
+  "file_schema": [
+    "market",
+    "arm",
+    "fee",
+    "stop_friction",
+    "period",
+    "gross_return",
+    "stop_events",
+    "turnover",
+    "mean_target_gross",
+    "maxdd_local"
+  ]
+}

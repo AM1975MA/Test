@@ -1,0 +1,177 @@
+{
+  "status": "NATIVE_ACCOUNT_REPLAY_COMPLETED_NOT_CERTIFIED",
+  "note": "Retrospective 2026H2, 79 raw OHLC anomalies, historical universe PIT and broker stops unverified",
+  "market_risk_streams": [
+    {
+      "market": "EU",
+      "last180_equals_frozen": true,
+      "forward_gross_counts": {
+        "0.95": 1,
+        "1.0": 95
+      },
+      "extra": 96,
+      "old_dates": 1898
+    },
+    {
+      "market": "USA",
+      "last180_equals_frozen": true,
+      "forward_gross_counts": {
+        "0.95": 12,
+        "1.0": 82
+      },
+      "extra": 94,
+      "old_dates": 1863
+    }
+  ],
+  "matured_new_decisions_per_market": 3,
+  "full_native_paths": 48,
+  "olc67_full_daily_prefix_parity": [
+    {
+      "market": "EU",
+      "arm": "B_BASE",
+      "fee": 0.001,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "EU",
+      "arm": "B_BASE",
+      "fee": 0.003,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "EU",
+      "arm": "C_CANDIDATE",
+      "fee": 0.001,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 5.360295540768334e-16
+    },
+    {
+      "market": "EU",
+      "arm": "C_CANDIDATE",
+      "fee": 0.003,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 5.39499001028787e-16
+    },
+    {
+      "market": "EU",
+      "arm": "D_ALLOCATION",
+      "fee": 0.001,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 6.435824095873954e-16
+    },
+    {
+      "market": "EU",
+      "arm": "D_ALLOCATION",
+      "fee": 0.003,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 5.126107871511465e-16
+    },
+    {
+      "market": "EU",
+      "arm": "D_TIMING",
+      "fee": 0.001,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "EU",
+      "arm": "D_TIMING",
+      "fee": 0.003,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "EU",
+      "arm": "D_PROTECTION",
+      "fee": 0.001,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "EU",
+      "arm": "D_PROTECTION",
+      "fee": 0.003,
+      "n_days": 1897,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "USA",
+      "arm": "B_BASE",
+      "fee": 0.001,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "USA",
+      "arm": "B_BASE",
+      "fee": 0.003,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "USA",
+      "arm": "C_CANDIDATE",
+      "fee": 0.001,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 5.273559366969494e-16
+    },
+    {
+      "market": "USA",
+      "arm": "C_CANDIDATE",
+      "fee": 0.003,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 5.004677228193088e-16
+    },
+    {
+      "market": "USA",
+      "arm": "D_ALLOCATION",
+      "fee": 0.001,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 6.670011765130823e-16
+    },
+    {
+      "market": "USA",
+      "arm": "D_ALLOCATION",
+      "fee": 0.003,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 4.2175464509686122e-16
+    },
+    {
+      "market": "USA",
+      "arm": "D_TIMING",
+      "fee": 0.001,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "USA",
+      "arm": "D_TIMING",
+      "fee": 0.003,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "USA",
+      "arm": "D_PROTECTION",
+      "fee": 0.001,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    },
+    {
+      "market": "USA",
+      "arm": "D_PROTECTION",
+      "fee": 0.003,
+      "n_days": 1862,
+      "max_abs_daily_log_error": 9.974659986866641e-17
+    }
+  ],
+  "period": "2026-08-03 through 2026-11-02 (three mature decisions)",
+  "original_baseline_prefix_parity": "7/7 each market selection BASE + ORIGINAL",
+  "accounting_replay": true,
+  "source_end": "2026-11-12",
+  "prospective": false,
+  "promoted": false,
+  "main_unmodified": true
+}

@@ -1,0 +1,31 @@
+{
+  "EU": {
+    "bad_tickers": [
+      "BEL.BR",
+      "EM1015.MI",
+      "IMIB.MI",
+      "ISFA.AS",
+      "LYXIB.MC",
+      "TELE.PA",
+      "UTI.MI"
+    ],
+    "bad_rows": 71,
+    "low_bad": 50,
+    "high_bad": 21
+  },
+  "USA": {
+    "bad_tickers": [
+      "CORN",
+      "DGS",
+      "EPP",
+      "EWD",
+      "EWI",
+      "RWO",
+      "RWX",
+      "USL"
+    ],
+    "bad_rows": 8,
+    "low_bad": 2,
+    "high_bad": 6
+  }
+}
