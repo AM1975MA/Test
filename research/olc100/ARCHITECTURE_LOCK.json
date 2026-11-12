@@ -1,0 +1,144 @@
+{
+  "protocol_id": "OLC100",
+  "frozen_at_date": "2026-11-12",
+  "status": "PREREGISTERED_NO_FORWARD_OUTCOMES",
+  "branch": "research/olc100-forward-freeze-20261112",
+  "main_frozen_sha": "a87e84bc4e53e94a4a4e4c5ecc157e338f2716a3",
+  "protocol": {
+    "path": "research/olc100/PROTOCOL_FREEZE_20261112.md",
+    "blob_sha": "9372159ea8a5c8a58d0028c86fbd968d4f6a8c1f"
+  },
+  "source_archives": [
+    {
+      "id": "OLC19",
+      "github_sha": "0c405bb63432cd338a7db84058a1116b161c952c",
+      "library_path": "/ETF_Research/OLC19_Rischio_Rientro_20261102/OLC19_Rischio_Rientro_Checkpoint_20261102.zip",
+      "sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540"
+    },
+    {
+      "id": "OLC56",
+      "library_path": "/ETF_Research/OLC56_Robust_Timing_20261106/OLC56_TESTS_20261106_VERIFICATI.zip",
+      "sha256": "f22b92a5c4b5024d6f8afef6504b794e1f46ff53ffa87adfaa8f3a2e0e3e2573"
+    },
+    {
+      "id": "OLC67",
+      "github_sha": "2e173ecd7b9f0e396241cb54c62a3a8a9e80bf94",
+      "library_path": "/ETF_Research/OLC67_Combined_Strategy_20261107/OLC67_Strategia_ETF_Verificata.zip",
+      "sha256": "dbfb2cec587fa7b1a118209856d474236707692b6f7ed68fa99c1c27df9661c4"
+    },
+    {
+      "id": "OLC98",
+      "github_sha": "b32f7b843d07e0939f5b6c860e651137442604b9",
+      "library_path": "/ETF_Research/OLC98_Model_Review_20261112/OLC98_Model_Review_Completa_20261112_VERIFICATO.zip",
+      "sha256": "85a38f82946186cdc393982542cb012818f85f33a42489db7f17e5cbb002fa83"
+    },
+    {
+      "id": "OLC99",
+      "github_sha": "b722d706afc503008d8e59d857d8a8b15b89f862",
+      "library_path": "/ETF_Research/OLC99_Economic_Top10_20261112/OLC99_Economic_Top10_Allocazione_20261112_VERIFICATO.zip",
+      "sha256": "0659c1d91c233851b2380f54f442a376704308e07a5d026cf1f3b38d8c768672"
+    }
+  ],
+  "model": {
+    "universe": [
+      "EU165",
+      "USA149"
+    ],
+    "ranking": "Return125 + ET/XGB Hybrid42 60/40 + hybrid lag40/30/30 power1.1 + FUSION 0.475/0.525 + original TOP2_CONTEXT_REVALUE",
+    "retrain": "original causal schedule only",
+    "new_features": false
+  },
+  "factors": {
+    "S0": "ORIGINAL_FUSION",
+    "S1": "TOP2_CONTEXT_REVALUE",
+    "A0": "equal_0.5_0.5",
+    "A1": "MINVAR63_CAP25_75",
+    "T0": "IMMEDIATE",
+    "T1": "DELAY3_k_plus_2",
+    "P0": "V6_FAST_LOCK3",
+    "P1": "V6_BASE_diagnostic_only"
+  },
+  "arms": {
+    "B_BASE": {
+      "S": "S1",
+      "A": "A0",
+      "T": "T0",
+      "P": "P0",
+      "primary": "control"
+    },
+    "C_CANDIDATE": {
+      "S": "S1",
+      "A": "A1",
+      "T": "T1",
+      "P": "P0",
+      "primary": "challenger"
+    },
+    "D_SELECTION": {
+      "S": "S0",
+      "A": "A0",
+      "T": "T0",
+      "P": "P0"
+    },
+    "D_ALLOCATION": {
+      "S": "S1",
+      "A": "A1",
+      "T": "T0",
+      "P": "P0"
+    },
+    "D_TIMING": {
+      "S": "S1",
+      "A": "A0",
+      "T": "T1",
+      "P": "P0"
+    },
+    "D_PROTECTION": {
+      "S": "S1",
+      "A": "A0",
+      "T": "T0",
+      "P": "P1"
+    }
+  },
+  "primary_contrast": [
+    "C_CANDIDATE",
+    "B_BASE"
+  ],
+  "predeclared_controls": {
+    "fees": [
+      0.001,
+      0.003
+    ],
+    "stop_friction": [
+      0.001,
+      0.005
+    ],
+    "dd_tolerance_pp": 3,
+    "paired_bootstrap_seed": 100112,
+    "first_prospective_signal": "First eligible monthly signal strictly after 2026-11-12",
+    "bridge_window": "2026-07 to 2026-10: retrospective only",
+    "prospective_min_initial_review_matured_months": 12,
+    "review_matured_months": [
+      12,
+      24,
+      36
+    ]
+  },
+  "data_gates": [
+    "frozen_source_parity",
+    "no_lookahead",
+    "eligible_universe_PIT",
+    "observed_OHLC_quote_masks",
+    "corporate_actions_fx_dividends",
+    "simulated_vs_executable_fills_separation",
+    "timestamped_signal_hash_pre_outcome",
+    "account_state_consistency"
+  ],
+  "excluded_from_promotion": [
+    "OLC98 reordered rankers",
+    "OLC99A",
+    "OLC99B",
+    "OLC99C",
+    "adaptive futures/short positions as tradable assets"
+  ],
+  "forward_results_available": false,
+  "live_trading_authorized": false
+}
