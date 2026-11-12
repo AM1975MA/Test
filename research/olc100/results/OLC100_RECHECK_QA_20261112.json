@@ -1,0 +1,57 @@
+{
+  "workflow_run": 43317078803,
+  "status": "SOURCE_INTEGRITY_PASS_PRICE_GEOMETRY_FAIL",
+  "snapshot_date": "2026-11-12",
+  "checksums": {
+    "tested": 630,
+    "passed": 630
+  },
+  "coverage": {
+    "etf": 314,
+    "EU": 165,
+    "USA": 149
+  },
+  "persisted_files": {
+    "quotes": 314,
+    "overlap": 314
+  },
+  "bar_counts": {
+    "post_anchor": 29845,
+    "overlap": 2677,
+    "total": 32522
+  },
+  "invalid_bars": {
+    "post_anchor": 79,
+    "overlap": 4,
+    "total": 83,
+    "series": 15,
+    "EU_total": 75,
+    "USA_total": 8,
+    "overlap_issues": [
+      {
+        "market": "EU",
+        "ticker": "BEL.BR",
+        "date": "2026-06-24"
+      },
+      {
+        "market": "EU",
+        "ticker": "BEL.BR",
+        "date": "2026-06-26"
+      },
+      {
+        "market": "EU",
+        "ticker": "ISFA.AS",
+        "date": "2026-06-19"
+      },
+      {
+        "market": "EU",
+        "ticker": "LYXIB.MC",
+        "date": "2026-06-19"
+      }
+    ],
+    "USA_lastdate_bad": 8
+  },
+  "checksum_scope": "manifest includes all 628 OHLC CSVs, COVERAGE.csv, SUMMARY.json",
+  "new_top2_generated": false,
+  "next_gate": "FIRST_STAGE_FROZEN_MODEL_REPRODUCTION_AND_PRICE_GEOMETRY"
+}

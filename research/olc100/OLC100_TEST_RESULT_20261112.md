@@ -20,6 +20,16 @@ Fra le 79 barre nuove segnalate: **27** presentano una violazione superiore a **
 
 È stata predisposta una correzione nel downloader di ricerca OLC100 che registra separatamente anomalie di *overlap* e *post-anchor*, e conserva l'OHLC originale del tratto di sovrapposizione come file autonomi. **Cinque test locali superati**. I modelli, i parametri del ranker, OLC19, OLC67 e il ramo principale restano invariati.
 
+## GitHub Action ripetuta con la correzione — 12 novembre 2026
+
+- Run **43317078803**: https://github.com/AM1975MA/Test/actions/runs/43317078803. Acquisizione conclusa, artifact diagnostico conservato. Il job ha volutamente restituito `failure` poiché la geometria OHLC di 15 ETF non è convalidata.
+- **314/314** ETF riacquisiti, **314 serie post-anchor** e **314 serie overlap** archiviate separatamente; **630/630 SHA256** verificati autonomamente.
+- **29.845 barre nuove + 2.677 barre overlap**, 32.522 righe totali nei due pannelli. La riconciliazione **79 post-anchor + 4 overlap = 83** è ora verificata file per file.
+- Le quattro barre overlap ora verificabili nei CSV sono: BEL.BR (2026-06-24 e 2026-06-26), ISFA.AS (2026-06-19), LYXIB.MC (2026-06-19).
+- In una fonte con High/Low non coerenti con Open/Close, il fill dello stop non è certificabile: **SOURCE_INTEGRITY_PASS_PRICE_GEOMETRY_FAIL**. Nessun Top2, simulazione o ordine è stato emesso.
+
+`OLC100_RECHECK_QA_20261112.json` contiene la riconciliazione ripetuta e gli hash; `OLC100_CAPTURE_RECHECK_20261112.zip` conserva lo snapshot grezzo.
+
 ## Esito e condizione per il prossimo segnale
 
 **OLC100 nuovo Top2: NON DISPONIBILE / BLOCCATO.** Non è un esito negativo di rendimento: manca il requisito di generazione autentica dei forecast e la continuazione dello stato di portafoglio V6/FAST_LOCK3. Il calendario del segnale di fine novembre non è ancora maturato al 12 novembre.
