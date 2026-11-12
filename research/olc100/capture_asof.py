@@ -41,7 +41,7 @@ def validate_local_source():
  assert set(a.date)==set(pd.date_range(START,ANCHOR,freq='B').strftime('%Y-%m-%d')) or len(set(a.date))>=8
  return u,a
 
-def clean_download(df):
+def clean_download(df,strict=True):
  """yfinance raw OHLC plus adjusted ratios; preserve original raw OHLC."""
  if isinstance(df.columns,pd.MultiIndex):df.columns=df.columns.get_level_values(0)
  missing={'Open','High','Low','Close','Adj Close','Volume'}-set(df.columns)
@@ -56,8 +56,15 @@ def clean_download(df):
  out=out.apply(pd.to_numeric,errors='coerce').dropna()
  if out.empty or (out[['Open','High','Low','Close','Adj Close']]<=0).any().any() or (out.Volume<0).any():
   raise ValueError('invalid OHLCV or adjusted close')
- if (out.Low>out[['Open','Close']].min(axis=1)*1.000001).any():raise ValueError('raw OHLC Low>Open/Close')
- if (out.High<out[['Open','Close']].max(axis=1)*.999999).any():raise ValueError('raw OHLC High<Open/Close')
+ lo_invalid=out['Low']>out[['Open','Close']].min(axis=1)*1.000001
+ hi_invalid=out['High']<out[['Open','Close']].max(axis=1)*.999999
+ if strict and (lo_invalid.any() or hi_invalid.any()):
+  raise ValueError('raw OHLC geometry inconsistent')
+ # Preserve EVERY original provider bar; downstream engine must not use bars
+ # with this flag until independently repaired/certified. No silent clamping.
+ out['raw_ohlc_invalid']=(lo_invalid|hi_invalid).astype(int)
+ out['raw_low_invalid']=lo_invalid.astype(int)
+ out['raw_high_invalid']=hi_invalid.astype(int)
  ratio=out['Adj Close']/out.Close
  if (ratio<=0).any() or not np.isfinite(ratio).all():raise ValueError('adjustment ratio invalid')
  for col in ['Open','High','Low','Close']:
@@ -85,9 +92,10 @@ def download_one(market,ticker,anchor,asof,out):
  for attempt in range(3):
   try:
    # Explicit end-exclusive cutoff; future timestamps rejected below.
-   df=yf.download(ticker,start=START,end=(asof+timedelta(days=1)).isoformat(),auto_adjust=False,
-                  actions=False,threads=False,progress=False,timeout=30)
-   q=clean_download(df)
+   # Ticker-local history avoids shared download cache races across tickers.
+   df=yf.Ticker(ticker).history(start=START,end=(asof+timedelta(days=1)).isoformat(),
+                                auto_adjust=False,actions=False,timeout=30)
+   q=clean_download(df,strict=False)
    if q.index[-1].date()>asof:raise ValueError('provider data after asof')
    a=align_original(q,anchor)
    new=q.loc[q.index>pd.Timestamp(ANCHOR)].copy()
@@ -99,8 +107,13 @@ def download_one(market,ticker,anchor,asof,out):
    tmp['bridge_scale_only']=a['scale_to_olc19']
    tmp.to_csv(out/outname,index=False,float_format='%.17g')
    late_days=(asof-new.index[-1].date()).days
-   status='OVERLAP_DRIFT' if a['overlap_warning'] else ('STALE' if late_days>4 else 'OK')
-   return dict(market=market,ticker=ticker,status=status,first_date=str(new.index[0].date()),
+   invalid_n=int(q['raw_ohlc_invalid'].sum())
+   last_invalid=str(q.index[q['raw_ohlc_invalid'].astype(bool)].max().date()) if invalid_n else None
+   status=('OHLC_ANOMALY' if invalid_n else
+           'OVERLAP_DRIFT' if a['overlap_warning'] else
+           'STALE' if late_days>4 else 'OK')
+   return dict(market=market,ticker=ticker,status=status,raw_ohlc_invalid_rows=invalid_n,
+         last_invalid_date=last_invalid,first_date=str(new.index[0].date()),
          last_date=str(new.index[-1].date()),late_calendar_days=late_days,n_sessions=len(new),file=outname,
          sha256=digest(out/outname),**a)
   except Exception as e:
@@ -126,10 +139,11 @@ def capture(asof,out,max_workers,only=None):
  pd.DataFrame(seen).to_csv(out/'COVERAGE.csv',index=False)
  counts=pd.DataFrame(seen).groupby(['market','status']).size().unstack(fill_value=0).to_dict('index')
  all_ok=(len(seen)==sum(EXPECTED.values()) and all(r['status']=='OK' for r in seen))
+ downloaded=sum('file' in r for r in seen)
  status='SOURCE_QA_PASS' if all_ok else 'SOURCE_QA_INCOMPLETE'
  manifest=dict(schema='OLC100_SOURCE_CAPTURE_V1',status=status,asof=str(asof),captured_at_utc=now.isoformat(),
              completed_at_utc=datetime.now(timezone.utc).isoformat(),markets=counts,requested_count=len(candidates),
-             original_universe=EXPECTED,source_archive_sha256=json.loads((DATA/'SOURCE_MANIFEST.json').read_text())['source_sha256'],
+             original_universe=EXPECTED,downloaded_count=downloaded,download_coverage=f'{downloaded}/{sum(EXPECTED.values())}',source_archive_sha256=json.loads((DATA/'SOURCE_MANIFEST.json').read_text())['source_sha256'],
              cutoff_policy='no data after asof; yfinance revision as of capture; provider raw preserved; bridge comparison only',
              status_note='This archive is NOT an OLC19 signal, order, V6 state or validated prospective backtest',
              trading_authorized=False,score_generation_attempted=False,comparison_eligible=False,
@@ -139,7 +153,7 @@ def capture(asof,out,max_workers,only=None):
  with (out/'SUMMARY.json').open('w') as f:json.dump(manifest,f,indent=2,sort_keys=True)
  hashes={p.relative_to(out).as_posix():digest(p) for p in out.rglob('*') if p.is_file() and p.name!='SHA256SUMS.json'}
  (out/'SHA256SUMS.json').write_text(json.dumps(hashes,indent=2,sort_keys=True)+'\n')
- print('OLC100_CAPTURE_RESULT',json.dumps({k:manifest[k] for k in ['status','asof','requested_count','markets']},sort_keys=True),flush=True)
+ print('OLC100_CAPTURE_RESULT',json.dumps({k:manifest[k] for k in ['status','asof','requested_count','download_coverage','markets']},sort_keys=True),flush=True)
  return status
 
 def main():
