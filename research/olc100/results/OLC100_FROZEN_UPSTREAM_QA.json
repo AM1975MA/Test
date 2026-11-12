@@ -1,0 +1,211 @@
+{
+  "status": "FROZEN_UPSTREAM_HISTORICAL_PARITY_PASS__FORWARD_RETROSPECTIVE_RESEARCH_ONLY",
+  "date": "2026-11-12",
+  "upstream": {
+    "status": "HISTORICAL_MODEL_PARITY_PASS__FORWARD_RESEARCH_ONLY",
+    "historical": [
+      {
+        "market": "EU",
+        "months_reproduced": 6,
+        "max_smooth_error": 0.0,
+        "max_fusion_error": 0.0,
+        "all_pairs_identical": true,
+        "benchmark_context_error": 1.8318679906315083e-15,
+        "five_head_rank_errors": {
+          "C21": 2.220446049250313e-16,
+          "C42": 2.220446049250313e-16,
+          "C63": 2.220446049250313e-16
+        }
+      },
+      {
+        "market": "USA",
+        "months_reproduced": 6,
+        "max_smooth_error": 0.0,
+        "max_fusion_error": 0.0,
+        "all_pairs_identical": true,
+        "benchmark_context_error": 1.9595436384634013e-14,
+        "five_head_rank_errors": {
+          "C21": 2.220446049250313e-16,
+          "C42": 2.220446049250313e-16,
+          "C63": 2.220446049250313e-16
+        }
+      }
+    ],
+    "forward": [
+      {
+        "market": "EU",
+        "signal_date": "2026-07-31",
+        "ticker1": "VVSM.DE",
+        "ticker2": "IBCJ.DE",
+        "score1": 0.9243413784227481,
+        "score2": 0.911107676109691,
+        "beta21": 0.23687612057141624,
+        "beta42": 0.5627438837002088,
+        "beta63": 0.20037999572837503,
+        "price_qa": "UNRESOLVED_79_ANOMALOUS_BARS",
+        "execution_qa": "NOT_CERTIFIED",
+        "prospective": "NO_RETROSPECTIVE_2026H2"
+      },
+      {
+        "market": "EU",
+        "signal_date": "2026-08-31",
+        "ticker1": "VVSM.DE",
+        "ticker2": "EXV3.DE",
+        "score1": 0.9749917448711208,
+        "score2": 0.9588037200546827,
+        "beta21": 0.23600092685192225,
+        "beta42": 0.594107839981673,
+        "beta63": 0.1698912331664047,
+        "price_qa": "UNRESOLVED_79_ANOMALOUS_BARS",
+        "execution_qa": "NOT_CERTIFIED",
+        "prospective": "NO_RETROSPECTIVE_2026H2"
+      },
+      {
+        "market": "EU",
+        "signal_date": "2026-09-30",
+        "ticker1": "VVSM.DE",
+        "ticker2": "LBRE.DE",
+        "score1": 0.9619576912600288,
+        "score2": 0.922683934625673,
+        "beta21": 0.5992881290128681,
+        "beta42": 0.25474749266785757,
+        "beta63": 0.1459643783192743,
+        "price_qa": "UNRESOLVED_79_ANOMALOUS_BARS",
+        "execution_qa": "NOT_CERTIFIED",
+        "prospective": "NO_RETROSPECTIVE_2026H2"
+      },
+      {
+        "market": "EU",
+        "signal_date": "2026-10-30",
+        "ticker1": "EXV6.DE",
+        "ticker2": "LBRE.DE",
+        "score1": 0.9785541382207544,
+        "score2": 0.9584314047789158,
+        "beta21": 0.618983634422442,
+        "beta42": 0.2270943829215418,
+        "beta63": 0.1539219826560163,
+        "price_qa": "UNRESOLVED_79_ANOMALOUS_BARS",
+        "execution_qa": "NOT_CERTIFIED",
+        "prospective": "NO_RETROSPECTIVE_2026H2"
+      },
+      {
+        "market": "USA",
+        "signal_date": "2026-07-31",
+        "ticker1": "BNO",
+        "ticker2": "USO",
+        "score1": 0.976616019878175,
+        "score2": 0.9566960395281339,
+        "beta21": 0.7295880993175827,
+        "beta42": 0.1629829995479867,
+        "beta63": 0.10742890113443054,
+        "price_qa": "UNRESOLVED_79_ANOMALOUS_BARS",
+        "execution_qa": "NOT_CERTIFIED",
+        "prospective": "NO_RETROSPECTIVE_2026H2"
+      },
+      {
+        "market": "USA",
+        "signal_date": "2026-08-31",
+        "ticker1": "PPLT",
+        "ticker2": "SLV",
+        "score1": 0.9422295363229258,
+        "score2": 0.9413738127777115,
+        "beta21": 0.530413145096204,
+        "beta42": 0.3077719744762119,
+        "beta63": 0.16181488042758407,
+        "price_qa": "UNRESOLVED_79_ANOMALOUS_BARS",
+        "execution_qa": "NOT_CERTIFIED",
+        "prospective": "NO_RETROSPECTIVE_2026H2"
+      },
+      {
+        "market": "USA",
+        "signal_date": "2026-09-30",
+        "ticker1": "TAN",
+        "ticker2": "ICLN",
+        "score1": 0.9309359398418677,
+        "score2": 0.9079342054631852,
+        "beta21": 0.5644612428405006,
+        "beta42": 0.2593325808839815,
+        "beta63": 0.17620617627551802,
+        "price_qa": "UNRESOLVED_79_ANOMALOUS_BARS",
+        "execution_qa": "NOT_CERTIFIED",
+        "prospective": "NO_RETROSPECTIVE_2026H2"
+      },
+      {
+        "market": "USA",
+        "signal_date": "2026-10-30",
+        "ticker1": "SLV",
+        "ticker2": "URA",
+        "score1": 0.9279757298246123,
+        "score2": 0.8966935601152763,
+        "beta21": 0.7077774796413534,
+        "beta42": 0.17298212473921182,
+        "beta63": 0.11924039561943467,
+        "price_qa": "UNRESOLVED_79_ANOMALOUS_BARS",
+        "execution_qa": "NOT_CERTIFIED",
+        "prospective": "NO_RETROSPECTIVE_2026H2"
+      }
+    ],
+    "cutoff": "2026-11-12",
+    "no_fitting": true,
+    "new_signal_dates": []
+  },
+  "original_fusion_parity": {
+    "status": "PASS",
+    "checks": [
+      {
+        "market": "EU",
+        "n_hist_rows": 988,
+        "max_smooth_err": 2.220446049250313e-16,
+        "max_fusion_err": 2.220446049250313e-16
+      },
+      {
+        "market": "USA",
+        "n_hist_rows": 894,
+        "max_smooth_err": 4.440892098500626e-16,
+        "max_fusion_err": 2.220446049250313e-16
+      }
+    ]
+  },
+  "olc14_heads_status": "PASS",
+  "original_olc11_regression": {
+    "status": "PASS",
+    "market_checks": [
+      {
+        "market": "EU",
+        "historical_rows": 984,
+        "ET_raw_error": 0.0,
+        "XGB_raw_error": 4.832400007925841e-08,
+        "current_score_error": 0.0012195121951219523,
+        "new_dates": [
+          "2026-07-31",
+          "2026-08-31",
+          "2026-09-30",
+          "2026-10-30"
+        ]
+      },
+      {
+        "market": "USA",
+        "historical_rows": 894,
+        "ET_raw_error": 0.0,
+        "XGB_raw_error": 4.9937794899257426e-08,
+        "current_score_error": 0.0,
+        "new_dates": [
+          "2026-07-31",
+          "2026-08-31",
+          "2026-09-30",
+          "2026-10-30"
+        ]
+      }
+    ]
+  },
+  "new_months": 4,
+  "markets": 2,
+  "new_top2_events": 8,
+  "matured_price_only_intervals_per_market": 3,
+  "no_native_V6_portfolio_replay": true,
+  "no_live_trades": true,
+  "no_genuine_prospective_OOS": true,
+  "price_geometry_invalid_unresolved_bars": 79,
+  "price_geometry_invalid_overlap_bars": 4,
+  "selection_consistency_test": true
+}
