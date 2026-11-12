@@ -1,0 +1,53 @@
+name: OLC100 frozen source snapshot EU165 USA149 (NO TRADES)
+on:
+  push:
+    branches:
+      - research/olc100-forward-freeze-20261112
+    paths:
+      - '.github/workflows/olc100-source-capture.yml'
+      - 'research/olc100/capture_asof.py'
+      - 'research/olc100/test_capture.py'
+      - 'research/olc100/data/**'
+  workflow_dispatch:
+    inputs:
+      asof:
+        description: 'Final completed market date in YYYY-MM-DD; no future date allowed'
+        required: true
+        type: string
+        default: '2026-11-12'
+permissions:
+  contents: read
+concurrency:
+  group: olc100-capture-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      ASOF: ${{ inputs.asof || '2026-11-12' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen downloader stack
+        run: |
+          python -m pip install 'numpy==2.2.6' 'pandas==2.2.3' 'yfinance==0.2.66'
+      - name: Verify source hashes and local offline tests
+        run: |
+          cd research/olc100
+          python -m unittest test_capture -v
+      - name: Acquire and audit provider OHLCV to locked OLC19 anchor
+        run: |
+          python research/olc100/capture_asof.py --asof "$ASOF" --out olc100_capture_data --max-workers 3
+      - name: Preserve raw and diagnosis even when a ticker fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olc100-source-only-${{ github.run_id }}
+          path: olc100_capture_data/
+          retention-days: 60
+          if-no-files-found: warn
