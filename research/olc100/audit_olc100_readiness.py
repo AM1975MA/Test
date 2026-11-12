@@ -58,6 +58,23 @@ def main():
                    'source_frozen_ticker_count':len(tick)}
    assert len(coverage[coverage.market.eq(market)])==expect
    assert len(model_files)>0
+  # Independently regenerate fixed 2026 contextual simplex weights from JSON.
+  model=json.loads(z.read(OLC16+'models/2026_TOP2_CONTEXT.json'))
+  trace=pd.read_csv(io.BytesIO(z.read(OLC16+'results/PARAMETER_TRACE.csv')))
+  gate=pd.read_csv(io.BytesIO(z.read(OLC16+'inputs/GATE_PANEL.csv')))
+  beta_err=[];n_context=0
+  sc=model['scaler'];theta=np.array(model['theta'],float);prior=np.array([.45,.35,.20])
+  for a in gate[gate.date.str.startswith('2026-')].itertuples(index=False):
+   x=np.array([a.trend126,a.vol_ratio,a.leadership],float)
+   x=np.where(np.isfinite(x),x,np.array(sc['median']))
+   vec=np.r_[1,np.clip((x-np.array(sc['mean']))/np.array(sc['sd']),-3,3)]
+   logits=theta@vec+np.log(prior[:2]/prior[2]);pvec=np.r_[logits,0.0]
+   beta=np.exp(pvec-np.max(pvec));beta/=beta.sum()
+   match=trace[(trace.market==a.market)&(trace.date==a.date)&(trace.variant=='TOP2_CONTEXT')]
+   assert len(match)==1
+   ref=match[['beta21','beta42','beta63']].iloc[0].to_numpy(float)
+   beta_err.append(float(np.max(np.abs(beta-ref))));n_context+=1
+  assert n_context==12 and max(beta_err)<1e-12
   invalids=[];allrows=0;months={};time_hist={}
   for row in coverage.itertuples(index=False):
    f=pd.read_csv(io.BytesIO(q.read('quotes/'+row.file)))
@@ -95,6 +112,7 @@ def main():
     '2026_pair_context_model_present':OLC16+'models/2026_PAIR_CONTEXT.json' in z.namelist(),
     'serialized_first_stage_ET_XGB_in_checkpoint':len([name for name in z.namelist() if name.endswith(('.ubj','.joblib','.onnx','.bin','.pkl')) and 'EU_Close.pkl' not in name])>0,
     'last_signal':last_events,'historical_selection_parity':parity,'market_detail':counts,
+    '2026_context_beta_recomputation':{'tested':n_context,'passed':n_context,'max_abs_error':max(beta_err)},
     'missing_new_model_outputs':['EU_RETURN125','EU_ET_XGB_HYBRID42','USA_RETURN125','USA_ET_XGB_HYBRID42',
       'EU_NEW_CONTEXTUAL_FUSION','USA_NEW_CONTEXTUAL_FUSION','EU_USA_V6_FAST_LOCK3_CARRIED_ACCOUNT']},
    'quotes':{'download_count':len(coverage),'rows':allrows,'market_rows':{m:int(coverage[coverage.market==m].n_sessions.sum()) for m in ['EU','USA']},

@@ -46,6 +46,11 @@
         "source_frozen_ticker_count": 149
       }
     },
+    "2026_context_beta_recomputation": {
+      "tested": 12,
+      "passed": 12,
+      "max_abs_error": 1.6653345369377348e-16
+    },
     "missing_new_model_outputs": [
       "EU_RETURN125",
       "EU_ET_XGB_HYBRID42",
