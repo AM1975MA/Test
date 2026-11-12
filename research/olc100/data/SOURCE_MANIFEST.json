@@ -1,0 +1,16 @@
+{
+  "anchor_rows_by_market": {
+    "EU": 1485,
+    "USA": 1192
+  },
+  "files": {
+    "OLC19_ANCHOR_O_L_C.csv": "ab5ce38dde7e20a92c28f04ebb6daeb2707f1c7ec35fa1da292f4acba2dc95b8",
+    "OLC19_UNIVERSE.csv": "4b25e6230363abf917d6e5c7627e1383510fa643a1a25b3c80ecf4920d1f0794"
+  },
+  "source": "OLC19_Rischio_Rientro_Checkpoint_20261102.zip",
+  "source_sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+  "universe_count_by_market": {
+    "EU": 165,
+    "USA": 149
+  }
+}
