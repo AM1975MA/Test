@@ -1,0 +1,24 @@
+name: OLC94 - EU ETF descriptive metadata (Yahoo)
+on:
+  push:
+    branches: [research/olc94-eu-metadata]
+    paths: ['.github/workflows/olc94-eu-metadata.yml', 'research/olc94/**']
+permissions:
+  contents: read
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install "yfinance>=0.2.65,<2"
+      - run: python research/olc94/fetch_names.py
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: olc94-eu-etf-metadata
+          path: research/olc94/metadata_output
+          retention-days: 7
