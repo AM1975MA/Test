@@ -86,6 +86,14 @@ def align_original(q,anchor):
              original_anchor_close=oldclose,provider_anchor_adjusted_close=newclose,
              overlap_warning=bool(float(drift.max())>MAX_DRIFT))
 
+def scope_invalid_counts(q):
+ """Return disjoint full/overlap/new OHLC-flag counts, no price replacement."""
+ invalid=q['raw_ohlc_invalid'].astype(bool)
+ past=q.index<=pd.Timestamp(ANCHOR)
+ total=int(invalid.sum());overlap=int(invalid[past].sum());post=int(invalid[~past].sum())
+ assert total==overlap+post
+ return total,overlap,post
+
 def download_one(market,ticker,anchor,asof,out):
  import yfinance as yf
  trouble=None
@@ -106,13 +114,25 @@ def download_one(market,ticker,anchor,asof,out):
    tmp['market']=market;tmp['ticker']=ticker
    tmp['bridge_scale_only']=a['scale_to_olc19']
    tmp.to_csv(out/outname,index=False,float_format='%.17g')
+   # The original-OLC19 overlap is saved separately: it is NOT appended to
+   # the out-of-time quote dataset, but every anomalous input is auditable.
+   previous=q.loc[q.index<=pd.Timestamp(ANCHOR)].reset_index()
+   previous['date']=previous.date.dt.strftime('%Y-%m-%d')
+   previous['market']=market;previous['ticker']=ticker
+   previous['bridge_scale_only']=a['scale_to_olc19']
+   overlap_dir=out.parent/'overlap';overlap_dir.mkdir(exist_ok=True)
+   previous.to_csv(overlap_dir/outname,index=False,float_format='%.17g')
    late_days=(asof-new.index[-1].date()).days
-   invalid_n=int(q['raw_ohlc_invalid'].sum())
+   invalid_n,invalid_overlap,invalid_post=scope_invalid_counts(q)
+   assert invalid_post==int(new.raw_ohlc_invalid.sum())
+   assert invalid_overlap==int(previous.raw_ohlc_invalid.sum())
    last_invalid=str(q.index[q['raw_ohlc_invalid'].astype(bool)].max().date()) if invalid_n else None
    status=('OHLC_ANOMALY' if invalid_n else
            'OVERLAP_DRIFT' if a['overlap_warning'] else
            'STALE' if late_days>4 else 'OK')
    return dict(market=market,ticker=ticker,status=status,raw_ohlc_invalid_rows=invalid_n,
+         raw_ohlc_invalid_rows_overlap=invalid_overlap,raw_ohlc_invalid_rows_post_anchor=invalid_post,
+         overlap_file=outname,overlap_sha256=digest(overlap_dir/outname),
          last_invalid_date=last_invalid,first_date=str(new.index[0].date()),
          last_date=str(new.index[-1].date()),late_calendar_days=late_days,n_sessions=len(new),file=outname,
          sha256=digest(out/outname),**a)
@@ -143,6 +163,10 @@ def capture(asof,out,max_workers,only=None):
  status='SOURCE_QA_PASS' if all_ok else 'SOURCE_QA_INCOMPLETE'
  manifest=dict(schema='OLC100_SOURCE_CAPTURE_V1',status=status,asof=str(asof),captured_at_utc=now.isoformat(),
              completed_at_utc=datetime.now(timezone.utc).isoformat(),markets=counts,requested_count=len(candidates),
+             count_scopes='raw_ohlc_invalid_rows = overlap + post_anchor; overlap archived separately',
+             raw_ohlc_invalid_rows_full=int(sum(x.get('raw_ohlc_invalid_rows',0) for x in seen)),
+             raw_ohlc_invalid_rows_post_anchor=int(sum(x.get('raw_ohlc_invalid_rows_post_anchor',0) for x in seen)),
+             raw_ohlc_invalid_rows_overlap=int(sum(x.get('raw_ohlc_invalid_rows_overlap',0) for x in seen)),
              original_universe=EXPECTED,downloaded_count=downloaded,download_coverage=f'{downloaded}/{sum(EXPECTED.values())}',source_archive_sha256=json.loads((DATA/'SOURCE_MANIFEST.json').read_text())['source_sha256'],
              cutoff_policy='no data after asof; yfinance revision as of capture; provider raw preserved; bridge comparison only',
              status_note='This archive is NOT an OLC19 signal, order, V6 state or validated prospective backtest',

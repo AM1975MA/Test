@@ -29,6 +29,11 @@ class FrozenCapture(unittest.TestCase):
   a.loc[0,'close']=50
   r2=C.align_original(q,a)
   self.assertTrue(r2['overlap_warning'])
+ def test_overlapping_flags_are_accounted_separately(self):
+  dates=pd.to_datetime(['2026-06-30','2026-07-01','2026-07-02','2026-07-03'])
+  flags=pd.DataFrame({'raw_ohlc_invalid':[1,0,1,0]},index=dates)
+  self.assertEqual(C.scope_invalid_counts(flags),(2,1,1))
+  self.assertEqual(C.scope_invalid_counts(flags.iloc[2:]),(1,0,1))
  def test_duplicate_source_is_fatal(self):
   p=Path(__file__).resolve().parent/'data/SOURCE_MANIFEST.json'
   self.assertTrue(p.exists())

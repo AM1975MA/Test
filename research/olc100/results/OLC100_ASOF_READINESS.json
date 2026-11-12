@@ -1,0 +1,138 @@
+{
+  "status": "BLOCKED_NOT_A_CERTIFIED_OLC19_SIGNAL",
+  "asof_snapshot": "2026-11-12",
+  "new_model_scores_generated": false,
+  "archives_verified": {
+    "olc19_sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+    "quote_checksums": "316/316"
+  },
+  "original_model": {
+    "2026_top2_context_model_present": true,
+    "2026_pair_context_model_present": true,
+    "serialized_first_stage_ET_XGB_in_checkpoint": false,
+    "last_signal": {
+      "EU": "2026-06-30",
+      "USA": "2026-06-30"
+    },
+    "historical_selection_parity": {
+      "EU": "90/90 exact frozen pair identities",
+      "USA": "90/90 exact frozen pair identities"
+    },
+    "market_detail": {
+      "EU": {
+        "score_rows": 13781,
+        "fitting_rows": 13781,
+        "frozen_event_count": 90,
+        "last_model_input_signal": "2026-06-30",
+        "last_native_session": "2026-07-01",
+        "last_original_pair": [
+          "LBRE.DE",
+          "EXV6.DE"
+        ],
+        "unique_scored_tickers_last_signal": 165,
+        "source_frozen_ticker_count": 167
+      },
+      "USA": {
+        "score_rows": 13410,
+        "fitting_rows": 13410,
+        "frozen_event_count": 90,
+        "last_model_input_signal": "2026-06-30",
+        "last_native_session": "2026-07-01",
+        "last_original_pair": [
+          "PPLT",
+          "PALL"
+        ],
+        "unique_scored_tickers_last_signal": 149,
+        "source_frozen_ticker_count": 149
+      }
+    },
+    "missing_new_model_outputs": [
+      "EU_RETURN125",
+      "EU_ET_XGB_HYBRID42",
+      "USA_RETURN125",
+      "USA_ET_XGB_HYBRID42",
+      "EU_NEW_CONTEXTUAL_FUSION",
+      "USA_NEW_CONTEXTUAL_FUSION",
+      "EU_USA_V6_FAST_LOCK3_CARRIED_ACCOUNT"
+    ]
+  },
+  "quotes": {
+    "download_count": 314,
+    "rows": 29845,
+    "market_rows": {
+      "EU": 15839,
+      "USA": 14006
+    },
+    "valid_series": 299,
+    "anomalous_series": 15,
+    "invalid_bars_persisted_post_anchor": 79,
+    "invalid_bars_reported_full_download": 83,
+    "invalid_bars_in_unpersisted_overlap": 4,
+    "count_discrepancy_cause": "Coverage counts whole provider download from 2026-06-19, saved quotes exclude <=2026-07-01; exact overlap anomalous records were not archived",
+    "invalid_bars_by_market": {
+      "EU": 71,
+      "USA": 8
+    },
+    "invalid_tickers_by_market": {
+      "EU": [
+        "BEL.BR",
+        "EM1015.MI",
+        "IMIB.MI",
+        "ISFA.AS",
+        "LYXIB.MC",
+        "TELE.PA",
+        "UTI.MI"
+      ],
+      "USA": [
+        "CORN",
+        "DGS",
+        "EPP",
+        "EWD",
+        "EWI",
+        "RWO",
+        "RWX",
+        "USL"
+      ]
+    },
+    "breach_bps_median": 7.2043,
+    "breach_bps_max": 103.8689,
+    "breaches_over_bps": {
+      "0.1": 79,
+      "1": 76,
+      "5": 48,
+      "10": 27,
+      "25": 7,
+      "50": 1,
+      "100": 1
+    },
+    "invalid_last_dates": {
+      "EU": "2026-11-11",
+      "USA": "2026-11-12"
+    },
+    "monthly_coverage": {
+      "EU": [
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-10",
+        "2026-11"
+      ],
+      "USA": [
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-10",
+        "2026-11"
+      ]
+    }
+  },
+  "remaining_certification": {
+    "universe_pit": "NOT CERTIFIED",
+    "usa_original_observed_mask": "NOT CERTIFIED",
+    "intraday_stop_fills": "NOT CERTIFIED",
+    "us_fx_dividends": "NOT CERTIFIED"
+  },
+  "forward_months_ever_generated": 0,
+  "portfolio_forward_cagr": null,
+  "next_action": "Locate/reproduce frozen first-stage model and training provenance. Require 2026-01..06 score parity, then generate 2026-07..10 inputs on as-of snapshots, reconcile OHLC, and only then replay account. Do not emit a Top2 or performance before all gates pass."
+}
