@@ -1,0 +1,37 @@
+{
+  "status": "HISTORICAL_REPLAY_PASS_ONLY",
+  "forward_outcomes_scored": 0,
+  "forward_signals_after_2026_07_01": 0,
+  "prospective_oos_claim": false,
+  "historical_last_open": "2026-07-01",
+  "n_full_native_replays": 48,
+  "reference_parity": {
+    "EU_B_BASE": "7/7 exact",
+    "EU_D_SELECTION": "7/7 exact",
+    "USA_B_BASE": "7/7 exact",
+    "USA_D_SELECTION": "7/7 exact"
+  },
+  "olc67_matched_scorecard": "PASS",
+  "independent_minvar_reconstruction": {
+    "EU": {
+      "events": 90,
+      "max_abs_error": 5.551115123125783e-17,
+      "fallback_50_50_count": 4,
+      "missing_lookback_events": 4
+    },
+    "USA": {
+      "events": 90,
+      "max_abs_error": 5.551115123125783e-17,
+      "fallback_50_50_count": 4,
+      "missing_lookback_events": 4
+    }
+  },
+  "archives_sha256_verified": {
+    "OLC19_Rischio_Rientro_Checkpoint_20261102.zip": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+    "OLC56_TESTS_20261106_VERIFICATI.zip": "f22b92a5c4b5024d6f8afef6504b794e1f46ff53ffa87adfaa8f3a2e0e3e2573",
+    "OLC67_Strategia_ETF_Verificata.zip": "dbfb2cec587fa7b1a118209856d474236707692b6f7ed68fa99c1c27df9661c4",
+    "OLC98_Model_Review_Completa_20261112_VERIFICATO.zip": "85a38f82946186cdc393982542cb012818f85f33a42489db7f17e5cbb002fa83",
+    "OLC99_Economic_Top10_Allocazione_20261112_VERIFICATO.zip": "0659c1d91c233851b2380f54f442a376704308e07a5d026cf1f3b38d8c768672"
+  },
+  "attention": "2019--July 2026 extensively researched: NO OOS inference. USA observed mask missing in native q; EU has 167 price columns including non-eligible auxiliaries. No certified new signals or EU prices."
+}
