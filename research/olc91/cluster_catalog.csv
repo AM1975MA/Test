@@ -1,0 +1,16 @@
+cluster,etf_examples,yahoo_tickers,usage_note
+GAS,UNG,NG=F,Futures continuo gas; UNG segue scadenze e roll specifici
+WTI,USO;USL;DBO,CL=F,Non replica roll USO o paniere USL o optimum yield DBO
+BRENT,BNO,BZ=F,Verificare contratto e roll ICE per BNO
+GOLD,GLD;IAU;GDX;GDXJ,GC=F,Fattore oro; minatori hanno ulteriore beta azionario
+PALLADIUM,PALL,PA=F,Futures fattore non rendimento ETF fisico
+PLATINUM,PPLT,PL=F,Futures fattore non rendimento ETF fisico
+CORN,CORN,ZC=F,CORN detiene piu scadenze
+COMMODITY_BASKET,GSG,CL=F;NG=F;GC=F;HG=F;ZC=F;ZS=F,Proxy fattoriale solo non replica pesi del fondo
+SEMICONDUCTORS,SOXX;SMH;XLK;IGV,NQ=F,Nasdaq100 fattore azionario ampio
+US_EQUITY,IYT;ITA;IYR;VNQ;IWF,ES=F,Futures S&P500 non sostituisce indice settoriale
+US_SMALL_CAP,XBI;KRE;KBE;XRT;IWN,RTY=F,Fattore small-cap non settore
+LONG_DURATION,EDV,ZN=F;ZB=F,Duration futures diversa da EDV
+URANIUM,URA,,Nessun futures rappresentativo validato
+COUNTRY_EQUITY,ARGT;TUR;EWN;EWZ;EZA;KWEB,,Richiede FX-paese settore point-in-time
+SOLAR,TAN;ICLN,NQ=F,Solo beta tecnologico ampio
