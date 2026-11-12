@@ -144,13 +144,14 @@ def capture(asof,out,max_workers,only=None):
 
 def main():
  ap=argparse.ArgumentParser()
- ap.add_argument('--asof',required=True)
+ ap.add_argument('--asof',required=True,help='YYYY-MM-DD or auto (current UTC date, never future)')
  ap.add_argument('--out',required=True)
  ap.add_argument('--max-workers',type=int,default=3)
  ap.add_argument('--preview-only',action='store_true',help='validate frozen source metadata; no network')
  args=ap.parse_args()
  if args.preview_only:
   u,a=validate_local_source();print('OLC100_FROZEN_UNIVERSE_PASS',u.groupby('market').size().to_dict(),len(a));return
- status=capture(date.fromisoformat(args.asof),Path(args.out),args.max_workers)
+ asof=datetime.now(timezone.utc).date() if args.asof=='auto' else date.fromisoformat(args.asof)
+ status=capture(asof,Path(args.out),args.max_workers)
  if status!='SOURCE_QA_PASS':raise SystemExit(2)
 if __name__=='__main__':main()
