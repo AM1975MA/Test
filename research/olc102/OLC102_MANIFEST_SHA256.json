@@ -1,0 +1,172 @@
+{
+  "project": "OLC102_TRUE_DAILY_FROZEN_ML",
+  "date": "2026-11-13",
+  "status": "VALID_REPLAY_HISTORICAL_NOT_PROSPECTIVE",
+  "n_paths": 76,
+  "markets": [
+    "EU",
+    "USA"
+  ],
+  "native_metrics": "CAGR_252, MaxDD",
+  "provenance": {
+    "OLC19_Rischio_Rientro_Checkpoint_20261102.zip": {
+      "sha256": "3b5799dae060c104408f581c70280cef8ce4d84c3978434d4e6ba81108f16540",
+      "bytes": 165680538
+    },
+    "OLC07_Calendario_Risultati_20261101.zip": {
+      "sha256": "0e7494b173d769394900876ac1d3e6c45388294d1635dd63f8ccb4128322e2c8",
+      "bytes": 56403886
+    },
+    "OLC08_01_Pannelli_Verificati_20261101.zip": {
+      "sha256": "945faa5816aa627c398244d1b2a599fc2ba31f35fa6d789379264b0912d0be02",
+      "bytes": 108334629
+    },
+    "OLC08_02_Riferimenti_Riprodotti_20261101.zip": {
+      "sha256": "1ba0f0d3438fd2dca22349513efc32a469b29b6eb02ec0aa1dad3e2a51f05c95",
+      "bytes": 31356771
+    },
+    "OLC08_03_RSI_Confronto_Verificato_20261101.zip": {
+      "sha256": "0dbcb8ee93cd0acaefd7505a202fbf30c9fda8df1804d90a0dd1578abd704f4b",
+      "bytes": 7772336
+    },
+    "OLC11_02_Modelli_Verificati_20261101.zip": {
+      "sha256": "cf4117dabc66dbd0d9f672410759e69fc69c0077416a3b83b885b5a80a18d5a4",
+      "bytes": 111111856
+    },
+    "OLC14_Heads_Checkpoint_20261101.zip": {
+      "sha256": "a8f2c1770dfdd329676293788180b96a92f79a598d1394a0aaaeb5d91346e458",
+      "bytes": 364165692
+    },
+    "EU_Original39_RH50_Checkpoint_20261031.zip": {
+      "sha256": "826d2b03865e58317e6edb4aa920cc309d3fcfa164d3779499a648b1620b98b8",
+      "bytes": 194897871
+    }
+  },
+  "files": {
+    "OLC102/README.md": {
+      "sha256": "003f9115d95a4f08cce42ebee43dcdfbabefeed3ba36f7aba589decb892075b0",
+      "bytes": 1413
+    },
+    "OLC102/OLC102_REPORT_IT.md": {
+      "sha256": "4770623f26e84c70d17a3232938879da8116aa065077a2c7976bad05a50db8d0",
+      "bytes": 9574
+    },
+    "OLC102/build_daily_features.py": {
+      "sha256": "ac09fd2e9fddf79290b63e60fb23e0f3a1aad6e56912c834a221ebc377b18d4e",
+      "bytes": 10976
+    },
+    "OLC102/score_daily_models.py": {
+      "sha256": "c72682a18345061f44228a6caa59a29802fa967abe9a14b1b8758495a788664f",
+      "bytes": 7456
+    },
+    "OLC102/compose_daily_rank.py": {
+      "sha256": "b795ff8d1a6e3744b50df50e8d9bcfdea52d9e4df85274f4327c3afa07806b38",
+      "bytes": 7664
+    },
+    "OLC102/sim_backend.py": {
+      "sha256": "714786e72d20281973b08d8037999a37d4fe9894e1cf88bba975bc57597d671c",
+      "bytes": 12485
+    },
+    "OLC102/run_native_daily_rank.py": {
+      "sha256": "b81e8e85b7ddbaf4020254969220e4f9266a970aa6fe2fc53da7bf6dba5eec53",
+      "bytes": 7764
+    },
+    "OLC102/analyze_olc102.py": {
+      "sha256": "07f0c0c090e37eb033f0c03cfbc2935df63f130123fd5524756b7486c0be1a5a",
+      "bytes": 3177
+    },
+    "OLC102/make_report.py": {
+      "sha256": "0f934ac95a0b6e6f010ec3f94097efaeb74c2474462c0259e6963e628764892e",
+      "bytes": 13362
+    },
+    "OLC102/results/OLC102_SCORECARD.csv": {
+      "sha256": "7d3ae9e24d45c56ef3d9be448f229cb976edf4d4eb117920681b41f991be6d86",
+      "bytes": 12367
+    },
+    "OLC102/results/OLC102_DAILY.csv.gz": {
+      "sha256": "350a4fccfa0c601a3c435f500511c10574f7fdd383a307fdad81b513cf5c1399",
+      "bytes": 3184184
+    },
+    "OLC102/results/OLC102_MODEL_PREDICTIONS_DAILY.csv.gz": {
+      "sha256": "3a2ed8a7125fda1fd66b0d17087ec22277ffe00a2e2b8c14a1198037c875afa0",
+      "bytes": 4224097
+    },
+    "OLC102/results/OLC102_SELECTION_CHANGES.csv": {
+      "sha256": "942e835bd507a0863dd4de9ba13ccfae6add26ffb4772140e4e94b445ec0a48d",
+      "bytes": 131907
+    },
+    "OLC102/results/OLC102_SELECTION_SUMMARY.csv": {
+      "sha256": "0ee34ad2448ef0c28c6152321081c19f82f58cce042f693faefb48b6dc93179d",
+      "bytes": 457
+    },
+    "OLC102/results/OLC102_PAIRED_BLOCK6.csv": {
+      "sha256": "35b683bd059899bc83c99c4afdb3e8563782dc0d8b516f6e09b012394cccb088",
+      "bytes": 2989
+    },
+    "OLC102/results/OLC102_ANNUAL_RETURNS.csv": {
+      "sha256": "cb2bdc6904bd0e49ab8b515e77af62debd984190100e1d217988b94e555bb6c6",
+      "bytes": 16034
+    },
+    "OLC102/results/OLC102_FINAL_VALIDATION.json": {
+      "sha256": "17d8f1b4f0e20b7673f1ff52ffc247b3af604dea2e2b5034aed5b47aee2d9db3",
+      "bytes": 415
+    },
+    "OLC102/results/OLC102_NATIVE_QA.json": {
+      "sha256": "f02141f055b8b881187275d1a4e68ab9ec5ec544a844bc1b981fa97fd98b3300",
+      "bytes": 1005
+    },
+    "OLC102/results/OLC102_HEAD_RAW_PARITY_QA.json": {
+      "sha256": "72b70325edd4897d59f474466624185a0a7f127f0c3608a1c49ace73c6bd8897",
+      "bytes": 4628
+    },
+    "OLC102/results/OLC102_NAV_EU.png": {
+      "sha256": "4f8c3a35db06045f832cc4d774010b517245ff2432dc03539aa2eb6ee8b5e2af",
+      "bytes": 208486
+    },
+    "OLC102/results/OLC102_NAV_USA.png": {
+      "sha256": "3ea1f1b608312ad1d70ef7b9c571766b755cde5921ae72c295a2a4bd6ffaadab",
+      "bytes": 179881
+    },
+    "OLC102/results/EU_DAILY_FEATURE_QA.json": {
+      "sha256": "c1f5da63f8fcb123bb979c3e505bd1ff38537f6f7f60aaf1b7f0d3c9854b82f0",
+      "bytes": 423
+    },
+    "OLC102/results/USA_DAILY_FEATURE_QA.json": {
+      "sha256": "f3b25ba0f92f981f603ff6a3bafe26cde6140659754309d93b2d2a1c9a93bbb8",
+      "bytes": 424
+    },
+    "OLC102/results/EU_DAILY_SCORE_QA.json": {
+      "sha256": "1cbca1016d51db71d7d2d5747e963f58690385b83a36216b0ecb5111df2372da",
+      "bytes": 336
+    },
+    "OLC102/results/USA_DAILY_SCORE_QA.json": {
+      "sha256": "40624e55f0de8b1b225c010b90edd458b2f28c5990f098c746d546047551868f",
+      "bytes": 340
+    },
+    "OLC102/results/EU_DAILY_CONTEXT_QA.json": {
+      "sha256": "937a69c1ebe260351f96739c0a35a88d1ecc4ac0c8f65387f3d542871af25f2c",
+      "bytes": 484
+    },
+    "OLC102/results/USA_DAILY_CONTEXT_QA.json": {
+      "sha256": "af84fe708e7bdee1ecec11bb78ae687de1f72e86cb3c01387ba76583ed18f47b",
+      "bytes": 484
+    },
+    "OLC102/results/EU_DAILY_CONTEXTUAL_RANK.csv.gz": {
+      "sha256": "a4a4e3a7a97729814d86adf74d257eb050f52242c2162e04384641cc19d7e0f0",
+      "bytes": 996698
+    },
+    "OLC102/results/USA_DAILY_CONTEXTUAL_RANK.csv.gz": {
+      "sha256": "7dca7e40af9a57a154c4c236f6a2fd9ee82dfcc0d6fb9bd80d5d838f674cdf65",
+      "bytes": 902180
+    },
+    "OLC102/results/EU_EVENT_MAP.csv": {
+      "sha256": "6db534b36435f259267a723e3b744d907d775ed097f32c8f10efc72439ee5295",
+      "bytes": 10243
+    },
+    "OLC102/results/USA_EVENT_MAP.csv": {
+      "sha256": "9b9801b1d6e9d1d235b51dc6cd415cdf18d5dad396c5dcd7d25ab5a8a86db3f2",
+      "bytes": 10243
+    }
+  },
+  "original_model_checkpoints_not_redistributed": true
+}

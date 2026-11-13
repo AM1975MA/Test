@@ -1,0 +1,12 @@
+{
+  "status": "PASS_ACCOUNTING_PARITY_76_AND_HEAD_RAW_PARITY",
+  "verified_native_paths": 76,
+  "max_cagr_abs_diff": 1.7763568394002505e-15,
+  "max_maxdd_abs_diff": 1.5543122344752192e-15,
+  "all_monthly_top2_exact_eu": 90,
+  "all_monthly_top2_exact_usa": 90,
+  "source_baseline_bitwise_arrays_each_market": 7,
+  "n_decisions_each_market": 90,
+  "new_independent_holdout": false,
+  "trading_orders_placed": false
+}
