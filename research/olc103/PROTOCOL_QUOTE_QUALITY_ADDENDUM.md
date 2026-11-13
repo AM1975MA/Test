@@ -1,0 +1,3 @@
+# OLC103 — Addendum qualita' quotazioni (prima degli esiti predittivi)
+
+Il primo tentativo di costruzione del pannello ha rilevato nelle serie EU originali due date con osservabilita' inferiore al 65%: il segnale del 30 settembre 2019 e il segnale del 30 aprile 2020. Il controllo osservato per la coppia e' incompleto. Questi eventi sono mantenuti nella contabilita' nativa, ma esclusi come esiti dal fitting e dalla valutazione statistica del predittore. Le feature restano imputate **solo dal training**. USA: maschera quote osservate originali non disponibile, nessuna certificazione di genuina osservabilita'. Nessun dato price-label e' stato consultato per scegliere le esclusioni. Regola definita prima di misurare le metriche predittive.
