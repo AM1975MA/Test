@@ -1,0 +1,140 @@
+{
+  "id": "OLC103",
+  "date": "2026-11-13",
+  "protocol_registered_github_branch": "research/olc103-top2-stability-20261113",
+  "period": "2019-01 to 2026-07, retrospective/mined",
+  "native_paths": 48,
+  "n_signal_events": 178,
+  "quality_valid_EU": 87,
+  "quality_valid_USA": 89,
+  "model_predictive_n_EU": 62,
+  "model_predictive_n_USA": 64,
+  "external_dependency": "OLC19 frozen checkpoint incl original vectors; OLC102 frozen runtime + OLC102 daily ML source; full OLC19 archive too large and is kept in Library",
+  "files": [
+    {
+      "path": "PROTOCOL_PRE_RESULTS.md",
+      "sha256": "64c5c28bc11baab3a0ebc4fc16f311b11160ed2a5e6532318976ad33a3ebc4cb",
+      "size_bytes": 4974
+    },
+    {
+      "path": "PROTOCOL_QUOTE_QUALITY_ADDENDUM.md",
+      "sha256": "20489b5016110c0377e2dcd9fb743a1599a5bd17567d06be5a65de4274776c32",
+      "size_bytes": 748
+    },
+    {
+      "path": "PROTOCOL_EXECUTION_ADDENDUM.md",
+      "sha256": "e704c64be56d0496aa18602a41708da3867ad39fd15ddfd22c5fc11c39306fb2",
+      "size_bytes": 1287
+    },
+    {
+      "path": "OLC103_REPORT_IT.md",
+      "sha256": "78d2e6611b3abac4eab99526f948a45a2c0a09ff5737a2285773a4894577120f",
+      "size_bytes": 10272
+    },
+    {
+      "path": "README.md",
+      "sha256": "c079455f52a952ac2eafc42e4974062ac9d1167600942b547339b619d3f58ebf",
+      "size_bytes": 670
+    },
+    {
+      "path": "run_olc103.py",
+      "sha256": "021689ba48389dbfbba7cc90c34d9300311f27ada8ac1c0dfb2eea64d856f681",
+      "size_bytes": 15470
+    },
+    {
+      "path": "verify_olc103.py",
+      "sha256": "2f75ff6cf33362b90be0f16f8f5ac59d1bb5fabbb954ee343d0bf49bfe1934d1",
+      "size_bytes": 2930
+    },
+    {
+      "path": "make_report.py",
+      "sha256": "f25d1c266c18b0c0a8ce140561f139d4a96de27a7d7cad660a2e0630f0ff49c7",
+      "size_bytes": 14179
+    },
+    {
+      "path": "experiment.log",
+      "sha256": "d70553569e458728c9ec1abe2314ffafc86e6773cb761122e005501b35c4d20c",
+      "size_bytes": 1144
+    },
+    {
+      "path": "results/OLC103_DIAGNOSTIC_QA.json",
+      "sha256": "2f2d52b025ea6a504f872df0a9e89e70b9aaacd040d61c410d25e3da30984cf5",
+      "size_bytes": 6346
+    },
+    {
+      "path": "results/OLC103_INDEPENDENT_QA.json",
+      "sha256": "ed5133bdd0ec503083b69328fcd5e3fe5414c64499550f2eddff6b88b8a3add5",
+      "size_bytes": 1367
+    },
+    {
+      "path": "results/OLC103_NATIVE_DAILY.csv.gz",
+      "sha256": "81c884636ce3762245ded60c4ea85f754a8988832b033f4c21b59248f42b5362",
+      "size_bytes": 2002536
+    },
+    {
+      "path": "results/OLC103_NATIVE_MONTHLY.csv",
+      "sha256": "f83d52e1f16d110dc21cb33158ed95109c766e3268b13e06c23a56113d0f9063",
+      "size_bytes": 278644
+    },
+    {
+      "path": "results/OLC103_NATIVE_SCORECARD.csv",
+      "sha256": "02b10513df70a0bb45b8e5cae10b37429778540c12b5da2b4e68a57377017db2",
+      "size_bytes": 8681
+    },
+    {
+      "path": "results/OLC103_NAV_EU.png",
+      "sha256": "f7489de4c1f929d40750b01bd2d359128e12335395ef20ec1139078d524e20a7",
+      "size_bytes": 134042
+    },
+    {
+      "path": "results/OLC103_NAV_USA.png",
+      "sha256": "e5e7725f0d30ac093dbe55e51bea3f6b350eed6beecbd01ba26b8f96ccf0608e",
+      "size_bytes": 113540
+    },
+    {
+      "path": "results/OLC103_PAIRED_CI.csv",
+      "sha256": "d61bf39636de73820072b218f421f5930b39ddef0cec312aff6bc8bd8681664e",
+      "size_bytes": 4005
+    },
+    {
+      "path": "results/OLC103_PREQUENTIAL_PREDICTIONS.csv",
+      "sha256": "8d9ecaed7f6b20283470e2772bb9502273cef3435ce982e21d4f753cf16dea4d",
+      "size_bytes": 29631
+    },
+    {
+      "path": "results/EU_EVENT_STABILITY.csv",
+      "sha256": "237a8313ff59c3ec16889369838fd34a51b94bdeb9ef1eebe7824517559f3f48",
+      "size_bytes": 27609
+    },
+    {
+      "path": "results/EU_STEP_TOP2.csv",
+      "sha256": "a3f33c821534743c957164d9ff591b007d5a1a58cbb144c4be97194da9a4442e",
+      "size_bytes": 9899
+    },
+    {
+      "path": "results/USA_EVENT_STABILITY.csv",
+      "sha256": "f233ad74fc64aca5b85bd163829f5babac7c08f7f35738b6424458455ecc3718",
+      "size_bytes": 26410
+    },
+    {
+      "path": "results/USA_STEP_TOP2.csv",
+      "sha256": "f9dcfe879b94a35e47353f9fe99a9aff7ca60acfcebe1d9fcad0eb107a094f1e",
+      "size_bytes": 8193
+    },
+    {
+      "path": "source/OLC102_EU_DAILY_CONTEXTUAL_RANK.pkl",
+      "sha256": "6bcbe1d433a8d48939bcb0942532717191c149a1b7198c72f2f2560461567a55",
+      "size_bytes": 7250905
+    },
+    {
+      "path": "source/OLC102_USA_DAILY_CONTEXTUAL_RANK.pkl",
+      "sha256": "49a69abc0dff8fb019e2a3cb05f17f912d8636e30ad1096b1415533a44b6b557",
+      "size_bytes": 6536942
+    },
+    {
+      "path": "source/OLC102_SCORECARD.csv",
+      "sha256": "7d3ae9e24d45c56ef3d9be448f229cb976edf4d4eb117920681b41f991be6d86",
+      "size_bytes": 12367
+    }
+  ]
+}

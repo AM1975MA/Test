@@ -1,0 +1,37 @@
+{
+  "status": "PASS_FROZEN_REFERENCE_AND_48_NATIVE_INDEPENDENT_RECALCULATIONS",
+  "number_native_paths": 48,
+  "maximum_absolute_cagr_error": 1.3877787807814457e-16,
+  "maximum_absolute_maxdd_error": 2.7755575615628914e-16,
+  "predictive_data_source_quality": "EU 87/89 valid events; USA observed mask unavailable",
+  "historical_period_mined": true,
+  "original_top2_preserved": true,
+  "entry_after_third_close": "third opening after two close updates",
+  "all_liquid_policy_arms": "No new ETF selections",
+  "files": [
+    {
+      "path": "OLC103_DIAGNOSTIC_QA.json",
+      "sha256": "2f2d52b025ea6a504f872df0a9e89e70b9aaacd040d61c410d25e3da30984cf5"
+    },
+    {
+      "path": "OLC103_NATIVE_DAILY.csv.gz",
+      "sha256": "81c884636ce3762245ded60c4ea85f754a8988832b033f4c21b59248f42b5362"
+    },
+    {
+      "path": "OLC103_NATIVE_MONTHLY.csv",
+      "sha256": "f83d52e1f16d110dc21cb33158ed95109c766e3268b13e06c23a56113d0f9063"
+    },
+    {
+      "path": "OLC103_NATIVE_SCORECARD.csv",
+      "sha256": "02b10513df70a0bb45b8e5cae10b37429778540c12b5da2b4e68a57377017db2"
+    },
+    {
+      "path": "OLC103_PAIRED_CI.csv",
+      "sha256": "d61bf39636de73820072b218f421f5930b39ddef0cec312aff6bc8bd8681664e"
+    },
+    {
+      "path": "OLC103_PREQUENTIAL_PREDICTIONS.csv",
+      "sha256": "8d9ecaed7f6b20283470e2772bb9502273cef3435ce982e21d4f753cf16dea4d"
+    }
+  ]
+}

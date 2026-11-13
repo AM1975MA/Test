@@ -1,0 +1,217 @@
+{
+  "status": "HISTORICAL_CAUSAL_TEST_COMPLETED_NO_PROSPECTIVE_VALIDATION",
+  "n_events_per_market": 89,
+  "n_prequential_per_market": "effective per market in outcomes",
+  "num_native_paths": 48,
+  "source": "OLC102 genuine daily ML contextual rankings frozen at monthly S0 and recalculated after S1/S2",
+  "no_ETF_selection_changes": true,
+  "start_signal": "2019-01-31",
+  "end_signal": "2026-05-29",
+  "all_policy_entry": "k+2 third opening",
+  "cost_scenarios": [
+    [
+      0.001,
+      0.001
+    ],
+    [
+      0.003,
+      0.005
+    ]
+  ],
+  "outcomes": [
+    {
+      "market": "EU",
+      "n": 89,
+      "n_quality_valid": 87,
+      "excluded_quote_events": [
+        "2019-09-30",
+        "2020-04-30"
+      ],
+      "stable": 11,
+      "unstable": 76,
+      "retention_mean": 0.4827586206896552,
+      "corr": {
+        "future_log_raw": 0.04671987267021801,
+        "future_log_excess": 0.059779513453033804,
+        "bad_loss_5pct": 0.08266599576040247,
+        "max_intramonth_loss_rel_open": 0.0075220506969040325
+      },
+      "cohorts": {
+        "future_log_raw": {
+          "stable_mean": 0.04234601790671702,
+          "unstable_mean": 0.011265980949108556,
+          "difference": 0.031080036957608463,
+          "ci95": [
+            -0.0011850507812256994,
+            0.06205578195144075
+          ],
+          "n_stable": 11,
+          "n_unstable": 76
+        },
+        "future_log_excess": {
+          "stable_mean": 0.029370895609242643,
+          "unstable_mean": 0.006878409590358896,
+          "difference": 0.022492486018883748,
+          "ci95": [
+            -0.004245713773989805,
+            0.05336368415354612
+          ],
+          "n_stable": 11,
+          "n_unstable": 76
+        },
+        "bad_loss_5pct": {
+          "stable_mean": 0.09090909090909091,
+          "unstable_mean": 0.17105263157894737,
+          "difference": -0.08014354066985646,
+          "ci95": [
+            -0.23376623376623376,
+            0.09825892857142872
+          ],
+          "n_stable": 11,
+          "n_unstable": 76
+        },
+        "max_intramonth_loss_rel_open": {
+          "stable_mean": -0.045525692843585056,
+          "unstable_mean": -0.06051205651566232,
+          "difference": 0.014986363672077264,
+          "ci95": [
+            -0.011087555242925361,
+            0.041323079426377474
+          ],
+          "n_stable": 11,
+          "n_unstable": 76
+        }
+      },
+      "prequential": {
+        "n": 62,
+        "metrics": {
+          "BASE_sq_error": 0.0021024914417679093,
+          "STABILITY_sq_error": 0.0021125715039066557,
+          "BASE_brier": 0.11844375410186189,
+          "STABILITY_brier": 0.12108955326016818
+        },
+        "incremental_improvement": {
+          "sq_error": {
+            "mean": -1.0080062138746753e-05,
+            "lower": -8.258441991868807e-05,
+            "upper": 7.200032813107213e-05,
+            "bootstrap_draws": 3000,
+            "block_months": 6
+          },
+          "brier": {
+            "mean": -0.0026457991583063068,
+            "lower": -0.004688637304447468,
+            "upper": -0.000945462613096271,
+            "bootstrap_draws": 3000,
+            "block_months": 6
+          }
+        },
+        "baseline_features": [
+          "score_margin_2_3",
+          "mean_top2_score",
+          "past_mom21",
+          "past_vol63",
+          "early_pair_close_return",
+          "gross_V6_at_open"
+        ],
+        "added": "retention"
+      }
+    },
+    {
+      "market": "USA",
+      "n": 89,
+      "n_quality_valid": 89,
+      "excluded_quote_events": [],
+      "stable": 14,
+      "unstable": 75,
+      "retention_mean": 0.49157303370786515,
+      "corr": {
+        "future_log_raw": 0.023633373062706423,
+        "future_log_excess": 0.015392215297297725,
+        "bad_loss_5pct": 0.05709294311051542,
+        "max_intramonth_loss_rel_open": -0.06478683707854097
+      },
+      "cohorts": {
+        "future_log_raw": {
+          "stable_mean": 0.0405782654419525,
+          "unstable_mean": 0.021164003825183235,
+          "difference": 0.019414261616769263,
+          "ci95": [
+            -0.024493168937897134,
+            0.07074245469856172
+          ],
+          "n_stable": 14,
+          "n_unstable": 75
+        },
+        "future_log_excess": {
+          "stable_mean": 0.029845190500998965,
+          "unstable_mean": 0.017312647761508405,
+          "difference": 0.01253254273949056,
+          "ci95": [
+            -0.02370583945837239,
+            0.057692237001602725
+          ],
+          "n_stable": 14,
+          "n_unstable": 75
+        },
+        "bad_loss_5pct": {
+          "stable_mean": 0.14285714285714285,
+          "unstable_mean": 0.14666666666666667,
+          "difference": -0.003809523809523818,
+          "ci95": [
+            -0.1891891891891892,
+            0.1839921171171172
+          ],
+          "n_stable": 14,
+          "n_unstable": 75
+        },
+        "max_intramonth_loss_rel_open": {
+          "stable_mean": -0.0751264823296386,
+          "unstable_mean": -0.0824954906504913,
+          "difference": 0.007369008320852702,
+          "ci95": [
+            -0.02683644011727854,
+            0.04798563517649345
+          ],
+          "n_stable": 14,
+          "n_unstable": 75
+        }
+      },
+      "prequential": {
+        "n": 64,
+        "metrics": {
+          "BASE_sq_error": 0.0052490251490452475,
+          "STABILITY_sq_error": 0.005368683376686496,
+          "BASE_brier": 0.1422368360098929,
+          "STABILITY_brier": 0.14875714331679263
+        },
+        "incremental_improvement": {
+          "sq_error": {
+            "mean": -0.00011965822764124721,
+            "lower": -0.0002694415137943474,
+            "upper": 1.5832953445825096e-06,
+            "bootstrap_draws": 3000,
+            "block_months": 6
+          },
+          "brier": {
+            "mean": -0.006520307306899719,
+            "lower": -0.013910153780620925,
+            "upper": -0.0005487623962657756,
+            "bootstrap_draws": 3000,
+            "block_months": 6
+          }
+        },
+        "baseline_features": [
+          "score_margin_2_3",
+          "mean_top2_score",
+          "past_mom21",
+          "past_vol63",
+          "early_pair_close_return",
+          "gross_V6_at_open"
+        ],
+        "added": "retention"
+      }
+    }
+  ],
+  "run_time_s": 19.60881543159485
+}
