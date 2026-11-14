@@ -1,0 +1,15 @@
+{
+  "package": "OLC106_MULTIUNIVERSE_20261114_VERIFICATO.zip",
+  "bytes": 18391386,
+  "sha256": "474c92ea3606c397579d5ab5c522999eef44ccf695f822d35f7bea00c6692d59",
+  "files": 70,
+  "manifest_hashes_verified": 69,
+  "zip_crc_verified": true,
+  "delivered_via": "conversation downloadable artifact; ZIP bytes not uploaded into this repository",
+  "repository_contains": ["pre-results protocol", "source scale addendum", "all four human-readable Python source modules", "14 contract tests", "GitHub Actions contract workflow", "all 120 CAGR/drawdown outcomes in SCREEN_RESULTS.json", "final summary report", "verification metadata"],
+  "downloadable_bundle_additionally_contains": ["four frozen price panels", "all 120 daily account paths", "all order and alert logs", "full-precision scorecards", "annual returns", "independent order-level reconstruction", "four NAV figures", "source diagnostics"],
+  "live_authorized": false,
+  "target_met": false,
+  "known_implementation_limit": "Research-controller cooldown counts from the alert decision, not a broker acknowledgement. In all 14 recorded executed re-entries the gap from last DD_EXIT sale is at least 25 market sessions. Production must count from confirmed fills, particularly with partial or prolonged missing fills. Performance drawdown high-water is never reset.",
+  "physical_shares_certified": false
+}
