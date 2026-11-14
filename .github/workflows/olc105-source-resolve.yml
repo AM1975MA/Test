@@ -1,0 +1,89 @@
+name: OLC105 resolve original native inputs
+on:
+  push:
+    branches: [research/olc105-traderepublic-holdout-20261114]
+    paths: [.github/workflows/olc105-source-resolve.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Inspect content-addressed archive and preserved binaries
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json,zipfile,urllib.request,io,csv,os,concurrent.futures
+          from pathlib import Path
+          from urllib.parse import quote
+          out=Path('research/olc105/native_recovery')
+          p=Path('/tmp/olc_snapshot.zip')
+          urllib.request.urlretrieve('https://github.com/AM1975MA/Test/releases/download/research-preserved-20261101/ETF_Research_Tracked_Snapshot_20261101.zip',p)
+          with zipfile.ZipFile(p) as z:
+              man=json.loads(z.read('MANIFEST.json'))
+              (out/'SNAPSHOT_MANIFEST.json').write_text(json.dumps(man,indent=2))
+              nested=[]
+              for n in z.namelist():
+                  if n=='MANIFEST.json':continue
+                  raw=z.read(n)
+                  if raw[:2]==b'PK':
+                      try:
+                          zz=zipfile.ZipFile(io.BytesIO(raw))
+                          nested.append({'blob':n,'size':len(raw),'entries':[{'name':i.filename,'size':i.file_size} for i in zz.infolist() if not i.is_dir()]})
+                      except Exception as e:nested.append({'blob':n,'error':str(e)})
+              (out/'NESTED_ARCHIVE_CONTENTS.json').write_text(json.dumps(nested,indent=2))
+          trees=json.loads((out/'BRANCH_DEPENDENCIES.json').read_text())
+          rows={}
+          textfiles={}
+          for tree in trees:
+              for f in tree['files']:
+                  path=f['path'];rec={'branch':tree['branch'],'commit':tree['commit'],**f}
+                  if path.startswith('research/') and (path.endswith(('.pkl','.npz','.ubj','.parquet','.joblib','.zip','.feather'))):rows.setdefault(f['sha'],rec)
+                  if path.startswith('research/') and any(x in path.lower() for x in ['olc14','olc11','olc16','olc18','olc19','olc08','original39']) and path.endswith('.py'):textfiles.setdefault(f['sha'],rec)
+          (out/'BINARY_DEPENDENCIES.json').write_text(json.dumps(list(rows.values()),indent=2))
+          (out/'NATIVE_SOURCE_PATHS.json').write_text(json.dumps(list(textfiles.values()),indent=2))
+          # Recursively list known source/data archives. No trading and no model substitution.
+          extra=[]
+          for rec in rows.values():
+              if not rec['path'].endswith('.zip') or rec['size']>99000000:continue
+              url='https://raw.githubusercontent.com/AM1975MA/Test/'+rec['commit']+'/'+quote(rec['path'],safe='/')
+              try:
+                  raw=urllib.request.urlopen(url,timeout=90).read()
+                  zz=zipfile.ZipFile(io.BytesIO(raw))
+                  extra.append({'source':rec,'entries':[{'name':x.filename,'size':x.file_size} for x in zz.infolist() if not x.is_dir()]})
+              except Exception as e:extra.append({'source':rec,'error':str(e)})
+          (out/'RESEARCH_ARCHIVE_CONTENTS.json').write_text(json.dumps(extra,indent=2))
+          compact={'manifest_type':type(man).__name__,'manifest_keys':list(man)[:20] if isinstance(man,dict) else len(man),'nested_archives':len(nested),'native_binary_candidates':len(rows),'native_python_sources':len(textfiles),'research_archives_inspected':len(extra)}
+          (out/'RESOLUTION_SUMMARY.json').write_text(json.dumps(compact,indent=2))
+          with (out/'RESOLUTION_SUMMARY.txt').open('w') as f:
+              f.write(json.dumps(compact,indent=2)+'\n')
+              for a in nested:
+                  f.write('\nBLOB '+a['blob']+'\n')
+                  f.write('\n'.join(x['name']+' '+str(x['size']) for x in a.get('entries',[])[:100])+'\n')
+              f.write('\nNATIVE BINARY PATHS\n'+'\n'.join(x['path']+' '+str(x['size']) for x in rows.values()))
+              f.write('\nNATIVE SOURCE PATHS\n'+'\n'.join(x['path'] for x in textfiles.values()))
+          print((out/'RESOLUTION_SUMMARY.txt').read_text()[:30000])
+          PY
+      - name: Persist recovery references
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/olc105/native_recovery
+          if ! git diff --cached --quiet; then
+            git commit -m 'research(olc105): resolve frozen binary and source provenance'
+            git push origin HEAD:research/olc105-traderepublic-holdout-20261114
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: olc105-resolved-source-${{ github.run_id }}
+          path: research/olc105/native_recovery/
+          retention-days: 90
