@@ -1,0 +1,56 @@
+name: OLC104 EIA term structure source audit (NO TRADES)
+on:
+  push:
+    branches: [research/olc104-native-expansion-transition-20261114]
+    paths: ['.github/workflows/olc104-eia-source.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.3.5' 'pandas==2.2.3' 'xlrd==2.0.2'
+      - name: Download official source and preserve dates without extrapolation
+        run: |
+          mkdir -p eia_curve
+          python - <<'PY'
+          import urllib.request, pathlib, hashlib, json, datetime, pandas as pd, time
+          root=pathlib.Path('eia_curve'); manifest=[]
+          for name,url in [('pet','https://www.eia.gov/dnav/pet/xls/PET_PRI_FUT_S1_D.xls'),('ng','https://www.eia.gov/dnav/ng/xls/NG_PRI_FUT_S1_D.xls')]:
+              item={'name':name,'url':url,'downloaded_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'futures_publication_cutoff_documented':'2024-04-05'}
+              try:
+                  data=None
+                  for attempt in range(3):
+                      try:
+                          req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 research source audit'})
+                          with urllib.request.urlopen(req,timeout=60) as response:data=response.read()
+                          break
+                      except Exception:
+                          if attempt==2:raise
+                          time.sleep(2)
+                  path=root/(name+'.xls');path.write_bytes(data)
+                  item.update(bytes=len(data),sha256=hashlib.sha256(data).hexdigest())
+                  sheets=pd.read_excel(path,sheet_name=None,header=None,engine='xlrd')
+                  item['sheets']=[]
+                  for index,(sheet,frame) in enumerate(sheets.items()):
+                      dest=root/f'{name}_{index}.csv';frame.to_csv(dest,index=False,header=False)
+                      item['sheets'].append({'name':sheet,'file':dest.name,'shape':frame.shape,'sha256':hashlib.sha256(dest.read_bytes()).hexdigest()})
+                      print(name,sheet,frame.shape,frame.head(5).to_string(index=False,header=False),flush=True)
+                  item['status']='DOWNLOADED_NOT_PIT_CERTIFIED'
+              except Exception as exc:item.update(status='SOURCE_BLOCKED',error=repr(exc))
+              manifest.append(item)
+          (root/'MANIFEST.json').write_text(json.dumps(manifest,indent=2,default=str)+'\n')
+          print(json.dumps(manifest,indent=2,default=str))
+          if not all(x['status']=='DOWNLOADED_NOT_PIT_CERTIFIED' for x in manifest):raise SystemExit(2)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: olc104-eia-term-structure
+          path: eia_curve/
+          retention-days: 90
+          if-no-files-found: error
