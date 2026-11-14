@@ -1,0 +1,24 @@
+{
+  "schema": "OLC105_BASE_RESULT_V1",
+  "window": {"start_open": "2020-03-02", "end_open": "2026-11-02"},
+  "initial_eur": 10000,
+  "ticket_fee_eur": 1,
+  "shortfall_per_side": 0.0015,
+  "all_replays": 118,
+  "all_score_rows": 236,
+  "monthly_decisions": 81,
+  "completed_cycles": 80,
+  "trained_on_candidate_labels": false,
+  "prospective": false,
+  "whole_share_simulated": false,
+  "actual_broker_quotes": false,
+  "source_repair": "P500.DE 100-for-1 split 2025-12-15, issuer verified",
+  "results": [
+    {"arm":"TRANSFER_HALF_IMMEDIATE","cagr_calendar":0.0519887347812237,"maxdd_openings":-0.2994074407224867,"net_cumulative":0.4021803356073987,"end_equity_eur":14021.803356073988,"ticket_orders":364,"modelled_cost_eur":1868.5413408521615,"stop_count":23,"initial_open_nav":1.0,"last_open_nav":1.4021803356073987,"peak_open_date":"2020-03-05","peak_open_nav":1.016946656894209,"trough_open_date":"2020-10-30","trough_open_nav":0.7124652610022251,"gross_cagr_calendar":0.0841507002938177},
+    {"arm":"TRANSFER_HALF_DELAY3","cagr_calendar":0.024475041410845,"maxdd_openings":-0.3064552547577667,"net_cumulative":0.175004164072789,"end_equity_eur":11750.04164072789,"ticket_orders":369,"modelled_cost_eur":1736.5056755379608,"stop_count":22,"initial_open_nav":1.0,"last_open_nav":1.175004164072789,"peak_open_date":"2020-03-05","peak_open_nav":1.016946656894209,"trough_open_date":"2024-01-22","trough_open_nav":0.705298010080635,"gross_cagr_calendar":0.0558958548557255},
+    {"arm":"TRANSFER_MINVAR63_IMMEDIATE","cagr_calendar":0.0147369813058373,"maxdd_openings":-0.3178952418515298,"net_cumulative":0.1024904925183307,"end_equity_eur":11024.904925183308,"ticket_orders":388,"modelled_cost_eur":1952.4637120965144,"stop_count":23,"initial_open_nav":1.0,"last_open_nav":1.1024904925183308,"peak_open_date":"2020-03-05","peak_open_nav":1.0161720626658408,"trough_open_date":"2024-01-22","trough_open_nav":0.6931357990419154,"gross_cagr_calendar":0.0506769459625746},
+    {"arm":"TRANSFER_MINVAR63_DELAY3","cagr_calendar":-0.016206614346633,"maxdd_openings":-0.4075794710876114,"net_cumulative":-0.1032482028744778,"end_equity_eur":8967.517971255222,"ticket_orders":394,"modelled_cost_eur":1772.5995910963102,"stop_count":22,"initial_open_nav":1.0,"last_open_nav":0.8967517971255221,"peak_open_date":"2020-03-05","peak_open_nav":1.0161720626658408,"trough_open_date":"2024-09-11","trough_open_nav":0.6020011908304903,"gross_cagr_calendar":0.0188324254743974},
+    {"arm":"WORLD_PASSIVE","cagr_calendar":0.1450371469768243,"maxdd_openings":-0.2576020765896951,"net_cumulative":1.4677411462601797,"end_equity_eur":24677.4114626018,"ticket_orders":1,"modelled_cost_eur":15.97603594608088,"stop_count":0,"initial_open_nav":1.0,"last_open_nav":2.46774114626018,"peak_open_date":"2020-03-05","peak_open_nav":1.0189990292192548,"trough_open_date":"2020-03-23","trough_open_nav":0.7565027632494913,"gross_cagr_calendar":0.1453116782548491},
+    {"arm":"MOM252_TOP2","cagr_calendar":0.1612040156527741,"maxdd_openings":-0.2512156834774194,"net_cumulative":1.709630836400903,"end_equity_eur":27096.30836400903,"ticket_orders":123,"modelled_cost_eur":1162.98848993092,"stop_count":0,"initial_open_nav":1.0,"last_open_nav":2.709630836400903,"peak_open_date":"2022-06-08","peak_open_nav":1.8850278427100569,"trough_open_date":"2023-03-20","trough_open_nav":1.4114792848296842,"gross_cagr_calendar":0.1736270323137303}
+  ]
+}
