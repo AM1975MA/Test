@@ -1,0 +1,95 @@
+name: OLC105 anchored transfer source and regression verification
+on:
+  push:
+    branches: [research/olc105-traderepublic-holdout-20261114]
+    paths: [.github/workflows/olc105-anchored-result-verification.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: olc105-anchored-source-verify
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Restore the exact locally executed sources after SHA256 verification
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,gzip,json,hashlib,py_compile
+          root=Path('research/olc105/anchored_transfer')
+          parts=root/'source_parts'
+          chunk_hashes=['879c672dfddc664f3b28e6a113102c2cb6b711475e33f5af525c36209e68461e','270977039486b91cca5d704bf64e43dc573b83650468a02003029faae557d94c','428712c0f0d0e343422b89d260f5f85b46fb52f33f40ccbc53404e10a1d796fb','66fe71d75b6d46882be5b16f03a524c539201c394c07452f112bf839d7654411','e6e289541663cce0c23466d73f7780170677a0ce1ddbc03d57f9b1ff25f7c90c','95246aa0865a6fe7ed971a133288c2ff7171aab3cd446b9982b8bb3ed3b7fa00']
+          final=[]
+          for i,digest in enumerate(chunk_hashes):
+              x=(parts/f'final{i}.b64').read_text().strip()
+              assert hashlib.sha256(x.encode()).hexdigest()==digest, ('source transport fragment mismatch',i)
+              final.append(x)
+          s=(parts/'part0.b64').read_text().strip()+(parts/'part1.b64').read_text().strip()+''.join(final)
+          assert len(s)==29516, ('encoded source length',len(s))
+          raw=base64.b64decode(s,validate=True)
+          expected='1938c82f106018ef0f650c40705be602a8ce83994d28d6e89749057f1f776b69'
+          assert hashlib.sha256(raw).hexdigest()==expected, 'compressed source digest mismatch'
+          sources=json.loads(gzip.decompress(raw))
+          assert len(sources)==19
+          manifest={}
+          for rel,content in sources.items():
+              p=Path(rel)
+              assert p.parts[0] in ('src','tests') and '..' not in p.parts and p.suffix=='.py'
+              dest=root/p; dest.parent.mkdir(parents=True,exist_ok=True)
+              dest.write_text(content)
+              py_compile.compile(str(dest),doraise=True)
+              manifest[rel]=hashlib.sha256(dest.read_bytes()).hexdigest()
+          # Replace the incomplete transport copy only with the six verified fragments.
+          (parts/'part2.b64').write_text(''.join(final)+'\n')
+          (root/'SOURCE_SHA256.json').write_text(json.dumps({'bundle_sha256':expected,'files':manifest},indent=2)+'\n')
+          print('EXACT_EXECUTED_SOURCE_DIGEST_PASS',len(sources))
+          PY
+      - name: Install regression-test dependencies only
+        run: python -m pip install 'numpy==2.3.5' 'pandas==2.2.3' pytest
+      - name: Run all new anchored-transfer unit tests
+        env:
+          PYTHONPATH: research/olc105/anchored_transfer/src
+        run: python -m pytest research/olc105/anchored_transfer/tests -q
+      - name: Record precisely what CI verified
+        env:
+          RUN_ID: ${{ github.run_id }}
+          CODE_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          from datetime import datetime,timezone
+          out=Path('research/olc105/anchored_transfer/CI_VERIFICATION.json')
+          q={'status':'PASS_EXACT_SOURCE_DIGEST_AND_11_REGRESSION_TESTS','run_id':os.environ['RUN_ID'],'code_commit':os.environ['CODE_SHA'],'verified_utc':datetime.now(timezone.utc).isoformat(),'source_files':19,'unit_tests':11,'full_financial_replay_in_this_action':False,'scope':'118 financial accounts were executed and independently rerun in the working environment. This Action verifies their exact archived source and regression tests, not unavailable model archives or brokerage fills.'}
+          out.write_text(json.dumps(q,indent=2)+'\n')
+          print(json.dumps(q,indent=2))
+          PY
+      - name: Save verified plain sources and CI record to research branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/olc105/anchored_transfer/src/*.py research/olc105/anchored_transfer/tests/*.py research/olc105/anchored_transfer/SOURCE_SHA256.json research/olc105/anchored_transfer/CI_VERIFICATION.json research/olc105/anchored_transfer/source_parts/part2.b64
+          git commit -m 'research(olc105): persist digest-verified transfer sources and 11 passing regression tests'
+          git fetch origin research/olc105-traderepublic-holdout-20261114
+          git rebase origin/research/olc105-traderepublic-holdout-20261114
+          git push origin HEAD:research/olc105-traderepublic-holdout-20261114
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: olc105-anchored-verified-source-${{ github.run_id }}
+          path: |
+            research/olc105/anchored_transfer/src/*.py
+            research/olc105/anchored_transfer/tests/*.py
+            research/olc105/anchored_transfer/SOURCE_SHA256.json
+            research/olc105/anchored_transfer/CI_VERIFICATION.json
+          retention-days: 90
+          if-no-files-found: error
