@@ -1,26 +1,18 @@
-test_drawdown_includes_initial_capital (test_portability_controls.Accounting.test_drawdown_includes_initial_capital) ... skipped 'implementation not present yet'
-test_future_prices_cannot_change_past_signal (test_portability_controls.Accounting.test_future_prices_cannot_change_past_signal) ... skipped 'implementation not present yet'
-test_higher_cost_does_not_create_money (test_portability_controls.Accounting.test_higher_cost_does_not_create_money) ... skipped 'implementation not present yet'
-test_initial_fee_and_spread_are_financed (test_portability_controls.Accounting.test_initial_fee_and_spread_are_financed) ... skipped 'implementation not present yet'
-test_invalid_prices_rejected (test_portability_controls.Accounting.test_invalid_prices_rejected) ... skipped 'implementation not present yet'
-test_invalid_weights_rejected (test_portability_controls.Accounting.test_invalid_weights_rejected) ... skipped 'implementation not present yet'
-test_no_trade_has_no_fee (test_portability_controls.Accounting.test_no_trade_has_no_fee) ... skipped 'implementation not present yet'
-test_sell_and_buy_have_separate_tickets (test_portability_controls.Accounting.test_sell_and_buy_have_separate_tickets) ... skipped 'implementation not present yet'
-test_short_history_is_ineligible (test_portability_controls.Accounting.test_short_history_is_ineligible) ... skipped 'implementation not present yet'
-test_stale_price_is_ineligible (test_portability_controls.Accounting.test_stale_price_is_ineligible) ... skipped 'implementation not present yet'
-test_world_no_cost_total_return_identity (test_portability_controls.Accounting.test_world_no_cost_total_return_identity) ... skipped 'implementation not present yet'
-test_zero_cost_preserves_equity (test_portability_controls.Accounting.test_zero_cost_preserves_equity) ... skipped 'implementation not present yet'
-test_engine_exists (test_portability_controls.RequiredImplementation.test_engine_exists) ... FAIL
-
-======================================================================
-FAIL: test_engine_exists (test_portability_controls.RequiredImplementation.test_engine_exists)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/runner/work/Test/Test/research/olc105/test_portability_controls.py", line 16, in test_engine_exists
-    self.assertIsNotNone(p, 'CONTROL_ENGINE_NOT_IMPLEMENTED')
-AssertionError: unexpectedly None : CONTROL_ENGINE_NOT_IMPLEMENTED
+test_drawdown_includes_initial_capital (test_portability_controls.Accounting.test_drawdown_includes_initial_capital) ... ok
+test_future_prices_cannot_change_past_signal (test_portability_controls.Accounting.test_future_prices_cannot_change_past_signal) ... ok
+test_higher_cost_does_not_create_money (test_portability_controls.Accounting.test_higher_cost_does_not_create_money) ... ok
+test_initial_fee_and_spread_are_financed (test_portability_controls.Accounting.test_initial_fee_and_spread_are_financed) ... ok
+test_invalid_prices_rejected (test_portability_controls.Accounting.test_invalid_prices_rejected) ... ok
+test_invalid_weights_rejected (test_portability_controls.Accounting.test_invalid_weights_rejected) ... ok
+test_no_trade_has_no_fee (test_portability_controls.Accounting.test_no_trade_has_no_fee) ... ok
+test_sell_and_buy_have_separate_tickets (test_portability_controls.Accounting.test_sell_and_buy_have_separate_tickets) ... ok
+test_short_history_is_ineligible (test_portability_controls.Accounting.test_short_history_is_ineligible) ... ok
+test_stale_price_is_ineligible (test_portability_controls.Accounting.test_stale_price_is_ineligible) ... ok
+test_world_no_cost_total_return_identity (test_portability_controls.Accounting.test_world_no_cost_total_return_identity) ... ok
+test_zero_cost_preserves_equity (test_portability_controls.Accounting.test_zero_cost_preserves_equity) ... ok
+test_engine_exists (test_portability_controls.RequiredImplementation.test_engine_exists) ... ok
 
 ----------------------------------------------------------------------
-Ran 13 tests in 0.001s
+Ran 13 tests in 0.051s
 
-FAILED (failures=1, skipped=12)
+OK

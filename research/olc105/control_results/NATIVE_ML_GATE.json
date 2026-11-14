@@ -1,0 +1,14 @@
+{
+  "status": "BLOCKED_FROZEN_MODEL_TRANSPORT",
+  "olc19_new_results": false,
+  "olc67_new_results": false,
+  "candidate_labels_used_for_fit": false,
+  "native_upstream_models_loaded": false,
+  "world_and_momentum_are_not_substitutes_for_native_ML": true,
+  "missing_original_inputs": [
+    "OLC14_Heads_Checkpoint_20261101.zip",
+    "OLC19_Rischio_Rientro_Checkpoint_20261102.zip",
+    "original annual Return125/ET models and their input/parity panels"
+  ],
+  "reason": "Original model archives exist in the user Library but not in the authenticated GitHub checkout/retained public source snapshot. Local computation/file-byte transport failed in this session. No substitute learner is fitted."
+}

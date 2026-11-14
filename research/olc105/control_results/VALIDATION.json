@@ -1,0 +1,21 @@
+{
+  "status": "PASS_DECLARED_CONTROLS_ONLY_NATIVE_ML_BLOCKED",
+  "run_id": "43634911150",
+  "code_commit": "af81bd067ff1cc7d59b9fb1cb4cbb69dfa549b01",
+  "captured_input_checksums": 148,
+  "candidate_funds": 29,
+  "monthly_decisions": 81,
+  "replays": 38,
+  "metric_rows": 76,
+  "max_self_financing_error_eur": 2.9103830456733704e-11,
+  "max_independent_metric_error": 0.0,
+  "fractional_adjusted_economic_units": true,
+  "whole_share_broker_simulation": false,
+  "V6_or_FAST_LOCK3_applied": false,
+  "TradeRepublic_actual_quotes_used": false,
+  "personal_taxes_included": false,
+  "raw_sources_unchanged": true,
+  "asof_cutoff": "2026-11-13",
+  "prospective": false,
+  "generated_at_utc": "2026-11-14T19:58:15.010433+00:00"
+}
