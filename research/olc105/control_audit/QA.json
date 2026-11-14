@@ -1,0 +1,12 @@
+{
+  "status": "PASS_INDEPENDENT_CONTROL_RECONCILIATION_NATIVE_ML_NOT_EXECUTED",
+  "verified_result_files": 10,
+  "verified_control_curves": 38,
+  "maximum_cost_error_eur": 1.1368683772161603e-13,
+  "signal_chronology": "PASS",
+  "fixed_World_direct_price_ratio": "PASS",
+  "native_OLC19_OLC67_completed": false,
+  "whole_share_broker_replay_completed": false,
+  "review_scope": "Standalone controls only; not a full repository test suite.",
+  "verifier_erratum": "Initial verifier used dataframe.isin instead of the named column; fixed bracket access without changing source data or replay outputs."
+}
