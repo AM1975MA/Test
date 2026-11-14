@@ -1,0 +1,125 @@
+name: OLC105 execution recovery and frozen-source audit (NOT BACKTEST)
+on:
+  push:
+    branches: [research/olc105-traderepublic-holdout-20261114]
+    paths: [.github/workflows/olc105-execution-recovery.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: olc105-execution-recovery
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify immutable source files and inventory missing native dependencies
+        env:
+          OLC_RUN_ID: ${{ github.run_id }}
+          OLC_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import csv, hashlib, json, os, py_compile, subprocess, sys
+          from datetime import datetime, timezone
+          from pathlib import Path
+          root = Path('research/olc105')
+          out = root / 'execution_audit' / os.environ['OLC_RUN_ID']
+          out.mkdir(parents=True, exist_ok=True)
+          inventories, errors, source_records = [], [], []
+          for name in ('source_capture', 'source_complete', 'source_alternates'):
+              directory = root / name
+              manifest_path = directory / 'MANIFEST.json'
+              if not manifest_path.is_file():
+                  errors.append({'snapshot': name, 'error': 'missing manifest'})
+                  continue
+              manifest = json.loads(manifest_path.read_text())
+              expected = manifest.get('files', {})
+              if not expected:
+                  errors.append({'snapshot': name, 'error': 'empty checksum manifest'})
+              passed = 0
+              for rel, digest in expected.items():
+                  path = (directory / rel).resolve()
+                  if not path.is_relative_to(directory.resolve()) or not path.is_file():
+                      errors.append({'snapshot': name, 'file': rel, 'error': 'missing or unsafe path'})
+                      continue
+                  actual = hashlib.sha256(path.read_bytes()).hexdigest()
+                  if actual != digest:
+                      errors.append({'snapshot': name, 'file': rel, 'error': 'checksum mismatch'})
+                  else:
+                      passed += 1
+              inventories.append({'snapshot': name, 'declared_files': len(expected), 'passed_files': passed, 'manifest_sha256': hashlib.sha256(manifest_path.read_bytes()).hexdigest()})
+              for record in manifest.get('sources', []):
+                  source_records.append({'snapshot': name, **record})
+          compilation = []
+          for path in sorted(root.glob('*.py')):
+              try:
+                  py_compile.compile(str(path), doraise=True)
+                  compilation.append({'path': str(path), 'status': 'PASS_SYNTAX_ONLY'})
+              except py_compile.PyCompileError as exc:
+                  errors.append({'file': str(path), 'error': str(exc)})
+          with (root / 'CANDIDATES_FROZEN.csv').open(newline='') as f:
+              roster = list(csv.DictReader(f))
+          required_archives = ['OLC19_Rischio_Rientro_Checkpoint_20261102.zip', 'OLC14_Heads_Checkpoint_20261101.zip', 'OLC08_01_Pannelli_Verificati_20261101.zip', 'OLC11_02_Modelli_Verificati_20261101.zip']
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          dependency_inventory = {name: [p for p in tracked if Path(p).name == name] for name in required_archives}
+          scripts = [p.name for p in root.glob('*.py')]
+          acquisition_only = set(scripts).issubset({'capture_alternates.py', 'capture_catalogue.py', 'capture_complete.py', 'capture_prices.py', 'resolve_exchange.py'})
+          complete = [s for s in source_records if s.get('snapshot') == 'source_complete' and s.get('role') == 'candidate' and s.get('status', '').startswith('CAPTURED')]
+          result = {
+              'status': 'ACTIONS_EXECUTION_AND_SOURCE_INTEGRITY_PASS' if not errors else 'SOURCE_AUDIT_FAILED',
+              'executed_at_utc': datetime.now(timezone.utc).isoformat(),
+              'run_id': os.environ['OLC_RUN_ID'], 'code_commit': os.environ['OLC_SHA'],
+              'python': sys.version, 'snapshots': inventories, 'errors': errors,
+              'frozen_candidate_rows': len(roster), 'captured_candidate_isins': len({s['isin'] for s in complete}),
+              'python_syntax_checks': compilation,
+              'original_archive_paths_in_git_checkout': dependency_inventory,
+              'olc105_python_files': sorted(scripts), 'olc105_acquisition_scripts_only': acquisition_only,
+              'native_backtest_executed': False, 'new_performance_claims': False,
+              'prices_changed': False, 'model_parameters_changed': False,
+              'scope': 'Execution/read-write capability and SHA256 verification only. Original models and an executable ANCHORED_TRANSFER runner must be restored before financial results. A green job is not a completed backtest.'
+          }
+          (out / 'EXECUTION_RECOVERY_QA.json').write_text(json.dumps(result, indent=2) + '\n')
+          (out / 'SOURCE_RECORDS.json').write_text(json.dumps(source_records, indent=2) + '\n')
+          count = sum(x['declared_files'] for x in inventories)
+          passed = sum(x['passed_files'] for x in inventories)
+          report = '\n'.join([
+              '# OLC105 - Verifica esecuzione GitHub Actions', '',
+              f"Stato: {result['status']}", f"Run: {result['run_id']}", f"Commit: {result['code_commit']}",
+              f"Checksum verificati: {passed}/{count}", f"ISIN candidati acquisiti in source_complete: {result['captured_candidate_isins']}",
+              f"Script Python compilati: {len(compilation)}", '',
+              'GitHub Actions e Python sono funzionanti. I dati congelati non sono stati riscaricati o modificati.',
+              'Questo job NON esegue il backtest. Il contenuto OLC105 attuale comprende acquisizione e protocolli, non il runner ANCHORED_TRANSFER completo.',
+              'Gli archivi originali identificati nel JSON sono dipendenze esterne quando non presenti nel checkout; non vengono sostituiti con altri modelli.',
+              'Nessun CAGR, ordine o segnale finanziario nuovo e nessuna modifica a main.', ''
+          ])
+          (out / 'README_IT.md').write_text(report)
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write(report)
+          print(json.dumps(result, indent=2))
+          if errors:
+              raise SystemExit(1)
+          PY
+      - name: Save only the new audit on the existing research branch
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/olc105/execution_audit
+          if ! git diff --cached --quiet; then
+            git commit -m 'research(olc105): persist execution capability and frozen input integrity audit'
+            git push origin HEAD:research/olc105-traderepublic-holdout-20261114
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: olc105-execution-recovery-${{ github.run_id }}
+          path: research/olc105/execution_audit/${{ github.run_id }}/
+          retention-days: 90
+          if-no-files-found: error
