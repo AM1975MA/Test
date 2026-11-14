@@ -1,0 +1,327 @@
+{
+  "captured_at_utc": "2026-11-14T12:17:13.082627+00:00",
+  "metadata_only": true,
+  "candidate_roster_unchanged": true,
+  "rows": [
+    {
+      "isin": "IE00B3YCGJ38",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "catalogue_name": "S&P 500 USD Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B3YCGJ38-ETFP.html?lang=it",
+      "exchange_symbol": "SPXS",
+      "yahoo_symbol": "SPXS.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "af2981edef6d62e9a218985572deafdcfbf76ce51e4d8a8a8d61ba97843e06bc"
+    },
+    {
+      "isin": "IE0032077012",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "catalogue_name": "EQQQ Nasdaq 100 USD Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE0032077012-ETFP.html?lang=it",
+      "exchange_symbol": "EQQQ",
+      "yahoo_symbol": "EQQQ.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "562cffb6cd88b47241a205bc694cb44c34ea5733f0b2f46e3759dbd7cf617c31"
+    },
+    {
+      "isin": "IE00B60SX402",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "catalogue_name": "Russell 2000 USD Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B60SX402-ETFP.html?lang=it",
+      "exchange_symbol": "SR2000",
+      "yahoo_symbol": "SR2000.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "fe7cabd95b6321b96c9faee8eb6c73a69d842503f8683031a6a6e934c0378544"
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "catalogue_name": "MSCI USA Small Cap Value Weighted",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BSPLC413-ETFP.html?lang=it",
+      "exchange_symbol": "",
+      "yahoo_symbol": "",
+      "status": "IDENTITY_NOT_RESOLVED",
+      "page_sha256": "f90c3850ab7725671378b5d68a7b2377640023db9d2887d678788263dfc88f57"
+    },
+    {
+      "isin": "IE00B5WFQ436",
+      "macro_category": "C01_US_BROAD_STYLE",
+      "catalogue_name": "MSCI USA USD Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B5WFQ436-ETFP.html?lang=it",
+      "exchange_symbol": "",
+      "yahoo_symbol": "",
+      "status": "IDENTITY_NOT_RESOLVED",
+      "page_sha256": "f90c3850ab7725671378b5d68a7b2377640023db9d2887d678788263dfc88f57"
+    },
+    {
+      "isin": "IE00BYTRR970",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "catalogue_name": "MSCI World Financials",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BYTRR970-ETFP.html?lang=it",
+      "exchange_symbol": "WFIN",
+      "yahoo_symbol": "WFIN.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "0b8d9598bceac8b43ee81aab82f43a97ac1317294ae92f310c7bbf2fb39eaaa3"
+    },
+    {
+      "isin": "IE00BYTRRB94",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "catalogue_name": "MSCI World Health Care",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BYTRRB94-ETFP.html?lang=it",
+      "exchange_symbol": "WHEA",
+      "yahoo_symbol": "WHEA.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "23eba87efadf04a2c78dcb8688e8a7076365caf03ffafa6e63f801dfa816b9e0"
+    },
+    {
+      "isin": "IE00BYTRRC02",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "catalogue_name": "MSCI World Industrials",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BYTRRC02-ETFP.html?lang=it",
+      "exchange_symbol": "WIND",
+      "yahoo_symbol": "WIND.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "1fc50b854baae0fc30e798d4fe29b259367e6dc250d40a64a9fc779e6447e6cb"
+    },
+    {
+      "isin": "IE00BYTRR863",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "catalogue_name": "MSCI World Energy",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BYTRR863-ETFP.html?lang=it",
+      "exchange_symbol": "WNRG",
+      "yahoo_symbol": "WNRG.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "60f03ab4b0e1c56b564acb113dfe304a8232dc45d1a12aa0ab093a0e8b063f5f"
+    },
+    {
+      "isin": "IE00BYTRRF33",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "catalogue_name": "MSCI World Materials",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BYTRRF33-ETFP.html?lang=it",
+      "exchange_symbol": "WMAT",
+      "yahoo_symbol": "WMAT.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "480079e59546f13c3c75d0b765d3ac2d375dc03a825e718d6ddc0615ab367e0c"
+    },
+    {
+      "isin": "IE00BYTRR756",
+      "macro_category": "C02_US_SECTOR_THEME",
+      "catalogue_name": "MSCI World Consumer Staples",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BYTRR756-ETFP.html?lang=it",
+      "exchange_symbol": "WCOS",
+      "yahoo_symbol": "WCOS.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "05ec26143573fe7cb97704815a2b7e9b037dccc7900358cb0601c457f5ef9001"
+    },
+    {
+      "isin": "IE00BFY0GT14",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "catalogue_name": "MSCI World Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BFY0GT14-ETFP.html?lang=it",
+      "exchange_symbol": "SWRD",
+      "yahoo_symbol": "SWRD.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "bd6d870b85f19a45da8c79af3369e8b5b610aa73413a0801939791a9fbe2e642"
+    },
+    {
+      "isin": "IE00B3YLTY66",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "catalogue_name": "MSCI ACWI IMI Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B3YLTY66-ETFP.html?lang=it",
+      "exchange_symbol": "IMIE",
+      "yahoo_symbol": "IMIE.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "c38eed5225b262df843a955fb843f2ce414c5017f4431784a087075da73f20d8"
+    },
+    {
+      "isin": "IE00BK5BQX27",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "catalogue_name": "FTSE Developed Europe Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BK5BQX27-ETFP.html?lang=it",
+      "exchange_symbol": "VWCG",
+      "yahoo_symbol": "VWCG.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "00ac4e27ffbf870aecb1561ee673dd9aa4fb556d4e233cd13d92381f876fb8df"
+    },
+    {
+      "isin": "IE00B95PGT31",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "catalogue_name": "FTSE Japan Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B95PGT31-ETFP.html?lang=it",
+      "exchange_symbol": "VJPN",
+      "yahoo_symbol": "VJPN.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "95642f543f6688b0d54ecc736d3011033db234b1dbaa7ac06d2cc21742e55b92"
+    },
+    {
+      "isin": "IE00B9F5YL18",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "catalogue_name": "FTSE Developed Asia Pacific ex Japan Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B9F5YL18-ETFP.html?lang=it",
+      "exchange_symbol": "VAPX",
+      "yahoo_symbol": "VAPX.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "0954eac348ebe4fe568c09bf4ee92edf1962347103aa4c0e27ee972055232042"
+    },
+    {
+      "isin": "IE000716YHJ7",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "catalogue_name": "FTSE All-World Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE000716YHJ7-ETFP.html?lang=it",
+      "exchange_symbol": "FWRA",
+      "yahoo_symbol": "FWRA.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "0c95fd68d1ee6af30f5867dc8f1ac3884204a51371af25c88d61e9ed7cec5615"
+    },
+    {
+      "isin": "IE0003XJA0J9",
+      "macro_category": "C03_DEVELOPED_GLOBAL",
+      "catalogue_name": "Prime All Country World Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE0003XJA0J9-ETFP.html?lang=it",
+      "exchange_symbol": "WEBN",
+      "yahoo_symbol": "WEBN.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "41fbbd282be4a4f70b66b57224a82f8d58c214e5174169b926514ec43c49af5a"
+    },
+    {
+      "isin": "IE00B469F816",
+      "macro_category": "C04_EMERGING",
+      "catalogue_name": "MSCI Emerging Markets Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B469F816-ETFP.html?lang=it",
+      "exchange_symbol": "EMRG",
+      "yahoo_symbol": "EMRG.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "462044d8da6fbc244b060c3535d923583649cd33396bb9584315d61e2abe4d2d"
+    },
+    {
+      "isin": "IE00B466KX20",
+      "macro_category": "C04_EMERGING",
+      "catalogue_name": "MSCI EM Asia Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B466KX20-ETFP.html?lang=it",
+      "exchange_symbol": "EMAE",
+      "yahoo_symbol": "EMAE.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "f9da11aa9f8b121832c036a7aa4fa91a6ce147b2b7e2703913f988e66aba56e0"
+    },
+    {
+      "isin": "IE00B44T3H88",
+      "macro_category": "C04_EMERGING",
+      "catalogue_name": "MSCI China Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B44T3H88-ETFP.html?lang=it",
+      "exchange_symbol": "HMCH",
+      "yahoo_symbol": "HMCH.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "099cfb28c55540ace1e62f3d29f22c5be9719dbe4c429a4c6fcd7bb6e3ff2b5b"
+    },
+    {
+      "isin": "IE00B27YCK28",
+      "macro_category": "C04_EMERGING",
+      "catalogue_name": "MSCI EM Latin America Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B27YCK28-ETFP.html?lang=it",
+      "exchange_symbol": "LTAM",
+      "yahoo_symbol": "LTAM.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "c222932b9cf2ceab8039df615393a4ed94050f9ae585abc97e9f842a6ea4d84e"
+    },
+    {
+      "isin": "IE00BZCQB185",
+      "macro_category": "C04_EMERGING",
+      "catalogue_name": "MSCI India Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BZCQB185-ETFP.html?lang=it",
+      "exchange_symbol": "NDIA",
+      "yahoo_symbol": "NDIA.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "5f249855012f80694eca36613b1d76382b1925823b789a04cfb869431ae4b1df"
+    },
+    {
+      "isin": "IE00BDBRDM35",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "catalogue_name": "Global Aggregate Bond EUR Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BDBRDM35-ETFP.html?lang=it",
+      "exchange_symbol": "AGGH",
+      "yahoo_symbol": "AGGH.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "165de98d22c1e2324c176ab5460b7969144ce0997066b0eb343d46cca3bf2ade"
+    },
+    {
+      "isin": "IE00BGYWT403",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "catalogue_name": "EUR Corporate Bond Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BGYWT403-ETFP.html?lang=it",
+      "exchange_symbol": "VECA",
+      "yahoo_symbol": "VECA.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "de2a3046c152278da6e7874a39fdccf256bccd80f3191d6930880583426f519d"
+    },
+    {
+      "isin": "IE00BF2FNH52",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "catalogue_name": "US Treasury 1-3 Year Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BF2FNH52-ETFP.html?lang=it",
+      "exchange_symbol": "",
+      "yahoo_symbol": "",
+      "status": "IDENTITY_NOT_RESOLVED",
+      "page_sha256": "f90c3850ab7725671378b5d68a7b2377640023db9d2887d678788263dfc88f57"
+    },
+    {
+      "isin": "IE00B43QJJ40",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "catalogue_name": "Bloomberg Global Aggregate Bond Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B43QJJ40-ETFP.html?lang=it",
+      "exchange_symbol": "GLAG",
+      "yahoo_symbol": "GLAG.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "5bdd318069a0b76fc7c22bf53aea26efb37606d122dfa1ea504828f2abf1adda"
+    },
+    {
+      "isin": "IE00B3S5XW04",
+      "macro_category": "C05_BONDS_CASH_CREDIT",
+      "catalogue_name": "Bloomberg Euro Government Bond Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B3S5XW04-ETFP.html?lang=it",
+      "exchange_symbol": "GOVY",
+      "yahoo_symbol": "GOVY.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "f4a56b82e38c4056329d7bda540ddbdc99aee5b37fefce5c6097377147b79106"
+    },
+    {
+      "isin": "IE00BF4J0300",
+      "macro_category": "C06_REAL_ASSETS",
+      "catalogue_name": "Bloomberg Commodity Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BF4J0300-ETFP.html?lang=it",
+      "exchange_symbol": "CMOE",
+      "yahoo_symbol": "CMOE.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "7a90f887a0b3c9a6eb23cdbd4223dcfad6e299ac3a54945ee487beb6c4fc263c"
+    },
+    {
+      "isin": "IE00BYXYX521",
+      "macro_category": "C06_REAL_ASSETS",
+      "catalogue_name": "Bloomberg Commodity ex Agriculture Acc",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BYXYX521-ETFP.html?lang=it",
+      "exchange_symbol": "",
+      "yahoo_symbol": "",
+      "status": "IDENTITY_NOT_RESOLVED",
+      "page_sha256": "f90c3850ab7725671378b5d68a7b2377640023db9d2887d678788263dfc88f57"
+    },
+    {
+      "isin": "IE00B1FZS467",
+      "macro_category": "C06_REAL_ASSETS",
+      "catalogue_name": "Global Infrastructure Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B1FZS467-ETFP.html?lang=it",
+      "exchange_symbol": "INFR",
+      "yahoo_symbol": "INFR.MI",
+      "status": "OFFICIAL_ISIN_MAPPING",
+      "page_sha256": "0ec165b2a61fddf05df3e2de492823f9a933ddd4e1b99104b36c479e8e109982"
+    },
+    {
+      "isin": "IE00B8GF1M35",
+      "macro_category": "C06_REAL_ASSETS",
+      "catalogue_name": "Dow Jones Global Real Estate Dist",
+      "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B8GF1M35-ETFP.html?lang=it",
+      "exchange_symbol": "",
+      "yahoo_symbol": "",
+      "status": "IDENTITY_NOT_RESOLVED",
+      "page_sha256": "f90c3850ab7725671378b5d68a7b2377640023db9d2887d678788263dfc88f57"
+    }
+  ]
+}
