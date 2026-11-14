@@ -1,0 +1,31 @@
+name: OLC106 contract tests (not a financial rerun)
+on:
+  push:
+    branches: [research/olc106-multiuniverse-risk-budget-20261114]
+    paths: [.github/workflows/olc106-contract-tests.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install numpy==2.3.5 pandas==2.2.3 threadpoolctl==3.6.0
+      - name: Run causality and accounting unit tests
+        env:
+          PYTHONPATH: research/olc106/src
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          set -o pipefail
+          python -m unittest discover -s research/olc106/tests -v 2>&1 | tee olc106-contract-tests.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: olc106-contract-tests-${{ github.run_id }}
+          path: olc106-contract-tests.log
+          retention-days: 90
