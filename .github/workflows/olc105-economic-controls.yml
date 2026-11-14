@@ -1,0 +1,53 @@
+name: OLC105 economic controls and explicit native model gate
+on:
+  push:
+    branches: [research/olc105-traderepublic-holdout-20261114]
+    paths:
+      - .github/workflows/olc105-economic-controls.yml
+      - research/olc105/portability_controls.py
+      - research/olc105/test_portability_controls.py
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: olc105-economic-controls
+  cancel-in-progress: false
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install control-test stack
+        run: python -m pip install numpy==2.2.6 pandas==2.2.3
+      - name: Run accounting and information-timing tests
+        run: |
+          mkdir -p research/olc105/control_results
+          set -o pipefail
+          cd research/olc105
+          python -m unittest -v test_portability_controls 2>&1 | tee control_results/UNIT_TESTS.txt
+      - name: Execute declared benchmarks and report native model readiness separately
+        env:
+          OLC_CODE_SHA: ${{ github.sha }}
+          OLC_RUN_ID: ${{ github.run_id }}
+        run: python research/olc105/portability_controls.py
+      - name: Preserve actual test output and results
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/olc105/control_results
+          if ! git diff --cached --quiet; then
+            git commit -m 'research(olc105): persist control-engine test and economic evidence, native ML status separate'
+            git push origin HEAD:research/olc105-traderepublic-holdout-20261114
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: olc105-controls-${{ github.run_id }}
+          path: research/olc105/control_results/
+          retention-days: 90
+          if-no-files-found: error
