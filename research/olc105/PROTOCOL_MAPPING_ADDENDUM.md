@@ -1,0 +1,10 @@
+# Metadata resolution addendum, 2026-11-14
+The first acquisition failed the minimum coverage gate: Yahoo ISIN search usually returned only a London or Swiss listing, although the same ISIN has EUR listings. Six series were captured; no portfolio outcomes or model results were computed. No candidate ISIN is added or substituted.
+
+The 32 frozen identities are now resolved using official Borsa Italiana ISIN/code pages plus the explicit Deutsche Boerse aliases in EXCHANGE_ALIASES.csv. Apply the same ordered venue preference .DE, .MI, .AS, .PA among verified aliases. Any alias matching a prior-research token excludes the entire ISIN. In particular ZPRV.DE and INFR.MI are previously mentioned: they are not new holdout funds. Absence from the scanned corpus is not proof of economic independence.
+
+The original capture is retained; the complete source is stored separately as source_complete. SPY, HYG, IEF and EXSA.DE are context-only inputs, never holdout tradable candidates. They are needed by the original EU risk/context formulas.
+
+Primary inference uses the original frozen EU annual models, in EUR candidate prices, with independently recomputed candidate-universe percentiles and persistent clusters. No candidate return label is fitted or used in eligibility. For transparent warm-up, require 252 prior actual observations and last observed quote no more than five calendar days before the signal; start the reported account at the first monthly signal with all six declared groups represented and at least 12 eligible funds. Recent launches enter only after their own history matures. Daily Open/Low integrity flags remain visible; no fabricated corrections.
+
+The first World benchmark is the frozen IE00BFY0GT14 (SPPW.DE/SWRD.MI), not selected by subsequent performance. Costs and fill uncertainty remain separate from model inference. Historical broker cash remuneration and personal taxes are not assumed known. Native fractional/adjusted-price accounting is a research comparator, not an assertion of whole-share broker executability.
