@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "SPYA.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1305529200,
+  "regularMarketTime": 1794587764,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 104.56,
+  "regularMarketChangePercent": -1.303,
+  "fulldayPrice": 104.56,
+  "fulldayChange": -1.38,
+  "fulldayChangePercent": -1.303,
+  "fiftyTwoWeekHigh": 123.1,
+  "fiftyTwoWeekLow": 83.06,
+  "regularMarketDayHigh": 105.94,
+  "regularMarketDayLow": 104.26,
+  "regularMarketVolume": 8031,
+  "longName": "State Street SPDR MSCI EM Asia UCITS ETF",
+  "shortName": "State Str.SPDR MSCI EM Asia UER",
+  "chartPreviousClose": 101.68,
+  "previousClose": 105.94,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "end": 1794556800,
+      "start": 1794549600,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "end": 1794587400,
+      "start": 1794556800,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "end": 1794598200,
+      "start": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                                end                     start\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 17:30:00+01:00 2026-11-09 09:00:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 17:30:00+01:00 2026-11-10 09:00:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 17:30:00+01:00 2026-11-11 09:00:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 17:30:00+01:00 2026-11-12 09:00:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 17:30:00+01:00 2026-11-13 09:00:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "WCOS.AS",
+  "exchangeName": "AMS",
+  "fullExchangeName": "Amsterdam",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1235376000,
+  "regularMarketTime": 1794587702,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Amsterdam",
+  "regularMarketPrice": 54.25,
+  "regularMarketChangePercent": 1.1,
+  "fulldayPrice": 54.25,
+  "fulldayChange": 0.59,
+  "fulldayChangePercent": 1.1,
+  "fiftyTwoWeekHigh": 54.4,
+  "fiftyTwoWeekLow": 42.755,
+  "regularMarketDayHigh": 54.4,
+  "regularMarketDayLow": 53.63,
+  "regularMarketVolume": 710,
+  "longName": "State Street SPDR MSCI World Consumer Staples UCITS ETF",
+  "shortName": "State Street SPDR MSCI World Co",
+  "chartPreviousClose": 52.46,
+  "previousClose": 53.66,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

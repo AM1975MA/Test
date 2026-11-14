@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "WHEA.AS",
+  "exchangeName": "AMS",
+  "fullExchangeName": "Amsterdam",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1235462400,
+  "regularMarketTime": 1794587072,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Amsterdam",
+  "regularMarketPrice": 71.68,
+  "regularMarketChangePercent": -0.167,
+  "fulldayPrice": 71.68,
+  "fulldayChange": -0.12,
+  "fulldayChangePercent": -0.167,
+  "fiftyTwoWeekHigh": 72.39,
+  "fiftyTwoWeekLow": 53.44,
+  "regularMarketDayHigh": 71.89,
+  "regularMarketDayLow": 71.36,
+  "regularMarketVolume": 4484,
+  "longName": "State Street SPDR MSCI World Health Care UCITS ETF",
+  "shortName": "State Street SPDR MSCI World He",
+  "chartPreviousClose": 70.39,
+  "previousClose": 71.8,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "currency": "EUR",
+  "symbol": "CMOE.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1645171200,
+  "regularMarketTime": 1794587745,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 66.37,
+  "regularMarketChangePercent": 0.53,
+  "fulldayPrice": 66.37,
+  "fulldayChange": 0.35,
+  "fulldayChangePercent": 0.53,
+  "fiftyTwoWeekHigh": 72.98,
+  "fiftyTwoWeekLow": 52.02,
+  "regularMarketDayHigh": 66.77,
+  "regularMarketDayLow": 66.37,
+  "regularMarketVolume": 81,
+  "longName": "Invesco Bloomberg Commodity UCITS ETF EUR Hedged",
+  "shortName": "InvescoMI BB Commo ETF        R",
+  "chartPreviousClose": 66.65,
+  "previousClose": 66.02,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794549600,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794598200,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "ytd",
+    "max"
+  ]
+}

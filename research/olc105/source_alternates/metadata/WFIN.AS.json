@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "WFIN.AS",
+  "exchangeName": "AMS",
+  "fullExchangeName": "Amsterdam",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1199260800,
+  "regularMarketTime": 1794587713,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Amsterdam",
+  "regularMarketPrice": 94.29,
+  "regularMarketChangePercent": -0.18,
+  "fulldayPrice": 94.29,
+  "fulldayChange": -0.17,
+  "fulldayChangePercent": -0.18,
+  "fiftyTwoWeekHigh": 94.89,
+  "fiftyTwoWeekLow": 73.63,
+  "regularMarketDayHigh": 94.43,
+  "regularMarketDayLow": 93.85,
+  "regularMarketVolume": 1465,
+  "longName": "State Street SPDR MSCI World Financials UCITS ETF USD Acc",
+  "shortName": "State Street SPDR MSCI World Fi",
+  "chartPreviousClose": 92.45,
+  "previousClose": 94.46,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

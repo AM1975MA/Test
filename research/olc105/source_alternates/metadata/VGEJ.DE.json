@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "VGEJ.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1509001200,
+  "regularMarketTime": 1794587773,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 35.99,
+  "regularMarketChangePercent": -1.988,
+  "fulldayPrice": 35.99,
+  "fulldayChange": -0.73,
+  "fulldayChangePercent": -1.988,
+  "fiftyTwoWeekHigh": 44.39,
+  "fiftyTwoWeekLow": 25.805,
+  "regularMarketDayHigh": 36.565,
+  "regularMarketDayLow": 35.94,
+  "regularMarketVolume": 17976,
+  "longName": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF USD Distributing",
+  "shortName": "Vanguard FTSE D.A.P.x.J.U.ETF R",
+  "chartPreviousClose": 35.5,
+  "previousClose": 36.72,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794549600,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794598200,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}
