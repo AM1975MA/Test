@@ -1,0 +1,26 @@
+name: OLC105 Trade Republic Italy catalogue (metadata only)
+on:
+  push:
+    branches: [research/olc105-traderepublic-holdout-20261114]
+    paths: [.github/workflows/olc105-catalogue.yml, research/olc105/capture_catalogue.py]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install requests==2.32.5 PyMuPDF==1.26.7
+      - run: python research/olc105/capture_catalogue.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: olc105-catalogue-${{ github.run_id }}
+          path: olc105_catalogue/
+          retention-days: 90
+          if-no-files-found: error
