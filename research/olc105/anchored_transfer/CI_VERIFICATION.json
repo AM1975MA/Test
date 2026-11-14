@@ -1,0 +1,10 @@
+{
+  "status": "PASS_EXACT_SOURCE_DIGEST_AND_11_REGRESSION_TESTS",
+  "run_id": "43640051824",
+  "code_commit": "c2841df9490e0fca5e025ae23baeadfae0d7cf5d",
+  "verified_utc": "2026-11-14T20:55:57.672769+00:00",
+  "source_files": 19,
+  "unit_tests": 11,
+  "full_financial_replay_in_this_action": false,
+  "scope": "118 financial accounts were executed and independently rerun in the working environment. This Action verifies their exact archived source and regression tests, not unavailable model archives or brokerage fills."
+}
