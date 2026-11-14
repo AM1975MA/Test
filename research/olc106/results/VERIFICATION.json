@@ -1,0 +1,44 @@
+{
+  "status": "RESEARCH_SCREEN_COMPLETE_TARGET_NOT_REACHED",
+  "universes": ["EU165", "USA149", "TR29", "EU194"],
+  "common_window": {"first_open": "2020-03-02", "last_close": "2026-10-30"},
+  "arms": 5,
+  "scenarios_per_arm": 6,
+  "completed_replays": 120,
+  "joint_target_pass_count": 0,
+  "target": {"calendar_cagr_min": 0.2, "maxdd_abs_max": 0.25, "cagr_to_abs_dd_min": 1.0},
+  "independent": {
+    "status": "PASS_120_ORDER_LEVEL_RECONSTRUCTIONS_RESEARCH_ONLY",
+    "paths": 120,
+    "order_timestamps_checked": 44261,
+    "max_nav_cash_error": 6.548361852765083e-11,
+    "max_per_order_cost_error": 1.4210854715202004e-14,
+    "max_metric_error": 1.9984014443252818e-15,
+    "generalisation_proven": false,
+    "broker_execution_certified": false,
+    "whole_shares_tested": false
+  },
+  "source_archives": {
+    "OLC104_CAMPAGNA_COMPLETA_20261114.zip": {"sha256": "ce7e1b4aaa11eda5ea90480e65e31713e0adf22ed1d9df44a9f840211fbc5923", "bytes": 153834546},
+    "OLC105_TRADEREPUBLIC_TRANSFER_20261114_VERIFICATO.zip": {"sha256": "cd4344da5143c80f65f9aea2d43a5c48fd5e5e076f591dca2e4fbecfcdab9177", "bytes": 67471252},
+    "OLC100_CAPTURE_RECHECK_20261112.zip": {"sha256": "69c9dedb9013e8fb8bf1df94b07c61f8ecdbb0a94a6e663ff75ba1b3738119df", "bytes": 1367458}
+  },
+  "source_bundle_members_verified": 653,
+  "unit_tests": 14,
+  "github_contract_test_run": 43646000325,
+  "github_contract_test_status": "success",
+  "github_financial_replay_executed": false,
+  "financial_replays_location": "local Python execution; saved diaries reconstructed independently",
+  "native_strategy_changed": false,
+  "live_trades": false,
+  "automations_changed": false,
+  "physical_whole_shares_tested": false,
+  "source_data_broker_certified": false,
+  "large_price_panels_in_github": false,
+  "repository_sources_git_blob_sha": {
+    "core.py": "61e90c552e5941f9a43bcd319627a00561f02500",
+    "verify.py": "5cd302c793ff2b795634b2b4027e1225cb39f3c0",
+    "run.py": "bee3bfb843e39d64a225769cd86faccd9165a636",
+    "prepare.py": "822d8245bc77afba289c986b76cbfd5a5aa3dc12"
+  }
+}
