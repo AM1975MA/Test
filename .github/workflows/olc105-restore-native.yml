@@ -1,0 +1,86 @@
+name: OLC105 restore native research dependencies
+on:
+  push:
+    branches: [research/olc105-traderepublic-holdout-20261114]
+    paths: [.github/workflows/olc105-restore-native.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recover original sources and enumerate retained training artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import urllib.request,json,zipfile,hashlib,os,csv,concurrent.futures
+          from pathlib import Path
+          out=Path('research/olc105/native_recovery');out.mkdir(parents=True,exist_ok=True)
+          cache=Path('/tmp/olc105_restore');cache.mkdir(exist_ok=True)
+          def api(path):
+              r=urllib.request.Request('https://api.github.com/repos/AM1975MA/Test/'+path,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','User-Agent':'olc105-research'})
+              return json.load(urllib.request.urlopen(r,timeout=90))
+          rows=[]
+          for page in range(1,61):
+              j=api(f'actions/artifacts?per_page=100&page={page}')
+              arr=j.get('artifacts',[])
+              rows.extend({k:x.get(k) for k in ['id','name','size_in_bytes','expired','created_at','expires_at','archive_download_url']}|{'run_id':x.get('workflow_run',{}).get('id'),'branch':x.get('workflow_run',{}).get('head_branch')} for x in arr)
+              if len(arr)<100:break
+          (out/'ALL_ARTIFACTS.json').write_text(json.dumps(rows,indent=2))
+          needles=['olc','hybrid','eu165','eu-original','compact','return','original','frozen','source','raw','checkpoint','prepared']
+          matched=[r for r in rows if not r['expired'] and any(n in r['name'].lower() for n in needles)]
+          with (out/'AVAILABLE_ARTIFACTS.csv').open('w') as f:
+              w=csv.DictWriter(f,fieldnames=['id','name','size_in_bytes','run_id','branch','created_at']);w.writeheader();w.writerows({k:r[k] for k in w.fieldnames} for r in matched)
+          url='https://github.com/AM1975MA/Test/releases/download/research-preserved-20261101/ETF_Research_Tracked_Snapshot_20261101.zip'
+          path=cache/'source_snapshot.zip';urllib.request.urlretrieve(url,path)
+          digest=hashlib.sha256(path.read_bytes()).hexdigest()
+          assert digest=='22675c4c8fcb5fde4da78192db8aa61e008b025294c476b90c2551117e210374',digest
+          with zipfile.ZipFile(path) as z:
+              names=[{'name':i.filename,'size':i.file_size} for i in z.infolist() if not i.is_dir()]
+              (out/'SNAPSHOT_CONTENTS.json').write_text(json.dumps(names,indent=2))
+              relevant=[x for x in names if any(n in x['name'].lower() for n in ['model','panel','raw','data','checkpoint','original39','source_only'])]
+              (out/'NATIVE_CANDIDATES.json').write_text(json.dumps(relevant,indent=2))
+              for i in z.infolist():
+                  if Path(i.filename).suffix.lower() in ['.md','.txt','.json'] and i.file_size<100000 and any(s in i.filename.lower() for s in ['archive','manifest','source','readme']):
+                      pass
+          branches=['research/olc19-risk-reentry-20261102','research/olc14-fitted-ranking-20261101','research/olc08-whole-chain-20261101','research/olc11-selection-objectives-20261101','research/olc100-forward-freeze-20261112','research/olc102-real-daily-ml-20261113','research/olc98-model-review-20261112']
+          infos=[]
+          for branch in branches:
+              from urllib.parse import quote
+              ref=api('branches/'+quote(branch,safe=''))['commit']['sha']
+              tree=api('git/trees/'+ref+'?recursive=1')
+              found=[{'path':x['path'],'size':x.get('size',0),'sha':x['sha']} for x in tree.get('tree',[]) if x['type']=='blob' and (x['path'].startswith('research/') or x['path'].lower().endswith(('.npz','.pkl','.joblib','.ubj','.parquet','.feather','.zip')))]
+              infos.append({'branch':branch,'commit':ref,'truncated':tree.get('truncated'),'files':found})
+          (out/'BRANCH_DEPENDENCIES.json').write_text(json.dumps(infos,indent=2))
+          result={'source_archive_sha256':digest,'source_archive_files':len(names),'artifact_records':len(rows),'available_relevant_artifacts':len(matched),'branch_records':len(infos),'native_model_recovered':False,'native_backtest_executed':False}
+          (out/'RECOVERY_SUMMARY.json').write_text(json.dumps(result,indent=2))
+          print(json.dumps(result,indent=2))
+          print('SMALL MODEL/PRICE CANDIDATES:')
+          print(json.dumps([x for x in relevant if x['name'].lower().endswith(('.pkl','.joblib','.ubj','.npz','.parquet','.feather','.zip'))],indent=2)[:18000])
+          print('MODEL ARTIFACTS:')
+          print(json.dumps([r for r in matched if 'olc' in r['name'].lower() or 'frozen' in r['name'].lower() or 'checkpoint' in r['name'].lower()],indent=2)[:18000])
+          PY
+      - name: Save recovery index only, preserve all models and raw data unchanged
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/olc105/native_recovery
+          if ! git diff --cached --quiet; then
+            git commit -m 'research(olc105): persist native source and retained artifact inventory'
+            git push origin HEAD:research/olc105-traderepublic-holdout-20261114
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: olc105-native-recovery-${{ github.run_id }}
+          path: research/olc105/native_recovery/
+          retention-days: 90
