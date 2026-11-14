@@ -1,0 +1,42 @@
+{
+  "financial_validation": {
+    "status": "PASS_NUMERICAL_TRANSFER_NOT_BROKER_CERTIFIED",
+    "paths": 118,
+    "score_rows": 236,
+    "independent_metric_max_abs_error": 7.275957614183426e-16,
+    "cost_formula_max_abs_error_eur": 5.684341886080802e-14,
+    "full_position_paths_checked": 10,
+    "position_value_max_abs_error": 2.220446049250313e-16,
+    "matched_calendar_windows": {"COMPLETED_CYCLES":1,"INCLUDING_PARTIAL_NOVEMBER":1},
+    "signals_strictly_before_execution": 81,
+    "anchor_holdings": 0,
+    "corporate_action_repair": "Issuer-confirmed P500 100-for-1 2025-12-15, forward economic units, raw unchanged",
+    "whole_share_execution": false,
+    "actual_broker_quotes": false,
+    "taxes": false,
+    "prospective": false
+  },
+  "isolated_account_replay": {
+    "status": "PASS_ISOLATED_ACCOUNT_REPLAY",
+    "replays": 118,
+    "reference_full_arrays_bitwise": 70,
+    "max_csv_roundtrip_nav_difference": 4.440892098500626e-16,
+    "trained_models_needed": false,
+    "broker_fill_certified": false,
+    "prospective": false
+  },
+  "historical_source_parity": {
+    "return_rank_months_EU_exact":90,
+    "context_top2_months_EU_exact":90,
+    "context_scores_bitwise":false,
+    "context_score_max_abs_error":0.000133872207987773,
+    "original_account_arrays_bitwise_EU_USA":14
+  },
+  "source_archive_sha256":"1938c82f106018ef0f650c40705be602a8ce83994d28d6e89749057f1f776b69",
+  "github_regression_run":43640051824,
+  "github_run_scope":"Exact executed source archive SHA256, Python syntax and 11 regression tests; not a rerun of all financial accounts in Actions",
+  "financial_result":"NEGATIVE_FOR_FROZEN_ML_PORTABILITY_ON_THIS_NEW_INVESTABLE_UNIVERSE",
+  "live_trading_promoted":false,
+  "main_changed":false,
+  "automations_changed":false
+}
