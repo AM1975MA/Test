@@ -1,0 +1,21 @@
+{
+  "delivered_archive": "OLC105_TRADEREPUBLIC_TRANSFER_20261114_VERIFICATO.zip",
+  "bytes": 67471252,
+  "sha256": "cd4344da5143c80f65f9aea2d43a5c48fd5e5e076f591dca2e4fbecfcdab9177",
+  "archive_entries": 262,
+  "file_hashes_independently_checked": 261,
+  "manifest_entry_excluded_from_its_own_hashes": true,
+  "archive_delivery": "Conversation download. The full binary frozen-state archive is not stored as a Git blob.",
+  "git_saved": ["19 exact source/test files", "REPORT_IT.md", "results/BASE_RESULT.json", "results/VALIDATION_SUMMARY.json", "SOURCE_SHA256.json", "CI_VERIFICATION.json", "source capture snapshots and prior protocols"],
+  "autonomous_account_replay": "Extract the delivered archive; run python src/replay_saved_states.py --out /new/empty/path inside OLC105. All six states, 118 reference daily accounts, 10 full reference matrix paths and engine source are included. No model downloads or network needed for account replay.",
+  "upstream_regeneration": "Requires original frozen models/input archives identified by SHA256 in ORIGINAL_DEPENDENCIES.json in the delivered archive, plus OLC104 source layout. The archive does not claim standalone feature/model regeneration.",
+  "source_bundle_sha256": "1938c82f106018ef0f650c40705be602a8ce83994d28d6e89749057f1f776b69",
+  "github_source_test_run": 43640051824,
+  "financial_replays": 118,
+  "score_rows": 236,
+  "frozen_models_refit_to_candidate_labels": false,
+  "live_orders": false,
+  "whole_share_execution": false,
+  "broker_execution_certified": false,
+  "prospective_evidence": false
+}
