@@ -1,0 +1,12 @@
+isin,symbol,source_url
+IE00B3YCGJ38,P500.DE,https://live.deutsche-boerse.com/en/etf/invesco-s-p-500-ucits-etf-acc
+IE0032077012,EQQQ.DE,https://live.deutsche-boerse.com/en/etf/invesco-eqqq-nasdaq-100-ucits-etf-dist
+IE00BSPLC413,ZPRV.DE,https://live.deutsche-boerse.com/etf/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf
+IE00BFY0GT14,SPPW.DE,https://live.deutsche-boerse.com/etf/state-street-spdr-msci-world-ucits-etf
+IE00B3YLTY66,SPYI.DE,https://live.deutsche-boerse.com/en/etf/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc
+IE00BZCQB185,QDV5.DE,https://live.deutsche-boerse.com/en/etf/ishares-msci-india-ucits-etf-usd-acc
+IE00B27YCK28,IUSC.DE,https://live.deutsche-boerse.com/en/etf/ishares-msci-em-latin-america-ucits-etf-usd-dist
+IE00BDBRDM35,EUNA.DE,https://live.deutsche-boerse.com/etf/ishares-core-global-aggregate-bond-ucits-etf-eur-hedged-acc
+IE00BF2FNH52,TRX3.DE,https://live.deutsche-boerse.com/en/etf/invesco-us-treasury-bond-1-3-year-ucits-etf-acc
+IE00BYXYX521,XAAG.DE,https://live.deutsche-boerse.com/en/etf/invesco-bloomberg-commodity-ex-agriculture-ucits-etf-acc
+IE00B8GF1M35,SPYJ.DE,https://live.deutsche-boerse.com/en/etf/state-street-spdr-dow-jones-global-real-estate-ucits-etf-dist
