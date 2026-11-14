@@ -1,0 +1,13 @@
+{
+  "manifest_type": "dict",
+  "manifest_keys": [
+    "scope",
+    "refs",
+    "missing_branches",
+    "blobs"
+  ],
+  "nested_archives": 4,
+  "native_binary_candidates": 0,
+  "native_python_sources": 93,
+  "research_archives_inspected": 0
+}

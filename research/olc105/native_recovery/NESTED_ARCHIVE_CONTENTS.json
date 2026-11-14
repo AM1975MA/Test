@@ -1,0 +1,4686 @@
+[
+  {
+    "blob": "blobs/379b9e2a5f904034e87237d27decdd0e7f25e276",
+    "size": 36473522,
+    "entries": [
+      {
+        "name": "policy_paths/B_T1_H1/r1/00.npz",
+        "size": 95674
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/01.npz",
+        "size": 91511
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/02.npz",
+        "size": 100030
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/03.npz",
+        "size": 96715
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/04.npz",
+        "size": 95674
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/05.npz",
+        "size": 91511
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/06.npz",
+        "size": 100176
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/07.npz",
+        "size": 97046
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/08.npz",
+        "size": 97128
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/09.npz",
+        "size": 92977
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/10.npz",
+        "size": 101086
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/11.npz",
+        "size": 97449
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/12.npz",
+        "size": 97128
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/13.npz",
+        "size": 92977
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/14.npz",
+        "size": 101341
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/15.npz",
+        "size": 97730
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/16.npz",
+        "size": 96743
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/17.npz",
+        "size": 92968
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/18.npz",
+        "size": 100778
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/19.npz",
+        "size": 97223
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/20.npz",
+        "size": 96743
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/21.npz",
+        "size": 92968
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/22.npz",
+        "size": 100873
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/23.npz",
+        "size": 97442
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/24.npz",
+        "size": 97811
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/25.npz",
+        "size": 93545
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/26.npz",
+        "size": 101488
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/27.npz",
+        "size": 97746
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/28.npz",
+        "size": 97811
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/29.npz",
+        "size": 93545
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/30.npz",
+        "size": 101706
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/31.npz",
+        "size": 97975
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/32.npz",
+        "size": 97194
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/33.npz",
+        "size": 93240
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/34.npz",
+        "size": 102449
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/35.npz",
+        "size": 99264
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/36.npz",
+        "size": 97194
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/37.npz",
+        "size": 93240
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/38.npz",
+        "size": 102747
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/39.npz",
+        "size": 99481
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/40.npz",
+        "size": 98934
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/41.npz",
+        "size": 94876
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/42.npz",
+        "size": 103170
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/43.npz",
+        "size": 99816
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/44.npz",
+        "size": 98934
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/45.npz",
+        "size": 94876
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/46.npz",
+        "size": 103574
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/47.npz",
+        "size": 100220
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/48.npz",
+        "size": 99164
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/49.npz",
+        "size": 95113
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/50.npz",
+        "size": 103776
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/51.npz",
+        "size": 100164
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/52.npz",
+        "size": 99164
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/53.npz",
+        "size": 95113
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/54.npz",
+        "size": 104066
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/55.npz",
+        "size": 100565
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/56.npz",
+        "size": 99731
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/57.npz",
+        "size": 95827
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/58.npz",
+        "size": 104153
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/59.npz",
+        "size": 100874
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/60.npz",
+        "size": 99731
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/61.npz",
+        "size": 95827
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/62.npz",
+        "size": 104512
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/63.npz",
+        "size": 101193
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r1/TICKERS.json",
+        "size": 1082
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/00.npz",
+        "size": 95633
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/01.npz",
+        "size": 91637
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/02.npz",
+        "size": 100164
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/03.npz",
+        "size": 97138
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/04.npz",
+        "size": 95633
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/05.npz",
+        "size": 91637
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/06.npz",
+        "size": 100282
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/07.npz",
+        "size": 97354
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/08.npz",
+        "size": 96940
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/09.npz",
+        "size": 93163
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/10.npz",
+        "size": 100635
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/11.npz",
+        "size": 97711
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/12.npz",
+        "size": 96940
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/13.npz",
+        "size": 93163
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/14.npz",
+        "size": 101027
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/15.npz",
+        "size": 98000
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/16.npz",
+        "size": 96852
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/17.npz",
+        "size": 92796
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/18.npz",
+        "size": 100827
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/19.npz",
+        "size": 97642
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/20.npz",
+        "size": 96852
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/21.npz",
+        "size": 92796
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/22.npz",
+        "size": 100938
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/23.npz",
+        "size": 97893
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/24.npz",
+        "size": 97370
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/25.npz",
+        "size": 93782
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/26.npz",
+        "size": 101184
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/27.npz",
+        "size": 98098
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/28.npz",
+        "size": 97370
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/29.npz",
+        "size": 93782
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/30.npz",
+        "size": 101227
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/31.npz",
+        "size": 98369
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/32.npz",
+        "size": 97376
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/33.npz",
+        "size": 93241
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/34.npz",
+        "size": 102443
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/35.npz",
+        "size": 99512
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/36.npz",
+        "size": 97376
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/37.npz",
+        "size": 93241
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/38.npz",
+        "size": 102779
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/39.npz",
+        "size": 99789
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/40.npz",
+        "size": 98442
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/41.npz",
+        "size": 94902
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/42.npz",
+        "size": 102940
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/43.npz",
+        "size": 100227
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/44.npz",
+        "size": 98442
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/45.npz",
+        "size": 94902
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/46.npz",
+        "size": 103214
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/47.npz",
+        "size": 100539
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/48.npz",
+        "size": 98924
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/49.npz",
+        "size": 95081
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/50.npz",
+        "size": 103440
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/51.npz",
+        "size": 100674
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/52.npz",
+        "size": 98924
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/53.npz",
+        "size": 95081
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/54.npz",
+        "size": 103715
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/55.npz",
+        "size": 100985
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/56.npz",
+        "size": 99838
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/57.npz",
+        "size": 95825
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/58.npz",
+        "size": 104201
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/59.npz",
+        "size": 101121
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/60.npz",
+        "size": 99838
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/61.npz",
+        "size": 95825
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/62.npz",
+        "size": 104656
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/63.npz",
+        "size": 101614
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r2/TICKERS.json",
+        "size": 1082
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/00.npz",
+        "size": 95774
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/01.npz",
+        "size": 91580
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/02.npz",
+        "size": 100024
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/03.npz",
+        "size": 96775
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/04.npz",
+        "size": 95774
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/05.npz",
+        "size": 91580
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/06.npz",
+        "size": 100195
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/07.npz",
+        "size": 97038
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/08.npz",
+        "size": 97043
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/09.npz",
+        "size": 93287
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/10.npz",
+        "size": 100739
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/11.npz",
+        "size": 97751
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/12.npz",
+        "size": 97043
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/13.npz",
+        "size": 93287
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/14.npz",
+        "size": 100924
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/15.npz",
+        "size": 98047
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/16.npz",
+        "size": 96832
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/17.npz",
+        "size": 93198
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/18.npz",
+        "size": 100759
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/19.npz",
+        "size": 97539
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/20.npz",
+        "size": 96832
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/21.npz",
+        "size": 93198
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/22.npz",
+        "size": 100909
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/23.npz",
+        "size": 97786
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/24.npz",
+        "size": 97626
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/25.npz",
+        "size": 93784
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/26.npz",
+        "size": 101233
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/27.npz",
+        "size": 98160
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/28.npz",
+        "size": 97626
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/29.npz",
+        "size": 93784
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/30.npz",
+        "size": 101449
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/31.npz",
+        "size": 98472
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/32.npz",
+        "size": 97111
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/33.npz",
+        "size": 93347
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/34.npz",
+        "size": 102338
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/35.npz",
+        "size": 99387
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/36.npz",
+        "size": 97111
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/37.npz",
+        "size": 93347
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/38.npz",
+        "size": 102810
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/39.npz",
+        "size": 99771
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/40.npz",
+        "size": 98704
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/41.npz",
+        "size": 95185
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/42.npz",
+        "size": 103042
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/43.npz",
+        "size": 100597
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/44.npz",
+        "size": 98704
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/45.npz",
+        "size": 95185
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/46.npz",
+        "size": 103530
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/47.npz",
+        "size": 101050
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/48.npz",
+        "size": 98952
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/49.npz",
+        "size": 95330
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/50.npz",
+        "size": 103710
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/51.npz",
+        "size": 100422
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/52.npz",
+        "size": 98952
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/53.npz",
+        "size": 95330
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/54.npz",
+        "size": 104149
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/55.npz",
+        "size": 100956
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/56.npz",
+        "size": 99780
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/57.npz",
+        "size": 96410
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/58.npz",
+        "size": 104080
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/59.npz",
+        "size": 101711
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/60.npz",
+        "size": 99780
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/61.npz",
+        "size": 96410
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/62.npz",
+        "size": 104454
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/63.npz",
+        "size": 102262
+      },
+      {
+        "name": "policy_paths/B_T1_H1/r3/TICKERS.json",
+        "size": 1082
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/00.npz",
+        "size": 95999
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/01.npz",
+        "size": 91059
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/02.npz",
+        "size": 100383
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/03.npz",
+        "size": 96536
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/04.npz",
+        "size": 95999
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/05.npz",
+        "size": 91059
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/06.npz",
+        "size": 100738
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/07.npz",
+        "size": 96726
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/08.npz",
+        "size": 97217
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/09.npz",
+        "size": 92986
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/10.npz",
+        "size": 100785
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/11.npz",
+        "size": 97625
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/12.npz",
+        "size": 97217
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/13.npz",
+        "size": 92986
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/14.npz",
+        "size": 100976
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/15.npz",
+        "size": 97843
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/16.npz",
+        "size": 97212
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/17.npz",
+        "size": 92528
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/18.npz",
+        "size": 100757
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/19.npz",
+        "size": 97036
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/20.npz",
+        "size": 97212
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/21.npz",
+        "size": 92528
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/22.npz",
+        "size": 101055
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/23.npz",
+        "size": 97305
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/24.npz",
+        "size": 97604
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/25.npz",
+        "size": 93616
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/26.npz",
+        "size": 101378
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/27.npz",
+        "size": 97987
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/28.npz",
+        "size": 97604
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/29.npz",
+        "size": 93616
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/30.npz",
+        "size": 101510
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/31.npz",
+        "size": 98257
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/32.npz",
+        "size": 97443
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/33.npz",
+        "size": 92727
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/34.npz",
+        "size": 102758
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/35.npz",
+        "size": 99103
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/36.npz",
+        "size": 97443
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/37.npz",
+        "size": 92727
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/38.npz",
+        "size": 103196
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/39.npz",
+        "size": 99484
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/40.npz",
+        "size": 98802
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/41.npz",
+        "size": 95019
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/42.npz",
+        "size": 103363
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/43.npz",
+        "size": 100266
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/44.npz",
+        "size": 98802
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/45.npz",
+        "size": 95019
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/46.npz",
+        "size": 103664
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/47.npz",
+        "size": 100642
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/48.npz",
+        "size": 99026
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/49.npz",
+        "size": 94630
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/50.npz",
+        "size": 103862
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/51.npz",
+        "size": 100173
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/52.npz",
+        "size": 99026
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/53.npz",
+        "size": 94630
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/54.npz",
+        "size": 104207
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/55.npz",
+        "size": 100551
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/56.npz",
+        "size": 100020
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/57.npz",
+        "size": 96280
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/58.npz",
+        "size": 104233
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/59.npz",
+        "size": 101415
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/60.npz",
+        "size": 100020
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/61.npz",
+        "size": 96280
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/62.npz",
+        "size": 104600
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/63.npz",
+        "size": 101828
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r1/TICKERS.json",
+        "size": 1082
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/00.npz",
+        "size": 95773
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/01.npz",
+        "size": 91091
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/02.npz",
+        "size": 100117
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/03.npz",
+        "size": 96792
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/04.npz",
+        "size": 95773
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/05.npz",
+        "size": 91091
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/06.npz",
+        "size": 100518
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/07.npz",
+        "size": 97058
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/08.npz",
+        "size": 97233
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/09.npz",
+        "size": 92879
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/10.npz",
+        "size": 101100
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/11.npz",
+        "size": 97641
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/12.npz",
+        "size": 97233
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/13.npz",
+        "size": 92879
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/14.npz",
+        "size": 101265
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/15.npz",
+        "size": 97970
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/16.npz",
+        "size": 97008
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/17.npz",
+        "size": 92287
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/18.npz",
+        "size": 100809
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/19.npz",
+        "size": 97463
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/20.npz",
+        "size": 97008
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/21.npz",
+        "size": 92287
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/22.npz",
+        "size": 101187
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/23.npz",
+        "size": 97779
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/24.npz",
+        "size": 97926
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/25.npz",
+        "size": 93416
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/26.npz",
+        "size": 101589
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/27.npz",
+        "size": 98165
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/28.npz",
+        "size": 97926
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/29.npz",
+        "size": 93416
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/30.npz",
+        "size": 101755
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/31.npz",
+        "size": 98410
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/32.npz",
+        "size": 97234
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/33.npz",
+        "size": 92681
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/34.npz",
+        "size": 102455
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/35.npz",
+        "size": 99066
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/36.npz",
+        "size": 97234
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/37.npz",
+        "size": 92681
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/38.npz",
+        "size": 102882
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/39.npz",
+        "size": 99478
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/40.npz",
+        "size": 99181
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/41.npz",
+        "size": 94773
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/42.npz",
+        "size": 103348
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/43.npz",
+        "size": 100392
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/44.npz",
+        "size": 99181
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/45.npz",
+        "size": 94773
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/46.npz",
+        "size": 103807
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/47.npz",
+        "size": 100780
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/48.npz",
+        "size": 98950
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/49.npz",
+        "size": 94655
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/50.npz",
+        "size": 103555
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/51.npz",
+        "size": 100361
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/52.npz",
+        "size": 98950
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/53.npz",
+        "size": 94655
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/54.npz",
+        "size": 103966
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/55.npz",
+        "size": 100791
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/56.npz",
+        "size": 100233
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/57.npz",
+        "size": 95950
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/58.npz",
+        "size": 104677
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/59.npz",
+        "size": 101457
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/60.npz",
+        "size": 100233
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/61.npz",
+        "size": 95950
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/62.npz",
+        "size": 104971
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/63.npz",
+        "size": 101894
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r2/TICKERS.json",
+        "size": 1082
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/00.npz",
+        "size": 95825
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/01.npz",
+        "size": 90656
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/02.npz",
+        "size": 100254
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/03.npz",
+        "size": 96138
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/04.npz",
+        "size": 95825
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/05.npz",
+        "size": 90656
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/06.npz",
+        "size": 100425
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/07.npz",
+        "size": 96427
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/08.npz",
+        "size": 97326
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/09.npz",
+        "size": 92413
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/10.npz",
+        "size": 100869
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/11.npz",
+        "size": 96970
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/12.npz",
+        "size": 97326
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/13.npz",
+        "size": 92413
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/14.npz",
+        "size": 101071
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/15.npz",
+        "size": 97233
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/16.npz",
+        "size": 97129
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/17.npz",
+        "size": 92154
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/18.npz",
+        "size": 100957
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/19.npz",
+        "size": 96968
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/20.npz",
+        "size": 97129
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/21.npz",
+        "size": 92154
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/22.npz",
+        "size": 101200
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/23.npz",
+        "size": 97205
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/24.npz",
+        "size": 97792
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/25.npz",
+        "size": 93231
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/26.npz",
+        "size": 101414
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/27.npz",
+        "size": 97772
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/28.npz",
+        "size": 97792
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/29.npz",
+        "size": 93231
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/30.npz",
+        "size": 101631
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/31.npz",
+        "size": 98028
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/32.npz",
+        "size": 97399
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/33.npz",
+        "size": 92142
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/34.npz",
+        "size": 102661
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/35.npz",
+        "size": 98656
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/36.npz",
+        "size": 97399
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/37.npz",
+        "size": 92142
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/38.npz",
+        "size": 103016
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/39.npz",
+        "size": 99138
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/40.npz",
+        "size": 98836
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/41.npz",
+        "size": 94317
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/42.npz",
+        "size": 103398
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/43.npz",
+        "size": 99708
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/44.npz",
+        "size": 98836
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/45.npz",
+        "size": 94317
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/46.npz",
+        "size": 103710
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/47.npz",
+        "size": 100147
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/48.npz",
+        "size": 99312
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/49.npz",
+        "size": 94715
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/50.npz",
+        "size": 103979
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/51.npz",
+        "size": 100162
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/52.npz",
+        "size": 99312
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/53.npz",
+        "size": 94715
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/54.npz",
+        "size": 104373
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/55.npz",
+        "size": 100670
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/56.npz",
+        "size": 100648
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/57.npz",
+        "size": 96058
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/58.npz",
+        "size": 104889
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/59.npz",
+        "size": 101357
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/60.npz",
+        "size": 100648
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/61.npz",
+        "size": 96058
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/62.npz",
+        "size": 105208
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/63.npz",
+        "size": 101770
+      },
+      {
+        "name": "policy_paths/R_T0_H1/r3/TICKERS.json",
+        "size": 1082
+      }
+    ]
+  },
+  {
+    "blob": "blobs/1e5e16b107862e9eef5981548ddebe992b1392b5",
+    "size": 77881275,
+    "entries": [
+      {
+        "name": "_repeat1/AGG.csv",
+        "size": 534196
+      },
+      {
+        "name": "_repeat1/AAXJ.csv",
+        "size": 423337
+      },
+      {
+        "name": "_repeat1/ACWI.csv",
+        "size": 434343
+      },
+      {
+        "name": "_repeat1/ANGL.csv",
+        "size": 335536
+      },
+      {
+        "name": "_repeat1/ARGT.csv",
+        "size": 357453
+      },
+      {
+        "name": "_repeat1/ASHR.csv",
+        "size": 301729
+      },
+      {
+        "name": "_repeat1/BIL.csv",
+        "size": 451929
+      },
+      {
+        "name": "_repeat1/BKLN.csv",
+        "size": 366433
+      },
+      {
+        "name": "_repeat1/BND.csv",
+        "size": 457848
+      },
+      {
+        "name": "_repeat1/BNDX.csv",
+        "size": 311638
+      },
+      {
+        "name": "_repeat1/BNO.csv",
+        "size": 370874
+      },
+      {
+        "name": "_repeat1/COMT.csv",
+        "size": 275432
+      },
+      {
+        "name": "_repeat1/CORN.csv",
+        "size": 366135
+      },
+      {
+        "name": "_repeat1/CPER.csv",
+        "size": 328696
+      },
+      {
+        "name": "_repeat1/DBA.csv",
+        "size": 461870
+      },
+      {
+        "name": "_repeat1/DBB.csv",
+        "size": 458055
+      },
+      {
+        "name": "_repeat1/DBC.csv",
+        "size": 485270
+      },
+      {
+        "name": "_repeat1/DBO.csv",
+        "size": 459947
+      },
+      {
+        "name": "_repeat1/DEM.csv",
+        "size": 447811
+      },
+      {
+        "name": "_repeat1/DGRO.csv",
+        "size": 286855
+      },
+      {
+        "name": "_repeat1/DIA.csv",
+        "size": 536953
+      },
+      {
+        "name": "_repeat1/DGS.csv",
+        "size": 439395
+      },
+      {
+        "name": "_repeat1/EDV.csv",
+        "size": 432272
+      },
+      {
+        "name": "_repeat1/EEM.csv",
+        "size": 542381
+      },
+      {
+        "name": "_repeat1/EFA.csv",
+        "size": 541300
+      },
+      {
+        "name": "_repeat1/EIRL.csv",
+        "size": 374781
+      },
+      {
+        "name": "_repeat1/EIDO.csv",
+        "size": 382223
+      },
+      {
+        "name": "_repeat1/EIS.csv",
+        "size": 425988
+      },
+      {
+        "name": "_repeat1/EMB.csv",
+        "size": 439821
+      },
+      {
+        "name": "_repeat1/ENZL.csv",
+        "size": 369539
+      },
+      {
+        "name": "_repeat1/EPHE.csv",
+        "size": 370966
+      },
+      {
+        "name": "_repeat1/EPI.csv",
+        "size": 435916
+      },
+      {
+        "name": "_repeat1/EPOL.csv",
+        "size": 379793
+      },
+      {
+        "name": "_repeat1/EPP.csv",
+        "size": 532068
+      },
+      {
+        "name": "_repeat1/EWA.csv",
+        "size": 535747
+      },
+      {
+        "name": "_repeat1/EWC.csv",
+        "size": 535407
+      },
+      {
+        "name": "_repeat1/EWD.csv",
+        "size": 529916
+      },
+      {
+        "name": "_repeat1/EWG.csv",
+        "size": 535423
+      },
+      {
+        "name": "_repeat1/EWH.csv",
+        "size": 536530
+      },
+      {
+        "name": "_repeat1/EWI.csv",
+        "size": 530306
+      },
+      {
+        "name": "_repeat1/EWJ.csv",
+        "size": 537728
+      },
+      {
+        "name": "_repeat1/EWK.csv",
+        "size": 525374
+      },
+      {
+        "name": "_repeat1/EWL.csv",
+        "size": 531058
+      },
+      {
+        "name": "_repeat1/EWM.csv",
+        "size": 531432
+      },
+      {
+        "name": "_repeat1/EWN.csv",
+        "size": 528183
+      },
+      {
+        "name": "_repeat1/EWO.csv",
+        "size": 526738
+      },
+      {
+        "name": "_repeat1/EWP.csv",
+        "size": 531166
+      },
+      {
+        "name": "_repeat1/EWQ.csv",
+        "size": 531098
+      },
+      {
+        "name": "_repeat1/EWS.csv",
+        "size": 532594
+      },
+      {
+        "name": "_repeat1/EWT.csv",
+        "size": 536293
+      },
+      {
+        "name": "_repeat1/EWU.csv",
+        "size": 533751
+      },
+      {
+        "name": "_repeat1/EWY.csv",
+        "size": 536069
+      },
+      {
+        "name": "_repeat1/EWZ.csv",
+        "size": 541213
+      },
+      {
+        "name": "_repeat1/FDN.csv",
+        "size": 461815
+      },
+      {
+        "name": "_repeat1/EZA.csv",
+        "size": 530548
+      },
+      {
+        "name": "_repeat1/FXI.csv",
+        "size": 523106
+      },
+      {
+        "name": "_repeat1/GDX.csv",
+        "size": 483793
+      },
+      {
+        "name": "_repeat1/GDXJ.csv",
+        "size": 397313
+      },
+      {
+        "name": "_repeat1/GLD.csv",
+        "size": 504718
+      },
+      {
+        "name": "_repeat1/GSG.csv",
+        "size": 458225
+      },
+      {
+        "name": "_repeat1/HACK.csv",
+        "size": 274436
+      },
+      {
+        "name": "_repeat1/HDV.csv",
+        "size": 364015
+      },
+      {
+        "name": "_repeat1/HYG.csv",
+        "size": 460535
+      },
+      {
+        "name": "_repeat1/IAU.csv",
+        "size": 501857
+      },
+      {
+        "name": "_repeat1/IBB.csv",
+        "size": 536627
+      },
+      {
+        "name": "_repeat1/ICLN.csv",
+        "size": 424388
+      },
+      {
+        "name": "_repeat1/IEF.csv",
+        "size": 534433
+      },
+      {
+        "name": "_repeat1/IEI.csv",
+        "size": 460012
+      },
+      {
+        "name": "_repeat1/IEFA.csv",
+        "size": 327016
+      },
+      {
+        "name": "_repeat1/IGV.csv",
+        "size": 533974
+      },
+      {
+        "name": "_repeat1/IHI.csv",
+        "size": 477048
+      },
+      {
+        "name": "_repeat1/IJH.csv",
+        "size": 537042
+      },
+      {
+        "name": "_repeat1/IEMG.csv",
+        "size": 327982
+      },
+      {
+        "name": "_repeat1/IJR.csv",
+        "size": 536569
+      },
+      {
+        "name": "_repeat1/INDA.csv",
+        "size": 342370
+      },
+      {
+        "name": "_repeat1/IVV.csv",
+        "size": 535329
+      },
+      {
+        "name": "_repeat1/ITA.csv",
+        "size": 474137
+      },
+      {
+        "name": "_repeat1/IWD.csv",
+        "size": 535661
+      },
+      {
+        "name": "_repeat1/IWF.csv",
+        "size": 538195
+      },
+      {
+        "name": "_repeat1/IWN.csv",
+        "size": 534698
+      },
+      {
+        "name": "_repeat1/IWM.csv",
+        "size": 542357
+      },
+      {
+        "name": "_repeat1/IYR.csv",
+        "size": 537874
+      },
+      {
+        "name": "_repeat1/IYT.csv",
+        "size": 534062
+      },
+      {
+        "name": "_repeat1/JNK.csv",
+        "size": 442455
+      },
+      {
+        "name": "_repeat1/KBE.csv",
+        "size": 491328
+      },
+      {
+        "name": "_repeat1/KRE.csv",
+        "size": 479039
+      },
+      {
+        "name": "_repeat1/LQD.csv",
+        "size": 536205
+      },
+      {
+        "name": "_repeat1/KWEB.csv",
+        "size": 307851
+      },
+      {
+        "name": "_repeat1/MBB.csv",
+        "size": 456254
+      },
+      {
+        "name": "_repeat1/MCHI.csv",
+        "size": 362600
+      },
+      {
+        "name": "_repeat1/MDY.csv",
+        "size": 533902
+      },
+      {
+        "name": "_repeat1/MTUM.csv",
+        "size": 312206
+      },
+      {
+        "name": "_repeat1/MUB.csv",
+        "size": 445020
+      },
+      {
+        "name": "_repeat1/PALL.csv",
+        "size": 384693
+      },
+      {
+        "name": "_repeat1/PPA.csv",
+        "size": 484350
+      },
+      {
+        "name": "_repeat1/PPLT.csv",
+        "size": 387803
+      },
+      {
+        "name": "_repeat1/QQQ.csv",
+        "size": 542814
+      },
+      {
+        "name": "_repeat1/QUAL.csv",
+        "size": 306945
+      },
+      {
+        "name": "_repeat1/RSP.csv",
+        "size": 533531
+      },
+      {
+        "name": "_repeat1/RWO.csv",
+        "size": 425676
+      },
+      {
+        "name": "_repeat1/RWX.csv",
+        "size": 460642
+      },
+      {
+        "name": "_repeat1/SCHB.csv",
+        "size": 398111
+      },
+      {
+        "name": "_repeat1/SCHD.csv",
+        "size": 351295
+      },
+      {
+        "name": "_repeat1/SCHE.csv",
+        "size": 390753
+      },
+      {
+        "name": "_repeat1/SCHP.csv",
+        "size": 377239
+      },
+      {
+        "name": "_repeat1/SCHX.csv",
+        "size": 398313
+      },
+      {
+        "name": "_repeat1/SHV.csv",
+        "size": 460842
+      },
+      {
+        "name": "_repeat1/SHY.csv",
+        "size": 534004
+      },
+      {
+        "name": "_repeat1/SLV.csv",
+        "size": 474338
+      },
+      {
+        "name": "_repeat1/SMH.csv",
+        "size": 538529
+      },
+      {
+        "name": "_repeat1/SOXX.csv",
+        "size": 534052
+      },
+      {
+        "name": "_repeat1/SPLV.csv",
+        "size": 361401
+      },
+      {
+        "name": "_repeat1/SPY.csv",
+        "size": 543736
+      },
+      {
+        "name": "_repeat1/TAN.csv",
+        "size": 428675
+      },
+      {
+        "name": "_repeat1/THD.csv",
+        "size": 429697
+      },
+      {
+        "name": "_repeat1/TIP.csv",
+        "size": 533421
+      },
+      {
+        "name": "_repeat1/TLT.csv",
+        "size": 538326
+      },
+      {
+        "name": "_repeat1/TUR.csv",
+        "size": 431111
+      },
+      {
+        "name": "_repeat1/UNG.csv",
+        "size": 436649
+      },
+      {
+        "name": "_repeat1/URA.csv",
+        "size": 369570
+      },
+      {
+        "name": "_repeat1/USL.csv",
+        "size": 417937
+      },
+      {
+        "name": "_repeat1/USO.csv",
+        "size": 466198
+      },
+      {
+        "name": "_repeat1/VB.csv",
+        "size": 528524
+      },
+      {
+        "name": "_repeat1/VCIT.csv",
+        "size": 394349
+      },
+      {
+        "name": "_repeat1/VEA.csv",
+        "size": 452922
+      },
+      {
+        "name": "_repeat1/VCSH.csv",
+        "size": 394605
+      },
+      {
+        "name": "_repeat1/VEU.csv",
+        "size": 460016
+      },
+      {
+        "name": "_repeat1/VGIT.csv",
+        "size": 391199
+      },
+      {
+        "name": "_repeat1/VGK.csv",
+        "size": 507030
+      },
+      {
+        "name": "_repeat1/VGLT.csv",
+        "size": 388328
+      },
+      {
+        "name": "_repeat1/VGSH.csv",
+        "size": 392179
+      },
+      {
+        "name": "_repeat1/VNQ.csv",
+        "size": 517692
+      },
+      {
+        "name": "_repeat1/VO.csv",
+        "size": 532315
+      },
+      {
+        "name": "_repeat1/VTI.csv",
+        "size": 535522
+      },
+      {
+        "name": "_repeat1/VTV.csv",
+        "size": 531067
+      },
+      {
+        "name": "_repeat1/VUG.csv",
+        "size": 534292
+      },
+      {
+        "name": "_repeat1/VWO.csv",
+        "size": 510981
+      },
+      {
+        "name": "_repeat1/WOOD.csv",
+        "size": 419460
+      },
+      {
+        "name": "_repeat1/XBI.csv",
+        "size": 485132
+      },
+      {
+        "name": "_repeat1/XLB.csv",
+        "size": 540357
+      },
+      {
+        "name": "_repeat1/XLE.csv",
+        "size": 542537
+      },
+      {
+        "name": "_repeat1/XLF.csv",
+        "size": 543057
+      },
+      {
+        "name": "_repeat1/XLK.csv",
+        "size": 540803
+      },
+      {
+        "name": "_repeat1/XLI.csv",
+        "size": 538771
+      },
+      {
+        "name": "_repeat1/XLP.csv",
+        "size": 538475
+      },
+      {
+        "name": "_repeat1/XLU.csv",
+        "size": 541418
+      },
+      {
+        "name": "_repeat1/XLV.csv",
+        "size": 537542
+      },
+      {
+        "name": "_repeat1/XLY.csv",
+        "size": 538886
+      },
+      {
+        "name": "_repeat1/XRT.csv",
+        "size": 479085
+      },
+      {
+        "name": "_repeat1/manifest.json",
+        "size": 12189
+      },
+      {
+        "name": "_repeat1/coverage.csv",
+        "size": 8208
+      },
+      {
+        "name": "_repeat1/universe.csv",
+        "size": 3419
+      },
+      {
+        "name": "_repeat2/AAXJ.csv",
+        "size": 423315
+      },
+      {
+        "name": "_repeat2/ACWI.csv",
+        "size": 434293
+      },
+      {
+        "name": "_repeat2/AGG.csv",
+        "size": 534341
+      },
+      {
+        "name": "_repeat2/ANGL.csv",
+        "size": 335581
+      },
+      {
+        "name": "_repeat2/ARGT.csv",
+        "size": 357329
+      },
+      {
+        "name": "_repeat2/ASHR.csv",
+        "size": 301694
+      },
+      {
+        "name": "_repeat2/BIL.csv",
+        "size": 451017
+      },
+      {
+        "name": "_repeat2/BKLN.csv",
+        "size": 366507
+      },
+      {
+        "name": "_repeat2/BNDX.csv",
+        "size": 311561
+      },
+      {
+        "name": "_repeat2/BNO.csv",
+        "size": 370874
+      },
+      {
+        "name": "_repeat2/BND.csv",
+        "size": 457848
+      },
+      {
+        "name": "_repeat2/COMT.csv",
+        "size": 275334
+      },
+      {
+        "name": "_repeat2/CORN.csv",
+        "size": 366135
+      },
+      {
+        "name": "_repeat2/CPER.csv",
+        "size": 328696
+      },
+      {
+        "name": "_repeat2/DBA.csv",
+        "size": 461902
+      },
+      {
+        "name": "_repeat2/DBB.csv",
+        "size": 458122
+      },
+      {
+        "name": "_repeat2/DBC.csv",
+        "size": 485253
+      },
+      {
+        "name": "_repeat2/DBO.csv",
+        "size": 460038
+      },
+      {
+        "name": "_repeat2/DEM.csv",
+        "size": 447758
+      },
+      {
+        "name": "_repeat2/DGRO.csv",
+        "size": 286854
+      },
+      {
+        "name": "_repeat2/DGS.csv",
+        "size": 439476
+      },
+      {
+        "name": "_repeat2/DIA.csv",
+        "size": 536937
+      },
+      {
+        "name": "_repeat2/EDV.csv",
+        "size": 432221
+      },
+      {
+        "name": "_repeat2/EEM.csv",
+        "size": 542222
+      },
+      {
+        "name": "_repeat2/EFA.csv",
+        "size": 541334
+      },
+      {
+        "name": "_repeat2/EIDO.csv",
+        "size": 382346
+      },
+      {
+        "name": "_repeat2/EIRL.csv",
+        "size": 374757
+      },
+      {
+        "name": "_repeat2/EIS.csv",
+        "size": 425994
+      },
+      {
+        "name": "_repeat2/EMB.csv",
+        "size": 439955
+      },
+      {
+        "name": "_repeat2/ENZL.csv",
+        "size": 369530
+      },
+      {
+        "name": "_repeat2/EPHE.csv",
+        "size": 370999
+      },
+      {
+        "name": "_repeat2/EPI.csv",
+        "size": 435767
+      },
+      {
+        "name": "_repeat2/EPOL.csv",
+        "size": 379700
+      },
+      {
+        "name": "_repeat2/EPP.csv",
+        "size": 532102
+      },
+      {
+        "name": "_repeat2/EWA.csv",
+        "size": 535845
+      },
+      {
+        "name": "_repeat2/EWC.csv",
+        "size": 535395
+      },
+      {
+        "name": "_repeat2/EWD.csv",
+        "size": 529893
+      },
+      {
+        "name": "_repeat2/EWG.csv",
+        "size": 535464
+      },
+      {
+        "name": "_repeat2/EWH.csv",
+        "size": 536614
+      },
+      {
+        "name": "_repeat2/EWI.csv",
+        "size": 530357
+      },
+      {
+        "name": "_repeat2/EWJ.csv",
+        "size": 537686
+      },
+      {
+        "name": "_repeat2/EWK.csv",
+        "size": 525292
+      },
+      {
+        "name": "_repeat2/EWL.csv",
+        "size": 531057
+      },
+      {
+        "name": "_repeat2/EWM.csv",
+        "size": 531479
+      },
+      {
+        "name": "_repeat2/EWN.csv",
+        "size": 528153
+      },
+      {
+        "name": "_repeat2/EWO.csv",
+        "size": 526661
+      },
+      {
+        "name": "_repeat2/EWP.csv",
+        "size": 531237
+      },
+      {
+        "name": "_repeat2/EWS.csv",
+        "size": 532610
+      },
+      {
+        "name": "_repeat2/EWQ.csv",
+        "size": 531032
+      },
+      {
+        "name": "_repeat2/EWT.csv",
+        "size": 536255
+      },
+      {
+        "name": "_repeat2/EWU.csv",
+        "size": 533809
+      },
+      {
+        "name": "_repeat2/EWY.csv",
+        "size": 536024
+      },
+      {
+        "name": "_repeat2/EZA.csv",
+        "size": 530564
+      },
+      {
+        "name": "_repeat2/EWZ.csv",
+        "size": 541128
+      },
+      {
+        "name": "_repeat2/FDN.csv",
+        "size": 461859
+      },
+      {
+        "name": "_repeat2/FXI.csv",
+        "size": 523125
+      },
+      {
+        "name": "_repeat2/GDX.csv",
+        "size": 483763
+      },
+      {
+        "name": "_repeat2/GDXJ.csv",
+        "size": 397344
+      },
+      {
+        "name": "_repeat2/GLD.csv",
+        "size": 504718
+      },
+      {
+        "name": "_repeat2/GSG.csv",
+        "size": 458225
+      },
+      {
+        "name": "_repeat2/HACK.csv",
+        "size": 274372
+      },
+      {
+        "name": "_repeat2/HDV.csv",
+        "size": 364040
+      },
+      {
+        "name": "_repeat2/HYG.csv",
+        "size": 460457
+      },
+      {
+        "name": "_repeat2/IAU.csv",
+        "size": 501857
+      },
+      {
+        "name": "_repeat2/IBB.csv",
+        "size": 536526
+      },
+      {
+        "name": "_repeat2/ICLN.csv",
+        "size": 424504
+      },
+      {
+        "name": "_repeat2/IEF.csv",
+        "size": 534210
+      },
+      {
+        "name": "_repeat2/IEFA.csv",
+        "size": 327044
+      },
+      {
+        "name": "_repeat2/IEI.csv",
+        "size": 459970
+      },
+      {
+        "name": "_repeat2/IEMG.csv",
+        "size": 328093
+      },
+      {
+        "name": "_repeat2/IGV.csv",
+        "size": 533858
+      },
+      {
+        "name": "_repeat2/IHI.csv",
+        "size": 477053
+      },
+      {
+        "name": "_repeat2/IJH.csv",
+        "size": 537043
+      },
+      {
+        "name": "_repeat2/IJR.csv",
+        "size": 536658
+      },
+      {
+        "name": "_repeat2/INDA.csv",
+        "size": 342262
+      },
+      {
+        "name": "_repeat2/IVV.csv",
+        "size": 535307
+      },
+      {
+        "name": "_repeat2/ITA.csv",
+        "size": 473912
+      },
+      {
+        "name": "_repeat2/IWD.csv",
+        "size": 535657
+      },
+      {
+        "name": "_repeat2/IWF.csv",
+        "size": 538311
+      },
+      {
+        "name": "_repeat2/IWM.csv",
+        "size": 542378
+      },
+      {
+        "name": "_repeat2/IWN.csv",
+        "size": 534637
+      },
+      {
+        "name": "_repeat2/IYT.csv",
+        "size": 533980
+      },
+      {
+        "name": "_repeat2/IYR.csv",
+        "size": 537984
+      },
+      {
+        "name": "_repeat2/JNK.csv",
+        "size": 442416
+      },
+      {
+        "name": "_repeat2/KBE.csv",
+        "size": 491358
+      },
+      {
+        "name": "_repeat2/KRE.csv",
+        "size": 478975
+      },
+      {
+        "name": "_repeat2/KWEB.csv",
+        "size": 307876
+      },
+      {
+        "name": "_repeat2/MBB.csv",
+        "size": 456324
+      },
+      {
+        "name": "_repeat2/LQD.csv",
+        "size": 536129
+      },
+      {
+        "name": "_repeat2/MDY.csv",
+        "size": 533744
+      },
+      {
+        "name": "_repeat2/MCHI.csv",
+        "size": 362693
+      },
+      {
+        "name": "_repeat2/MTUM.csv",
+        "size": 312088
+      },
+      {
+        "name": "_repeat2/MUB.csv",
+        "size": 445041
+      },
+      {
+        "name": "_repeat2/PALL.csv",
+        "size": 384693
+      },
+      {
+        "name": "_repeat2/PPA.csv",
+        "size": 484406
+      },
+      {
+        "name": "_repeat2/PPLT.csv",
+        "size": 387803
+      },
+      {
+        "name": "_repeat2/QQQ.csv",
+        "size": 542862
+      },
+      {
+        "name": "_repeat2/QUAL.csv",
+        "size": 307043
+      },
+      {
+        "name": "_repeat2/RSP.csv",
+        "size": 533594
+      },
+      {
+        "name": "_repeat2/RWO.csv",
+        "size": 425606
+      },
+      {
+        "name": "_repeat2/RWX.csv",
+        "size": 460622
+      },
+      {
+        "name": "_repeat2/SCHB.csv",
+        "size": 398182
+      },
+      {
+        "name": "_repeat2/SCHD.csv",
+        "size": 351268
+      },
+      {
+        "name": "_repeat2/SCHE.csv",
+        "size": 390658
+      },
+      {
+        "name": "_repeat2/SCHP.csv",
+        "size": 377327
+      },
+      {
+        "name": "_repeat2/SCHX.csv",
+        "size": 398239
+      },
+      {
+        "name": "_repeat2/SHV.csv",
+        "size": 460779
+      },
+      {
+        "name": "_repeat2/SHY.csv",
+        "size": 533984
+      },
+      {
+        "name": "_repeat2/SLV.csv",
+        "size": 474338
+      },
+      {
+        "name": "_repeat2/SMH.csv",
+        "size": 538691
+      },
+      {
+        "name": "_repeat2/SOXX.csv",
+        "size": 534101
+      },
+      {
+        "name": "_repeat2/SPLV.csv",
+        "size": 361339
+      },
+      {
+        "name": "_repeat2/SPY.csv",
+        "size": 543786
+      },
+      {
+        "name": "_repeat2/TAN.csv",
+        "size": 428788
+      },
+      {
+        "name": "_repeat2/THD.csv",
+        "size": 429607
+      },
+      {
+        "name": "_repeat2/TIP.csv",
+        "size": 533360
+      },
+      {
+        "name": "_repeat2/TLT.csv",
+        "size": 538303
+      },
+      {
+        "name": "_repeat2/TUR.csv",
+        "size": 431104
+      },
+      {
+        "name": "_repeat2/URA.csv",
+        "size": 369552
+      },
+      {
+        "name": "_repeat2/USL.csv",
+        "size": 417937
+      },
+      {
+        "name": "_repeat2/UNG.csv",
+        "size": 436649
+      },
+      {
+        "name": "_repeat2/USO.csv",
+        "size": 466198
+      },
+      {
+        "name": "_repeat2/VB.csv",
+        "size": 528389
+      },
+      {
+        "name": "_repeat2/VCIT.csv",
+        "size": 394233
+      },
+      {
+        "name": "_repeat2/VCSH.csv",
+        "size": 394544
+      },
+      {
+        "name": "_repeat2/VEA.csv",
+        "size": 452909
+      },
+      {
+        "name": "_repeat2/VEU.csv",
+        "size": 459930
+      },
+      {
+        "name": "_repeat2/VGIT.csv",
+        "size": 391277
+      },
+      {
+        "name": "_repeat2/VGK.csv",
+        "size": 507069
+      },
+      {
+        "name": "_repeat2/VGLT.csv",
+        "size": 388380
+      },
+      {
+        "name": "_repeat2/VGSH.csv",
+        "size": 392012
+      },
+      {
+        "name": "_repeat2/VNQ.csv",
+        "size": 517694
+      },
+      {
+        "name": "_repeat2/VO.csv",
+        "size": 532433
+      },
+      {
+        "name": "_repeat2/VTI.csv",
+        "size": 535505
+      },
+      {
+        "name": "_repeat2/VTV.csv",
+        "size": 531065
+      },
+      {
+        "name": "_repeat2/VUG.csv",
+        "size": 534248
+      },
+      {
+        "name": "_repeat2/VWO.csv",
+        "size": 511103
+      },
+      {
+        "name": "_repeat2/WOOD.csv",
+        "size": 419447
+      },
+      {
+        "name": "_repeat2/XBI.csv",
+        "size": 485262
+      },
+      {
+        "name": "_repeat2/XLB.csv",
+        "size": 540399
+      },
+      {
+        "name": "_repeat2/XLE.csv",
+        "size": 542588
+      },
+      {
+        "name": "_repeat2/XLF.csv",
+        "size": 543042
+      },
+      {
+        "name": "_repeat2/XLI.csv",
+        "size": 538842
+      },
+      {
+        "name": "_repeat2/XLK.csv",
+        "size": 540805
+      },
+      {
+        "name": "_repeat2/XLP.csv",
+        "size": 538430
+      },
+      {
+        "name": "_repeat2/XLU.csv",
+        "size": 541464
+      },
+      {
+        "name": "_repeat2/XLV.csv",
+        "size": 537627
+      },
+      {
+        "name": "_repeat2/XLY.csv",
+        "size": 538822
+      },
+      {
+        "name": "_repeat2/XRT.csv",
+        "size": 479145
+      },
+      {
+        "name": "_repeat2/manifest.json",
+        "size": 12189
+      },
+      {
+        "name": "_repeat2/universe.csv",
+        "size": 3419
+      },
+      {
+        "name": "_repeat2/coverage.csv",
+        "size": 8208
+      },
+      {
+        "name": "_repeat3/AAXJ.csv",
+        "size": 423419
+      },
+      {
+        "name": "_repeat3/ACWI.csv",
+        "size": 434237
+      },
+      {
+        "name": "_repeat3/AGG.csv",
+        "size": 534237
+      },
+      {
+        "name": "_repeat3/ANGL.csv",
+        "size": 335615
+      },
+      {
+        "name": "_repeat3/ARGT.csv",
+        "size": 357346
+      },
+      {
+        "name": "_repeat3/ASHR.csv",
+        "size": 301743
+      },
+      {
+        "name": "_repeat3/BIL.csv",
+        "size": 451700
+      },
+      {
+        "name": "_repeat3/BKLN.csv",
+        "size": 366408
+      },
+      {
+        "name": "_repeat3/BND.csv",
+        "size": 457939
+      },
+      {
+        "name": "_repeat3/BNDX.csv",
+        "size": 311650
+      },
+      {
+        "name": "_repeat3/BNO.csv",
+        "size": 370874
+      },
+      {
+        "name": "_repeat3/COMT.csv",
+        "size": 275363
+      },
+      {
+        "name": "_repeat3/CPER.csv",
+        "size": 328696
+      },
+      {
+        "name": "_repeat3/CORN.csv",
+        "size": 366135
+      },
+      {
+        "name": "_repeat3/DBA.csv",
+        "size": 461709
+      },
+      {
+        "name": "_repeat3/DBB.csv",
+        "size": 457979
+      },
+      {
+        "name": "_repeat3/DBC.csv",
+        "size": 485236
+      },
+      {
+        "name": "_repeat3/DBO.csv",
+        "size": 460003
+      },
+      {
+        "name": "_repeat3/DEM.csv",
+        "size": 447788
+      },
+      {
+        "name": "_repeat3/DGRO.csv",
+        "size": 286832
+      },
+      {
+        "name": "_repeat3/DGS.csv",
+        "size": 439551
+      },
+      {
+        "name": "_repeat3/DIA.csv",
+        "size": 536915
+      },
+      {
+        "name": "_repeat3/EDV.csv",
+        "size": 432287
+      },
+      {
+        "name": "_repeat3/EFA.csv",
+        "size": 541189
+      },
+      {
+        "name": "_repeat3/EEM.csv",
+        "size": 542348
+      },
+      {
+        "name": "_repeat3/EIDO.csv",
+        "size": 382299
+      },
+      {
+        "name": "_repeat3/EIRL.csv",
+        "size": 374784
+      },
+      {
+        "name": "_repeat3/EIS.csv",
+        "size": 425907
+      },
+      {
+        "name": "_repeat3/EMB.csv",
+        "size": 440005
+      },
+      {
+        "name": "_repeat3/ENZL.csv",
+        "size": 369507
+      },
+      {
+        "name": "_repeat3/EPHE.csv",
+        "size": 370953
+      },
+      {
+        "name": "_repeat3/EPI.csv",
+        "size": 435929
+      },
+      {
+        "name": "_repeat3/EPOL.csv",
+        "size": 379779
+      },
+      {
+        "name": "_repeat3/EPP.csv",
+        "size": 532164
+      },
+      {
+        "name": "_repeat3/EWA.csv",
+        "size": 535757
+      },
+      {
+        "name": "_repeat3/EWC.csv",
+        "size": 535470
+      },
+      {
+        "name": "_repeat3/EWD.csv",
+        "size": 529930
+      },
+      {
+        "name": "_repeat3/EWG.csv",
+        "size": 535420
+      },
+      {
+        "name": "_repeat3/EWH.csv",
+        "size": 536653
+      },
+      {
+        "name": "_repeat3/EWI.csv",
+        "size": 530336
+      },
+      {
+        "name": "_repeat3/EWJ.csv",
+        "size": 537614
+      },
+      {
+        "name": "_repeat3/EWK.csv",
+        "size": 525276
+      },
+      {
+        "name": "_repeat3/EWL.csv",
+        "size": 531096
+      },
+      {
+        "name": "_repeat3/EWM.csv",
+        "size": 531405
+      },
+      {
+        "name": "_repeat3/EWN.csv",
+        "size": 528197
+      },
+      {
+        "name": "_repeat3/EWO.csv",
+        "size": 526668
+      },
+      {
+        "name": "_repeat3/EWP.csv",
+        "size": 531091
+      },
+      {
+        "name": "_repeat3/EWQ.csv",
+        "size": 531040
+      },
+      {
+        "name": "_repeat3/EWS.csv",
+        "size": 532709
+      },
+      {
+        "name": "_repeat3/EWU.csv",
+        "size": 533822
+      },
+      {
+        "name": "_repeat3/EWT.csv",
+        "size": 536223
+      },
+      {
+        "name": "_repeat3/EWY.csv",
+        "size": 536088
+      },
+      {
+        "name": "_repeat3/EWZ.csv",
+        "size": 541126
+      },
+      {
+        "name": "_repeat3/EZA.csv",
+        "size": 530705
+      },
+      {
+        "name": "_repeat3/FXI.csv",
+        "size": 523021
+      },
+      {
+        "name": "_repeat3/FDN.csv",
+        "size": 461861
+      },
+      {
+        "name": "_repeat3/GDX.csv",
+        "size": 483708
+      },
+      {
+        "name": "_repeat3/GDXJ.csv",
+        "size": 397313
+      },
+      {
+        "name": "_repeat3/GLD.csv",
+        "size": 504718
+      },
+      {
+        "name": "_repeat3/GSG.csv",
+        "size": 458225
+      },
+      {
+        "name": "_repeat3/HACK.csv",
+        "size": 274426
+      },
+      {
+        "name": "_repeat3/HDV.csv",
+        "size": 363877
+      },
+      {
+        "name": "_repeat3/HYG.csv",
+        "size": 460534
+      },
+      {
+        "name": "_repeat3/IAU.csv",
+        "size": 501857
+      },
+      {
+        "name": "_repeat3/IBB.csv",
+        "size": 536333
+      },
+      {
+        "name": "_repeat3/ICLN.csv",
+        "size": 424495
+      },
+      {
+        "name": "_repeat3/IEF.csv",
+        "size": 534252
+      },
+      {
+        "name": "_repeat3/IEFA.csv",
+        "size": 326935
+      },
+      {
+        "name": "_repeat3/IEI.csv",
+        "size": 460049
+      },
+      {
+        "name": "_repeat3/IEMG.csv",
+        "size": 328014
+      },
+      {
+        "name": "_repeat3/IGV.csv",
+        "size": 533870
+      },
+      {
+        "name": "_repeat3/IHI.csv",
+        "size": 477075
+      },
+      {
+        "name": "_repeat3/IJH.csv",
+        "size": 537061
+      },
+      {
+        "name": "_repeat3/IJR.csv",
+        "size": 536572
+      },
+      {
+        "name": "_repeat3/INDA.csv",
+        "size": 342184
+      },
+      {
+        "name": "_repeat3/ITA.csv",
+        "size": 474073
+      },
+      {
+        "name": "_repeat3/IVV.csv",
+        "size": 535207
+      },
+      {
+        "name": "_repeat3/IWD.csv",
+        "size": 535580
+      },
+      {
+        "name": "_repeat3/IWF.csv",
+        "size": 538237
+      },
+      {
+        "name": "_repeat3/IWM.csv",
+        "size": 542379
+      },
+      {
+        "name": "_repeat3/IWN.csv",
+        "size": 534575
+      },
+      {
+        "name": "_repeat3/IYR.csv",
+        "size": 538016
+      },
+      {
+        "name": "_repeat3/IYT.csv",
+        "size": 534045
+      },
+      {
+        "name": "_repeat3/JNK.csv",
+        "size": 442390
+      },
+      {
+        "name": "_repeat3/KBE.csv",
+        "size": 491352
+      },
+      {
+        "name": "_repeat3/KRE.csv",
+        "size": 478855
+      },
+      {
+        "name": "_repeat3/KWEB.csv",
+        "size": 307804
+      },
+      {
+        "name": "_repeat3/LQD.csv",
+        "size": 536200
+      },
+      {
+        "name": "_repeat3/MBB.csv",
+        "size": 456241
+      },
+      {
+        "name": "_repeat3/MDY.csv",
+        "size": 533966
+      },
+      {
+        "name": "_repeat3/MCHI.csv",
+        "size": 362636
+      },
+      {
+        "name": "_repeat3/MTUM.csv",
+        "size": 312198
+      },
+      {
+        "name": "_repeat3/MUB.csv",
+        "size": 445145
+      },
+      {
+        "name": "_repeat3/PALL.csv",
+        "size": 384693
+      },
+      {
+        "name": "_repeat3/PPA.csv",
+        "size": 484291
+      },
+      {
+        "name": "_repeat3/PPLT.csv",
+        "size": 387803
+      },
+      {
+        "name": "_repeat3/QQQ.csv",
+        "size": 542922
+      },
+      {
+        "name": "_repeat3/QUAL.csv",
+        "size": 306946
+      },
+      {
+        "name": "_repeat3/RSP.csv",
+        "size": 533581
+      },
+      {
+        "name": "_repeat3/RWO.csv",
+        "size": 425609
+      },
+      {
+        "name": "_repeat3/RWX.csv",
+        "size": 460634
+      },
+      {
+        "name": "_repeat3/SCHB.csv",
+        "size": 398156
+      },
+      {
+        "name": "_repeat3/SCHD.csv",
+        "size": 351223
+      },
+      {
+        "name": "_repeat3/SCHE.csv",
+        "size": 390687
+      },
+      {
+        "name": "_repeat3/SCHP.csv",
+        "size": 377345
+      },
+      {
+        "name": "_repeat3/SCHX.csv",
+        "size": 398329
+      },
+      {
+        "name": "_repeat3/SHV.csv",
+        "size": 461063
+      },
+      {
+        "name": "_repeat3/SHY.csv",
+        "size": 533688
+      },
+      {
+        "name": "_repeat3/SLV.csv",
+        "size": 474338
+      },
+      {
+        "name": "_repeat3/SMH.csv",
+        "size": 538656
+      },
+      {
+        "name": "_repeat3/SOXX.csv",
+        "size": 534166
+      },
+      {
+        "name": "_repeat3/SPLV.csv",
+        "size": 361407
+      },
+      {
+        "name": "_repeat3/SPY.csv",
+        "size": 543681
+      },
+      {
+        "name": "_repeat3/TAN.csv",
+        "size": 428744
+      },
+      {
+        "name": "_repeat3/THD.csv",
+        "size": 429689
+      },
+      {
+        "name": "_repeat3/TIP.csv",
+        "size": 533295
+      },
+      {
+        "name": "_repeat3/TLT.csv",
+        "size": 538231
+      },
+      {
+        "name": "_repeat3/TUR.csv",
+        "size": 431153
+      },
+      {
+        "name": "_repeat3/UNG.csv",
+        "size": 436649
+      },
+      {
+        "name": "_repeat3/USL.csv",
+        "size": 417937
+      },
+      {
+        "name": "_repeat3/URA.csv",
+        "size": 369563
+      },
+      {
+        "name": "_repeat3/USO.csv",
+        "size": 466198
+      },
+      {
+        "name": "_repeat3/VB.csv",
+        "size": 528546
+      },
+      {
+        "name": "_repeat3/VCIT.csv",
+        "size": 394359
+      },
+      {
+        "name": "_repeat3/VCSH.csv",
+        "size": 394625
+      },
+      {
+        "name": "_repeat3/VEU.csv",
+        "size": 459984
+      },
+      {
+        "name": "_repeat3/VEA.csv",
+        "size": 452897
+      },
+      {
+        "name": "_repeat3/VGIT.csv",
+        "size": 391291
+      },
+      {
+        "name": "_repeat3/VGLT.csv",
+        "size": 388413
+      },
+      {
+        "name": "_repeat3/VGK.csv",
+        "size": 506981
+      },
+      {
+        "name": "_repeat3/VGSH.csv",
+        "size": 392219
+      },
+      {
+        "name": "_repeat3/VNQ.csv",
+        "size": 517897
+      },
+      {
+        "name": "_repeat3/VO.csv",
+        "size": 532333
+      },
+      {
+        "name": "_repeat3/VTI.csv",
+        "size": 535411
+      },
+      {
+        "name": "_repeat3/VTV.csv",
+        "size": 531069
+      },
+      {
+        "name": "_repeat3/VUG.csv",
+        "size": 534260
+      },
+      {
+        "name": "_repeat3/VWO.csv",
+        "size": 511066
+      },
+      {
+        "name": "_repeat3/WOOD.csv",
+        "size": 419532
+      },
+      {
+        "name": "_repeat3/XBI.csv",
+        "size": 485213
+      },
+      {
+        "name": "_repeat3/XLB.csv",
+        "size": 540426
+      },
+      {
+        "name": "_repeat3/XLE.csv",
+        "size": 542538
+      },
+      {
+        "name": "_repeat3/XLF.csv",
+        "size": 543093
+      },
+      {
+        "name": "_repeat3/XLI.csv",
+        "size": 538932
+      },
+      {
+        "name": "_repeat3/XLK.csv",
+        "size": 540651
+      },
+      {
+        "name": "_repeat3/XLP.csv",
+        "size": 538532
+      },
+      {
+        "name": "_repeat3/XLU.csv",
+        "size": 541384
+      },
+      {
+        "name": "_repeat3/XLV.csv",
+        "size": 537654
+      },
+      {
+        "name": "_repeat3/XLY.csv",
+        "size": 538778
+      },
+      {
+        "name": "_repeat3/XRT.csv",
+        "size": 479114
+      },
+      {
+        "name": "_repeat3/coverage.csv",
+        "size": 8208
+      },
+      {
+        "name": "_repeat3/manifest.json",
+        "size": 12189
+      },
+      {
+        "name": "_repeat3/universe.csv",
+        "size": 3419
+      }
+    ]
+  },
+  {
+    "blob": "blobs/c112c47b27adac99670dc7cfd084f2af5ab6acf6",
+    "size": 12147095,
+    "entries": [
+      {
+        "name": "AGGREGATE.csv",
+        "size": 2261
+      },
+      {
+        "name": "ECONOMICS.csv",
+        "size": 8562
+      },
+      {
+        "name": "ANNUAL_RETURN.csv",
+        "size": 9014
+      },
+      {
+        "name": "ET_ONLY/r1/DAILY_LEADERS.csv",
+        "size": 46106
+      },
+      {
+        "name": "ET_ONLY/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "ET_ONLY/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35663
+      },
+      {
+        "name": "ET_ONLY/r1/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "ET_ONLY/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "ET_ONLY/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "ET_ONLY/r2/DAILY_LEADERS.csv",
+        "size": 46151
+      },
+      {
+        "name": "ET_ONLY/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "ET_ONLY/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 35685
+      },
+      {
+        "name": "ET_ONLY/r2/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "ET_ONLY/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "ET_ONLY/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "ET_ONLY/r3/DAILY_LEADERS.csv",
+        "size": 46154
+      },
+      {
+        "name": "ET_ONLY/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "ET_ONLY/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35626
+      },
+      {
+        "name": "ET_ONLY/r3/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "ET_ONLY/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "ET_ONLY/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "FIXED_5050.csv",
+        "size": 912
+      },
+      {
+        "name": "H_H/r1/DAILY_LEADERS.csv",
+        "size": 46112
+      },
+      {
+        "name": "H_H/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "H_H/r1/RESULT.json",
+        "size": 1048
+      },
+      {
+        "name": "H_H/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35699
+      },
+      {
+        "name": "H_H/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_H/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_H/r2/DAILY_LEADERS.csv",
+        "size": 46085
+      },
+      {
+        "name": "H_H/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "H_H/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 35699
+      },
+      {
+        "name": "H_H/r2/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "H_H/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_H/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_H/r3/DAILY_LEADERS.csv",
+        "size": 45971
+      },
+      {
+        "name": "H_H/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "H_H/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35616
+      },
+      {
+        "name": "H_H/r3/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "H_H/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "H_H/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "H_HALF/r1/DAILY_LEADERS.csv",
+        "size": 46112
+      },
+      {
+        "name": "H_HALF/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "H_HALF/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 33804
+      },
+      {
+        "name": "H_HALF/r1/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "H_HALF/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_HALF/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_HALF/r2/DAILY_LEADERS.csv",
+        "size": 46085
+      },
+      {
+        "name": "H_HALF/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "H_HALF/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 33888
+      },
+      {
+        "name": "H_HALF/r2/RESULT.json",
+        "size": 1055
+      },
+      {
+        "name": "H_HALF/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_HALF/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_HALF/r3/DAILY_LEADERS.csv",
+        "size": 45971
+      },
+      {
+        "name": "H_HALF/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "H_HALF/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 33850
+      },
+      {
+        "name": "H_HALF/r3/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "H_HALF/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "H_HALF/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "H_R/r1/DAILY_LEADERS.csv",
+        "size": 46112
+      },
+      {
+        "name": "H_R/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "H_R/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35727
+      },
+      {
+        "name": "H_R/r1/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "H_R/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_R/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_R/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "H_R/r2/DAILY_LEADERS.csv",
+        "size": 46085
+      },
+      {
+        "name": "H_R/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 35706
+      },
+      {
+        "name": "H_R/r2/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "H_R/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_R/r3/DAILY_LEADERS.csv",
+        "size": 45971
+      },
+      {
+        "name": "H_R/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "H_R/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "H_R/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35696
+      },
+      {
+        "name": "H_R/r3/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "H_R/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "H_R/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "MANIFEST.json",
+        "size": 419
+      },
+      {
+        "name": "MONTHLY_QUALITY.csv",
+        "size": 270304
+      },
+      {
+        "name": "RIDGE_ONLY/r1/DAILY_LEADERS.csv",
+        "size": 46964
+      },
+      {
+        "name": "RIDGE_ONLY/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "RIDGE_ONLY/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 33971
+      },
+      {
+        "name": "RIDGE_ONLY/r1/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "RIDGE_ONLY/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "RIDGE_ONLY/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "RIDGE_ONLY/r2/DAILY_LEADERS.csv",
+        "size": 46964
+      },
+      {
+        "name": "RIDGE_ONLY/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "RIDGE_ONLY/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 33990
+      },
+      {
+        "name": "RIDGE_ONLY/r2/RESULT.json",
+        "size": 1054
+      },
+      {
+        "name": "RIDGE_ONLY/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "RIDGE_ONLY/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "RIDGE_ONLY/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "RIDGE_ONLY/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 33955
+      },
+      {
+        "name": "RIDGE_ONLY/r3/DAILY_LEADERS.csv",
+        "size": 46964
+      },
+      {
+        "name": "RIDGE_ONLY/r3/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "RIDGE_ONLY/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "RIDGE_ONLY/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_H/r1/DAILY_LEADERS.csv",
+        "size": 46541
+      },
+      {
+        "name": "R_H/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "R_H/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35907
+      },
+      {
+        "name": "R_H/r1/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "R_H/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_H/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_H/r2/DAILY_LEADERS.csv",
+        "size": 46686
+      },
+      {
+        "name": "R_H/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "R_H/r2/RESULT.json",
+        "size": 1054
+      },
+      {
+        "name": "R_H/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 35864
+      },
+      {
+        "name": "R_H/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_H/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_H/r3/DAILY_LEADERS.csv",
+        "size": 46532
+      },
+      {
+        "name": "R_H/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "R_H/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35846
+      },
+      {
+        "name": "R_H/r3/RESULT.json",
+        "size": 1052
+      },
+      {
+        "name": "R_H/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_H/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_HALF/r1/DAILY_LEADERS.csv",
+        "size": 46541
+      },
+      {
+        "name": "R_HALF/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "R_HALF/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 34093
+      },
+      {
+        "name": "R_HALF/r1/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "R_HALF/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_HALF/r2/DAILY_LEADERS.csv",
+        "size": 46686
+      },
+      {
+        "name": "R_HALF/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_HALF/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "R_HALF/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 34090
+      },
+      {
+        "name": "R_HALF/r2/RESULT.json",
+        "size": 1052
+      },
+      {
+        "name": "R_HALF/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_HALF/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_HALF/r3/DAILY_LEADERS.csv",
+        "size": 46532
+      },
+      {
+        "name": "R_HALF/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 34136
+      },
+      {
+        "name": "R_HALF/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "R_HALF/r3/RESULT.json",
+        "size": 1052
+      },
+      {
+        "name": "R_HALF/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_HALF/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_R/r1/DAILY_LEADERS.csv",
+        "size": 46541
+      },
+      {
+        "name": "R_R/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "R_R/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35884
+      },
+      {
+        "name": "R_R/r1/RESULT.json",
+        "size": 1047
+      },
+      {
+        "name": "R_R/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_R/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_R/r2/DAILY_LEADERS.csv",
+        "size": 46686
+      },
+      {
+        "name": "R_R/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "R_R/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 35934
+      },
+      {
+        "name": "R_R/r2/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "R_R/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_R/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_R/r3/DAILY_LEADERS.csv",
+        "size": 46532
+      },
+      {
+        "name": "R_R/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "R_R/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35935
+      },
+      {
+        "name": "R_R/r3/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "R_R/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_R/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "SUMMARY.json",
+        "size": 40682
+      },
+      {
+        "name": "XGB_ONLY/r1/DAILY_LEADERS.csv",
+        "size": 46199
+      },
+      {
+        "name": "XGB_ONLY/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "XGB_ONLY/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35753
+      },
+      {
+        "name": "XGB_ONLY/r1/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "XGB_ONLY/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "XGB_ONLY/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "XGB_ONLY/r2/DAILY_LEADERS.csv",
+        "size": 46241
+      },
+      {
+        "name": "XGB_ONLY/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "XGB_ONLY/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 35769
+      },
+      {
+        "name": "XGB_ONLY/r2/RESULT.json",
+        "size": 1054
+      },
+      {
+        "name": "XGB_ONLY/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "XGB_ONLY/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "XGB_ONLY/r3/DAILY_LEADERS.csv",
+        "size": 46264
+      },
+      {
+        "name": "XGB_ONLY/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "XGB_ONLY/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35841
+      },
+      {
+        "name": "XGB_ONLY/r3/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "XGB_ONLY/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "XGB_ONLY/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      }
+    ]
+  },
+  {
+    "blob": "blobs/a5f83fa4ac4527c0ba86e03341fef6bb0199f912",
+    "size": 10838455,
+    "entries": [
+      {
+        "name": "AGGREGATED_8_ARMS.csv",
+        "size": 2299
+      },
+      {
+        "name": "B_T0_H0/r1/DAILY_LEADERS.csv",
+        "size": 46818
+      },
+      {
+        "name": "ANNUAL_RETURN.csv",
+        "size": 8087
+      },
+      {
+        "name": "B_T0_H0/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "B_T0_H0/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 34020
+      },
+      {
+        "name": "B_T0_H0/r1/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "B_T0_H0/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H0/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H0/r2/DAILY_LEADERS.csv",
+        "size": 46632
+      },
+      {
+        "name": "B_T0_H0/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "B_T0_H0/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 34059
+      },
+      {
+        "name": "B_T0_H0/r2/RESULT.json",
+        "size": 1054
+      },
+      {
+        "name": "B_T0_H0/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H0/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H0/r3/DAILY_LEADERS.csv",
+        "size": 46666
+      },
+      {
+        "name": "B_T0_H0/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559803
+      },
+      {
+        "name": "B_T0_H0/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 34041
+      },
+      {
+        "name": "B_T0_H0/r3/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "B_T0_H0/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H0/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H1/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "B_T0_H1/r1/DAILY_LEADERS.csv",
+        "size": 46669
+      },
+      {
+        "name": "B_T0_H1/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35752
+      },
+      {
+        "name": "B_T0_H1/r1/RESULT.json",
+        "size": 1048
+      },
+      {
+        "name": "B_T0_H1/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H1/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H1/r2/DAILY_LEADERS.csv",
+        "size": 46436
+      },
+      {
+        "name": "B_T0_H1/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "B_T0_H1/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 35787
+      },
+      {
+        "name": "B_T0_H1/r2/RESULT.json",
+        "size": 1054
+      },
+      {
+        "name": "B_T0_H1/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H1/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H1/r3/DAILY_LEADERS.csv",
+        "size": 46326
+      },
+      {
+        "name": "B_T0_H1/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559803
+      },
+      {
+        "name": "B_T0_H1/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35856
+      },
+      {
+        "name": "B_T0_H1/r3/RESULT.json",
+        "size": 1052
+      },
+      {
+        "name": "B_T0_H1/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T0_H1/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "B_T1_H0/r1/DAILY_LEADERS.csv",
+        "size": 46938
+      },
+      {
+        "name": "B_T1_H0/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559784
+      },
+      {
+        "name": "B_T1_H0/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 34333
+      },
+      {
+        "name": "B_T1_H0/r1/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "B_T1_H0/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956652
+      },
+      {
+        "name": "B_T1_H0/r2/DAILY_LEADERS.csv",
+        "size": 46966
+      },
+      {
+        "name": "B_T1_H0/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956652
+      },
+      {
+        "name": "B_T1_H0/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559716
+      },
+      {
+        "name": "B_T1_H0/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 34315
+      },
+      {
+        "name": "B_T1_H0/r2/RESULT.json",
+        "size": 1052
+      },
+      {
+        "name": "B_T1_H0/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956379
+      },
+      {
+        "name": "B_T1_H0/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956379
+      },
+      {
+        "name": "B_T1_H0/r3/DAILY_LEADERS.csv",
+        "size": 46932
+      },
+      {
+        "name": "B_T1_H0/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559847
+      },
+      {
+        "name": "B_T1_H0/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 34215
+      },
+      {
+        "name": "B_T1_H0/r3/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "B_T1_H0/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956656
+      },
+      {
+        "name": "B_T1_H0/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956656
+      },
+      {
+        "name": "B_T1_H1/r1/DAILY_LEADERS.csv",
+        "size": 46686
+      },
+      {
+        "name": "B_T1_H1/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559784
+      },
+      {
+        "name": "B_T1_H1/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35719
+      },
+      {
+        "name": "B_T1_H1/r1/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "B_T1_H1/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956652
+      },
+      {
+        "name": "B_T1_H1/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956652
+      },
+      {
+        "name": "B_T1_H1/r2/DAILY_LEADERS.csv",
+        "size": 46688
+      },
+      {
+        "name": "B_T1_H1/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559716
+      },
+      {
+        "name": "B_T1_H1/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 35783
+      },
+      {
+        "name": "B_T1_H1/r2/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "B_T1_H1/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956379
+      },
+      {
+        "name": "B_T1_H1/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956379
+      },
+      {
+        "name": "B_T1_H1/r3/DAILY_LEADERS.csv",
+        "size": 46664
+      },
+      {
+        "name": "B_T1_H1/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559847
+      },
+      {
+        "name": "B_T1_H1/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35841
+      },
+      {
+        "name": "B_T1_H1/r3/RESULT.json",
+        "size": 1052
+      },
+      {
+        "name": "B_T1_H1/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956656
+      },
+      {
+        "name": "B_T1_H1/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956656
+      },
+      {
+        "name": "ECONOMICS.csv",
+        "size": 2532
+      },
+      {
+        "name": "FIXED_5050.csv",
+        "size": 1449
+      },
+      {
+        "name": "MONTHLY_QUALITY.csv",
+        "size": 236982
+      },
+      {
+        "name": "R_T0_H0/r1/DAILY_LEADERS.csv",
+        "size": 46940
+      },
+      {
+        "name": "R_T0_H0/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 34275
+      },
+      {
+        "name": "R_T0_H0/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "R_T0_H0/r1/RESULT.json",
+        "size": 1050
+      },
+      {
+        "name": "R_T0_H0/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_T0_H0/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_T0_H0/r2/DAILY_LEADERS.csv",
+        "size": 46796
+      },
+      {
+        "name": "R_T0_H0/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "R_T0_H0/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 34087
+      },
+      {
+        "name": "R_T0_H0/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_T0_H0/r2/RESULT.json",
+        "size": 1054
+      },
+      {
+        "name": "R_T0_H0/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_T0_H0/r3/DAILY_LEADERS.csv",
+        "size": 46771
+      },
+      {
+        "name": "R_T0_H0/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "R_T0_H0/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 34144
+      },
+      {
+        "name": "R_T0_H0/r3/RESULT.json",
+        "size": 1052
+      },
+      {
+        "name": "R_T0_H0/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_T0_H0/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_T0_H1/r1/DAILY_LEADERS.csv",
+        "size": 46541
+      },
+      {
+        "name": "R_T0_H1/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559744
+      },
+      {
+        "name": "R_T0_H1/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35884
+      },
+      {
+        "name": "R_T0_H1/r1/RESULT.json",
+        "size": 1047
+      },
+      {
+        "name": "R_T0_H1/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_T0_H1/r2/DAILY_LEADERS.csv",
+        "size": 46686
+      },
+      {
+        "name": "R_T0_H1/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_T0_H1/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559949
+      },
+      {
+        "name": "R_T0_H1/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 35934
+      },
+      {
+        "name": "R_T0_H1/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_T0_H1/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956612
+      },
+      {
+        "name": "R_T0_H1/r2/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "R_T0_H1/r3/DAILY_LEADERS.csv",
+        "size": 46532
+      },
+      {
+        "name": "R_T0_H1/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559805
+      },
+      {
+        "name": "R_T0_H1/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35935
+      },
+      {
+        "name": "R_T0_H1/r3/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "R_T0_H1/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_T0_H1/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956614
+      },
+      {
+        "name": "R_T1_H0/r1/DAILY_LEADERS.csv",
+        "size": 47046
+      },
+      {
+        "name": "R_T1_H0/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559679
+      },
+      {
+        "name": "R_T1_H0/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 34267
+      },
+      {
+        "name": "R_T1_H0/r1/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "R_T1_H0/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956547
+      },
+      {
+        "name": "R_T1_H0/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956547
+      },
+      {
+        "name": "R_T1_H0/r2/DAILY_LEADERS.csv",
+        "size": 46858
+      },
+      {
+        "name": "R_T1_H0/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559775
+      },
+      {
+        "name": "R_T1_H0/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 34251
+      },
+      {
+        "name": "R_T1_H0/r2/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "R_T1_H0/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956438
+      },
+      {
+        "name": "R_T1_H0/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956438
+      },
+      {
+        "name": "R_T1_H0/r3/DAILY_LEADERS.csv",
+        "size": 46754
+      },
+      {
+        "name": "R_T1_H0/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559765
+      },
+      {
+        "name": "R_T1_H0/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 34118
+      },
+      {
+        "name": "R_T1_H0/r3/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "R_T1_H0/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956574
+      },
+      {
+        "name": "R_T1_H0/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956574
+      },
+      {
+        "name": "R_T1_H1/r1/DAILY_LEADERS.csv",
+        "size": 46622
+      },
+      {
+        "name": "R_T1_H1/r1/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559679
+      },
+      {
+        "name": "R_T1_H1/r1/FULL_UNIVERSE_PATH.npz",
+        "size": 35863
+      },
+      {
+        "name": "R_T1_H1/r1/RESULT.json",
+        "size": 1051
+      },
+      {
+        "name": "R_T1_H1/r1/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956547
+      },
+      {
+        "name": "R_T1_H1/r1/TIT_R_SOURCE_ONLY.csv",
+        "size": 956547
+      },
+      {
+        "name": "R_T1_H1/r2/DAILY_LEADERS.csv",
+        "size": 46682
+      },
+      {
+        "name": "R_T1_H1/r2/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559775
+      },
+      {
+        "name": "R_T1_H1/r2/FULL_UNIVERSE_PATH.npz",
+        "size": 36013
+      },
+      {
+        "name": "R_T1_H1/r2/RESULT.json",
+        "size": 1053
+      },
+      {
+        "name": "R_T1_H1/r2/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956438
+      },
+      {
+        "name": "R_T1_H1/r2/TIT_R_SOURCE_ONLY.csv",
+        "size": 956438
+      },
+      {
+        "name": "R_T1_H1/r3/DAILY_LEADERS.csv",
+        "size": 46581
+      },
+      {
+        "name": "R_T1_H1/r3/ENSEMBLE_TAIL_OOS.csv",
+        "size": 1559765
+      },
+      {
+        "name": "R_T1_H1/r3/FULL_UNIVERSE_PATH.npz",
+        "size": 35911
+      },
+      {
+        "name": "R_T1_H1/r3/RESULT.json",
+        "size": 1052
+      },
+      {
+        "name": "R_T1_H1/r3/TIT_R_CANDIDATES_ONLY.csv",
+        "size": 956574
+      },
+      {
+        "name": "R_T1_H1/r3/TIT_R_SOURCE_ONLY.csv",
+        "size": 956574
+      },
+      {
+        "name": "SUMMARY.json",
+        "size": 7632
+      }
+    ]
+  }
+]

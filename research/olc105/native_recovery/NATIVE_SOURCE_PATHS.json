@@ -1,0 +1,653 @@
+[
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/eu_original39_daily_20261031/work/audit_engine.py",
+    "size": 7236,
+    "sha": "442acc70ead775510e4f72eb44cc5d4fc30beae2"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/eu_original39_daily_20261031/work/prepare_eu_state.py",
+    "size": 9261,
+    "sha": "200aaf86a70a67fa25cb0f98fd766b021ac3f177"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/eu_original39_daily_20261031/work/research_common.py",
+    "size": 993,
+    "sha": "7dabeaa30edc591b0e33335fd45c33d7ece1f8cd"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/eu_original39_daily_20261031/work/run_additional_diagnostics.py",
+    "size": 1334,
+    "sha": "585c4257e11389d6d8b554f30a6f22f9ffea08fa"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/eu_original39_daily_20261031/work/run_audited_replays.py",
+    "size": 7065,
+    "sha": "31d0a317c036358f576512f050901632a84b844d"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/eu_original39_daily_20261031/work/test_contract.py",
+    "size": 1037,
+    "sha": "4161e90513ad0a7f16cd20973bd76b559d849f1d"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/eu_original39_daily_20261031/work/test_engine_audit.py",
+    "size": 778,
+    "sha": "282601dc544945d95338d733409b9ed3d77398ec"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/eu_original39_daily_20261031/work/train_eu_return.py",
+    "size": 4031,
+    "sha": "726f43fc1f143b5fc020caf6147f39a6dafd62f9"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/eu_original39_daily_20261031/work/us_control.py",
+    "size": 1500,
+    "sha": "9a14e9b26a7a2f845f51e55bfd58f4f7314fc2bc"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/RESTORE_LAYOUT.py",
+    "size": 1572,
+    "sha": "9c9713bf3b00bc2885436b0f04292efb4134d172"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/analyze_pack.py",
+    "size": 7134,
+    "sha": "5ca2223496b70c8f2b85e82d39a5625432efda95"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/bootstrap.py",
+    "size": 599,
+    "sha": "06b0e17777701bc7ea8978edacb3270b25567be9"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/build_features.py",
+    "size": 4497,
+    "sha": "9deffb1722d3ea093d67999333e15aa83322a65e"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/diagnostic_primitives.py",
+    "size": 1580,
+    "sha": "fb4f9461017ffd1d69e01a963fc608399f2aea7a"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/evidence_math.py",
+    "size": 1492,
+    "sha": "4c3ac9e7a94ae0339965da4ff9050c20a1076766"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/feature_blocks.py",
+    "size": 6250,
+    "sha": "cb32c8f2d0b38b039750fb417a727ab6d1e931a4"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/final_evidence.py",
+    "size": 5216,
+    "sha": "dfc1c246e54b823b7b76b1678788c87a719c12ee"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/null_path_diagnostic.py",
+    "size": 4423,
+    "sha": "d1f76e93c2c681f05b192ac9396974cee868deb0"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/path_interaction.py",
+    "size": 3381,
+    "sha": "e054945e9f198e4e5d18291d29baeea1ed0c9260"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/replay_interaction.py",
+    "size": 1019,
+    "sha": "8be9dd0218aefa79460547d8643183e3a65e2c2e"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/replay_nulls.py",
+    "size": 4197,
+    "sha": "8adddd64a37ebba404716a5a9a89bbeb93826cbb"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/replay_pack.py",
+    "size": 6164,
+    "sha": "e514ad3dcb406a49df4eb9095a3aee22a37e9d88"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/train_pack.py",
+    "size": 8851,
+    "sha": "080a4cee129fcc7fbfca14f042cf5126b5372a72"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/src/verify_outputs.py",
+    "size": 7605,
+    "sha": "82ee94e8e4bde510a419ca2991819021df271b34"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/tests/conftest.py",
+    "size": 102,
+    "sha": "8766d66e8f685ac4cf193834d8258dbb087fb822"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/tests/test_diagnostic_primitives.py",
+    "size": 1615,
+    "sha": "a9115fd008c4dbb29776f856a3f0ee8264a22086"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/tests/test_entrypoints.py",
+    "size": 439,
+    "sha": "7ed6fa47287e53cbca95b268bd1746999bdc4e39"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/tests/test_evidence.py",
+    "size": 1023,
+    "sha": "ae11e2b9844caf18d720f8ff08fa7f432e0cc132"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/feature_lab/tests/test_feature_blocks.py",
+    "size": 3995,
+    "sha": "9dfaba63648e9160671bdf18c981086c9ec130dc"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/recovery/context.py",
+    "size": 590,
+    "sha": "05688f9e238d0f0ab7d2ff9bbb90159cb999e109"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/recovery/prepare_audit.py",
+    "size": 4589,
+    "sha": "fb842bbf2cec8f7b3d1305b568316ef93a8a8649"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/recovery/recovery_core.py",
+    "size": 2737,
+    "sha": "00fac1c21782ee0f4ede29a203605896a05b7927"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc08_systematic_20261101/recovery/train_variants.py",
+    "size": 10245,
+    "sha": "89946f8236af1dbb48046ff88edd5aa020dc8b4d"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/audit_target_availability.py",
+    "size": 2894,
+    "sha": "e9c4594bd55ad33f6b7c105ee834d5cb2a6d35a3"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/evaluate.py",
+    "size": 9540,
+    "sha": "369fcb3e97708da0eaf5913389de377822e807e2"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/evaluate_learners.py",
+    "size": 2638,
+    "sha": "4e646d8d71f0509b70ab97388ef3b5f29334cc7c"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/layer_metrics.py",
+    "size": 3963,
+    "sha": "f791716f40fcf26ef55ed9b06490969c8f306c53"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/objectives.py",
+    "size": 2126,
+    "sha": "2e022eed71a97c2a9b9eefb26f746151f7896084"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/prepare.py",
+    "size": 3661,
+    "sha": "974bfadec50310d8b226918d44608de02e912bb7"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/recovery_core.py",
+    "size": 3269,
+    "sha": "4d9387cf1819671045bf56de82963832191331a9"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/schema.py",
+    "size": 1740,
+    "sha": "66e283657e74cbc4f2f294b3a45b400a6fef6dae"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/train.py",
+    "size": 7098,
+    "sha": "1b6189ea5c081ea19c2c4138251805af951c113d"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/uncertainty.py",
+    "size": 3373,
+    "sha": "345b8fe2601e46ebdc25685004935b8350414486"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/src/verify.py",
+    "size": 7021,
+    "sha": "336961b66ad5b8e8dd6ef776734b58c7f2d211f7"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/tests/test_objectives.py",
+    "size": 3063,
+    "sha": "2a8f79070bffcf7ac005af29d71dd0ee177e2808"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc11_selection_20261101/tests/test_training_contract.py",
+    "size": 660,
+    "sha": "6808992e9e92fd70c04af01bb97af729dbf047ec"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/VERIFY_RESTORE.py",
+    "size": 2128,
+    "sha": "82dfd5b34825efbec87eb8a243d74708178dd9b7"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/accounting.py",
+    "size": 2446,
+    "sha": "6f0c89746f24d9eeedf13e3c38c7fc40f0edfadd"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/analyze.py",
+    "size": 4358,
+    "sha": "60346e34c0fda750f96dddaffdc711cb396caa96"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/build_scores.py",
+    "size": 7443,
+    "sha": "e965e363e09b1342f693fca125a65f3663d60708"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/chrono_fit.py",
+    "size": 4607,
+    "sha": "7262d92aafa7750f75483a7f0cc9e21fb6c401e2"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/common.py",
+    "size": 732,
+    "sha": "5151209a7c7f013f6174a4dd39a48fe17866fff2"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/evaluate.py",
+    "size": 4392,
+    "sha": "eeffd36d028ac2ad63014b12ed3d11adae4bc7d3"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/methods.py",
+    "size": 2116,
+    "sha": "a90b1facdd58e18b901a72e9ed52d02dd67b3fec"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/portfolio_adapter.py",
+    "size": 1808,
+    "sha": "acb31b4655bd9e222738274856e9440256a59fa1"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/portfolio_metrics_parent.py",
+    "size": 2553,
+    "sha": "8f084d28d76cf75b72ba463f9168b3ab912cabc5"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/ranking_core.py",
+    "size": 4001,
+    "sha": "9c979090874ffa9163e05cc57e11a7e3dced9126"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/replay.py",
+    "size": 3836,
+    "sha": "66efe4e78c8b579740d9322a87e052dd80c9b38d"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/train_heads.py",
+    "size": 6671,
+    "sha": "ac0dc06eacb32f51d8322e30ac3f46c47312066e"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/vector_engine.py",
+    "size": 8624,
+    "sha": "9aa1afec426cc042ebe51048e451d5b16a93ed3b"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/verify.py",
+    "size": 7204,
+    "sha": "4703f57e6b8b0866629ea4a261bf11d0c337abe5"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/src/verify_models.py",
+    "size": 1646,
+    "sha": "4c3faa1a4c951be8ecaa2b35ccbd99253a3be114"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/tests/test_chrono.py",
+    "size": 2515,
+    "sha": "ddeb538cd54bd0b2818adf0f54199cbdba3bd033"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/tests/test_composition.py",
+    "size": 667,
+    "sha": "da1370468edc71ce5388167ddc2ad39a559583a4"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/tests/test_core.py",
+    "size": 2702,
+    "sha": "be21e78c01d3b818ecac0540d47a3cdb37a42a19"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc14_fitted_ranking_20261101/tests/test_training_contract.py",
+    "size": 502,
+    "sha": "2a840a086e9a08991ba09df2cd28739e82f391f4"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/analyze_results.py",
+    "size": 5115,
+    "sha": "d7fbebef4fd3b4a1b3a846529e5f96674e10fdc5"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/context_model.py",
+    "size": 6595,
+    "sha": "c910dc08c0b185f945e18952a09b79d4133d3853"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/core.py",
+    "size": 5015,
+    "sha": "a1b78e8cec09536785b0de25f678403f7b64b814"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/evaluate_all.py",
+    "size": 5082,
+    "sha": "68bbc553949c1976f327e7fd77169a95158204ba"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/experiment.py",
+    "size": 6153,
+    "sha": "397823fda588217ac9808a2d6632835c3b11b9e0"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/replay_all.py",
+    "size": 3804,
+    "sha": "a24db61e3beeb216dcab026b8f4bad86125331b7"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/revalue_memory.py",
+    "size": 1300,
+    "sha": "db01f113101993a4246e5900a0828a21f73d904d"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/run.py",
+    "size": 5806,
+    "sha": "b9458a4005c8a189c120e8c3719a9b825ee485b2"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/run_revalue.py",
+    "size": 1525,
+    "sha": "aed461b06aade97f2c53ea3d83c04e15befe391a"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/src/verify_results.py",
+    "size": 7315,
+    "sha": "cccdc45e2350d106d3798efe1f94a9f9c1a9e752"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/tests/test_chronology.py",
+    "size": 1726,
+    "sha": "711f70a7dac7072b6e2b7ffb965d37b7202c670f"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/tests/test_context_model.py",
+    "size": 3080,
+    "sha": "556ca1668950f4b5850a543e89454080d7472985"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc16_contextual_rank_20261102/tests/test_revalue_memory.py",
+    "size": 1772,
+    "sha": "69ee0cdd6da80630eceea2917c6a509e4ab3197c"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc18_execution_20261102/src/analyze.py",
+    "size": 5177,
+    "sha": "a96a12b91df32b1ba158b5ed056a7304f946bda2"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc18_execution_20261102/src/run_experiment.py",
+    "size": 4822,
+    "sha": "597e6748f2e0bb934ea71a1fdb8d0383b77edc01"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc18_execution_20261102/src/stop_contract.py",
+    "size": 2107,
+    "sha": "6f34434f503f2eebc0b0502c25ad66cbb5e9bf4c"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc18_execution_20261102/src/stop_engine.py",
+    "size": 4569,
+    "sha": "7b3e1f7b4ff1954eb8b908abd4821c04f3cd55f0"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc18_execution_20261102/src/verify.py",
+    "size": 2242,
+    "sha": "d7f6253c0b2a07a757dd3d731b09ddb16362e801"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc18_execution_20261102/tests/test_contract.py",
+    "size": 2269,
+    "sha": "af2ea15bf53843e7fdb50b63c23d0b08c4fe221f"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc18_execution_20261102/tests/test_engine.py",
+    "size": 2807,
+    "sha": "e79c3542e6a11f132a0e9812b7abe6dc905340a1"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc18_execution_20261102/tests/test_net.py",
+    "size": 1849,
+    "sha": "8eb9d3660d1780561ab65d4e8deab561f4b35793"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc19_combined_risk_20261102/src/analyze.py",
+    "size": 5183,
+    "sha": "93668283077eaa021f9eb166015258d978a4d7f9"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc19_combined_risk_20261102/src/combined_engine.py",
+    "size": 5798,
+    "sha": "537b6154b376b9dabcfc538d23337c01a97ebfa0"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc19_combined_risk_20261102/src/run_experiment.py",
+    "size": 4945,
+    "sha": "fc82039f1a894f3a5f6a2b8d3eb2b6acbd06054b"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc19_combined_risk_20261102/src/verify.py",
+    "size": 3138,
+    "sha": "9e4b52003a787132f88ce4d8d7cbe5651df0e1ef"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc19_combined_risk_20261102/src/verify_extra.py",
+    "size": 1534,
+    "sha": "f7c5b1e96c6b802435906d3e538961aa0549ec39"
+  },
+  {
+    "branch": "research/olc19-risk-reentry-20261102",
+    "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+    "path": "research/olc19_combined_risk_20261102/tests/test_combined.py",
+    "size": 5177,
+    "sha": "b30744d7177cf828579c7300d4ff657140d45d8c"
+  }
+]

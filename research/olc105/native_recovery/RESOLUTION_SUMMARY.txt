@@ -1,0 +1,518 @@
+{
+  "manifest_type": "dict",
+  "manifest_keys": [
+    "scope",
+    "refs",
+    "missing_branches",
+    "blobs"
+  ],
+  "nested_archives": 4,
+  "native_binary_candidates": 0,
+  "native_python_sources": 93,
+  "research_archives_inspected": 0
+}
+
+BLOB blobs/379b9e2a5f904034e87237d27decdd0e7f25e276
+policy_paths/B_T1_H1/r1/00.npz 95674
+policy_paths/B_T1_H1/r1/01.npz 91511
+policy_paths/B_T1_H1/r1/02.npz 100030
+policy_paths/B_T1_H1/r1/03.npz 96715
+policy_paths/B_T1_H1/r1/04.npz 95674
+policy_paths/B_T1_H1/r1/05.npz 91511
+policy_paths/B_T1_H1/r1/06.npz 100176
+policy_paths/B_T1_H1/r1/07.npz 97046
+policy_paths/B_T1_H1/r1/08.npz 97128
+policy_paths/B_T1_H1/r1/09.npz 92977
+policy_paths/B_T1_H1/r1/10.npz 101086
+policy_paths/B_T1_H1/r1/11.npz 97449
+policy_paths/B_T1_H1/r1/12.npz 97128
+policy_paths/B_T1_H1/r1/13.npz 92977
+policy_paths/B_T1_H1/r1/14.npz 101341
+policy_paths/B_T1_H1/r1/15.npz 97730
+policy_paths/B_T1_H1/r1/16.npz 96743
+policy_paths/B_T1_H1/r1/17.npz 92968
+policy_paths/B_T1_H1/r1/18.npz 100778
+policy_paths/B_T1_H1/r1/19.npz 97223
+policy_paths/B_T1_H1/r1/20.npz 96743
+policy_paths/B_T1_H1/r1/21.npz 92968
+policy_paths/B_T1_H1/r1/22.npz 100873
+policy_paths/B_T1_H1/r1/23.npz 97442
+policy_paths/B_T1_H1/r1/24.npz 97811
+policy_paths/B_T1_H1/r1/25.npz 93545
+policy_paths/B_T1_H1/r1/26.npz 101488
+policy_paths/B_T1_H1/r1/27.npz 97746
+policy_paths/B_T1_H1/r1/28.npz 97811
+policy_paths/B_T1_H1/r1/29.npz 93545
+policy_paths/B_T1_H1/r1/30.npz 101706
+policy_paths/B_T1_H1/r1/31.npz 97975
+policy_paths/B_T1_H1/r1/32.npz 97194
+policy_paths/B_T1_H1/r1/33.npz 93240
+policy_paths/B_T1_H1/r1/34.npz 102449
+policy_paths/B_T1_H1/r1/35.npz 99264
+policy_paths/B_T1_H1/r1/36.npz 97194
+policy_paths/B_T1_H1/r1/37.npz 93240
+policy_paths/B_T1_H1/r1/38.npz 102747
+policy_paths/B_T1_H1/r1/39.npz 99481
+policy_paths/B_T1_H1/r1/40.npz 98934
+policy_paths/B_T1_H1/r1/41.npz 94876
+policy_paths/B_T1_H1/r1/42.npz 103170
+policy_paths/B_T1_H1/r1/43.npz 99816
+policy_paths/B_T1_H1/r1/44.npz 98934
+policy_paths/B_T1_H1/r1/45.npz 94876
+policy_paths/B_T1_H1/r1/46.npz 103574
+policy_paths/B_T1_H1/r1/47.npz 100220
+policy_paths/B_T1_H1/r1/48.npz 99164
+policy_paths/B_T1_H1/r1/49.npz 95113
+policy_paths/B_T1_H1/r1/50.npz 103776
+policy_paths/B_T1_H1/r1/51.npz 100164
+policy_paths/B_T1_H1/r1/52.npz 99164
+policy_paths/B_T1_H1/r1/53.npz 95113
+policy_paths/B_T1_H1/r1/54.npz 104066
+policy_paths/B_T1_H1/r1/55.npz 100565
+policy_paths/B_T1_H1/r1/56.npz 99731
+policy_paths/B_T1_H1/r1/57.npz 95827
+policy_paths/B_T1_H1/r1/58.npz 104153
+policy_paths/B_T1_H1/r1/59.npz 100874
+policy_paths/B_T1_H1/r1/60.npz 99731
+policy_paths/B_T1_H1/r1/61.npz 95827
+policy_paths/B_T1_H1/r1/62.npz 104512
+policy_paths/B_T1_H1/r1/63.npz 101193
+policy_paths/B_T1_H1/r1/TICKERS.json 1082
+policy_paths/B_T1_H1/r2/00.npz 95633
+policy_paths/B_T1_H1/r2/01.npz 91637
+policy_paths/B_T1_H1/r2/02.npz 100164
+policy_paths/B_T1_H1/r2/03.npz 97138
+policy_paths/B_T1_H1/r2/04.npz 95633
+policy_paths/B_T1_H1/r2/05.npz 91637
+policy_paths/B_T1_H1/r2/06.npz 100282
+policy_paths/B_T1_H1/r2/07.npz 97354
+policy_paths/B_T1_H1/r2/08.npz 96940
+policy_paths/B_T1_H1/r2/09.npz 93163
+policy_paths/B_T1_H1/r2/10.npz 100635
+policy_paths/B_T1_H1/r2/11.npz 97711
+policy_paths/B_T1_H1/r2/12.npz 96940
+policy_paths/B_T1_H1/r2/13.npz 93163
+policy_paths/B_T1_H1/r2/14.npz 101027
+policy_paths/B_T1_H1/r2/15.npz 98000
+policy_paths/B_T1_H1/r2/16.npz 96852
+policy_paths/B_T1_H1/r2/17.npz 92796
+policy_paths/B_T1_H1/r2/18.npz 100827
+policy_paths/B_T1_H1/r2/19.npz 97642
+policy_paths/B_T1_H1/r2/20.npz 96852
+policy_paths/B_T1_H1/r2/21.npz 92796
+policy_paths/B_T1_H1/r2/22.npz 100938
+policy_paths/B_T1_H1/r2/23.npz 97893
+policy_paths/B_T1_H1/r2/24.npz 97370
+policy_paths/B_T1_H1/r2/25.npz 93782
+policy_paths/B_T1_H1/r2/26.npz 101184
+policy_paths/B_T1_H1/r2/27.npz 98098
+policy_paths/B_T1_H1/r2/28.npz 97370
+policy_paths/B_T1_H1/r2/29.npz 93782
+policy_paths/B_T1_H1/r2/30.npz 101227
+policy_paths/B_T1_H1/r2/31.npz 98369
+policy_paths/B_T1_H1/r2/32.npz 97376
+policy_paths/B_T1_H1/r2/33.npz 93241
+policy_paths/B_T1_H1/r2/34.npz 102443
+
+BLOB blobs/1e5e16b107862e9eef5981548ddebe992b1392b5
+_repeat1/AGG.csv 534196
+_repeat1/AAXJ.csv 423337
+_repeat1/ACWI.csv 434343
+_repeat1/ANGL.csv 335536
+_repeat1/ARGT.csv 357453
+_repeat1/ASHR.csv 301729
+_repeat1/BIL.csv 451929
+_repeat1/BKLN.csv 366433
+_repeat1/BND.csv 457848
+_repeat1/BNDX.csv 311638
+_repeat1/BNO.csv 370874
+_repeat1/COMT.csv 275432
+_repeat1/CORN.csv 366135
+_repeat1/CPER.csv 328696
+_repeat1/DBA.csv 461870
+_repeat1/DBB.csv 458055
+_repeat1/DBC.csv 485270
+_repeat1/DBO.csv 459947
+_repeat1/DEM.csv 447811
+_repeat1/DGRO.csv 286855
+_repeat1/DIA.csv 536953
+_repeat1/DGS.csv 439395
+_repeat1/EDV.csv 432272
+_repeat1/EEM.csv 542381
+_repeat1/EFA.csv 541300
+_repeat1/EIRL.csv 374781
+_repeat1/EIDO.csv 382223
+_repeat1/EIS.csv 425988
+_repeat1/EMB.csv 439821
+_repeat1/ENZL.csv 369539
+_repeat1/EPHE.csv 370966
+_repeat1/EPI.csv 435916
+_repeat1/EPOL.csv 379793
+_repeat1/EPP.csv 532068
+_repeat1/EWA.csv 535747
+_repeat1/EWC.csv 535407
+_repeat1/EWD.csv 529916
+_repeat1/EWG.csv 535423
+_repeat1/EWH.csv 536530
+_repeat1/EWI.csv 530306
+_repeat1/EWJ.csv 537728
+_repeat1/EWK.csv 525374
+_repeat1/EWL.csv 531058
+_repeat1/EWM.csv 531432
+_repeat1/EWN.csv 528183
+_repeat1/EWO.csv 526738
+_repeat1/EWP.csv 531166
+_repeat1/EWQ.csv 531098
+_repeat1/EWS.csv 532594
+_repeat1/EWT.csv 536293
+_repeat1/EWU.csv 533751
+_repeat1/EWY.csv 536069
+_repeat1/EWZ.csv 541213
+_repeat1/FDN.csv 461815
+_repeat1/EZA.csv 530548
+_repeat1/FXI.csv 523106
+_repeat1/GDX.csv 483793
+_repeat1/GDXJ.csv 397313
+_repeat1/GLD.csv 504718
+_repeat1/GSG.csv 458225
+_repeat1/HACK.csv 274436
+_repeat1/HDV.csv 364015
+_repeat1/HYG.csv 460535
+_repeat1/IAU.csv 501857
+_repeat1/IBB.csv 536627
+_repeat1/ICLN.csv 424388
+_repeat1/IEF.csv 534433
+_repeat1/IEI.csv 460012
+_repeat1/IEFA.csv 327016
+_repeat1/IGV.csv 533974
+_repeat1/IHI.csv 477048
+_repeat1/IJH.csv 537042
+_repeat1/IEMG.csv 327982
+_repeat1/IJR.csv 536569
+_repeat1/INDA.csv 342370
+_repeat1/IVV.csv 535329
+_repeat1/ITA.csv 474137
+_repeat1/IWD.csv 535661
+_repeat1/IWF.csv 538195
+_repeat1/IWN.csv 534698
+_repeat1/IWM.csv 542357
+_repeat1/IYR.csv 537874
+_repeat1/IYT.csv 534062
+_repeat1/JNK.csv 442455
+_repeat1/KBE.csv 491328
+_repeat1/KRE.csv 479039
+_repeat1/LQD.csv 536205
+_repeat1/KWEB.csv 307851
+_repeat1/MBB.csv 456254
+_repeat1/MCHI.csv 362600
+_repeat1/MDY.csv 533902
+_repeat1/MTUM.csv 312206
+_repeat1/MUB.csv 445020
+_repeat1/PALL.csv 384693
+_repeat1/PPA.csv 484350
+_repeat1/PPLT.csv 387803
+_repeat1/QQQ.csv 542814
+_repeat1/QUAL.csv 306945
+_repeat1/RSP.csv 533531
+_repeat1/RWO.csv 425676
+
+BLOB blobs/c112c47b27adac99670dc7cfd084f2af5ab6acf6
+AGGREGATE.csv 2261
+ECONOMICS.csv 8562
+ANNUAL_RETURN.csv 9014
+ET_ONLY/r1/DAILY_LEADERS.csv 46106
+ET_ONLY/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+ET_ONLY/r1/FULL_UNIVERSE_PATH.npz 35663
+ET_ONLY/r1/RESULT.json 1051
+ET_ONLY/r1/TIT_R_CANDIDATES_ONLY.csv 956612
+ET_ONLY/r1/TIT_R_SOURCE_ONLY.csv 956612
+ET_ONLY/r2/DAILY_LEADERS.csv 46151
+ET_ONLY/r2/ENSEMBLE_TAIL_OOS.csv 1559949
+ET_ONLY/r2/FULL_UNIVERSE_PATH.npz 35685
+ET_ONLY/r2/RESULT.json 1053
+ET_ONLY/r2/TIT_R_CANDIDATES_ONLY.csv 956612
+ET_ONLY/r2/TIT_R_SOURCE_ONLY.csv 956612
+ET_ONLY/r3/DAILY_LEADERS.csv 46154
+ET_ONLY/r3/ENSEMBLE_TAIL_OOS.csv 1559805
+ET_ONLY/r3/FULL_UNIVERSE_PATH.npz 35626
+ET_ONLY/r3/RESULT.json 1051
+ET_ONLY/r3/TIT_R_CANDIDATES_ONLY.csv 956614
+ET_ONLY/r3/TIT_R_SOURCE_ONLY.csv 956614
+FIXED_5050.csv 912
+H_H/r1/DAILY_LEADERS.csv 46112
+H_H/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+H_H/r1/RESULT.json 1048
+H_H/r1/FULL_UNIVERSE_PATH.npz 35699
+H_H/r1/TIT_R_CANDIDATES_ONLY.csv 956612
+H_H/r1/TIT_R_SOURCE_ONLY.csv 956612
+H_H/r2/DAILY_LEADERS.csv 46085
+H_H/r2/ENSEMBLE_TAIL_OOS.csv 1559949
+H_H/r2/FULL_UNIVERSE_PATH.npz 35699
+H_H/r2/RESULT.json 1053
+H_H/r2/TIT_R_CANDIDATES_ONLY.csv 956612
+H_H/r2/TIT_R_SOURCE_ONLY.csv 956612
+H_H/r3/DAILY_LEADERS.csv 45971
+H_H/r3/ENSEMBLE_TAIL_OOS.csv 1559805
+H_H/r3/FULL_UNIVERSE_PATH.npz 35616
+H_H/r3/RESULT.json 1051
+H_H/r3/TIT_R_CANDIDATES_ONLY.csv 956614
+H_H/r3/TIT_R_SOURCE_ONLY.csv 956614
+H_HALF/r1/DAILY_LEADERS.csv 46112
+H_HALF/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+H_HALF/r1/FULL_UNIVERSE_PATH.npz 33804
+H_HALF/r1/RESULT.json 1050
+H_HALF/r1/TIT_R_CANDIDATES_ONLY.csv 956612
+H_HALF/r1/TIT_R_SOURCE_ONLY.csv 956612
+H_HALF/r2/DAILY_LEADERS.csv 46085
+H_HALF/r2/ENSEMBLE_TAIL_OOS.csv 1559949
+H_HALF/r2/FULL_UNIVERSE_PATH.npz 33888
+H_HALF/r2/RESULT.json 1055
+H_HALF/r2/TIT_R_CANDIDATES_ONLY.csv 956612
+H_HALF/r2/TIT_R_SOURCE_ONLY.csv 956612
+H_HALF/r3/DAILY_LEADERS.csv 45971
+H_HALF/r3/ENSEMBLE_TAIL_OOS.csv 1559805
+H_HALF/r3/FULL_UNIVERSE_PATH.npz 33850
+H_HALF/r3/RESULT.json 1050
+H_HALF/r3/TIT_R_CANDIDATES_ONLY.csv 956614
+H_HALF/r3/TIT_R_SOURCE_ONLY.csv 956614
+H_R/r1/DAILY_LEADERS.csv 46112
+H_R/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+H_R/r1/FULL_UNIVERSE_PATH.npz 35727
+H_R/r1/RESULT.json 1050
+H_R/r1/TIT_R_CANDIDATES_ONLY.csv 956612
+H_R/r1/TIT_R_SOURCE_ONLY.csv 956612
+H_R/r2/ENSEMBLE_TAIL_OOS.csv 1559949
+H_R/r2/DAILY_LEADERS.csv 46085
+H_R/r2/FULL_UNIVERSE_PATH.npz 35706
+H_R/r2/RESULT.json 1053
+H_R/r2/TIT_R_CANDIDATES_ONLY.csv 956612
+H_R/r3/DAILY_LEADERS.csv 45971
+H_R/r2/TIT_R_SOURCE_ONLY.csv 956612
+H_R/r3/ENSEMBLE_TAIL_OOS.csv 1559805
+H_R/r3/FULL_UNIVERSE_PATH.npz 35696
+H_R/r3/RESULT.json 1050
+H_R/r3/TIT_R_SOURCE_ONLY.csv 956614
+H_R/r3/TIT_R_CANDIDATES_ONLY.csv 956614
+MANIFEST.json 419
+MONTHLY_QUALITY.csv 270304
+RIDGE_ONLY/r1/DAILY_LEADERS.csv 46964
+RIDGE_ONLY/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+RIDGE_ONLY/r1/FULL_UNIVERSE_PATH.npz 33971
+RIDGE_ONLY/r1/RESULT.json 1050
+RIDGE_ONLY/r1/TIT_R_CANDIDATES_ONLY.csv 956612
+RIDGE_ONLY/r1/TIT_R_SOURCE_ONLY.csv 956612
+RIDGE_ONLY/r2/DAILY_LEADERS.csv 46964
+RIDGE_ONLY/r2/ENSEMBLE_TAIL_OOS.csv 1559949
+RIDGE_ONLY/r2/FULL_UNIVERSE_PATH.npz 33990
+RIDGE_ONLY/r2/RESULT.json 1054
+RIDGE_ONLY/r2/TIT_R_CANDIDATES_ONLY.csv 956612
+RIDGE_ONLY/r2/TIT_R_SOURCE_ONLY.csv 956612
+RIDGE_ONLY/r3/ENSEMBLE_TAIL_OOS.csv 1559805
+RIDGE_ONLY/r3/FULL_UNIVERSE_PATH.npz 33955
+RIDGE_ONLY/r3/DAILY_LEADERS.csv 46964
+RIDGE_ONLY/r3/RESULT.json 1053
+RIDGE_ONLY/r3/TIT_R_CANDIDATES_ONLY.csv 956614
+RIDGE_ONLY/r3/TIT_R_SOURCE_ONLY.csv 956614
+R_H/r1/DAILY_LEADERS.csv 46541
+R_H/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+R_H/r1/FULL_UNIVERSE_PATH.npz 35907
+R_H/r1/RESULT.json 1051
+
+BLOB blobs/a5f83fa4ac4527c0ba86e03341fef6bb0199f912
+AGGREGATED_8_ARMS.csv 2299
+B_T0_H0/r1/DAILY_LEADERS.csv 46818
+ANNUAL_RETURN.csv 8087
+B_T0_H0/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+B_T0_H0/r1/FULL_UNIVERSE_PATH.npz 34020
+B_T0_H0/r1/RESULT.json 1050
+B_T0_H0/r1/TIT_R_CANDIDATES_ONLY.csv 956612
+B_T0_H0/r1/TIT_R_SOURCE_ONLY.csv 956612
+B_T0_H0/r2/DAILY_LEADERS.csv 46632
+B_T0_H0/r2/ENSEMBLE_TAIL_OOS.csv 1559949
+B_T0_H0/r2/FULL_UNIVERSE_PATH.npz 34059
+B_T0_H0/r2/RESULT.json 1054
+B_T0_H0/r2/TIT_R_CANDIDATES_ONLY.csv 956612
+B_T0_H0/r2/TIT_R_SOURCE_ONLY.csv 956612
+B_T0_H0/r3/DAILY_LEADERS.csv 46666
+B_T0_H0/r3/ENSEMBLE_TAIL_OOS.csv 1559803
+B_T0_H0/r3/FULL_UNIVERSE_PATH.npz 34041
+B_T0_H0/r3/RESULT.json 1051
+B_T0_H0/r3/TIT_R_CANDIDATES_ONLY.csv 956612
+B_T0_H0/r3/TIT_R_SOURCE_ONLY.csv 956612
+B_T0_H1/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+B_T0_H1/r1/DAILY_LEADERS.csv 46669
+B_T0_H1/r1/FULL_UNIVERSE_PATH.npz 35752
+B_T0_H1/r1/RESULT.json 1048
+B_T0_H1/r1/TIT_R_CANDIDATES_ONLY.csv 956612
+B_T0_H1/r1/TIT_R_SOURCE_ONLY.csv 956612
+B_T0_H1/r2/DAILY_LEADERS.csv 46436
+B_T0_H1/r2/ENSEMBLE_TAIL_OOS.csv 1559949
+B_T0_H1/r2/FULL_UNIVERSE_PATH.npz 35787
+B_T0_H1/r2/RESULT.json 1054
+B_T0_H1/r2/TIT_R_CANDIDATES_ONLY.csv 956612
+B_T0_H1/r2/TIT_R_SOURCE_ONLY.csv 956612
+B_T0_H1/r3/DAILY_LEADERS.csv 46326
+B_T0_H1/r3/ENSEMBLE_TAIL_OOS.csv 1559803
+B_T0_H1/r3/FULL_UNIVERSE_PATH.npz 35856
+B_T0_H1/r3/RESULT.json 1052
+B_T0_H1/r3/TIT_R_CANDIDATES_ONLY.csv 956612
+B_T0_H1/r3/TIT_R_SOURCE_ONLY.csv 956612
+B_T1_H0/r1/DAILY_LEADERS.csv 46938
+B_T1_H0/r1/ENSEMBLE_TAIL_OOS.csv 1559784
+B_T1_H0/r1/FULL_UNIVERSE_PATH.npz 34333
+B_T1_H0/r1/RESULT.json 1051
+B_T1_H0/r1/TIT_R_CANDIDATES_ONLY.csv 956652
+B_T1_H0/r2/DAILY_LEADERS.csv 46966
+B_T1_H0/r1/TIT_R_SOURCE_ONLY.csv 956652
+B_T1_H0/r2/ENSEMBLE_TAIL_OOS.csv 1559716
+B_T1_H0/r2/FULL_UNIVERSE_PATH.npz 34315
+B_T1_H0/r2/RESULT.json 1052
+B_T1_H0/r2/TIT_R_CANDIDATES_ONLY.csv 956379
+B_T1_H0/r2/TIT_R_SOURCE_ONLY.csv 956379
+B_T1_H0/r3/DAILY_LEADERS.csv 46932
+B_T1_H0/r3/ENSEMBLE_TAIL_OOS.csv 1559847
+B_T1_H0/r3/FULL_UNIVERSE_PATH.npz 34215
+B_T1_H0/r3/RESULT.json 1050
+B_T1_H0/r3/TIT_R_CANDIDATES_ONLY.csv 956656
+B_T1_H0/r3/TIT_R_SOURCE_ONLY.csv 956656
+B_T1_H1/r1/DAILY_LEADERS.csv 46686
+B_T1_H1/r1/ENSEMBLE_TAIL_OOS.csv 1559784
+B_T1_H1/r1/FULL_UNIVERSE_PATH.npz 35719
+B_T1_H1/r1/RESULT.json 1050
+B_T1_H1/r1/TIT_R_CANDIDATES_ONLY.csv 956652
+B_T1_H1/r1/TIT_R_SOURCE_ONLY.csv 956652
+B_T1_H1/r2/DAILY_LEADERS.csv 46688
+B_T1_H1/r2/ENSEMBLE_TAIL_OOS.csv 1559716
+B_T1_H1/r2/FULL_UNIVERSE_PATH.npz 35783
+B_T1_H1/r2/RESULT.json 1053
+B_T1_H1/r2/TIT_R_CANDIDATES_ONLY.csv 956379
+B_T1_H1/r2/TIT_R_SOURCE_ONLY.csv 956379
+B_T1_H1/r3/DAILY_LEADERS.csv 46664
+B_T1_H1/r3/ENSEMBLE_TAIL_OOS.csv 1559847
+B_T1_H1/r3/FULL_UNIVERSE_PATH.npz 35841
+B_T1_H1/r3/RESULT.json 1052
+B_T1_H1/r3/TIT_R_CANDIDATES_ONLY.csv 956656
+B_T1_H1/r3/TIT_R_SOURCE_ONLY.csv 956656
+ECONOMICS.csv 2532
+FIXED_5050.csv 1449
+MONTHLY_QUALITY.csv 236982
+R_T0_H0/r1/DAILY_LEADERS.csv 46940
+R_T0_H0/r1/FULL_UNIVERSE_PATH.npz 34275
+R_T0_H0/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+R_T0_H0/r1/RESULT.json 1050
+R_T0_H0/r1/TIT_R_CANDIDATES_ONLY.csv 956612
+R_T0_H0/r1/TIT_R_SOURCE_ONLY.csv 956612
+R_T0_H0/r2/DAILY_LEADERS.csv 46796
+R_T0_H0/r2/ENSEMBLE_TAIL_OOS.csv 1559949
+R_T0_H0/r2/FULL_UNIVERSE_PATH.npz 34087
+R_T0_H0/r2/TIT_R_CANDIDATES_ONLY.csv 956612
+R_T0_H0/r2/RESULT.json 1054
+R_T0_H0/r2/TIT_R_SOURCE_ONLY.csv 956612
+R_T0_H0/r3/DAILY_LEADERS.csv 46771
+R_T0_H0/r3/ENSEMBLE_TAIL_OOS.csv 1559805
+R_T0_H0/r3/FULL_UNIVERSE_PATH.npz 34144
+R_T0_H0/r3/RESULT.json 1052
+R_T0_H0/r3/TIT_R_CANDIDATES_ONLY.csv 956614
+R_T0_H0/r3/TIT_R_SOURCE_ONLY.csv 956614
+R_T0_H1/r1/DAILY_LEADERS.csv 46541
+R_T0_H1/r1/ENSEMBLE_TAIL_OOS.csv 1559744
+R_T0_H1/r1/FULL_UNIVERSE_PATH.npz 35884
+R_T0_H1/r1/RESULT.json 1047
+R_T0_H1/r1/TIT_R_CANDIDATES_ONLY.csv 956612
+
+NATIVE BINARY PATHS
+
+NATIVE SOURCE PATHS
+research/eu_original39_daily_20261031/work/audit_engine.py
+research/eu_original39_daily_20261031/work/prepare_eu_state.py
+research/eu_original39_daily_20261031/work/research_common.py
+research/eu_original39_daily_20261031/work/run_additional_diagnostics.py
+research/eu_original39_daily_20261031/work/run_audited_replays.py
+research/eu_original39_daily_20261031/work/test_contract.py
+research/eu_original39_daily_20261031/work/test_engine_audit.py
+research/eu_original39_daily_20261031/work/train_eu_return.py
+research/eu_original39_daily_20261031/work/us_control.py
+research/olc08_systematic_20261101/feature_lab/RESTORE_LAYOUT.py
+research/olc08_systematic_20261101/feature_lab/src/analyze_pack.py
+research/olc08_systematic_20261101/feature_lab/src/bootstrap.py
+research/olc08_systematic_20261101/feature_lab/src/build_features.py
+research/olc08_systematic_20261101/feature_lab/src/diagnostic_primitives.py
+research/olc08_systematic_20261101/feature_lab/src/evidence_math.py
+research/olc08_systematic_20261101/feature_lab/src/feature_blocks.py
+research/olc08_systematic_20261101/feature_lab/src/final_evidence.py
+research/olc08_systematic_20261101/feature_lab/src/null_path_diagnostic.py
+research/olc08_systematic_20261101/feature_lab/src/path_interaction.py
+research/olc08_systematic_20261101/feature_lab/src/replay_interaction.py
+research/olc08_systematic_20261101/feature_lab/src/replay_nulls.py
+research/olc08_systematic_20261101/feature_lab/src/replay_pack.py
+research/olc08_systematic_20261101/feature_lab/src/train_pack.py
+research/olc08_systematic_20261101/feature_lab/src/verify_outputs.py
+research/olc08_systematic_20261101/feature_lab/tests/conftest.py
+research/olc08_systematic_20261101/feature_lab/tests/test_diagnostic_primitives.py
+research/olc08_systematic_20261101/feature_lab/tests/test_entrypoints.py
+research/olc08_systematic_20261101/feature_lab/tests/test_evidence.py
+research/olc08_systematic_20261101/feature_lab/tests/test_feature_blocks.py
+research/olc08_systematic_20261101/recovery/context.py
+research/olc08_systematic_20261101/recovery/prepare_audit.py
+research/olc08_systematic_20261101/recovery/recovery_core.py
+research/olc08_systematic_20261101/recovery/train_variants.py
+research/olc11_selection_20261101/src/audit_target_availability.py
+research/olc11_selection_20261101/src/evaluate.py
+research/olc11_selection_20261101/src/evaluate_learners.py
+research/olc11_selection_20261101/src/layer_metrics.py
+research/olc11_selection_20261101/src/objectives.py
+research/olc11_selection_20261101/src/prepare.py
+research/olc11_selection_20261101/src/recovery_core.py
+research/olc11_selection_20261101/src/schema.py
+research/olc11_selection_20261101/src/train.py
+research/olc11_selection_20261101/src/uncertainty.py
+research/olc11_selection_20261101/src/verify.py
+research/olc11_selection_20261101/tests/test_objectives.py
+research/olc11_selection_20261101/tests/test_training_contract.py
+research/olc14_fitted_ranking_20261101/VERIFY_RESTORE.py
+research/olc14_fitted_ranking_20261101/src/accounting.py
+research/olc14_fitted_ranking_20261101/src/analyze.py
+research/olc14_fitted_ranking_20261101/src/build_scores.py
+research/olc14_fitted_ranking_20261101/src/chrono_fit.py
+research/olc14_fitted_ranking_20261101/src/common.py
+research/olc14_fitted_ranking_20261101/src/evaluate.py
+research/olc14_fitted_ranking_20261101/src/methods.py
+research/olc14_fitted_ranking_20261101/src/portfolio_adapter.py
+research/olc14_fitted_ranking_20261101/src/portfolio_metrics_parent.py
+research/olc14_fitted_ranking_20261101/src/ranking_core.py
+research/olc14_fitted_ranking_20261101/src/replay.py
+research/olc14_fitted_ranking_20261101/src/train_heads.py
+research/olc14_fitted_ranking_20261101/src/vector_engine.py
+research/olc14_fitted_ranking_20261101/src/verify.py
+research/olc14_fitted_ranking_20261101/src/verify_models.py
+research/olc14_fitted_ranking_20261101/tests/test_chrono.py
+research/olc14_fitted_ranking_20261101/tests/test_composition.py
+research/olc14_fitted_ranking_20261101/tests/test_core.py
+research/olc14_fitted_ranking_20261101/tests/test_training_contract.py
+research/olc16_contextual_rank_20261102/src/analyze_results.py
+research/olc16_contextual_rank_20261102/src/context_model.py
+research/olc16_contextual_rank_20261102/src/core.py
+research/olc16_contextual_rank_20261102/src/evaluate_all.py
+research/olc16_contextual_rank_20261102/src/experiment.py
+research/olc16_contextual_rank_20261102/src/replay_all.py
+research/olc16_contextual_rank_20261102/src/revalue_memory.py
+research/olc16_contextual_rank_20261102/src/run.py
+research/olc16_contextual_rank_20261102/src/run_revalue.py
+research/olc16_contextual_rank_20261102/src/verify_results.py
+research/olc16_contextual_rank_20261102/tests/test_chronology.py
+research/olc16_contextual_rank_20261102/tests/test_context_model.py
+research/olc16_contextual_rank_20261102/tests/test_revalue_memory.py
+research/olc18_execution_20261102/src/analyze.py
+research/olc18_execution_20261102/src/run_experiment.py
+research/olc18_execution_20261102/src/stop_contract.py
+research/olc18_execution_20261102/src/stop_engine.py
+research/olc18_execution_20261102/src/verify.py
+research/olc18_execution_20261102/tests/test_contract.py
+research/olc18_execution_20261102/tests/test_engine.py
+research/olc18_execution_20261102/tests/test_net.py
+research/olc19_combined_risk_20261102/src/analyze.py
+research/olc19_combined_risk_20261102/src/combined_engine.py
+research/olc19_combined_risk_20261102/src/run_experiment.py
+research/olc19_combined_risk_20261102/src/verify.py
+research/olc19_combined_risk_20261102/src/verify_extra.py
+research/olc19_combined_risk_20261102/tests/test_combined.py
