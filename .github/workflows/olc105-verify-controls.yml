@@ -1,0 +1,103 @@
+name: OLC105 independent verification of economic controls only
+on:
+  push:
+    branches: [research/olc105-traderepublic-holdout-20261114]
+    paths: [.github/workflows/olc105-verify-controls.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install pandas==2.2.3 numpy==2.2.6
+      - name: Verify persisted evidence without importing the simulator
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd, numpy as np, json, hashlib, math
+          root=Path('research/olc105'); out=root/'control_results'; audit=root/'control_audit'; audit.mkdir(exist_ok=True)
+          manifest=json.loads((out/'MANIFEST_SHA256.json').read_text())
+          for name,digest in manifest.items():
+              assert hashlib.sha256((out/name).read_bytes()).hexdigest()==digest, name
+          l=pd.read_csv(out/'CONTROL_DAILY.csv.gz',parse_dates=['date'])
+          t=pd.read_csv(out/'CONTROL_ORDERS.csv.gz',parse_dates=['date','signal_date'])
+          s=pd.read_csv(out/'CONTROL_SCORECARD.csv'); signals=pd.read_csv(out/'MOMENTUM_SIGNALS.csv',parse_dates=['signal_date','effective_date'])
+          assert (signals.signal_date<signals.effective_date).all()
+          assert (t.signal_date<t.date).all()
+          assert not signals.signal_date.dt.to_period('M').eq(pd.Period('2026-11')).any()
+          assert set(t.isin).issubset(set(pd.read_csv(out/'FROZEN_INSTRUMENT_QA.csv').isin))
+          keys=['arm','initial_eur','ticket_fee_eur','shortfall_bps_per_side']
+          rows=[]
+          for key,g in l.groupby(keys):
+              z=t
+              for col,v in zip(keys,key):z=z[z[col]==v]
+              g=g.sort_values('date'); initial=key[1]; fee=key[2]; slip=key[3]/10000
+              trades_by_date=z.groupby('date').agg(n=('isin','size'),notional=('proxy_notional','sum'))
+              expected=trades_by_date.n*fee+trades_by_date.notional*slip
+              costerr=float((g.set_index('date').costs-expected.reindex(g.date,fill_value=0).to_numpy()).abs().max())
+              assert costerr<1e-7,(key,costerr)
+              assert int(g.orders.sum())==len(z)
+              peak=initial; dd=0
+              for value in g.equity:peak=max(peak,value);dd=min(dd,value/peak-1)
+              days=(g.date.iloc[-1]-g.date.iloc[0]).days+1
+              cagr=math.exp(math.log(g.equity.iloc[-1]/initial)*365.2425/days)-1
+              q=s
+              for col,v in zip(keys,key):q=q[q[col]==v]
+              q=q[q.window=='THROUGH_2026_11_13_PARTIAL_MONTH'].iloc[0]
+              assert abs(cagr-q.cagr_calendar)<1e-12 and abs(dd-q.max_drawdown)<1e-12
+              rows.append(dict(zip(keys,key))|{'order_rows':len(z),'cost_error_eur':costerr,'cagr_calendar':cagr,'max_drawdown':dd})
+          assert len(rows)==38
+          # Independently reconcile fixed World with frozen total-return price observations.
+          roster=pd.read_csv(root/'source_complete/ROSTER_RESOLUTION.csv')
+          sym=roster.loc[roster.isin.eq('IE00BFY0GT14'),'symbol'].iloc[0]
+          f=pd.read_csv(root/'source_complete/prices'/f'{sym}.csv.gz',parse_dates=['date']).set_index('date')
+          start=signals.effective_date.min(); finish=l.date.max()
+          initial_open=float(f.loc[start,'Open']*f.loc[start,'Adj Close']/f.loc[start,'Close'])
+          price_ratio=float(f.loc[finish,'Adj Close']/initial_open)
+          original=s[(s.arm=='WORLD_PASSIVE')&(s.ticket_fee_eur==0)&(s.shortfall_bps_per_side==0)&(s.window=='THROUGH_2026_11_13_PARTIAL_MONTH')].iloc[0]
+          assert abs(price_ratio-1-original.net_cumulative)<1e-12
+          native=json.loads((out/'NATIVE_ML_GATE.json').read_text())
+          assert native['olc19_new_results'] is False and native['olc67_new_results'] is False
+          pd.DataFrame(rows).to_csv(audit/'ORDER_COST_RECONCILIATION.csv',index=False)
+          # Compact cost sensitivity table, using identical common dates for every strategy.
+          view=s[(s.window=='THROUGH_2026_11_13_PARTIAL_MONTH')&(s.ticket_fee_eur==1)&(s.shortfall_bps_per_side==15)]
+          view.to_csv(audit/'CAPITAL_SENSITIVITY.csv',index=False)
+          stress=s[(s.window=='THROUGH_2026_11_13_PARTIAL_MONTH')&(s.initial_eur==10000)]
+          stress.to_csv(audit/'COST_SENSITIVITY_10000.csv',index=False)
+          qa={'status':'PASS_INDEPENDENT_CONTROL_RECONCILIATION_NATIVE_ML_NOT_EXECUTED','verified_result_files':len(manifest),'verified_control_curves':len(rows),'maximum_cost_error_eur':max(x['cost_error_eur'] for x in rows),'signal_chronology':'PASS','fixed_World_direct_price_ratio':'PASS','native_OLC19_OLC67_completed':False,'whole_share_broker_replay_completed':False,'review_scope':'Standalone controls only; not a full repository test suite.'}
+          (audit/'QA.json').write_text(json.dumps(qa,indent=2)+'\n')
+          print(json.dumps(qa,indent=2))
+          print(view[['arm','initial_eur','cagr_calendar','max_drawdown','total_modelled_cost_eur']].to_string(index=False))
+          PY
+      - name: Save verified results and package reproducible controls
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile,hashlib,json
+          root=Path('research/olc105'); output=root/'control_audit/OLC105_CONTROLS_ONLY_20261114.zip'
+          paths=[root/'portability_controls.py',root/'test_portability_controls.py']
+          paths+=list(root.glob('PROTOCOL*.md'))+[root/'CANDIDATES_FROZEN.csv']
+          for name in ['control_results','source_capture','source_complete','source_alternates']:
+              paths += [p for p in (root/name).rglob('*') if p.is_file()]
+          paths += [p for p in (root/'control_audit').glob('*') if p.is_file() and p.suffix!='.zip']
+          with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+              for p in sorted(set(paths)):z.write(p,p.relative_to(root))
+          with zipfile.ZipFile(output) as z:assert z.testzip() is None
+          (root/'control_audit/PACKAGE_SHA256.json').write_text(json.dumps({'file':output.name,'sha256':hashlib.sha256(output.read_bytes()).hexdigest(),'bytes':output.stat().st_size,'contains_native_models':False},indent=2)+'\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/olc105/control_audit
+          git commit -m 'research(olc105): preserve independently reconciled controls and self-contained package; native transfer incomplete'
+          git push origin HEAD:research/olc105-traderepublic-holdout-20261114
+      - uses: actions/upload-artifact@v4
+        with:
+          name: olc105-controls-verified-${{ github.run_id }}
+          path: research/olc105/control_audit/
+          retention-days: 90
