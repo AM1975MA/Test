@@ -1,0 +1,63 @@
+{
+  "currency": "EUR",
+  "symbol": "WCOS.MI",
+  "exchangeName": "MIL",
+  "fullExchangeName": "Milan",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1739952000,
+  "regularMarketTime": 1794580866,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Rome",
+  "regularMarketPrice": 53.87,
+  "regularMarketChangePercent": 0.41,
+  "fulldayPrice": 53.87,
+  "fulldayChange": 0.22,
+  "fulldayChangePercent": 0.41,
+  "fiftyTwoWeekHigh": 54.37,
+  "fiftyTwoWeekLow": 42.745,
+  "regularMarketDayHigh": 53.96,
+  "regularMarketDayLow": 53.87,
+  "regularMarketVolume": 800,
+  "longName": "State Street SPDR MSCI World Consumer Staples UCITS ETF",
+  "shortName": "State Street SPDR MSCI World Co",
+  "chartPreviousClose": 52.94,
+  "previousClose": 53.65,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794553200,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "ytd",
+    "max"
+  ]
+}

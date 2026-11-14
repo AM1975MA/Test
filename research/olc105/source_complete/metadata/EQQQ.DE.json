@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "EQQQ.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1199174400,
+  "regularMarketTime": 1794587746,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 615.5,
+  "regularMarketChangePercent": -2.1,
+  "fulldayPrice": 615.5,
+  "fulldayChange": -13.2,
+  "fulldayChangePercent": -2.1,
+  "fiftyTwoWeekHigh": 681.3,
+  "fiftyTwoWeekLow": 492.0,
+  "regularMarketDayHigh": 629.5,
+  "regularMarketDayLow": 611.5,
+  "regularMarketVolume": 5082,
+  "longName": "Invesco EQQQ NASDAQ-100 UCITS ETF",
+  "shortName": "InvescoMI3 NASDAQ100 ETF      R",
+  "chartPreviousClose": 596.1,
+  "previousClose": 628.7,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "end": 1794556800,
+      "start": 1794549600,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "end": 1794587400,
+      "start": 1794556800,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "end": 1794598200,
+      "start": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                                end                     start\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 17:30:00+01:00 2026-11-09 09:00:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 17:30:00+01:00 2026-11-10 09:00:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 17:30:00+01:00 2026-11-11 09:00:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 17:30:00+01:00 2026-11-12 09:00:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 17:30:00+01:00 2026-11-13 09:00:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

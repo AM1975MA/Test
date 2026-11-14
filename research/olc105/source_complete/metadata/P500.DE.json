@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "P500.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1351148400,
+  "regularMarketTime": 1794587753,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 13.729,
+  "regularMarketChangePercent": -1.159,
+  "fulldayPrice": 13.729,
+  "fulldayChange": -0.161,
+  "fulldayChangePercent": -1.159,
+  "fiftyTwoWeekHigh": 1179.05,
+  "fiftyTwoWeekLow": 11.089,
+  "regularMarketDayHigh": 13.903,
+  "regularMarketDayLow": 13.675,
+  "regularMarketVolume": 157773,
+  "longName": "Invesco S&P 500 UCITS ETF",
+  "shortName": "InvescoMI S&P 500 ETF         R",
+  "chartPreviousClose": 13.4,
+  "previousClose": 13.89,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794549600,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794598200,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

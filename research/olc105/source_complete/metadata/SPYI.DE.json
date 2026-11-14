@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "SPYI.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1305529200,
+  "regularMarketTime": 1794587756,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 11.694,
+  "regularMarketChangePercent": -0.915,
+  "fulldayPrice": 11.694,
+  "fulldayChange": -0.108,
+  "fulldayChangePercent": -0.915,
+  "fiftyTwoWeekHigh": 11.964,
+  "fiftyTwoWeekLow": 9.516,
+  "regularMarketDayHigh": 11.806,
+  "regularMarketDayLow": 11.64,
+  "regularMarketVolume": 1337436,
+  "longName": "State Street SPDR MSCI All Country World Investable Market UCITS ETF",
+  "shortName": "St.Str.SP.MS.ACWIM UCITS ETF  R",
+  "chartPreviousClose": 11.422,
+  "previousClose": 11.802,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794549600,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794598200,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

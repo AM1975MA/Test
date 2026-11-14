@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "EXSA.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1199260800,
+  "regularMarketTime": 1794587759,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 65.85,
+  "regularMarketChangePercent": 0.046,
+  "fulldayPrice": 65.85,
+  "fulldayChange": 0.03,
+  "fulldayChangePercent": 0.046,
+  "fiftyTwoWeekHigh": 66.23,
+  "fiftyTwoWeekLow": 55.27,
+  "regularMarketDayHigh": 65.93,
+  "regularMarketDayLow": 65.6,
+  "regularMarketVolume": 121057,
+  "longName": "iShares STOXX Europe 600 UCITS ETF (DE) EUR (Dist)",
+  "shortName": "iSh.STOXX Europe 600 U.ETF DE I",
+  "chartPreviousClose": 64.24,
+  "previousClose": 65.82,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794549600,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794598200,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

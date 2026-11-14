@@ -1,0 +1,69 @@
+{
+  "currency": "USD",
+  "symbol": "HYG",
+  "exchangeName": "PCX",
+  "fullExchangeName": "NYSEArca",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1176298200,
+  "regularMarketTime": 1794603600,
+  "hasPrePostMarketData": true,
+  "gmtoffset": -18000,
+  "timezone": "EST",
+  "exchangeTimezoneName": "America/New_York",
+  "regularMarketPrice": 76.94,
+  "regularMarketChangePercent": -0.052,
+  "fulldayPrice": 76.94,
+  "fulldayChange": -0.04,
+  "fulldayChangePercent": -0.052,
+  "fiftyTwoWeekHigh": 81.24,
+  "fiftyTwoWeekLow": 76.39,
+  "regularMarketDayHigh": 77.12,
+  "regularMarketDayLow": 76.92,
+  "regularMarketVolume": 34886128,
+  "longName": "iShares iBoxx $ High Yield Corporate Bond ETF",
+  "shortName": "iShares iBoxx $ High Yield Corp",
+  "chartPreviousClose": 77.23,
+  "previousClose": 76.98,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "EST",
+      "start": 1794560400,
+      "end": 1794580200,
+      "gmtoffset": -18000
+    },
+    "regular": {
+      "timezone": "EST",
+      "start": 1794580200,
+      "end": 1794603600,
+      "gmtoffset": -18000
+    },
+    "post": {
+      "timezone": "EST",
+      "start": 1794603600,
+      "end": 1794618000,
+      "gmtoffset": -18000
+    }
+  },
+  "tradingPeriods": "                                          pre_start  ...                  post_end\nDate                                                 ...                          \n2026-11-09 00:00:00-05:00 2026-11-09 04:00:00-05:00  ... 2026-11-09 20:00:00-05:00\n2026-11-10 00:00:00-05:00 2026-11-10 04:00:00-05:00  ... 2026-11-10 20:00:00-05:00\n2026-11-11 00:00:00-05:00 2026-11-11 04:00:00-05:00  ... 2026-11-11 20:00:00-05:00\n2026-11-12 00:00:00-05:00 2026-11-12 04:00:00-05:00  ... 2026-11-12 20:00:00-05:00\n2026-11-13 00:00:00-05:00 2026-11-13 04:00:00-05:00  ... 2026-11-13 20:00:00-05:00\n\n[5 rows x 6 columns]",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ],
+  "lastTrade": {
+    "Price": 76.94,
+    "Time": "2026-11-13 18:00:11-05:00"
+  }
+}

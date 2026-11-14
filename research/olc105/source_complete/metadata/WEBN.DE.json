@@ -1,0 +1,64 @@
+{
+  "currency": "EUR",
+  "symbol": "WEBN.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1721026800,
+  "regularMarketTime": 1794587745,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 13.094,
+  "regularMarketChangePercent": -0.893,
+  "fulldayPrice": 13.094,
+  "fulldayChange": -0.118,
+  "fulldayChangePercent": -0.893,
+  "fiftyTwoWeekHigh": 13.418,
+  "fiftyTwoWeekLow": 10.73,
+  "regularMarketDayHigh": 13.224,
+  "regularMarketDayLow": 13.03,
+  "regularMarketVolume": 610972,
+  "longName": "Amundi Prime All Country World UCITS ETF Acc",
+  "shortName": "Amu.Prime All Country Wld ETF B",
+  "chartPreviousClose": 12.788,
+  "previousClose": 13.212,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "end": 1794556800,
+      "start": 1794549600,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "end": 1794587400,
+      "start": 1794556800,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "end": 1794598200,
+      "start": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                                end                     start\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 17:30:00+01:00 2026-11-09 09:00:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 17:30:00+01:00 2026-11-10 09:00:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 17:30:00+01:00 2026-11-11 09:00:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 17:30:00+01:00 2026-11-12 09:00:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 17:30:00+01:00 2026-11-13 09:00:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "ytd",
+    "max"
+  ]
+}

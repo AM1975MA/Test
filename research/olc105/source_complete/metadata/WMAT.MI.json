@@ -1,0 +1,63 @@
+{
+  "currency": "EUR",
+  "symbol": "WMAT.MI",
+  "exchangeName": "MIL",
+  "fullExchangeName": "Milan",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1740038400,
+  "regularMarketTime": 1794490804,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Rome",
+  "regularMarketPrice": 73.29,
+  "regularMarketChangePercent": -0.731,
+  "fulldayPrice": 73.29,
+  "fulldayChange": -0.54,
+  "fulldayChangePercent": -0.731,
+  "fiftyTwoWeekHigh": 75.77,
+  "fiftyTwoWeekLow": 56.73,
+  "regularMarketDayHigh": 73.29,
+  "regularMarketDayLow": 73.29,
+  "regularMarketVolume": 606,
+  "longName": "State Street SPDR MSCI World Materials UCITS ETF USD Acc",
+  "shortName": "State Street SPDR MSCI World Ma",
+  "chartPreviousClose": 72.69,
+  "previousClose": 73.83,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794553200,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "ytd",
+    "max"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "EUNA.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1511251200,
+  "regularMarketTime": 1794587762,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 4.851,
+  "regularMarketChangePercent": -0.1955,
+  "fulldayPrice": 4.851,
+  "fulldayChange": -0.0095,
+  "fulldayChangePercent": -0.1955,
+  "fiftyTwoWeekHigh": 5.0256,
+  "fiftyTwoWeekLow": 4.78,
+  "regularMarketDayHigh": 4.8549,
+  "regularMarketDayLow": 4.845,
+  "regularMarketVolume": 173794,
+  "longName": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
+  "shortName": "iShsIII-Core Gl.Aggr.Bd UC.ETFR",
+  "chartPreviousClose": 4.9003,
+  "previousClose": 4.8605,
+  "scale": 4,
+  "priceHint": 4,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "end": 1794556800,
+      "start": 1794549600,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "end": 1794587400,
+      "start": 1794556800,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "end": 1794598200,
+      "start": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                                end                     start\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 17:30:00+01:00 2026-11-09 09:00:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 17:30:00+01:00 2026-11-10 09:00:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 17:30:00+01:00 2026-11-11 09:00:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 17:30:00+01:00 2026-11-12 09:00:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 17:30:00+01:00 2026-11-13 09:00:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

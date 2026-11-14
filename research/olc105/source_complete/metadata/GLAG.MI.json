@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "GLAG.MI",
+  "exchangeName": "MIL",
+  "fullExchangeName": "Milan",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1519113600,
+  "regularMarketTime": 1794580094,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Rome",
+  "regularMarketPrice": 22.43,
+  "regularMarketChangePercent": -0.178,
+  "fulldayPrice": 22.43,
+  "fulldayChange": -0.04,
+  "fulldayChangePercent": -0.178,
+  "fiftyTwoWeekHigh": 22.69,
+  "fiftyTwoWeekLow": 21.67,
+  "regularMarketDayHigh": 22.44,
+  "regularMarketDayLow": 22.4,
+  "regularMarketVolume": 8728,
+  "longName": "State Street SPDR Bloomberg Global Aggregate Bond UCITS ETF USD unhedged",
+  "shortName": "State Street SPDR Bloomberg Glo",
+  "chartPreviousClose": 22.525,
+  "previousClose": 22.47,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794553200,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "WNRG.MI",
+  "exchangeName": "MIL",
+  "fullExchangeName": "Milan",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1551081600,
+  "regularMarketTime": 1794587707,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Rome",
+  "regularMarketPrice": 71.97,
+  "regularMarketChangePercent": 0.869,
+  "fulldayPrice": 71.97,
+  "fulldayChange": 0.62,
+  "fulldayChangePercent": 0.869,
+  "fiftyTwoWeekHigh": 77.37,
+  "fiftyTwoWeekLow": 46.35,
+  "regularMarketDayHigh": 72.08,
+  "regularMarketDayLow": 71.52,
+  "regularMarketVolume": 114,
+  "longName": "State Street SPDR MSCI World Energy UCITS ETF",
+  "shortName": "State Street SPDR MSCI World En",
+  "chartPreviousClose": 69.35,
+  "previousClose": 71.35,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "end": 1794556800,
+      "start": 1794553200,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "end": 1794587400,
+      "start": 1794556800,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "end": 1794587400,
+      "start": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                                end                     start\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 17:30:00+01:00 2026-11-09 09:00:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 17:30:00+01:00 2026-11-10 09:00:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 17:30:00+01:00 2026-11-11 09:00:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 17:30:00+01:00 2026-11-12 09:00:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 17:30:00+01:00 2026-11-13 09:00:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

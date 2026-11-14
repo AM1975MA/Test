@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "WFIN.MI",
+  "exchangeName": "MIL",
+  "fullExchangeName": "Milan",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1550563200,
+  "regularMarketTime": 1794579251,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Rome",
+  "regularMarketPrice": 94.38,
+  "regularMarketChangePercent": -0.106,
+  "fulldayPrice": 94.38,
+  "fulldayChange": -0.1,
+  "fulldayChangePercent": -0.106,
+  "fiftyTwoWeekHigh": 94.62,
+  "fiftyTwoWeekLow": 74.22,
+  "regularMarketDayHigh": 94.38,
+  "regularMarketDayLow": 94.38,
+  "regularMarketVolume": 13,
+  "longName": "State Street SPDR MSCI World Financials UCITS ETF USD Acc",
+  "shortName": "State Street SPDR MSCI World Fi",
+  "chartPreviousClose": 91.81,
+  "previousClose": 94.48,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "end": 1794556800,
+      "start": 1794553200,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "end": 1794587400,
+      "start": 1794556800,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "end": 1794587400,
+      "start": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                                end                     start\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 17:30:00+01:00 2026-11-09 09:00:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 17:30:00+01:00 2026-11-10 09:00:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 17:30:00+01:00 2026-11-11 09:00:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 17:30:00+01:00 2026-11-12 09:00:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 17:30:00+01:00 2026-11-13 09:00:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

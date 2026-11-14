@@ -1,0 +1,64 @@
+{
+  "currency": "EUR",
+  "symbol": "FWRA.MI",
+  "exchangeName": "MIL",
+  "fullExchangeName": "Milan",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1687762800,
+  "regularMarketTime": 1794587716,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Rome",
+  "regularMarketPrice": 8.387,
+  "regularMarketChangePercent": -0.781,
+  "fulldayPrice": 8.387,
+  "fulldayChange": -0.066,
+  "fulldayChangePercent": -0.781,
+  "fiftyTwoWeekHigh": 8.565,
+  "fiftyTwoWeekLow": 6.856,
+  "regularMarketDayHigh": 8.463,
+  "regularMarketDayLow": 8.337,
+  "regularMarketVolume": 111482,
+  "longName": "Invesco FTSE All-World UCITS ETF USD Accumulation",
+  "shortName": "Invesco FTSE-All World UCITS ET",
+  "chartPreviousClose": 8.198,
+  "previousClose": 8.453,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "start": 1794553200,
+      "end": 1794556800,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "start": 1794556800,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "start": 1794587400,
+      "end": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                              start                       end\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 09:00:00+01:00 2026-11-09 17:30:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 09:00:00+01:00 2026-11-10 17:30:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 09:00:00+01:00 2026-11-11 17:30:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 09:00:00+01:00 2026-11-12 17:30:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 09:00:00+01:00 2026-11-13 17:30:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "ytd",
+    "max"
+  ]
+}
