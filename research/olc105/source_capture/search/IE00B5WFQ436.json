@@ -1,0 +1,29 @@
+{
+  "query": "IE00B5WFQ436",
+  "quotes": [
+    {
+      "exchange": "STU",
+      "shortname": "HSBC MSCI USA UCITS ETF USD",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00B5WFQ436.SG",
+      "index": "quotes",
+      "score": 20005.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "EBS",
+      "shortname": "HSBC MSCI USA UCITS ETF",
+      "quoteType": "ETF",
+      "symbol": "HMUS.SW",
+      "index": "quotes",
+      "score": 20001.0,
+      "typeDisp": "ETF",
+      "longname": "HSBC MSCI USA QUALITY UCITS ETF",
+      "exchDisp": "Swiss",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

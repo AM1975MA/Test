@@ -1,0 +1,17 @@
+{
+  "query": "IE00BYXYX521",
+  "quotes": [
+    {
+      "exchange": "STU",
+      "shortname": "Invesco Bloomberg Commodity ex-",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00BYXYX521.SG",
+      "index": "quotes",
+      "score": 20002.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

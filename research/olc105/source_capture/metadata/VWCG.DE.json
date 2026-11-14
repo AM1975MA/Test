@@ -1,0 +1,65 @@
+{
+  "currency": "EUR",
+  "symbol": "VWCG.DE",
+  "exchangeName": "GER",
+  "fullExchangeName": "XETRA",
+  "instrumentType": "ETF",
+  "firstTradeDate": 1563865200,
+  "regularMarketTime": 1794587753,
+  "hasPrePostMarketData": false,
+  "gmtoffset": 3600,
+  "timezone": "CET",
+  "exchangeTimezoneName": "Europe/Berlin",
+  "regularMarketPrice": 62.06,
+  "regularMarketChangePercent": 0.016,
+  "fulldayPrice": 62.06,
+  "fulldayChange": 0.01,
+  "fulldayChangePercent": 0.016,
+  "fiftyTwoWeekHigh": 62.28,
+  "fiftyTwoWeekLow": 50.6,
+  "regularMarketDayHigh": 62.14,
+  "regularMarketDayLow": 61.85,
+  "regularMarketVolume": 19341,
+  "longName": "Vanguard FTSE Developed Europe UCITS ETF EUR Accumulation",
+  "shortName": "Vanguard FTSE Dev.Europe U.ETFR",
+  "chartPreviousClose": 60.54,
+  "previousClose": 62.05,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "CET",
+      "end": 1794556800,
+      "start": 1794549600,
+      "gmtoffset": 3600
+    },
+    "regular": {
+      "timezone": "CET",
+      "end": 1794587400,
+      "start": 1794556800,
+      "gmtoffset": 3600
+    },
+    "post": {
+      "timezone": "CET",
+      "end": 1794598200,
+      "start": 1794587400,
+      "gmtoffset": 3600
+    }
+  },
+  "tradingPeriods": "                                                end                     start\nDate                                                                         \n2026-11-09 00:00:00+01:00 2026-11-09 17:30:00+01:00 2026-11-09 09:00:00+01:00\n2026-11-10 00:00:00+01:00 2026-11-10 17:30:00+01:00 2026-11-10 09:00:00+01:00\n2026-11-11 00:00:00+01:00 2026-11-11 17:30:00+01:00 2026-11-11 09:00:00+01:00\n2026-11-12 00:00:00+01:00 2026-11-12 17:30:00+01:00 2026-11-12 09:00:00+01:00\n2026-11-13 00:00:00+01:00 2026-11-13 17:30:00+01:00 2026-11-13 09:00:00+01:00",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ]
+}

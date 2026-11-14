@@ -1,0 +1,18 @@
+{
+  "query": "IE00B43QJJ40",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE I PLC SS ",
+      "quoteType": "ETF",
+      "symbol": "GLAG.L",
+      "index": "quotes",
+      "score": 20013.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR Bloomberg Global Aggregate Bond UCITS ETF USD unhedged",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

@@ -1,0 +1,18 @@
+{
+  "query": "IE00B3S5XW04",
+  "quotes": [
+    {
+      "exchange": "GER",
+      "shortname": "SPDR Bloom.EO Gov.Bd U.ETF    R",
+      "quoteType": "ETF",
+      "symbol": "SYBB.DE",
+      "index": "quotes",
+      "score": 20001.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR Bloomberg Euro Government Bond UCITS ETF",
+      "exchDisp": "XETRA",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

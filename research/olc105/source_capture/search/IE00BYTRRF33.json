@@ -1,0 +1,18 @@
+{
+  "query": "IE00BYTRRF33",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE II PLC SS",
+      "quoteType": "ETF",
+      "symbol": "WMAT.L",
+      "index": "quotes",
+      "score": 20005.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI World Materials UCITS ETF USD Acc",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

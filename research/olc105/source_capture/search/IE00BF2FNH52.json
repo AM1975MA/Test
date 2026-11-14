@@ -1,0 +1,29 @@
+{
+  "query": "IE00BF2FNH52",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "INVESCO MARKETS II PLC IVZ US T",
+      "quoteType": "ETF",
+      "symbol": "TR3A.L",
+      "index": "quotes",
+      "score": 20002.0,
+      "typeDisp": "ETF",
+      "longname": "Invesco US Treasury Bond 1-3 Year UCITS ETF USD Acc",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "Invesco US Treasury Bond 1-3 Ye",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00BF2FNH52.SG",
+      "index": "quotes",
+      "score": 20000.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

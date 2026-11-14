@@ -1,0 +1,29 @@
+{
+  "query": "IE00BYTRRC02",
+  "quotes": [
+    {
+      "exchange": "STU",
+      "shortname": "SPDR MSCI World Industrials UCI",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00BYTRRC02.SG",
+      "index": "quotes",
+      "score": 20002.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE II PLC SS",
+      "quoteType": "ETF",
+      "symbol": "WNDU.L",
+      "index": "quotes",
+      "score": 20001.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI World Industrials UCITS ETF USD Acc",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

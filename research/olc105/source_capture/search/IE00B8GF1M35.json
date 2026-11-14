@@ -1,0 +1,18 @@
+{
+  "query": "IE00B8GF1M35",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE I PLC SS ",
+      "quoteType": "ETF",
+      "symbol": "GLRE.L",
+      "index": "quotes",
+      "score": 20002.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR Dow Jones Global Real Estate UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

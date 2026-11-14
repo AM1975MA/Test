@@ -1,0 +1,29 @@
+{
+  "query": "IE00B44T3H88",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "HSBC ETFS PLC HSBC MSCI CHINA U",
+      "quoteType": "ETF",
+      "symbol": "HMCD.L",
+      "index": "quotes",
+      "score": 20007.0,
+      "typeDisp": "ETF",
+      "longname": "HSBC MSCI China UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "HSBC MSCI China UCITS ETF USD",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00B44T3H88.SG",
+      "index": "quotes",
+      "score": 20002.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

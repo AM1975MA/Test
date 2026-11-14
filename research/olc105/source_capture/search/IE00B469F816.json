@@ -1,0 +1,18 @@
+{
+  "query": "IE00B469F816",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE I PLC SPD",
+      "quoteType": "ETF",
+      "symbol": "EMRD.L",
+      "index": "quotes",
+      "score": 20002.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI Emerging Markets UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

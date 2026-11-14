@@ -1,0 +1,29 @@
+{
+  "query": "IE00BFY0GT14",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE I PLC SS ",
+      "quoteType": "ETF",
+      "symbol": "SWRD.L",
+      "index": "quotes",
+      "score": 20069.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI World UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "SPDR MSCI World UCITS ETF USD",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00BFY0GT14.SG",
+      "index": "quotes",
+      "score": 20005.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

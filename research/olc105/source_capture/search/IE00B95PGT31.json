@@ -1,0 +1,18 @@
+{
+  "query": "IE00B95PGT31",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "VANGUARD FUNDS PLC VANGUARD FTS",
+      "quoteType": "ETF",
+      "symbol": "VDJP.L",
+      "index": "quotes",
+      "score": 20010.0,
+      "typeDisp": "ETF",
+      "longname": "Vanguard FTSE Japan UCITS ETF USD Distributing",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

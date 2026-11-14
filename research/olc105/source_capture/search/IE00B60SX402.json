@@ -1,0 +1,30 @@
+{
+  "query": "IE00B60SX402",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "INVESCO MARKETS PLC INVESCO RUS",
+      "quoteType": "ETF",
+      "symbol": "RTYS.L",
+      "index": "quotes",
+      "score": 20006.0,
+      "typeDisp": "ETF",
+      "longname": "Invesco Russell 2000 UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "GER",
+      "shortname": "InvescoMI Russell 2000 ETF    R",
+      "quoteType": "ETF",
+      "symbol": "SC0K.DE",
+      "index": "quotes",
+      "score": 20001.0,
+      "typeDisp": "ETF",
+      "longname": "Invesco Russell 2000 UCITS ETF",
+      "exchDisp": "XETRA",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

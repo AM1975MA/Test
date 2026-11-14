@@ -1,0 +1,18 @@
+{
+  "query": "IE00B3YLTY66",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE I PLC SS ",
+      "quoteType": "ETF",
+      "symbol": "IMID.L",
+      "index": "quotes",
+      "score": 20059.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI All Country World Investable Market UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

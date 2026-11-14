@@ -1,0 +1,18 @@
+{
+  "query": "IE00BYTRR756",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE II PLC SS",
+      "quoteType": "ETF",
+      "symbol": "WCOS.L",
+      "index": "quotes",
+      "score": 20010.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI World Consumer Staples UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

@@ -1,0 +1,29 @@
+{
+  "query": "IE00BK5BQX27",
+  "quotes": [
+    {
+      "exchange": "GER",
+      "shortname": "Vanguard FTSE Dev.Europe U.ETFR",
+      "quoteType": "ETF",
+      "symbol": "VWCG.DE",
+      "index": "quotes",
+      "score": 20059.0,
+      "typeDisp": "ETF",
+      "longname": "Vanguard FTSE Developed Europe UCITS ETF EUR Accumulation",
+      "exchDisp": "XETRA",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "Vanguard FTSE Developed Europe ",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00BK5BQX27.SG",
+      "index": "quotes",
+      "score": 20004.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

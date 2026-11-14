@@ -1,0 +1,18 @@
+{
+  "query": "IE00B9F5YL18",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "VANGUARD FUNDS PLC VANGUARD FTS",
+      "quoteType": "ETF",
+      "symbol": "VDPX.L",
+      "index": "quotes",
+      "score": 20008.0,
+      "typeDisp": "ETF",
+      "longname": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF USD Distributing",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

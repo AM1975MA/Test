@@ -1,0 +1,29 @@
+{
+  "query": "IE00BYTRRB94",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE II PLC SS",
+      "quoteType": "ETF",
+      "symbol": "WHEA.L",
+      "index": "quotes",
+      "score": 20012.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI World Health Care UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "SPDR MSCI World Health Care UCI",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00BYTRRB94.SG",
+      "index": "quotes",
+      "score": 20008.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

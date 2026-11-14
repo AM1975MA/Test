@@ -1,0 +1,18 @@
+{
+  "query": "IE00BSPLC413",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE II PLC SS",
+      "quoteType": "ETF",
+      "symbol": "USSC.L",
+      "index": "quotes",
+      "score": 20021.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI USA Small Cap Value Weighted UCITS ETF USD Acc",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

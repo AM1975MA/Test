@@ -1,0 +1,29 @@
+{
+  "query": "IE0003XJA0J9",
+  "quotes": [
+    {
+      "exchange": "GER",
+      "shortname": "Amu.Prime All Country Wld ETF B",
+      "quoteType": "ETF",
+      "symbol": "WEBN.DE",
+      "index": "quotes",
+      "score": 21070.0,
+      "typeDisp": "ETF",
+      "longname": "Amundi Prime All Country World UCITS ETF Acc",
+      "exchDisp": "XETRA",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "Amundi Prime All Country World ",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE0003XJA0J9.SG",
+      "index": "quotes",
+      "score": 20002.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

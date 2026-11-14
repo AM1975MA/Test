@@ -1,0 +1,18 @@
+{
+  "query": "IE00BZCQB185",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "ISHARES IV PLC ISH MSCI INDIA U",
+      "quoteType": "ETF",
+      "symbol": "NDIA.L",
+      "index": "quotes",
+      "score": 20059.0,
+      "typeDisp": "ETF",
+      "longname": "iShares MSCI India UCITS ETF USD Acc",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

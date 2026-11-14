@@ -1,0 +1,18 @@
+{
+  "query": "IE00B1FZS467",
+  "quotes": [
+    {
+      "exchange": "EBS",
+      "shortname": "iSh Glob Infra USD D",
+      "quoteType": "ETF",
+      "symbol": "INFR.SW",
+      "index": "quotes",
+      "score": 20011.0,
+      "typeDisp": "ETF",
+      "longname": "iShares Global Infrastructure UCITS ETF USD (Dist)",
+      "exchDisp": "Swiss",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

@@ -1,0 +1,29 @@
+{
+  "query": "IE00B3YCGJ38",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "INVESCO MARKETS PLC INVESCO S&P",
+      "quoteType": "ETF",
+      "symbol": "SPXS.L",
+      "index": "quotes",
+      "score": 20388.0,
+      "typeDisp": "ETF",
+      "longname": "Invesco S&P 500 UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "Invesco S&P 500 UCITS ETF",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00B3YCGJ38.SG",
+      "index": "quotes",
+      "score": 20010.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

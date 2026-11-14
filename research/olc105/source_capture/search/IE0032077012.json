@@ -1,0 +1,18 @@
+{
+  "query": "IE0032077012",
+  "quotes": [
+    {
+      "exchange": "EBS",
+      "shortname": "Invesco EQQQ",
+      "quoteType": "ETF",
+      "symbol": "EQQQ.SW",
+      "index": "quotes",
+      "score": 20043.0,
+      "typeDisp": "ETF",
+      "longname": "Invesco EQQQ NASDAQ-100 UCITS ETF",
+      "exchDisp": "Swiss",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

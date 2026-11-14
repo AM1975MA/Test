@@ -1,0 +1,29 @@
+{
+  "query": "IE00BF4J0300",
+  "quotes": [
+    {
+      "exchange": "MIL",
+      "shortname": "INVESCO BLOOM COMMODIT UCITS ET",
+      "quoteType": "ETF",
+      "symbol": "CMOE.MI",
+      "index": "quotes",
+      "score": 20006.0,
+      "typeDisp": "ETF",
+      "longname": "Invesco Bloomberg Commodity UCITS ETF EUR Hedged",
+      "exchDisp": "Milan",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "Invesco Bloomberg Commodity UCI",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00BF4J0300.SG",
+      "index": "quotes",
+      "score": 20003.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

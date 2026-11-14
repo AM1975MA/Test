@@ -1,0 +1,18 @@
+{
+  "query": "IE00B466KX20",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE I PLC SPD",
+      "quoteType": "ETF",
+      "symbol": "EMAD.L",
+      "index": "quotes",
+      "score": 20003.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI EM Asia UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

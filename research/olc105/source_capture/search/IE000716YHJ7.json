@@ -1,0 +1,29 @@
+{
+  "query": "IE000716YHJ7",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "INVESCO MARKETS II PLC IVZ FTSE",
+      "quoteType": "ETF",
+      "symbol": "FWRA.L",
+      "index": "quotes",
+      "score": 20203.0,
+      "typeDisp": "ETF",
+      "longname": "Invesco FTSE All-World UCITS ETF USD Accumulation ",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "Invesco FTSE All-World UCITS ET",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE000716YHJ7.SG",
+      "index": "quotes",
+      "score": 20006.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

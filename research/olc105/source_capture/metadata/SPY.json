@@ -1,0 +1,69 @@
+{
+  "currency": "USD",
+  "symbol": "SPY",
+  "exchangeName": "PCX",
+  "fullExchangeName": "NYSEArca",
+  "instrumentType": "ETF",
+  "firstTradeDate": 728317800,
+  "regularMarketTime": 1794603600,
+  "hasPrePostMarketData": true,
+  "gmtoffset": -18000,
+  "timezone": "EST",
+  "exchangeTimezoneName": "America/New_York",
+  "regularMarketPrice": 754.37,
+  "regularMarketChangePercent": -0.401,
+  "fulldayPrice": 754.37,
+  "fulldayChange": -7.52,
+  "fulldayChangePercent": -0.993,
+  "fiftyTwoWeekHigh": 781.62,
+  "fiftyTwoWeekLow": 629.28,
+  "regularMarketDayHigh": 760.12,
+  "regularMarketDayLow": 747.89,
+  "regularMarketVolume": 38720038,
+  "longName": "State Street SPDR S&P 500 ETF Trust",
+  "shortName": "State Street SPDR S&P 500 ETF T",
+  "chartPreviousClose": 735.29,
+  "previousClose": 757.41,
+  "scale": 3,
+  "priceHint": 2,
+  "currentTradingPeriod": {
+    "pre": {
+      "timezone": "EST",
+      "end": 1794580200,
+      "start": 1794560400,
+      "gmtoffset": -18000
+    },
+    "regular": {
+      "timezone": "EST",
+      "end": 1794603600,
+      "start": 1794580200,
+      "gmtoffset": -18000
+    },
+    "post": {
+      "timezone": "EST",
+      "end": 1794618000,
+      "start": 1794603600,
+      "gmtoffset": -18000
+    }
+  },
+  "tradingPeriods": "                                          pre_start  ...                  post_end\nDate                                                 ...                          \n2026-11-09 00:00:00-05:00 2026-11-09 04:00:00-05:00  ... 2026-11-09 20:00:00-05:00\n2026-11-10 00:00:00-05:00 2026-11-10 04:00:00-05:00  ... 2026-11-10 20:00:00-05:00\n2026-11-11 00:00:00-05:00 2026-11-11 04:00:00-05:00  ... 2026-11-11 20:00:00-05:00\n2026-11-12 00:00:00-05:00 2026-11-12 04:00:00-05:00  ... 2026-11-12 20:00:00-05:00\n2026-11-13 00:00:00-05:00 2026-11-13 04:00:00-05:00  ... 2026-11-13 20:00:00-05:00\n\n[5 rows x 6 columns]",
+  "dataGranularity": "1h",
+  "range": "5d",
+  "validRanges": [
+    "1d",
+    "5d",
+    "1mo",
+    "3mo",
+    "6mo",
+    "1y",
+    "2y",
+    "5y",
+    "10y",
+    "ytd",
+    "max"
+  ],
+  "lastTrade": {
+    "Price": 749.6,
+    "Time": "2026-11-13 19:59:57-05:00"
+  }
+}

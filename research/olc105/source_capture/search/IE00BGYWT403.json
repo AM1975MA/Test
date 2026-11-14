@@ -1,0 +1,29 @@
+{
+  "query": "IE00BGYWT403",
+  "quotes": [
+    {
+      "exchange": "GER",
+      "shortname": "Vanguard EUR Corp.Bond U.ETF  R",
+      "quoteType": "ETF",
+      "symbol": "VECA.DE",
+      "index": "quotes",
+      "score": 20011.0,
+      "typeDisp": "ETF",
+      "longname": "Vanguard EUR Corporate Bond UCITS ETF EUR Accumulation",
+      "exchDisp": "XETRA",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "Vanguard EUR Corporate Bond UCI",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00BGYWT403.SG",
+      "index": "quotes",
+      "score": 20001.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

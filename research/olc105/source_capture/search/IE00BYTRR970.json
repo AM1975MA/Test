@@ -1,0 +1,29 @@
+{
+  "query": "IE00BYTRR970",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "SSGA SPDR ETFS EUROPE II PLC SS",
+      "quoteType": "ETF",
+      "symbol": "WFIN.L",
+      "index": "quotes",
+      "score": 20005.0,
+      "typeDisp": "ETF",
+      "longname": "State Street SPDR MSCI World Financials UCITS ETF USD Acc",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    },
+    {
+      "exchange": "STU",
+      "shortname": "SPDR MSCI World Financials UCIT",
+      "quoteType": "MUTUALFUND",
+      "symbol": "IE00BYTRR970.SG",
+      "index": "quotes",
+      "score": 20000.0,
+      "typeDisp": "Fund",
+      "exchDisp": "Stuttgart",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

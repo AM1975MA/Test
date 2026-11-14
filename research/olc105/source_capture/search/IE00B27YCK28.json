@@ -1,0 +1,18 @@
+{
+  "query": "IE00B27YCK28",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "ISHARES II PLC ISHRS MSCI EM LA",
+      "quoteType": "ETF",
+      "symbol": "DLTM.L",
+      "index": "quotes",
+      "score": 20024.0,
+      "typeDisp": "ETF",
+      "longname": "iShares MSCI EM Latin America UCITS ETF USD (Dist)",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}

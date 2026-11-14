@@ -1,0 +1,18 @@
+{
+  "query": "IE00BDBRDM35",
+  "quotes": [
+    {
+      "exchange": "LSE",
+      "shortname": "ISHARES III PLC ISH GLOBAL AGG ",
+      "quoteType": "ETF",
+      "symbol": "0GGH.L",
+      "index": "quotes",
+      "score": 20008.0,
+      "typeDisp": "ETF",
+      "longname": "iShares III Public Limited Company - iShares Global Aggregate Bond UCITS ETF",
+      "exchDisp": "London",
+      "isYahooFinance": true
+    }
+  ],
+  "error": null
+}
