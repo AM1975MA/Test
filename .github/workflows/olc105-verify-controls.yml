@@ -31,7 +31,7 @@ jobs:
           assert (signals.signal_date<signals.effective_date).all()
           assert (t.signal_date<t.date).all()
           assert not signals.signal_date.dt.to_period('M').eq(pd.Period('2026-11')).any()
-          assert set(t.isin).issubset(set(pd.read_csv(out/'FROZEN_INSTRUMENT_QA.csv').isin))
+          assert set(t['isin']).issubset(set(pd.read_csv(out/'FROZEN_INSTRUMENT_QA.csv')['isin']))
           keys=['arm','initial_eur','ticket_fee_eur','shortfall_bps_per_side']
           rows=[]
           for key,g in l.groupby(keys):
@@ -53,9 +53,8 @@ jobs:
               assert abs(cagr-q.cagr_calendar)<1e-12 and abs(dd-q.max_drawdown)<1e-12
               rows.append(dict(zip(keys,key))|{'order_rows':len(z),'cost_error_eur':costerr,'cagr_calendar':cagr,'max_drawdown':dd})
           assert len(rows)==38
-          # Independently reconcile fixed World with frozen total-return price observations.
           roster=pd.read_csv(root/'source_complete/ROSTER_RESOLUTION.csv')
-          sym=roster.loc[roster.isin.eq('IE00BFY0GT14'),'symbol'].iloc[0]
+          sym=roster.loc[roster['isin'].eq('IE00BFY0GT14'),'symbol'].iloc[0]
           f=pd.read_csv(root/'source_complete/prices'/f'{sym}.csv.gz',parse_dates=['date']).set_index('date')
           start=signals.effective_date.min(); finish=l.date.max()
           initial_open=float(f.loc[start,'Open']*f.loc[start,'Adj Close']/f.loc[start,'Close'])
@@ -65,12 +64,11 @@ jobs:
           native=json.loads((out/'NATIVE_ML_GATE.json').read_text())
           assert native['olc19_new_results'] is False and native['olc67_new_results'] is False
           pd.DataFrame(rows).to_csv(audit/'ORDER_COST_RECONCILIATION.csv',index=False)
-          # Compact cost sensitivity table, using identical common dates for every strategy.
           view=s[(s.window=='THROUGH_2026_11_13_PARTIAL_MONTH')&(s.ticket_fee_eur==1)&(s.shortfall_bps_per_side==15)]
           view.to_csv(audit/'CAPITAL_SENSITIVITY.csv',index=False)
           stress=s[(s.window=='THROUGH_2026_11_13_PARTIAL_MONTH')&(s.initial_eur==10000)]
           stress.to_csv(audit/'COST_SENSITIVITY_10000.csv',index=False)
-          qa={'status':'PASS_INDEPENDENT_CONTROL_RECONCILIATION_NATIVE_ML_NOT_EXECUTED','verified_result_files':len(manifest),'verified_control_curves':len(rows),'maximum_cost_error_eur':max(x['cost_error_eur'] for x in rows),'signal_chronology':'PASS','fixed_World_direct_price_ratio':'PASS','native_OLC19_OLC67_completed':False,'whole_share_broker_replay_completed':False,'review_scope':'Standalone controls only; not a full repository test suite.'}
+          qa={'status':'PASS_INDEPENDENT_CONTROL_RECONCILIATION_NATIVE_ML_NOT_EXECUTED','verified_result_files':len(manifest),'verified_control_curves':len(rows),'maximum_cost_error_eur':max(x['cost_error_eur'] for x in rows),'signal_chronology':'PASS','fixed_World_direct_price_ratio':'PASS','native_OLC19_OLC67_completed':False,'whole_share_broker_replay_completed':False,'review_scope':'Standalone controls only; not a full repository test suite.','verifier_erratum':'Initial verifier used dataframe.isin instead of the named column; fixed bracket access without changing source data or replay outputs.'}
           (audit/'QA.json').write_text(json.dumps(qa,indent=2)+'\n')
           print(json.dumps(qa,indent=2))
           print(view[['arm','initial_eur','cagr_calendar','max_drawdown','total_modelled_cost_eur']].to_string(index=False))
@@ -85,7 +83,7 @@ jobs:
           paths+=list(root.glob('PROTOCOL*.md'))+[root/'CANDIDATES_FROZEN.csv']
           for name in ['control_results','source_capture','source_complete','source_alternates']:
               paths += [p for p in (root/name).rglob('*') if p.is_file()]
-          paths += [p for p in (root/'control_audit').glob('*') if p.is_file() and p.suffix!='.zip']
+          paths += [p for p in (root/'control_audit').glob('*') if p.is_file() and p.suffix!='.zip' and p.name!='PACKAGE_SHA256.json']
           with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
               for p in sorted(set(paths)):z.write(p,p.relative_to(root))
           with zipfile.ZipFile(output) as z:assert z.testzip() is None
