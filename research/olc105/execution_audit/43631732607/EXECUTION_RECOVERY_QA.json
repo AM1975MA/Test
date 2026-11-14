@@ -1,0 +1,71 @@
+{
+  "status": "ACTIONS_EXECUTION_AND_SOURCE_INTEGRITY_PASS",
+  "executed_at_utc": "2026-11-14T19:22:24.330684+00:00",
+  "run_id": "43631732607",
+  "code_commit": "6ddd141c8e8aaef5414e021a0f30e5b14d9b931d",
+  "python": "3.13.18 (main, Oct 26 2026, 14:19:33) [GCC 15.2.0]",
+  "snapshots": [
+    {
+      "snapshot": "source_capture",
+      "declared_files": 50,
+      "passed_files": 50,
+      "manifest_sha256": "c652e1fbdefcb2d1badad365c94ce6fac3782cb792e0e0eef6392c3990769d92"
+    },
+    {
+      "snapshot": "source_complete",
+      "declared_files": 69,
+      "passed_files": 69,
+      "manifest_sha256": "027bef34c307188f2fecfe20a2b24523ecee01e30a043927af56f8d37687f6a3"
+    },
+    {
+      "snapshot": "source_alternates",
+      "declared_files": 29,
+      "passed_files": 29,
+      "manifest_sha256": "c8c9e548e4bccb5d7d5782bfd7b77f943fa2f469628649d301068ffdf5b5eed9"
+    }
+  ],
+  "errors": [],
+  "frozen_candidate_rows": 32,
+  "captured_candidate_isins": 29,
+  "python_syntax_checks": [
+    {
+      "path": "research/olc105/capture_alternates.py",
+      "status": "PASS_SYNTAX_ONLY"
+    },
+    {
+      "path": "research/olc105/capture_catalogue.py",
+      "status": "PASS_SYNTAX_ONLY"
+    },
+    {
+      "path": "research/olc105/capture_complete.py",
+      "status": "PASS_SYNTAX_ONLY"
+    },
+    {
+      "path": "research/olc105/capture_prices.py",
+      "status": "PASS_SYNTAX_ONLY"
+    },
+    {
+      "path": "research/olc105/resolve_exchange.py",
+      "status": "PASS_SYNTAX_ONLY"
+    }
+  ],
+  "original_archive_paths_in_git_checkout": {
+    "OLC19_Rischio_Rientro_Checkpoint_20261102.zip": [],
+    "OLC14_Heads_Checkpoint_20261101.zip": [],
+    "OLC08_01_Pannelli_Verificati_20261101.zip": [],
+    "OLC11_02_Modelli_Verificati_20261101.zip": []
+  },
+  "olc105_python_files": [
+    "capture_alternates.py",
+    "capture_catalogue.py",
+    "capture_complete.py",
+    "capture_prices.py",
+    "resolve_exchange.py"
+  ],
+  "olc105_acquisition_scripts_only": true,
+  "native_backtest_executed": false,
+  "new_performance_claims": false,
+  "prices_changed": false,
+  "model_parameters_changed": false,
+  "scope": "Execution/read-write capability and SHA256 verification only. Original models and an executable ANCHORED_TRANSFER runner must be restored before financial results. A green job is not a completed backtest."
+}
