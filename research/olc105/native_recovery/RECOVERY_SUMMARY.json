@@ -1,0 +1,9 @@
+{
+  "source_archive_sha256": "22675c4c8fcb5fde4da78192db8aa61e008b025294c476b90c2551117e210374",
+  "source_archive_files": 347,
+  "artifact_records": 1287,
+  "available_relevant_artifacts": 436,
+  "branch_records": 7,
+  "native_model_recovered": false,
+  "native_backtest_executed": false
+}
