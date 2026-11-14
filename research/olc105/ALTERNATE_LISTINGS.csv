@@ -1,0 +1,15 @@
+isin,symbol,source_url
+IE00BYTRR970,WFIN.AS,https://www.ssga.com/it/it/intermediary/etfs/state-street-spdr-msci-world-financials-ucits-etf-wfin-na
+IE00BYTRRB94,WHEA.AS,https://www.ssga.com/it/it/intermediary/etfs/state-street-spdr-msci-world-health-care-ucits-etf-whea-na
+IE00BYTRRC02,WIND.AS,https://www.ssga.com/it/it/intermediary/etfs/state-street-spdr-msci-world-industrials-ucits-etf-wind-na
+IE00BYTRR863,WNRG.AS,https://www.ssga.com/it/it/intermediary/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na
+IE00BYTRRF33,WMAT.AS,https://www.ssga.com/it/it/intermediary/etfs/state-street-spdr-msci-world-materials-ucits-etf-wmat-na
+IE00BYTRR756,WCOS.AS,https://www.ssga.com/it/it/intermediary/etfs/state-street-spdr-msci-world-consumer-staples-ucits-etf-wcos-na
+IE00B95PGT31,VJPN.DE,https://live.deutsche-boerse.com/en/etf/vanguard-ftse-japan-ucits-etf
+IE00B9F5YL18,VGEJ.DE,https://live.deutsche-boerse.com/en/etf/vanguard-ftse-developed-asia-pacific-ex-japan-ucits-etf
+IE000716YHJ7,FWIA.DE,https://live.deutsche-boerse.com/en/etf/invesco-ftse-all-world-ucits-etf-acc
+IE00B469F816,SPYM.DE,https://live.deutsche-boerse.com/en/etf/state-street-spdr-msci-emerging-markets-ucits-etf
+IE00B466KX20,SPYA.DE,https://live.deutsche-boerse.com/en/etf/state-street-spdr-msci-em-asia-ucits-etf
+IE00B44T3H88,H4ZP.DE,https://live.deutsche-boerse.com/en/etf/hsbc-msci-china-ucits-etf-1
+IE00B43QJJ40,SYBZ.DE,https://live.deutsche-boerse.com/en/etf/state-street-spdr-bloomberg-global-aggregate-bond-ucits-etf-dist
+IE00BF4J0300,CMOE.DE,https://live.deutsche-boerse.com/en/etf/invesco-bloomberg-commodity-ucits-etf-acc
