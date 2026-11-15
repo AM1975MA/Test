@@ -1,0 +1,224 @@
+{
+  "status": "PASS_ALL_ANALYSIS_AND_BOOTSTRAP_CHECKS",
+  "financial_paths": 200,
+  "monthly_return_rows_checked": 16000,
+  "annual_return_rows_checked": 1400,
+  "annual_2024_rows_retained": 200,
+  "paired_comparisons_checked": 16,
+  "annual_relative_contribution_rows_checked": 112,
+  "max_monthly_log_return_error": 2.5396351688300456e-15,
+  "max_annual_return_error": 0.0,
+  "paired_ci_interpretation": "95% descriptive interval for annualized mean paired monthly log-relative return; not a confidence interval for the CAGR percentage-point difference.",
+  "multiplicity_corrected": false,
+  "adaptive_choices_holdout_valid": false,
+  "current_objective_reconciled": "CAGR>=30%; drawdown and Calmar are reported, not exclusion gates.",
+  "comparisons": [
+    {
+      "candidate": "CLUSTER_DUAL21",
+      "control": "LIQ_DUAL21",
+      "annualized_log_relative_return": -0.05640254953283587,
+      "block_bootstrap_log95_low": -0.15714628757004465,
+      "block_bootstrap_log95_high": 0.03803652209271566,
+      "delta_cagr_pp": -6.408775075983542,
+      "delta_sampled_dd_pp": -11.353523881360728,
+      "relative_terminal_wealth": 0.686590663040191,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "CLUSTER_DUAL21",
+      "control": "DUAL21",
+      "annualized_log_relative_return": -0.10287695867984295,
+      "block_bootstrap_log95_low": -0.2412845765459968,
+      "block_bootstrap_log95_high": 0.02281909829901481,
+      "delta_cagr_pp": -11.968071636560019,
+      "delta_sampled_dd_pp": -7.0604658839325545,
+      "relative_terminal_wealth": 0.5036637525496978,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "LIQ_DUAL21",
+      "control": "DUAL21",
+      "annualized_log_relative_return": -0.04647440914700706,
+      "block_bootstrap_log95_low": -0.1661397631366487,
+      "block_bootstrap_log95_high": 0.04132319755758631,
+      "delta_cagr_pp": -5.559296560576477,
+      "delta_sampled_dd_pp": 4.293057997428173,
+      "relative_terminal_wealth": 0.7335720971204276,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "DEDUP_DUAL21",
+      "control": "LIQ_DUAL21",
+      "annualized_log_relative_return": 0.008760516236475755,
+      "block_bootstrap_log95_low": -0.03568425562648749,
+      "block_bootstrap_log95_high": 0.051635900780848704,
+      "delta_cagr_pp": 1.0282655256726558,
+      "delta_sampled_dd_pp": 1.3392490497965315,
+      "relative_terminal_wealth": 1.0601426150527147,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "DEDUP_DUAL21",
+      "control": "CLUSTER_DUAL21",
+      "annualized_log_relative_return": 0.0651630657693116,
+      "block_bootstrap_log95_low": -0.02126737835604743,
+      "block_bootstrap_log95_high": 0.15813178005805,
+      "delta_cagr_pp": 7.437040601656197,
+      "delta_sampled_dd_pp": 12.69277293115726,
+      "relative_terminal_wealth": 1.5440679172047773,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "DEDUP_DUAL_TREND_OPP",
+      "control": "DEDUP_DUAL21",
+      "annualized_log_relative_return": 0.06492882656635861,
+      "block_bootstrap_log95_low": -0.030049987424266924,
+      "block_bootstrap_log95_high": 0.16002879707812467,
+      "delta_cagr_pp": 7.9085300171013895,
+      "delta_sampled_dd_pp": 0.0,
+      "relative_terminal_wealth": 1.5416585906352922,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "DEDUP_DUAL_TREND_OPP",
+      "control": "DUAL21",
+      "annualized_log_relative_return": 0.027214933655827295,
+      "block_bootstrap_log95_low": -0.10578356843412706,
+      "block_bootstrap_log95_high": 0.15413153209561337,
+      "delta_cagr_pp": 3.3774989821975687,
+      "delta_sampled_dd_pp": 5.632307047224705,
+      "relative_terminal_wealth": 1.1989340747896378,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "CLUSTER_DUAL_PEERS2",
+      "control": "CLUSTER_DUAL21",
+      "annualized_log_relative_return": 0.06313541837885686,
+      "block_bootstrap_log95_low": -0.0940828477146872,
+      "block_bootstrap_log95_high": 0.21848345692518342,
+      "delta_cagr_pp": 7.198243369371271,
+      "delta_sampled_dd_pp": 13.698912586098267,
+      "relative_terminal_wealth": 1.5233361864698285,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "CLUSTER_PEERS2_RISK20",
+      "control": "CLUSTER_DUAL_PEERS2",
+      "annualized_log_relative_return": -0.038280221575653285,
+      "block_bootstrap_log95_low": -0.10074871646805805,
+      "block_bootstrap_log95_high": 0.027937230251693514,
+      "delta_cagr_pp": -4.418568608221096,
+      "delta_sampled_dd_pp": 17.47334395937895,
+      "relative_terminal_wealth": 0.774760385704352,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "CAPITAL_3H",
+      "control": "HORIZON252",
+      "annualized_log_relative_return": -0.00882386219881124,
+      "block_bootstrap_log95_low": -0.10326761950239657,
+      "block_bootstrap_log95_high": 0.09635704459039453,
+      "delta_cagr_pp": -0.9548260091182703,
+      "delta_sampled_dd_pp": 1.8350339399330506,
+      "relative_terminal_wealth": 0.942871052017406,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "CAPITAL_3H_TILT",
+      "control": "CAPITAL_3H",
+      "annualized_log_relative_return": 0.0063405971446352846,
+      "block_bootstrap_log95_low": -0.016588941954357936,
+      "block_bootstrap_log95_high": 0.03470945939550821,
+      "delta_cagr_pp": 0.6852602771435734,
+      "delta_sampled_dd_pp": -1.6686479120061715,
+      "relative_terminal_wealth": 1.0431767738702482,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "HORIZON63",
+      "control": "HORIZON252",
+      "annualized_log_relative_return": 0.019997040031084923,
+      "block_bootstrap_log95_low": -0.1643030878804057,
+      "block_bootstrap_log95_high": 0.2476613820537212,
+      "delta_cagr_pp": 2.1953202990397935,
+      "delta_sampled_dd_pp": -13.86771253326221,
+      "relative_terminal_wealth": 1.1426082643402973,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "HORIZON126",
+      "control": "HORIZON252",
+      "annualized_log_relative_return": -0.07164893765953377,
+      "block_bootstrap_log95_low": -0.19446751903547563,
+      "block_bootstrap_log95_high": 0.04779984813886984,
+      "delta_cagr_pp": -7.514830960748031,
+      "delta_sampled_dd_pp": -0.7014977663018729,
+      "relative_terminal_wealth": 0.6202332981411492,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "HORIZON63_TOP1",
+      "control": "HORIZON63",
+      "annualized_log_relative_return": -0.1471562459826281,
+      "block_bootstrap_log95_low": -0.33601275707318484,
+      "block_bootstrap_log95_high": 0.07125422906949525,
+      "delta_cagr_pp": -15.173042786128633,
+      "delta_sampled_dd_pp": -33.44498252072523,
+      "relative_terminal_wealth": 0.3749203633800114,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "HORIZON126_TOP1",
+      "control": "HORIZON126",
+      "annualized_log_relative_return": -0.10713334046658474,
+      "block_bootstrap_log95_low": -0.33207110858496164,
+      "block_bootstrap_log95_high": 0.09712007433350614,
+      "delta_cagr_pp": -10.278074189073305,
+      "delta_sampled_dd_pp": -40.84960253628315,
+      "relative_terminal_wealth": 0.4895727192721977,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    },
+    {
+      "candidate": "HORIZON252_TOP1",
+      "control": "HORIZON252",
+      "annualized_log_relative_return": 0.037456729353776,
+      "block_bootstrap_log95_low": -0.09772714126255405,
+      "block_bootstrap_log95_high": 0.18243747259450907,
+      "delta_cagr_pp": 4.148327153821918,
+      "delta_sampled_dd_pp": -13.92538358751042,
+      "relative_terminal_wealth": 1.2836550660443622,
+      "interval_contains_zero": true,
+      "status": "PASS"
+    }
+  ],
+  "example_annual_returns": {
+    "2024": {
+      "DEDUP_DUAL_TREND_OPP": 0.3394520849640055,
+      "DUAL21": -0.04892460109936381
+    },
+    "2025": {
+      "DEDUP_DUAL_TREND_OPP": 0.5716517312082883,
+      "DUAL21": 0.4627018781863057
+    },
+    "2026": {
+      "DEDUP_DUAL_TREND_OPP": -0.15298295654954652,
+      "DUAL21": -0.17702197635061234
+    }
+  },
+  "analysis_code_sha256": "fd71a4a8d9dcdd5d4e92917b62aafcc8e9338d8e2a1542b7cb7643c02e856158"
+}

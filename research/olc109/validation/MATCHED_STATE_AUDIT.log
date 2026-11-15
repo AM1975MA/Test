@@ -1,0 +1,49 @@
+{
+  "status": "PASS_INDEPENDENT_MATCHED_STATE_REPLAY",
+  "intervals": 160,
+  "branch_replays": 320,
+  "counterfactual_compounding": false,
+  "imports_production_code": false,
+  "target_source": "Frozen raw target vectors from independently audited DEDUP_DUAL_TREND_OPP and DEDUP_DUAL21 decisions.",
+  "starting_state": "Actual candidate units and cash are restored separately for every interval and both branches.",
+  "independently_derived_trade_sizes": true,
+  "common_prior_fills": 0,
+  "maximum_errors": {
+    "nav_error": 7.275957614183426e-12,
+    "cost_error": 2.842170943040401e-14,
+    "bps_error": 2.2453150450019166e-12,
+    "start_nav_error": 0.0
+  },
+  "changed_interval_summaries": [
+    {
+      "scenario": "BASE",
+      "intervals": 80,
+      "changed_intervals": 40,
+      "wins": 24,
+      "losses": 16,
+      "ties": 0,
+      "mean_increment_bps": 87.26447677290801,
+      "median_increment_bps": 176.08039142057743
+    },
+    {
+      "scenario": "LAG2",
+      "intervals": 80,
+      "changed_intervals": 40,
+      "wins": 27,
+      "losses": 13,
+      "ties": 0,
+      "mean_increment_bps": 90.18652814232082,
+      "median_increment_bps": 59.917101211329225
+    }
+  ],
+  "interpretation": [
+    "Positive increments mean candidate outperformance of the no-gate branch; they are not counts of profitable trades.",
+    "Each bps difference uses the same actual signal-close NAV as denominator.",
+    "Intervals end at the next decision Close before that decision becomes executable.",
+    "No pre-due pending fills occurred in these data; the handling is logically correct but that branch is not empirically exercised here.",
+    "Means and medians are descriptive, not CAGR, additive annual contributions, independent observations, or a new compounded strategy.",
+    "The candidate and intervention were selected after observing the research results."
+  ],
+  "production_script_sha256": "406894402a46785520cc0b659e6fce50e599d48a9c7f66529809b7a033988b1c",
+  "protocol_sha256": "1eafaed6fe98ffe480b11fb5b5231539eaf0a1b60519cd2434935d757374fcf8"
+}

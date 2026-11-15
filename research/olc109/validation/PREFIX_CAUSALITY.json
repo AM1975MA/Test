@@ -1,0 +1,36 @@
+{
+  "status": "PASS_REAL_PANEL_PREFIX_INVARIANCE",
+  "dates_checked": 3,
+  "target_vectors_checked": 120,
+  "results": [
+    {
+      "signal_date": "2020-02-28",
+      "signal_idx": 270,
+      "instruments": 2096,
+      "arms_checked": 40,
+      "groups": 87,
+      "future_sessions_changed": 21,
+      "status": "PASS"
+    },
+    {
+      "signal_date": "2022-12-30",
+      "signal_idx": 994,
+      "instruments": 2096,
+      "arms_checked": 40,
+      "groups": 114,
+      "future_sessions_changed": 21,
+      "status": "PASS"
+    },
+    {
+      "signal_date": "2024-12-30",
+      "signal_idx": 1503,
+      "instruments": 2096,
+      "arms_checked": 40,
+      "groups": 216,
+      "future_sessions_changed": 21,
+      "status": "PASS"
+    }
+  ],
+  "imports_production_code": true,
+  "role": "Behavior test only; independent account and selection references import no production modules."
+}

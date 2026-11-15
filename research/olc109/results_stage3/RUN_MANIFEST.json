@@ -1,0 +1,37 @@
+{
+  "start_utc": "2026-11-15T18:42:12.877873+00:00",
+  "protocol_sha256": "cd0229d453782450c642e59046bdda1748374862d20c64da385867eb7a6bcac0",
+  "code_hashes": {
+    "src/engine.py": "30af3a38b90b81f502cf95d979209c032416418fd9b31ee60857937e1d1b004a",
+    "src/signals.py": "e2846ed075f68553b31f985585cece67b6d520b5adac2b3bb7b927ac48829029",
+    "src/cluster_selectors.py": "4105253f3332a5905d2fb4bc1960be887782f748efe033e9cca16ebcf9048e12",
+    "src/prepare_liquidity.py": "c1c36322e93d47941585f859eaf4ca47766417730c3da01ad08bb37631b9f4e8",
+    "src/run_research.py": "23cf49b5a49b0715f5c5441e9cb2581e8f19257bb9d19fb9943f54da17cf2973",
+    "src/run_stage3.py": "263756d39bc1d36936b101dc30f1e5e03f9e8646e6d8791e447013f3c46b279e",
+    "src/dedup_selectors.py": "6643776c8ed11f3834211e2e10a269a8e7f11aeaac300ee1efd0712f20b043c2",
+    "src/horizon_selectors.py": "94e5042b72f2ab1c9a39f2035036c84304347c1e824a4d1e7740f7ab98608f8e",
+    "source/src/core.py": "e49bd609bf9e65b6270b03fb9b706070edb3d2717765f37a856dff3d559551d9"
+  },
+  "data_hashes": {
+    "source/data/XETRA_EUR_ETF.npz": "14b4ee4a5834e93407f5b7aac2c4857cf6f0b0403f38296daea2725fe4848b96",
+    "data/LIQUIDITY.npz": "b95fa3d67837fa06c5705aa4aea09807d396464ab44ec1671031d797b57f4485"
+  },
+  "planned_unique_paths": 40,
+  "completed_paths": 40,
+  "primary_arm": "CAPITAL_3H",
+  "adaptive_stage": true,
+  "prior_stage1_stage2_results_seen": true,
+  "drawdown_limit_active": false,
+  "universe": "XETRA_EUR_ETF_V3",
+  "data_revision": 3,
+  "pristine_holdout": false,
+  "prior_results_seen": true,
+  "fit_or_optimization": false,
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "scipy": "1.17.0",
+  "end_utc": "2026-11-15T18:42:32.749598+00:00",
+  "snapshot_sha256": "90fcb66ec7408c314d16d73c068905d041386409880646c9e7f0f67812e5f395",
+  "correlation_sha256": "37784a888f9186d99fd505318e47aacecd3b20b1e2fc61c994c57b717e854c9b"
+}

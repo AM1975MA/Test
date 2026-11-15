@@ -1,0 +1,11 @@
+{
+  "created_utc": "2026-11-15T18:31:41.727094+00:00",
+  "protocol_sha256": "b80377322fbe0e16453dd95814bf303ea62ff09a96e476afec662d28bf58a317",
+  "planned_unique_paths": 50,
+  "primary_arm": "DEDUP_DUAL21",
+  "stage1_results_seen": true,
+  "stage2_returns_seen": false,
+  "pristine_holdout": false,
+  "data_revision": "OLC108_V3",
+  "adaptive_stage": true
+}

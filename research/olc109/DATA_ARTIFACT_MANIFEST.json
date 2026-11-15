@@ -1,0 +1,81 @@
+{
+  "snapshot": "OLC109 completed research; 2026-11-15",
+  "repository": "AM1975MA/Test",
+  "branch": "research/olc109-freeze-20261115",
+  "path": "research/olc109",
+  "base_commit": "a87e84bc4e53e94a4a4e4c5ecc157e338f2716a3",
+  "base_tree": "5e93bbb6a409beba332f3589cdd6780d5b6f3593",
+  "source_research_commit": "f46670a473b9d9ce325593634bc802c7bdfdb505",
+  "full_financial_dataset_in_git": false,
+  "full_original_study_in_git": false,
+  "original_files_copied_byte_identically": 419,
+  "original_study_files_omitted_from_git": 992,
+  "prior_support_files_omitted_from_git": 2166,
+  "full_reproducible_archive": {
+    "filename": "OLC109_RICERCA_ETF_20261115.zip",
+    "url": "https://chatgpt.com/library?file_id=libfile_78a392f2bcac81919669f3fd5cbee900&account_id=personal",
+    "bytes": 238685250,
+    "sha256": "fc89eadb3ee94f6ade1dceafbd43707f5bac518bb889e4dc350f55de32e2281e",
+    "file_count_excluding_self_manifest": 3577,
+    "bundle_manifest": "provenance/BUNDLE_MANIFEST.json",
+    "bundle_manifest_sha256": "4ff730283d1ee2870291a05c5fbea9b62df7da10e27c5107203f8fc0b7340af7",
+    "access": "Requires access to the ChatGPT Library file; not an anonymous direct-download endpoint",
+    "contains": "Complete OLC109 study plus minimal OLC108 support dependencies; preserves sibling directories olc109 and olc108",
+    "full_olc108_acquisition_pipeline_included": false
+  },
+  "standalone_report": {
+    "url": "https://chatgpt.com/library?file_id=libfile_6d7c5bee9b5c8191ab082bf0f4d35244&account_id=personal",
+    "repository_path": "RAPPORTO_OLC109_IT.md",
+    "sha256": "6ea94abad8f7cc8f61a24be104c4ef5b0281625ef28714d31b510aa6c688e03e"
+  },
+  "reproduction": {
+    "instructions": "REPRODUCE_FROM_ARCHIVE.md",
+    "helper": "tools/restore_bundle.py",
+    "verify": "Every archive member and the archive SHA-256 are checked before restored destination is made available"
+  },
+  "required_financial_runtime_inputs": {
+    "source/data/XETRA_EUR_ETF.npz": {
+      "bytes": 28682014,
+      "sha256": "14b4ee4a5834e93407f5b7aac2c4857cf6f0b0403f38296daea2725fe4848b96"
+    },
+    "data/LIQUIDITY.npz": {
+      "bytes": 17319970,
+      "sha256": "b95fa3d67837fa06c5705aa4aea09807d396464ab44ec1671031d797b57f4485"
+    }
+  },
+  "test_fixture_in_git": {
+    "path": "source/data/TR29.npz",
+    "bytes": 412807,
+    "sha256": "6ed7123bfd8122c5b2414f3f31138658a381b5f5b1171a89aac83135decb1346"
+  },
+  "evidence_in_git": {
+    "configurations": 40,
+    "aggregate_paths": 200,
+    "per_path_metrics": 200,
+    "candidate_complete_financial_paths": 5,
+    "candidate": "DEDUP_DUAL_TREND_OPP",
+    "candidate_scenarios": [
+      "BASE",
+      "ZERO_COST",
+      "DOUBLE_COST",
+      "LAG1",
+      "LAG2"
+    ],
+    "all_aggregate_years_retained_including_2024": true,
+    "failed_and_worse_configurations_retained": true,
+    "all_financial_code_and_protocols_copied_verbatim": true,
+    "all_candidate_financial_ledgers_copied_verbatim": true
+  },
+  "omitted_file_inventory_rule": "For each olc109/* entry in provenance/BUNDLE_MANIFEST.json, remove olc109/ and compare with REPOSITORY_MANIFEST.json files. All olc108/* entries are supplied only in the full archive. The bundle manifest retains exact byte counts and SHA-256 hashes for every omitted file.",
+  "non_financial_archive_additions": [
+    "README.md",
+    "REPRODUCE_FROM_ARCHIVE.md",
+    "tools/restore_bundle.py",
+    "DATA_ARTIFACT_MANIFEST.json",
+    "REPOSITORY_MANIFEST.json",
+    "provenance/BUNDLE_MANIFEST.json",
+    "provenance/RESTORE_VERIFICATION.json",
+    "provenance/STAGED_TESTS_FINAL.log",
+    "provenance/DELIVERY_QA.json"
+  ]
+}

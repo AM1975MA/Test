@@ -1,0 +1,41 @@
+{
+  "status": "PASS_ALL_NEGATIVE_CONTROLS",
+  "positive_controls": 1,
+  "negative_controls": 6,
+  "outcomes": [
+    {
+      "test": "unchanged_control",
+      "status": "PASS_ACCEPTED"
+    },
+    {
+      "test": "balanced_wrong_target_quantity",
+      "status": "PASS_REJECTED",
+      "rejection": "('ORDER_VALUE_VS_TARGET', '2020-03-02', 'quantity', 29.44596929490557, 36.80746161863196)"
+    },
+    {
+      "test": "forged_fee",
+      "status": "PASS_REJECTED",
+      "rejection": "('ORDER_VALUE_VS_TARGET', '2020-03-02', 'cost', 16.97603594608088, 15.97603594608088)"
+    },
+    {
+      "test": "instruction_altered_without_orders",
+      "status": "PASS_REJECTED",
+      "rejection": "('ORDER_VALUE_VS_TARGET', '2020-03-02', 'quantity', 36.80746161863196, 29.493087557603687)"
+    },
+    {
+      "test": "fill_before_instruction_matures",
+      "status": "PASS_REJECTED",
+      "rejection": "ORDER_WITHOUT_PENDING_TARGET"
+    },
+    {
+      "test": "shortened_lag",
+      "status": "PASS_REJECTED",
+      "rejection": "WRONG_TARGET_DUE_DATE"
+    },
+    {
+      "test": "stale_instruction_identity",
+      "status": "PASS_REJECTED",
+      "rejection": "ORDER_NOT_FROM_LATEST_MATURED_TARGET"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "verified_at_utc": "2026-11-15T18:27:16.642980+00:00",
+  "command": "cd tests && python -m unittest test_engine test_guard_engine test_signals -v",
+  "exit_code": 0,
+  "tests_run": 34,
+  "test_modules": [
+    "test_engine",
+    "test_guard_engine",
+    "test_signals"
+  ],
+  "test_counts": {
+    "inherited_engine": 12,
+    "guard": 14,
+    "inherited_signals": 8
+  },
+  "red_before_implementation": {
+    "tests_run": 14,
+    "failures": 16,
+    "reason": "guard public API absent; extra failures are validation subtests",
+    "log": "guard_tests_red.txt"
+  },
+  "independent_review": "No correctness blocker. All 34 scoped tests passed independently. During concurrent selector construction, full discovery found one missing cluster_selectors import; integrated selector verification remains with root.",
+  "sha256": {
+    "src/engine.py": "30af3a38b90b81f502cf95d979209c032416418fd9b31ee60857937e1d1b004a",
+    "source/src/core.py": "e49bd609bf9e65b6270b03fb9b706070edb3d2717765f37a856dff3d559551d9",
+    "tests/test_engine.py": "d6939bef616f9493d33b2409627c25ee78a34e338a885affb75428e9c8d26d0a",
+    "tests/test_guard_engine.py": "6dbbdf934c3745948978da2b52b6edbbb7303d19981c720fcfc4cffdd2961134",
+    "src/signals.py": "e2846ed075f68553b31f985585cece67b6d520b5adac2b3bb7b927ac48829029",
+    "tests/test_signals.py": "02c5b58fe4cd6fbf17f0da5eb10a1f53ed11f59d6bfac1e77d2c269ce4ead508",
+    "source/data/TR29.npz": "6ed7123bfd8122c5b2414f3f31138658a381b5f5b1171a89aac83135decb1346",
+    "research/engine/olc108_engine_reference.py": "5e5dbe59323f355bc4aba57a0f97eb59b0903b78691254aa5df6998fdeb8e2ee"
+  }
+}

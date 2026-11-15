@@ -1,0 +1,31 @@
+{
+  "status": "PASS_REPOSITORY_STAGING_AND_BUNDLE_RESTORE",
+  "checked_utc": "2026-11-15T19:17:22.193613+00:00",
+  "original_files_verified_byte_identically": 419,
+  "all_original_files_match_bundle_manifest": true,
+  "aggregate_financial_paths": 200,
+  "configurations": 40,
+  "per_path_metrics": 200,
+  "candidate_complete_files": 30,
+  "unit_tests": {
+    "command": "python -m unittest discover -s research/olc109/tests -v",
+    "tests": 51,
+    "exit_code": 0,
+    "log": "provenance/STAGED_TESTS_FINAL.log"
+  },
+  "bundle_restore": {
+    "status": "PASS_EVERY_FROZEN_MEMBER_VERIFIED",
+    "archive_sha256": "fc89eadb3ee94f6ade1dceafbd43707f5bac518bb889e4dc350f55de32e2281e",
+    "bundle_manifest_sha256": "4ff730283d1ee2870291a05c5fbea9b62df7da10e27c5107203f8fc0b7340af7",
+    "files_checked": 3577,
+    "uncompressed_member_bytes": 277830094,
+    "financial_paths": 200,
+    "prior_baseline_paths": 11,
+    "prior_source_price_csvs": 2096
+  },
+  "financial_code_changed": false,
+  "financial_results_changed": false,
+  "new_financial_experiment_run": false,
+  "original_qa": "validation/COMPLETION_QA.json",
+  "new_scope": "Archival packaging and restoration only; prior financial audit results are preserved, not claimed as newly rerun."
+}

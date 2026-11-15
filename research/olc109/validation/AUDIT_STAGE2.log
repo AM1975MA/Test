@@ -1,0 +1,91 @@
+Rebuilding features and complete-link clusters from data
+Reconstructed 80 snapshots, 13528 groups, 800 raw selection targets
+PASS 1/50 CLUSTER_PEERS2_RISK15__BASE: 263 sized orders, 90 signals
+PASS 2/50 CLUSTER_PEERS2_RISK15__DOUBLE_COST: 263 sized orders, 90 signals
+PASS 3/50 CLUSTER_PEERS2_RISK15__LAG1: 274 sized orders, 97 signals
+PASS 4/50 CLUSTER_PEERS2_RISK15__LAG2: 279 sized orders, 107 signals
+PASS 5/50 CLUSTER_PEERS2_RISK15__ZERO_COST: 263 sized orders, 90 signals
+PASS 6/50 CLUSTER_PEERS2_RISK20__BASE: 258 sized orders, 87 signals
+PASS 7/50 CLUSTER_PEERS2_RISK20__DOUBLE_COST: 258 sized orders, 87 signals
+PASS 8/50 CLUSTER_PEERS2_RISK20__LAG1: 263 sized orders, 93 signals
+PASS 9/50 CLUSTER_PEERS2_RISK20__LAG2: 269 sized orders, 102 signals
+PASS 10/50 CLUSTER_PEERS2_RISK20__ZERO_COST: 258 sized orders, 87 signals
+PASS 11/50 DEDUP_DUAL21__BASE: 226 sized orders, 80 signals
+PASS 12/50 DEDUP_DUAL21__DOUBLE_COST: 227 sized orders, 80 signals
+PASS 13/50 DEDUP_DUAL21__LAG1: 224 sized orders, 80 signals
+PASS 14/50 DEDUP_DUAL21__LAG2: 225 sized orders, 80 signals
+PASS 15/50 DEDUP_DUAL21__ZERO_COST: 226 sized orders, 80 signals
+PASS 16/50 DEDUP_DUAL_EXIT63__BASE: 247 sized orders, 119 signals
+PASS 17/50 DEDUP_DUAL_EXIT63__DOUBLE_COST: 247 sized orders, 119 signals
+PASS 18/50 DEDUP_DUAL_EXIT63__LAG1: 242 sized orders, 120 signals
+PASS 19/50 DEDUP_DUAL_EXIT63__LAG2: 238 sized orders, 118 signals
+PASS 20/50 DEDUP_DUAL_EXIT63__ZERO_COST: 247 sized orders, 119 signals
+PASS 21/50 DEDUP_DUAL_PEERS2__BASE: 240 sized orders, 80 signals
+PASS 22/50 DEDUP_DUAL_PEERS2__DOUBLE_COST: 240 sized orders, 80 signals
+PASS 23/50 DEDUP_DUAL_PEERS2__LAG1: 241 sized orders, 80 signals
+PASS 24/50 DEDUP_DUAL_PEERS2__LAG2: 237 sized orders, 80 signals
+PASS 25/50 DEDUP_DUAL_PEERS2__ZERO_COST: 240 sized orders, 80 signals
+PASS 26/50 DEDUP_DUAL_RISK15__BASE: 257 sized orders, 94 signals
+PASS 27/50 DEDUP_DUAL_RISK15__DOUBLE_COST: 257 sized orders, 94 signals
+PASS 28/50 DEDUP_DUAL_RISK15__LAG1: 266 sized orders, 106 signals
+PASS 29/50 DEDUP_DUAL_RISK15__LAG2: 266 sized orders, 113 signals
+PASS 30/50 DEDUP_DUAL_RISK15__ZERO_COST: 255 sized orders, 93 signals
+PASS 31/50 DEDUP_DUAL_RISK20__BASE: 256 sized orders, 93 signals
+PASS 32/50 DEDUP_DUAL_RISK20__DOUBLE_COST: 256 sized orders, 93 signals
+PASS 33/50 DEDUP_DUAL_RISK20__LAG1: 257 sized orders, 96 signals
+PASS 34/50 DEDUP_DUAL_RISK20__LAG2: 264 sized orders, 105 signals
+PASS 35/50 DEDUP_DUAL_RISK20__ZERO_COST: 252 sized orders, 91 signals
+PASS 36/50 DEDUP_DUAL_TRAIL15__BASE: 235 sized orders, 105 signals
+PASS 37/50 DEDUP_DUAL_TRAIL15__DOUBLE_COST: 236 sized orders, 105 signals
+PASS 38/50 DEDUP_DUAL_TRAIL15__LAG1: 234 sized orders, 106 signals
+PASS 39/50 DEDUP_DUAL_TRAIL15__LAG2: 235 sized orders, 107 signals
+PASS 40/50 DEDUP_DUAL_TRAIL15__ZERO_COST: 234 sized orders, 105 signals
+PASS 41/50 DEDUP_DUAL_TREND_OPP__BASE: 226 sized orders, 80 signals
+PASS 42/50 DEDUP_DUAL_TREND_OPP__DOUBLE_COST: 225 sized orders, 80 signals
+PASS 43/50 DEDUP_DUAL_TREND_OPP__LAG1: 222 sized orders, 80 signals
+PASS 44/50 DEDUP_DUAL_TREND_OPP__LAG2: 225 sized orders, 80 signals
+PASS 45/50 DEDUP_DUAL_TREND_OPP__ZERO_COST: 225 sized orders, 80 signals
+PASS 46/50 DEDUP_LEADERS__BASE: 167 sized orders, 80 signals
+PASS 47/50 DEDUP_LEADERS__DOUBLE_COST: 167 sized orders, 80 signals
+PASS 48/50 DEDUP_LEADERS__LAG1: 158 sized orders, 80 signals
+PASS 49/50 DEDUP_LEADERS__LAG2: 160 sized orders, 80 signals
+PASS 50/50 DEDUP_LEADERS__ZERO_COST: 167 sized orders, 80 signals
+{
+  "status": "PASS_50_INDEPENDENT_ACCOUNT_AND_SIGNAL_RECONSTRUCTIONS",
+  "started_utc": "2026-11-15T18:37:55.941817+00:00",
+  "finished_utc": "2026-11-15T18:39:00.506542+00:00",
+  "paths": 50,
+  "protocol_sha256": "b80377322fbe0e16453dd95814bf303ea62ff09a96e476afec662d28bf58a317",
+  "adaptive_stage": true,
+  "complete_grid": true,
+  "frozen_code_and_inputs_unchanged": true,
+  "independently_rebuilt_snapshots": 80,
+  "independently_rebuilt_groups": 13528,
+  "independently_derived_raw_targets": 800,
+  "independently_derived_instructions": 4631,
+  "independently_derived_reduction_signals": 631,
+  "order_timestamps_checked": 11897,
+  "order_quantities_checked": 11897,
+  "numerical_residue_only_deferred_sessions": 1,
+  "financial_csv_float_parser": "round_trip",
+  "max_nav_cash_error": 1.2732925824820995e-10,
+  "max_per_order_cost_error": 1.4210854715202004e-14,
+  "max_daily_pnl_attribution_error": 2.546585164964199e-11,
+  "available_prior_baselines_reproduced": 0,
+  "unavailable_prior_baselines": 0,
+  "source_liquidity_instruments_checked": 176,
+  "source_liquidity_rows_checked": 346720,
+  "numeric_target_passes": 0,
+  "full_target_passes": 0,
+  "accounting_imports_production_code": false,
+  "selector_reference_imports_production_code": false,
+  "limitations": [
+    "Current catalogue survivorship and historical product status are not certified.",
+    "The vendor opening mask uses positive completed-day volume retrospectively.",
+    "Adjusted-price factor vintage is not certified point-in-time.",
+    "Cash interest is zero; taxes are excluded; units are fractional economic units.",
+    "Open/close sampled drawdown does not measure every intraday low.",
+    "A common SciPy complete-link library is used with independently derived Pearson matrices.",
+    "Trade participation is descriptive and does not certify broker liquidity or realized slippage."
+  ]
+}

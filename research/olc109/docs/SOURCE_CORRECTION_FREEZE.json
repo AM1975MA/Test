@@ -1,0 +1,30 @@
+{
+  "frozen_utc": "2026-11-15T17:34:05.016690+00:00",
+  "data_revision": 3,
+  "prior_invalid_results_seen": true,
+  "cleaned_performance_seen": false,
+  "require_positive_daily_volume": true,
+  "file_hashes": {
+    "data/SOURCE_SERIES_QUARANTINE.json": "87f09f8f6707f461697c09adf969bb9046ad11490e766c6146faa0368d1b9c92",
+    "data/SOURCE_BAR_QUARANTINE.json": "93b75fbc373a28abc311883420ae34e81170c9045692738b3fce6a717d63a8e3",
+    "data/PRODUCT_CLASSIFICATION_OVERRIDES.json": "1a752139e353b39fd606c779fbf91c64a977b53ab41db7779507748fcf8b432d",
+    "data/SOURCE_CORRECTIONS_REVIEW.validation.json": "cdeacf5f6c00ba0dc635a554996562ecbef993a2042696e4704eb116679850ec",
+    "data/SOURCE_CORPORATE_ACTION_REVIEW.validation.json": "b755d6776f17251de192e9f170e53ecf61331d62580a4b324e06002bb9b78ea8",
+    "data/ADJUSTMENT_ANOMALIES_REVIEW.csv": "3e7e2092adca84c5b254337e4ad863d53a03e911c5444c8c9c065b4544e53112",
+    "data/ADJUSTMENT_POSITIVE_VOLUME_GAPS_REVIEW.csv": "ddb95fbfeca8d4eea0873b693abc8e19a42bcd17a84d088d04aecd06b8f2d9b8",
+    "data/ADJUSTMENT_QUIET_FLAT_REVERSALS.csv": "01ac030ce6828ea3d98656c9c22ab3c32f5859b9b399a1b7f59438ad4eff64b7",
+    "data/SOURCE_POINT_EVENT_REVIEW.validation.json": "adc6a28bb7dc064b64b35312d2a939f7d35d1804f370a81c372e17bdff4080ad",
+    "data/raw/point_event_review/IQQ5_IE00B1FZS574_issuer_distribution_202305.pdf": "39871baadb9f3bb1b3c187dbb3d944215b966246f7ea737990b48a928303e88a"
+  },
+  "full_series_quarantines": 5,
+  "explicit_bar_quarantines": 385,
+  "notes": [
+    "Post-V1 source-quality correction; not a pristine holdout.",
+    "Daily completed volume is ex-post archive validity, not an observable opening-liquidity rule.",
+    "No selector formula, cost, cadence, risk target, lag or case-grid change.",
+    "Raw prices and rejected V1 are preserved.",
+    "V3 adds full IQQ5 source quarantine after confirmed issuer ex-date/provider adjustment-date conflict; V2 preserved, formulas unchanged."
+  ],
+  "prior_superseded_v2_results_seen": true,
+  "cleaned_v3_performance_seen": false
+}

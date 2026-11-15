@@ -1,0 +1,7 @@
+# Diagnosi a parità di stato contabile — filtro del trend
+
+Analisi descrittiva decisa dopo tutti200percorsi; nessun nuovo modello o soglia. Si confrontano DEDUP_DUAL_TREND_OPP e DEDUP_DUAL21 nelle80decisioni mensili, perBASE eLAG2. Entrambi partono ogni volta da unità/cassa effettive del conto TREND_OPP alla chiusura del segnale. Non si concatenano i controfattuali.
+
+L'intervento diventa eseguibile all'Open k+1+lag. Prima di quel momento, eventuali ordini ancora pendenti della storia effettiva vengono applicati identicamente ai due rami: la nuova istruzione non può cambiare un'esecuzione antecedente alla propria maturazione. Dal giorno dovuto si prova il target immutabile sui soli Open validi, vendite prima degli acquisti, banda3%, commissioniEUR1+15bp/lato, stesso flagforceiniziale. I riempimenti parziali restano pendenti. Dopo il completamento si mantengono le unità fino al Close della successiva decisione, o al termine del campione. Non si adotta la nuova decisione al termine dell'intervallo.
+
+Ogni replay del target effettivo deve riconciliare il NAV terminale registrato entroEUR0,000001 prima di pubblicare i controfattuali. Le differenze sono rapportate al medesimo NAV iniziale effettivo. Si mostrano tutti80intervalli e il sottoinsieme in cui i target differiscono, media/mediana, vittorie/sconfitte e raggruppamento per anno di fine intervallo. Tali medie non sono CAGR, contributi annuali additivi o una strategia eseguibile composta. La scelta ex post del candidato e la correlazione temporale restano limiti.

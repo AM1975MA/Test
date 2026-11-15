@@ -1,0 +1,26 @@
+{
+  "verified_utc": "2026-11-15T18:46:07.917648+00:00",
+  "status": "PASS",
+  "checks": {
+    "complete_expected_200_paths": true,
+    "audit_status_pass": true,
+    "adjudication_status_pass": true,
+    "all_inputs_and_results_unchanged": true,
+    "all_audit_artifact_hashes_match": true,
+    "audit_script_hash_matches": true,
+    "orders_rows_reconcile": true,
+    "all_path_summary_rows_present": true,
+    "empty_staleness_file_has_schema": true,
+    "close_and_open_fallback_max_age_5": true,
+    "no_stale_economic_exposure": true,
+    "no_fill_or_raw_panel_mismatches": true,
+    "all_7_context_events_reconcile": true,
+    "all_3_priority_open_events_unused": true,
+    "reproduction_command_all_3_stages": true,
+    "all_3_top1_summaries_present": true
+  },
+  "recorded_input_hashes_verified": 1263,
+  "audit_artifact_hashes_verified": 16,
+  "changed_inputs": [],
+  "changed_artifacts": []
+}

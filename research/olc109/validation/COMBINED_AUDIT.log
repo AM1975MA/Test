@@ -1,0 +1,101 @@
+{
+  "status": "PASS_200_INDEPENDENT_ACCOUNTS_AND_SIGNALS",
+  "paths": 200,
+  "all_frozen_financial_code_and_inputs_unchanged": true,
+  "declared_stage_timestamp_order_checked": true,
+  "unique_source_liquidity_instruments_checked": 300,
+  "source_liquidity_rows_checked_including_cross_stage_rechecks": 1189880,
+  "source_liquidity_unique_rows_checked": 591000,
+  "order_quantities_and_timestamps_checked": 49055,
+  "independently_derived_instructions": 16925,
+  "independently_derived_reductions": 1320,
+  "unique_cluster_snapshots_rebuilt": 80,
+  "unique_groups_rebuilt": 13528,
+  "independently_derived_raw_selection_targets": 3121,
+  "prefix_target_vectors_checked": 120,
+  "tamper_controls_rejected": 6,
+  "numerical_residue_only_deferred_sessions": 1,
+  "max_nav_cash_error": 1.3278622645884752e-10,
+  "max_per_order_cost_error": 1.4210854715202004e-14,
+  "max_daily_pnl_attribution_error": 2.546585164964199e-11,
+  "legacy_numeric_target_passes": 0,
+  "legacy_full_target_passes": 0,
+  "current_cagr_target_passes": 0,
+  "current_cagr_base_passes": 0,
+  "maximum_current_cagr_any_scenario": 0.2882046219443376,
+  "maximum_current_cagr_base": 0.2575261197698918,
+  "trade_participation": [
+    {
+      "scope": "all_scenarios",
+      "orders": 49055,
+      "zero_or_unavailable_turnover": 0,
+      "above_one_percent": 13757,
+      "above_ten_percent": 1316,
+      "above_full_daily_turnover": 107,
+      "maximum_ratio": 27.012702335353396
+    },
+    {
+      "scope": "BASE_only",
+      "orders": 9806,
+      "zero_or_unavailable_turnover": 0,
+      "above_one_percent": 2760,
+      "above_ten_percent": 240,
+      "above_full_daily_turnover": 12,
+      "maximum_ratio": 14.316458989194434
+    }
+  ],
+  "price_age": {
+    "status": "COMPLETE_DESCRIPTIVE_PRICE_AGE_AUDIT",
+    "stages": [
+      {
+        "stage": 1,
+        "paths": 110,
+        "closing_states": 186890,
+        "held_marks": 381101,
+        "maximum_age_calendar_days": 5,
+        "held_sessions_with_age_over5": 0
+      },
+      {
+        "stage": 2,
+        "paths": 50,
+        "closing_states": 84950,
+        "held_marks": 161471,
+        "maximum_age_calendar_days": 5,
+        "held_sessions_with_age_over5": 0
+      },
+      {
+        "stage": 3,
+        "paths": 40,
+        "closing_states": 67960,
+        "held_marks": 207992,
+        "maximum_age_calendar_days": 5,
+        "held_sessions_with_age_over5": 0
+      }
+    ],
+    "interpretation": "Observation age is a vendor-price quality diagnostic; it does not certify contemporaneous tradability."
+  },
+  "analysis_verification": {
+    "monthly_returns_checked": 16000,
+    "annual_returns_checked": 1400,
+    "annual_2024_rows_retained": 200,
+    "paired_comparisons_checked": 16,
+    "all_descriptive_intervals_contain_zero": true,
+    "multiplicity_corrected": false,
+    "adaptive_holdout": false,
+    "artifact": "validation/BOOTSTRAP_ANALYSIS_REVIEW.json"
+  },
+  "matched_state_verification": {
+    "intervals": 160,
+    "independent_branch_replays": 320,
+    "maximum_errors": {
+      "nav_error": 7.275957614183426e-12,
+      "cost_error": 2.842170943040401e-14,
+      "bps_error": 2.2453150450019166e-12,
+      "start_nav_error": 0.0
+    },
+    "counterfactual_compounding": false,
+    "artifact": "validation/MATCHED_STATE_REVIEW.json"
+  },
+  "economic_or_statistical_validity_certified": false,
+  "caveat": "Accounting and protocol correctness do not establish investability, causal out-of-sample performance, or achievement of the user target."
+}

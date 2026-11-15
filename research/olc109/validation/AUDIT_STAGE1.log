@@ -1,0 +1,151 @@
+Rebuilding features and complete-link clusters from data
+Reconstructed 80 snapshots, 13528 groups, 1681 raw selection targets
+PASS 1/110 CLUSTER_DUAL21__BASE: 232 sized orders, 80 signals
+PASS 2/110 CLUSTER_DUAL21__DOUBLE_COST: 231 sized orders, 80 signals
+PASS 3/110 CLUSTER_DUAL21__LAG1: 228 sized orders, 80 signals
+PASS 4/110 CLUSTER_DUAL21__LAG2: 227 sized orders, 80 signals
+PASS 5/110 CLUSTER_DUAL21__ZERO_COST: 232 sized orders, 80 signals
+PASS 6/110 CLUSTER_DUAL4__BASE: 379 sized orders, 80 signals
+PASS 7/110 CLUSTER_DUAL4__DOUBLE_COST: 379 sized orders, 80 signals
+PASS 8/110 CLUSTER_DUAL4__LAG1: 379 sized orders, 80 signals
+PASS 9/110 CLUSTER_DUAL4__LAG2: 380 sized orders, 80 signals
+PASS 10/110 CLUSTER_DUAL4__ZERO_COST: 379 sized orders, 80 signals
+PASS 11/110 CLUSTER_DUAL_CASH__BASE: 189 sized orders, 80 signals
+PASS 12/110 CLUSTER_DUAL_CASH__DOUBLE_COST: 189 sized orders, 80 signals
+PASS 13/110 CLUSTER_DUAL_CASH__LAG1: 189 sized orders, 80 signals
+PASS 14/110 CLUSTER_DUAL_CASH__LAG2: 189 sized orders, 80 signals
+PASS 15/110 CLUSTER_DUAL_CASH__ZERO_COST: 189 sized orders, 80 signals
+PASS 16/110 CLUSTER_DUAL_EXIT63__BASE: 239 sized orders, 112 signals
+PASS 17/110 CLUSTER_DUAL_EXIT63__DOUBLE_COST: 239 sized orders, 112 signals
+PASS 18/110 CLUSTER_DUAL_EXIT63__LAG1: 241 sized orders, 113 signals
+PASS 19/110 CLUSTER_DUAL_EXIT63__LAG2: 239 sized orders, 112 signals
+PASS 20/110 CLUSTER_DUAL_EXIT63__ZERO_COST: 239 sized orders, 112 signals
+PASS 21/110 CLUSTER_DUAL_PEERS2__BASE: 235 sized orders, 80 signals
+PASS 22/110 CLUSTER_DUAL_PEERS2__DOUBLE_COST: 235 sized orders, 80 signals
+PASS 23/110 CLUSTER_DUAL_PEERS2__LAG1: 233 sized orders, 80 signals
+PASS 24/110 CLUSTER_DUAL_PEERS2__LAG2: 233 sized orders, 80 signals
+PASS 25/110 CLUSTER_DUAL_PEERS2__ZERO_COST: 235 sized orders, 80 signals
+PASS 26/110 CLUSTER_DUAL_RESID__BASE: 246 sized orders, 80 signals
+PASS 27/110 CLUSTER_DUAL_RESID__DOUBLE_COST: 245 sized orders, 80 signals
+PASS 28/110 CLUSTER_DUAL_RESID__LAG1: 246 sized orders, 80 signals
+PASS 29/110 CLUSTER_DUAL_RESID__LAG2: 242 sized orders, 80 signals
+PASS 30/110 CLUSTER_DUAL_RESID__ZERO_COST: 246 sized orders, 80 signals
+PASS 31/110 CLUSTER_DUAL_REVERT__BASE: 243 sized orders, 80 signals
+PASS 32/110 CLUSTER_DUAL_REVERT__DOUBLE_COST: 243 sized orders, 80 signals
+PASS 33/110 CLUSTER_DUAL_REVERT__LAG1: 239 sized orders, 80 signals
+PASS 34/110 CLUSTER_DUAL_REVERT__LAG2: 235 sized orders, 80 signals
+PASS 35/110 CLUSTER_DUAL_REVERT__ZERO_COST: 240 sized orders, 80 signals
+PASS 36/110 CLUSTER_DUAL_RISK15__BASE: 256 sized orders, 91 signals
+PASS 37/110 CLUSTER_DUAL_RISK15__DOUBLE_COST: 256 sized orders, 91 signals
+PASS 38/110 CLUSTER_DUAL_RISK15__LAG1: 268 sized orders, 101 signals
+PASS 39/110 CLUSTER_DUAL_RISK15__LAG2: 278 sized orders, 111 signals
+PASS 40/110 CLUSTER_DUAL_RISK15__ZERO_COST: 256 sized orders, 91 signals
+PASS 41/110 CLUSTER_DUAL_RISK20__BASE: 261 sized orders, 90 signals
+PASS 42/110 CLUSTER_DUAL_RISK20__DOUBLE_COST: 259 sized orders, 90 signals
+PASS 43/110 CLUSTER_DUAL_RISK20__LAG1: 268 sized orders, 98 signals
+PASS 44/110 CLUSTER_DUAL_RISK20__LAG2: 270 sized orders, 105 signals
+PASS 45/110 CLUSTER_DUAL_RISK20__ZERO_COST: 258 sized orders, 89 signals
+PASS 46/110 CLUSTER_DUAL_TRAIL15__BASE: 241 sized orders, 109 signals
+PASS 47/110 CLUSTER_DUAL_TRAIL15__DOUBLE_COST: 241 sized orders, 109 signals
+PASS 48/110 CLUSTER_DUAL_TRAIL15__LAG1: 239 sized orders, 111 signals
+PASS 49/110 CLUSTER_DUAL_TRAIL15__LAG2: 238 sized orders, 112 signals
+PASS 50/110 CLUSTER_DUAL_TRAIL15__ZERO_COST: 241 sized orders, 109 signals
+PASS 51/110 CLUSTER_LEADERS4__BASE: 306 sized orders, 80 signals
+PASS 52/110 CLUSTER_LEADERS4__DOUBLE_COST: 305 sized orders, 80 signals
+PASS 53/110 CLUSTER_LEADERS4__LAG1: 305 sized orders, 80 signals
+PASS 54/110 CLUSTER_LEADERS4__LAG2: 308 sized orders, 80 signals
+PASS 55/110 CLUSTER_LEADERS4__ZERO_COST: 308 sized orders, 80 signals
+PASS 56/110 CLUSTER_LEADERS__BASE: 182 sized orders, 80 signals
+PASS 57/110 CLUSTER_LEADERS__DOUBLE_COST: 182 sized orders, 80 signals
+PASS 58/110 CLUSTER_LEADERS__LAG1: 180 sized orders, 80 signals
+PASS 59/110 CLUSTER_LEADERS__LAG2: 180 sized orders, 80 signals
+PASS 60/110 CLUSTER_LEADERS__ZERO_COST: 181 sized orders, 80 signals
+PASS 61/110 CLUSTER_SLOW_DUAL21__BASE: 253 sized orders, 80 signals
+PASS 62/110 CLUSTER_SLOW_DUAL21__DOUBLE_COST: 253 sized orders, 80 signals
+PASS 63/110 CLUSTER_SLOW_DUAL21__LAG1: 254 sized orders, 80 signals
+PASS 64/110 CLUSTER_SLOW_DUAL21__LAG2: 255 sized orders, 80 signals
+PASS 65/110 CLUSTER_SLOW_DUAL21__ZERO_COST: 253 sized orders, 80 signals
+PASS 66/110 CLUSTER_SLOW_EXIT63__BASE: 213 sized orders, 124 signals
+PASS 67/110 CLUSTER_SLOW_EXIT63__DOUBLE_COST: 213 sized orders, 124 signals
+PASS 68/110 CLUSTER_SLOW_EXIT63__LAG1: 211 sized orders, 125 signals
+PASS 69/110 CLUSTER_SLOW_EXIT63__LAG2: 208 sized orders, 124 signals
+PASS 70/110 CLUSTER_SLOW_EXIT63__ZERO_COST: 213 sized orders, 124 signals
+PASS 71/110 CLUSTER_SLOW_RVOL__BASE: 223 sized orders, 80 signals
+PASS 72/110 CLUSTER_SLOW_RVOL__DOUBLE_COST: 223 sized orders, 80 signals
+PASS 73/110 CLUSTER_SLOW_RVOL__LAG1: 224 sized orders, 80 signals
+PASS 74/110 CLUSTER_SLOW_RVOL__LAG2: 224 sized orders, 80 signals
+PASS 75/110 CLUSTER_SLOW_RVOL__ZERO_COST: 223 sized orders, 80 signals
+PASS 76/110 CLUSTER_SLOW__BASE: 225 sized orders, 80 signals
+PASS 77/110 CLUSTER_SLOW__DOUBLE_COST: 225 sized orders, 80 signals
+PASS 78/110 CLUSTER_SLOW__LAG1: 225 sized orders, 80 signals
+PASS 79/110 CLUSTER_SLOW__LAG2: 225 sized orders, 80 signals
+PASS 80/110 CLUSTER_SLOW__ZERO_COST: 226 sized orders, 80 signals
+PASS 81/110 CLUSTER_TREND__BASE: 199 sized orders, 80 signals
+PASS 82/110 CLUSTER_TREND__DOUBLE_COST: 199 sized orders, 80 signals
+PASS 83/110 CLUSTER_TREND__LAG1: 200 sized orders, 80 signals
+PASS 84/110 CLUSTER_TREND__LAG2: 201 sized orders, 80 signals
+PASS 85/110 CLUSTER_TREND__ZERO_COST: 198 sized orders, 80 signals
+PASS 86/110 DUAL21__BASE: 230 sized orders, 80 signals
+PASS 87/110 DUAL21__DOUBLE_COST: 231 sized orders, 80 signals
+PASS 88/110 DUAL21__LAG1: 230 sized orders, 80 signals
+PASS 89/110 DUAL21__LAG2: 230 sized orders, 80 signals
+PASS 90/110 DUAL21__ZERO_COST: 229 sized orders, 80 signals
+PASS 91/110 LEADERS__BASE: 136 sized orders, 80 signals
+PASS 92/110 LEADERS__DOUBLE_COST: 137 sized orders, 80 signals
+PASS 93/110 LEADERS__LAG1: 135 sized orders, 80 signals
+PASS 94/110 LEADERS__LAG2: 143 sized orders, 80 signals
+PASS 95/110 LEADERS__ZERO_COST: 136 sized orders, 80 signals
+PASS 96/110 LIQ_DUAL21__BASE: 213 sized orders, 80 signals
+PASS 97/110 LIQ_DUAL21__DOUBLE_COST: 215 sized orders, 80 signals
+PASS 98/110 LIQ_DUAL21__LAG1: 213 sized orders, 80 signals
+PASS 99/110 LIQ_DUAL21__LAG2: 214 sized orders, 80 signals
+PASS 100/110 LIQ_DUAL21__ZERO_COST: 212 sized orders, 80 signals
+PASS 101/110 LIQ_LEADERS__BASE: 141 sized orders, 80 signals
+PASS 102/110 LIQ_LEADERS__DOUBLE_COST: 141 sized orders, 80 signals
+PASS 103/110 LIQ_LEADERS__LAG1: 139 sized orders, 80 signals
+PASS 104/110 LIQ_LEADERS__LAG2: 142 sized orders, 80 signals
+PASS 105/110 LIQ_LEADERS__ZERO_COST: 141 sized orders, 80 signals
+PASS 106/110 PASSIVE__BASE: 1 sized orders, 1 signals
+PASS 107/110 PASSIVE__DOUBLE_COST: 1 sized orders, 1 signals
+PASS 108/110 PASSIVE__LAG1: 1 sized orders, 1 signals
+PASS 109/110 PASSIVE__LAG2: 1 sized orders, 1 signals
+PASS 110/110 PASSIVE__ZERO_COST: 1 sized orders, 1 signals
+{
+  "status": "PASS_110_INDEPENDENT_ACCOUNT_AND_SIGNAL_RECONSTRUCTIONS",
+  "started_utc": "2026-11-15T18:37:55.952319+00:00",
+  "finished_utc": "2026-11-15T18:39:49.028427+00:00",
+  "paths": 110,
+  "protocol_sha256": "862b1cf8338b24772960991da72abb54422f3019f6cafa9b57b667f39c3e8444",
+  "adaptive_stage": false,
+  "complete_grid": true,
+  "frozen_code_and_inputs_unchanged": true,
+  "independently_rebuilt_snapshots": 80,
+  "independently_rebuilt_groups": 13528,
+  "independently_derived_raw_targets": 1681,
+  "independently_derived_instructions": 9094,
+  "independently_derived_reduction_signals": 689,
+  "order_timestamps_checked": 24230,
+  "order_quantities_checked": 24230,
+  "numerical_residue_only_deferred_sessions": 0,
+  "financial_csv_float_parser": "round_trip",
+  "max_nav_cash_error": 1.3278622645884752e-10,
+  "max_per_order_cost_error": 1.4210854715202004e-14,
+  "max_daily_pnl_attribution_error": 1.8417267710901797e-11,
+  "available_prior_baselines_reproduced": 11,
+  "unavailable_prior_baselines": 4,
+  "source_liquidity_instruments_checked": 246,
+  "source_liquidity_rows_checked": 484620,
+  "numeric_target_passes": 0,
+  "full_target_passes": 0,
+  "accounting_imports_production_code": false,
+  "selector_reference_imports_production_code": false,
+  "limitations": [
+    "Current catalogue survivorship and historical product status are not certified.",
+    "The vendor opening mask uses positive completed-day volume retrospectively.",
+    "Adjusted-price factor vintage is not certified point-in-time.",
+    "Cash interest is zero; taxes are excluded; units are fractional economic units.",
+    "Open/close sampled drawdown does not measure every intraday low.",
+    "A common SciPy complete-link library is used with independently derived Pearson matrices.",
+    "Trade participation is descriptive and does not certify broker liquidity or realized slippage."
+  ]
+}

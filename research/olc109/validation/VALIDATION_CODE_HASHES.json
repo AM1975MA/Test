@@ -1,0 +1,12 @@
+{
+  "validation/account_reference.py": "6173e00716f10e2edb28186e879edf9f2017be8a6e9b4bc757824bf4c854ffd2",
+  "validation/build_audit_report.py": "41c314a0b6c628e94bffc5e8abf5f3c22bd52d401840f53c8becfd1313c525be",
+  "validation/check_analysis_bootstrap.py": "889d9b3e16de22d4d1cd5616cb242490044106471023f17cc0d36a3d426e8862",
+  "validation/check_csv_precision_regression.py": "9fe87adb84ce8f696948139bc0e3c35ff010d13f7903430f3e0cde069af59919",
+  "validation/check_held_price_age.py": "55cf0e01179a289cd7a6087d917567f590f56b9192e2a76134e0be600142321d",
+  "validation/check_matched_state_review.py": "8a249a27f262cfce0cd7c6c6fc606b7d6ac19fcd6ede7d0dd565248b9bcc906e",
+  "validation/check_prefix_causality.py": "e5e44784dbb8b724deb4310e55dc50ace0a20eafdc35fe1ff728951eaba65f8c",
+  "validation/check_tamper_rejections.py": "af58b0bc69cdca3bd5e5a4a21645aff2319249887e8d8eef789f6b8efbf4e824",
+  "validation/run_independent_audit.py": "44fcf4ba68cb62641eacbe04b566839f290b1d6d1bdf45cdd3c5c75a48c6f1fd",
+  "validation/signal_reference.py": "4a82b9c66f158efa5c4b5aadc3f96a49bd7394d1801a2e9ebfe55c69f43e3060"
+}

@@ -1,0 +1,45 @@
+{
+  "status": "PASS_FINAL_FROZEN_RESULTS_AND_DELIVERABLE_CHECKS",
+  "completed_utc": "2026-11-15T19:03:33.751168+00:00",
+  "financial_manifests": [
+    {
+      "directory": "results",
+      "paths": 110,
+      "frozen_financial_code_inputs_protocol_snapshots_unchanged": true
+    },
+    {
+      "directory": "results_stage2",
+      "paths": 50,
+      "frozen_financial_code_inputs_protocol_snapshots_unchanged": true
+    },
+    {
+      "directory": "results_stage3",
+      "paths": 40,
+      "frozen_financial_code_inputs_protocol_snapshots_unchanged": true
+    }
+  ],
+  "local_tests_passed": 51,
+  "independent_paths": 200,
+  "independent_orders": 49055,
+  "configurations": 40,
+  "current_drawdown_exclusion_gate": false,
+  "current_cagr_target": 0.3,
+  "cagr_target_passes_all_scenarios": 0,
+  "base_best_cagr": 0.2575261197698917,
+  "source_audit_artifact_hashes_checked": 17,
+  "all_financial_code_inputs_protocols_unchanged": true,
+  "report_independent_numerical_review": "PASS; minor source path reference corrected",
+  "figure_visual_review": "PASS; full labels visible, no footer overlap",
+  "report_sha256": "6ea94abad8f7cc8f61a24be104c4ef5b0281625ef28714d31b510aa6c688e03e",
+  "scorecard_sha256": "4009515176db43b48ff8430f6467730b9def38c6f5e8217167c6fa3c9be099e9",
+  "figure_sha256": "18ae295ee18e1d72877a34619ed777012b517e0186239ed8a0426b7964ac4c0b",
+  "open_methodological_limits": [
+    "Adaptive research on previously observed history; no untouched holdout",
+    "Current catalogue survivorship",
+    "Opening mask depends on completed-day positive volume",
+    "Adjusted-price vintage not certified",
+    "Opening execution prices and capacities not certified",
+    "Fractional economic units; cash zero yield; taxes excluded",
+    "Drawdown sampled at Open/Close only"
+  ]
+}

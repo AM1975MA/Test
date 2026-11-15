@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "completed_utc": "2026-11-15T18:46:51.082281+00:00",
+  "intervals": 160,
+  "scenarios": [
+    "BASE",
+    "LAG2"
+  ],
+  "compounded": false,
+  "maximum_terminal_parity_error": 0.0,
+  "common_prior_fills": 0,
+  "protocol_sha256": "1eafaed6fe98ffe480b11fb5b5231539eaf0a1b60519cd2434935d757374fcf8",
+  "summary": [
+    {
+      "scenario": "BASE",
+      "subset": "ALL",
+      "n": 80,
+      "mean_increment_bps": 43.632238386454006,
+      "median_increment_bps": 0.0,
+      "wins": 24,
+      "losses": 16,
+      "ties": 40,
+      "min_increment_bps": -1124.2726696404566,
+      "max_increment_bps": 1119.717123935652,
+      "maximum_terminal_parity_error": 0.0
+    },
+    {
+      "scenario": "BASE",
+      "subset": "CHANGED",
+      "n": 40,
+      "mean_increment_bps": 87.26447677290801,
+      "median_increment_bps": 176.08039142057743,
+      "wins": 24,
+      "losses": 16,
+      "ties": 0,
+      "min_increment_bps": -1124.2726696404566,
+      "max_increment_bps": 1119.717123935652,
+      "maximum_terminal_parity_error": 0.0
+    },
+    {
+      "scenario": "LAG2",
+      "subset": "ALL",
+      "n": 80,
+      "mean_increment_bps": 45.09326407116036,
+      "median_increment_bps": 0.0,
+      "wins": 27,
+      "losses": 13,
+      "ties": 40,
+      "min_increment_bps": -925.0961289251195,
+      "max_increment_bps": 852.7040499591892,
+      "maximum_terminal_parity_error": 0.0
+    },
+    {
+      "scenario": "LAG2",
+      "subset": "CHANGED",
+      "n": 40,
+      "mean_increment_bps": 90.18652814232073,
+      "median_increment_bps": 59.917101211329225,
+      "wins": 27,
+      "losses": 13,
+      "ties": 0,
+      "min_increment_bps": -925.0961289251195,
+      "max_increment_bps": 852.7040499591892,
+      "maximum_terminal_parity_error": 0.0
+    }
+  ],
+  "limitations": "Post-selection descriptive intervention; not independent strategy performance; same source/account conventions."
+}

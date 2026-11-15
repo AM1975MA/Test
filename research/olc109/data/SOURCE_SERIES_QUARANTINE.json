@@ -1,0 +1,37 @@
+{
+  "DE000ETFL318": {
+    "symbol": "EL45.DE",
+    "reason": "CONFIRMED_NATIVE_CURRENCY_DIVIDEND_UNIT_ERROR_CONTAMINATES_ADJUSTMENT_CHAIN",
+    "source_url": "https://www.deka-etf.de/wissen/news/382",
+    "evidence_file": "data/SOURCE_CORRECTIONS_REVIEW.validation.json",
+    "evidence": "Issuer dividend 6.63 JPY was applied numerically to EUR7.786 quote; multiple historical native-currency distributions corrupt the entire adjusted history. No guessed EUR cash conversion is substituted."
+  },
+  "IE00B3YCGJ38": {
+    "symbol": "P500.DE",
+    "reason": "CONFIRMED_100_FOR_1_SPLIT_NOT_REFLECTED_IN_PROVIDER_TOTAL_RETURN_CHAIN",
+    "source_url": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B3YCGJ38_factsheet_en.pdf",
+    "evidence_file": "data/SOURCE_CORPORATE_ACTION_REVIEW.validation.json",
+    "evidence": "Issuer confirms 100-for-1 split on 2025-12-15. Archived raw and adjusted prices both fall by about99% across that date; no matching split factor. Quarantine entire provider history pending complete reconciliation."
+  },
+  "LU1829219390": {
+    "symbol": "LYBK.DE",
+    "reason": "CONFIRMED_80_FOR_1_SPLIT_WITH_UNRECONCILED_PROVIDER_DATE_AND_TOTAL_RETURN_CHAIN",
+    "source_url": "https://www.amundietf.nl/en/professional/products/equity/amundi-euro-stoxx-banks-ucits-etf-acc/lu1829219390",
+    "evidence_file": "data/SOURCE_CORPORATE_ACTION_REVIEW.validation.json",
+    "evidence": "Issuer confirms 1:80 split effective2026-10-27. Provider raw and adjusted prices already fall from349.80 to4.4275 on2026-10-26. Both unit adjustment and date require reconciliation; no guessed repair."
+  },
+  "LU2090063673": {
+    "symbol": "NADA.DE",
+    "reason": "UNRESOLVED_HISTORICAL_CURRENCY_OR_UNIT_DISCONTINUITY_IN_PROVIDER_SERIES",
+    "source_url": "https://www.amundietf.lu/pdfDocuments/monthly-factsheet/LU2090063673/ENG/LUX/INSTITUTIONNEL/ETF/20250831",
+    "evidence_file": "data/SOURCE_CORPORATE_ACTION_REVIEW.validation.json",
+    "evidence": "JPY share-class reference currency per issuer; provider metadata currently EUR. Raw price jumps from10787.176758 on2025-02-28 to69.919998 on2025-03-03 with positive volume on both rows, unchanged adjustment ratio and no split. Native-NAV/EUR switching is a plausible explanation, not proved; historical quote units remain unresolved. Entire provider series quarantined without guessed FX conversion."
+  },
+  "IE00B1FZS574": {
+    "symbol": "IQQ5.DE",
+    "reason": "CONFIRMED_ISSUER_EX_DATE_AND_PROVIDER_ADJUSTMENT_DATE_DISAGREE_ON_TRADED_BARS",
+    "source_url": "https://www.bxswiss.com/ols/downloads/publication-attachments/230510-143856_iShares%20II%20Declaration%20Pay%20Date%20May%2030%202023.pdf",
+    "evidence_file": "data/SOURCE_POINT_EVENT_REVIEW.validation.json",
+    "evidence": "Issuer: USD0.4300, ex-date2023-05-19, record2023-05-22. Provider: EUR0.398184 and factor change0.91506586 to0.94177518 on2023-05-22; both19May and22May have positive volume and valid close geometry. Entire provider series quarantined; no guessed cash-FX conversion or date-only repair."
+  }
+}

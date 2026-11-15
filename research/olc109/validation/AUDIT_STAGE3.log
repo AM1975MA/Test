@@ -1,0 +1,83 @@
+Rebuilding features and complete-link clusters from data
+Reconstructed 80 snapshots, 13528 groups, 640 raw selection targets
+PASS 1/40 CAPITAL_3H_TILT__BASE: 683 sized orders, 80 signals
+PASS 2/40 CAPITAL_3H_TILT__DOUBLE_COST: 685 sized orders, 80 signals
+PASS 3/40 CAPITAL_3H_TILT__LAG1: 682 sized orders, 80 signals
+PASS 4/40 CAPITAL_3H_TILT__LAG2: 685 sized orders, 80 signals
+PASS 5/40 CAPITAL_3H_TILT__ZERO_COST: 683 sized orders, 80 signals
+PASS 6/40 CAPITAL_3H__BASE: 643 sized orders, 80 signals
+PASS 7/40 CAPITAL_3H__DOUBLE_COST: 643 sized orders, 80 signals
+PASS 8/40 CAPITAL_3H__LAG1: 641 sized orders, 80 signals
+PASS 9/40 CAPITAL_3H__LAG2: 642 sized orders, 80 signals
+PASS 10/40 CAPITAL_3H__ZERO_COST: 642 sized orders, 80 signals
+PASS 11/40 HORIZON126_TOP1__BASE: 115 sized orders, 80 signals
+PASS 12/40 HORIZON126_TOP1__DOUBLE_COST: 115 sized orders, 80 signals
+PASS 13/40 HORIZON126_TOP1__LAG1: 115 sized orders, 80 signals
+PASS 14/40 HORIZON126_TOP1__LAG2: 115 sized orders, 80 signals
+PASS 15/40 HORIZON126_TOP1__ZERO_COST: 115 sized orders, 80 signals
+PASS 16/40 HORIZON126__BASE: 333 sized orders, 80 signals
+PASS 17/40 HORIZON126__DOUBLE_COST: 333 sized orders, 80 signals
+PASS 18/40 HORIZON126__LAG1: 329 sized orders, 80 signals
+PASS 19/40 HORIZON126__LAG2: 331 sized orders, 80 signals
+PASS 20/40 HORIZON126__ZERO_COST: 333 sized orders, 80 signals
+PASS 21/40 HORIZON252_TOP1__BASE: 79 sized orders, 80 signals
+PASS 22/40 HORIZON252_TOP1__DOUBLE_COST: 79 sized orders, 80 signals
+PASS 23/40 HORIZON252_TOP1__LAG1: 79 sized orders, 80 signals
+PASS 24/40 HORIZON252_TOP1__LAG2: 79 sized orders, 80 signals
+PASS 25/40 HORIZON252_TOP1__ZERO_COST: 79 sized orders, 80 signals
+PASS 26/40 HORIZON252__BASE: 266 sized orders, 80 signals
+PASS 27/40 HORIZON252__DOUBLE_COST: 267 sized orders, 80 signals
+PASS 28/40 HORIZON252__LAG1: 269 sized orders, 80 signals
+PASS 29/40 HORIZON252__LAG2: 267 sized orders, 80 signals
+PASS 30/40 HORIZON252__ZERO_COST: 266 sized orders, 80 signals
+PASS 31/40 HORIZON63_TOP1__BASE: 123 sized orders, 80 signals
+PASS 32/40 HORIZON63_TOP1__DOUBLE_COST: 123 sized orders, 80 signals
+PASS 33/40 HORIZON63_TOP1__LAG1: 123 sized orders, 80 signals
+PASS 34/40 HORIZON63_TOP1__LAG2: 123 sized orders, 80 signals
+PASS 35/40 HORIZON63_TOP1__ZERO_COST: 123 sized orders, 80 signals
+PASS 36/40 HORIZON63__BASE: 346 sized orders, 80 signals
+PASS 37/40 HORIZON63__DOUBLE_COST: 345 sized orders, 80 signals
+PASS 38/40 HORIZON63__LAG1: 340 sized orders, 80 signals
+PASS 39/40 HORIZON63__LAG2: 343 sized orders, 80 signals
+PASS 40/40 HORIZON63__ZERO_COST: 346 sized orders, 80 signals
+{
+  "status": "PASS_40_INDEPENDENT_ACCOUNT_AND_SIGNAL_RECONSTRUCTIONS",
+  "started_utc": "2026-11-15T18:43:10.852445+00:00",
+  "finished_utc": "2026-11-15T18:43:56.500911+00:00",
+  "paths": 40,
+  "protocol_sha256": "cd0229d453782450c642e59046bdda1748374862d20c64da385867eb7a6bcac0",
+  "adaptive_stage": true,
+  "complete_grid": true,
+  "frozen_code_and_inputs_unchanged": true,
+  "independently_rebuilt_snapshots": 80,
+  "independently_rebuilt_groups": 13528,
+  "independently_derived_raw_targets": 640,
+  "independently_derived_instructions": 3200,
+  "independently_derived_reduction_signals": 0,
+  "order_timestamps_checked": 12928,
+  "order_quantities_checked": 12928,
+  "numerical_residue_only_deferred_sessions": 0,
+  "financial_csv_float_parser": "round_trip",
+  "max_nav_cash_error": 1.0550138540565968e-10,
+  "max_per_order_cost_error": 7.105427357601002e-15,
+  "max_daily_pnl_attribution_error": 1.3784529073745944e-11,
+  "available_prior_baselines_reproduced": 0,
+  "unavailable_prior_baselines": 0,
+  "source_liquidity_instruments_checked": 182,
+  "source_liquidity_rows_checked": 358540,
+  "numeric_target_passes": 0,
+  "full_target_passes": 0,
+  "current_cagr_target_passes": 0,
+  "current_cagr_base_passes": 0,
+  "accounting_imports_production_code": false,
+  "selector_reference_imports_production_code": false,
+  "limitations": [
+    "Current catalogue survivorship and historical product status are not certified.",
+    "The vendor opening mask uses positive completed-day volume retrospectively.",
+    "Adjusted-price factor vintage is not certified point-in-time.",
+    "Cash interest is zero; taxes are excluded; units are fractional economic units.",
+    "Open/close sampled drawdown does not measure every intraday low.",
+    "A common SciPy complete-link library is used with independently derived Pearson matrices.",
+    "Trade participation is descriptive and does not certify broker liquidity or realized slippage."
+  ]
+}

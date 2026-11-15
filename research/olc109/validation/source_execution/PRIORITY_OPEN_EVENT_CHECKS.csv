@@ -1,0 +1,4 @@
+isin,symbol,date,traded_any_date,accepted_open,accepted_close,direct_use_paths,selected_close_history_rows
+DE000ETF7037,F703.DE,2020-03-18,False,True,True,0,0
+IE00BJQRDP39,IQSE.DE,2021-02-15,False,True,True,0,0
+IE00BZ2GV965,UEQU.DE,2022-03-08,False,True,True,0,0

@@ -1,0 +1,39 @@
+{
+  "status": "PASS_CSV_ROUND_TRIP_PENDING_REGRESSION",
+  "results": [
+    {
+      "parser": "pandas_default",
+      "deferred": 0,
+      "reported_deferred": 1,
+      "max_nav_error": 9.458744898438454e-11,
+      "events": []
+    },
+    {
+      "parser": "round_trip",
+      "deferred": 1,
+      "reported_deferred": 1,
+      "max_nav_error": 8.185452315956354e-11,
+      "events": [
+        {
+          "date": "2022-12-12",
+          "instruction_id": 43,
+          "isins": [
+            "FR0010405431"
+          ],
+          "units": [
+            1.8189894035458565e-12
+          ],
+          "execution_target": [
+            1.0721187511947793e-16
+          ],
+          "marked_eur": [
+            1.6347630714397265e-12
+          ]
+        }
+      ]
+    }
+  ],
+  "financial_implementation_changed": false,
+  "financial_results_changed": false,
+  "correction": "Parse serialized financial binary64 values with float_precision='round_trip'; retain strict pending and economic-position tests."
+}

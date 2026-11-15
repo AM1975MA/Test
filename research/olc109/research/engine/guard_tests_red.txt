@@ -1,0 +1,196 @@
+test_asymmetric_open_gap_cannot_buy_an_unchanged_guard_leg (test_guard_engine.GuardEngineTests.test_asymmetric_open_gap_cannot_buy_an_unchanged_guard_leg) ... FAIL
+test_disabled_guard_exactly_preserves_immutable_engine_outputs (test_guard_engine.GuardEngineTests.test_disabled_guard_exactly_preserves_immutable_engine_outputs) ... ok
+test_future_data_and_guard_schedule_cannot_change_the_completed_prefix (test_guard_engine.GuardEngineTests.test_future_data_and_guard_schedule_cannot_change_the_completed_prefix) ... FAIL
+test_guard_emission_takes_precedence_over_volatility_reduction (test_guard_engine.GuardEngineTests.test_guard_emission_takes_precedence_over_volatility_reduction) ... FAIL
+test_guard_mask_requires_the_same_calendar_as_the_panel (test_guard_engine.GuardEngineTests.test_guard_mask_requires_the_same_calendar_as_the_panel) ... FAIL
+test_guard_rejects_any_addition_even_when_gross_exposure_falls (test_guard_engine.GuardEngineTests.test_guard_rejects_any_addition_even_when_gross_exposure_falls) ... FAIL
+test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights (test_guard_engine.GuardEngineTests.test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights) ... 
+  test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights (test_guard_engine.GuardEngineTests.test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights) (target=[nan, 0.0]) ... FAIL
+  test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights (test_guard_engine.GuardEngineTests.test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights) (target=[-0.1, 0.1]) ... FAIL
+  test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights (test_guard_engine.GuardEngineTests.test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights) (target=[0.6, 0.6]) ... FAIL
+  test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights (test_guard_engine.GuardEngineTests.test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights) (target=[0.1]) ... FAIL
+test_guard_runs_only_on_requested_nonfinal_closes (test_guard_engine.GuardEngineTests.test_guard_runs_only_on_requested_nonfinal_closes) ... FAIL
+test_guard_sees_actual_close_weights_and_waits_until_lagged_open (test_guard_engine.GuardEngineTests.test_guard_sees_actual_close_weights_and_waits_until_lagged_open) ... FAIL
+test_missing_guard_mask_disables_guard (test_guard_engine.GuardEngineTests.test_missing_guard_mask_disables_guard) ... FAIL
+test_missing_open_keeps_guard_pending_without_buying_partial_fills_back (test_guard_engine.GuardEngineTests.test_missing_open_keeps_guard_pending_without_buying_partial_fills_back) ... FAIL
+test_monthly_decision_takes_precedence_and_can_reenter_after_a_guard (test_guard_engine.GuardEngineTests.test_monthly_decision_takes_precedence_and_can_reenter_after_a_guard) ... FAIL
+test_none_and_unchanged_guard_results_emit_no_instruction (test_guard_engine.GuardEngineTests.test_none_and_unchanged_guard_results_emit_no_instruction) ... FAIL
+test_queued_guard_targets_are_immutable_and_never_rebuy_an_earlier_sale (test_guard_engine.GuardEngineTests.test_queued_guard_targets_are_immutable_and_never_rebuy_an_earlier_sale) ... FAIL
+
+======================================================================
+FAIL: test_asymmetric_open_gap_cannot_buy_an_unchanged_guard_leg (test_guard_engine.GuardEngineTests.test_asymmetric_open_gap_cannot_buy_an_unchanged_guard_leg)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 130, in test_asymmetric_open_gap_cannot_buy_an_unchanged_guard_leg
+    r = self.run_case(lag=2, guard_policy=lambda k, w: [w[0], 0.],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_future_data_and_guard_schedule_cannot_change_the_completed_prefix (test_guard_engine.GuardEngineTests.test_future_data_and_guard_schedule_cannot_change_the_completed_prefix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 236, in test_future_data_and_guard_schedule_cannot_change_the_completed_prefix
+    original, mutated = evaluate(self.p, False), evaluate(changed, True)
+                        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 233, in evaluate
+    return self.run_case(panel=panel, features=features, lag=2,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_guard_emission_takes_precedence_over_volatility_reduction (test_guard_engine.GuardEngineTests.test_guard_emission_takes_precedence_over_volatility_reduction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 203, in test_guard_emission_takes_precedence_over_volatility_reduction
+    r = self.run_case(features=features, lag=2, risk_target=.15,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_guard_mask_requires_the_same_calendar_as_the_panel (test_guard_engine.GuardEngineTests.test_guard_mask_requires_the_same_calendar_as_the_panel)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 198, in test_guard_mask_requires_the_same_calendar_as_the_panel
+    self.run_case(guard_policy=lambda k, w: None, guard_mask=np.ones(339, bool))
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_guard_rejects_any_addition_even_when_gross_exposure_falls (test_guard_engine.GuardEngineTests.test_guard_rejects_any_addition_even_when_gross_exposure_falls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 189, in test_guard_rejects_any_addition_even_when_gross_exposure_falls
+    self.run_case(guard_policy=lambda k, w: [0., .6], guard_mask=self.schedule(300))
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights (test_guard_engine.GuardEngineTests.test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights) (target=[nan, 0.0])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 194, in test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights
+    self.run_case(guard_policy=lambda k, w: target, guard_mask=self.schedule(300))
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights (test_guard_engine.GuardEngineTests.test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights) (target=[-0.1, 0.1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 194, in test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights
+    self.run_case(guard_policy=lambda k, w: target, guard_mask=self.schedule(300))
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights (test_guard_engine.GuardEngineTests.test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights) (target=[0.6, 0.6])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 194, in test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights
+    self.run_case(guard_policy=lambda k, w: target, guard_mask=self.schedule(300))
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights (test_guard_engine.GuardEngineTests.test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights) (target=[0.1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 194, in test_guard_rejects_nonfinite_negative_leveraged_or_wrong_shape_weights
+    self.run_case(guard_policy=lambda k, w: target, guard_mask=self.schedule(300))
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_guard_runs_only_on_requested_nonfinal_closes (test_guard_engine.GuardEngineTests.test_guard_runs_only_on_requested_nonfinal_closes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 158, in test_guard_runs_only_on_requested_nonfinal_closes
+    r = self.run_case(guard_policy=guard, guard_mask=self.schedule(299, 300, 302, 319, 320))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_guard_sees_actual_close_weights_and_waits_until_lagged_open (test_guard_engine.GuardEngineTests.test_guard_sees_actual_close_weights_and_waits_until_lagged_open)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 99, in test_guard_sees_actual_close_weights_and_waits_until_lagged_open
+    r = self.run_case(lag=2, guard_policy=guard, guard_mask=self.schedule(303))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_missing_guard_mask_disables_guard (test_guard_engine.GuardEngineTests.test_missing_guard_mask_disables_guard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 185, in test_missing_guard_mask_disables_guard
+    self.assert_same_results(self.run_case(), self.run_case(guard_policy=guard))
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_missing_open_keeps_guard_pending_without_buying_partial_fills_back (test_guard_engine.GuardEngineTests.test_missing_open_keeps_guard_pending_without_buying_partial_fills_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 117, in test_missing_open_keeps_guard_pending_without_buying_partial_fills_back
+    r = self.run_case(guard_policy=lambda k, w: [0., .25],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_monthly_decision_takes_precedence_and_can_reenter_after_a_guard (test_guard_engine.GuardEngineTests.test_monthly_decision_takes_precedence_and_can_reenter_after_a_guard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 167, in test_monthly_decision_takes_precedence_and_can_reenter_after_a_guard
+    r = self.run_case(policy=lambda k, w: [.5, .5], mask=self.schedule(303),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_none_and_unchanged_guard_results_emit_no_instruction (test_guard_engine.GuardEngineTests.test_none_and_unchanged_guard_results_emit_no_instruction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 179, in test_none_and_unchanged_guard_results_emit_no_instruction
+    self.assert_same_results(baseline, self.run_case(guard_policy=guard,
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+======================================================================
+FAIL: test_queued_guard_targets_are_immutable_and_never_rebuy_an_earlier_sale (test_guard_engine.GuardEngineTests.test_queued_guard_targets_are_immutable_and_never_rebuy_an_earlier_sale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 143, in test_queued_guard_targets_are_immutable_and_never_rebuy_an_earlier_sale
+    r = self.run_case(lag=2, guard_policy=guard, guard_mask=self.schedule(303, 304))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_guard_engine.py", line 44, in run_case
+    self.assertIn("guard_policy", inspect.signature(engine.simulate).parameters)
+AssertionError: 'guard_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">}))
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.135s
+
+FAILED (failures=16)

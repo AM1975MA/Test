@@ -1,0 +1,265 @@
+{
+  "retrieved": "2026-11-15",
+  "mode": "read-only GitHub connector; no repo, main, trading, or automation changes",
+  "repo": "AM1975MA/Test",
+  "main_commit": "a87e84bc4e53e94a4a4e4c5ecc157e338f2716a3",
+  "source_commit": "f46670a473b9d9ce325593634bc802c7bdfdb505",
+  "files": [
+    {
+      "local_name": "OLC99_REPORT_IT.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/b722d706afc503008d8e59d857d8a8b15b89f862/research/olc99/REPORT_OLC99_IT.md",
+      "source_blob_sha": "90ab3013009963c7d3e83b35f49ecc1b5632516e",
+      "source_encoding": "utf-8",
+      "local_bytes": 13408,
+      "local_sha256": "549ac9b7fbaeb03036912316428fe5b5ebd875a9b623eee7a54390434310de0d"
+    },
+    {
+      "local_name": "OLC103_REPORT_IT.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc103/OLC103_REPORT_IT.md",
+      "source_blob_sha": "43205f8f246b03a9a5f587f6e2cf11b5d8f78582",
+      "source_encoding": "utf-8",
+      "local_bytes": 10273,
+      "local_sha256": "6cb9be55dace62085e1c53c5decadd6e24ffabc5eb67c9ec083a832b53596f87"
+    },
+    {
+      "local_name": "OLC102_REPORT_IT.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc102/OLC102_REPORT_IT.md",
+      "source_blob_sha": "8fe3e0967e5e5a5b3195cfd5d2676ebe33157726",
+      "source_encoding": "utf-8",
+      "local_bytes": 9575,
+      "local_sha256": "858fc85a2f931349493a8453488b8e0acc6ff39d15041c034f65dd8c459c43bc"
+    },
+    {
+      "local_name": "OLC73_REPORT_IT.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/3594bf27fac06ef2ad7ba437472776f125e52937/research/olc73_top2_allocation_20261108/REPORT_OLC73_IT.md",
+      "source_blob_sha": "fb50a73b86bee16fba12576a5b9af2c2903389da",
+      "source_encoding": "utf-8",
+      "local_bytes": 8651,
+      "local_sha256": "4f38e39bad14bb8b64744ac91213ecf9d2602284a8c152c4cd64e38fe4759a90"
+    },
+    {
+      "local_name": "OLC74_REPORT_IT.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/6fd79b849c1f399ab2f2b185151a2b88c14dae2b/research/olc74_top2_exante_20261108/REPORT_OLC74_IT.md",
+      "source_blob_sha": "b179d10a5c293a730e4e84d61b17d4bb824ef4fa",
+      "source_encoding": "utf-8",
+      "local_bytes": 13485,
+      "local_sha256": "bf3212043f94fc9aa56b43d3b9816019f774c4b36d57ac98634d0e890ef2ec39"
+    },
+    {
+      "local_name": "OLC98_PROTOCOL.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/b32f7b843d07e0939f5b6c860e651137442604b9/research/olc98/PROTOCOL_PRE_RESULTS.md",
+      "source_blob_sha": "e89807537e646e4df9186e6170485c8639a4ff25",
+      "source_encoding": "utf-8",
+      "local_bytes": 4418,
+      "local_sha256": "ef2b591976d07e3287bf35f5e679fb7c528e83bc50b4555d6245ca98e8008bcb"
+    },
+    {
+      "local_name": "EU165_FACTOR_4V9_README.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/19652349cf70ee547cf3dac85f1aeadfc8606f6f/etf-trader-v3%20corrected/experiments/eu165_factor_leadership_4v9_20261031/README.md",
+      "source_blob_sha": "26678fcfe1577b5ca3045a740591a232019c9bfe",
+      "source_encoding": "utf-8",
+      "local_bytes": 4830,
+      "local_sha256": "7709221dbc0280d41b68486299d84325943ba0eecdea160e13e8f4d74c8bef24"
+    },
+    {
+      "local_name": "OLC105_settings.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc105/anchored_transfer/src/settings.py",
+      "source_blob_sha": "3887096e9ae3f10d8b106117222b844a994bb783",
+      "source_encoding": "utf-8",
+      "local_bytes": 861,
+      "local_sha256": "cf55ca7376c02986b883e55d6a4bee1d127c67dad7321e7f5dd98e42d96cfcb9"
+    },
+    {
+      "local_name": "OLC105_build_transfer_features.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc105/anchored_transfer/src/build_transfer_features.py",
+      "source_blob_sha": "7a648f8b22af879343acaebc98b3238c9a878537",
+      "source_encoding": "utf-8",
+      "local_bytes": 1012,
+      "local_sha256": "9790c69f20f84571adb82bfec8246d8fe91640a62c9853378bb0eb8cba42b0ce"
+    },
+    {
+      "local_name": "OLC105_compose_transfer.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc105/anchored_transfer/src/compose_transfer.py",
+      "source_blob_sha": "96104416655b0c450f8802a29716210d91466d00",
+      "source_encoding": "utf-8",
+      "local_bytes": 4417,
+      "local_sha256": "e00cc8fc37c026d5f5d326c89f15cd973e5c6b5f40508c09fc790ba49ded23dd"
+    },
+    {
+      "local_name": "OLC105_data_transfer.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc105/anchored_transfer/src/data_transfer.py",
+      "source_blob_sha": "c457d040dba32ea6f7a2ccf06695890aab5762ee",
+      "source_encoding": "utf-8",
+      "local_bytes": 3015,
+      "local_sha256": "2870404e77c9cb12e1b97e66efd12d82a6d6b69cfc827cbffee14b2581264035"
+    },
+    {
+      "local_name": "OLC105_REPORT_IT.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc105/anchored_transfer/REPORT_IT.md",
+      "source_blob_sha": "4a218849ff5b527bd43015ff6dc3f87afde50e72",
+      "source_encoding": "utf-8",
+      "local_bytes": 8469,
+      "local_sha256": "a74dc93bc01932630130000cc62dd631daa83a849d6d4640e9561382612f8b1a"
+    },
+    {
+      "local_name": "OLC102_score_daily_models.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc102/score_daily_models.py",
+      "source_blob_sha": "7f96a4645ac276baad5c820e0eeac1d98ac277eb",
+      "source_encoding": "utf-8",
+      "local_bytes": 7457,
+      "local_sha256": "57dd57cef77bd935577404d4758c1a03d742a30bb21f31a707b75615f1c20312"
+    },
+    {
+      "local_name": "OLC102_build_daily_features.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc102/build_daily_features.py",
+      "source_blob_sha": "e441c29bcaa44d888bb1dbd25be3cdac9dc818fc",
+      "source_encoding": "utf-8",
+      "local_bytes": 10977,
+      "local_sha256": "005fc83d570a919753b9bb5ad5100566bc33fa140c46c0adb94dfd222e3e47c3"
+    },
+    {
+      "local_name": "EU165_SECTOR_README.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/26d03db0eb3f47f8b60937a7844c133b315aab51/etf-trader-v3%20corrected/experiments/eu165_economic_sector_leadership_20261030/README.md",
+      "source_blob_sha": "80f1a18082213b2df02a2156b8b7380dbbfe516b",
+      "source_encoding": "utf-8",
+      "local_bytes": 4145,
+      "local_sha256": "322c127f03f58781a0b6ff02ac4182af08d48ca161dd2ae485db04898100db23"
+    },
+    {
+      "local_name": "EU165_V5_README.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/a36a71dc1d02ce6cd54347f61098e5169727b366/etf-trader-v3%20corrected/experiments/etf_v5_hierarchical_factor_forecast_eu165_20261031/README.md",
+      "source_blob_sha": "c92a49235f92d97afc61475bcce846016422cd31",
+      "source_encoding": "utf-8",
+      "local_bytes": 5943,
+      "local_sha256": "eca324115052c29a6dd59b807ab633aa1bde0548aaa0ab376faebce6cd32c89b"
+    },
+    {
+      "local_name": "EU165_V5_AUDIT.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/a36a71dc1d02ce6cd54347f61098e5169727b366/etf-trader-v3%20corrected/experiments/etf_v5_hierarchical_factor_forecast_eu165_20261031/AUDIT_PUNTI_DEBOLI_20261031.md",
+      "source_blob_sha": "ec7c470b893d595df1af7a06739030382020373f",
+      "source_encoding": "utf-8",
+      "local_bytes": 6228,
+      "local_sha256": "3dfc2b4ae3407f484f0223672a936e7bce771c3d67bec416effdfc746028f298"
+    },
+    {
+      "local_name": "OLC51_CHECKPOINT_IT.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/3290d8f91d442749322c577c2266e6deb237c1dc/research/olc51_regime_allocation_20261105/OLC51_CHECKPOINT_IT.md",
+      "source_blob_sha": "5276b82cc347a138a5fd4137ea992891723a4e5f",
+      "source_encoding": "utf-8",
+      "local_bytes": 3143,
+      "local_sha256": "6cd14359f86b22bb9951a64ee18c332be08a365f6469923d8185b6f136db4ce0"
+    },
+    {
+      "local_name": "OLC16_context_model.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/99d6219006df62882cf04ada65db72951fadc419/research/olc16_contextual_rank_20261102/src/context_model.py",
+      "source_blob_sha": "c910dc08c0b185f945e18952a09b79d4133d3853",
+      "source_encoding": "utf-8",
+      "local_bytes": 6596,
+      "local_sha256": "689a76a2e74493ed10475b3c2f20b848157e3a3e24fd6b37d9af6791ebc46f5d"
+    },
+    {
+      "local_name": "OLC16_revalue_memory.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/99d6219006df62882cf04ada65db72951fadc419/research/olc16_contextual_rank_20261102/src/revalue_memory.py",
+      "source_blob_sha": "db01f113101993a4246e5900a0828a21f73d904d",
+      "source_encoding": "utf-8",
+      "local_bytes": 1301,
+      "local_sha256": "85024d9b8287f3b439d90b0041f5db73f3b45fd5bc63a07f1c7c09a48dad108d"
+    },
+    {
+      "local_name": "OLC16_core.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/99d6219006df62882cf04ada65db72951fadc419/research/olc16_contextual_rank_20261102/src/core.py",
+      "source_blob_sha": "a1b78e8cec09536785b0de25f678403f7b64b814",
+      "source_encoding": "utf-8",
+      "local_bytes": 5016,
+      "local_sha256": "64a53a284a48d615f24cc14b90fd4636a590a49bb8661e6f5de796c315312b9a"
+    },
+    {
+      "local_name": "OLC16_run.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/99d6219006df62882cf04ada65db72951fadc419/research/olc16_contextual_rank_20261102/src/run.py",
+      "source_blob_sha": "b9458a4005c8a189c120e8c3719a9b825ee485b2",
+      "source_encoding": "utf-8",
+      "local_bytes": 5807,
+      "local_sha256": "a285a79c0ee614e2b0123d7a82a072fa8de56925b105e01ca7bfbefcc76dd5c4"
+    },
+    {
+      "local_name": "OLC14_train_heads.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/99d6219006df62882cf04ada65db72951fadc419/research/olc14_fitted_ranking_20261101/src/train_heads.py",
+      "source_blob_sha": "ac0dc06eacb32f51d8322e30ac3f46c47312066e",
+      "source_encoding": "utf-8",
+      "local_bytes": 6672,
+      "local_sha256": "e716305c2acc7a0202fdb72eb88ad68388b79e3817cd132e39d6881b14b3fd70"
+    },
+    {
+      "local_name": "OLC08_train_variants.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/99d6219006df62882cf04ada65db72951fadc419/research/olc08_systematic_20261101/recovery/train_variants.py",
+      "source_blob_sha": "89946f8236af1dbb48046ff88edd5aa020dc8b4d",
+      "source_encoding": "utf-8",
+      "local_bytes": 10246,
+      "local_sha256": "46f5da9f4bc0cd41d276457f1e9adafb798f06aeab1c7a50c73efa558cc02730"
+    },
+    {
+      "local_name": "OLC16_experiment.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/99d6219006df62882cf04ada65db72951fadc419/research/olc16_contextual_rank_20261102/src/experiment.py",
+      "source_blob_sha": "397823fda588217ac9808a2d6632835c3b11b9e0",
+      "source_encoding": "utf-8",
+      "local_bytes": 6154,
+      "local_sha256": "642246f5bb467e631072b4f0e8f8f36e94978e12f724d04474baa2c797f51ed3"
+    },
+    {
+      "local_name": "OLC105_CLUSTER_TRANSFER_ADDENDUM.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc105/PROTOCOL_CLUSTER_TRANSFER_ADDENDUM.md",
+      "source_blob_sha": "d93f05041334a268842725f607254ddce72a12f9",
+      "source_encoding": "utf-8",
+      "local_bytes": 2224,
+      "local_sha256": "a9c1e2044fe52227519a121e3caeaa58384285501dfb4088b6d01cd57b3f0f34"
+    },
+    {
+      "local_name": "SOURCE_FEATURES42_producer.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/etf-trader-v3%20corrected/fullstack_legacy/src/etf_trader/ma3/producer.py",
+      "source_blob_sha": "e691376e3a8e0ec1bd38cc5b85a8ebbfa35d0592",
+      "source_encoding": "utf-8",
+      "local_bytes": 8823,
+      "local_sha256": "367121d53c307a3f11a453f9c71420ed4f60fe7236430b8e6ffd02147aea55b1"
+    },
+    {
+      "local_name": "SOURCE_FEATURES125_kernel.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/etf-trader-v3%20corrected/fullstack_legacy/src/etf_trader/source_only/kernel.py",
+      "source_blob_sha": "045e57996b02d481bd23f6e4dfe53738d43008e5",
+      "source_encoding": "utf-8",
+      "local_bytes": 43763,
+      "local_sha256": "6279ea8035888a3d7723a749b1608fc09d6a3c3d2bdbc829eb1e6cdb9add28a7"
+    },
+    {
+      "local_name": "OLC52_RESULTS_IT.md",
+      "source_url": "https://github.com/AM1975MA/Test/blob/3290d8f91d442749322c577c2266e6deb237c1dc/research/olc51_regime_allocation_20261105/OLC52_RESULTS_IT.md",
+      "source_blob_sha": "002cc5141279fe865e898a2193d1454926f86e5c",
+      "source_encoding": "utf-8",
+      "local_bytes": 2725,
+      "local_sha256": "f190ef8b13af475fa4dfc9240549cba33979a6259ac62cafeed4822a62d0d6d3"
+    },
+    {
+      "local_name": "OLC100_ARCHITECTURE_LOCK.json",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc100/ARCHITECTURE_LOCK.json",
+      "source_blob_sha": "88e05c8b6b50124f6f056bd302d45253620723f5",
+      "source_encoding": "utf-8",
+      "local_bytes": 4060,
+      "local_sha256": "84b0c9194102359f810279c7bb8b15b3eb6c8f4e22e016c9b2e665a39a6bd503"
+    },
+    {
+      "local_name": "OLC100_FROZEN_UPSTREAM_QA.json",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc100/results/OLC100_FROZEN_UPSTREAM_QA.json",
+      "source_blob_sha": "1bebae144e7cc70cd4441401edb715a432069360",
+      "source_encoding": "utf-8",
+      "local_bytes": 6394,
+      "local_sha256": "2cf47a02ec841e58705ce2e29e2b1a32b2f670fdd6429df776a0b64fff52b682"
+    },
+    {
+      "local_name": "OLC105_score_transfer.py",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc105/anchored_transfer/src/score_transfer.py",
+      "source_blob_sha": "a07e63fd597a2472464f7078bd5af422ebc9ebda",
+      "source_encoding": "utf-8",
+      "local_bytes": 6209,
+      "local_sha256": "79153f0f060c71d60711bbb9e0299317f5d42b82e6bdfe8dd6045701cff2826a"
+    }
+  ]
+}

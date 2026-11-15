@@ -1,0 +1,21 @@
+test_horizon_selectors (unittest.loader._FailedTest.test_horizon_selectors) ... ERROR
+
+======================================================================
+ERROR: test_horizon_selectors (unittest.loader._FailedTest.test_horizon_selectors)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_horizon_selectors
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/23237d81ce2c/olc109/tests/test_horizon_selectors.py", line 5, in <module>
+    import horizon_selectors as hs
+ModuleNotFoundError: No module named 'horizon_selectors'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

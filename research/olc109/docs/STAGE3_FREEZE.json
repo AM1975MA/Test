@@ -1,0 +1,12 @@
+{
+  "created_utc": "2026-11-15T18:41:33.220394+00:00",
+  "protocol_sha256": "cd0229d453782450c642e59046bdda1748374862d20c64da385867eb7a6bcac0",
+  "planned_unique_paths": 40,
+  "primary_arm": "CAPITAL_3H",
+  "prior_stage1_stage2_results_seen": true,
+  "stage3_returns_seen": false,
+  "pristine_holdout": false,
+  "adaptive_stage": true,
+  "drawdown_limit_active": false,
+  "current_target": "CAGR>=0.30;DDandCalmarreportednotgates"
+}

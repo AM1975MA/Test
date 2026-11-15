@@ -1,0 +1,22 @@
+{
+  "paths": 200,
+  "configurations": 40,
+  "stages": 3,
+  "legacy_numeric_passes": 0,
+  "legacy_full_passes": 0,
+  "current_objective": "CAGR>=30%;drawdownandCalmarreportednotgates;protectiondeferredbyuser",
+  "base_return_target_passes": 0,
+  "base_return_target_arms": [],
+  "cagr_at_least_30": 0,
+  "drawdown_at_most_25": 11,
+  "calmar_at_least_one": 0,
+  "base_pareto_frontier": [
+    "PASSIVE",
+    "CLUSTER_DUAL_PEERS2",
+    "DEDUP_DUAL_TREND_OPP",
+    "CLUSTER_PEERS2_RISK15",
+    "CLUSTER_PEERS2_RISK20"
+  ],
+  "bootstrap_note": "Circular moving-block6months,10000replications,seed109; descriptive, no multiplicity correction; full sample and adaptive choices already observed.",
+  "all_results_exploratory": true
+}

@@ -1,0 +1,10 @@
+{
+  "created_utc": "2026-11-15T18:24:09.437112+00:00",
+  "protocol_sha256": "862b1cf8338b24772960991da72abb54422f3019f6cafa9b57b667f39c3e8444",
+  "planned_unique_paths": 110,
+  "primary_arm": "CLUSTER_DUAL21",
+  "prior_results_seen": true,
+  "pristine_holdout": false,
+  "new_strategy_returns_seen": false,
+  "data_revision": "OLC108_V3"
+}

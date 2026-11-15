@@ -1,0 +1,35 @@
+{
+  "start_utc": "2026-11-15T18:32:54.610091+00:00",
+  "protocol_sha256": "b80377322fbe0e16453dd95814bf303ea62ff09a96e476afec662d28bf58a317",
+  "code_hashes": {
+    "src/engine.py": "30af3a38b90b81f502cf95d979209c032416418fd9b31ee60857937e1d1b004a",
+    "src/signals.py": "e2846ed075f68553b31f985585cece67b6d520b5adac2b3bb7b927ac48829029",
+    "src/cluster_selectors.py": "4105253f3332a5905d2fb4bc1960be887782f748efe033e9cca16ebcf9048e12",
+    "src/prepare_liquidity.py": "c1c36322e93d47941585f859eaf4ca47766417730c3da01ad08bb37631b9f4e8",
+    "src/run_research.py": "23cf49b5a49b0715f5c5441e9cb2581e8f19257bb9d19fb9943f54da17cf2973",
+    "src/run_stage2.py": "f6f9ca83f5e19527f315abb9a2e280734f38611a7a65a5cf681ceadd7a7dc640",
+    "src/dedup_selectors.py": "6643776c8ed11f3834211e2e10a269a8e7f11aeaac300ee1efd0712f20b043c2",
+    "source/src/core.py": "e49bd609bf9e65b6270b03fb9b706070edb3d2717765f37a856dff3d559551d9"
+  },
+  "data_hashes": {
+    "source/data/XETRA_EUR_ETF.npz": "14b4ee4a5834e93407f5b7aac2c4857cf6f0b0403f38296daea2725fe4848b96",
+    "data/LIQUIDITY.npz": "b95fa3d67837fa06c5705aa4aea09807d396464ab44ec1671031d797b57f4485"
+  },
+  "planned_unique_paths": 50,
+  "completed_paths": 50,
+  "primary_arm": "DEDUP_DUAL21",
+  "adaptive_stage": true,
+  "stage1_results_seen": true,
+  "universe": "XETRA_EUR_ETF_V3",
+  "data_revision": 3,
+  "pristine_holdout": false,
+  "prior_results_seen": true,
+  "fit_or_optimization": false,
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "scipy": "1.17.0",
+  "end_utc": "2026-11-15T18:33:26.402391+00:00",
+  "snapshot_sha256": "dbbfb4865a52209eb410aa9925da1f50aa458eeb94d4ba7085d58263c42957e8",
+  "correlation_sha256": "37784a888f9186d99fd505318e47aacecd3b20b1e2fc61c994c57b717e854c9b"
+}
