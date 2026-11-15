@@ -1,0 +1,244 @@
+--- research/engine/olc109_engine_reference.py
++++ src/engine.py
+@@ -12,13 +12,14 @@
+ from copy import deepcopy
+ import importlib.util
+ from pathlib import Path
++from types import MappingProxyType
+ 
+ import numpy as np
+ import pandas as pd
+ 
+ 
+ def simulate(panel, f, policy, decision_mask, *, legacy, risk_target=None,
+-             guard_policy=None, guard_mask=None,
++             guard_policy=None, guard_mask=None, account_policy=None,
+              lag=0, ticket=1., impact=.0015, start="2020-03-02",
+              end="2026-10-30", initial=10000.):
+     """Run close-decision/next-open simulation with optional sell-only controls.
+@@ -40,6 +41,25 @@
+     volatility reduction. Guard metadata is accepted but not recorded.
+     Guard instructions appear in ``alerts`` and ``instructions``; ``decisions``
+     remains the initial/scheduled policy ledger. Guard callbacks cannot reenter.
++
++    ``account_policy(k, current_weights, context)`` optionally replaces the
++    initial/scheduled selector and is also called on every nonterminal Close.
++    It must return a dict on initial/scheduled calls, and may return None on
++    other calls. The dict contains ``weights`` and optionally ``action_mask``
++    (a boolean vector, None means all assets), ``sell_only``, ``force``,
++    ``reason``, and ``meta``. Initial/scheduled instructions must be full.
++    Context contains detached account arrays, cash/nav, initial/scheduled
++    flags, immutable pending/queued instruction summaries, and last actual
++    buy/sell indices (-1 before any fill). No callback receives future data.
++
++    Targeted instructions preserve quantities outside their immutable mask.
++    Unaffected accepted Opens still mark NAV but are never executable quotes.
++    Signal targets preserve unaffected exposure and cap the involved budget;
++    the core then limits buys to actual cash after selling involved assets.
++    Sell-only instructions reject signal additions within their action mask
++    and clamp stale targets to actual opening exposure. All emitted account
++    decisions and metadata are recorded. When ``account_policy`` is None,
++    original outputs are unchanged.
+ 
+     ``legacy`` is the immutable core module or its explicit source path.
+     ``decisions`` contains copied pre-instruction units, cash, current weights,
+@@ -61,6 +81,8 @@
+         raise ValueError("CONFIG")
+     if risk_target is not None and (not np.isfinite(risk_target) or risk_target <= 0):
+         raise ValueError("RISK_TARGET")
++    if account_policy is not None and not callable(account_policy):
++        raise ValueError("ACCOUNT_POLICY")
+     dates = pd.DatetimeIndex(panel["dates"])
+     names = np.asarray(panel["names"])
+     O = np.asarray(panel["O"], float)
+@@ -83,6 +105,8 @@
+ 
+     units = np.zeros(n)
+     cash = float(initial)
++    last_buy_idx = np.full(n, -1, dtype=int)
++    last_sell_idx = np.full(n, -1, dtype=int)
+     queue = deque()
+     pending = None
+     orders, alerts, daily, decisions = [], [], [], []
+@@ -104,21 +128,117 @@
+             raise ValueError("NONFINITE_COVARIANCE")
+         return float(np.sqrt(max(0., w[ids] @ cov @ w[ids])))
+ 
+-    def issue(k, weights, reason, force=False, raw=None):
++    def issue(k, weights, reason, force=False, raw=None, *, action_mask=None,
++              sell_only=False, meta=None):
+         w = weights_checked(weights)
+         w.setflags(write=False)
++        if action_mask is not None:
++            action_mask = np.array(action_mask, dtype=bool, copy=True)
++            action_mask.setflags(write=False)
+         due = k + 1 + lag
+         instruction_id = len(alerts)
+         # Tuple and read-only ndarray prohibit later signals rewriting this
+         # instruction while retaining its earlier execution eligibility.
+-        queue.append((instruction_id, k, due, w, reason, bool(force)))
++        queue.append((instruction_id, k, due, w, reason, bool(force),
++                      action_mask, bool(sell_only)))
+         alerts.append(dict(instruction_id=instruction_id, signal_idx=k,
+                            signal_date=str(dates[k].date()), due_idx=due,
+                            execution_not_before=(str(dates[due].date()) if due < total else None),
+                            reason=reason, force=bool(force), gross_target=float(w.sum()),
+                            positions=int((w > 0).sum()), target_weights=tuple(w.tolist()),
+                            raw_weights=tuple(np.asarray(w if raw is None else raw).tolist())))
++        if account_policy is not None:
++            alerts[-1].update(action_indices=(None if action_mask is None else
++                                             np.flatnonzero(action_mask).tolist()),
++                              sell_only=bool(sell_only or reason in ("VOL_REDUCE", "TREND_REDUCE")),
++                              meta=deepcopy({} if meta is None else meta))
+         return instruction_id
++
++    def instruction_summary(instruction):
++        if instruction is None:
++            return None
++        iid, signal_idx, due_idx, target, reason, force, action_mask, sell_only = instruction
++        # Only immutable scalars/tuples are exposed. The mapping has no links
++        # back to either mutable ledger rows or the executable instruction.
++        return MappingProxyType(dict(instruction_id=iid, signal_idx=signal_idx,
++                                     due_idx=due_idx, target_weights=tuple(target.tolist()),
++                                     reason=reason, force=force, sell_only=sell_only,
++                                     action_indices=(None if action_mask is None else
++                                                     tuple(np.flatnonzero(action_mask).tolist()))))
++
++    def readonly_copy(values):
++        copied = values.copy()
++        copied.setflags(write=False)
++        return copied
++
++    def account_decide(k, *, initial_call=False, scheduled=False):
++        marked = np.where(np.isfinite(close_prices[k]), units * close_prices[k], 0.)
++        nav = float(cash + marked.sum())
++        current = marked / nav
++        context = dict(initial=bool(initial_call), scheduled=bool(scheduled),
++                       units=readonly_copy(units), cash=float(cash), nav=nav,
++                       pending=instruction_summary(pending),
++                       queued=tuple(instruction_summary(item) for item in queue),
++                       last_buy_idx=readonly_copy(last_buy_idx),
++                       last_sell_idx=readonly_copy(last_sell_idx))
++        answer = account_policy(k, current.copy(), context)
++        full_decision = initial_call or scheduled
++        if answer is None:
++            if full_decision:
++                raise ValueError("ACCOUNT_POLICY_REQUIRED")
++            return False
++        if (not isinstance(answer, dict) or "weights" not in answer or
++                not isinstance(answer.get("meta", {}), dict)):
++            raise ValueError("ACCOUNT_POLICY_RESULT")
++        raw = weights_checked(answer["weights"])
++        target = raw.copy()
++        action_mask = answer.get("action_mask")
++        if action_mask is not None:
++            action_mask = np.asarray(action_mask)
++            if action_mask.shape != (n,) or action_mask.dtype.kind != "b":
++                raise ValueError("ACTION_MASK")
++            action_mask = action_mask.copy()
++            if full_decision:
++                if not action_mask.all():
++                    raise ValueError("ACCOUNT_SCHEDULED_MASK")
++                action_mask = None
++        sell_only = bool(answer.get("sell_only", False))
++        if sell_only:
++            additions = raw > current + 1e-12
++            if action_mask is not None:
++                additions &= action_mask
++            if np.any(additions):
++                raise ValueError("ACCOUNT_ADDS")
++            target = np.minimum(target, current)
++        if action_mask is not None:
++            # The callback may supply a sparse target. Restore the accounting
++            # budget of frozen holdings before allocating the involved slice.
++            target[~action_mask] = current[~action_mask]
++            budget = max(0., 1. - float(current[~action_mask].sum()))
++            requested = float(target[action_mask].sum())
++            if requested > budget:
++                target[action_mask] *= budget / requested
++        sig = sigma_at(k, raw) if risk_target is not None and full_decision else None
++        if sig is not None:
++            target *= min(1., risk_target / max(sig, 1e-12))
++        reason = answer.get("reason", "INITIAL" if initial_call else
++                            "SCHEDULED" if scheduled else "ACCOUNT_POLICY")
++        if not isinstance(reason, str):
++            raise ValueError("ACCOUNT_POLICY_RESULT")
++        force = bool(answer.get("force", initial_call))
++        metadata = deepcopy(answer.get("meta", {}))
++        iid = issue(k, target, reason, force, raw, action_mask=action_mask,
++                    sell_only=sell_only, meta=metadata)
++        decisions.append(dict(k=k, decision_idx=k, signal_idx=k,
++                              signal_date=str(dates[k].date()), instruction_id=iid,
++                              units=units.copy(), current_units=units.copy(), cash=float(cash),
++                              current_weights=current.copy(), raw_weights=raw.copy(),
++                              weights=target.copy(), meta=metadata, raw_sigma=sig,
++                              initial=bool(initial_call), scheduled=bool(scheduled),
++                              reason=reason, force=force, sell_only=sell_only,
++                              action_indices=(None if action_mask is None else
++                                              np.flatnonzero(action_mask).tolist())))
++        return True
+ 
+     def decide(k, reason, force=False):
+         marked = np.where(np.isfinite(close_prices[k]), units * close_prices[k], 0.)
+@@ -142,7 +262,10 @@
+                               weights=target.copy(), meta=deepcopy(metadata),
+                               raw_sigma=sig))
+ 
+-    decide(begin - 1, "INITIAL", True)
++    if account_policy is None:
++        decide(begin - 1, "INITIAL", True)
++    else:
++        account_decide(begin - 1, initial_call=True)
+     for k in range(begin, finish):
+         op = O[k].copy()
+         op[~open_observed[k] | ~np.isfinite(op) | (op <= 0)] = np.nan
+@@ -155,10 +278,10 @@
+         while queue and queue[0][2] <= k:
+             pending = queue.popleft()
+         if pending is not None:
+-            iid, signal_idx, due_idx, target, reason, force = pending
++            iid, signal_idx, due_idx, target, reason, force, action_mask, sell_only = pending
+             before = float(cash + np.nansum(units * mark))
+             execution_target = target
+-            if reason in ("VOL_REDUCE", "TREND_REDUCE"):
++            if sell_only or reason in ("VOL_REDUCE", "TREND_REDUCE"):
+                 # Execution information only: a stale reduction must not buy
+                 # back an earlier sale or add a position after an opening gap.
+                 # Keep the immutable requested signal target in the queue and
+@@ -166,12 +289,23 @@
+                 open_weights = np.where(np.isfinite(mark), units * mark, 0.) / before
+                 execution_target = np.minimum(target, open_weights)
+             need = (units > 1e-10) | (execution_target > 0)
+-            missing = need & ~np.isfinite(op)
++            execution_prices = op
++            if action_mask is not None:
++                # Preserve full-account marks while removing all execution
++                # eligibility outside this instruction's immutable mask.
++                execution_prices = op.copy()
++                execution_prices[~action_mask] = np.nan
++                need &= action_mask
++            missing = need & ~np.isfinite(execution_prices)
+             units, cash, trades = legacy.rebalance(
+-                units, cash, op, execution_target, ticket, impact, .03, force, mark=mark)
++                units, cash, execution_prices, execution_target, ticket, impact, .03, force, mark=mark)
+             fees = sum(trade["cost"] for trade in trades)
+             maxerr = max(maxerr, abs(cash + np.nansum(units * mark) + fees - before))
+             for trade in trades:
++                if trade["side"] == "BUY":
++                    last_buy_idx[trade["j"]] = k
++                elif trade["side"] == "SELL":
++                    last_sell_idx[trade["j"]] = k
+                 orders.append(dict(trade, date=str(dates[k].date()), execution_idx=k,
+                                    execution_date=str(dates[k].date()), signal_idx=signal_idx,
+                                    signal_date=str(dates[signal_idx].date()), due_idx=due_idx,
+@@ -192,6 +326,10 @@
+                           positions=int((units > 1e-10).sum())))
+         if k + 1 >= finish:
+             continue
++        if account_policy is not None:
++            account_issued = account_decide(k, scheduled=bool(mask[k]))
++            if mask[k] or account_issued:
++                continue
+         if mask[k]:
+             decide(k, "SCHEDULED")
+         else:

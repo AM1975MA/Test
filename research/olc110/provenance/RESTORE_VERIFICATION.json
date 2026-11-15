@@ -1,0 +1,21 @@
+{
+  "status": "PASS_OLC110_AND_PRIOR_DEPENDENCIES_RESTORED",
+  "olc110_original_files_verified": 714,
+  "olc110_source_manifest_sha256": "59ef6fe611b7d1bf5525d6f65a12abdd529bcb07b76e92083d96f05595492b55",
+  "reused_inputs": {
+    "source/data/XETRA_EUR_ETF.npz": "14b4ee4a5834e93407f5b7aac2c4857cf6f0b0403f38296daea2725fe4848b96",
+    "data/LIQUIDITY.npz": "b95fa3d67837fa06c5705aa4aea09807d396464ab44ec1671031d797b57f4485"
+  },
+  "inputs_absent_from_git_source": [
+    "data/LIQUIDITY.npz",
+    "source/data/XETRA_EUR_ETF.npz"
+  ],
+  "olc109_archive_sha256": "fc89eadb3ee94f6ade1dceafbd43707f5bac518bb889e4dc350f55de32e2281e",
+  "prior_archive_files_verified": 3577,
+  "sibling_directories": [
+    "olc108",
+    "olc109",
+    "olc110"
+  ],
+  "simulations_executed": false
+}

@@ -1,0 +1,52 @@
+{
+  "status": "PASS_SINGLE_PATH",
+  "timestamp_utc": "2026-11-15T19:46:16.707563+00:00",
+  "planned_paths": 1,
+  "passed_paths": 1,
+  "failed_paths": 0,
+  "source_input_hashes": {
+    "source/data/XETRA_EUR_ETF.npz": "14b4ee4a5834e93407f5b7aac2c4857cf6f0b0403f38296daea2725fe4848b96",
+    "data/LIQUIDITY.npz": "b95fa3d67837fa06c5705aa4aea09807d396464ab44ec1671031d797b57f4485"
+  },
+  "financial_code_hashes": {
+    "src/engine.py": "370958a6f250f60936b50147ae8787b2e590e81660b4d101e5bbdd9d9b0cba5f",
+    "src/signals.py": "e2846ed075f68553b31f985585cece67b6d520b5adac2b3bb7b927ac48829029",
+    "src/cluster_selectors.py": "4105253f3332a5905d2fb4bc1960be887782f748efe033e9cca16ebcf9048e12",
+    "src/dedup_selectors.py": "6643776c8ed11f3834211e2e10a269a8e7f11aeaac300ee1efd0712f20b043c2",
+    "src/protection.py": "afdf4609d5eb5960ee21f281565f0f17ea8296a92db531130bb06abf88e4232a",
+    "src/run_protection.py": "5590239304e2d6f72b0a0dcaadc76471d35f37a944a5e9c856c921dba8d92445",
+    "source/src/core.py": "e49bd609bf9e65b6270b03fb9b706070edb3d2717765f37a856dff3d559551d9"
+  },
+  "protocol_sha256": "aca685d1d228f857c48fd1a4aafc45170a847765e84352c932943c541d119740",
+  "original_selector_replication": {
+    "status": "PASS_ORIGINAL_OLC109_SELECTOR",
+    "monthly_targets_reconstructed": 80,
+    "source": "/workspace/scratch/23237d81ce2c/olc109/results_stage2/DEDUP_DUAL_TREND_OPP__BASE/DECISIONS.npz"
+  },
+  "baseline_replications": 0,
+  "production_imports_in_reference": false,
+  "reference_dependencies": "Python standard library, numpy, pandas, threadpoolctl; locally adapted OLC109 independent numerical conventions",
+  "reconstructions": {
+    "orders_independently_sized": 383,
+    "instructions_independently_rederived": 289,
+    "slot_trace_rows_checked": 3398,
+    "targeted_masks_rederived": 209,
+    "targeted_execution_attempts_checked": 209,
+    "untouched_quantities_checked": 437832,
+    "scheduled_selections_rederived": 80,
+    "order_timestamps_checked": 383
+  },
+  "maxima": {
+    "max_nav_cash_error": 0,
+    "max_order_quantity_error": 0,
+    "max_order_cost_error": 0,
+    "max_self_financing_error": 7.275957614183426e-12,
+    "max_daily_pnl_attribution_error": 6.394884621840902e-12
+  },
+  "failures": [],
+  "limits": [
+    "Does not certify point-in-time universe, vendor adjustment vintage, quote provenance, or market capacity.",
+    "NEXT_CLOSE quotes are accepted closes and its sampled drawdown is pre/post-close-fee, not intraday.",
+    "Reference and production implement the same declared protocol; agreement cannot establish economic profitability or prospective validity."
+  ]
+}

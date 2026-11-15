@@ -1,0 +1,25 @@
+{
+  "status": "PASS_LOCAL_RELEASE_READY",
+  "verified_utc": "2026-11-15T20:08:44.789739+00:00",
+  "frozen_protocol_code_input_hashes_checked": 10,
+  "independent_audit_artifacts_checked": 29,
+  "source_audit_artifacts_checked": 27,
+  "diagnostic_csv_hashes_checked": 11,
+  "final_report_evidence_hashes_checked": 23,
+  "complete_financial_paths": 78,
+  "orders_across_paths": 32533,
+  "any_cagr_30": false,
+  "primary_promoted": false,
+  "report_sha256": "07e20914831f302ea06fe0329717ad49f64d25407b6be14ff78fbab456c26eeb",
+  "all_report_local_links_resolved": true,
+  "verification_statuses": {
+    "validation/COMPLETION_QA.json": "PASS_INDEPENDENT_VALIDATION_COMPLETE",
+    "validation/source_execution/FINAL_VERIFICATION.json": "PASS",
+    "analysis/action_diagnostics/VALIDATION.json": "PASS_ISOLATED_EVENT_DIAGNOSTICS",
+    "validation/ANALYSIS_REVIEW.json": "PASS_ANALYSIS_REVIEW",
+    "validation/REPORT_REVIEW.json": "PASS_FINAL_REPORT_REVIEW"
+  },
+  "archive_destination": "AM1975MA/Test/research/olc110",
+  "new_branch": "research/olc110-protection-reentry-20261115",
+  "remote_commit_verification": "To be recorded after archive by repo_delivery/olc110/GITHUB_SAVE_RECEIPT.json; not claimed in this pre-commit checkpoint."
+}

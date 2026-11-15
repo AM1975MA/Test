@@ -1,0 +1,1278 @@
+{
+  "status": "PASS_FUTURE_PERTURBATION_INVARIANCE",
+  "cutoffs": 3,
+  "comparisons": 78,
+  "arms": 13,
+  "execution_modes": [
+    "LAG2_OPEN",
+    "NEXT_CLOSE"
+  ],
+  "components": [
+    "immutable instructions",
+    "decision accounts/targets",
+    "completed orders",
+    "daily cash/NAV",
+    "daily slot state traces"
+  ],
+  "production_imports": true,
+  "role": "Explicit behavior test only; independent references import no production modules.",
+  "financial_code_hashes": {
+    "src/engine.py": "370958a6f250f60936b50147ae8787b2e590e81660b4d101e5bbdd9d9b0cba5f",
+    "src/signals.py": "e2846ed075f68553b31f985585cece67b6d520b5adac2b3bb7b927ac48829029",
+    "src/cluster_selectors.py": "4105253f3332a5905d2fb4bc1960be887782f748efe033e9cca16ebcf9048e12",
+    "src/dedup_selectors.py": "6643776c8ed11f3834211e2e10a269a8e7f11aeaac300ee1efd0712f20b043c2",
+    "src/protection.py": "afdf4609d5eb5960ee21f281565f0f17ea8296a92db531130bb06abf88e4232a",
+    "src/run_protection.py": "5590239304e2d6f72b0a0dcaadc76471d35f37a944a5e9c856c921dba8d92445",
+    "source/src/core.py": "e49bd609bf9e65b6270b03fb9b706070edb3d2717765f37a856dff3d559551d9"
+  },
+  "results": [
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "BASE",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "1cfe275cf7f23029005fb3d5887035fe96491638bf4cb77d4e181bd95fb64bce",
+        "decisions": "0131e1af161ab57ea6608ebc8b56ef29c1c56179ff3046fb2f4f85233337770f",
+        "orders": "3a1b36657a482a79131b0092531146c4154011193e1e9d531b24c973e4fc1a8d",
+        "daily": "2e8d66726230ddbd492b140a8a756ef277b7625b304904e8062eff315daf43e6",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "BASE",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "550ca88d01430dc5338535baddfb0ffed5f00cbb79d0ef6819c7dbe00c301b16",
+        "decisions": "98d8f4c74dc150aa8fa7211dbb774401afff4bc3a6058fbdb29a17d6914aa296",
+        "orders": "bee8e4904f2168823cf4b882c0b01535417c9f83e698ea489a50befbf431e519",
+        "daily": "563bbee80c4d2e1385c48b89f9d70203931b3127a25e76698ac7654782ee9257",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "STATIC_HALF",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "ebac65244dc6263bd75835fc378c0ee9a6a53800c5d0a7feb8408eba35871bfb",
+        "decisions": "72ee0abb20d1ef6171ef1df2d9a5ed824f75ff38f2c8a4a3627efa1d7176b981",
+        "orders": "6c00a5c198ad1e1c3af78aa04b02c8fc9fd933326ed44debc38ada1d1daebaf1",
+        "daily": "4027923aca8e522726df8fecaff57d8c9eb8039620dbb8bb1d397132991524b9",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "STATIC_HALF",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "2e26facc7944da62e26fd044e1116a79bb2f543bb734b61e1e9b6a470359c18c",
+        "decisions": "0aa4188137b04dcfeeb81cb98561cf95e808ab2e9bc8d9770f1b57c8766462ab",
+        "orders": "3f3f9af674e0c3b08cd6b6d9e8502ef4617eab02c3d1412d99dcdcd178526517",
+        "daily": "6641dac9f6274e6e5cc171d5b6e87833d63231f608276be3dfc050c93a0823af",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "STATIC_75",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "697690ae0097da166044e170f5e9552f176af59ab034e6387172e60b912a0de0",
+        "decisions": "08e13b0019cec449a0c144680363a8de7be90708baeb18d16ec5a5094e098d37",
+        "orders": "19448490d510a24d6551565bb4beda43f27dc4c96e1ee2c32bfead3c5e2df8fa",
+        "daily": "1eff31344c70640b3185809fae2c4b9fa312b6e58591bf4d6e73c90effa02d68",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "STATIC_75",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "cd279e69cc51d6f6794892dc0e9b08161e98f79c26c1bed0a5229e5464a7771c",
+        "decisions": "37a04f373f3c0631275c77a32678f9ffc95f129a7f1fe665e99b10b88e094d90",
+        "orders": "445102a3d4f52d7b971c15dabd089c2abef55a3ec21a6c96f11106cf8a21a552",
+        "daily": "799e69d30f016d4cf4873754ca3a8f5855e082f4fa9f34b91e81598ec6916963",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "REFRESH_WEEKLY",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "d1684d3a31152520d8b2126129688c6debf7b6ac4e460594ac1cc655bdeb5cf3",
+        "decisions": "15e3026b18a114a593773ea48f76e4dc1dbc05adce1f80afcfa8d33456f312c4",
+        "orders": "01418eb03c0dc70cb673327765920dc26648b7f51d0092e6c4d9c522dd0498ae",
+        "daily": "42e0ac6a61c793a75fa507bcb8b0dd9c3b469272eb8ec8dae73680e646b409ee",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "REFRESH_WEEKLY",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "32d59986c88fdbe7f7a57e10f6b0e444da4e0fd23125fcc877a3dcaa34b97393",
+        "decisions": "757c8ef2e8aabc1174fb59c334a39263ad697433c9857240c3bbd281ab23213a",
+        "orders": "7309ff82293c72b25470ba1f63ffb568624ed673fc091426e0ac34b0a6865fc9",
+        "daily": "b43dd601b9029a2ebd1aa03df25d51537e7aca1ea57cc069d3eca9e4f3d0e600",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_MONTHLY",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "eb50d6622776aa3c3b6a26648d8295d0024ca7e58d9a484a253496e734e8aca8",
+        "decisions": "8ca7f248a4506bebc9a13106d4411fe7401cad130e901220493ebc0438d0e750",
+        "orders": "cd1340a546a61b1988221f1b5a8f915fbb37fbc3e81b9aff7f96d2d28dde67eb",
+        "daily": "62ce419ebf7ebbadbf668a6b44ddbe0a41174d44825a72b6bb8eea8e73f665c6",
+        "traces": "e2b1e003380c4665b8bb4ea02a009a3b5e5cf957ca039495483ac96d76472ef8"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_MONTHLY",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "fed018dddbc6a1e71c0d07699d681596fb2b05f8aaea7f3b59416e9cc35a974a",
+        "decisions": "459832360b01d65f37d4471d5622580515038a07bd1eeeeeb4c393eb93c64e3c",
+        "orders": "b6df889bade1b05596ba849b0f96d1b4e3bdd32ff1c82479dff01d22acc88cce",
+        "daily": "0f3b57c5ffac0c34dd0886a34398b0ff230448bd401ba2d77ab3a86063a97f78",
+        "traces": "216ec91dbe6bf4cfad8cf6bf0d10cc40ea35dbd511cbd70d3523746e78c2576d"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_SLOW",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "94097a0c00e208012056a9e49694afb5391e1aff6779eea88e92dea6ab9f4bb6",
+        "decisions": "f63ad6f5be794d96f28ec156060ef492f70aa2afb8a8ec4ea65e171069fb2b3e",
+        "orders": "aab1849ca5253ba86854fd5f112826184f4685e9302be879526ca58a0e77a8bc",
+        "daily": "aebf2de8be2861c004d98ba1e8a832ed975ac110b4a22a5ad5657a426b7fcbd6",
+        "traces": "b47ece137afb9ce5e30c80e336368b4e8e9f6d867ed9fef60432c36853f66592"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_SLOW",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "5ad785592264b008672f884338bfe6549bcfde02ec87c5d7edef42a5b00e9d79",
+        "decisions": "0fb04da7feb40688335058653e45514397294143c960f621a26919b7a5007ba8",
+        "orders": "0641cd0fed621142ddee4df7b2bf7842d5f195ef9875d8f3fefbe156efc608ea",
+        "daily": "86f579bdeaa5306cfca9eef4dbae0c697de1d5ead7965144303f1c5a48adeeea",
+        "traces": "df56d224ca3c61128cce0285bed2226ea64742d5c2ceca2e52ffb77943d03bb8"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_FAST",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "54ce98c8f667c9f20a6b6b72fb7045dfe175ad89c7049351374079f12c5a0053",
+        "decisions": "fdee96fe46d83a9f465202ee3ab88795b9d9988948fd071dab083a48c359f32e",
+        "orders": "eeae561ca55179c074282655b3e60c1fc518afd2d091ba7e915be8c1cd8fd46e",
+        "daily": "737ad406de315e635a9cb8c708ba88e82bf43b1e8f289c872cb4e94eb2cddfc9",
+        "traces": "3fe825756880033456754e08649f60c5372449e34f786c8da0fccb82c5c0738e"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_FAST",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "e943c8e9a74be2899f04c4fd0c976a69c59cc31df42ecd2288f214ae3699cea4",
+        "decisions": "2e06eb7483ea11c54c7c6e2cb18ea87eea8fab755b429d34700ecea7d38460ad",
+        "orders": "467f39785dbeb35a65dcdd8f2e586f46eeaa2f8c12ec6e9d1e4211af570a386a",
+        "daily": "3e0588166696e00f629c76e2ce3b3f0f9d58de72de9159cf2cfda387f712ad62",
+        "traces": "22baa9d93ed26e6f79f0a85df3f7881123f1336ff601f032ad6a67346c4de554"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "3c7d7f3fdbb1b0575b47bdec4a385449907147415f8ee872b8cefd91f84cb135",
+        "decisions": "562863c5624197c14c277c4aa55fb685e7099ea9eb0b6d6be36b119736acf234",
+        "orders": "ad03e84f848222a0307e784cde852282ec19bea4a02bcf465f005184321d3987",
+        "daily": "ba2bd3ee42c45efd3e2290163fd2872b2a2ea3b2e3a117f4ec070660199027c2",
+        "traces": "72bc035f12cd7f8fe04140d3822be4b1d9ac008220b27affceadfbe33e426a57"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "29e01bc5b070e09b508a5be8c6e8ac937f3847cfbeb1b448412ae051cb069996",
+        "decisions": "ad0bde60c460f671cdc1a06995dad132d92ca6f9883293b6ee0a154b0eaa73dc",
+        "orders": "dc4a3294e40468f44c385bd08a9fb02ccff132edd2b962ead209363c69e40486",
+        "daily": "fd27e8061964d50f7732e37e2f302fdee16d2d61f79aaaaaabfbe9cecd041985",
+        "traces": "0a270643abdc7c4f0010bf2bc23a536ed4f06db20240ec54ccb99eb75c0af6da"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT63_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "402b0e546f55f3831e49611f26e198c56c1855add57c1631c4482108eb2ba303",
+        "decisions": "a1f1c30d476644414cc131a0653faf6540ea8d4b9ea8457a19771698d1b97ebb",
+        "orders": "112135653334e6bfc25097e8b9f114477839ac26d35e17618668c84e90c05288",
+        "daily": "bbfc73b63b84393366851a2dac4cbba878bfb415c1beef65636f328ee7974f97",
+        "traces": "ed60d6fe7dcb95b7c543f382bafa93f41b861b119ae76045fcc864ef4394df64"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT63_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "76cc91b0ce3a1aac280a31e6d1dd0c3da1700a6a37591b2f16ffaaedda0dddc5",
+        "decisions": "539007844af4c679acf52c210de50f08ee4c5bf91d3b06901d748023b8457706",
+        "orders": "cd66192c50de3a910fc467b77d7f270d65e7a072c8132f929cfbf98ccb38343c",
+        "daily": "283a2a1464764071c256602e9cf7aafd2250385a3b8956d09bde90f982376510",
+        "traces": "4b01805d099e165460ad4e600a63813330a16941571160149a2d4476390e6e4c"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "TRAIL15_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "b1a6462e89368db21fe11d24d28cf23aac3b7120d28d1eab8f89bbcf445a66e1",
+        "decisions": "7a071abd2d42244faebcf7030f32ff92f39ab453b71d4cdf006674c831a929db",
+        "orders": "8bba2fc5d05b159580ac9aef7f7791a9f2a90400411244c7269d4bcef7e8cd6e",
+        "daily": "f2e3353eff24a5171369ee23954284d506f03a9f17437b733858e3e4dbcbea2f",
+        "traces": "f33f44e4749c69867e99eafc0a60bde087e1ced3784e0e9bdcfc51c745a4f3b5"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "TRAIL15_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "eb75e1e97fe76b5325ee181240dc32b174a7c1c76e66b591f8fe1ae094148dc7",
+        "decisions": "b5fc3f93c0bc94889658808d69854594b97c15ce2db4b7bb2599ed26c744c304",
+        "orders": "a7101fb90b79dd2a412883fb23aa39427b8eda209c9458c2794e1b6da939870b",
+        "daily": "bc81808d4990918277aa7a79c149be81af69df0f95793bfd2692412b0097cddc",
+        "traces": "2e4527ee81e0790517541d6974ba187bbdf5af244c21818e9556802bcbc5bd94"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "VOLTRAIL_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "2de4e1bac1312071c43eab8b9772a61720d33f7d9ceebfae34b5e897cdf07ae8",
+        "decisions": "c80d06b3561d137f9bd5cea21ae5ea2ab5275802c5772491523e917cfbf9aedc",
+        "orders": "e3abaf10ffd42a8bd8257c49868a70fe8ca0d8f7a2181b0acdbab1984805dee5",
+        "daily": "be9e1efdc419a81d53a1497ef2130524ae712ed0e29e38d67a18103cf07833f8",
+        "traces": "9667e64aff46aad8601decaa276a611ad54a45ddf65558ac2674140c4a6ee5a8"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "VOLTRAIL_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "2a165f45c7199b0f7567132a36c33db9847a10097e07179aba8c710800f00807",
+        "decisions": "cfabb0982fcfb6802e4988c179a77ab75a30f7741714f90b94b33cd75f6ee3b1",
+        "orders": "ab8e13203286d895a311952b621b579852761db22c7997783e834e1349c1793e",
+        "daily": "c8388a2508bd71a8961a1bb2354449654b7a055a6744056a624244f307f79549",
+        "traces": "b4a09d43998ca7fde6e461a9e055657f5e00e1d2b29e630e0da86f6db23d1542"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_STAGED_FRESHW",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "84bd8eac6c49eb475e434b6ec8c1ee783371fdb531133ee83dd2d3ba0cc6afb9",
+        "decisions": "086e3a4e853606fa5cf6d0bd93879bd190a4cff70b6336967f7ddab97543950c",
+        "orders": "e32f94cab72a6f67bd5639d3a54289044ae4652879d184ae4fdc591d67e59426",
+        "daily": "17c17afed3c2b795b093ed644be00006e6f315d3a5cb31fbbfd51838c472bca2",
+        "traces": "44f7e6f16161fe2316cd7b9b9da62e5300aeb3c0057200d6b5eeba8a2493c77b"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_STAGED_FRESHW",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "b581db92c463f7d4659f71d25758f3d3b074b0584ccc4a6b88400d5c0beeb3e6",
+        "decisions": "e88b7c47810bfcfe1ef60060d1fbe7b6cc9e27ad82fa7275bfdb394631d687b0",
+        "orders": "7089013a29d8cb045d5681b898f66250b564c56ab72b5916767beb026a636c75",
+        "daily": "8d18eebc2db848c669fda6f392cc05d4f52da6aa9e152fed060a0a851a67d7b6",
+        "traces": "cc11cc0478e3b2dd8d72905f9ce14b87f316fa51eb1a5409c2c2783a30b84f92"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_STAGED_FRESHD",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "b27fb24283eda37419cea4bffc9005343bab6a7d1a568e207e65c442c868a8f6",
+        "decisions": "e9a9099415397b6536fb3035e404ad51084f9c9d1b6a9c7f636269bae2f6838c",
+        "orders": "b5956345d26bba5b5ecceef5df16a103b0a2af3592bf89c3472f35b7fbbb0ab6",
+        "daily": "ede58fe588e230e513030fb3e87adc39b8abf237b4807580a70df2243ef3c9d1",
+        "traces": "1af019557a47a0790c53d203c6c349871812101f6026bc620f37ecccf36c99c1"
+      }
+    },
+    {
+      "cutoff": "2021-12-30",
+      "cutoff_index": 737,
+      "arm": "EXIT21_STAGED_FRESHD",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "515f92873ad5b47377090809d35a11c470c6b4a396a42e37dc327157f5b08741",
+        "decisions": "d1d8fd09c3e72adef5ec45b815e8e244059816742719f79650bf9d70f21d6bf8",
+        "orders": "92dece711fe1e77cea9ca7349fcb909f318403be5a2294c9dbf2b651a36bb76d",
+        "daily": "6ad0bb8218d8a8ef06b88ad34667fc71be57ed22d98bb978e988edb9d6d034a6",
+        "traces": "2132d0e94846de4b42cb9d6095c22a1b8aa85f827cbcd83c3738ab0daa456b64"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "BASE",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "9e246d31b0c8ca6ead08f236a0c429bb2a43c1c16365ef92a4cf01ef8fb2b9f3",
+        "decisions": "cdf2704e9e08f61226d55d0ee81fda8ba0cbb7a7d8960e8ad07cd89e94c83cf7",
+        "orders": "24b3ef21fb9c7e94f7af3a0cc45f090e9ba10d411ff54613b187157c016124ca",
+        "daily": "bb3e0d5080c767dc6a144708998d04bc415cdb2b73d602a28c1dd998fae27d67",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "BASE",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "27cf134ce2e1b6b4e0be197b1322ad5264f4fa6027e9df17b674e73c6c2a323b",
+        "decisions": "5f9f9000db2708a986eca1ff2b81a3c556b8806b24371aee972be2b7ee69c347",
+        "orders": "a899c9606cb95c6101c88f9631bc9876b94a3a576778c2530b20998cba6e14b1",
+        "daily": "67b42e65c2fabf08d6fcc570c3e7db87f3bebc8f978d2c433c5f9d42cef90fa5",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "STATIC_HALF",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "3ef74204d1d6f7b89841b16251a363b6cc77754ce7f2850bceb72d80be939a52",
+        "decisions": "8bac29ecf56c2e376c4eae606a0ba08bc679b050aa9551c098b02423afa032ac",
+        "orders": "c02c5a295314384405beaa7d0ab6a8a2bbf866d5e9ed6c12e7c32beef900b01c",
+        "daily": "dae88fc5bf7d75b4cfccf11e75a3733976e394664c924ac88ddc2aa6f58bc818",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "STATIC_HALF",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "9cfb279830cec793c7b4beb312d3fbc1e15c917d2236434076cfaf3f08e03b85",
+        "decisions": "2f4a68ad62ea6881971676234b614dda233d2d8da14819d193c1e3fecdebbf48",
+        "orders": "039e0eb0e0072e5c8a39c7f6092a78c019297c35e8a1c9d0de125fb2968d8250",
+        "daily": "e61299b13adde47b3e84c09de9206a28fb628093878257437984a78e58e09e9d",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "STATIC_75",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "e7d2f2397d07dfaf49c7c849938ddef4176ef9a6a6ca341f66b2130562269d28",
+        "decisions": "afd51176c90116039838853f8ae43ebd8a1d795204880bba2e694cdb00c8bdc3",
+        "orders": "40e4e405a599efa334059266feeea09ab402791b3a05fff5d4e510128988f7fa",
+        "daily": "8d2e00a55473dd49fceb873677f443f6d13929256a3d8158bda8a4830062dea3",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "STATIC_75",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "cc65b4106fdf472c7ced6bc659bb53993804c1a1bcf72a291b20f033b0529cf5",
+        "decisions": "329b25674b759a32ce1cbce1d381da9642601db0e9931f9e9e287d31b23ffb4d",
+        "orders": "69c95fb43825e797b042be80b9f9274c04e7d26a04db9ebb7b54e5253a2fc1a7",
+        "daily": "f66a9047fc80ac97ce7eb0cbc9ac36ec82c63f361cd366b309df90e82b130784",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "REFRESH_WEEKLY",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "82f05fd6c33b0a20c965bf32822ab46837c5744a7e6499f147e2e65dbe9827d0",
+        "decisions": "2417f44ce5da7c48ba20c13c6356adb16497a5dbb5aee0ed32dda8df4e58b96e",
+        "orders": "81b8631bfd401f1c450f0eb0e5ef03afbe0e64f99e3a9275b173a3c30725b7d7",
+        "daily": "b08da4f6db6ec27c9bd0ff73c3bcb3d71ebcd6015e46bb25d372921677b30167",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "REFRESH_WEEKLY",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "04ed5cddb180739439c5d536b8f186481da1ab643a648b9a46a5f5190178434e",
+        "decisions": "476912717c03ac6d85021b0305ebcfdfdcd12df1029bea72a7fb11ed43ba6ede",
+        "orders": "44135fa97785b5ab97aad2e94d605f5154ed303bebfdc2811e2911815753d136",
+        "daily": "668c87e2010b87ab4903d3201f92643de14a35872a3b9bffe07162d6dde6f7aa",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_MONTHLY",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "4a1fc1f8fc0e13dc2879014bf17ecba8aadd50858b72c6f12816519200c7cd41",
+        "decisions": "8834a648268c69aa7463877acb23b53ce639f05f845c358ec3491e9c80fce6b9",
+        "orders": "71b19d74b09582c7b82ae1e9aeea24847ec71b90404ae2bcfe9a0ff0ca3a9348",
+        "daily": "6b1c51fb7dd77dc0cb17301954e0ee2a63c3c7e123321963cfc6cfb58dedd325",
+        "traces": "d1421058775777690b272def83a56e512b8ba9a9d1d7f71e8d26fd5cfbd5ea28"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_MONTHLY",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "ada838a4869b57f8f5b4dd8fa481fc9e807a7150bafa2b60e37e0ea0cad80956",
+        "decisions": "fc99b9988288ce21a922dbbe27dd672dd1a52d59ceface27edf3b9c0236245cb",
+        "orders": "aaed0466d8e6bd452d7cc2cc916adb39e83d59438d6ba6248552ea0f46807b32",
+        "daily": "5d16b7f3650bbd123dc7a7e711ac91f861871982e8aaca15480f35be9301bd58",
+        "traces": "a6262520a74ca865ca816505cb877d89584e087c5279594460484cf217c554d7"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_SLOW",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "4370f0d9d4ca0b47d88247a5f53aa3996b314c7f4c42bc49dfe564d4ab5da9ca",
+        "decisions": "0e1206cbca66d79c1d0f0ef7f04fb77b083943d7cfc7f58adcfaaa8973fa8920",
+        "orders": "858bbb98685824c1a79b31b3498f41a5078dde92b2821d5e0440704be473f347",
+        "daily": "7d4fdb0ec625a3b28d1de6d907f6935233a4004b59e6cbf56e1b1fffa7e7285c",
+        "traces": "7e5eb02b222404ac473d27ac9dfbb92b27fbea7891cd01ebab6a8e5d1f54818e"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_SLOW",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "ae325517692dceadb6e18a482ee05689848b99521b10e4c17d8c1092f0c0217d",
+        "decisions": "f1725b87a4b7e1fac56fe3823dae6df0306fac6b44ab128a4449fe8ff1716f39",
+        "orders": "69ad5538a61d0d8a75331aa7c1bc3c13c3723686529fc09497a0708b85431c87",
+        "daily": "ef00569d187d39f0544919a4c97e34a3c2d6c594794ace7e3e83eff6435917e6",
+        "traces": "15285444833d84617cd72b5e860f0048e6e8d0f235885734b1b451e7e4896b28"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_FAST",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "549e6b9f77bbf49a412ec3e5c8e040e191a920c3b56432211988940092d2197e",
+        "decisions": "da9f9747c289432cca48ab82fd6453bb950cc0583410699d9310f966292cb0a5",
+        "orders": "418a732dec6442d1f5acf42ef4752d723f5b63a05472187e41856f7e92f7eb18",
+        "daily": "bee3ab68cccf4c74fd33fa264c4b815e606adf7a79493a209a0264e03fd3f52d",
+        "traces": "7bc660ddb3726a4a96011cb98b3d492d7f74157dae3cf5f76cedc41da8f6bfc5"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_FAST",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "fdf00225df45e860fa04b6564be6ed2c8d2b9c2c2a624f3ba8ba895e5d940209",
+        "decisions": "69743d8d8bc9bcefd40cc36ff9f6fa074c1093517d16945fe89b090e78f5f4f6",
+        "orders": "6afd6a03f8227b0ac611860266a4297943901403a2b95ffb9cd21756727234a1",
+        "daily": "f3901a9d59005ec0abf783f72c28de21c8804b2953ddc7828fce32d238763e62",
+        "traces": "11fd5d23047a2e7926a45a29dbf307a1e037865c9e084c1f2f785e032d8c2633"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "1f13785b82f43e9a1d37005ccc5529f71b1a8ed7b9f9a21dcc67216319058b3e",
+        "decisions": "f94d21ceb8a638e57ea53993336d2e3e57f8243425417e1d1d4254599466b1a8",
+        "orders": "8643d3f5acb3feba29940cdd97231668d67051aafe0088d06bf63ca286da1b62",
+        "daily": "fdf0043dc2f11a9206ae33037e09429b2ded75de93796ece570cb38bbc99274c",
+        "traces": "52e104f7980c0895f15ea9e5154648b956c436bb485e7a40addeaf9687e4f2f8"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "ad6d7b47ec6325dfa618f9a347b22ffc33422cc782559344c92db83ab0499b8c",
+        "decisions": "9dfe00a30d4aeeb6b0091bbac02b3abb35d553a58905f5a9269eb0f132100520",
+        "orders": "20335c41cdef426edcdc2679507e2a4a39fda4eb25a72ca4c203457e63376a4b",
+        "daily": "833750498b3636f84a630c96e083392c39565a8cd42a8cb4fec085834625a945",
+        "traces": "2cc31ff3c4934044a07190cf47b4efd710d3ba85a15302424494e8ddf5e4ee39"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT63_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "e9d35238d8284c49b0575a2098c1c8cf763b0cd7dc9e48e30a2e80ae8dd179e2",
+        "decisions": "9b5f6abf6037614ceaa8a420f521cdf20185ee334b8b84b00593773d5e6d52f3",
+        "orders": "874903b057fd15aba799e79c99dc1882a7f2357c2cc2c87485422d9053decc7c",
+        "daily": "7f914a102e9e121981e6760a4f2f9e3228768ee1c6c0accd56abb105c7af1729",
+        "traces": "1d798a523250348a0465684d89855744a875382685b4ed18abadb86413691ed6"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT63_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "3a4a47c6a55f50f5f5ce2f477500fc901484a6b54d931275ceccff718ae09cef",
+        "decisions": "bdc604014e6500741bbaa4514e69a5328801a0edbd3b163dfd89c79871e94188",
+        "orders": "73a6a48c93a2270c0bf3bb556d590917566432acf5ce95c91706155b32864874",
+        "daily": "68feb308dc30d99babd9bc4e7a77c691060a90e14dfc0d2f2900df8aa574e59e",
+        "traces": "60e73c860966ad5c85cada37334ddf8761cc5c06aa84f0fd82d1cc22046edadb"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "TRAIL15_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "71551c05db7de617615e397d20ee1650a37e25ad52868f8e883da88383aad8bc",
+        "decisions": "a899273f3cd770a6d6b22d1f44e6853bf2b06d53a91067f4d3a4bfea8af0db3b",
+        "orders": "e9776fc00b0a01430d84ab08e224be570c8b090308d3249f6cf7140ce06de4e0",
+        "daily": "8440f9522fd0e241ff7c316fd7bbf8d3516258e5f0b999844b106c0cf17c1978",
+        "traces": "0637ebb11a1562a04efa763880cf3efbc8f9dc36454432234264f922491e5eef"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "TRAIL15_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "95d045c32a58512038ab9d8aaf447a232260fb7ce90b405cedde6a3bcb73df30",
+        "decisions": "a9a2e53d6caa59448aede0a5fef78e28359e4386a17132f347755b497c200331",
+        "orders": "3f56e7d688881c4699645e0514c938753b4eb417de258fe7f9e615ee29f7ddd3",
+        "daily": "49760bfa266ad495f8bc5a6b95a66c9d93785613af5b1f426ba918af273c8aab",
+        "traces": "831469a35a0afb84c49aa8ae1e95274ff66305a2890ba205760a57204f82b4c3"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "VOLTRAIL_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "dc5c3b74348e1317322666f510fd575fd7427589f8360442b8cfa4710201f6b3",
+        "decisions": "6de681adbf74239baa51e5e50212b1c549d08116be865e366c4b4eb6cab63386",
+        "orders": "1ac870f5715d4933a227ad2c93f3874cb9a5dc172d26a02a6eaa0d7ff4f9ccc3",
+        "daily": "3bab065b9633bb90c950e9f27cf5684aa5f259e1acdd76f5f8510db856318011",
+        "traces": "8ab52ed2e810f40e222500424143cd1fc097f005bbe3e7caad64c746704f6e8a"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "VOLTRAIL_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "078623189d2ac88ae4f326fc52bb89fe078fa2e9db652587d4239c2a9ff7ee63",
+        "decisions": "2a33dcfa2a519d15ed398a1f5a7cf5bc975d31fd87802a57de0b1b9002d8cc5d",
+        "orders": "e44506f7958ff2fed26b2a88a9ddf3f9da95ca7a3ec9f3b80ad00632eeda915d",
+        "daily": "493fa6bf4e052856fe93766038f65f53ad62ed0516a6c96ecd85ba8f957aded1",
+        "traces": "b51a378f8db136383f72558dffb2270f603e81ad146d10dd016812504dfb913b"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_STAGED_FRESHW",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "96055d8288991d77c78aff0e07ad68c81c89c7c1c522e89349c241319a5ecc15",
+        "decisions": "a1d3bc60eadfb8a4360dce0dfca89f0a757a79987933c82934f2eda925700a20",
+        "orders": "0a3e466e21c1b65d8569e8236e45d3f8e072304dbc8ca7504556e8298fe0a202",
+        "daily": "f04330d50bf0e721ea2476e4bde6112965d7f0f39a86f85cd48e2975e8a49764",
+        "traces": "c2625aee62f44815a214ee7ed5760e99746fa75ed1183c5f31928c533fd205e7"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_STAGED_FRESHW",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "1760d5858ecabd007a83b53af0f9808aa3d6addab09e80e1427044366175a71c",
+        "decisions": "557c89212f6e52d3262133441070634aa9efe0cd06ad2ebd3ea34428c7bfd2ff",
+        "orders": "1951700b90c2d25d24128f68f241e10c11379cc30a272a4d5ce7c211e0ad5bef",
+        "daily": "2ab9a0f63db152a31bf074d3f810ec752c1c699c0104bd4db46d7c0398fde263",
+        "traces": "147ac88927e98335ca34a9ba1e09bbca0a1cdefefeb903016227fb6ecd723f0a"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_STAGED_FRESHD",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "f62ba52a54162433807f80f877471974712fa48a594709f1f78cb6b08616ca6f",
+        "decisions": "d08e9a3a1d0ebadcc31748d7d8d47ce46c42d764111ccd8f4d5d40e17bcfdcd5",
+        "orders": "ba2dbde35051e385961e75993e5fd3db0f61dd14080df5a82b6dccb2431b59d8",
+        "daily": "0792ad2adc753ceaa20fa90e4a9267cbdb0490348cfa6b6cf36b601e8bcebea9",
+        "traces": "e4bc03aa041b56fbcf710645493ad624ba8924edef4e9b75857b399f8a35f3f8"
+      }
+    },
+    {
+      "cutoff": "2024-12-30",
+      "cutoff_index": 1503,
+      "arm": "EXIT21_STAGED_FRESHD",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "7f6b7e1b8ca333b62ba458e20e076913b9cda90971ca3caf10379ebb847a174f",
+        "decisions": "1af99e7363e9e7621c9572c8d6f4e2a618259544f61f6c0c6d317134ef2e06b7",
+        "orders": "366f2b7395bb649e4551657284cad39c8245bdf37e84c3070d69b339fac5b5e3",
+        "daily": "333af46048931a33e84f6a5ad4968d50326b6ebfb733142c3068a7a94d8f173c",
+        "traces": "ff59e901622566cf59f689f48a65c7aa0e5cddc904a865c409c8e733696c4396"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "BASE",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "58c54c8533556ff9d5075e66f1b05029ed923be8f5446f9bb689d0e7a6be4ea8",
+        "decisions": "d96b03d390268eeca9815af235ac5786b6c492ef9cbe66b999c741bf2cc683a8",
+        "orders": "0a9c7d90535fb3c398a695d6e9d021b30aa35d25f7c4cc5ead3f43c4e51337f2",
+        "daily": "789fd64b7d4eff60209abc05c5b2c2449128ae9292effb48fef389d31f3a4386",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "BASE",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "e61d11ed5e9d8d298161c45090b4c30f2197dd7bac2edef0a7d120eff0cbc32a",
+        "decisions": "526e3b14e88f166eee62825915f6e8752d31f23bba6cd5cff23a4db74b1d9128",
+        "orders": "5d5dce5ab0172181a6d69d93bef2724accf641c590166e635debfb991b7f107e",
+        "daily": "d76477dfae2cae6388096173a060434ba041021e45e6eba954340cc3af1f5b82",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "STATIC_HALF",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "5e1bd3684aa25a0708a58532a66d8fb1ae79416356fbe67f19e3959993a23159",
+        "decisions": "11aa9e2b56ffc41302be641f67d02c1c961f77a76e6f95f8ae7e2ca6dca4c925",
+        "orders": "98a7881367d50c2a19772657d542ed90daea9fcaf680164718de466c50fcb740",
+        "daily": "3895edf3fdd0cfa8e144cf24b225b6ead814cdc6415f5511e31a07cd06cbf8d8",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "STATIC_HALF",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "2c84e1dbd41abf74c7f708cf28a6b48380f03dc68e52c94683b3d179a2d93643",
+        "decisions": "36516551284b5c213d308356b08e7afa2cb7db95076a0b17f49457940529017c",
+        "orders": "dcb0c13e570d42c7f2d1f4c9b40b137f4a5be67b3945a056408a76e7d22cb8f2",
+        "daily": "0086da6dec2fb1de35d31bc7531d73815ba88f60f893e6e190d982ad6aff9cfc",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "STATIC_75",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "e684beeb03647f25056ec3a026c309e2357ab3bc64d67c6309163386ddc74c4e",
+        "decisions": "dc40e2b25349cf7ee84cfb1203f14e657b1d059d01b751a568d22e3aec799da1",
+        "orders": "1f090691319cea5850832e8d2341f2e89dcff5d5b5ed73a4ad9a9c42a18ff7e6",
+        "daily": "49a376b41274002fd9458360e75c5e3ba1b976f81de93120d0310d8e74e473c1",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "STATIC_75",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "53f6588579031e90fc9c7f3e4a1e7ef10edaa25b46d61c7a2b5ed9eafc7df8e4",
+        "decisions": "990e7d4810874011e8236ba966ea0903e844b3ca0e93b7e3789046af41609227",
+        "orders": "6d169d902776564532efb83514cae2be9d1f7b3f5ac8c8a2f028d3468dc2de53",
+        "daily": "b8dc2e532790396570e057eb580c5a4075800f4a58f21658b05f4de491f527ea",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "REFRESH_WEEKLY",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "1cefe47f152945410efb0b385a2bc079addee72893ca43800e220f138de38eaa",
+        "decisions": "c62bb2ab3062c7863abe7224e8e0863fd17a21f7657bbebbdafc89f944d5b8f3",
+        "orders": "469310707a965c1df736029125219f5f112606aacf1e2222220058839a015140",
+        "daily": "da2b781f6085f439ea4ad1ed66f328e6ec149087f8300bf3531e9390934547a7",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "REFRESH_WEEKLY",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "1832e8f2905a97eb509dda1d8ef8db7eddcf6c5beba8fe045aef3a3e2f82506c",
+        "decisions": "25d8f702b143a9041eba2c37ba68e72872c979555f853820b9fb6237d55f2679",
+        "orders": "f3d581dc29fb337e2a81068de89547b8d86075f506442648475c86a5e8344ba1",
+        "daily": "9109b8ef289c2b92f3f54bacd7661868efd57da37e8477bda3c9b6c67fec5636",
+        "traces": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_MONTHLY",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "43b0cb3692a37ef587788950ea9c0ee2dd6be07b42699d95f91a9f78a6b04842",
+        "decisions": "946684cb703c18425ab7cf9ca8dae40d015d1463f2d0bdcaf350fa49ea2f34ca",
+        "orders": "6e1412821a9ac9bcdb365ead1bd9c7060b0dae9b613c28e3d87569ed7e8139e1",
+        "daily": "f9764120fc0f3d657a4998ed0ab857f49833b1ac43bd6814981153f49a97e20f",
+        "traces": "5edaee5dfea97f229e242df6145b734fc8de9bf8a0db8216f8206ec217e28517"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_MONTHLY",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "a10da03b50c6230088c11894520dfa8a6275321abe16b4bf85762a6f19499a21",
+        "decisions": "8c55d77da6919e96b151fc71fa014f657e1ec6c6dbc86cc133f4e8c4d4e35127",
+        "orders": "5c7eaee37716cf87e8444cf2363055fd6ed4e3fc70e7e8d2e18342f619473443",
+        "daily": "c9cf6ae69f295eea5cc6ebc1fa5210ca3ceea5958a3707de9bd1aca94e17efc7",
+        "traces": "6cb36875e7f52fd2a0d0021d413ec10fc112693e45bddd0ec984af35edda1c94"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_SLOW",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "b23e9141dd0c86c731da57111519f600d13d2726d9dcd5cc4234a73be53db485",
+        "decisions": "00c32bd0f2b22489f0641625b2315a297027ba11e1d9229a5c94ca150c9a3774",
+        "orders": "1fa91ea7ab152c2080355746a53f53f4eebd44c281fbbe2cd064f50d21d3a220",
+        "daily": "a2fbf22b4d0c12a621a534c3af214f2afc00b7f9a6ac507b5e3baeffd390edbc",
+        "traces": "dfbc48299210c5b81509ce40a67c35cd9b3603ab80c6919ce0d0d4b513a8d135"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_SLOW",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "97dfe35830c2aeb82315f622405ed0b63d8a3e62592a0ac77853b28d6d9ca5c4",
+        "decisions": "59de3ebe950b7188486c525cf842aa0987547cb1db354546bc5af40d73172c4e",
+        "orders": "723d3e05c9ab69f61f75edde3512dc57405013b46c5c63707aa3a058cb495b8a",
+        "daily": "3193eba0e0cae09ae7139d74bd610e62a12232d703e709d5b9c6d7d0bad32d59",
+        "traces": "3ba5db7666ca6abcd1a96098ce377ac005803990b0ffd7f25b1c807ffb8a453d"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_FAST",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "84d4b2983e930e5ece8d09ea2de93480ceba2a6e87075474ebd9cf4eb4b1620a",
+        "decisions": "170efc7dda882b1e63914ff8b62ed848f56887a839963853c3e732aecdadf4d5",
+        "orders": "9a1f66e0024a966307e1214604110d225b7069b1e64f17fe4829eab8a8312149",
+        "daily": "f87157a0fd39b835b876cbfb17ad6b26c08f31bc076169f89835d840b4281c04",
+        "traces": "5e993c2878586458f5832c4a24fa5f7ff15e0bb1c842b43829b616a8aa4d5c75"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_FAST",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "4ed5dad087befe232543e5b920c969ca8a2eb32b100c4e321025119b4c238dc3",
+        "decisions": "9a6708ac6d45c15e513d6e1b623d0dc8c523a19ceb1d934d89a349be1574d4d7",
+        "orders": "ee543adc0992974bbb03ebe49e1c68d914f6e80dc9eb71432aeb34a8a9fea173",
+        "daily": "830dfc8b4dbd50d13d7444ddf0290198a4d8adf379e188e30fc1653b6c3eab10",
+        "traces": "20f4f9c725724bf4239115230664c0ef70bccc15ef9a43c1eeb4a448163ddf52"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "057a2271ccbee19749c0cb01536cffd9d50310ab58c9602a206399a280e99904",
+        "decisions": "7d80ebef25dd4e8f2ec9cca3134028ac73a4b1d2101d7497d22e5e42778e4e30",
+        "orders": "c53f68b98a0151601d4848b4f423c084f6772b425d108fdb839036e214ebd384",
+        "daily": "df719b323db3f7092606db26c7de0bbbfff1a781342ed77b2953bbefb9fb1409",
+        "traces": "df7aa9c713647d5a54957cebc280728f6f5f49c4669c91b612338462fd602a60"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "4fee6516ddbc00828b1d875926a4181a6094054fc42e190437c537d159a9a886",
+        "decisions": "844e9c63880af49cbbb6a3b3d6b5ebb2f27fc911991fb07bdc9172c384a4f879",
+        "orders": "21bf591525ad23b0761bb8c5e9424d613d1edd711bba527826a4b5687e835183",
+        "daily": "586b7c30e0c0cdf6d629ac1b515a6334afbfca43ff5ceffe9734b496cf5e0132",
+        "traces": "b1244d7ae8ddbdde175023bb6ee189198e9272bda7131a99464f1ac75aa84e59"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT63_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "56fce900b2c84e64e6247c8d54c0d9688b28b8e001a1697f0100a209ede27575",
+        "decisions": "def395184082ef374ea7d5952d2046a1ede9e1a94edff5d802243b539a2144e0",
+        "orders": "7508a7bb962b3cdde4a37ad0a053ccb0a237be1199c6d3965b0419fda9254ff7",
+        "daily": "bc6d96cd8dd97715075cce6bb100417bd367132436a70494d3e14268ae4ceea1",
+        "traces": "c610ab61940be532e1d07b6915d43600884062e3901eddb6c77a2390fd84ee3d"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT63_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "94fb89ccb8237cb687b2f39ece464a056362d018b4c8e0f04ee1f532f279be8a",
+        "decisions": "ee56634056e0b723269910d9618f5ceaf1922881ca0f5829f6499113efbc94f6",
+        "orders": "779294dc661d7874690c9f10da195e25f2c029a25ef90675074b0a75bd1f3f8e",
+        "daily": "b2d0f7759cfe6e41320bfe26e5bf735a8b2f2fc9955fdbcadc505aa4784f605b",
+        "traces": "af6a06657dea01e90ad1a24735fd4813c7c6aed3079d56fe2e79ad2c2cc50f27"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "TRAIL15_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "079e5c743b603ef19dd2acc1a32525439b4af554bd63d7674132a0efbddaac82",
+        "decisions": "a7301378bb945038652c0c3d940b9220fe888c225ae14a9ba45df8ad6e32c611",
+        "orders": "1a12d2bec6172904ac0b2e4c726869cfabeaf14bb9fb0cd940bc7761dc314467",
+        "daily": "c5f4389b5aeb5f4cc38525e080b7d6dfc44f28051a177eba9a24c0952b1c93ac",
+        "traces": "5c1ae5870a9b12eb83f5b059434c325e316e4f74799ef48fb954d03eace2f38f"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "TRAIL15_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "06b5d16aa2cc20984d2d029e243bcb19c916e55264bd14ff343a41b525fc79cf",
+        "decisions": "1238992c069abc8b3a875eb80ebd5784a897d0f3a6b29852f668f75012caca8f",
+        "orders": "540b2fefc9536ff35d83cbd91e4e613f1b1d34938f6d8aab6dfd8b9f23676f1c",
+        "daily": "8d45b165586eddd87ae5d71447f5d7b62e5072232f0bdd36fd05741478a53e66",
+        "traces": "5fa1f5b969ef274cb5dcf702f8b19f0402d269eea5698b82a4cf810d8df63350"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "VOLTRAIL_STAGED",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "e9f963d13458918f9cac7658a95f2d93887e2e268118fb5cdc29040eed1cdda7",
+        "decisions": "f0b7454b960ca25d0d08e0acf79cec0337e7d8d78da53b12ec6efe153d142f62",
+        "orders": "6b57b2ea70c1c7d1d710e2428d37b8a62b52cadf4a3e92c5680d9cb1e1eeeca3",
+        "daily": "cc30a6599de90d843ef3c71b8c90effaad4f77d407744894637f44efabb9ed0a",
+        "traces": "f3da32371639837c6d119aeb5c5f3a6037a01368b4af2a3075b3f54494f6320d"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "VOLTRAIL_STAGED",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "7f690739ec1e7106b5f918e8d765d9ec927eda6376172b88ec5add7eabb43c63",
+        "decisions": "df89cf71f060e2a5cf7c463c997be2194534b565dbe223107bbc93bfbd0a37a4",
+        "orders": "67b4fbd9e3160b3f447969d8060f440410c45c3978fb1413b3141370d59d22b0",
+        "daily": "d0ef19be2d1ce9579f34b5f763aee49e917b07bf75c792f955ee3b973b1e21e3",
+        "traces": "ffad796c461d6eefe10ac022fef2b73a640bc4d5cf0ad415b807f3916b25d2e3"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_STAGED_FRESHW",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "ee1c0cf715bcf18e166b3babb508af6218697bae86e30a910d26c0e6895e2caa",
+        "decisions": "424ae3ab96def3f664d397f0df8067d394c78bf4e8607b988c8a1bb68370c751",
+        "orders": "9d7ba6c7dbba2fd40651a4152085e42772d4c1218825cf64beff9948a5ea0518",
+        "daily": "7df7c97caa5e2cc85ccafed233e05645dba9cd98c6f96f0e74ffc61c144cf1e2",
+        "traces": "1c56c3ef7dd60f66b88bd4852d82678ed27be80468c88534fa21c926a822a2b5"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_STAGED_FRESHW",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "cb990135e8c2b87c9521553d2c361dfa70f2c005711440532695025faf467de3",
+        "decisions": "4290a983e11cf7a0f61d831642b15c591142aeb31d570f87d966dd124d4aa343",
+        "orders": "826358fcb5208ceb79a33d6998acf7da6ed410601f53b54abac4b0113c966821",
+        "daily": "028ba095de3a9acbae5c778d6fe7afc818a121709a2f0da4027ba8b400c9671d",
+        "traces": "d58185c5ecc4f65cf73c69d7aa9aedc94185964948596e9412246df98a036b9a"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_STAGED_FRESHD",
+      "execution_mode": "LAG2_OPEN",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "b835afbdebd1747ca8fea161df85819bdc75f0d0854faa151c7da7ebb2f8dc43",
+        "decisions": "142ce9c7da48bac56168400598e2b50b8847eeb50ae5184af63f23bc3e979503",
+        "orders": "b1580d16335dc610c12a46538bbf9039bc564c536220628693807bdc729dfa95",
+        "daily": "3a08bc08e0b10b066b55c14dc7074be6b32e4f7b6956e682a171edeebd430517",
+        "traces": "3fbbf93bb495992749c069a6f6c51c9b073ca8028af300ea41b1be86a1a820ac"
+      }
+    },
+    {
+      "cutoff": "2026-06-30",
+      "cutoff_index": 1881,
+      "arm": "EXIT21_STAGED_FRESHD",
+      "execution_mode": "NEXT_CLOSE",
+      "future_sessions_perturbed": 22,
+      "instruments": 2096,
+      "status": "PASS",
+      "component_hashes": {
+        "instructions": "ea52ac58f0ba586453a0c975a992d1a080b82fe47da3771dcf8decaba71868a5",
+        "decisions": "d0a6b328a1cafa14fcdd33de1d6237b0381c5985048b7fed355de3094c21156b",
+        "orders": "f245dabcf941b6f442556c0a2f9db04e286acf135860f1b04d61a59e3c7262e7",
+        "daily": "a724273de6e39efb1b94e54cf05d78686148c5d360eebd34919a7f99ea4a18f9",
+        "traces": "38a2e726d66952a2270cd8be8446c886295f01359c7c47e8111b51415a5d77f0"
+      }
+    }
+  ]
+}

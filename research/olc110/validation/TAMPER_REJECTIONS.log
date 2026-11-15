@@ -1,0 +1,59 @@
+{
+  "status": "PASS_ALL_MATERIAL_TAMPERS_REJECTED",
+  "path_id": "EXIT21_STAGED_FRESHW__LAG2",
+  "clean_path_status": "PASS",
+  "tests": 10,
+  "production_results_modified": false,
+  "results": [
+    {
+      "test": "nominal_raw_selector_target",
+      "status": "REJECTED",
+      "assertion": "('VECTOR', 'decision_raw_weights', 1419, np.float64(0.45), np.float64(0.5), 0.04999999999999999)"
+    },
+    {
+      "test": "executable_instruction_target",
+      "status": "REJECTED",
+      "assertion": "('VECTOR', 'target_weights', 1419, np.float64(0.45), np.float64(0.5), 0.04999999999999999)"
+    },
+    {
+      "test": "immutable_action_mask",
+      "status": "REJECTED",
+      "assertion": "('LIST', ('MASK', 279), [1419, 0], [1419])"
+    },
+    {
+      "test": "daily_slot_state",
+      "status": "REJECTED",
+      "assertion": "('VALUE', (('TRACE', 270, 0), 'state'), 'REBOUND', 'NORMAL')"
+    },
+    {
+      "test": "probe_fill_before_execution",
+      "status": "REJECTED",
+      "assertion": "('VALUE', (('TRACE', 302, 0), 'first_fill_idx'), 299.0, 302)"
+    },
+    {
+      "test": "outstanding_book_flag",
+      "status": "REJECTED",
+      "assertion": "('BOOL', (('TRACE', 271, 0), 'busy'), False, True)"
+    },
+    {
+      "test": "order_quantity",
+      "status": "REJECTED",
+      "assertion": "('ORDER_SIZING', 273, 'quantity', 1180.2749083346414, 1168.5890181531104)"
+    },
+    {
+      "test": "order_fee",
+      "status": "REJECTED",
+      "assertion": "('ORDER_SIZING', 273, 'cost', 9.487269096355465, 8.487269096355465)"
+    },
+    {
+      "test": "same_close_execution",
+      "status": "REJECTED",
+      "assertion": "ORDER_DATE_WINDOW"
+    },
+    {
+      "test": "account_cash",
+      "status": "REJECTED",
+      "assertion": "('CASH', 271, 10000.0, 10010.0)"
+    }
+  ]
+}

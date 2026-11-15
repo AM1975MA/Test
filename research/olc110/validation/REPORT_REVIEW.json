@@ -1,0 +1,147 @@
+{
+  "status": "PASS_FINAL_REPORT_REVIEW",
+  "approved_for_archival": true,
+  "timestamp_utc": "2026-11-15T20:07:56.298384+00:00",
+  "report_path": "RAPPORTO_OLC110_IT.md",
+  "report_sha256": "07e20914831f302ea06fe0329717ad49f64d25407b6be14ff78fbab456c26eeb",
+  "builder_sha256": "5d95e6d3bc7412c7b8707b2544ca8f9755f356185acfc3f15f7e03b35237b495",
+  "reviewed_file_hashes": {
+    "RAPPORTO_OLC110_IT.md": "07e20914831f302ea06fe0329717ad49f64d25407b6be14ff78fbab456c26eeb",
+    "analysis/build_report.py": "5d95e6d3bc7412c7b8707b2544ca8f9755f356185acfc3f15f7e03b35237b495",
+    "figures/OLC110_RISULTATI.png": "9b416b19239b37b1b649c62b54965dcc50ed01e27fb1eeeb0d79cfac217773cd",
+    "figures/OLC110_RISULTATI.svg": "ce5abf367fd275a237cb6c8c4ece109085ccc756f0de75f6c64179048702026d",
+    "results/SCORECARD.csv": "ba2af5d39e0757fd4f6020e083090ea60077d466bd6e7cd4375d4d6b308546c8",
+    "results/ANNUAL_RETURNS.csv": "6aba1c8a426177a9418bf8a4b57c837d49c2ff9051c6109603891edc77d661c9",
+    "results/DESCRIPTIVE_SEGMENTS.csv": "41832a5d7bbd2a1aec48f241c6d308fc5e0b9eac9a75ae7bbacdedf42f4a8c7d",
+    "results/RUN_MANIFEST.json": "1a79e65a21032672bb8243e6e9c41fcd77df3ade17955b9cfd9acf10fb28e56e",
+    "analysis/PAIRED_COMPARISONS.csv": "9a17fb71745c71678bfdd66964627ccab63d5fad83b985b52991c469a81a9228",
+    "analysis/CONTROL_DOMINANCE.csv": "ad6e521a97edc39b41ce8f5e663a013f8cef32c703f559bdcbc4401ba5fee48e",
+    "analysis/action_diagnostics/EVENT_CATALOGUE.csv": "4fad5328de274908d73950517ecbdad177329edb4028cd9e62ec75cc0bbff44e",
+    "analysis/action_diagnostics/INTERVAL_MARKOUTS.csv": "95a19d38a2042e2b9c84a20a62e4d4892a02d28c0d919d309b49f78afb025781",
+    "analysis/action_diagnostics/ISOLATED_FILLS.csv": "cf818b1277cba501b0122e68327d777e8a650a813607cc825074a9c21672aca1",
+    "analysis/action_diagnostics/SUMMARY_BY_CLASS.csv": "1a846d9552d26f5cc481e6f633c3afecffac9e5a14de7b8fabaa81ff884c057d",
+    "analysis/action_diagnostics/SUMMARY_BY_YEAR.csv": "30af6195ca3232107847830c843f2a82031677d0aa6f7b9f73d1733253c49114",
+    "analysis/action_diagnostics/VALIDATION.json": "7eec0ca4a83376600651ac6ead390a25dbf796fa2c0b4eb2f50f314600e6eb26",
+    "validation/source_execution/SOURCE_EXECUTION_AUDIT.json": "469e3083387a34bd35b6fa69f20e3faca11e953ef5802d2178e4cc688578e425",
+    "validation/source_execution/ALL_78_PATH_CAPACITY_SUMMARY.csv": "37ca05df9656056194efc090064d0c7775cc0be98dfc183e9be9573f27d098cc",
+    "validation/source_execution/MATERIAL_EVENT_ACCOUNT_IMPACT.csv": "a9b19f99359e332f8d856f799707d248a66fd5ec7c616a0f7b4a9c2561c6a673",
+    "research/forensics/EPISODE_CONTRIBUTIONS.csv": "348a699d603a3f6213597423637acf667e2c95a6f1468ef706f89864bca4a95f",
+    "research/forensics/WORST_20_PORTFOLIO_DAYS.csv": "c4e9aab4042f42553af3a34935783d0e9403fafd4ba447762eda4f340940c118",
+    "validation/ANALYSIS_REVIEW.json": "07c97e74d7de397110a1a6867d246bdf45eb599574cdbed68e5f56693fea98c8",
+    "validation/COMPLETION_QA.json": "023021b367cf470b8bd5d8e68e415d858a264355207a9c4e81c929c6d32a3843"
+  },
+  "scope": "Read-only final narrative and existing-output reconciliation. No new account, strategy, diagnostic execution, bootstrap or financial path run.",
+  "outputs_written": [
+    "validation/REPORT_REVIEW.md",
+    "validation/REPORT_REVIEW.json"
+  ],
+  "report_code_figures_unchanged_by_reviewer": true,
+  "completion_manifest_unchanged": true,
+  "checks": {
+    "markdown_tables": 6,
+    "table_rows": 48,
+    "numeric_cells": 227,
+    "paths": 78,
+    "base_protections_dominated": 9,
+    "annual_2024_included": true,
+    "diagnostic_events": 3869,
+    "diagnostic_intervals": 11607,
+    "diagnostic_fills": 4395,
+    "truncated_intervals": 101,
+    "truncated_events": 82,
+    "pure_fresh_entries": 69,
+    "complete_pure_fresh_entries_21_sessions": 68
+  },
+  "decision_assessment": "No protection promoted; primary failure and absence of CAGR30 agree with the full frozen matrix.",
+  "bootstrap_assessment": "The report distinguishes -19.14 percentage points of CAGR from -16.51 annualized log-relative units with descriptive interval [-28.47,-5.15]; observed-sample and multiplicity limits are explicit.",
+  "dominance_assessment": "Strict STATIC_75 dominance over all nine protected arms is correctly scoped to BASE; a favorable LAG1 contrast is disclosed without promotion.",
+  "next_close_assessment": "Accepted Close execution and Close pre/post-fee drawdown are distinguished from Open/Close and intraday sampling.",
+  "markout_assessment": "The positive pure-entry sample is not presented as alpha, additive attribution or global opportunity success. Mixed actions, risk premium against cash, model-conditioned states, overlapping windows and censoring are explicit.",
+  "class_summary_checks": [
+    {
+      "category": "PURE_EXIT",
+      "n": 163,
+      "net_bp": -40.80407699428875,
+      "market_bp": -32.21875121882421,
+      "cost_bp": 8.585325775464534,
+      "wins_pct": 46.625766871165645
+    },
+    {
+      "category": "SAME_ASSET_REENTRY",
+      "n": 88,
+      "net_bp": -36.60712296963507,
+      "market_bp": -28.82951220284673,
+      "cost_bp": 7.7776107667884835,
+      "wins_pct": 50.0
+    },
+    {
+      "category": "PROBE_CONFIRMATION",
+      "n": 64,
+      "net_bp": 26.292178264128367,
+      "market_bp": 30.969458904054864,
+      "cost_bp": 4.677280639926347,
+      "wins_pct": 50.0
+    },
+    {
+      "category": "FRESH_ENTRY",
+      "n": 68,
+      "net_bp": 37.72597743819836,
+      "market_bp": 42.638930591162044,
+      "cost_bp": 4.912953152963545,
+      "wins_pct": 57.35294117647059
+    },
+    {
+      "category": "MIXED_DEFERRED",
+      "n": 15,
+      "net_bp": 15.817991085679564,
+      "market_bp": 28.01700021383324,
+      "cost_bp": 12.19900912815358,
+      "wins_pct": 60.0
+    }
+  ],
+  "censored_pure_fresh": {
+    "instruction_id": 486,
+    "isin": "IE00B6R51Z18",
+    "symbol": "IS0D",
+    "signal_date": "2026-10-23"
+  },
+  "lbra_truncated_events": [
+    {
+      "instruction_id": 479,
+      "signal": "2026-10-09",
+      "execution": "2026-10-12",
+      "category": "MIXED_DEFERRED",
+      "horizon": 15,
+      "increment_bp": -607.7510210919271,
+      "isin_scope": [
+        "IE000O5M6XO1",
+        "LU1900066207"
+      ]
+    },
+    {
+      "instruction_id": 481,
+      "signal": "2026-10-13",
+      "execution": "2026-10-14",
+      "category": "PROBE_CONFIRMATION",
+      "horizon": 13,
+      "increment_bp": -578.9425555380809,
+      "isin_scope": [
+        "LU1900066207"
+      ]
+    }
+  ],
+  "resolved_clarifications": [
+    "9 October and 13 October are signals; purchases execute 12 and 14 October.",
+    "The -607.75 bp belongs to the entire mixed instruction containing two ETFs, not LBRA alone.",
+    "Prior archive holds five complete scenarios of one candidate, not five candidates."
+  ],
+  "material_findings": [],
+  "required_changes": [],
+  "interpretation_notes": [
+    "Markouts are basis points of common signal NAV, not ETF return percentages or a compounded strategy return.",
+    "The block resampling is not a formal leave-one-year-out test; annual and post-2020 outcomes are separately displayed.",
+    "EUR566.41 denotes REFRESH_WEEKLY intraday price P&L before the purchase fee, as in the source-event column."
+  ],
+  "external_scope": "Archived source audit and save receipt checked for consistency; market data, papers and remote GitHub objects were not re-fetched.",
+  "prior_archive_receipt_sha256": "139df816aa625b5f2cabb53e98ac76b9e6d75d5bb1bc8ff3610753af7d325a85"
+}

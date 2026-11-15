@@ -1,0 +1,84 @@
+{
+  "created_utc": "2026-11-15T19:43:15.709678+00:00",
+  "protocol_sha256": "aca685d1d228f857c48fd1a4aafc45170a847765e84352c932943c541d119740",
+  "code_hashes": {
+    "src/engine.py": "370958a6f250f60936b50147ae8787b2e590e81660b4d101e5bbdd9d9b0cba5f",
+    "src/signals.py": "e2846ed075f68553b31f985585cece67b6d520b5adac2b3bb7b927ac48829029",
+    "src/cluster_selectors.py": "4105253f3332a5905d2fb4bc1960be887782f748efe033e9cca16ebcf9048e12",
+    "src/dedup_selectors.py": "6643776c8ed11f3834211e2e10a269a8e7f11aeaac300ee1efd0712f20b043c2",
+    "src/protection.py": "afdf4609d5eb5960ee21f281565f0f17ea8296a92db531130bb06abf88e4232a",
+    "src/run_protection.py": "5590239304e2d6f72b0a0dcaadc76471d35f37a944a5e9c856c921dba8d92445",
+    "source/src/core.py": "e49bd609bf9e65b6270b03fb9b706070edb3d2717765f37a856dff3d559551d9"
+  },
+  "input_hashes": {
+    "source/data/XETRA_EUR_ETF.npz": "14b4ee4a5834e93407f5b7aac2c4857cf6f0b0403f38296daea2725fe4848b96",
+    "data/LIQUIDITY.npz": "b95fa3d67837fa06c5705aa4aea09807d396464ab44ec1671031d797b57f4485"
+  },
+  "arms": [
+    "BASE",
+    "STATIC_HALF",
+    "STATIC_75",
+    "REFRESH_WEEKLY",
+    "EXIT21_MONTHLY",
+    "EXIT21_SLOW",
+    "EXIT21_FAST",
+    "EXIT21_STAGED",
+    "EXIT63_STAGED",
+    "TRAIL15_STAGED",
+    "VOLTRAIL_STAGED",
+    "EXIT21_STAGED_FRESHW",
+    "EXIT21_STAGED_FRESHD"
+  ],
+  "scenarios": [
+    "BASE",
+    "ZERO_COST",
+    "DOUBLE_COST",
+    "LAG1",
+    "LAG2",
+    "NEXT_CLOSE"
+  ],
+  "scenario_parameters": {
+    "BASE": [
+      1.0,
+      0.0015,
+      0,
+      "OPEN"
+    ],
+    "ZERO_COST": [
+      0.0,
+      0.0,
+      0,
+      "OPEN"
+    ],
+    "DOUBLE_COST": [
+      2.0,
+      0.003,
+      0,
+      "OPEN"
+    ],
+    "LAG1": [
+      1.0,
+      0.0015,
+      1,
+      "OPEN"
+    ],
+    "LAG2": [
+      1.0,
+      0.0015,
+      2,
+      "OPEN"
+    ],
+    "NEXT_CLOSE": [
+      1.0,
+      0.0015,
+      0,
+      "CLOSE"
+    ]
+  },
+  "planned_paths": 78,
+  "primary_arm": "EXIT21_STAGED_FRESHW",
+  "validation_tests_passed": 91,
+  "prior_olc109_performance_seen": true,
+  "new_financial_results_seen": false,
+  "pristine_holdout": false
+}

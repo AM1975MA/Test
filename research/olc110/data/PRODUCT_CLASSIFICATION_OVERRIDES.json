@@ -1,0 +1,444 @@
+{
+  "LU0292106753": {
+    "excluded": true,
+    "name": "Xtrackers EURO STOXX 50 Short Daily Swap UCITS ETF 1C",
+    "symbol": "DXSP.DE",
+    "reason": "Daily inverse EURO STOXX 50 exposure. The abbreviated Xetra catalogue label SH.DA.SW does not fully spell out short or inverse.",
+    "source_url": "https://etf.dws.com/en/AssetDownload/Index/f0e94252-60b7-42f8-8e2a-ce9d0b8ec798/DWS-PRIIPSKID-LU0292106753-LU-en-2025-11-10.pdf",
+    "source_refs": [
+      "turn81view3"
+    ],
+    "evidence": "DWS KID identifies ISIN LU0292106753 and describes the opposite daily performance of EURO STOXX 50, with interest and borrowing adjustments.",
+    "reviewed_on": "2026-11-15"
+  },
+  "LU0321462870": {
+    "excluded": true,
+    "name": "Xtrackers II iTraxx Crossover Short Daily Swap UCITS ETF 1C",
+    "symbol": "XTC5.DE",
+    "reason": "Daily inverse credit-index exposure. The abbreviated Xetra catalogue label SH.DA.SW does not fully spell out short or inverse.",
+    "source_url": "https://etf.dws.com/download/asset/84e1b349-f473-4929-bb22-8f623b9fa04e",
+    "source_refs": [
+      "turn84view0"
+    ],
+    "evidence": "DWS factsheet dated 30 September 2026 identifies ISIN LU0321462870, XTC5.DE EUR, and daily negative exposure to the underlying index.",
+    "reviewed_on": "2026-11-15"
+  },
+  "LU0328473581": {
+    "excluded": true,
+    "name": "Xtrackers FTSE 100 Short Daily Swap UCITS ETF 1C",
+    "symbol": "XUKS.DE",
+    "reason": "Daily inverse FTSE 100 exposure. The abbreviated Xetra catalogue label SH.DA.SW does not fully spell out short or inverse.",
+    "source_url": "https://etf.dws.com/de-de/LU0328473581-ftse-100-short-daily-swap-ucits-etf-1c/",
+    "source_refs": [
+      "turn81view5"
+    ],
+    "evidence": "DWS product page identifies ISIN LU0328473581, XUKS GY, and one-times short exposure to the FTSE 100 market.",
+    "reviewed_on": "2026-11-15"
+  },
+  "XS2852999775": {
+    "excluded": false,
+    "name": "IncomeShares Gold+ Yield ETP",
+    "symbol": "YGLD.DE",
+    "reason": "Leverage Shares is the issuer brand, not this product's leverage specification. Issuer describes an unleveraged covered-call ETP; admit subject to the same history, currency, venue and other eligibility gates.",
+    "source_url": "https://incomeshares.com/en-eu/etps/incomeshares-gold-yield-etp",
+    "additional_source_urls": [
+      "https://incomeshares.com/en-eu/"
+    ],
+    "source_refs": [
+      "turn81view0",
+      "turn84view1",
+      "turn84view3"
+    ],
+    "evidence": "Product page identifies XS2852999775 and YGLD Xetra EUR, describes covered calls on GLD, and reports underlying holdings plus short calls. Issuer FAQ states that IncomeShares ETPs do not use leverage.",
+    "scope": "This clears an issuer-brand false positive. It does not treat the ETP as a UCITS ETF or as pure spot gold, and does not certify all internal derivative properties.",
+    "reviewed_on": "2026-11-15"
+  },
+  "XS3068774614": {
+    "excluded": false,
+    "name": "IncomeShares Silver+ Yield ETP",
+    "symbol": "YSLV.DE",
+    "reason": "Leverage Shares is the issuer brand, not this product's leverage specification. Issuer describes an unleveraged covered-call ETP; admit subject to the same history, currency, venue and other eligibility gates.",
+    "source_url": "https://incomeshares.com/en-eu/etps/incomeshares-silver-yield-etp",
+    "additional_source_urls": [
+      "https://incomeshares.com/en-eu/",
+      "https://www.borsaitaliana.it/borsa/etc-etn/scheda/XS3068774614-XAMS.html?lang=it"
+    ],
+    "source_refs": [
+      "turn81view1",
+      "turn84view2",
+      "turn84view3",
+      "turn79search4"
+    ],
+    "evidence": "Product page identifies XS3068774614 and YSLV Xetra EUR, describes covered calls on SLV, and reports underlying holdings plus short calls. Issuer FAQ states that IncomeShares ETPs do not use leverage; the exchange lists the same ISIN in its unleveraged class.",
+    "scope": "This clears an issuer-brand false positive. It does not treat the ETP as a UCITS ETF or as pure spot silver, and does not certify all internal derivative properties.",
+    "reviewed_on": "2026-11-15"
+  },
+  "IE000KF370H3": {
+    "excluded": true,
+    "reason": "Internally leveraged Efficient Core strategy: target 90% US equity plus 60% US Treasury futures exposure, or 150% risky-asset notional. This conflicts with the frozen no-internal-leverage universe despite no leverage keyword in the product name.",
+    "name": "WisdomTree US Efficient Core UCITS ETF USD Acc",
+    "xetra_symbol": "WTEF.DE",
+    "source_url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000KF370H3/",
+    "additional_source_urls": [
+      "https://www.wisdomtree.com/it/products/equities/wisdomtree-us-efficient-core-ucits-etf---usd-acc"
+    ],
+    "source_refs": [
+      "turn77search23",
+      "turn78search1"
+    ],
+    "evidence_summary": "Issuer factsheet explicitly describes 90% equity and 60% bond-futures exposure as a leveraged traditional 60/40 portfolio.",
+    "reviewed_on": "2026-11-15",
+    "review_scope": "Product mandate and identity only; no historical returns inspected for this classification."
+  },
+  "IE00077IIPQ8": {
+    "excluded": true,
+    "reason": "Internally leveraged Efficient Core strategy: target 90% developed-market equity plus 60% global government-bond futures exposure, or 150% risky-asset notional. This conflicts with the frozen no-internal-leverage universe despite no leverage keyword in the product name.",
+    "name": "WisdomTree Global Efficient Core UCITS ETF USD Acc",
+    "xetra_symbol": "NTSG.DE",
+    "source_url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00077IIPQ8/",
+    "additional_source_urls": [
+      "https://dataspanapi.wisdomtree.com/pdr/documents/PRIIP_KID/UCITS/IT/IT-IT/IE00077IIPQ8/",
+      "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-efficient-core-ucits-etf---usd-acc"
+    ],
+    "source_refs": [
+      "turn77search24",
+      "turn78search8",
+      "turn78search3"
+    ],
+    "evidence_summary": "Issuer factsheet and KID describe 90% equity and 60% government-bond futures exposure, with cash collateral, and explicitly identify leverage.",
+    "reviewed_on": "2026-11-15",
+    "review_scope": "Product mandate and identity only; no historical returns inspected for this classification."
+  },
+  "IE000OV4XWA3": {
+    "excluded": true,
+    "reason": "Internally leveraged Efficient Core strategy: target 90% eurozone equity plus 60% euro-denominated government-bond futures exposure, or 150% risky-asset notional. Record the category independently of whether the listing has sufficient historical observations.",
+    "name": "WisdomTree Eurozone Efficient Core UCITS ETF EUR Acc",
+    "xetra_symbol": "NTSZ.DE",
+    "source_url": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
+    "additional_source_urls": [
+      "https://www.wisdomtree.com/it/strategies/efficient-core",
+      "https://dataspanapi.wisdomtree.com/pdr/documents/SUPPLEMENT/UCITS/GB/EN-GB/IE000OV4XWA3/"
+    ],
+    "source_refs": [
+      "turn78search0",
+      "turn78search5",
+      "turn78search9"
+    ],
+    "evidence_summary": "Issuer product description specifies 90% equity and 60% government-bond futures exposure; issuer strategy page confirms the ISIN.",
+    "reviewed_on": "2026-11-15",
+    "review_scope": "Product mandate and identity only; no historical returns inspected for this classification."
+  },
+  "XS3022291473": {
+    "excluded": true,
+    "reason": "Internally leveraged long-short commodity-carry index: issuer documents specify monthly resetting of long and short futures exposures to +300% and -300%. A 1:1 tracker of this index is still internally leveraged and has directional short legs.",
+    "name": "WisdomTree Enhanced Commodity Carry",
+    "xetra_symbol": "CRRY.DE",
+    "source_url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WTMA/EU/EN-GB/XS3022291473/",
+    "additional_source_urls": [
+      "https://dataspanapi.wisdomtree.com/pdr/documents/PRIIP_KID/WTMA/CH/EN-CH/XS3022291473/",
+      "https://www.wisdomtree.com/fi/press-room/wisdomtree-unveils-commodity-carry-etc"
+    ],
+    "source_refs": [
+      "turn82view0",
+      "turn82view1",
+      "turn82view2"
+    ],
+    "evidence_summary": "Issuer factsheet dated 1 April 2026, index description, specifies +300% long and -300% short exposure. The KID explicitly identifies leverage in the underlying index.",
+    "reviewed_on": "2026-11-15",
+    "review_scope": "Product mandate and identity only; no historical returns inspected for this classification."
+  },
+  "XS3246967098": {
+    "excluded": true,
+    "reason": "EUR-hedged version of internally leveraged commodity carry: +300% long and -300% short futures exposures reset monthly. The exchange's 'without leverage' category refers to the tracker multiplier and does not remove leverage inside its benchmark.",
+    "name": "WisdomTree Enhanced Commodity Carry - EUR Daily Hedged",
+    "xetra_symbol": "CRRE.DE",
+    "source_url": "https://www.wisdomtree.com/be/products/commodities/wisdomtree-enhanced-commodity-carry---eur-daily-hedged",
+    "additional_source_urls": [
+      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WTMA/EU/EN-GB/XS3246967098/",
+      "https://dataspanapi.wisdomtree.com/pdr/documents/PRIIP_KID/WTMA/IT/IT-IT/XS3246967098/"
+    ],
+    "source_refs": [
+      "turn85search1",
+      "turn85search4",
+      "turn85search5"
+    ],
+    "evidence_summary": "Issuer product page confirms ISIN, EUR Xetra listing CRRE and the index's +300%/-300% exposures. KID explicitly states the benchmark uses leverage.",
+    "reviewed_on": "2026-11-15",
+    "review_scope": "Product mandate and identity only; record independently of the listing's insufficient-age exclusion."
+  },
+  "IE00B4QNHH68": {
+    "excluded": true,
+    "reason": "Daily 2x leveraged DAX exposure. Exchange catalogue abbreviation DAI.2L does not match the current 2x-name filter.",
+    "name": "L&G DAX Daily 2x Long UCITS ETF",
+    "xetra_symbol": "DEL2.DE",
+    "source_url": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B4QNHH68-ETFP.html?lang=it",
+    "additional_source_urls": [
+      "https://www.borsaitaliana.it/borsa/etf/dettaglio.html?isin=IE00B4QNHH68&lang=it"
+    ],
+    "source_refs": [
+      "turn83search1",
+      "turn83view1"
+    ],
+    "evidence_summary": "Official Borsa Italiana identifies the exact ISIN as a structured ETF, class leverage 2, benchmark LEV X2 DAX Index.",
+    "reviewed_on": "2026-11-15",
+    "review_scope": "Product mandate and identity only; classification independent of provider download success."
+  },
+  "LU3307218399": {
+    "excluded": true,
+    "reason": "Managed-futures mandate explicitly takes synthetic long and short positions in equity, bond, currency and commodity futures/forwards. Excluded for internal directional short exposure, without claiming a fixed leverage multiple.",
+    "name": "BNP Paribas Easy Managed Futures UCITS ETF Acc EUR",
+    "xetra_symbol": "EEAU.DE",
+    "source_url": "https://www.bnpparibas-am.com/en-nl/fundsheet/equity/bnp-paribas-easy-managed-futures-ucits-etf-c-lu3307218399",
+    "additional_source_urls": [],
+    "source_refs": [
+      "turn80search7",
+      "turn83view2"
+    ],
+    "evidence_summary": "Issuer exact-ISIN fund sheet describes long and short positions via futures/forwards and synthetic total-return-swap exposure to the strategy.",
+    "reviewed_on": "2026-11-15",
+    "review_scope": "Product mandate and identity only; record independently of the listing's insufficient-age exclusion."
+  },
+  "LU3359622902": {
+    "excluded": true,
+    "reason": "Managed-futures mandate takes long and short positions across major asset classes. Excluded for internal directional short exposure, without claiming a fixed leverage multiple.",
+    "name": "iMGP DBi Managed Futures Fund R EUR HP UCITS ETF",
+    "xetra_symbol": "MFEH.DE",
+    "source_url": "https://www.imgp.com/imgp-dbi-managed-futures-fund/",
+    "additional_source_urls": [
+      "https://www.imgp.com/documents/iMGP_DBi_Managed_Futures_Profile.pdf",
+      "https://www.imgp.com/us/fund/LU3359622902-imgp-dbi-managed-futures-fund/"
+    ],
+    "source_refs": [
+      "turn82search4",
+      "turn83search2",
+      "turn83view0",
+      "turn83search4"
+    ],
+    "evidence_summary": "Issuer fund overview describes long-short futures exposure and identifies this EUR-hedged Xetra share class by exact ISIN and MFEH ticker; issuer profile confirms listing identity.",
+    "reviewed_on": "2026-11-15",
+    "review_scope": "Product mandate and identity only; record independently of the listing's insufficient-age exclusion."
+  },
+  "DE000PB8R1T1": {
+    "excluded": false,
+    "reason": "VERIFIED_UNLEVERAGED_PRODUCT_MANDATE: issuer explicitly labels this RICI Enhanced Tin total-return ETC as not leveraged; the index owner's single-base-metals methodology defines long-only futures exposure with a fully allocated contract basket.",
+    "name": "BNP Paribas RICI Enhanced Tin (TR) ETC",
+    "xetra_symbol": "BNQS.DE",
+    "exposure": "Long tin futures through the RICI Enhanced Tin total-return index; roll-optimised, not currency hedged.",
+    "leverage_multiplier": 1,
+    "source_url": "https://www.etp.bnpparibas.com/products/details/rici-enhancedsm-zinn-tr-etc/de000pb8r1t1",
+    "additional_source_urls": [
+      "https://kid.bnpparibas.com/DE000PB8R1T1_DE.pdf",
+      "https://www.beelandinterests.com/wp-content/uploads/2024/02/2020-29-June-2020-RIEH-Index-Guide-Single-Base-Metals.pdf",
+      "https://www.boerse-stuttgart.de/en/products/etps/etcs/stuttgart/pb8r1t-bnpp-rici-zinn-tr-enhanced-etc"
+    ],
+    "source_refs": [
+      "turn87search0",
+      "turn90view0",
+      "turn93view0",
+      "turn94view1",
+      "turn87search4"
+    ],
+    "evidence_summary": "Exact issuer ISIN and BNQS.DE match; issuer security information says Leveraged No. Index guide section 1.3 specifies long-only exposure, with tin in its commodity table; section 5.7 allocates the contract basket fully.",
+    "notes": "Issuer's displayed underlying Bloomberg code RIEHLATR conflicts with the index-owner guide's Tin code RIEHLTTR; product name, exact ISIN and exchange description agree on tin. Do not use that single Bloomberg field as an exposure identifier. The discrepancy does not change either candidate index's long-only/unleveraged classification.",
+    "reviewed_on": "2026-11-15",
+    "cached_provider_rows_at_review": 1,
+    "historical_admission_verified": false,
+    "review_scope": "Mandate classification only; price coverage, listing-date gate, observation eligibility and execution checks remain required. No historical performance used for admission."
+  },
+  "DE000PB6R1W7": {
+    "excluded": false,
+    "reason": "VERIFIED_UNLEVERAGED_PRODUCT_MANDATE: issuer explicitly labels this RICI Enhanced WTI total-return ETC as not leveraged; the index-owner methodology confirms long-only futures exposure.",
+    "name": "BNP Paribas RICI Enhanced WTI Oil (TR) ETC",
+    "xetra_symbol": "BNQD.DE",
+    "exposure": "Long WTI crude-oil futures through RICI Enhanced WTI Crude Oil total-return index; roll-optimised, not currency hedged.",
+    "leverage_multiplier": 1,
+    "source_url": "https://www.etp.bnpparibas.com/products/details/rici-enhancedsm-wti-oel-tr-etc/de000pb6r1w7",
+    "additional_source_urls": [
+      "https://www.beelandinterests.com/wp-content/uploads/2024/02/2020-29-June-2020-RIEH-Index-Guide-Single-Grains-Energy.pdf"
+    ],
+    "source_refs": [
+      "turn87search2",
+      "turn92view1",
+      "turn94view2",
+      "turn94view3"
+    ],
+    "evidence_summary": "Exact issuer ISIN and BNQD.DE match; security information says Leveraged No. Index-owner guide section 1.3 defines long-only exposure and its NYMEX crude-oil entry has total-return code RIEHCLTR matching the issuer's benchmark code.",
+    "reviewed_on": "2026-11-15",
+    "cached_provider_rows_at_review": 1,
+    "historical_admission_verified": false,
+    "review_scope": "Mandate classification only; price coverage, listing-date gate, observation eligibility and execution checks remain required. No historical performance used for admission."
+  },
+  "DE000PB6H1T5": {
+    "excluded": false,
+    "reason": "VERIFIED_UNLEVERAGED_PRODUCT_MANDATE: issuer identifies a collateralised heating-oil futures ETC, explicitly not leveraged, with ordinary total-return exposure.",
+    "name": "BNP Paribas Heating Oil (TR) ETC",
+    "xetra_symbol": "B4N3.DE",
+    "exposure": "Long NYMEX heating-oil futures total return; contracts roll over time, no currency hedge.",
+    "leverage_multiplier": 1,
+    "source_url": "https://www.etp.bnpparibas.com/products/details/heizoel-tr-etc/de000pb6h1t5",
+    "additional_source_urls": [
+      "https://www.boerse-stuttgart.de/en/products/etps/etcs/stuttgart/pb6h1t-bnp-heiz-l-tr-etc"
+    ],
+    "source_refs": [
+      "turn87search3",
+      "turn92view2",
+      "turn87search5"
+    ],
+    "evidence_summary": "Issuer matches exact ISIN and B4N3.DE, identifies NYMEX heating-oil futures and says Leveraged No; official exchange description independently confirms the futures exposure.",
+    "notes": "A displayed current futures expiry is not a fixed lifetime underlying; preserve rollover and provider adjustment history when assessing prices.",
+    "reviewed_on": "2026-11-15",
+    "cached_provider_rows_at_review": 1,
+    "historical_admission_verified": false,
+    "review_scope": "Mandate classification only; price coverage, listing-date gate, observation eligibility and execution checks remain required. No historical performance used for admission."
+  },
+  "DE000ETC0779": {
+    "excluded": false,
+    "reason": "VERIFIED_UNLEVERAGED_PRODUCT_MANDATE: official issuer explicitly classifies exact-ISIN product as 1x Long and ETC/ETN without leverage on WTI crude-oil futures.",
+    "name": "Société Générale ETC Light Sweet Crude Oil WTI Futures",
+    "xetra_symbol": "42GG.DE",
+    "exposure": "Long WTI light sweet crude-oil futures, factor 1, with rolling contracts and no FX option.",
+    "leverage_multiplier": 1,
+    "source_url": "https://www.sg-zertifikate.de/product-details/etc077",
+    "additional_source_urls": [],
+    "source_refs": [
+      "turn89search0",
+      "turn90view1"
+    ],
+    "evidence_summary": "Issuer static data gives ISIN DE000ETC0779, strategy Long, factor 1, product type without leverage and WTI future underlying. Xetra symbol and EUR denomination are separately matched to the archived exchange catalogue.",
+    "notes": "Current futures expiry and rollover date are descriptive snapshots, not a static lifetime benchmark.",
+    "reviewed_on": "2026-11-15",
+    "cached_provider_rows_at_review": 1,
+    "historical_admission_verified": false,
+    "review_scope": "Mandate classification only; price coverage, listing-date gate, observation eligibility and execution checks remain required. No historical performance used for admission."
+  },
+  "DE000ETC0746": {
+    "excluded": false,
+    "reason": "VERIFIED_UNLEVERAGED_PRODUCT_MANDATE: official issuer explicitly classifies exact-ISIN product as 1x Long and ETC/ETN without leverage on silver futures.",
+    "name": "Société Générale ETC Silver Futures",
+    "xetra_symbol": "SGS5.DE",
+    "exposure": "Long silver futures, factor 1, with rolling contracts and no FX option.",
+    "leverage_multiplier": 1,
+    "source_url": "https://www.certificates.societegenerale.de/product-details/etc074",
+    "additional_source_urls": [],
+    "source_refs": [
+      "turn89search1"
+    ],
+    "evidence_summary": "Issuer static data gives ISIN DE000ETC0746, strategy Long, factor 1, product type without leverage and silver future underlying. Xetra symbol and EUR denomination are separately matched to the archived exchange catalogue.",
+    "notes": "Silver futures exposure differs from direct physical-silver exposure and includes rollover economics.",
+    "reviewed_on": "2026-11-15",
+    "cached_provider_rows_at_review": 1,
+    "historical_admission_verified": false,
+    "review_scope": "Mandate classification only; price coverage, listing-date gate, observation eligibility and execution checks remain required. No historical performance used for admission."
+  },
+  "DE000A2T0VS9": {
+    "excluded": false,
+    "reason": "VERIFIED_UNLEVERAGED_PRODUCT_MANDATE: issuer specifies direct physical-silver replication, with each ETC security backed by its allocated metal entitlement; official exchange classification is without leverage.",
+    "name": "Xtrackers IE Physical Silver ETC Securities",
+    "xetra_symbol": "XSLR.DE",
+    "exposure": "Direct physical silver spot exposure through allocated bullion and a per-security metal entitlement, less fees; no currency hedge.",
+    "leverage_multiplier": 1,
+    "source_url": "https://etf.dws.com/de-de/AssetDownload/Index/9e419e72-21e8-4a88-a368-75e9536742a7/factsheet-DE000A2T0VS9-deu.pdf/",
+    "additional_source_urls": [
+      "https://etf.dws.com/download/asset/6eefac8e-41df-4c34-b572-dc1848f44c47",
+      "https://www.borsaitaliana.it/borsa/etc-etn/scheda/DE000A2T0VS9-ETFP.html"
+    ],
+    "source_refs": [
+      "turn89search6",
+      "turn90view2",
+      "turn89search7",
+      "turn89search2"
+    ],
+    "evidence_summary": "DWS exact-ISIN factsheet describes full allocation of physical silver to every issued security and value determined by metal entitlement times spot price less charges; KID confirms the metal entitlement, and official Borsa Italiana classifies it as without leverage.",
+    "notes": "The product's USD base denomination does not conflict with the archived EUR Xetra trading currency; listing currency is separately verified and does not remove underlying FX exposure.",
+    "reviewed_on": "2026-11-15",
+    "cached_provider_rows_at_review": 1,
+    "historical_admission_verified": false,
+    "review_scope": "Mandate classification only; price coverage, listing-date gate, observation eligibility and execution checks remain required. No historical performance used for admission."
+  },
+  "IE00BN940Z87": {
+    "excluded": true,
+    "reason": "INTERNAL_LEVERAGE_AND_LONG_SHORT_CARRY: underlying index magnifies a long-short commodity-futures spread by 2.5; unchanged no-internal-leverage and no-directional-short constraints require exclusion.",
+    "name": "UBS CMCI Commodity Carry ex-Agriculture SF UCITS ETF USD acc",
+    "xetra_symbol": "UBF6.DE",
+    "reference_index": "UBS CM-BCOM Outperformance Strategy Ex-Precious Metals, Agriculture, Livestock 2.5x Leveraged Net of Cost Total Return",
+    "source_url": "https://www.xetra.com/xetra-en/newsroom/press-releases/list-press-releases/New-UBS-ETFs-on-Xetra-carry-trade-with-commodity-futures-2442070",
+    "additional_source_urls": [
+      "https://dl.avl-investmentfonds.de/fds/IE00BN940Z87-KID-EN-20240917.pdf",
+      "https://dl.avl-investmentfonds.de/fds/IE00BN940Z87-PRIIP-DE-20260617.pdf"
+    ],
+    "source_refs": [
+      "turn96search5",
+      "turn99search25",
+      "turn99search28"
+    ],
+    "source_kind": "issuer_or_exchange_document",
+    "benchmark_spread_multiplier": 2.5,
+    "direct_long_commodity_multiplier": null,
+    "notes": "2.5 is a multiplier on the difference between commodity strategies, not a claim of simple 2.5-times long commodity-price exposure. Fully funded collateral does not remove benchmark leverage.",
+    "catalogue_first_trading_date": "2021-02-11",
+    "reviewed_on": "2026-11-15"
+  },
+  "IE00BN941009": {
+    "excluded": true,
+    "reason": "INTERNAL_LEVERAGE_AND_LONG_SHORT_CARRY: underlying index magnifies a long-short commodity-futures spread by 2.5; unchanged no-internal-leverage and no-directional-short constraints require exclusion.",
+    "name": "UBS CMCI Commodity Carry ex-Agriculture SF UCITS ETF hEUR acc",
+    "xetra_symbol": "UBF7.DE",
+    "reference_index": "UBS CM-BCOM Outperformance Strategy Ex-Precious Metals, Agriculture, Livestock 2.5x Leveraged EUR Monthly Hedged Index",
+    "source_url": "https://www.xetra.com/xetra-en/newsroom/press-releases/list-press-releases/New-UBS-ETFs-on-Xetra-carry-trade-with-commodity-futures-2442070",
+    "additional_source_urls": [
+      "https://docs.extraetf.com/download/IE00BN941009/de/MR/"
+    ],
+    "source_refs": [
+      "turn96search5",
+      "turn101search6"
+    ],
+    "source_kind": "issuer_or_exchange_document",
+    "benchmark_spread_multiplier": 2.5,
+    "direct_long_commodity_multiplier": null,
+    "notes": "2.5 is a multiplier on the difference between commodity strategies, not a claim of simple 2.5-times long commodity-price exposure. Fully funded collateral does not remove benchmark leverage.",
+    "catalogue_first_trading_date": "2021-02-11",
+    "reviewed_on": "2026-11-15"
+  },
+  "IE00BKFB6L02": {
+    "excluded": true,
+    "reason": "INTERNAL_LEVERAGE_AND_LONG_SHORT_CARRY: underlying index magnifies a long-short commodity-futures spread by 2.5; unchanged no-internal-leverage and no-directional-short constraints require exclusion.",
+    "name": "UBS CMCI Commodity Carry SF UCITS ETF USD acc",
+    "xetra_symbol": "UEQC.DE",
+    "reference_index": "UBS CM-BCOM Outperformance Strategy Index ex-Precious Metals 2.5 Leveraged Net of Cost Total Return",
+    "source_url": "https://swissfunddata.ch/sfdpub/docs/fsm-8514_20_01-20250531-en.pdf",
+    "additional_source_urls": [
+      "https://www.ubs.com/it/it/assetmanagement/funds/etf/ie00bkfb6l02-ubs-etf-plc-cmci-com-carry-sf-usd-a-acc-pd001.html"
+    ],
+    "source_refs": [
+      "turn106view2",
+      "turn99search8"
+    ],
+    "source_kind": "UBS-authored factsheet hosted by Swiss Fund Data; issuer fund-page identity",
+    "benchmark_spread_multiplier": 2.5,
+    "direct_long_commodity_multiplier": null,
+    "notes": "2.5 is a multiplier on the difference between commodity strategies, not a claim of simple 2.5-times long commodity-price exposure. Fully funded collateral does not remove benchmark leverage.",
+    "catalogue_first_trading_date": "2020-01-22",
+    "reviewed_on": "2026-11-15"
+  },
+  "IE00BMC5DV85": {
+    "excluded": true,
+    "reason": "INTERNAL_LEVERAGE_AND_LONG_SHORT_CARRY: underlying index magnifies a long-short commodity-futures spread by 2.5; unchanged no-internal-leverage and no-directional-short constraints require exclusion.",
+    "name": "UBS CMCI Commodity Carry SF UCITS ETF hEUR acc",
+    "xetra_symbol": "UEQV.DE",
+    "reference_index": "UBS CM-BCOM Outperformance Strategy ex-Precious Metals 2.5 Leveraged EUR Hedged Index Net of Cost Total Return",
+    "source_url": "https://swissfunddata.ch/sfdpub/docs/fsm-8514_20_03-20240831-it.pdf",
+    "additional_source_urls": [
+      "https://bnl.it/content/dam/rsc/kid-priips/IE00BMC5DV85_KID.pdf"
+    ],
+    "source_refs": [
+      "turn106view3",
+      "turn98search7"
+    ],
+    "source_kind": "UBS-authored factsheet and KID hosted by distributors",
+    "benchmark_spread_multiplier": 2.5,
+    "direct_long_commodity_multiplier": null,
+    "notes": "2.5 is a multiplier on the difference between commodity strategies, not a claim of simple 2.5-times long commodity-price exposure. Fully funded collateral does not remove benchmark leverage.",
+    "catalogue_first_trading_date": "2020-06-18",
+    "reviewed_on": "2026-11-15"
+  }
+}

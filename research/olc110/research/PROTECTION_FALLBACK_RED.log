@@ -1,0 +1,32 @@
+test_busy_book_defers_event_but_later_emits_remaining_exit (test_protection.ProtectionTests.test_busy_book_defers_event_but_later_emits_remaining_exit) ... ok
+test_exit_targets_only_failing_asset (test_protection.ProtectionTests.test_exit_targets_only_failing_asset) ... ok
+test_fast_control_rebound_uses_full_slot (test_protection.ProtectionTests.test_fast_control_rebound_uses_full_slot) ... ok
+test_feature_breakout_excludes_current_close_and_future (test_protection.ProtectionTests.test_feature_breakout_excludes_current_close_and_future) ... ok
+test_fresh_rejects_correlated_actual_holding (test_protection.ProtectionTests.test_fresh_rejects_correlated_actual_holding) ... ok
+test_fresh_requires_vacancy_and_starts_as_probe (test_protection.ProtectionTests.test_fresh_requires_vacancy_and_starts_as_probe) ... ok
+test_missing_current_close_cannot_generate_exit (test_protection.ProtectionTests.test_missing_current_close_cannot_generate_exit) ... ok
+test_monthly_keeps_cash_when_same_asset_still_fails (test_protection.ProtectionTests.test_monthly_keeps_cash_when_same_asset_still_fails) ... ok
+test_monthly_only_reentry_waits_for_calendar (test_protection.ProtectionTests.test_monthly_only_reentry_waits_for_calendar) ... ok
+test_new_blocked_slot_stays_cash_on_initial_signal (test_protection.ProtectionTests.test_new_blocked_slot_stays_cash_on_initial_signal) ... ok
+test_original_reentry_precedes_fresh_opportunity (test_protection.ProtectionTests.test_original_reentry_precedes_fresh_opportunity) ... ok
+test_primary_held_in_other_slot_does_not_block_fresh_fallback (test_protection.ProtectionTests.test_primary_held_in_other_slot_does_not_block_fresh_fallback) ... FAIL
+test_probe_requires_actual_fill_then_later_close (test_protection.ProtectionTests.test_probe_requires_actual_fill_then_later_close) ... ok
+test_rebound_uses_own_failure_barrier (test_protection.ProtectionTests.test_rebound_uses_own_failure_barrier) ... ok
+test_reordered_monthly_slots_preserve_state_by_asset (test_protection.ProtectionTests.test_reordered_monthly_slots_preserve_state_by_asset) ... ok
+test_slow_does_not_reverse_simultaneous_exit (test_protection.ProtectionTests.test_slow_does_not_reverse_simultaneous_exit) ... ok
+test_staged_rebound_uses_half_slot (test_protection.ProtectionTests.test_staged_rebound_uses_half_slot) ... ok
+test_unsold_asset_cannot_reenter_or_create_vacancy (test_protection.ProtectionTests.test_unsold_asset_cannot_reenter_or_create_vacancy) ... ok
+test_vol_width_is_frozen_during_loss (test_protection.ProtectionTests.test_vol_width_is_frozen_during_loss) ... ok
+
+======================================================================
+FAIL: test_primary_held_in_other_slot_does_not_block_fresh_fallback (test_protection.ProtectionTests.test_primary_held_in_other_slot_does_not_block_fresh_fallback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 169, in test_primary_held_in_other_slot_does_not_block_fresh_fallback
+    self.assertIsNotNone(a,'A held by the other slot cannot suppress a qualified D fallback')
+AssertionError: unexpectedly None : A held by the other slot cannot suppress a qualified D fallback
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.623s
+
+FAILED (failures=1)

@@ -1,0 +1,24 @@
+1/1 PASS EXIT21_SLOW__LAG2: 383 orders, 289 targets, NAV error 0
+{
+  "status": "PASS_SINGLE_PATH",
+  "planned_paths": 1,
+  "passed_paths": 1,
+  "failed_paths": 0,
+  "reconstructions": {
+    "orders_independently_sized": 383,
+    "instructions_independently_rederived": 289,
+    "slot_trace_rows_checked": 3398,
+    "targeted_masks_rederived": 209,
+    "targeted_execution_attempts_checked": 209,
+    "untouched_quantities_checked": 437832,
+    "scheduled_selections_rederived": 80,
+    "order_timestamps_checked": 383
+  },
+  "maxima": {
+    "max_nav_cash_error": 0,
+    "max_order_quantity_error": 0,
+    "max_order_cost_error": 0,
+    "max_self_financing_error": 7.275957614183426e-12,
+    "max_daily_pnl_attribution_error": 6.394884621840902e-12
+  }
+}

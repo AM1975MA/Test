@@ -1,0 +1,45 @@
+{
+  "error": "('VALUE', (('INSTRUCTION', 789), 'positions'), 1, 2)",
+  "instruction": 89,
+  "signal_idx": 789,
+  "assets": [
+    {
+      "j": 693,
+      "isin": "IE00B0M63516",
+      "reference_units": 5.684341886080802e-14,
+      "recorded_units": 0.0,
+      "difference": 5.684341886080802e-14
+    },
+    {
+      "j": 852,
+      "isin": "IE00B6R51Z18",
+      "reference_units": 404.0874375145439,
+      "recorded_units": 404.0874375145439,
+      "difference": 0.0
+    },
+    {
+      "j": 1404,
+      "isin": "IE00BQQP9F84",
+      "reference_units": 241.4768029549253,
+      "recorded_units": 241.4768029549253,
+      "difference": 0.0
+    }
+  ],
+  "cash_difference": 0.0,
+  "maxima": {
+    "max_raw_weights_error": 0,
+    "max_target_weights_error": 2.220446049250313e-16,
+    "max_decision_units_error": 4.547473508864641e-13,
+    "max_decision_current_weights_error": 2.220446049250313e-16,
+    "max_decision_raw_weights_error": 0,
+    "max_decision_target_weights_error": 2.220446049250313e-16,
+    "max_nav_cash_error": 9.094947017729282e-12,
+    "max_daily_pnl_attribution_error": 4.4213521732672234e-12,
+    "max_order_quantity_error": 4.547473508864641e-13,
+    "max_order_price_error": 0,
+    "max_order_notional_error": 2.7284841053187847e-12,
+    "max_order_cost_error": 5.329070518200751e-15,
+    "max_self_financing_error": 3.637978807091713e-12
+  },
+  "target_positions": 1
+}

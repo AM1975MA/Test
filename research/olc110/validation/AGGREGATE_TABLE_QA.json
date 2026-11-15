@@ -1,0 +1,2195 @@
+{
+  "status": "PASS_COMPLETE_AGGREGATIONS",
+  "scorecard_paths": 78,
+  "segment_rows": 312,
+  "annual_rows_previously_audited": 546,
+  "all_2024_results_included": true,
+  "prior_full_audit_sha256": "bcdf2d4699228b3b7c6cf94108c434148165316107ae37944c3be21b45c001d3",
+  "uses_only_independently_verified_daily_paths": true,
+  "results": [
+    {
+      "path_id": "BASE__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17948.948209018705,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 34589.11526832839,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17948.948209018705,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 18268.505767261173,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 38617.65873354691,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 18268.505767261173,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17634.786245313015,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 30785.318872025466,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17634.786245313015,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17092.30783980811,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 25826.735854034334,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17092.30783980811,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15722.09233839131,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 20975.231117086834,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15722.09233839131,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17029.170045518702,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 30675.13128123633,
+      "status": "PASS"
+    },
+    {
+      "path_id": "BASE__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17029.170045518702,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13896.81782245423,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 20405.389005611712,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13896.81782245423,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 14030.775932441293,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 21708.7970808214,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 14030.775932441293,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13763.674507443257,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 19165.649663631433,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13763.674507443257,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13598.74032345166,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 17447.525711016213,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13598.74032345166,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13031.967695247426,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 16063.789129479726,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13031.967695247426,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13544.343971601571,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 19054.586098860535,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_HALF__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13544.343971601571,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15923.713591449952,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 27251.672042512055,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15923.713591449952,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16133.639520171577,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 29685.576717775868,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16133.639520171577,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15715.668732135788,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 24703.570264276368,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15715.668732135788,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15378.062172434713,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 21561.509708306192,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15378.062172434713,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 14350.261712477743,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 18514.86711273472,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 14350.261712477743,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15314.379822088958,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 24946.27334506309,
+      "status": "PASS"
+    },
+    {
+      "path_id": "STATIC_75__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15314.379822088958,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16252.838270337073,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 20113.69882160877,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16252.838270337073,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17159.628044864014,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 28348.31977255678,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17159.628044864014,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15476.887563755736,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 14063.778499121465,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15476.887563755736,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15640.38904347751,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 17131.929881178803,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15640.38904347751,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15364.300198245586,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 15731.229938803286,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15364.300198245586,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15677.739561034683,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 16787.899864624636,
+      "status": "PASS"
+    },
+    {
+      "path_id": "REFRESH_WEEKLY__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15677.739561034683,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16917.45508979629,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 20823.06091200558,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16917.45508979629,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17254.310166865198,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 23874.933777206155,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17254.310166865198,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16586.422327256452,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 18137.81513797785,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16586.422327256452,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16603.049514927414,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 17757.617675738053,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16603.049514927414,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15356.3506516864,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 18434.539486735874,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15356.3506516864,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16763.19182134629,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 19209.9700145006,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_MONTHLY__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16763.19182134629,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13004.606453817536,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 14924.384923487323,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13004.606453817536,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13579.412784025852,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 19266.086752736013,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13579.412784025852,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 12418.0132594305,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 11412.873925926928,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 12418.0132594305,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 14472.336906805604,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 12663.757194099175,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 14472.336906805604,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 14940.835818274265,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 14030.722705019707,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 14940.835818274265,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 12362.335411119631,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 12355.265281701413,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_SLOW__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 12362.335411119631,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13858.646456046801,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 14599.562817661988,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13858.646456046801,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 14540.880057700848,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 19652.938685776375,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 14540.880057700848,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13169.62627496853,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 10695.820705150198,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13169.62627496853,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13374.957501195198,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 11214.65900772893,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13374.957501195198,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 14421.907736096171,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 10893.249330221395,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 14421.907736096171,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 12193.16758972876,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 11052.378036665936,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_FAST__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 12193.16758972876,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13998.795770193807,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 15306.313426504068,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13998.795770193807,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 14642.52983383038,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 20174.022484584817,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 14642.52983383038,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13343.818626245564,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 11471.749979148475,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13343.818626245564,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13840.927225883599,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 11633.91681277505,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13840.927225883599,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 14576.041359028055,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 11846.402877681257,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 14576.041359028055,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 12502.209670393571,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 11778.584399081163,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 12502.209670393571,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17923.56487581937,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 23198.563120765466,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17923.56487581937,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 18351.568411098826,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 27214.23020933573,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 18351.568411098826,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17504.531464270487,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 19893.009956766666,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17504.531464270487,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15768.557324184276,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 15741.554149005551,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15768.557324184276,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15707.603397798579,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 14484.036236583124,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15707.603397798579,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16421.50603119674,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 18783.633335190265,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT63_STAGED__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16421.50603119674,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17910.808030309443,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 21256.64658183533,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17910.808030309443,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 18413.460099157644,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 24879.75213272911,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 18413.460099157644,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17419.927615005865,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 18010.12601282785,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17419.927615005865,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16165.922230155971,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 19956.939763470735,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16165.922230155971,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17156.877006374627,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 15262.056328749952,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17156.877006374627,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16805.89057092567,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 23188.84782435638,
+      "status": "PASS"
+    },
+    {
+      "path_id": "TRAIL15_STAGED__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16805.89057092567,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17646.400551898274,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 18336.861832995204,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17646.400551898274,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 18151.339221513852,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 21634.903096358015,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 18151.339221513852,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17153.463830810153,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 15419.396103234289,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17153.463830810153,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15233.643868381303,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 13986.98714575552,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15233.643868381303,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17654.050296528738,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 14238.546806193172,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17654.050296528738,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16748.223946128448,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 18855.325079500093,
+      "status": "PASS"
+    },
+    {
+      "path_id": "VOLTRAIL_STAGED__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16748.223946128448,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 14550.896773586217,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 16898.465632888197,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 14550.896773586217,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15277.423269818382,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 23481.115736401036,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15277.423269818382,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 13855.18241651431,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 12020.207222576653,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 13855.18241651431,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16581.842865591378,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 13309.202421194414,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16581.842865591378,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17270.65174193876,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 15400.244980416333,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17270.65174193876,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 12885.703091737669,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 13298.946075269432,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHW__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 12885.703091737669,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__BASE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__BASE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 16398.89321378958,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__BASE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 21625.274352086217,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__BASE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 16398.89321378958,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__ZERO_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__ZERO_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 17319.328036690094,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__ZERO_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 30730.331997709694,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__ZERO_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 17319.328036690094,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__DOUBLE_COST",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__DOUBLE_COST",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15521.953712273315,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__DOUBLE_COST",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 15048.72746836029,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__DOUBLE_COST",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15521.953712273315,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__LAG1",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__LAG1",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15543.816209834675,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__LAG1",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 12651.007737859003,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__LAG1",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15543.816209834675,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__LAG2",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__LAG2",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15789.333930459024,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__LAG2",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 14689.134164358446,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__LAG2",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15789.333930459024,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__NEXT_CLOSE",
+      "segment": "2020",
+      "observations": 212,
+      "initial_equity": 10000.0,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__NEXT_CLOSE",
+      "segment": "2021_2024",
+      "observations": 1021,
+      "initial_equity": 15419.067115409085,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__NEXT_CLOSE",
+      "segment": "2025_2026",
+      "observations": 466,
+      "initial_equity": 17158.65237629952,
+      "status": "PASS"
+    },
+    {
+      "path_id": "EXIT21_STAGED_FRESHD__NEXT_CLOSE",
+      "segment": "2021_2026",
+      "observations": 1487,
+      "initial_equity": 15419.067115409085,
+      "status": "PASS"
+    }
+  ]
+}

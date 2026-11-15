@@ -1,0 +1,6 @@
+scenario,status,maximum_difference,tables
+BASE,PASS,0.0,3
+ZERO_COST,PASS,0.0,3
+DOUBLE_COST,PASS,0.0,3
+LAG1,PASS,0.0,3
+LAG2,PASS,0.0,3

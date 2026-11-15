@@ -1,0 +1,62 @@
+EXIT21_MONTHLY BASE: 84 isolated events; empty books and initial fills reconciled
+EXIT21_MONTHLY LAG2: 81 isolated events; empty books and initial fills reconciled
+EXIT21_MONTHLY NEXT_CLOSE: 84 isolated events; empty books and initial fills reconciled
+EXIT21_STAGED BASE: 343 isolated events; empty books and initial fills reconciled
+EXIT21_STAGED LAG2: 254 isolated events; empty books and initial fills reconciled
+EXIT21_STAGED NEXT_CLOSE: 343 isolated events; empty books and initial fills reconciled
+EXIT63_STAGED BASE: 117 isolated events; empty books and initial fills reconciled
+EXIT63_STAGED LAG2: 112 isolated events; empty books and initial fills reconciled
+EXIT63_STAGED NEXT_CLOSE: 117 isolated events; empty books and initial fills reconciled
+EXIT21_STAGED_FRESHW BASE: 409 isolated events; empty books and initial fills reconciled
+EXIT21_STAGED_FRESHW LAG2: 291 isolated events; empty books and initial fills reconciled
+EXIT21_STAGED_FRESHW NEXT_CLOSE: 409 isolated events; empty books and initial fills reconciled
+EXIT21_STAGED_FRESHD BASE: 457 isolated events; empty books and initial fills reconciled
+EXIT21_STAGED_FRESHD LAG2: 311 isolated events; empty books and initial fills reconciled
+EXIT21_STAGED_FRESHD NEXT_CLOSE: 457 isolated events; empty books and initial fills reconciled
+{
+  "status": "PASS_ISOLATED_EVENT_DIAGNOSTICS",
+  "completed_utc": "2026-11-15T19:55:46.853814+00:00",
+  "paths": 15,
+  "events": 3869,
+  "intervals": 11607,
+  "horizons": [
+    1,
+    5,
+    21
+  ],
+  "empty_books_verified": 3869,
+  "fill_comparisons": 3869,
+  "individual_fills_checked": 4395,
+  "truncated_intervals": 101,
+  "truncated_events": 82,
+  "no_execution_complete_intervals": 1069,
+  "maximum_errors": {
+    "max_snapshot_units_error": 0.0,
+    "max_snapshot_cash_error": 0.0,
+    "max_conservation_error": 1.0913936421275139e-11,
+    "max_quantity_error": 0.0,
+    "max_price_error": 0.0,
+    "max_notional_error": 0.0,
+    "max_cost_error": 0.0
+  },
+  "denominator": "Identical signal-Close NAV from exact DECISIONS.npz units and cash",
+  "direct_cost": "Actual diagnostic order fees; no terminal liquidation fee",
+  "gross_market_markout": "Net NAV difference plus direct costs on actual fee-constrained quantities",
+  "horizon_anchor": "Signal session; T+1 can precede the first LAG2 execution",
+  "tie_tolerance_bp": 1e-06,
+  "production_imports": false,
+  "new_strategy_runs": 0,
+  "future_outcomes_used_only_for_diagnostics": true,
+  "overlapping_not_additive": true,
+  "annualized_or_compounded": false,
+  "full_horizon_summaries_exclude_truncation": true,
+  "limitations": [
+    "Conditional same-state diagnostics, not prospective or randomized evidence.",
+    "Overlap and repeated assets make intervals dependent; frequencies are descriptive.",
+    "Different arms and scenarios have different event states and dates.",
+    "Cash counterfactual earns zero; fees at the horizon are not assumed liquidation fees.",
+    "Market markout does not remove equity risk premium or evaluate alternative candidate choices.",
+    "NEXT_CLOSE uses accepted future closes for execution; its T+1 market component is zero when filled once.",
+    "No certification of point-in-time universe, adjusted-price vintage, provenance or capacity."
+  ]
+}

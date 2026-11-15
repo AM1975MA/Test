@@ -1,0 +1,7 @@
+test_old_fresh_asset_does_not_claim_other_slots_later_holding (test_cross_slot_admission.CrossSlotPolicyReviewTests.test_old_fresh_asset_does_not_claim_other_slots_later_holding) ... ok
+test_primary_held_elsewhere_does_not_suppress_fresh_fallback (test_cross_slot_admission.CrossSlotPolicyReviewTests.test_primary_held_elsewhere_does_not_suppress_fresh_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.009s
+
+OK

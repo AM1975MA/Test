@@ -1,0 +1,13 @@
+PASS prefix 2021-12-30: 13 arms x 2 execution conventions
+PASS prefix 2024-12-30: 13 arms x 2 execution conventions
+PASS prefix 2026-06-30: 13 arms x 2 execution conventions
+{
+  "status": "PASS_FUTURE_PERTURBATION_INVARIANCE",
+  "cutoffs": 3,
+  "comparisons": 78,
+  "arms": 13,
+  "execution_modes": [
+    "LAG2_OPEN",
+    "NEXT_CLOSE"
+  ]
+}

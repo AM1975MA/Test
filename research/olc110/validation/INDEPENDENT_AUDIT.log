@@ -1,0 +1,101 @@
+1/78 PASS BASE__BASE: 226 orders, 80 targets, NAV error 0
+2/78 PASS BASE__ZERO_COST: 225 orders, 80 targets, NAV error 0
+3/78 PASS BASE__DOUBLE_COST: 225 orders, 80 targets, NAV error 0
+4/78 PASS BASE__LAG1: 222 orders, 80 targets, NAV error 0
+5/78 PASS BASE__LAG2: 225 orders, 80 targets, NAV error 0
+6/78 PASS BASE__NEXT_CLOSE: 225 orders, 80 targets, NAV error 0
+7/78 PASS STATIC_HALF__BASE: 220 orders, 80 targets, NAV error 0
+8/78 PASS STATIC_HALF__ZERO_COST: 220 orders, 80 targets, NAV error 0
+9/78 PASS STATIC_HALF__DOUBLE_COST: 220 orders, 80 targets, NAV error 0
+10/78 PASS STATIC_HALF__LAG1: 219 orders, 80 targets, NAV error 0
+11/78 PASS STATIC_HALF__LAG2: 219 orders, 80 targets, NAV error 0
+12/78 PASS STATIC_HALF__NEXT_CLOSE: 221 orders, 80 targets, NAV error 0
+13/78 PASS STATIC_75__BASE: 224 orders, 80 targets, NAV error 0
+14/78 PASS STATIC_75__ZERO_COST: 224 orders, 80 targets, NAV error 0
+15/78 PASS STATIC_75__DOUBLE_COST: 224 orders, 80 targets, NAV error 0
+16/78 PASS STATIC_75__LAG1: 222 orders, 80 targets, NAV error 0
+17/78 PASS STATIC_75__LAG2: 224 orders, 80 targets, NAV error 0
+18/78 PASS STATIC_75__NEXT_CLOSE: 228 orders, 80 targets, NAV error 0
+19/78 PASS REFRESH_WEEKLY__BASE: 701 orders, 348 targets, NAV error 0
+20/78 PASS REFRESH_WEEKLY__ZERO_COST: 696 orders, 348 targets, NAV error 0
+21/78 PASS REFRESH_WEEKLY__DOUBLE_COST: 700 orders, 348 targets, NAV error 0
+22/78 PASS REFRESH_WEEKLY__LAG1: 695 orders, 348 targets, NAV error 0
+23/78 PASS REFRESH_WEEKLY__LAG2: 702 orders, 348 targets, NAV error 0
+24/78 PASS REFRESH_WEEKLY__NEXT_CLOSE: 694 orders, 348 targets, NAV error 0
+25/78 PASS EXIT21_MONTHLY__BASE: 239 orders, 164 targets, NAV error 0
+26/78 PASS EXIT21_MONTHLY__ZERO_COST: 239 orders, 164 targets, NAV error 0
+27/78 PASS EXIT21_MONTHLY__DOUBLE_COST: 239 orders, 164 targets, NAV error 0
+28/78 PASS EXIT21_MONTHLY__LAG1: 237 orders, 163 targets, NAV error 0
+29/78 PASS EXIT21_MONTHLY__LAG2: 231 orders, 161 targets, NAV error 0
+30/78 PASS EXIT21_MONTHLY__NEXT_CLOSE: 239 orders, 164 targets, NAV error 0
+31/78 PASS EXIT21_SLOW__BASE: 449 orders, 358 targets, NAV error 0
+32/78 PASS EXIT21_SLOW__ZERO_COST: 450 orders, 358 targets, NAV error 0
+33/78 PASS EXIT21_SLOW__DOUBLE_COST: 450 orders, 358 targets, NAV error 0
+34/78 PASS EXIT21_SLOW__LAG1: 414 orders, 318 targets, NAV error 0
+35/78 PASS EXIT21_SLOW__LAG2: 383 orders, 289 targets, NAV error 0
+36/78 PASS EXIT21_SLOW__NEXT_CLOSE: 450 orders, 358 targets, NAV error 0
+37/78 PASS EXIT21_FAST__BASE: 524 orders, 407 targets, NAV error 0
+38/78 PASS EXIT21_FAST__ZERO_COST: 524 orders, 407 targets, NAV error 0
+39/78 PASS EXIT21_FAST__DOUBLE_COST: 524 orders, 407 targets, NAV error 0
+40/78 PASS EXIT21_FAST__LAG1: 482 orders, 361 targets, NAV error 0
+41/78 PASS EXIT21_FAST__LAG2: 441 orders, 326 targets, NAV error 0
+42/78 PASS EXIT21_FAST__NEXT_CLOSE: 522 orders, 407 targets, NAV error 0
+43/78 PASS EXIT21_STAGED__BASE: 541 orders, 423 targets, NAV error 0
+44/78 PASS EXIT21_STAGED__ZERO_COST: 542 orders, 423 targets, NAV error 0
+45/78 PASS EXIT21_STAGED__DOUBLE_COST: 541 orders, 423 targets, NAV error 0
+46/78 PASS EXIT21_STAGED__LAG1: 500 orders, 375 targets, NAV error 0
+47/78 PASS EXIT21_STAGED__LAG2: 451 orders, 334 targets, NAV error 0
+48/78 PASS EXIT21_STAGED__NEXT_CLOSE: 540 orders, 423 targets, NAV error 0
+49/78 PASS EXIT63_STAGED__BASE: 320 orders, 197 targets, NAV error 0
+50/78 PASS EXIT63_STAGED__ZERO_COST: 320 orders, 197 targets, NAV error 0
+51/78 PASS EXIT63_STAGED__DOUBLE_COST: 321 orders, 197 targets, NAV error 0
+52/78 PASS EXIT63_STAGED__LAG1: 317 orders, 195 targets, NAV error 0
+53/78 PASS EXIT63_STAGED__LAG2: 313 orders, 192 targets, NAV error 0
+54/78 PASS EXIT63_STAGED__NEXT_CLOSE: 320 orders, 197 targets, NAV error 0
+55/78 PASS TRAIL15_STAGED__BASE: 343 orders, 218 targets, NAV error 0
+56/78 PASS TRAIL15_STAGED__ZERO_COST: 342 orders, 218 targets, NAV error 0
+57/78 PASS TRAIL15_STAGED__DOUBLE_COST: 343 orders, 218 targets, NAV error 0
+58/78 PASS TRAIL15_STAGED__LAG1: 330 orders, 208 targets, NAV error 0
+59/78 PASS TRAIL15_STAGED__LAG2: 318 orders, 195 targets, NAV error 0
+60/78 PASS TRAIL15_STAGED__NEXT_CLOSE: 340 orders, 218 targets, NAV error 0
+61/78 PASS VOLTRAIL_STAGED__BASE: 354 orders, 228 targets, NAV error 0
+62/78 PASS VOLTRAIL_STAGED__ZERO_COST: 354 orders, 228 targets, NAV error 0
+63/78 PASS VOLTRAIL_STAGED__DOUBLE_COST: 354 orders, 228 targets, NAV error 0
+64/78 PASS VOLTRAIL_STAGED__LAG1: 349 orders, 223 targets, NAV error 0
+65/78 PASS VOLTRAIL_STAGED__LAG2: 340 orders, 220 targets, NAV error 0
+66/78 PASS VOLTRAIL_STAGED__NEXT_CLOSE: 352 orders, 228 targets, NAV error 0
+67/78 PASS EXIT21_STAGED_FRESHW__BASE: 674 orders, 489 targets, NAV error 0
+68/78 PASS EXIT21_STAGED_FRESHW__ZERO_COST: 674 orders, 489 targets, NAV error 0
+69/78 PASS EXIT21_STAGED_FRESHW__DOUBLE_COST: 674 orders, 489 targets, NAV error 0
+70/78 PASS EXIT21_STAGED_FRESHW__LAG1: 611 orders, 420 targets, NAV error 0
+71/78 PASS EXIT21_STAGED_FRESHW__LAG2: 543 orders, 371 targets, NAV error 0
+72/78 PASS EXIT21_STAGED_FRESHW__NEXT_CLOSE: 672 orders, 489 targets, NAV error 0
+73/78 PASS EXIT21_STAGED_FRESHD__BASE: 757 orders, 537 targets, NAV error 0
+74/78 PASS EXIT21_STAGED_FRESHD__ZERO_COST: 757 orders, 537 targets, NAV error 0
+75/78 PASS EXIT21_STAGED_FRESHD__DOUBLE_COST: 757 orders, 537 targets, NAV error 0
+76/78 PASS EXIT21_STAGED_FRESHD__LAG1: 677 orders, 456 targets, NAV error 0
+77/78 PASS EXIT21_STAGED_FRESHD__LAG2: 598 orders, 391 targets, NAV error 0
+78/78 PASS EXIT21_STAGED_FRESHD__NEXT_CLOSE: 756 orders, 537 targets, NAV error 0
+{
+  "status": "PASS_COMPLETE_INDEPENDENT_RECONSTRUCTION",
+  "planned_paths": 78,
+  "passed_paths": 78,
+  "failed_paths": 0,
+  "reconstructions": {
+    "orders_independently_sized": 32533,
+    "instructions_independently_rederived": 20810,
+    "slot_trace_rows_checked": 183492,
+    "targeted_masks_rederived": 12962,
+    "targeted_execution_attempts_checked": 13020,
+    "untouched_quantities_checked": 27275452,
+    "scheduled_selections_rederived": 7848,
+    "order_timestamps_checked": 32533
+  },
+  "maxima": {
+    "max_nav_cash_error": 0,
+    "max_order_quantity_error": 0,
+    "max_order_cost_error": 0,
+    "max_self_financing_error": 1.4551915228366852e-11,
+    "max_daily_pnl_attribution_error": 2.546585164964199e-11
+  }
+}

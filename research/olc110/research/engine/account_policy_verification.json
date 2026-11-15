@@ -1,0 +1,28 @@
+{
+  "engine_scope": "Optional account-policy interface; no strategy-performance experiment",
+  "focused_tests": 19,
+  "inherited_tests": 51,
+  "contemporaneous_policy_tests": 21,
+  "full_suite_tests": 91,
+  "red": "18 tests, 31 assertion failures (subtests) because account_policy was absent",
+  "green": "19 focused tests passed; full discovery 91 passed after masked sell-only validation fix",
+  "sha256": {
+    "src/engine.py": "370958a6f250f60936b50147ae8787b2e590e81660b4d101e5bbdd9d9b0cba5f",
+    "tests/test_account_policy_engine.py": "7f0be4eecc1adb963a985c79192a1b970adbe5f0b88dbc34f96e7e43fc5dae5e",
+    "source/src/core.py": "e49bd609bf9e65b6270b03fb9b706070edb3d2717765f37a856dff3d559551d9",
+    "research/engine/olc109_engine_reference.py": "30af3a38b90b81f502cf95d979209c032416418fd9b31ee60857937e1d1b004a",
+    "research/engine/account_policy_red.log": "e1f422d4d040111d0c5e9c226d8a1a7261011cad360ce525647d060bec2ad87b",
+    "research/engine/account_policy_green.log": "88d46364f74b2bf1d9a4bf70e98619bc4a031317d05b1f5dd688f74ab0d1da53",
+    "research/engine/all_tests_green.log": "cefa8165ab96f3c665274c0765298ed1226318d25986cbf2c92be205cec385e3",
+    "research/engine/account_policy_mask_scope_red.log": "30b7c3743252607b5af4e122988542d029934b8f082f469cfb78879dfb130227",
+    "research/engine/account_policy_mask_scope_green.log": "c3d6ce114a693c290363877abe188e8b4f8353b584e45e6346a0dd592cbc005e",
+    "research/engine/all_tests_mask_scope_green.log": "cd29a52a3635ce566fe168689f42ce4003c0b5be9c687e35cb187bffbf2ba8e3"
+  },
+  "original_engine_reference_identical": true,
+  "immutable_core_identical": true,
+  "integration_fix": {
+    "issue": "Nominal weights outside a targeted sell-only action must not be treated as requested additions",
+    "red": "19 tests; one failure reproducing ACCOUNT_ADDS for untouched nominal weight .5 versus actual .4",
+    "green": "19 tests passed, including higher and lower untouched nominal weights and additions rejected within partial or full masks"
+  }
+}

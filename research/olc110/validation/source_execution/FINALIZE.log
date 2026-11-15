@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "paths": 78,
+  "orders": 32533,
+  "input_result_hashes_checked": 792,
+  "changed_inputs_or_results": [],
+  "core_audit_script_hash_matches": true,
+  "primary_archives_verified": 2,
+  "original_source_prices_and_financial_results_unchanged": true,
+  "finalizer_sha256": "05d416c8484b043b60a15ed1781659bba43d81d37777146f32b79b055d2db950",
+  "adjudication_status": "PASS_BOUNDED_KNOWN_EVENT_AND_EXECUTION_LIMITS_RETAINED"
+}

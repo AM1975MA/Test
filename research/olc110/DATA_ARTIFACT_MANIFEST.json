@@ -1,0 +1,71 @@
+{
+  "snapshot": "OLC110 final frozen research; 2026-11-15",
+  "repository": "AM1975MA/Test",
+  "branch": "research/olc110-protection-reentry-20261115",
+  "path": "research/olc110",
+  "base_commit": "12908133d98dba91d09cdb1a5266a64421d9d075",
+  "base_tree": "8ddccc47147dcdedfdb58f9125e8417d3e8e2ca2",
+  "result": "NEGATIVE_NO_NEW_PROTECTION_PROMOTED",
+  "primary_arm": "EXIT21_STAGED_FRESHW",
+  "strategy_configurations": 13,
+  "scenarios": 6,
+  "financial_paths": 78,
+  "original_study_files": 714,
+  "original_study_files_in_git": 712,
+  "omitted_original_files": {
+    "source/data/XETRA_EUR_ETF.npz": {
+      "bytes": 28682014,
+      "sha256": "14b4ee4a5834e93407f5b7aac2c4857cf6f0b0403f38296daea2725fe4848b96",
+      "git_blob_sha1": "5354abcfa9c6bcb92bca1b0d301a8270b51717bc"
+    },
+    "data/LIQUIDITY.npz": {
+      "bytes": 17319970,
+      "sha256": "b95fa3d67837fa06c5705aa4aea09807d396464ab44ec1671031d797b57f4485",
+      "git_blob_sha1": "11b30b3bfe4067be7bd84bbecfc0b25b2b445584"
+    }
+  },
+  "all_78_financial_accounts_complete_in_git": true,
+  "complete_financial_ledger_files": 522,
+  "financial_aggregate_files": 5,
+  "policy_trace_files": 54,
+  "all_other_original_study_files_in_git": true,
+  "full_runtime_data_in_git": false,
+  "original_source_manifest": "provenance/OLC110_SOURCE_MANIFEST.json",
+  "reused_input_origin": {
+    "study": "OLC109",
+    "original_archive_filename": "OLC109_RICERCA_ETF_20261115.zip",
+    "url": "https://chatgpt.com/library?file_id=libfile_78a392f2bcac81919669f3fd5cbee900&account_id=personal",
+    "archive_bytes": 238685250,
+    "archive_sha256": "fc89eadb3ee94f6ade1dceafbd43707f5bac518bb889e4dc350f55de32e2281e",
+    "bundle_manifest_sha256": "4ff730283d1ee2870291a05c5fbea9b62df7da10e27c5107203f8fc0b7340af7",
+    "member_files": 3577,
+    "access": "Requires access to the ChatGPT Library file; not an anonymous direct download",
+    "scope": "Complete OLC109 plus minimal OLC108 support, not the entire OLC108 HTTP acquisition pipeline",
+    "two_olc110_inputs_byte_identical_to_olc109": true
+  },
+  "restore": {
+    "instructions": "REPRODUCE_FROM_ARCHIVE.md",
+    "helper": "tools/restore_research.py",
+    "prior_archive_verifier": "tools/restore_olc109_bundle.py",
+    "sibling_directories": [
+      "olc108",
+      "olc109",
+      "olc110"
+    ],
+    "original_file_sha256_verification": true,
+    "simulations_executed_by_restore": false
+  },
+  "tests": {
+    "financial": 91,
+    "independent_reference": 10,
+    "independent_policy_regression": 2,
+    "action_diagnostics": 4,
+    "total": 107,
+    "fixture_in_git": "source/data/TR29.npz"
+  },
+  "dependencies_file": "requirements.txt",
+  "dependencies_provenance": "Unchanged OLC109 requirements for the same Python 3.12.14 / NumPy 2.3.5 / pandas 2.2.3 / SciPy 1.17.0 / threadpoolctl 3.6.0 / matplotlib 3.10.8 execution environment",
+  "frozen_report_sha256": "07e20914831f302ea06fe0329717ad49f64d25407b6be14ff78fbab456c26eeb",
+  "raw_price_and_capacity_limits": "Current-catalogue survivorship, uncertified adjustment vintage, retrospective Open-volume gating and uncertain auction capacity are retained. 65 order/scenario observations reach or exceed daily venue turnover; constant impact assumptions do not certify fills.",
+  "existing_olc109_tree_preservation_required": true
+}

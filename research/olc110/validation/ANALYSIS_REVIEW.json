@@ -1,0 +1,463 @@
+{
+  "status": "PASS_ANALYSIS_REVIEW",
+  "timestamp_utc": "2026-11-15T19:59:42.133011+00:00",
+  "scope": "Read-only review and numerical reconciliation of existing analysis/plot outputs; no account, strategy or new financial path run.",
+  "written_files": [
+    "validation/ANALYSIS_REVIEW.json",
+    "validation/ANALYSIS_REVIEW.md"
+  ],
+  "completion_manifest_unchanged": true,
+  "completion_manifest_sha256": "023021b367cf470b8bd5d8e68e415d858a264355207a9c4e81c929c6d32a3843",
+  "reviewed_file_hashes": {
+    "analysis/analyze_results.py": "59cbd6579781bb8b52e0e05873947f7ec219b5ec24dbc8abbfbf1a13b52754e8",
+    "analysis/plot_results.py": "81df7da3faf2a0d08fa5723b2851a637da8cadeb0aabefa2be8268b2609422d0",
+    "analysis/MONTHLY_RETURNS.csv": "d6f02e109911275403bd237b19be6f5cdb2ef327903b993cd8cabe5173cb3394",
+    "analysis/PAIRED_COMPARISONS.csv": "9a17fb71745c71678bfdd66964627ccab63d5fad83b985b52991c469a81a9228",
+    "analysis/CONTROL_DOMINANCE.csv": "ad6e521a97edc39b41ce8f5e663a013f8cef32c703f559bdcbc4401ba5fee48e",
+    "analysis/COST_AND_ACTIVITY.csv": "0b9bc8d041acffe4acdea678f9b9a6ca9293946ffb5d8e96c365ccafa73378a4",
+    "analysis/CAGR_BY_SCENARIO.csv": "8c1247037ece3347d66e271a90e648c6cd3f9122efa0178858922e3735f61d4f",
+    "analysis/ANNUAL_BASE_ALL_ARMS.csv": "6bf8b814a2ad20e083af317785cd3cd49d61250afe0fa69ca5601d1fb7ec3dd9",
+    "analysis/ANALYSIS_SUMMARY.json": "3994b96711e0924617657a8271047c2626a0b6919811efc58a295fc35246cc79",
+    "figures/OLC110_RISULTATI.png": "9b416b19239b37b1b649c62b54965dcc50ed01e27fb1eeeb0d79cfac217773cd",
+    "figures/OLC110_RISULTATI.svg": "ce5abf367fd275a237cb6c8c4ece109085ccc756f0de75f6c64179048702026d",
+    "results/SCORECARD.csv": "ba2af5d39e0757fd4f6020e083090ea60077d466bd6e7cd4375d4d6b308546c8",
+    "results/ANNUAL_RETURNS.csv": "6aba1c8a426177a9418bf8a4b57c837d49c2ff9051c6109603891edc77d661c9",
+    "validation/COMPLETION_QA.json": "023021b367cf470b8bd5d8e68e415d858a264355207a9c4e81c929c6d32a3843"
+  },
+  "checks": {
+    "monthly_return_rows": 6240,
+    "paired_comparison_rows": 78,
+    "declared_contrasts": 13,
+    "control_dominance_rows": 162,
+    "cost_activity_rows": 13,
+    "cagr_matrix_cells": 78,
+    "annual_base_cells": 91,
+    "figure_bar_values": 13,
+    "figure_scatter_points": 13,
+    "figure_drawdown_curves": 4
+  },
+  "bootstrap": {
+    "method": "Paired circular monthly moving-block bootstrap",
+    "sample_months": 80,
+    "first_month": "2020-03",
+    "last_month": "2026-10",
+    "block_months": 6,
+    "blocks_drawn_per_replication": 14,
+    "final_block_observations_retained": 2,
+    "replications": 10000,
+    "seed": 110,
+    "generator": "numpy Generator(PCG64)",
+    "paired_dates_identical": true,
+    "same_resampling_indices_across_contrasts_and_scenarios": true,
+    "statistic": "100 * 12 * mean(log(1+r_candidate_month) - log(1+r_control_month))",
+    "interval": "2.5% and 97.5% empirical quantiles with linear interpolation",
+    "independent_verification": "Explicit per-draw circular indices converted to month-count weights, weighted paired log means, hand-coded linear order-statistic interpolation",
+    "starts_sha256": "f5c7cc6a2043316264fbd7ab6a5fda049bf12aa6302e4eac9b4c736d15499328",
+    "max_absolute_column_errors": {
+      "delta_cagr_pp": 0.0,
+      "delta_dd_pp_positive_is_improvement": 0.0,
+      "delta_mean_exposure_pp": 0.0,
+      "annualized_mean_log_relative_pct": 3.552713678800501e-14,
+      "descriptive_ci_2_5_log_pct": 1.7408297026122455e-13,
+      "descriptive_ci_97_5_log_pct": 1.8385293287792592e-13,
+      "resampled_fraction_positive_not_p_value": 0.0
+    },
+    "maximum_monthly_reconstruction_error": 2.7755575615628914e-15,
+    "positive_fraction_interpretation": "Descriptive resampled fraction strictly above zero; not a p-value, posterior probability, or prospective win probability",
+    "scope": "Conditional on this observed/adaptively designed sample; no multiplicity adjustment or untouched holdout"
+  },
+  "contrasts_base": [
+    {
+      "candidate": "STATIC_HALF",
+      "control": "BASE",
+      "description": "Riduzione permanente al 50%",
+      "delta_cagr_pp": -11.515803947304782,
+      "delta_dd_pp_positive_is_improvement": 13.401287538766105,
+      "delta_mean_exposure_pp": -49.26541100408631,
+      "annualized_mean_log_relative_pct": -9.600555131539492,
+      "descriptive_ci_2_5_log_pct": -19.73806017903612,
+      "descriptive_ci_97_5_log_pct": 0.43964094956736555,
+      "resampled_fraction_positive_not_p_value": 0.0314
+    },
+    {
+      "candidate": "STATIC_75",
+      "control": "BASE",
+      "description": "Riduzione permanente al 75%",
+      "delta_cagr_pp": -5.250529151679695,
+      "delta_dd_pp_positive_is_improvement": 5.957399155238441,
+      "delta_mean_exposure_pp": -24.251621650195744,
+      "annualized_mean_log_relative_pct": -4.2632902520736495,
+      "descriptive_ci_2_5_log_pct": -9.187801153830213,
+      "descriptive_ci_97_5_log_pct": 0.6068633598757298,
+      "resampled_fraction_positive_not_p_value": 0.0471
+    },
+    {
+      "candidate": "REFRESH_WEEKLY",
+      "control": "BASE",
+      "description": "Ranking settimanale",
+      "delta_cagr_pp": -18.175638215993462,
+      "delta_dd_pp_positive_is_improvement": -3.242785752261479,
+      "delta_mean_exposure_pp": -0.07073515688578169,
+      "annualized_mean_log_relative_pct": -15.604904705856544,
+      "descriptive_ci_2_5_log_pct": -26.328485616291985,
+      "descriptive_ci_97_5_log_pct": -6.090110403977412,
+      "resampled_fraction_positive_not_p_value": 0.0003
+    },
+    {
+      "candidate": "EXIT21_MONTHLY",
+      "control": "BASE",
+      "description": "Uscita breve e attesa mensile",
+      "delta_cagr_pp": -10.719168219614472,
+      "delta_dd_pp_positive_is_improvement": 4.956584621580018,
+      "delta_mean_exposure_pp": -54.171359281990284,
+      "annualized_mean_log_relative_pct": -8.905891853222887,
+      "descriptive_ci_2_5_log_pct": -22.668277763762557,
+      "descriptive_ci_97_5_log_pct": 3.9097372600116116,
+      "resampled_fraction_positive_not_p_value": 0.0867
+    },
+    {
+      "candidate": "EXIT21_SLOW",
+      "control": "EXIT21_MONTHLY",
+      "description": "Rientro lento anche inframese",
+      "delta_cagr_pp": -9.283047029173929,
+      "delta_dd_pp_positive_is_improvement": -18.939617851226842,
+      "delta_mean_exposure_pp": 18.48301059411789,
+      "annualized_mean_log_relative_pct": -8.410850399218761,
+      "descriptive_ci_2_5_log_pct": -18.86482076670699,
+      "descriptive_ci_97_5_log_pct": 1.0824942415935148,
+      "resampled_fraction_positive_not_p_value": 0.0421
+    },
+    {
+      "candidate": "EXIT21_FAST",
+      "control": "EXIT21_SLOW",
+      "description": "Rientro veloce pieno",
+      "delta_cagr_pp": -0.8387460538601399,
+      "delta_dd_pp_positive_is_improvement": 1.1697331609126227,
+      "delta_mean_exposure_pp": 7.243144901694842,
+      "annualized_mean_log_relative_pct": -0.7959888895504322,
+      "descriptive_ci_2_5_log_pct": -6.26617714773028,
+      "descriptive_ci_97_5_log_pct": 4.622080045674078,
+      "resampled_fraction_positive_not_p_value": 0.3973
+    },
+    {
+      "candidate": "EXIT21_STAGED",
+      "control": "EXIT21_FAST",
+      "description": "Rientro veloce graduale",
+      "delta_cagr_pp": 1.0609028720008462,
+      "delta_dd_pp_positive_is_improvement": 2.523998900230373,
+      "delta_mean_exposure_pp": -3.9796687055088653,
+      "annualized_mean_log_relative_pct": 1.0057632427613508,
+      "descriptive_ci_2_5_log_pct": -1.6494031796511563,
+      "descriptive_ci_97_5_log_pct": 3.642332549242042,
+      "resampled_fraction_positive_not_p_value": 0.764
+    },
+    {
+      "candidate": "EXIT63_STAGED",
+      "control": "EXIT21_STAGED",
+      "description": "Uscita più lenta",
+      "delta_cagr_pp": 11.531227221740359,
+      "delta_dd_pp_positive_is_improvement": 11.588148140258248,
+      "delta_mean_exposure_pp": 14.856356258072855,
+      "annualized_mean_log_relative_pct": 10.325007911847413,
+      "descriptive_ci_2_5_log_pct": 0.7820423571825564,
+      "descriptive_ci_97_5_log_pct": 20.384009090832528,
+      "resampled_fraction_positive_not_p_value": 0.9825
+    },
+    {
+      "candidate": "TRAIL15_STAGED",
+      "control": "EXIT21_STAGED",
+      "description": "Uscita da massimo precedente",
+      "delta_cagr_pp": 8.374860583382038,
+      "delta_dd_pp_positive_is_improvement": 2.679527263264947,
+      "delta_mean_exposure_pp": 14.757920320654193,
+      "annualized_mean_log_relative_pct": 7.603149939189951,
+      "descriptive_ci_2_5_log_pct": -1.5815395685315252,
+      "descriptive_ci_97_5_log_pct": 17.23047110635179,
+      "resampled_fraction_positive_not_p_value": 0.9469
+    },
+    {
+      "candidate": "VOLTRAIL_STAGED",
+      "control": "TRAIL15_STAGED",
+      "description": "Soglia legata alla volatilità",
+      "delta_cagr_pp": -5.298787656449888,
+      "delta_dd_pp_positive_is_improvement": -2.434946008114791,
+      "delta_mean_exposure_pp": -2.0268031064119563,
+      "annualized_mean_log_relative_pct": -4.742889769523281,
+      "descriptive_ci_2_5_log_pct": -10.787515479785219,
+      "descriptive_ci_97_5_log_pct": 1.4032561708195885,
+      "resampled_fraction_positive_not_p_value": 0.0635
+    },
+    {
+      "candidate": "EXIT21_STAGED_FRESHW",
+      "control": "EXIT21_STAGED",
+      "description": "Opportunità nuove settimanali",
+      "delta_cagr_pp": 0.63699679454301,
+      "delta_dd_pp_positive_is_improvement": 1.431123844291915,
+      "delta_mean_exposure_pp": 13.1765006645281,
+      "annualized_mean_log_relative_pct": 0.5990628216148177,
+      "descriptive_ci_2_5_log_pct": -3.7144517727004276,
+      "descriptive_ci_97_5_log_pct": 4.689066409812468,
+      "resampled_fraction_positive_not_p_value": 0.6044
+    },
+    {
+      "candidate": "EXIT21_STAGED_FRESHD",
+      "control": "EXIT21_STAGED_FRESHW",
+      "description": "Opportunità nuove giornaliere",
+      "delta_cagr_pp": 3.3499514131773767,
+      "delta_dd_pp_positive_is_improvement": -0.08638322892688954,
+      "delta_mean_exposure_pp": 6.472828613502579,
+      "annualized_mean_log_relative_pct": 3.092696305377927,
+      "descriptive_ci_2_5_log_pct": -1.529127481895474,
+      "descriptive_ci_97_5_log_pct": 7.658068265353222,
+      "resampled_fraction_positive_not_p_value": 0.9064
+    },
+    {
+      "candidate": "EXIT21_STAGED_FRESHW",
+      "control": "BASE",
+      "description": "Ipotesi primaria contro OLC109",
+      "delta_cagr_pp": -19.143061636104687,
+      "delta_dd_pp_positive_is_improvement": -8.858177324211914,
+      "delta_mean_exposure_pp": -19.248371827158316,
+      "annualized_mean_log_relative_pct": -16.507905077615913,
+      "descriptive_ci_2_5_log_pct": -28.470696424829228,
+      "descriptive_ci_97_5_log_pct": -5.146773586457284,
+      "resampled_fraction_positive_not_p_value": 0.0021
+    }
+  ],
+  "primary_base": {
+    "candidate": "EXIT21_STAGED_FRESHW",
+    "control": "BASE",
+    "description": "Ipotesi primaria contro OLC109",
+    "delta_cagr_pp": -19.143061636104687,
+    "delta_dd_pp_positive_is_improvement": -8.858177324211914,
+    "delta_mean_exposure_pp": -19.248371827158316,
+    "annualized_mean_log_relative_pct": -16.507905077615913,
+    "descriptive_ci_2_5_log_pct": -28.470696424829228,
+    "descriptive_ci_97_5_log_pct": -5.146773586457284,
+    "resampled_fraction_positive_not_p_value": 0.0021
+  },
+  "static75_base": {
+    "cagr_pct": 20.502082825309476,
+    "sampled_dd_pct": -31.963090664495397,
+    "all_nine_strictly_dominated": true,
+    "minimum_cagr_advantage_pp": 2.998302057227642,
+    "minimum_dd_advantage_pp": 1.0008145336584229,
+    "rows": [
+      {
+        "arm": "EXIT21_MONTHLY",
+        "cagr_pct": 15.033443757374698,
+        "sampled_dd_pct": -32.96390519815382,
+        "static75_minus_arm_cagr_pp": 5.468639067934777,
+        "static75_minus_arm_dd_pp": 1.0008145336584229,
+        "strictly_dominated": true
+      },
+      {
+        "arm": "EXIT21_SLOW",
+        "cagr_pct": 5.750396728200768,
+        "sampled_dd_pct": -51.90352304938066,
+        "static75_minus_arm_cagr_pp": 14.751686097108706,
+        "static75_minus_arm_dd_pp": 19.940432384885266,
+        "strictly_dominated": true
+      },
+      {
+        "arm": "EXIT21_FAST",
+        "cagr_pct": 4.9116506743406285,
+        "sampled_dd_pct": -50.73378988846804,
+        "static75_minus_arm_cagr_pp": 15.590432150968848,
+        "static75_minus_arm_dd_pp": 18.770699223972642,
+        "strictly_dominated": true
+      },
+      {
+        "arm": "EXIT21_STAGED",
+        "cagr_pct": 5.972553546341475,
+        "sampled_dd_pct": -48.209790988237664,
+        "static75_minus_arm_cagr_pp": 14.529529278968,
+        "static75_minus_arm_dd_pp": 16.246700323742267,
+        "strictly_dominated": true
+      },
+      {
+        "arm": "EXIT63_STAGED",
+        "cagr_pct": 17.503780768081832,
+        "sampled_dd_pct": -36.621642847979416,
+        "static75_minus_arm_cagr_pp": 2.998302057227642,
+        "static75_minus_arm_dd_pp": 4.658552183484021,
+        "strictly_dominated": true
+      },
+      {
+        "arm": "TRAIL15_STAGED",
+        "cagr_pct": 14.347414129723512,
+        "sampled_dd_pct": -45.53026372497272,
+        "static75_minus_arm_cagr_pp": 6.154668695585963,
+        "static75_minus_arm_dd_pp": 13.567173060477323,
+        "strictly_dominated": true
+      },
+      {
+        "arm": "VOLTRAIL_STAGED",
+        "cagr_pct": 9.048626473273625,
+        "sampled_dd_pct": -47.96520973308751,
+        "static75_minus_arm_cagr_pp": 11.45345635203585,
+        "static75_minus_arm_dd_pp": 16.002119068592112,
+        "strictly_dominated": true
+      },
+      {
+        "arm": "EXIT21_STAGED_FRESHW",
+        "cagr_pct": 6.609550340884485,
+        "sampled_dd_pct": -46.77866714394575,
+        "static75_minus_arm_cagr_pp": 13.89253248442499,
+        "static75_minus_arm_dd_pp": 14.815576479450353,
+        "strictly_dominated": true
+      },
+      {
+        "arm": "EXIT21_STAGED_FRESHD",
+        "cagr_pct": 9.959501754061861,
+        "sampled_dd_pct": -46.86505037287264,
+        "static75_minus_arm_cagr_pp": 10.542581071247614,
+        "static75_minus_arm_dd_pp": 14.901959708377245,
+        "strictly_dominated": true
+      }
+    ]
+  },
+  "static75_dominance_counts_by_scenario": {
+    "BASE": 9,
+    "ZERO_COST": 9,
+    "DOUBLE_COST": 9,
+    "LAG1": 7,
+    "LAG2": 6,
+    "NEXT_CLOSE": 9
+  },
+  "figure": {
+    "file": "figures/OLC110_RISULTATI.png",
+    "visually_inspected": true,
+    "pixels": [
+      2720,
+      2006
+    ],
+    "scenario": "BASE",
+    "legends_and_curves": [
+      {
+        "arm": "BASE",
+        "observations": 1699,
+        "end_equity": 46045.57684667394,
+        "legend_equity_eur_rounded": "46.046",
+        "maxdd_sampled_pct": -37.92048981973384,
+        "max_full_curve_error": 0.0
+      },
+      {
+        "arm": "STATIC_75",
+        "observations": 1699,
+        "end_equity": 34653.97219909957,
+        "legend_equity_eur_rounded": "34.654",
+        "maxdd_sampled_pct": -31.963090664495397,
+        "max_full_curve_error": 0.0
+      },
+      {
+        "arm": "EXIT63_STAGED",
+        "observations": 1699,
+        "end_equity": 29297.466396027725,
+        "legend_equity_eur_rounded": "29.297",
+        "maxdd_sampled_pct": -36.621642847979416,
+        "max_full_curve_error": 0.0
+      },
+      {
+        "arm": "EXIT21_STAGED_FRESHW",
+        "observations": 1699,
+        "end_equity": 15319.165657183019,
+        "legend_equity_eur_rounded": "15.319",
+        "maxdd_sampled_pct": -46.77866714394575,
+        "max_full_curve_error": 0.0
+      }
+    ],
+    "bars_and_scatter": [
+      {
+        "arm": "BASE",
+        "cagr_label": "25,75%",
+        "scatter_x_loss_pct": 37.92048981973384,
+        "scatter_y_cagr_pct": 25.752611976989172
+      },
+      {
+        "arm": "STATIC_HALF",
+        "cagr_label": "14,24%",
+        "scatter_x_loss_pct": 24.519202280967733,
+        "scatter_y_cagr_pct": 14.23680802968439
+      },
+      {
+        "arm": "STATIC_75",
+        "cagr_label": "20,50%",
+        "scatter_x_loss_pct": 31.963090664495397,
+        "scatter_y_cagr_pct": 20.502082825309476
+      },
+      {
+        "arm": "REFRESH_WEEKLY",
+        "cagr_label": "7,58%",
+        "scatter_x_loss_pct": 41.163275571995314,
+        "scatter_y_cagr_pct": 7.576973760995709
+      },
+      {
+        "arm": "EXIT21_MONTHLY",
+        "cagr_label": "15,03%",
+        "scatter_x_loss_pct": 32.96390519815382,
+        "scatter_y_cagr_pct": 15.033443757374698
+      },
+      {
+        "arm": "EXIT21_SLOW",
+        "cagr_label": "5,75%",
+        "scatter_x_loss_pct": 51.90352304938066,
+        "scatter_y_cagr_pct": 5.750396728200768
+      },
+      {
+        "arm": "EXIT21_FAST",
+        "cagr_label": "4,91%",
+        "scatter_x_loss_pct": 50.73378988846804,
+        "scatter_y_cagr_pct": 4.9116506743406285
+      },
+      {
+        "arm": "EXIT21_STAGED",
+        "cagr_label": "5,97%",
+        "scatter_x_loss_pct": 48.209790988237664,
+        "scatter_y_cagr_pct": 5.972553546341475
+      },
+      {
+        "arm": "EXIT63_STAGED",
+        "cagr_label": "17,50%",
+        "scatter_x_loss_pct": 36.621642847979416,
+        "scatter_y_cagr_pct": 17.503780768081832
+      },
+      {
+        "arm": "TRAIL15_STAGED",
+        "cagr_label": "14,35%",
+        "scatter_x_loss_pct": 45.53026372497272,
+        "scatter_y_cagr_pct": 14.347414129723512
+      },
+      {
+        "arm": "VOLTRAIL_STAGED",
+        "cagr_label": "9,05%",
+        "scatter_x_loss_pct": 47.96520973308751,
+        "scatter_y_cagr_pct": 9.048626473273625
+      },
+      {
+        "arm": "EXIT21_STAGED_FRESHW",
+        "cagr_label": "6,61%",
+        "scatter_x_loss_pct": 46.77866714394575,
+        "scatter_y_cagr_pct": 6.609550340884485
+      },
+      {
+        "arm": "EXIT21_STAGED_FRESHD",
+        "cagr_label": "9,96%",
+        "scatter_x_loss_pct": 46.86505037287264,
+        "scatter_y_cagr_pct": 9.959501754061861
+      }
+    ],
+    "values_reconciled": true,
+    "all_plotted_data_within_axes": true,
+    "initial_equity_in_drawdown": "First nav_open is EUR 10000 for all four displayed BASE paths; explicit initial-value inclusion yields the identical entire drawdown curve.",
+    "visual_findings": "Readable labels, correct legend values and scale directions; no numerical mismatch or clipping observed."
+  },
+  "material_findings": [],
+  "qualifications": [
+    "The 13 comparisons comprise declared control/ablation contrasts plus the additional primary-versus-original comparison; they are not 13 independent confirmations.",
+    "The confidence bounds are annualized log-relative units, whereas delta_cagr_pp uses calendar-day CAGR differences in percentage points; these must not be interchanged.",
+    "The dominance statement and image headline apply to scenario BASE. STATIC_75 does not dominate all nine arms in every stress scenario.",
+    "STATIC_75 and STATIC_HALF labels refer to nominal scheduled allocation targets; actual weights drift between monthly decisions.",
+    "TRAIL15 description \"Uscita da massimo precedente\" is a shorthand; the frozen technical definition uses peak63 including the current Close. This wording does not change the audited values."
+  ]
+}

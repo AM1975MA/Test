@@ -1,0 +1,11 @@
+# Precision contract of the independent OLC110 audit
+
+The audit independently derives price features, rankings, slot states, nominal targets, action masks, executable targets, the matured instruction, order sizes, fees, executable dates and quote prices. It never uses recorded targets or state traces to choose what the strategy should do.
+
+After an order has passed independent sizing, price, cost and chronology checks, its exact serialized quantity and notional are posted to the account. The fee is recomputed from the declared ticket and proportional rate. Account cash, quantities, P&L, opening/closing NAV and the next decision context are then reconstructed. CSV floating-point values are read with `float_precision='round_trip'`.
+
+This preserves the exact ledger's treatment of floating-point zero. A preliminary audit using a fully separate long arithmetic chain reached signal index 789 of EXIT21_SLOW__LAG2 with a residual of 5.684341886080802e-14 units where the saved account held exactly zero. Cash was identical; maximum preceding NAV difference was 9.094947017729282e-12 EUR and maximum sizing difference was 4.547473508864641e-13 units. A strict-positive target counter therefore differed by one. The diagnosis is preserved in NUMERICAL_RESIDUE_DIAGNOSTIC.json.
+
+The reference was changed to post validated exact serialized fills, consistent with a ledger audit. No financial production code, protocol, input or result was changed. The completed audit reports zero differences for independently sized order quantities, prices, notionals and fees, and zero NAV/cash differences on all 78 paths. Its largest self-financing identity residual is 1.4551915228366852e-11 EUR; the largest daily P&L identity residual is 2.546585164964199e-11 EUR.
+
+This is an independent decision-and-ledger reconstruction with verified fill sizing. It is not a claim that a separately ordered floating-point simulator reproduces every strict-positive dust bit without observing the serialized fills. The distinction matters because the inherited engine's pending check uses `target > 0`, whereas holdings eligibility generally uses a small-unit tolerance. Negative tests additionally prove rejection of materially altered targets, masks, quantities, fees, dates, state, probe timing, book status and cash.

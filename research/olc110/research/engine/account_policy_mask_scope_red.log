@@ -1,0 +1,49 @@
+test_account_action_waits_for_its_own_next_open_plus_lag (test_account_policy_engine.AccountPolicyEngineTests.test_account_action_waits_for_its_own_next_open_plus_lag) ... ok
+test_callback_observes_actual_fills_pending_queue_and_every_nonfinal_close (test_account_policy_engine.AccountPolicyEngineTests.test_callback_observes_actual_fills_pending_queue_and_every_nonfinal_close) ... ok
+test_context_arrays_and_immutable_summaries_cannot_change_account_or_queue (test_account_policy_engine.AccountPolicyEngineTests.test_context_arrays_and_immutable_summaries_cannot_change_account_or_queue) ... ok
+test_initial_and_scheduled_require_complete_callback_instructions (test_account_policy_engine.AccountPolicyEngineTests.test_initial_and_scheduled_require_complete_callback_instructions) ... ok
+test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) ... ok
+test_masked_buy_uses_available_cash_and_never_sells_untouched_asset (test_account_policy_engine.AccountPolicyEngineTests.test_masked_buy_uses_available_cash_and_never_sells_untouched_asset) ... ok
+test_masked_exit_does_not_sell_unaffected_favorable_open_gap (test_account_policy_engine.AccountPolicyEngineTests.test_masked_exit_does_not_sell_unaffected_favorable_open_gap) ... ok
+test_none_preserves_every_frozen_olc109_output_exactly (test_account_policy_engine.AccountPolicyEngineTests.test_none_preserves_every_frozen_olc109_output_exactly) ... ok
+test_noop_adapter_preserves_all_existing_financial_and_decision_values (test_account_policy_engine.AccountPolicyEngineTests.test_noop_adapter_preserves_all_existing_financial_and_decision_values) ... ok
+test_only_missing_masked_quotes_defer_an_instruction (test_account_policy_engine.AccountPolicyEngineTests.test_only_missing_masked_quotes_defer_an_instruction) ... ok
+test_open_observed_gate_is_respected_for_the_masked_asset (test_account_policy_engine.AccountPolicyEngineTests.test_open_observed_gate_is_respected_for_the_masked_asset) ... ok
+test_returned_weights_mask_and_metadata_are_frozen_at_issue (test_account_policy_engine.AccountPolicyEngineTests.test_returned_weights_mask_and_metadata_are_frozen_at_issue) ... ok
+test_scheduled_full_instruction_can_supersede_a_missing_quote_pending_exit (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_full_instruction_can_supersede_a_missing_quote_pending_exit) ... ok
+test_scheduled_full_instruction_supersedes_partial_only_after_its_due_date (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_full_instruction_supersedes_partial_only_after_its_due_date) ... ok
+test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized) ... ok
+test_sell_only_ignores_nominal_weights_outside_the_action_mask (test_account_policy_engine.AccountPolicyEngineTests.test_sell_only_ignores_nominal_weights_outside_the_action_mask) ... 
+  test_sell_only_ignores_nominal_weights_outside_the_action_mask (test_account_policy_engine.AccountPolicyEngineTests.test_sell_only_ignores_nominal_weights_outside_the_action_mask) (nominal_unaffected=0.5) ... FAIL
+test_sell_only_rejects_addition_even_when_total_exposure_falls (test_account_policy_engine.AccountPolicyEngineTests.test_sell_only_rejects_addition_even_when_total_exposure_falls) ... ok
+test_sell_only_stale_instruction_cannot_rebuy_an_earlier_sale (test_account_policy_engine.AccountPolicyEngineTests.test_sell_only_stale_instruction_cannot_rebuy_an_earlier_sale) ... ok
+test_target_budget_preserves_unmasked_signal_exposure (test_account_policy_engine.AccountPolicyEngineTests.test_target_budget_preserves_unmasked_signal_exposure) ... ok
+
+======================================================================
+FAIL: test_sell_only_ignores_nominal_weights_outside_the_action_mask (test_account_policy_engine.AccountPolicyEngineTests.test_sell_only_ignores_nominal_weights_outside_the_action_mask) (nominal_unaffected=0.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 252, in test_sell_only_ignores_nominal_weights_outside_the_action_mask
+    result = self.run_case(account_policy=callback)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 54, in run_case
+    return engine.simulate(panel, features, policy, mask, legacy=self.core,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/src/engine.py", line 326, in simulate
+    account_issued = account_decide(k, scheduled=bool(mask[k]))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/src/engine.py", line 207, in account_decide
+    raise ValueError("ACCOUNT_ADDS")
+ValueError: ACCOUNT_ADDS
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 254, in test_sell_only_ignores_nominal_weights_outside_the_action_mask
+    self.fail(f"Untouched nominal exposure rejected a valid masked exit: {error}")
+AssertionError: Untouched nominal exposure rejected a valid masked exit: ACCOUNT_ADDS
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.260s
+
+FAILED (failures=1)

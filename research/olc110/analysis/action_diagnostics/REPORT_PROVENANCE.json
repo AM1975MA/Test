@@ -1,0 +1,18 @@
+{
+  "input_sha256": {
+    "analysis/action_diagnostics/SUMMARY_BY_CLASS.csv": "1a846d9552d26f5cc481e6f633c3afecffac9e5a14de7b8fabaa81ff884c057d",
+    "analysis/action_diagnostics/SUMMARY_BY_SUBTYPE.csv": "b29323d6f0bce46717ce6e33deb213c325326011194add6ec3d24d16961c387f",
+    "analysis/action_diagnostics/SUMMARY_BY_YEAR.csv": "30af6195ca3232107847830c843f2a82031677d0aa6f7b9f73d1733253c49114",
+    "analysis/action_diagnostics/EVENT_CATALOGUE.csv": "4fad5328de274908d73950517ecbdad177329edb4028cd9e62ec75cc0bbff44e",
+    "analysis/action_diagnostics/INTERVAL_MARKOUTS.csv": "95a19d38a2042e2b9c84a20a62e4d4892a02d28c0d919d309b49f78afb025781",
+    "results/ANNUAL_RETURNS.csv": "6aba1c8a426177a9418bf8a4b57c837d49c2ff9051c6109603891edc77d661c9",
+    "validation/source_execution/SOURCE_EVENT_CATALOGUE.csv": "9d05d1869ad6ebfa4b32cf9f587c7b9be5a4d64569dcfd9c801dac18ac45b670"
+  },
+  "output_sha256": {
+    "FINDINGS_IT.md": "2809debf115272c12749d739995478aca5b023b39c8d6799beec4ce82ad80b09",
+    "CUTOFF_CHECK.json": "a18ee1c6d5105be608a9785465c119c7c026e3b41774d0dd5cbfd6bd8c08f8f5",
+    "LBRA_CUTOFF_INTERVALS.csv": "ffc6cdedc5c29cb34c945fd9f66154a40eed8cf44d9bcf1627b34fc4f05e3d82",
+    "FRESHW_BASE_CENSORED_FRESH.csv": "617bc7b8e3438856f8de97f94be24d9e55e644276eb5ca7bde6d3b6b7a526157"
+  },
+  "method": "Tables and cutoff detail extracted from already completed isolated diagnostics; no further account or strategy runs"
+}

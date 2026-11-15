@@ -1,0 +1,366 @@
+test_account_action_waits_for_its_own_next_open_plus_lag (test_account_policy_engine.AccountPolicyEngineTests.test_account_action_waits_for_its_own_next_open_plus_lag) ... FAIL
+test_callback_observes_actual_fills_pending_queue_and_every_nonfinal_close (test_account_policy_engine.AccountPolicyEngineTests.test_callback_observes_actual_fills_pending_queue_and_every_nonfinal_close) ... FAIL
+test_context_arrays_and_immutable_summaries_cannot_change_account_or_queue (test_account_policy_engine.AccountPolicyEngineTests.test_context_arrays_and_immutable_summaries_cannot_change_account_or_queue) ... FAIL
+test_initial_and_scheduled_require_complete_callback_instructions (test_account_policy_engine.AccountPolicyEngineTests.test_initial_and_scheduled_require_complete_callback_instructions) ... 
+  test_initial_and_scheduled_require_complete_callback_instructions (test_account_policy_engine.AccountPolicyEngineTests.test_initial_and_scheduled_require_complete_callback_instructions) (fail_initial=True) ... FAIL
+  test_initial_and_scheduled_require_complete_callback_instructions (test_account_policy_engine.AccountPolicyEngineTests.test_initial_and_scheduled_require_complete_callback_instructions) (fail_initial=False) ... FAIL
+test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) ... 
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (target=[nan, 0.0]) ... FAIL
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (target=[-0.1, 0.1]) ... FAIL
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (target=[0.6, 0.6]) ... FAIL
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (target=[0.1]) ... FAIL
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (action_mask=[True]) ... FAIL
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (action_mask=[1, 0]) ... FAIL
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (action_mask=[[True, False]]) ... FAIL
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (answer=[0.5, 0.5]) ... FAIL
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (answer={'meta': {}}) ... FAIL
+  test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (answer={'weights': [0.5, 0.5], 'meta': []}) ... FAIL
+test_masked_buy_uses_available_cash_and_never_sells_untouched_asset (test_account_policy_engine.AccountPolicyEngineTests.test_masked_buy_uses_available_cash_and_never_sells_untouched_asset) ... FAIL
+test_masked_exit_does_not_sell_unaffected_favorable_open_gap (test_account_policy_engine.AccountPolicyEngineTests.test_masked_exit_does_not_sell_unaffected_favorable_open_gap) ... FAIL
+test_none_preserves_every_frozen_olc109_output_exactly (test_account_policy_engine.AccountPolicyEngineTests.test_none_preserves_every_frozen_olc109_output_exactly) ... 
+  test_none_preserves_every_frozen_olc109_output_exactly (test_account_policy_engine.AccountPolicyEngineTests.test_none_preserves_every_frozen_olc109_output_exactly) (risk_target=None) ... FAIL
+  test_none_preserves_every_frozen_olc109_output_exactly (test_account_policy_engine.AccountPolicyEngineTests.test_none_preserves_every_frozen_olc109_output_exactly) (risk_target=0.01) ... FAIL
+test_noop_adapter_preserves_all_existing_financial_and_decision_values (test_account_policy_engine.AccountPolicyEngineTests.test_noop_adapter_preserves_all_existing_financial_and_decision_values) ... FAIL
+test_only_missing_masked_quotes_defer_an_instruction (test_account_policy_engine.AccountPolicyEngineTests.test_only_missing_masked_quotes_defer_an_instruction) ... FAIL
+test_open_observed_gate_is_respected_for_the_masked_asset (test_account_policy_engine.AccountPolicyEngineTests.test_open_observed_gate_is_respected_for_the_masked_asset) ... FAIL
+test_returned_weights_mask_and_metadata_are_frozen_at_issue (test_account_policy_engine.AccountPolicyEngineTests.test_returned_weights_mask_and_metadata_are_frozen_at_issue) ... FAIL
+test_scheduled_full_instruction_can_supersede_a_missing_quote_pending_exit (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_full_instruction_can_supersede_a_missing_quote_pending_exit) ... FAIL
+test_scheduled_full_instruction_supersedes_partial_only_after_its_due_date (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_full_instruction_supersedes_partial_only_after_its_due_date) ... FAIL
+test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized) ... 
+  test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized) (action_mask=[True, False]) ... FAIL
+  test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized) (action_mask=[False, False]) ... FAIL
+test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized) ... FAIL
+test_sell_only_rejects_addition_even_when_total_exposure_falls (test_account_policy_engine.AccountPolicyEngineTests.test_sell_only_rejects_addition_even_when_total_exposure_falls) ... FAIL
+test_sell_only_stale_instruction_cannot_rebuy_an_earlier_sale (test_account_policy_engine.AccountPolicyEngineTests.test_sell_only_stale_instruction_cannot_rebuy_an_earlier_sale) ... FAIL
+test_target_budget_preserves_unmasked_signal_exposure (test_account_policy_engine.AccountPolicyEngineTests.test_target_budget_preserves_unmasked_signal_exposure) ... FAIL
+
+======================================================================
+FAIL: test_account_action_waits_for_its_own_next_open_plus_lag (test_account_policy_engine.AccountPolicyEngineTests.test_account_action_waits_for_its_own_next_open_plus_lag)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 224, in test_account_action_waits_for_its_own_next_open_plus_lag
+    result = self.run_case(account_policy=account, lag=2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_callback_observes_actual_fills_pending_queue_and_every_nonfinal_close (test_account_policy_engine.AccountPolicyEngineTests.test_callback_observes_actual_fills_pending_queue_and_every_nonfinal_close)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 130, in test_callback_observes_actual_fills_pending_queue_and_every_nonfinal_close
+    result = self.run_case(account_policy=callback, lag=2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_context_arrays_and_immutable_summaries_cannot_change_account_or_queue (test_account_policy_engine.AccountPolicyEngineTests.test_context_arrays_and_immutable_summaries_cannot_change_account_or_queue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 295, in test_context_arrays_and_immutable_summaries_cannot_change_account_or_queue
+    result = self.run_case(account_policy=callback, lag=2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_initial_and_scheduled_require_complete_callback_instructions (test_account_policy_engine.AccountPolicyEngineTests.test_initial_and_scheduled_require_complete_callback_instructions) (fail_initial=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 346, in test_initial_and_scheduled_require_complete_callback_instructions
+    self.run_case(account_policy=callback, mask=self.schedule(300))
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_initial_and_scheduled_require_complete_callback_instructions (test_account_policy_engine.AccountPolicyEngineTests.test_initial_and_scheduled_require_complete_callback_instructions) (fail_initial=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 346, in test_initial_and_scheduled_require_complete_callback_instructions
+    self.run_case(account_policy=callback, mask=self.schedule(300))
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (target=[nan, 0.0])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 362, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=lambda k, w, c: dict(weights=target))
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (target=[-0.1, 0.1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 362, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=lambda k, w, c: dict(weights=target))
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (target=[0.6, 0.6])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 362, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=lambda k, w, c: dict(weights=target))
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (target=[0.1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 362, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=lambda k, w, c: dict(weights=target))
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (action_mask=[True])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 366, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=account)
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (action_mask=[1, 0])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 366, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=account)
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (action_mask=[[True, False]])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 366, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=account)
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (answer=[0.5, 0.5])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 369, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=lambda k, w, c: answer)
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (answer={'meta': {}})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 369, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=lambda k, w, c: answer)
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_invalid_targets_masks_and_callback_results_are_rejected (test_account_policy_engine.AccountPolicyEngineTests.test_invalid_targets_masks_and_callback_results_are_rejected) (answer={'weights': [0.5, 0.5], 'meta': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 369, in test_invalid_targets_masks_and_callback_results_are_rejected
+    self.run_case(account_policy=lambda k, w, c: answer)
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_masked_buy_uses_available_cash_and_never_sells_untouched_asset (test_account_policy_engine.AccountPolicyEngineTests.test_masked_buy_uses_available_cash_and_never_sells_untouched_asset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 171, in test_masked_buy_uses_available_cash_and_never_sells_untouched_asset
+    result = self.run_case(account_policy=account, ticket=2., impact=.01)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_masked_exit_does_not_sell_unaffected_favorable_open_gap (test_account_policy_engine.AccountPolicyEngineTests.test_masked_exit_does_not_sell_unaffected_favorable_open_gap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 155, in test_masked_exit_does_not_sell_unaffected_favorable_open_gap
+    result = self.run_case(account_policy=account)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_none_preserves_every_frozen_olc109_output_exactly (test_account_policy_engine.AccountPolicyEngineTests.test_none_preserves_every_frozen_olc109_output_exactly) (risk_target=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 101, in test_none_preserves_every_frozen_olc109_output_exactly
+    new = self.run_case(account_policy=None, **options)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_none_preserves_every_frozen_olc109_output_exactly (test_account_policy_engine.AccountPolicyEngineTests.test_none_preserves_every_frozen_olc109_output_exactly) (risk_target=0.01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 101, in test_none_preserves_every_frozen_olc109_output_exactly
+    new = self.run_case(account_policy=None, **options)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_noop_adapter_preserves_all_existing_financial_and_decision_values (test_account_policy_engine.AccountPolicyEngineTests.test_noop_adapter_preserves_all_existing_financial_and_decision_values)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 115, in test_noop_adapter_preserves_all_existing_financial_and_decision_values
+    self.run_case(account_policy=adapter, **options),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_only_missing_masked_quotes_defer_an_instruction (test_account_policy_engine.AccountPolicyEngineTests.test_only_missing_masked_quotes_defer_an_instruction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 202, in test_only_missing_masked_quotes_defer_an_instruction
+    result = self.run_case(account_policy=callback)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_open_observed_gate_is_respected_for_the_masked_asset (test_account_policy_engine.AccountPolicyEngineTests.test_open_observed_gate_is_respected_for_the_masked_asset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 216, in test_open_observed_gate_is_respected_for_the_masked_asset
+    result = self.run_case(account_policy=account)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_returned_weights_mask_and_metadata_are_frozen_at_issue (test_account_policy_engine.AccountPolicyEngineTests.test_returned_weights_mask_and_metadata_are_frozen_at_issue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 266, in test_returned_weights_mask_and_metadata_are_frozen_at_issue
+    result = self.run_case(account_policy=callback, lag=2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_scheduled_full_instruction_can_supersede_a_missing_quote_pending_exit (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_full_instruction_can_supersede_a_missing_quote_pending_exit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 331, in test_scheduled_full_instruction_can_supersede_a_missing_quote_pending_exit
+    result = self.run_case(account_policy=account, mask=self.schedule(304), lag=2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_scheduled_full_instruction_supersedes_partial_only_after_its_due_date (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_full_instruction_supersedes_partial_only_after_its_due_date)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 313, in test_scheduled_full_instruction_supersedes_partial_only_after_its_due_date
+    result = self.run_case(account_policy=callback, policy=forbidden_selector,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized) (action_mask=[True, False])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 352, in test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized
+    self.run_case(account_policy=lambda k, w, c: dict(
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized) (action_mask=[False, False])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 352, in test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized
+    self.run_case(account_policy=lambda k, w, c: dict(
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized (test_account_policy_engine.AccountPolicyEngineTests.test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 354, in test_scheduled_partial_masks_are_rejected_and_full_masks_are_normalized
+    result = self.run_case(account_policy=lambda k, w, c:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_sell_only_rejects_addition_even_when_total_exposure_falls (test_account_policy_engine.AccountPolicyEngineTests.test_sell_only_rejects_addition_even_when_total_exposure_falls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 233, in test_sell_only_rejects_addition_even_when_total_exposure_falls
+    self.run_case(account_policy=account)
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_sell_only_stale_instruction_cannot_rebuy_an_earlier_sale (test_account_policy_engine.AccountPolicyEngineTests.test_sell_only_stale_instruction_cannot_rebuy_an_earlier_sale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 243, in test_sell_only_stale_instruction_cannot_rebuy_an_earlier_sale
+    result = self.run_case(account_policy=account, lag=2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+======================================================================
+FAIL: test_target_budget_preserves_unmasked_signal_exposure (test_account_policy_engine.AccountPolicyEngineTests.test_target_budget_preserves_unmasked_signal_exposure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 186, in test_target_budget_preserves_unmasked_signal_exposure
+    result = self.run_case(account_policy=account)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_account_policy_engine.py", line 52, in run_case
+    self.assertIn("account_policy", inspect.signature(engine.simulate).parameters,
+AssertionError: 'account_policy' not found in mappingproxy(OrderedDict({'panel': <Parameter "panel">, 'f': <Parameter "f">, 'policy': <Parameter "policy">, 'decision_mask': <Parameter "decision_mask">, 'legacy': <Parameter "legacy">, 'risk_target': <Parameter "risk_target=None">, 'guard_policy': <Parameter "guard_policy=None">, 'guard_mask': <Parameter "guard_mask=None">, 'lag': <Parameter "lag=0">, 'ticket': <Parameter "ticket=1.0">, 'impact': <Parameter "impact=0.0015">, 'start': <Parameter "start='2020-03-02'">, 'end': <Parameter "end='2026-10-30'">, 'initial': <Parameter "initial=10000.0">})) : The optional account-policy execution path is missing
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.169s
+
+FAILED (failures=31)

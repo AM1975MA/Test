@@ -1,0 +1,41 @@
+test_buy_is_limited_to_cash_after_costs_despite_unaffected_gap (test_action_markouts.ActionMarkoutTests.test_buy_is_limited_to_cash_after_costs_despite_unaffected_gap) ... FAIL
+test_cutoff_keeps_partial_horizons_labeled_and_does_not_invent_future_prices (test_action_markouts.ActionMarkoutTests.test_cutoff_keeps_partial_horizons_labeled_and_does_not_invent_future_prices) ... FAIL
+test_exit_retains_unaffected_units_and_separates_fees_from_market_markout (test_action_markouts.ActionMarkoutTests.test_exit_retains_unaffected_units_and_separates_fees_from_market_markout) ... FAIL
+test_lag_and_missing_masked_quote_produce_ties_before_the_first_fill (test_action_markouts.ActionMarkoutTests.test_lag_and_missing_masked_quote_produce_ties_before_the_first_fill) ... FAIL
+
+======================================================================
+FAIL: test_buy_is_limited_to_cash_after_costs_despite_unaffected_gap (test_action_markouts.ActionMarkoutTests.test_buy_is_limited_to_cash_after_costs_despite_unaffected_gap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/analysis/action_diagnostics/test_action_markouts.py", line 13, in setUp
+    self.assertTrue(path.exists(), 'Independent event-account algebra is not implemented')
+AssertionError: False is not true : Independent event-account algebra is not implemented
+
+======================================================================
+FAIL: test_cutoff_keeps_partial_horizons_labeled_and_does_not_invent_future_prices (test_action_markouts.ActionMarkoutTests.test_cutoff_keeps_partial_horizons_labeled_and_does_not_invent_future_prices)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/analysis/action_diagnostics/test_action_markouts.py", line 13, in setUp
+    self.assertTrue(path.exists(), 'Independent event-account algebra is not implemented')
+AssertionError: False is not true : Independent event-account algebra is not implemented
+
+======================================================================
+FAIL: test_exit_retains_unaffected_units_and_separates_fees_from_market_markout (test_action_markouts.ActionMarkoutTests.test_exit_retains_unaffected_units_and_separates_fees_from_market_markout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/analysis/action_diagnostics/test_action_markouts.py", line 13, in setUp
+    self.assertTrue(path.exists(), 'Independent event-account algebra is not implemented')
+AssertionError: False is not true : Independent event-account algebra is not implemented
+
+======================================================================
+FAIL: test_lag_and_missing_masked_quote_produce_ties_before_the_first_fill (test_action_markouts.ActionMarkoutTests.test_lag_and_missing_masked_quote_produce_ties_before_the_first_fill)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/analysis/action_diagnostics/test_action_markouts.py", line 13, in setUp
+    self.assertTrue(path.exists(), 'Independent event-account algebra is not implemented')
+AssertionError: False is not true : Independent event-account algebra is not implemented
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=4)

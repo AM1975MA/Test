@@ -1,0 +1,50 @@
+{
+  "primary_arm": "EXIT21_STAGED_FRESHW",
+  "scenario": "BASE",
+  "fresh_entry_events_all": 69,
+  "fresh_entry_complete_T21": 68,
+  "fresh_entry_censored_T21": 1,
+  "censored_pure_fresh_instruction_id": 486,
+  "censored_pure_fresh_isin": "IE00B6R51Z18",
+  "censored_pure_fresh_symbol": "IS0D.DE",
+  "censored_pure_fresh_signal_date": "2026-10-23",
+  "censored_pure_fresh_execution_date": "2026-10-26",
+  "censored_pure_fresh_is_LBRA": false,
+  "censored_pure_fresh_observed_sessions": 5,
+  "censored_pure_fresh_observed_increment_bp": 41.76149613882801,
+  "lbra_isin": "LU1900066207",
+  "lbra_mixed_entry_instruction_id": 479,
+  "lbra_confirmation_instruction_id": 481,
+  "lbra_exit_instruction_id": 487,
+  "lbra_intervals": [
+    {
+      "instruction_id": 479,
+      "signal_date": "2026-10-09",
+      "category": "MIXED_DEFERRED",
+      "endpoint_date": "2026-10-30",
+      "actual_horizon_sessions": 15,
+      "truncated": true,
+      "increment_bp": -607.7510210919271
+    },
+    {
+      "instruction_id": 481,
+      "signal_date": "2026-10-13",
+      "category": "PROBE_CONFIRMATION",
+      "endpoint_date": "2026-10-30",
+      "actual_horizon_sessions": 13,
+      "truncated": true,
+      "increment_bp": -578.9425555380809
+    },
+    {
+      "instruction_id": 487,
+      "signal_date": "2026-10-26",
+      "category": "PURE_EXIT",
+      "endpoint_date": "2026-10-30",
+      "actual_horizon_sessions": 4,
+      "truncated": true,
+      "increment_bp": 236.87276959659155
+    }
+  ],
+  "primary_2026_return_through_20261030": -0.29082369435853217,
+  "warning": "The pure-FRESH complete-horizon mean is neither an annual strategy return nor a decomposition; LBRA enters through a mixed instruction and its late losses remain in the complete strategy account and retained truncated diagnostics."
+}

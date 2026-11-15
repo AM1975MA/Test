@@ -1,0 +1,290 @@
+test_busy_book_defers_event_but_later_emits_remaining_exit (test_protection.ProtectionTests.test_busy_book_defers_event_but_later_emits_remaining_exit) ... FAIL
+test_exit_targets_only_failing_asset (test_protection.ProtectionTests.test_exit_targets_only_failing_asset) ... FAIL
+test_fast_control_rebound_uses_full_slot (test_protection.ProtectionTests.test_fast_control_rebound_uses_full_slot) ... FAIL
+test_feature_breakout_excludes_current_close_and_future (test_protection.ProtectionTests.test_feature_breakout_excludes_current_close_and_future) ... FAIL
+test_fresh_rejects_correlated_actual_holding (test_protection.ProtectionTests.test_fresh_rejects_correlated_actual_holding) ... FAIL
+test_fresh_requires_vacancy_and_starts_as_probe (test_protection.ProtectionTests.test_fresh_requires_vacancy_and_starts_as_probe) ... FAIL
+test_missing_current_close_cannot_generate_exit (test_protection.ProtectionTests.test_missing_current_close_cannot_generate_exit) ... FAIL
+test_monthly_keeps_cash_when_same_asset_still_fails (test_protection.ProtectionTests.test_monthly_keeps_cash_when_same_asset_still_fails) ... FAIL
+test_monthly_only_reentry_waits_for_calendar (test_protection.ProtectionTests.test_monthly_only_reentry_waits_for_calendar) ... FAIL
+test_original_reentry_precedes_fresh_opportunity (test_protection.ProtectionTests.test_original_reentry_precedes_fresh_opportunity) ... FAIL
+test_probe_requires_actual_fill_then_later_close (test_protection.ProtectionTests.test_probe_requires_actual_fill_then_later_close) ... FAIL
+test_rebound_uses_own_failure_barrier (test_protection.ProtectionTests.test_rebound_uses_own_failure_barrier) ... FAIL
+test_reordered_monthly_slots_preserve_state_by_asset (test_protection.ProtectionTests.test_reordered_monthly_slots_preserve_state_by_asset) ... FAIL
+test_slow_does_not_reverse_simultaneous_exit (test_protection.ProtectionTests.test_slow_does_not_reverse_simultaneous_exit) ... FAIL
+test_staged_rebound_uses_half_slot (test_protection.ProtectionTests.test_staged_rebound_uses_half_slot) ... FAIL
+test_unsold_asset_cannot_reenter_or_create_vacancy (test_protection.ProtectionTests.test_unsold_asset_cannot_reenter_or_create_vacancy) ... FAIL
+test_vol_width_is_frozen_during_loss (test_protection.ProtectionTests.test_vol_width_is_frozen_during_loss) ... FAIL
+
+======================================================================
+FAIL: test_busy_book_defers_event_but_later_emits_remaining_exit (test_protection.ProtectionTests.test_busy_book_defers_event_but_later_emits_remaining_exit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 101, in test_busy_book_defers_event_but_later_emits_remaining_exit
+    pol=self.initialized();self.bad(253);self.bad(254)
+        ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_exit_targets_only_failing_asset (test_protection.ProtectionTests.test_exit_targets_only_failing_asset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 76, in test_exit_targets_only_failing_asset
+    pol=self.initialized();self.bad(253)
+        ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_fast_control_rebound_uses_full_slot (test_protection.ProtectionTests.test_fast_control_rebound_uses_full_slot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 110, in test_fast_control_rebound_uses_full_slot
+    pol=self.exited('EXIT21_FAST');self.fast_not_slow(254)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_feature_breakout_excludes_current_close_and_future (test_protection.ProtectionTests.test_feature_breakout_excludes_current_close_and_future)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 166, in test_feature_breakout_excludes_current_close_and_future
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_fresh_rejects_correlated_actual_holding (test_protection.ProtectionTests.test_fresh_rejects_correlated_actual_holding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 151, in test_fresh_rejects_correlated_actual_holding
+    pol=self.exited('EXIT21_STAGED_FRESHW');self.bad(254);self.emerging(254)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_fresh_requires_vacancy_and_starts_as_probe (test_protection.ProtectionTests.test_fresh_requires_vacancy_and_starts_as_probe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 139, in test_fresh_requires_vacancy_and_starts_as_probe
+    pol=self.exited('EXIT21_STAGED_FRESHW');self.bad(254);self.emerging(254)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_missing_current_close_cannot_generate_exit (test_protection.ProtectionTests.test_missing_current_close_cannot_generate_exit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 156, in test_missing_current_close_cannot_generate_exit
+    pol=self.initialized();self.bad(253);self.p['observed'][253,1]=False
+        ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_monthly_keeps_cash_when_same_asset_still_fails (test_protection.ProtectionTests.test_monthly_keeps_cash_when_same_asset_still_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 87, in test_monthly_keeps_cash_when_same_asset_still_fails
+    pol=self.exited();self.bad(265)
+        ^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_monthly_only_reentry_waits_for_calendar (test_protection.ProtectionTests.test_monthly_only_reentry_waits_for_calendar)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 129, in test_monthly_only_reentry_waits_for_calendar
+    pol=self.exited('EXIT21_MONTHLY')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_original_reentry_precedes_fresh_opportunity (test_protection.ProtectionTests.test_original_reentry_precedes_fresh_opportunity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 146, in test_original_reentry_precedes_fresh_opportunity
+    pol=self.exited('EXIT21_STAGED_FRESHW');self.emerging(254)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_probe_requires_actual_fill_then_later_close (test_protection.ProtectionTests.test_probe_requires_actual_fill_then_later_close)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 114, in test_probe_requires_actual_fill_then_later_close
+    pol=self.exited();self.fast_not_slow(254)
+        ^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_rebound_uses_own_failure_barrier (test_protection.ProtectionTests.test_rebound_uses_own_failure_barrier)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 122, in test_rebound_uses_own_failure_barrier
+    pol=self.exited();self.fast_not_slow(254);self.call(pol,254,[.5,0,0,0])
+        ^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_reordered_monthly_slots_preserve_state_by_asset (test_protection.ProtectionTests.test_reordered_monthly_slots_preserve_state_by_asset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 92, in test_reordered_monthly_slots_preserve_state_by_asset
+    pol=self.exited();self.bad(265);self.f['m252'][265,:2]=[.4,.5]
+        ^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_slow_does_not_reverse_simultaneous_exit (test_protection.ProtectionTests.test_slow_does_not_reverse_simultaneous_exit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 82, in test_slow_does_not_reverse_simultaneous_exit
+    pol=self.exited();self.bad(254)
+        ^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_staged_rebound_uses_half_slot (test_protection.ProtectionTests.test_staged_rebound_uses_half_slot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 106, in test_staged_rebound_uses_half_slot
+    pol=self.exited();self.fast_not_slow(254)
+        ^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_unsold_asset_cannot_reenter_or_create_vacancy (test_protection.ProtectionTests.test_unsold_asset_cannot_reenter_or_create_vacancy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 97, in test_unsold_asset_cannot_reenter_or_create_vacancy
+    pol=self.exited();self.fast_not_slow(254)
+        ^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 70, in exited
+    pol=self.initialized(arm);self.bad(253)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+======================================================================
+FAIL: test_vol_width_is_frozen_during_loss (test_protection.ProtectionTests.test_vol_width_is_frozen_during_loss)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 161, in test_vol_width_is_frozen_during_loss
+    pol=self.initialized('VOLTRAIL_STAGED')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 58, in initialized
+    pol=self.policy(arm);a=self.call(pol,252,[0,0,0,0],initial=True,scheduled=True)
+        ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/23237d81ce2c/olc110/tests/test_protection.py", line 43, in policy
+    self.assertIsNotNone(self.mod,'Protection state machine is not implemented')
+AssertionError: unexpectedly None : Protection state machine is not implemented
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.046s
+
+FAILED (failures=17)

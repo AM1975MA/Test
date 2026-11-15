@@ -1,0 +1,15 @@
+test_blocked_new_assignment_does_not_fast_reenter (test_independent_reference.ReferenceTests.test_blocked_new_assignment_does_not_fast_reenter) ... ok
+test_busy_exit_updates_state_but_does_not_issue (test_independent_reference.ReferenceTests.test_busy_exit_updates_state_but_does_not_issue) ... ok
+test_confirmed_vacancy_survives_same_asset_other_slot (test_independent_reference.ReferenceTests.test_confirmed_vacancy_survives_same_asset_other_slot) ... ok
+test_fresh_rejects_actual_correlated_holding (test_independent_reference.ReferenceTests.test_fresh_rejects_actual_correlated_holding) ... ok
+test_mask_uses_whole_account_budget (test_independent_reference.ReferenceTests.test_mask_uses_whole_account_budget) ... ok
+test_missing_masked_quote_never_fills (test_independent_reference.ReferenceTests.test_missing_masked_quote_never_fills) ... ok
+test_monthly_latch_and_cross_slot_ownership (test_independent_reference.ReferenceTests.test_monthly_latch_and_cross_slot_ownership) ... ok
+test_percentile_ties (test_independent_reference.ReferenceTests.test_percentile_ties) ... ok
+test_probe_requires_completed_buy_and_later_close (test_independent_reference.ReferenceTests.test_probe_requires_completed_buy_and_later_close) ... ok
+test_targeted_buy_is_self_financed (test_independent_reference.ReferenceTests.test_targeted_buy_is_self_financed) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.030s
+
+OK
