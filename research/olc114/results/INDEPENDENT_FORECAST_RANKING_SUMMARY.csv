@@ -1,0 +1,4 @@
+arm,dates,selected_dates,mean_selected_advantage,mean_regret,diagnostic_only,overlapping_not_additive
+MEAN,1013,0,0.0,0.02715004294130074,True,True
+RIDGE,1013,662,0.0014395114999862888,0.025710531441314452,True,True
+TREE,1013,53,0.0004934295801949369,0.026656613361105808,True,True

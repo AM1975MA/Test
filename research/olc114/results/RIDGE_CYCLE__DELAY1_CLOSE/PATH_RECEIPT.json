@@ -1,0 +1,18 @@
+{
+  "path_id": "RIDGE_CYCLE__DELAY1_CLOSE",
+  "arm": "RIDGE_CYCLE",
+  "scenario": "DELAY1_CLOSE",
+  "freeze_sha256": "511e0cf134467b88f1cfae93865f84f58e53e2845c008eced140adb21138764d",
+  "artifacts": {
+    "DAILY.csv.gz": "045f4a89b95df904ea59b521067365d69f5f08cfc2ff019e1adf4c04f325d28d",
+    "ORDERS.csv.gz": "adcd2668018de2496e47391626d2df4c4552955e8081b00955cb6affce4c2b2e",
+    "INSTRUCTIONS.csv.gz": "78678caa4b432d92bf9b4804d77ffe78c0e46a4f20a42370b99b73ab1080ae82",
+    "DECISIONS.npz": "da8452c43615dfbe766b5ee0bfc3478941b62835aa9ad4c3032cb3d5ece0ad49",
+    "DECISIONS_META.json.gz": "86e0006fafa55e2b0e29ac1dac7464614c1c957b4a1e632625dd10236454cdf3",
+    "POLICY_TRACE.csv.gz": "e47bf7bc0ab759920f0f810ca46026d3e8b1294daa20d0658fc5bfe3c8e0a773",
+    "PLAN_VALUES.csv.gz": "0eecfdd22c31efd1aa918d5ed69aa90647c9139952585f426c4e596d4de9d483",
+    "ELIGIBLE_STATES.jsonl.gz": "b774f1f40c8acc009931bffa8107e8a7224beef0d6bf9e4be3bc892d9eed6d6f",
+    "PLAN_SUMMARIES.json.gz": "cdb99d675fe7efa445d9706fbce9604242438bad0a53bbb285d687c45e669e5f"
+  },
+  "metrics_payload_sha256": "d53ba77e501a3e40a300397bf2ef3cf174c4f403440855e73fc917d5f7ac6a96"
+}

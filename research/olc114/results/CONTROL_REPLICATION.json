@@ -1,0 +1,34 @@
+[
+  {
+    "arm": "BASE",
+    "scenario": "NEXT_CLOSE",
+    "daily_exact": true,
+    "orders_exact": true,
+    "daily_source_sha256": "89518c50d9d117d29c000f1894b80f854af43d63f458711ef584615716620a8d",
+    "orders_source_sha256": "d32c91f598b81a17ab130b63fedcef350e4ab8d449729850bb540b8d53cdf840"
+  },
+  {
+    "arm": "BASE",
+    "scenario": "DOUBLE_COST",
+    "daily_exact": true,
+    "orders_exact": true,
+    "daily_source_sha256": "5f45855452a4021d6afd8751827a446256ea8684f88cb802414ba55d2796f629",
+    "orders_source_sha256": "6283eebcdc471441422d70c26537ac30d61ca6ef991fdb4ca18b0a7348ffdeec"
+  },
+  {
+    "arm": "STATIC_75",
+    "scenario": "NEXT_CLOSE",
+    "daily_exact": true,
+    "orders_exact": true,
+    "daily_source_sha256": "51ea3923701f015fa4cd6dbe1bbfd4273f04193273b24eb277fb51423428ef9d",
+    "orders_source_sha256": "1caa341985e0040f573e4960ec7ebdfbbc33875763fc12bf08131ce96407070e"
+  },
+  {
+    "arm": "STATIC_75",
+    "scenario": "DOUBLE_COST",
+    "daily_exact": true,
+    "orders_exact": true,
+    "daily_source_sha256": "3f431dac129b34dede2db55bb95608c190c491794470c5ec00fd55656a7850ee",
+    "orders_source_sha256": "8f17ed60f79aa850515ff15fd1d8770c82cd39d3cb5104935d7f24fdb801e1ba"
+  }
+]

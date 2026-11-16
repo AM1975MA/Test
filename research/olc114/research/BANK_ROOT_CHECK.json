@@ -1,0 +1,23 @@
+{
+  "checked_utc": "2026-11-16T20:49:34.439457+00:00",
+  "bank_freeze_sha256": "27456fe9267ebdbe7d96d4e65e73c2e3307398e15d4885666fb9701d0010f6b1",
+  "bank_summary_sha256": "b767333ad60678a14c446e901b922175edd659460de314f77e45a2622cd23e65",
+  "checks": {
+    "event_hashes": true,
+    "unique_signal_dates": true,
+    "arrays_match_event_records": true,
+    "finite_features_outcomes": true,
+    "terminal_equals_signal_plus42": true
+  },
+  "rows": {
+    "PARK": 3158,
+    "REDEPLOY": 3158
+  },
+  "statuses": {
+    "OK": 1579,
+    "RIGHT_EDGE": 41,
+    "SCHEDULED_STATE": 78
+  },
+  "max_base_replay_error": 2.1827872842550278e-11,
+  "max_account_error": 2.1827872842550278e-11
+}

@@ -1,0 +1,18 @@
+{
+  "path_id": "TREE_CYCLE__DOUBLE_COST",
+  "arm": "TREE_CYCLE",
+  "scenario": "DOUBLE_COST",
+  "freeze_sha256": "511e0cf134467b88f1cfae93865f84f58e53e2845c008eced140adb21138764d",
+  "artifacts": {
+    "DAILY.csv.gz": "38f333dffdfff55f5cdd74d6b74fce7c9155629e76dd628e7feb279fc713c761",
+    "ORDERS.csv.gz": "4a263ad009e4f75347d0f1dcf06b1f943435e1c2b5effda63c822be5d03c94ca",
+    "INSTRUCTIONS.csv.gz": "e6a9f052b565740fd14e7ed238c65140b263cd74363b48b860526f991e647344",
+    "DECISIONS.npz": "ac75a32c145c698f95dd3d52eedb001ca94bfef6e88ed873ea98e7c6d9a14f7c",
+    "DECISIONS_META.json.gz": "21938e7e47a745d6b249636f4a0f677276f2a501337526d5b713ff515b98b03e",
+    "POLICY_TRACE.csv.gz": "efae016fcf0173a8f2f4ba28c7e529f62f6c8737509473b031e0890ef0a390ef",
+    "PLAN_VALUES.csv.gz": "b792d0d2cf0b4e12b4c44faefc61cd5da7ba0662e79aeb95837c572e7ac86cd8",
+    "ELIGIBLE_STATES.jsonl.gz": "c193c11277cb4ad961293628d953e61e09464ddd71581a0f743f6332fef16e3a",
+    "PLAN_SUMMARIES.json.gz": "064644824465066cc3fea043d5632774b597da3b060ecfad1fac64fe8c990d0a"
+  },
+  "metrics_payload_sha256": "f1775ecfd3cd1b4ed1984cd4eef10e23b8f28ffaddcab14cc87c5a7ff624129c"
+}

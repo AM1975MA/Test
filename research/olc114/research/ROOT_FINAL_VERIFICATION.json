@@ -1,0 +1,31 @@
+{
+  "freeze_sha256": "511e0cf134467b88f1cfae93865f84f58e53e2845c008eced140adb21138764d",
+  "financial_sources_unchanged": true,
+  "completed_path_receipts": 15,
+  "paths": [
+    "BASE__NEXT_CLOSE",
+    "BASE__DOUBLE_COST",
+    "BASE__DELAY1_CLOSE",
+    "STATIC_75__NEXT_CLOSE",
+    "STATIC_75__DOUBLE_COST",
+    "STATIC_75__DELAY1_CLOSE",
+    "MEAN_CYCLE__NEXT_CLOSE",
+    "MEAN_CYCLE__DOUBLE_COST",
+    "MEAN_CYCLE__DELAY1_CLOSE",
+    "RIDGE_CYCLE__NEXT_CLOSE",
+    "RIDGE_CYCLE__DOUBLE_COST",
+    "RIDGE_CYCLE__DELAY1_CLOSE",
+    "TREE_CYCLE__NEXT_CLOSE",
+    "TREE_CYCLE__DOUBLE_COST",
+    "TREE_CYCLE__DELAY1_CLOSE"
+  ],
+  "fit_cache_files": 81,
+  "portable_full_models": 318,
+  "bootstrap_estimators": 10176,
+  "verification_refits": 0,
+  "saved_readiness_exact": true,
+  "primary_full_cagr": 0.23491291602218634,
+  "primary_common_cagr": 0.21403359143388512,
+  "independent_audit_all_checks_pass": true,
+  "independent_diagnostics_sha256": "68dedd1cd734513acd6c9efe965ffc330beca7d61625484b7e8e4de82218c072"
+}

@@ -1,0 +1,18 @@
+test_balanced_fill_above_immutable_target_is_rejected (test_cycle_audit.AuditTests.test_balanced_fill_above_immutable_target_is_rejected) ... ok
+test_corrupted_cost_is_rejected_by_reconciliation (test_cycle_audit.AuditTests.test_corrupted_cost_is_rejected_by_reconciliation) ... ok
+test_csv_null_mask_decodes_as_full_instruction (test_cycle_audit.AuditTests.test_csv_null_mask_decodes_as_full_instruction) ... ok
+test_lag_one_is_checked_against_immutable_due (test_cycle_audit.AuditTests.test_lag_one_is_checked_against_immutable_due) ... ok
+test_material_growth_requires_both_windows (test_cycle_audit.AuditTests.test_material_growth_requires_both_windows) ... ok
+test_nonoverlap_uses42_not21 (test_cycle_audit.AuditTests.test_nonoverlap_uses42_not21) ... ok
+test_out_of_mask_order_is_rejected (test_cycle_audit.AuditTests.test_out_of_mask_order_is_rejected) ... ok
+test_plan_chronology_strict_weekly_and_nonoverlap (test_cycle_audit.AuditTests.test_plan_chronology_strict_weekly_and_nonoverlap) ... ok
+test_plan_sale_must_request_full_zero_target (test_cycle_audit.AuditTests.test_plan_sale_must_request_full_zero_target) ... ok
+test_signal_target_restores_retained_units_budget (test_cycle_audit.AuditTests.test_signal_target_restores_retained_units_budget) ... ok
+test_target_mask_excludes_unrelated_missing_quote (test_cycle_audit.AuditTests.test_target_mask_excludes_unrelated_missing_quote) ... ok
+test_terminal_sale_is_filled_but_has_no_later_policy_confirmation (test_cycle_audit.AuditTests.test_terminal_sale_is_filled_but_has_no_later_policy_confirmation) ... ok
+test_window_uses_own_previous_nav (test_cycle_audit.AuditTests.test_window_uses_own_previous_nav) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.103s
+
+OK

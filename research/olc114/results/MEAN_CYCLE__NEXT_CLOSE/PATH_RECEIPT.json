@@ -1,0 +1,18 @@
+{
+  "path_id": "MEAN_CYCLE__NEXT_CLOSE",
+  "arm": "MEAN_CYCLE",
+  "scenario": "NEXT_CLOSE",
+  "freeze_sha256": "511e0cf134467b88f1cfae93865f84f58e53e2845c008eced140adb21138764d",
+  "artifacts": {
+    "DAILY.csv.gz": "89518c50d9d117d29c000f1894b80f854af43d63f458711ef584615716620a8d",
+    "ORDERS.csv.gz": "d32c91f598b81a17ab130b63fedcef350e4ab8d449729850bb540b8d53cdf840",
+    "INSTRUCTIONS.csv.gz": "c10931a4619bde75c2ad0bc4919883f19ccd7318b5fb2e92780f0b95790922a8",
+    "DECISIONS.npz": "305a002c4b06a902aabe2da4111f37ef6a3afee882614ec92c8e7ee4baab3654",
+    "DECISIONS_META.json.gz": "abdd4449ec0139c3b777523e046d8f485a6224315b05342fbb8d9fa6b2cc0d9c",
+    "POLICY_TRACE.csv.gz": "38f6f38c7d2642c0317e6bf701300ac14942297269c9719a33d6a952914ef5a0",
+    "PLAN_VALUES.csv.gz": "4a23e8dfad997391ff2d4f4a51c7f873371e3a705a012d4142f9976c9d66f00d",
+    "ELIGIBLE_STATES.jsonl.gz": "9faafceca5e229f6e0c494dbf75ea51583e31c544ff4a90781e51a800f11fdb8",
+    "PLAN_SUMMARIES.json.gz": "d15254cd9d142b950433cb8d1c0efb328352fa04db90c0f4d6eb2a68dead445f"
+  },
+  "metrics_payload_sha256": "d95e892d687f0923cb676ec4fbd0ecac5bdd1dd1a83af2c0a5a6c80d57ca6ef6"
+}

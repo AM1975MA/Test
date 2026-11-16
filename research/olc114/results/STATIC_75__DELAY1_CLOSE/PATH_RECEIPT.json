@@ -1,0 +1,18 @@
+{
+  "path_id": "STATIC_75__DELAY1_CLOSE",
+  "arm": "STATIC_75",
+  "scenario": "DELAY1_CLOSE",
+  "freeze_sha256": "511e0cf134467b88f1cfae93865f84f58e53e2845c008eced140adb21138764d",
+  "artifacts": {
+    "DAILY.csv.gz": "4878434e345fa83f2a21f114788545a322df2c69dc64995daf169ab18ad852fb",
+    "ORDERS.csv.gz": "f2dd46d9047ead22556ad7e3a272c78efb95d114c1859a63fcc781330814b4bc",
+    "INSTRUCTIONS.csv.gz": "77dcfe53d7399b260efc6d9c004a45499a5ebdf9e5d42587ad0dafdee1d37935",
+    "DECISIONS.npz": "8c916f254b7d278bc3586c510a167057b835071962a832689b0640fb06b20dbe",
+    "DECISIONS_META.json.gz": "726e44d252c773aad49b35ea4ecb0d9ed9274f460a43e7da08f751cbff7a8088",
+    "POLICY_TRACE.csv.gz": "c5068cbf4d7a2c1ca8a4c605dbeb046f7a4c015b452d19563f14e0196cec9284",
+    "PLAN_VALUES.csv.gz": "33d7d4e0dc2343b9aa031d7c2ad2accdcba4436ebc29e603f27fda57db4ccf4f",
+    "ELIGIBLE_STATES.jsonl.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "PLAN_SUMMARIES.json.gz": "d15254cd9d142b950433cb8d1c0efb328352fa04db90c0f4d6eb2a68dead445f"
+  },
+  "metrics_payload_sha256": "7f3f00fc606a4b39e37687e1158675b069e5f4825a518b66acaffb26264a118d"
+}

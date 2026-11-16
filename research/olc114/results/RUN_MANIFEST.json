@@ -1,0 +1,52 @@
+{
+  "start_utc": "2026-11-16T20:52:15.735746+00:00",
+  "freeze_sha256": "511e0cf134467b88f1cfae93865f84f58e53e2845c008eced140adb21138764d",
+  "arms": [
+    "BASE",
+    "STATIC_75",
+    "MEAN_CYCLE",
+    "RIDGE_CYCLE",
+    "TREE_CYCLE"
+  ],
+  "scenarios": [
+    "NEXT_CLOSE",
+    "DOUBLE_COST",
+    "DELAY1_CLOSE"
+  ],
+  "planned_paths": 15,
+  "completed_paths": 15,
+  "completed_path_ids": [
+    "BASE__NEXT_CLOSE",
+    "BASE__DOUBLE_COST",
+    "BASE__DELAY1_CLOSE",
+    "STATIC_75__NEXT_CLOSE",
+    "STATIC_75__DOUBLE_COST",
+    "STATIC_75__DELAY1_CLOSE",
+    "MEAN_CYCLE__NEXT_CLOSE",
+    "MEAN_CYCLE__DOUBLE_COST",
+    "MEAN_CYCLE__DELAY1_CLOSE",
+    "RIDGE_CYCLE__NEXT_CLOSE",
+    "RIDGE_CYCLE__DOUBLE_COST",
+    "RIDGE_CYCLE__DELAY1_CLOSE",
+    "TREE_CYCLE__NEXT_CLOSE",
+    "TREE_CYCLE__DOUBLE_COST",
+    "TREE_CYCLE__DELAY1_CLOSE"
+  ],
+  "primary_arm": "TREE_CYCLE",
+  "fit_options": {
+    "min_dates": 504,
+    "min_months": 24,
+    "min_blocks": 12,
+    "n_boot": 32,
+    "seed": 114,
+    "penalty": 1.0
+  },
+  "pristine_holdout": false,
+  "all_results_exploratory": true,
+  "bootstrap_lower_is_calibrated_confidence": false,
+  "stress_model_refits": false,
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "completed_utc": "2026-11-16T20:52:58.547156+00:00"
+}
