@@ -1,0 +1,22 @@
+Bank complete {"dates": 1698, "rows": {"CASH": 1642, "FRESH": 1512, "ENTRY": 1642}, "event_status": {"EVALUATED": 1645, "SOURCE_UNAVAILABLE_COMMON_SUPPORT": 33, "RIGHT_EDGE": 20}, "comparison_status": {"OK": 3284}, "max_account_error": 1.4551915228366852e-11, "primary_execution": "NEXT_CLOSE", "normal_ticket": 1.0, "normal_impact": 0.0015, "source_unavailable_in_study": 33}
+Fitting fixed monthly expanding heads on mature normal-cost labels
+Writing causal prequential forecast ledger and diagnostics
+1/18 BASE__NEXT_CLOSE: CAGR 0.225708, sampled DD -0.365142
+2/18 BASE__DOUBLE_COST: CAGR 0.197139, sampled DD -0.383150
+3/18 BASE__NEXT_OPEN: CAGR 0.257526, sampled DD -0.379205
+4/18 STATIC_75__NEXT_CLOSE: CAGR 0.183779, sampled DD -0.300843
+5/18 STATIC_75__DOUBLE_COST: CAGR 0.160089, sampled DD -0.317843
+6/18 STATIC_75__NEXT_OPEN: CAGR 0.205021, sampled DD -0.319631
+7/18 MEAN__NEXT_CLOSE: CAGR 0.162290, sampled DD -0.361036
+8/18 MEAN__DOUBLE_COST: CAGR 0.152413, sampled DD -0.383150
+9/18 MEAN__NEXT_OPEN: CAGR 0.172104, sampled DD -0.379205
+10/18 PRICE__NEXT_CLOSE: CAGR 0.185616, sampled DD -0.365339
+11/18 PRICE__DOUBLE_COST: CAGR 0.173276, sampled DD -0.383150
+12/18 PRICE__NEXT_OPEN: CAGR 0.203701, sampled DD -0.395221
+13/18 VIX__NEXT_CLOSE: CAGR 0.171770, sampled DD -0.361036
+14/18 VIX__DOUBLE_COST: CAGR 0.154871, sampled DD -0.383150
+15/18 VIX__NEXT_OPEN: CAGR 0.179576, sampled DD -0.379205
+16/18 TERM__NEXT_CLOSE: CAGR 0.159514, sampled DD -0.361036
+17/18 TERM__DOUBLE_COST: CAGR 0.146141, sampled DD -0.383150
+18/18 TERM__NEXT_OPEN: CAGR 0.186254, sampled DD -0.379205
+COMPLETE: 18 fixed paths; forecasts and diagnostic gates retained

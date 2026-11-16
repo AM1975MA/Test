@@ -1,0 +1,372 @@
+{
+  "repository": "AM1975MA/Test",
+  "commit": "5752452e565037b790a4099c9d5f8de9d5788509",
+  "remote_prefix": "research/olc110/",
+  "subtree_sha": "b0eb95446c629bcd46affd8d951817f81bff044b",
+  "restored_at_utc": "2026-11-16T18:52:31.461930+00:00",
+  "files": [
+    {
+      "path": "DATA_ARTIFACT_MANIFEST.json",
+      "size": 3301,
+      "git_blob_sha1": "ca8cf4c438fef31d435d53820ff1716900c0b382",
+      "sha256": "6e9be1b2a7cb8856a38d0d813d15659f432322903472ec83f710acae78af000f",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "RAPPORTO_OLC110_IT.md",
+      "size": 27209,
+      "git_blob_sha1": "5d3169b776c4bcfca8ba7d0dad1f3d3c70e133a7",
+      "sha256": "07e20914831f302ea06fe0329717ad49f64d25407b6be14ff78fbab456c26eeb",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "README.md",
+      "size": 7005,
+      "git_blob_sha1": "2bfaf6cc197fdd1667977fd663bf479dd029f3ec",
+      "sha256": "249c7e0a4935d3097ece7f2ca937e0a2db31cdf4bdda0f9ade31eef756a235f9",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "REPOSITORY_MANIFEST.json",
+      "size": 195227,
+      "git_blob_sha1": "be0652ac0faf9b9e8d0656b04cbe7b792fbe53f7",
+      "sha256": "c5ec4715fef19306e2368610652cac3ada70d28d404a553698697feb7d507452",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "REPRODUCE_FROM_ARCHIVE.md",
+      "size": 5853,
+      "git_blob_sha1": "60204c206f4a2e0b80f4f2c1fc4d3bab389d2995",
+      "sha256": "e9010d8b9919d582d62b5ff5c0b83c6538a5138b2f01ec2ede14cad7b9d95a5c",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "data/LIQUIDITY_MANIFEST.json",
+      "size": 425838,
+      "git_blob_sha1": "31fcdd2d4c9b565fbdd29cb50185e1e09a07e9f8",
+      "sha256": "b16131ebd6cb501e9d462318bf9008afb30f448e69e0aa988290478cf6fd2c3a",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "data/PRODUCT_CLASSIFICATION_OVERRIDES.json",
+      "size": 27261,
+      "git_blob_sha1": "9a431999b0fa1225b38d83f1e4ca907661ad9625",
+      "sha256": "1a752139e353b39fd606c779fbf91c64a977b53ab41db7779507748fcf8b432d",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "data/SOURCE_BAR_QUARANTINE.json",
+      "size": 269114,
+      "git_blob_sha1": "e5171b972317eb95bc30051814806a9fce91d915",
+      "sha256": "93b75fbc373a28abc311883420ae34e81170c9045692738b3fce6a717d63a8e3",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "data/SOURCE_SERIES_QUARANTINE.json",
+      "size": 3100,
+      "git_blob_sha1": "ac77e4c273c9fba053bd24a734a39dce7bce383e",
+      "sha256": "87f09f8f6707f461697c09adf969bb9046ad11490e766c6146faa0368d1b9c92",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "data/UNIVERSE_COVERAGE.csv",
+      "size": 1524089,
+      "git_blob_sha1": "b6431ef6043f036e6138912ce12e51b876595a52",
+      "sha256": "f35a7fb4ac1f5af37fbdadf94c3ca58937db680bfc3dc71098526d685f588c54",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "docs/DESIGN_AND_PROTOCOL.md",
+      "size": 13372,
+      "git_blob_sha1": "d0a4a498300dc83f51d25d1638f449856ff1adf2",
+      "sha256": "aca685d1d228f857c48fd1a4aafc45170a847765e84352c932943c541d119740",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "docs/EXPERIMENT_FREEZE.json",
+      "size": 2112,
+      "git_blob_sha1": "f65c42afd8fac4d0a7caef2d4b207ee5e6a5151a",
+      "sha256": "2720e4d1cb06f7adfa40263ac47f927d51521f634792bf409f8e2642bf9e5975",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "docs/FINAL_LOCAL_QA.json",
+      "size": 1236,
+      "git_blob_sha1": "08d91a439c0059f149edebe862cd15b43362db35",
+      "sha256": "8a6155a435bb50423cd3c331efffadcc3a0d9fc2450647c72cd9f2a088e05e06",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "docs/IMPLEMENTATION_PLAN.md",
+      "size": 5163,
+      "git_blob_sha1": "e47a2cd885f3f2e2beb7f46ad6b8dbe31091c6b5",
+      "sha256": "1072fe95b8aecc4fed4514d71522c5a6602a3ea66f5f58cd740ad785b30e283c",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "docs/PROGRESS.md",
+      "size": 3416,
+      "git_blob_sha1": "2b8a02e3ae86d9b580c94ab8101a0d39c7dbab0a",
+      "sha256": "ec9c3e30f70c5c360dd7f7291add3e2b265996172b9c72623359b7f7b52f5038",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "requirements.txt",
+      "size": 81,
+      "git_blob_sha1": "af3e26097096ce1194d5a1121e6fa4c2573dc86e",
+      "sha256": "f6109f002cc59e7e282ab205d5167014a6a60e2d9c1819da6ce993208588ff24",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "research/engine/olc108_engine_reference.py",
+      "size": 10075,
+      "git_blob_sha1": "cd427ebd406846d3d781ee38be012295c6d3347f",
+      "sha256": "5e5dbe59323f355bc4aba57a0f97eb59b0903b78691254aa5df6998fdeb8e2ee",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "research/engine/olc109_engine_reference.py",
+      "size": 12093,
+      "git_blob_sha1": "c7f982bca699ffe81946dd11d68c9ceb85c44ac5",
+      "sha256": "30af3a38b90b81f502cf95d979209c032416418fd9b31ee60857937e1d1b004a",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "results/ANNUAL_RETURNS.csv",
+      "size": 52647,
+      "git_blob_sha1": "fc7d968f2dd686392777f429c4e7768fbf39156a",
+      "sha256": "6aba1c8a426177a9418bf8a4b57c837d49c2ff9051c6109603891edc77d661c9",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "results/BASELINE_REPLICATION.json",
+      "size": 4817,
+      "git_blob_sha1": "b23b06ec22cba27daeea874dda4e76f7126f1169",
+      "sha256": "04e6e368c0274015408f46db58235ca575c1f2c9c44693d0b1cbe29c6ae8272c",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "results/DESCRIPTIVE_SEGMENTS.csv",
+      "size": 67967,
+      "git_blob_sha1": "a2d0580ed1d37ce98adb85541e1559e5baec7db7",
+      "sha256": "41832a5d7bbd2a1aec48f241c6d308fc5e0b9eac9a75ae7bbacdedf42f4a8c7d",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "results/RUN_MANIFEST.json",
+      "size": 1522,
+      "git_blob_sha1": "ab2e05270aeea150008440866935753e400f231f",
+      "sha256": "1a79e65a21032672bb8243e6e9c41fcd77df3ade17955b9cfd9acf10fb28e56e",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "results/SCORECARD.csv",
+      "size": 32795,
+      "git_blob_sha1": "722f31fbb7dbe241a362cbb783f6d5bada61dddc",
+      "sha256": "ba2af5d39e0757fd4f6020e083090ea60077d466bd6e7cd4375d4d6b308546c8",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "source/src/core.py",
+      "size": 12339,
+      "git_blob_sha1": "61e90c552e5941f9a43bcd319627a00561f02500",
+      "sha256": "e49bd609bf9e65b6270b03fb9b706070edb3d2717765f37a856dff3d559551d9",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "src/cluster_selectors.py",
+      "size": 9601,
+      "git_blob_sha1": "b4265bc12fdde2a68bdfb7d23437f375b3934ea9",
+      "sha256": "4105253f3332a5905d2fb4bc1960be887782f748efe033e9cca16ebcf9048e12",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "src/dedup_selectors.py",
+      "size": 3505,
+      "git_blob_sha1": "2d177176e0445f8dbaceff19df6529a1c75e83bb",
+      "sha256": "6643776c8ed11f3834211e2e10a269a8e7f11aeaac300ee1efd0712f20b043c2",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "src/engine.py",
+      "size": 19922,
+      "git_blob_sha1": "07eca6aa9189c57fcb155ddbf8ce433aa9a89d72",
+      "sha256": "370958a6f250f60936b50147ae8787b2e590e81660b4d101e5bbdd9d9b0cba5f",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "src/horizon_selectors.py",
+      "size": 3261,
+      "git_blob_sha1": "6ed0be92f5eb8c9064fd701cdebc0bf8729a3d23",
+      "sha256": "94e5042b72f2ab1c9a39f2035036c84304347c1e824a4d1e7740f7ab98608f8e",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "src/protection.py",
+      "size": 12759,
+      "git_blob_sha1": "3f770c5540579665f4f849efb1eb264f45d8519d",
+      "sha256": "afdf4609d5eb5960ee21f281565f0f17ea8296a92db531130bb06abf88e4232a",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "src/run_protection.py",
+      "size": 12328,
+      "git_blob_sha1": "c1db1bed939bde55b16cfeadeb2a4dc598f247e5",
+      "sha256": "5590239304e2d6f72b0a0dcaadc76471d35f37a944a5e9c856c921dba8d92445",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "src/signals.py",
+      "size": 4953,
+      "git_blob_sha1": "ab2cf1ceb68aa3c812a67119a3aa62322273da40",
+      "sha256": "e2846ed075f68553b31f985585cece67b6d520b5adac2b3bb7b927ac48829029",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "tests/test_account_policy_engine.py",
+      "size": 22515,
+      "git_blob_sha1": "cd8265a2270f8462e260b5a7d193c8b24e478d87",
+      "sha256": "7f0be4eecc1adb963a985c79192a1b970adbe5f0b88dbc34f96e7e43fc5dae5e",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "tests/test_cluster_selectors.py",
+      "size": 4691,
+      "git_blob_sha1": "20ad4c138e1fb18d5a637c50e26dbcff9fc90d82",
+      "sha256": "a8cb913fa780ac8938e3046d290e774df145bb40c0d937a21183f7b62490a61a",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "tests/test_dedup_selectors.py",
+      "size": 1540,
+      "git_blob_sha1": "9ef6235e4eb7086cf82074ce7f65ebe2cf4b1b82",
+      "sha256": "78e7b9a93f42612d03c2239405e9a68b85bf08fff8b1371ce957b4ed3f06616a",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "tests/test_engine.py",
+      "size": 12970,
+      "git_blob_sha1": "b37a1f015240d016670281f834ee19288f80fa36",
+      "sha256": "d6939bef616f9493d33b2409627c25ee78a34e338a885affb75428e9c8d26d0a",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "tests/test_guard_engine.py",
+      "size": 12514,
+      "git_blob_sha1": "56125a526d8712585884bbbcd254d1e5066def95",
+      "sha256": "6dbbdf934c3745948978da2b52b6edbbb7303d19981c720fcfc4cffdd2961134",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "tests/test_horizon_selectors.py",
+      "size": 2375,
+      "git_blob_sha1": "05312bf2e0f7c1a476fd7c54070ab973de027ba0",
+      "sha256": "3022f6b31dcf9d4c9df7e2128a79329076bf850efa85f5f61a5242697b76cd75",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "tests/test_protection.py",
+      "size": 11748,
+      "git_blob_sha1": "5ad6459d9aaba1469233733895f590b352bc3d0d",
+      "sha256": "a07aa4359d89c5e5fc315753aeac3bcc74ee4285562df5764b26695687f8a1bb",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    },
+    {
+      "path": "tests/test_signals.py",
+      "size": 4882,
+      "git_blob_sha1": "6d717582ea89e92e099295be31b864c7b41a850b",
+      "sha256": "02c5b58fe4cd6fbf17f0da5eb10a1f53ed11f59d6bfac1e77d2c269ce4ead508",
+      "remote_sha_verified": true,
+      "remote_size_verified": true,
+      "read_only": true
+    }
+  ],
+  "total_files": 39,
+  "total_bytes": 2847196,
+  "all_files_sha_and_size_verified": true,
+  "scope": "Selected code, protocol, metadata and aggregate tables only; archived ledgers and bulk audit tables excluded.",
+  "commit_chain": {
+    "commit": "5752452e565037b790a4099c9d5f8de9d5788509",
+    "root_tree": "f23515d0468d1614935ac441da33bc82887b6faf",
+    "research_tree": "88a58c4b6126a6a08e8f035589bba99cbdb27052",
+    "olc110_subtree": "b0eb95446c629bcd46affd8d951817f81bff044b",
+    "verified": true
+  },
+  "static_qa": "OLC110_STATIC_RESTORE_QA.json"
+}

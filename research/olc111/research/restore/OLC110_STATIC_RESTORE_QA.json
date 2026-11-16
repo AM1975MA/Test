@@ -1,0 +1,49 @@
+{
+  "verified_at_utc": "2026-11-16T18:52:51.469451+00:00",
+  "verified_files": 39,
+  "verified_bytes": 2847196,
+  "python_files_syntax_checked": 18,
+  "frozen_financial_code_hashes_match": true,
+  "frozen_protocol_hash_matches": true,
+  "all_restored_files_read_only": true,
+  "financial_simulations_run": false,
+  "financial_tests_run": false,
+  "git_commit_subtree_identity_verified": true,
+  "dependencies": [
+    {
+      "package": "numpy",
+      "required": "2.3.5",
+      "installed": "2.3.5",
+      "matches": true
+    },
+    {
+      "package": "pandas",
+      "required": "2.2.3",
+      "installed": "2.2.3",
+      "matches": true
+    },
+    {
+      "package": "scipy",
+      "required": "1.17.0",
+      "installed": "1.17.0",
+      "matches": true
+    },
+    {
+      "package": "threadpoolctl",
+      "required": "3.6.0",
+      "installed": "3.6.0",
+      "matches": true
+    },
+    {
+      "package": "matplotlib",
+      "required": "3.10.8",
+      "installed": "3.10.8",
+      "matches": true
+    }
+  ],
+  "missing_data_inputs_at_verification": [
+    "source/data/XETRA_EUR_ETF.npz",
+    "data/LIQUIDITY.npz"
+  ],
+  "missing_test_fixture_at_verification": true
+}

@@ -1,0 +1,980 @@
+{
+  "review_date": "2026-11-16",
+  "repository": "AM1975MA/Test",
+  "method": "Read-only GitHub connector retrieval; no trading, remote writes, workflow changes, or new financial simulations.",
+  "documents": [
+    {
+      "branch": "research/olc60-upstream-opportunity-persistence-20261107",
+      "path": "research/olc60_upstream_20261107/REPORT_OLC60_IT.md",
+      "local": "OLC60.md",
+      "sha": "d29274308dc52de1023dd1b8edc8e7ef0a70e986",
+      "ref": "c6064ab0a292226d6cefb8051e0c02e40fca82bb",
+      "source_url": "https://github.com/AM1975MA/Test/blob/c6064ab0a292226d6cefb8051e0c02e40fca82bb/research/olc60_upstream_20261107/REPORT_OLC60_IT.md",
+      "local_sha256": "0063ce91fb6c0759da05a57233345a119732e1b44a9c8d4ec4d2eb64602cc7e0",
+      "local_bytes": 8899
+    },
+    {
+      "branch": "research/olc61-upstream-economic-persistence-20261107",
+      "path": "research/olc61_upstream_20261107/REPORT_OLC61_IT.md",
+      "local": "OLC61.md",
+      "sha": "9a22e036afe36947f5a068379fc7948d1934045a",
+      "ref": "bef9c1779fda55beb44232507595786b26cb5adf",
+      "source_url": "https://github.com/AM1975MA/Test/blob/bef9c1779fda55beb44232507595786b26cb5adf/research/olc61_upstream_20261107/REPORT_OLC61_IT.md",
+      "local_sha256": "ed0585f42447d7bca4559fd964ec3986cf6d216db54979fb0850f74ea258d9b4",
+      "local_bytes": 8314
+    },
+    {
+      "branch": "research/olc62-feature-trajectories-20261107",
+      "path": "research/olc62_feature_trajectories_20261107/REPORT_OLC62_IT.md",
+      "local": "OLC62.md",
+      "sha": "bd167328df194ba40b7af3b6ccc1a339a212842d",
+      "ref": "3bfa0b6798ac13ed58e80217d83d9a861c7663aa",
+      "source_url": "https://github.com/AM1975MA/Test/blob/3bfa0b6798ac13ed58e80217d83d9a861c7663aa/research/olc62_feature_trajectories_20261107/REPORT_OLC62_IT.md",
+      "local_sha256": "64379d0e6d6d0513d9c723be3ca85aaa22b79cb505e6511ae5583b5aeedba058",
+      "local_bytes": 7318
+    },
+    {
+      "branch": "research/olc63-native-fusion-attribution-20261107",
+      "path": "research/olc63_native_fusion_attribution_20261107/REPORT_OLC63_IT.md",
+      "local": "OLC63.md",
+      "sha": "1fb1631efda03fba2ff103a469ccc6fc16536e0f",
+      "ref": "7560fff4cb9fa436e14f57ea5794b8bbb5e867d6",
+      "source_url": "https://github.com/AM1975MA/Test/blob/7560fff4cb9fa436e14f57ea5794b8bbb5e867d6/research/olc63_native_fusion_attribution_20261107/REPORT_OLC63_IT.md",
+      "local_sha256": "48009e570ca6a61fae58774724438b95bcdafeeb5d0b2890cc2ead96c7d54e03",
+      "local_bytes": 8312
+    },
+    {
+      "branch": "research/olc64-exante-component-utility-20261107",
+      "path": "research/olc64_exante_component_utility_20261107/REPORT_OLC64_IT.md",
+      "local": "OLC64.md",
+      "sha": "d0d17a68a0757b18ce2905f7ad3c32492c61f6aa",
+      "ref": "7c83ab6a643b183e9fe0131178eb438b5ce687e3",
+      "source_url": "https://github.com/AM1975MA/Test/blob/7c83ab6a643b183e9fe0131178eb438b5ce687e3/research/olc64_exante_component_utility_20261107/REPORT_OLC64_IT.md",
+      "local_sha256": "f08a68fe35eb90584aaf45393c2f3f315a46d54f93ecca08f0f1c9864e0372c8",
+      "local_bytes": 4960
+    },
+    {
+      "branch": "research/olc65-top2-error-taxonomy-20261107",
+      "path": "research/olc65_top2_errors_20261107/REPORT_OLC65_IT.md",
+      "local": "OLC65.md",
+      "sha": "7f73c72cd8102970d3ca6292620f9fd8e8bfcc9d",
+      "ref": "0cfaec3bc523feabaaffcd565a9d386a54a97340",
+      "source_url": "https://github.com/AM1975MA/Test/blob/0cfaec3bc523feabaaffcd565a9d386a54a97340/research/olc65_top2_errors_20261107/REPORT_OLC65_IT.md",
+      "local_sha256": "3d5cb3990d539d4ec5a709eb8e978dd82cf80144f3fd7aa1041485cb0f9cd93e",
+      "local_bytes": 11293
+    },
+    {
+      "branch": "research/olc66-upstream-recomposition-20261107",
+      "path": "research/olc66_upstream_recomposition_20261107/REPORT_OLC66_IT.md",
+      "local": "OLC66.md",
+      "sha": "7c1f3d83316ea56465b0456992182b24545b571e",
+      "ref": "8cb8bf90ae0137bb34d04b2069feb7ed16aab87b",
+      "source_url": "https://github.com/AM1975MA/Test/blob/8cb8bf90ae0137bb34d04b2069feb7ed16aab87b/research/olc66_upstream_recomposition_20261107/REPORT_OLC66_IT.md",
+      "local_sha256": "cc76ae7c30df3e527efd24ee741e2f7e2bc3a992d7aca087082c58795420b933",
+      "local_bytes": 10884
+    },
+    {
+      "branch": "research/olc67-native-policy-factorial-20261107",
+      "path": "research/olc67_native_policy_factorial_20261107/RESULTS_IT.md",
+      "local": "OLC67.md",
+      "sha": "8987937149c501658002b27a83b7e07bfecff860",
+      "ref": "2e173ecd7b9f0e396241cb54c62a3a8a9e80bf94",
+      "source_url": "https://github.com/AM1975MA/Test/blob/2e173ecd7b9f0e396241cb54c62a3a8a9e80bf94/research/olc67_native_policy_factorial_20261107/RESULTS_IT.md",
+      "local_sha256": "206784346c3110e3a3b57d816f708b5912c7facd209b12eb891bb9ca7204e27d",
+      "local_bytes": 7051
+    },
+    {
+      "branch": "research/olc68-rally-diagnosis-20261107",
+      "path": "research/olc68_rally_diagnosis_20261107/REPORT_OLC68_IT.md",
+      "local": "OLC68.md",
+      "sha": "915b5ceb4b6fe7dcfb80f4ca30b9cf5d313a6805",
+      "ref": "91098c49df52f800489df8ba1905e8462104e4cb",
+      "source_url": "https://github.com/AM1975MA/Test/blob/91098c49df52f800489df8ba1905e8462104e4cb/research/olc68_rally_diagnosis_20261107/REPORT_OLC68_IT.md",
+      "local_sha256": "e8faaca5cee5856f1b45c6c2f1302bfe1e027a6b700c562591f00a251cf8d703",
+      "local_bytes": 10000
+    },
+    {
+      "branch": "research/olc69-exante-policy-routing-20261107",
+      "path": "research/olc69_exante_policy_routing_20261107/REPORT_OLC69_IT.md",
+      "local": "OLC69.md",
+      "sha": "78a88c9f041ed4b49f3e0c4eb8e35f3194d31fcd",
+      "ref": "fa4650bb7fc2ec4aa2ac124ce8bd280d4099c93f",
+      "source_url": "https://github.com/AM1975MA/Test/blob/fa4650bb7fc2ec4aa2ac124ce8bd280d4099c93f/research/olc69_exante_policy_routing_20261107/REPORT_OLC69_IT.md",
+      "local_sha256": "4883320456ad596364c3b9ee30ad3d54708fb6c0f4730680e3c52b5e82f17a40",
+      "local_bytes": 7707
+    },
+    {
+      "branch": "research/olc70-common-state-counterfactual-20261107",
+      "path": "research/olc70_common_state_20261107/REPORT_OLC70_IT.md",
+      "local": "OLC70.md",
+      "sha": "42fdb6b7c1b2a4c675db776519ae7743a2248c43",
+      "ref": "f49f5c560d8bf74ba52c314b63b949787cb4492a",
+      "source_url": "https://github.com/AM1975MA/Test/blob/f49f5c560d8bf74ba52c314b63b949787cb4492a/research/olc70_common_state_20261107/REPORT_OLC70_IT.md",
+      "local_sha256": "89a24b5bf836529e6746b2b9e93d5a12f51dd711d968db4b6c2249ffdd96b17f",
+      "local_bytes": 8211
+    },
+    {
+      "branch": "research/olc71-return125-residual-information-20261107",
+      "path": "research/olc71_return125_residual_20261107/REPORT_OLC71_IT.md",
+      "local": "OLC71.md",
+      "sha": "42d35bcb1db6f638b903695b39d37a2d3d7d21a6",
+      "ref": "ab8dc2fb297a51eac13fc805eee9aa17fcca1207",
+      "source_url": "https://github.com/AM1975MA/Test/blob/ab8dc2fb297a51eac13fc805eee9aa17fcca1207/research/olc71_return125_residual_20261107/REPORT_OLC71_IT.md",
+      "local_sha256": "6cd6ffd67dbb4aaba548556524bfb908275429aa4df2a511487c2aebda50f27f",
+      "local_bytes": 16948
+    },
+    {
+      "branch": "research/olc72-return125-family-aware-20261108",
+      "path": "research/olc72_family_aware_20261108/REPORT_OLC72_IT.md",
+      "local": "OLC72.md",
+      "sha": "b5c2a11beb07d09729fc494e2594e143d635033e",
+      "ref": "4e0b0a86ffceeb4f020f6e282730cf077f72055f",
+      "source_url": "https://github.com/AM1975MA/Test/blob/4e0b0a86ffceeb4f020f6e282730cf077f72055f/research/olc72_family_aware_20261108/REPORT_OLC72_IT.md",
+      "local_sha256": "4afaab523adb5c9d6e55e8a3cb23a9b1d4ef7a14cc61bb3c841629e6f07db71b",
+      "local_bytes": 10503
+    },
+    {
+      "branch": "research/olc75-top2-reliability-20261109",
+      "path": "research/olc75_reliability_20261109/REPORT_OLC75_IT.md",
+      "local": "OLC75.md",
+      "sha": "07dc8919b6e0319a3f90258864ddaf336e87f170",
+      "ref": "70dc096f699ba24463d12e7de57feb051ef4db0e",
+      "source_url": "https://github.com/AM1975MA/Test/blob/70dc096f699ba24463d12e7de57feb051ef4db0e/research/olc75_reliability_20261109/REPORT_OLC75_IT.md",
+      "local_sha256": "f2bb8c0d789419c4560e68aeafb7f53d4129ca2e97913debe46a46dd36007437",
+      "local_bytes": 9246
+    },
+    {
+      "branch": "research/olc95-europe-futures",
+      "path": "research/olc95/probe_yahoo_eurex.py",
+      "local": "OLC95.py",
+      "sha": "ebe1ba435c1e172e8a9e1518aedf8dd1c116b6db",
+      "ref": "af03a830fa1ecb81fee041e636f329419277a3b0",
+      "source_url": "https://github.com/AM1975MA/Test/blob/af03a830fa1ecb81fee041e636f329419277a3b0/research/olc95/probe_yahoo_eurex.py",
+      "local_sha256": "945f7234c7b2c23d1f7727ca86ac8a5b0071df52c2c67ba44bee66f198488763",
+      "local_bytes": 3595
+    },
+    {
+      "branch": "research/olc96-cftc-shorts",
+      "path": "research/olc96/fetch_cftc_cot.py",
+      "local": "OLC96.py",
+      "sha": "64220b95996127d40276f1457f372fb9a280fe58",
+      "ref": "20aee3a2942f09f4a8e179ef91000a8ae89afa7b",
+      "source_url": "https://github.com/AM1975MA/Test/blob/20aee3a2942f09f4a8e179ef91000a8ae89afa7b/research/olc96/fetch_cftc_cot.py",
+      "local_sha256": "8fdf28a55eb3fcdd1e68509ac238ae615e6acefd7563293db8e4bbda9fb4dc68",
+      "local_bytes": 5866
+    },
+    {
+      "branch": "research/olc02-incremental-actions-20261031",
+      "path": "research/olc02_pairwise_20261031/RESULTS_IT.md",
+      "local": "OLC02_RESULTS_IT.md",
+      "sha": "3c254e7e329fa5237cacebc70c05fa8a107e0f7e",
+      "ref": "4be73bdc69b769b399c9ef9d1d295d3777558d07",
+      "source_url": "https://github.com/AM1975MA/Test/blob/4be73bdc69b769b399c9ef9d1d295d3777558d07/research/olc02_pairwise_20261031/RESULTS_IT.md",
+      "local_sha256": "3d1ee657837694f309310eace3940329d6a8aa843f9f929f0344d65d6f2e3a72",
+      "local_bytes": 10461
+    },
+    {
+      "branch": "research/olc03-selective-veto-20261031",
+      "path": "research/olc03_selective_20261031/RESULTS_IT.md",
+      "local": "OLC03_RESULTS_IT.md",
+      "sha": "2a5ccfee5d512c811a9213252e29df860b4addc8",
+      "ref": "c8fcf93f8ee8e9b7df62267db348f2be32b7e655",
+      "source_url": "https://github.com/AM1975MA/Test/blob/c8fcf93f8ee8e9b7df62267db348f2be32b7e655/research/olc03_selective_20261031/RESULTS_IT.md",
+      "local_sha256": "af7fc0836d8f33ee00affa9457201f54b59f2ff07c7c5de37cdba144eadadee7",
+      "local_bytes": 7064
+    },
+    {
+      "branch": "research/olc04-relative-information-20261031",
+      "path": "research/olc04_information_20261031/RESULTS_IT.md",
+      "local": "OLC04_RESULTS_IT.md",
+      "sha": "16632a2e313f93e1433fd1ab76e88a53e43127b4",
+      "ref": "ac904e5823172eb38c697958424fec9c0b5a2c34",
+      "source_url": "https://github.com/AM1975MA/Test/blob/ac904e5823172eb38c697958424fec9c0b5a2c34/research/olc04_information_20261031/RESULTS_IT.md",
+      "local_sha256": "019880e52bc6e13b06679c1c3586b104b44647726cf3485fd8656297ccd66eb3",
+      "local_bytes": 8296
+    },
+    {
+      "branch": "research/olc05-representation-transition-20261031",
+      "path": "research/olc05_transitions_20261031/RESULTS_IT.md",
+      "local": "OLC05_RESULTS_IT.md",
+      "sha": "5d219a6081812472acc6424fc303bed1fe59a0d7",
+      "ref": "445944685c14bfe6cbeb4269319df1933176afe3",
+      "source_url": "https://github.com/AM1975MA/Test/blob/445944685c14bfe6cbeb4269319df1933176afe3/research/olc05_transitions_20261031/RESULTS_IT.md",
+      "local_sha256": "98abdaaed49058ef923023ad2813623be4492a660276f90e8f86811e4cb5a93e",
+      "local_bytes": 10264
+    },
+    {
+      "branch": "research/olc15-regime-gating-20261102",
+      "path": "research/olc15_regime_gating_20261102/REGIME_ANALYSIS_IT.md",
+      "local": "OLC15_REGIME_ANALYSIS_IT.md",
+      "sha": "685660dd380a915e9c7928d780d7335970b69715",
+      "ref": "763387eceee4b7fbf131827f10dee7f608abeb68",
+      "source_url": "https://github.com/AM1975MA/Test/blob/763387eceee4b7fbf131827f10dee7f608abeb68/research/olc15_regime_gating_20261102/REGIME_ANALYSIS_IT.md",
+      "local_sha256": "09fe84b912c99720d691d7dc191b2f0fb2f3acecaf8b6aa97a396bd04d76ed83",
+      "local_bytes": 14772
+    },
+    {
+      "branch": "research/olc15-regime-gating-20261102",
+      "path": "research/olc15_regime_gating_20261102/REPORT_IT.md",
+      "local": "OLC15_REPORT_IT.md",
+      "sha": "2211113b9ef080274c8aa3725df243716aeac995",
+      "ref": "763387eceee4b7fbf131827f10dee7f608abeb68",
+      "source_url": "https://github.com/AM1975MA/Test/blob/763387eceee4b7fbf131827f10dee7f608abeb68/research/olc15_regime_gating_20261102/REPORT_IT.md",
+      "local_sha256": "efcc8d8dde529ebbf14294e617774d278f5ccdee6268d35ef3046267dbb5c540",
+      "local_bytes": 6386
+    },
+    {
+      "branch": "research/olc16-contextual-ranking-20261102",
+      "path": "research/olc16_contextual_rank_20261102/RESULTS_IT.md",
+      "local": "OLC16_RESULTS_IT.md",
+      "sha": "dce111fc930c7953a884d9f0d558c2c628de8b6a",
+      "ref": "99d6219006df62882cf04ada65db72951fadc419",
+      "source_url": "https://github.com/AM1975MA/Test/blob/99d6219006df62882cf04ada65db72951fadc419/research/olc16_contextual_rank_20261102/RESULTS_IT.md",
+      "local_sha256": "7d02b04d186a4b0a4650a4d0ad910441c6211f1315a877b90834142bcdd385db",
+      "local_bytes": 7846
+    },
+    {
+      "branch": "research/olc18-executable-stops-20261102",
+      "path": "research/olc18_execution_20261102/RESULTS_AND_PRESERVATION.md",
+      "local": "OLC18_RESULTS_AND_PRESERVATION.md",
+      "sha": "3ba361418cccdc2c9eb0f11cd1f78419f01644ba",
+      "ref": "adf38a42da93bf4137275da9199df7d90eab53f7",
+      "source_url": "https://github.com/AM1975MA/Test/blob/adf38a42da93bf4137275da9199df7d90eab53f7/research/olc18_execution_20261102/RESULTS_AND_PRESERVATION.md",
+      "local_sha256": "f4e370ec0e64706438f6ef22de6123934d264e609f428a8a2776fd0a13b7525a",
+      "local_bytes": 8316
+    },
+    {
+      "branch": "research/olc19-risk-reentry-20261102",
+      "path": "research/olc19_combined_risk_20261102/RESULTS_AND_PRESERVATION.md",
+      "local": "OLC19_RESULTS_AND_PRESERVATION.md",
+      "sha": "8206a025b3988ba9f0fd37b4e5a815776e8be3f7",
+      "ref": "0c405bb63432cd338a7db84058a1116b161c952c",
+      "source_url": "https://github.com/AM1975MA/Test/blob/0c405bb63432cd338a7db84058a1116b161c952c/research/olc19_combined_risk_20261102/RESULTS_AND_PRESERVATION.md",
+      "local_sha256": "93a35f09ca195b4f500ba42fb01e30547d41b16e6b27232395f5c53adffd5bc1",
+      "local_bytes": 7840
+    },
+    {
+      "branch": "research/olc20-regime-validation-20261102",
+      "path": "research/olc20_regime_validation_20261102/CHECKPOINT_04_FINAL.md",
+      "local": "OLC20_CHECKPOINT_04_FINAL.md",
+      "sha": "661c597f0a0c74314ea9080468d952a9cace1f9e",
+      "ref": "6c387fac4c2e544bb9dc90f6622cd94faba6d7c2",
+      "source_url": "https://github.com/AM1975MA/Test/blob/6c387fac4c2e544bb9dc90f6622cd94faba6d7c2/research/olc20_regime_validation_20261102/CHECKPOINT_04_FINAL.md",
+      "local_sha256": "8f8d7147cbbbb617289240bc8407cb7084dcccb97e8132fed7c47302661bf723",
+      "local_bytes": 2869
+    },
+    {
+      "branch": "research/olc21-context-shrinkage-20261102",
+      "path": "research/olc21_context_shrinkage_20261102/RESULTS.md",
+      "local": "OLC21_RESULTS.md",
+      "sha": "8b690e77d04f5e08eb9f006ee847a83fe6dd98e7",
+      "ref": "e0ce6920d3e9634afdcc27abf330d7209ffaa8a5",
+      "source_url": "https://github.com/AM1975MA/Test/blob/e0ce6920d3e9634afdcc27abf330d7209ffaa8a5/research/olc21_context_shrinkage_20261102/RESULTS.md",
+      "local_sha256": "4e4018106ed69523776402fe5ed33036a56a94716e0af9bb401c0e1a83133017",
+      "local_bytes": 2176
+    },
+    {
+      "branch": "research/olc22-target-hysteresis-20261102",
+      "path": "research/olc22_target_hysteresis_20261102/RESULTS.md",
+      "local": "OLC22_RESULTS.md",
+      "sha": "c67f998038c1aec5176c122e7f6bb2cd76b80e5e",
+      "ref": "31630be990982847940c2863a32f3275c5376006",
+      "source_url": "https://github.com/AM1975MA/Test/blob/31630be990982847940c2863a32f3275c5376006/research/olc22_target_hysteresis_20261102/RESULTS.md",
+      "local_sha256": "01ce577acb9804724d8220c2226266fc3c4e7c7fe3b8ee8fd7069f145c706c70",
+      "local_bytes": 1778
+    },
+    {
+      "branch": "research/olc23-residual-switch-model-20261102",
+      "path": "research/olc23_residual_switch_20261102/RESULTS.md",
+      "local": "OLC23_RESULTS.md",
+      "sha": "de84454defe4c178f45cf5822a511924347ddfd3",
+      "ref": "b8e33fae7f269f92fff8fb90b9adbffa04828a04",
+      "source_url": "https://github.com/AM1975MA/Test/blob/b8e33fae7f269f92fff8fb90b9adbffa04828a04/research/olc23_residual_switch_20261102/RESULTS.md",
+      "local_sha256": "0f08cfa045410930f4f68d5b3f9f0ed88235907a4c74fe6e9d527e1393cb7354",
+      "local_bytes": 2507
+    },
+    {
+      "branch": "research/olc24-open2open-residual-20261102",
+      "path": "research/olc24_open2open_residual_20261102/CHECKPOINT_01.md",
+      "local": "OLC24_CHECKPOINT_01.md",
+      "sha": "6cec738d91824568a0de3f588a9accefbbf3a62c",
+      "ref": "8f21914edf35e07b3da7a51b0bb3d01533f87e27",
+      "source_url": "https://github.com/AM1975MA/Test/blob/8f21914edf35e07b3da7a51b0bb3d01533f87e27/research/olc24_open2open_residual_20261102/CHECKPOINT_01.md",
+      "local_sha256": "04dc83284e328621ad23f81e628a5ae460fd255e006b984e7ca3d17ddb72587b",
+      "local_bytes": 1034
+    },
+    {
+      "branch": "research/olc28-adaptive-ma-information-20261102",
+      "path": "research/olc28_adaptive_ma_20261102/PROTOCOL.md",
+      "local": "OLC28_PROTOCOL.md",
+      "sha": "e0441fb832f3573be00a8ea7def97f1837939f6b",
+      "ref": "4d5736de6f4015eb9938f917b5566c8c88aaf111",
+      "source_url": "https://github.com/AM1975MA/Test/blob/4d5736de6f4015eb9938f917b5566c8c88aaf111/research/olc28_adaptive_ma_20261102/PROTOCOL.md",
+      "local_sha256": "e39c31da4e4e2ae864f11a8fb4ace035d35f159a1c6aa25f5728ed766d2a6051",
+      "local_bytes": 3281
+    },
+    {
+      "branch": "research/olc29-kama-leader-gap-20261102",
+      "path": "research/olc29_kama_leader_gap_20261102/RESULTS_IT.md",
+      "local": "OLC29_RESULTS_IT.md",
+      "sha": "dfcdacf1b4d82bde92f2a38315e600e53a8e23a9",
+      "ref": "5054f5aaa9b91e697778b8484cdb2e6f9c2acfc4",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5054f5aaa9b91e697778b8484cdb2e6f9c2acfc4/research/olc29_kama_leader_gap_20261102/RESULTS_IT.md",
+      "local_sha256": "ced5df26cc665c0b7737dee97220003818b5fb1bb81f317f0d6f855abe10dbc6",
+      "local_bytes": 5819
+    },
+    {
+      "branch": "research/olc30-kama-geometry-ranker-20261102",
+      "path": "research/olc30_kama_geometry_20261102/RESULTS_IT.md",
+      "local": "OLC30_RESULTS_IT.md",
+      "sha": "bad0f57d6c1194ac3134f3b20898eae29b42c33e",
+      "ref": "939a751f314ed83f8c282e505d021ae7516da4d0",
+      "source_url": "https://github.com/AM1975MA/Test/blob/939a751f314ed83f8c282e505d021ae7516da4d0/research/olc30_kama_geometry_20261102/RESULTS_IT.md",
+      "local_sha256": "d354b25770ca09feb229eb43b4298a098af4c28fa8c9e102065533ec79b34265",
+      "local_bytes": 6904
+    },
+    {
+      "branch": "research/olc31-economic-magnitude-20261102",
+      "path": "research/olc31_magnitude_20261102/REPORT_OLC31_IT.md",
+      "local": "OLC31_REPORT_OLC31_IT.md",
+      "sha": "517a5d463d7f3b0c5c5e7a800d913e111281796e",
+      "ref": "b0eb7b6a4e257b64ec3a13fc068f5f4c3b91ccbe",
+      "source_url": "https://github.com/AM1975MA/Test/blob/b0eb7b6a4e257b64ec3a13fc068f5f4c3b91ccbe/research/olc31_magnitude_20261102/REPORT_OLC31_IT.md",
+      "local_sha256": "797d87c68a8aeb75cc5c0233850ad1d73056337c7b5648b66c0a90a35c3bc52a",
+      "local_bytes": 9021
+    },
+    {
+      "branch": "research/olc32-quote-repair-economic-edge-20261103",
+      "path": "research/olc32_economic_edge_20261103/RESULTS_IT.md",
+      "local": "OLC32_RESULTS_IT.md",
+      "sha": "7959ae9c2b3d9fe415285056cdc1454124d00c3b",
+      "ref": "8cf230bb2e09ea12a666851aef59057449524400",
+      "source_url": "https://github.com/AM1975MA/Test/blob/8cf230bb2e09ea12a666851aef59057449524400/research/olc32_economic_edge_20261103/RESULTS_IT.md",
+      "local_sha256": "16ace214148fb15ee19fc69f3e6d25b1652809034bb0205b2a6ec03d950fe7f8",
+      "local_bytes": 9033
+    },
+    {
+      "branch": "research/olc34-external-vix-20261103",
+      "path": "research/olc34_vix_context_20261103/RESULTS_IT.md",
+      "local": "OLC34_RESULTS_IT.md",
+      "sha": "91c65bf70206f439533196bf48c9f0324efec2eb",
+      "ref": "cee1f339d68b18a65433d4efc9c84a28a9feca6e",
+      "source_url": "https://github.com/AM1975MA/Test/blob/cee1f339d68b18a65433d4efc9c84a28a9feca6e/research/olc34_vix_context_20261103/RESULTS_IT.md",
+      "local_sha256": "d7b9a240b4fc50b831f44c9cd08df4bad73bbd1b5361c19a8066fd30d8efe535",
+      "local_bytes": 6992
+    },
+    {
+      "branch": "research/olc44-causal-score-gate-20261103",
+      "path": "research/olc44_causal_gate_20261103/REPORT_OLC44_A_IT.md",
+      "local": "OLC44_REPORT_OLC44_A_IT.md",
+      "sha": "f433755f3c632987c8986264d71730ea473ead8a",
+      "ref": "40b7833b6f2b2e3d2a44cb97cde51a1a93c8d68a",
+      "source_url": "https://github.com/AM1975MA/Test/blob/40b7833b6f2b2e3d2a44cb97cde51a1a93c8d68a/research/olc44_causal_gate_20261103/REPORT_OLC44_A_IT.md",
+      "local_sha256": "7db6cf6cfa7857691d6950f09669f2ef7fc5cfe7e0f6b96785fde5cd707963d0",
+      "local_bytes": 4864
+    },
+    {
+      "branch": "research/olc44-native-extension-20261104",
+      "path": "research/olc44_native_extension_20261104/README_IT.md",
+      "local": "OLC44_README_IT.md",
+      "sha": "0897a3f3dad046f65806fb4de606d2bdbddfb555",
+      "ref": "b5e767952adf3d31818cc1eaeb95480407955bce",
+      "source_url": "https://github.com/AM1975MA/Test/blob/b5e767952adf3d31818cc1eaeb95480407955bce/research/olc44_native_extension_20261104/README_IT.md",
+      "local_sha256": "4a541472facd360a3e60cad53ca076a0682024aebdbc76e41c8d230e406353dc",
+      "local_bytes": 2641
+    },
+    {
+      "branch": "research/olc45-opportunity-factor-audit-20261103",
+      "path": "research/olc45_opportunity_20261103/REPORT_OLC45_B_ETC_IT.md",
+      "local": "OLC45_REPORT_OLC45_B_ETC_IT.md",
+      "sha": "639324b258f66e69008eacf7aad8c9e64a050e8e",
+      "ref": "34fcafb881d9cb9277324fb2812920252f6805b8",
+      "source_url": "https://github.com/AM1975MA/Test/blob/34fcafb881d9cb9277324fb2812920252f6805b8/research/olc45_opportunity_20261103/REPORT_OLC45_B_ETC_IT.md",
+      "local_sha256": "541cca8fafc91b2a1ec6d49155bd26fd4d9edebb4d5051833dadfadc8a1dc0f6",
+      "local_bytes": 5707
+    },
+    {
+      "branch": "research/olc45-opportunity-factor-audit-20261103",
+      "path": "research/olc45_opportunity_20261103/REPORT_OLC45_IT.md",
+      "local": "OLC45_REPORT_OLC45_IT.md",
+      "sha": "7ad82deb590d2cba791fbbac2a47d71bfcd02973",
+      "ref": "34fcafb881d9cb9277324fb2812920252f6805b8",
+      "source_url": "https://github.com/AM1975MA/Test/blob/34fcafb881d9cb9277324fb2812920252f6805b8/research/olc45_opportunity_20261103/REPORT_OLC45_IT.md",
+      "local_sha256": "c83cd7084661a8cff079e86f3286334f04685d489c6b28516694da626fb35a2e",
+      "local_bytes": 6179
+    },
+    {
+      "branch": "research/olc53-ecb-macro-20261105",
+      "path": "research/olc53_ecb_macro_20261105/RESULTS_IT.md",
+      "local": "OLC53_RESULTS_IT.md",
+      "sha": "b84e31247379f7cf74130620db07ba1d8b50d14e",
+      "ref": "187a22fc3f9cbbdf44a72c0b3feec4500f418b62",
+      "source_url": "https://github.com/AM1975MA/Test/blob/187a22fc3f9cbbdf44a72c0b3feec4500f418b62/research/olc53_ecb_macro_20261105/RESULTS_IT.md",
+      "local_sha256": "e0c8f663348142f56212d04a0ce91316c9899a70b35fb68c9272037267503076",
+      "local_bytes": 3310
+    },
+    {
+      "branch": "research/olc54-ecb-curve-ecfin-readiness-20261105",
+      "path": "research/olc54_curve_ecfin_20261105/RESULTS_IT.md",
+      "local": "OLC54_RESULTS_IT.md",
+      "sha": "05829fcac85ea4504146f1f50a5f238a89829fe2",
+      "ref": "e8a9815853f4d733de6622bd25e5c03f470f0e62",
+      "source_url": "https://github.com/AM1975MA/Test/blob/e8a9815853f4d733de6622bd25e5c03f470f0e62/research/olc54_curve_ecfin_20261105/RESULTS_IT.md",
+      "local_sha256": "bceb4f23f132f14020db1204b3ec2d8db0df9b24e939480be41b28bab3e748cf",
+      "local_bytes": 3379
+    },
+    {
+      "branch": "research/olc55-ecfin-vintage-readiness-20261105",
+      "path": "research/olc55_ecfin_vintages_20261105/RESULTS_IT.md",
+      "local": "OLC55_RESULTS_IT.md",
+      "sha": "f29b972c82084f1194514c4a81f63ff88b8051de",
+      "ref": "b2f113de31347f26d6b30e2a7496e550b709f84d",
+      "source_url": "https://github.com/AM1975MA/Test/blob/b2f113de31347f26d6b30e2a7496e550b709f84d/research/olc55_ecfin_vintages_20261105/RESULTS_IT.md",
+      "local_sha256": "a3b4834b801ea8f5adec30bbc6155ed023102d2771f91447b13efa1f753d2bc7",
+      "local_bytes": 2971
+    },
+    {
+      "branch": "research/olc56-robust-sizing-delay3-20261106",
+      "path": "research/olc56_robust_timing_20261106/RESULTS_IT.md",
+      "local": "OLC56_RESULTS_IT.md",
+      "sha": "2d6c9ab70241b9cc4aca929bdff12ad496529444",
+      "ref": "ec57515a604a40a2c1b01e9fd011343961087216",
+      "source_url": "https://github.com/AM1975MA/Test/blob/ec57515a604a40a2c1b01e9fd011343961087216/research/olc56_robust_timing_20261106/RESULTS_IT.md",
+      "local_sha256": "4ce74ee7d1122c765db02128251057569ebcd5dee067a93621f0d42f111ef0e8",
+      "local_bytes": 4660
+    },
+    {
+      "branch": "research/olc57-delay3-mechanism-20261106",
+      "path": "research/olc57_delay3_mechanism_20261106/RESULTS_IT.md",
+      "local": "OLC57_RESULTS_IT.md",
+      "sha": "6fd5114e93ac4ce0121de3df0cda1fcec80c9be8",
+      "ref": "671ba2113dd454c111eff6d0abe9851168b39e65",
+      "source_url": "https://github.com/AM1975MA/Test/blob/671ba2113dd454c111eff6d0abe9851168b39e65/research/olc57_delay3_mechanism_20261106/RESULTS_IT.md",
+      "local_sha256": "d9bdde0587b2aa839d550c4db68ca7d143b1b9008aa228e18b261858bb64d59d",
+      "local_bytes": 3961
+    },
+    {
+      "branch": "research/olc58-execution-qa-20261106",
+      "path": "research/olc58_execution_qa_20261106/RESULTS_IT.md",
+      "local": "OLC58_RESULTS_IT.md",
+      "sha": "dba001f5bf913de32816222fa7a02a65f6af5123",
+      "ref": "758c673cab698ea7a9458e38d7a8021a8d3fe98d",
+      "source_url": "https://github.com/AM1975MA/Test/blob/758c673cab698ea7a9458e38d7a8021a8d3fe98d/research/olc58_execution_qa_20261106/RESULTS_IT.md",
+      "local_sha256": "358193d4ac541c629714f9a46fa764d33eaea46789e105cb56e071e2d288d20b",
+      "local_bytes": 10668
+    },
+    {
+      "branch": "research/olc76-pit-economic-data-pilot-20261109",
+      "path": "research/olc76_pit_source_audit_20261109/PROTOCOL_PRE_RESULTS.md",
+      "local": "OLC76_PROTOCOL_PRE_RESULTS.md",
+      "sha": "e3c6c7728a9bb1e99216e81a776aa888bf18d811",
+      "ref": "a25f278d3295284861ad859cd0cbe3e3ee7666a0",
+      "source_url": "https://github.com/AM1975MA/Test/blob/a25f278d3295284861ad859cd0cbe3e3ee7666a0/research/olc76_pit_source_audit_20261109/PROTOCOL_PRE_RESULTS.md",
+      "local_sha256": "41b0b3fa4ff24d6ecd142ccb70e21d865abed3fd9fdf67d68a6659e6ed5e0d2d",
+      "local_bytes": 2447
+    },
+    {
+      "local": "LEGACY_L00_20261023_L00_CS125_ALL_FEATURES_NORMALIZED_RESULTS.md",
+      "path": "etf-trader-v3 corrected/reports/L00/20261023_L00_CS125_ALL_FEATURES_NORMALIZED_RESULTS.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "572b7093e90bfdd984027a6dcf16b6aa633db58e",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/reports/L00/20261023_L00_CS125_ALL_FEATURES_NORMALIZED_RESULTS.md",
+      "local_sha256": "3451fc0295faa6f70bb4acdf9eb601f899e8e51d43235630facd626384def9de",
+      "local_bytes": 5078
+    },
+    {
+      "local": "LEGACY_L00_20261023_L00_CS2_171_FEATURES_RESULTS.md",
+      "path": "etf-trader-v3 corrected/reports/L00/20261023_L00_CS2_171_FEATURES_RESULTS.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "38c83ad97d8850390f83363f283b0382c818a011",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/reports/L00/20261023_L00_CS2_171_FEATURES_RESULTS.md",
+      "local_sha256": "902f8acfb3affd170ff7bdd8b39bc1e35784747aadace643291218fc35eda430",
+      "local_bytes": 6329
+    },
+    {
+      "local": "LEGACY_L05_20261021_ALLOCATION_QUALITY.md",
+      "path": "etf-trader-v3 corrected/reports/L05/20261021_ALLOCATION_QUALITY.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "8c73b69f48e90c788b396a00cc105042c60e3396",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/reports/L05/20261021_ALLOCATION_QUALITY.md",
+      "local_sha256": "01d068eb700472bab6374705de6f3a5a2d3b7be6d0f7334ad1ed405d1f41f39a",
+      "local_bytes": 3173
+    },
+    {
+      "local": "LEGACY_L06_20261021_ABSOLUTE_SOFT_POLICY.md",
+      "path": "etf-trader-v3 corrected/reports/L06/20261021_ABSOLUTE_SOFT_POLICY.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "9ac006f8486a09f81bf39c2c2b91de713586411c",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/reports/L06/20261021_ABSOLUTE_SOFT_POLICY.md",
+      "local_sha256": "02e4edadb8e3b28b1e95faa2d689608cbf818f01de9e0c588df3816d5a16d96a",
+      "local_bytes": 4955
+    },
+    {
+      "local": "LEGACY_L06_20261021_RISK_POLICY_SKILL.md",
+      "path": "etf-trader-v3 corrected/reports/L06/20261021_RISK_POLICY_SKILL.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "33bdbd2d75f93ff39bfcb1ce30f615958edf652d",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/reports/L06/20261021_RISK_POLICY_SKILL.md",
+      "local_sha256": "6369951612512aa1ccebaa7dffa83a6d5f78d998b4886b59d19462e19fd98ae4",
+      "local_bytes": 4258
+    },
+    {
+      "local": "LEGACY_L08_20261022_SCORE_POLICY_ATTRIBUTION.md",
+      "path": "etf-trader-v3 corrected/reports/L08/20261022_SCORE_POLICY_ATTRIBUTION.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "a1d9a086567707cfb3154f10ec4cc686e9d626f1",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/reports/L08/20261022_SCORE_POLICY_ATTRIBUTION.md",
+      "local_sha256": "d32333a40d16088de2fa98d71a37e33ae34bac33ab39334ca6ead95f7ed6d21d",
+      "local_bytes": 7888
+    },
+    {
+      "local": "LEGACY_l00_rank_reg_fusion_EXPECTED_REGRET_RESULTS_20261024.md",
+      "path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/EXPECTED_REGRET_RESULTS_20261024.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "42085d34e0d79ef188598533c3cefa2d2b9ff730",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/experiments/l00_rank_reg_fusion/EXPECTED_REGRET_RESULTS_20261024.md",
+      "local_sha256": "80c90cd8fbb9ae68686f830f0001837b7d1c12927638d30a1562afc7e1f10e59",
+      "local_bytes": 9043
+    },
+    {
+      "local": "LEGACY_l00_rank_reg_fusion_NESTED_ECONOMIC_RESULTS_20261023.md",
+      "path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/NESTED_ECONOMIC_RESULTS_20261023.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "c634a980a457d49dd0958435d0e6b70e6ab8505e",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/experiments/l00_rank_reg_fusion/NESTED_ECONOMIC_RESULTS_20261023.md",
+      "local_sha256": "073044ae5f7159dbd8225bff34b065fdc134e6cc4e538ac55884934eaaf9e082",
+      "local_bytes": 6997
+    },
+    {
+      "local": "LEGACY_l00_rank_reg_fusion_FORWARD_2026_JUN_AUG_RESULTS_20261024.md",
+      "path": "etf-trader-v3 corrected/experiments/l00_rank_reg_fusion/FORWARD_2026_JUN_AUG_RESULTS_20261024.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "8602acd764b4107fe60c78e065e157434b503b6e",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/experiments/l00_rank_reg_fusion/FORWARD_2026_JUN_AUG_RESULTS_20261024.md",
+      "local_sha256": "d94a763c2de5beaacb97eeade27982e3d081e5130c0111653ac686d038233c0b",
+      "local_bytes": 7297
+    },
+    {
+      "local": "LEGACY_europe48_transfer_EU48_TRUE_CORRECTED_CAPACITY_20261025.md",
+      "path": "etf-trader-v3 corrected/experiments/europe48_transfer/EU48_TRUE_CORRECTED_CAPACITY_20261025.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "bd8e933ea269b72bc603cee97580fe43c7eb4894",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/experiments/europe48_transfer/EU48_TRUE_CORRECTED_CAPACITY_20261025.md",
+      "local_sha256": "ffce36fcf8fd1f5dfb4cf83d7be42d2e5867b571e3df8c632c020ef46a29ff98",
+      "local_bytes": 7227
+    },
+    {
+      "local": "LEGACY_etf149_rank_to_pnl_20261030_README_IT.md",
+      "path": "etf-trader-v3 corrected/experiments/etf149_rank_to_pnl_20261030/README_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "4a62463825a8ffeb831eb80f18c2ccc17afecf24",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/etf-trader-v3%20corrected/experiments/etf149_rank_to_pnl_20261030/README_IT.md",
+      "local_sha256": "cec8ed61ea2e47a358225444a6b542a6bf763442222d3d091cf173d327569ef4",
+      "local_bytes": 10514
+    },
+    {
+      "local": "OLC73_REPORT_IT.md",
+      "path": "research/olc109/research/prior_repo/OLC73_REPORT_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "81034f00fd03181f148e51fbaa01799206cecd2b",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/OLC73_REPORT_IT.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/3594bf27fac06ef2ad7ba437472776f125e52937/research/olc73_top2_allocation_20261108/REPORT_OLC73_IT.md",
+      "original_source_blob_sha": "fb50a73b86bee16fba12576a5b9af2c2903389da",
+      "local_sha256": "7f1284d07ec184555166a904d5556de4049ed0d995d634a22dd00bee6e79d930",
+      "local_bytes": 8652
+    },
+    {
+      "local": "OLC102_REPORT_IT.md",
+      "path": "research/olc109/research/prior_repo/OLC102_REPORT_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "3e298fddf3b0016edd2e1b5395c2329d41894191",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/OLC102_REPORT_IT.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc102/OLC102_REPORT_IT.md",
+      "original_source_blob_sha": "8fe3e0967e5e5a5b3195cfd5d2676ebe33157726",
+      "local_sha256": "8b247a7972d42e8699ae018a1185d63a645057d35b054a688ddaddc9dd7bd1a0",
+      "local_bytes": 9576
+    },
+    {
+      "local": "OLC103_REPORT_IT.md",
+      "path": "research/olc109/research/prior_repo/OLC103_REPORT_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "818fbed5d33d88df2eddb88a0d52cf12c4a5a4ea",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/OLC103_REPORT_IT.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc103/OLC103_REPORT_IT.md",
+      "original_source_blob_sha": "43205f8f246b03a9a5f587f6e2cf11b5d8f78582",
+      "local_sha256": "08a43d3afbcfb4dc4f1d78aec9f273e4e4a246d6206f06e6f97249695738f2ea",
+      "local_bytes": 10274
+    },
+    {
+      "local": "OLC105_REPORT_IT.md",
+      "path": "research/olc109/research/prior_repo/OLC105_REPORT_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "1e0f1eb2db3986e96024befd265cfe74aac9c941",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/OLC105_REPORT_IT.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/f46670a473b9d9ce325593634bc802c7bdfdb505/research/olc105/anchored_transfer/REPORT_IT.md",
+      "original_source_blob_sha": "4a218849ff5b527bd43015ff6dc3f87afde50e72",
+      "local_sha256": "64042ecdf821b934edcf9063d8158f67f97e67a1db8727679fe22cfcbea6db37",
+      "local_bytes": 8470
+    },
+    {
+      "local": "EU165_SECTOR_README.md",
+      "path": "research/olc109/research/prior_repo/EU165_SECTOR_README.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "b8805842aaf2109875da73441909140fa6b20dce",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/EU165_SECTOR_README.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/26d03db0eb3f47f8b60937a7844c133b315aab51/etf-trader-v3%20corrected/experiments/eu165_economic_sector_leadership_20261030/README.md",
+      "original_source_blob_sha": "80f1a18082213b2df02a2156b8b7380dbbfe516b",
+      "local_sha256": "44e26b165025fc4756a2c3688154916b01cbebc6f5470096f4aeac07d498a8c7",
+      "local_bytes": 4146
+    },
+    {
+      "local": "EU165_V5_README.md",
+      "path": "research/olc109/research/prior_repo/EU165_V5_README.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "eb4093d5e7ba489f00ec1bbf63590354c987ed57",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/EU165_V5_README.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/a36a71dc1d02ce6cd54347f61098e5169727b366/etf-trader-v3%20corrected/experiments/etf_v5_hierarchical_factor_forecast_eu165_20261031/README.md",
+      "original_source_blob_sha": "c92a49235f92d97afc61475bcce846016422cd31",
+      "local_sha256": "206e98bf591f578def1f94f7adee60a738dc1f669ef8e36f227fef4885da0142",
+      "local_bytes": 5944
+    },
+    {
+      "local": "EU165_V5_AUDIT.md",
+      "path": "research/olc109/research/prior_repo/EU165_V5_AUDIT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "0d4d3e3a98ddf0282a57d7e0d3d986158a9a4e65",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/EU165_V5_AUDIT.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/a36a71dc1d02ce6cd54347f61098e5169727b366/etf-trader-v3%20corrected/experiments/etf_v5_hierarchical_factor_forecast_eu165_20261031/AUDIT_PUNTI_DEBOLI_20261031.md",
+      "original_source_blob_sha": "ec7c470b893d595df1af7a06739030382020373f",
+      "local_sha256": "d5005073adfa768bcb55ff77947ee0dc38d0847900bd05b66b07279e15034330",
+      "local_bytes": 6229
+    },
+    {
+      "local": "EU165_FACTOR_4V9_README.md",
+      "path": "research/olc109/research/prior_repo/EU165_FACTOR_4V9_README.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "073b7fae47bb1dc5a6b786682989b534ba90db7a",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/EU165_FACTOR_4V9_README.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/19652349cf70ee547cf3dac85f1aeadfc8606f6f/etf-trader-v3%20corrected/experiments/eu165_factor_leadership_4v9_20261031/README.md",
+      "original_source_blob_sha": "26678fcfe1577b5ca3045a740591a232019c9bfe",
+      "local_sha256": "11c94ba07cc801f9a3e4e859e5e17f116458ae3aa3bbf0cab35feca9df90bbce",
+      "local_bytes": 4831
+    },
+    {
+      "local": "priorEvidence.md",
+      "path": "research/olc109/research/prior_repo/PRIOR_EVIDENCE_AND_FUSION.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "48b5148f070ce2c56f99df6a0453979b51095e4e",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/PRIOR_EVIDENCE_AND_FUSION.md",
+      "local_sha256": "971fd8e803eacd01bebb2d6679926b2add8996ce742d9c897ebb03b70770a287",
+      "local_bytes": 14061
+    },
+    {
+      "local": "olc109.md",
+      "path": "research/olc109/RAPPORTO_OLC109_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "b106fa5882c55fdd39c6fea320d9a11a1b300a81",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/RAPPORTO_OLC109_IT.md",
+      "local_sha256": "573470eaeb017c58c38008f24642fa3c6249fd8bce60de1959d86e84263b5c82",
+      "local_bytes": 24336
+    },
+    {
+      "local": "olc110.md",
+      "path": "research/olc110/RAPPORTO_OLC110_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "5d3169b776c4bcfca8ba7d0dad1f3d3c70e133a7",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc110/RAPPORTO_OLC110_IT.md",
+      "local_sha256": "cec0aa51a2e41b1adc7d73241fb044c3b7d55ebea3e0c35f1b4293fee7a331c9",
+      "local_bytes": 27210
+    },
+    {
+      "local": "diag109.md",
+      "path": "research/olc109/research/failure_diagnosis/DIAGNOSIS_V3.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "67a746d73ff249408569a2087b4987700eb22fa9",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/failure_diagnosis/DIAGNOSIS_V3.md",
+      "local_sha256": "ec9def08c45290b36e36a40e98d7a6846269810bdd05d05e5721099974df3170",
+      "local_bytes": 20998
+    },
+    {
+      "local": "architecture109.md",
+      "path": "research/olc109/research/recent_architecture/RECENT_ARCHITECTURE_PROPOSAL.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "81d60d59972a5d2c3cd09cb67ffb0e47562046a9",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/recent_architecture/RECENT_ARCHITECTURE_PROPOSAL.md",
+      "local_sha256": "ee7d29a6e72e7877aa4b190efbd7cb4aa059c2d68198d109b77f593bfe309f05",
+      "local_bytes": 14902
+    },
+    {
+      "local": "OLC99_REPORT_IT.md",
+      "path": "research/olc109/research/prior_repo/OLC99_REPORT_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "f27ca2313aa401ea804c6acec353066679c73282",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/OLC99_REPORT_IT.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/b722d706afc503008d8e59d857d8a8b15b89f862/research/olc99/REPORT_OLC99_IT.md",
+      "original_source_blob_sha": "90ab3013009963c7d3e83b35f49ecc1b5632516e",
+      "local_sha256": "4b0258e594ce45d5afd2acd142492935a8e22c6793e71326d11a95585033a2e3",
+      "local_bytes": 13409
+    },
+    {
+      "local": "OLC74_REPORT_IT.md",
+      "path": "research/olc109/research/prior_repo/OLC74_REPORT_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "cec8319712a43d7b633731dcf060c32a563a8f8d",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/OLC74_REPORT_IT.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/6fd79b849c1f399ab2f2b185151a2b88c14dae2b/research/olc74_top2_exante_20261108/REPORT_OLC74_IT.md",
+      "original_source_blob_sha": "b179d10a5c293a730e4e84d61b17d4bb824ef4fa",
+      "local_sha256": "bd7a08cf603d5b2813c9d4b8184b021117f0ba3063f126675b08c2d94625d1c3",
+      "local_bytes": 13486
+    },
+    {
+      "local": "OLC51_CHECKPOINT_IT.md",
+      "path": "research/olc109/research/prior_repo/OLC51_CHECKPOINT_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "d69edf3f8311df6ec0dc5779f739ad6f01a6cb77",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/OLC51_CHECKPOINT_IT.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/3290d8f91d442749322c577c2266e6deb237c1dc/research/olc51_regime_allocation_20261105/OLC51_CHECKPOINT_IT.md",
+      "original_source_blob_sha": "5276b82cc347a138a5fd4137ea992891723a4e5f",
+      "local_sha256": "d841cfedacdcbc1a5fbe269d5afca1276948e0fcfa8450651b92c2441f4b8095",
+      "local_bytes": 3144
+    },
+    {
+      "local": "OLC52_RESULTS_IT.md",
+      "path": "research/olc109/research/prior_repo/OLC52_RESULTS_IT.md",
+      "ref": "5752452e565037b790a4099c9d5f8de9d5788509",
+      "sha": "75ff2cc24dbb81a5bfd35fc39dc7d371eeb0a4b1",
+      "source_url": "https://github.com/AM1975MA/Test/blob/5752452e565037b790a4099c9d5f8de9d5788509/research/olc109/research/prior_repo/OLC52_RESULTS_IT.md",
+      "original_source_url": "https://github.com/AM1975MA/Test/blob/3290d8f91d442749322c577c2266e6deb237c1dc/research/olc51_regime_allocation_20261105/OLC52_RESULTS_IT.md",
+      "original_source_blob_sha": "002cc5141279fe865e898a2193d1454926f86e5c",
+      "local_sha256": "9e09693c1ba499bbbb27733b1bb31784df770169309697e81a4307c599dcc3f9",
+      "local_bytes": 2726
+    }
+  ],
+  "branch_inventory": [
+    {
+      "branch": "research/olc60-upstream-opportunity-persistence-20261107",
+      "commit": "c6064ab0a292226d6cefb8051e0c02e40fca82bb",
+      "research_subtree_sha": "dee52a09fcffe8df641edcf3199e998d97386e7a"
+    },
+    {
+      "branch": "research/olc61-upstream-economic-persistence-20261107",
+      "commit": "bef9c1779fda55beb44232507595786b26cb5adf",
+      "research_subtree_sha": "0b088a2deaae82875284f3ffacb3c14cb60d8471"
+    },
+    {
+      "branch": "research/olc62-feature-trajectories-20261107",
+      "commit": "3bfa0b6798ac13ed58e80217d83d9a861c7663aa",
+      "research_subtree_sha": "9503a99abdfa1106f617a6a99915ad0af47afd42"
+    },
+    {
+      "branch": "research/olc63-native-fusion-attribution-20261107",
+      "commit": "7560fff4cb9fa436e14f57ea5794b8bbb5e867d6",
+      "research_subtree_sha": "25a7ad3ad5081a9fc59f8a46b34cf7a3f14a9cc9"
+    },
+    {
+      "branch": "research/olc64-exante-component-utility-20261107",
+      "commit": "7c83ab6a643b183e9fe0131178eb438b5ce687e3",
+      "research_subtree_sha": "06b1754a6843c3823256dcaaf45451492e936bd6"
+    },
+    {
+      "branch": "research/olc65-top2-error-taxonomy-20261107",
+      "commit": "0cfaec3bc523feabaaffcd565a9d386a54a97340",
+      "research_subtree_sha": "302bb6c6b424c12d8c7a80064fc2fa911892b352"
+    },
+    {
+      "branch": "research/olc66-upstream-recomposition-20261107",
+      "commit": "8cb8bf90ae0137bb34d04b2069feb7ed16aab87b",
+      "research_subtree_sha": "ec2632f15e518cec9f41b07d28a6620ee6f969e5"
+    },
+    {
+      "branch": "research/olc67-native-policy-factorial-20261107",
+      "commit": "2e173ecd7b9f0e396241cb54c62a3a8a9e80bf94",
+      "research_subtree_sha": "6b3785ef3fca183f2d9ed9a9d0811b6a925e7d5f"
+    },
+    {
+      "branch": "research/olc68-rally-diagnosis-20261107",
+      "commit": "91098c49df52f800489df8ba1905e8462104e4cb",
+      "research_subtree_sha": "ee22a2a99853cece181a4c488e60d5c66e67996f"
+    },
+    {
+      "branch": "research/olc69-exante-policy-routing-20261107",
+      "commit": "fa4650bb7fc2ec4aa2ac124ce8bd280d4099c93f",
+      "research_subtree_sha": "b313361e20daec6e00f67bfc565ffc3c9bc68f4d"
+    },
+    {
+      "branch": "research/olc70-common-state-counterfactual-20261107",
+      "commit": "f49f5c560d8bf74ba52c314b63b949787cb4492a",
+      "research_subtree_sha": "e0a7cabc8860692a650e0cf2349801986e376466"
+    },
+    {
+      "branch": "research/olc71-return125-residual-information-20261107",
+      "commit": "ab8dc2fb297a51eac13fc805eee9aa17fcca1207",
+      "research_subtree_sha": "1a7e23a3fd2a7aebd8923914016515913e4fb4d0"
+    },
+    {
+      "branch": "research/olc72-return125-family-aware-20261108",
+      "commit": "4e0b0a86ffceeb4f020f6e282730cf077f72055f",
+      "research_subtree_sha": "d07b9d7972166a1d4a2c45d71f7c0823b33b5dae"
+    },
+    {
+      "branch": "research/olc75-top2-reliability-20261109",
+      "commit": "70dc096f699ba24463d12e7de57feb051ef4db0e",
+      "research_subtree_sha": "2bd77c692b325d5981eb4ba35ec4aecc5a61bf5e"
+    },
+    {
+      "branch": "research/olc95-europe-futures",
+      "commit": "af03a830fa1ecb81fee041e636f329419277a3b0",
+      "research_subtree_sha": "896327789bcdd033e247d451af7f8f17a7f874c5"
+    },
+    {
+      "branch": "research/olc96-cftc-shorts",
+      "commit": "20aee3a2942f09f4a8e179ef91000a8ae89afa7b",
+      "research_subtree_sha": "c82b854a6f133ad229ed8869aaefb8b01ca5a88d"
+    },
+    {
+      "branch": "research/olc02-incremental-actions-20261031",
+      "commit": "4be73bdc69b769b399c9ef9d1d295d3777558d07",
+      "research_subtree_sha": "915953499b82fb72116b1f552e083e3bb3bf160c"
+    },
+    {
+      "branch": "research/olc03-selective-veto-20261031",
+      "commit": "c8fcf93f8ee8e9b7df62267db348f2be32b7e655",
+      "research_subtree_sha": "e7a2923277a34e4cbddcd309e554bacaa46f05c7"
+    },
+    {
+      "branch": "research/olc04-relative-information-20261031",
+      "commit": "ac904e5823172eb38c697958424fec9c0b5a2c34",
+      "research_subtree_sha": "938905f49a340c1f49ec5d89e821df6eec74903e"
+    },
+    {
+      "branch": "research/olc05-representation-transition-20261031",
+      "commit": "445944685c14bfe6cbeb4269319df1933176afe3",
+      "research_subtree_sha": "dd8587ef6b9c96b64ddf49ebe633b26608962c55"
+    },
+    {
+      "branch": "research/olc15-regime-gating-20261102",
+      "commit": "763387eceee4b7fbf131827f10dee7f608abeb68",
+      "research_subtree_sha": "068d673ada1a02be7fcef3068cd0d0d453eb7f1e"
+    },
+    {
+      "branch": "research/olc16-contextual-ranking-20261102",
+      "commit": "99d6219006df62882cf04ada65db72951fadc419",
+      "research_subtree_sha": "e48261a24f4a2918b5aac3b6db40b07f6623c213"
+    },
+    {
+      "branch": "research/olc18-executable-stops-20261102",
+      "commit": "adf38a42da93bf4137275da9199df7d90eab53f7",
+      "research_subtree_sha": "15897020b468c35ccc58288e8ff3456fe7280cff"
+    },
+    {
+      "branch": "research/olc19-risk-reentry-20261102",
+      "commit": "0c405bb63432cd338a7db84058a1116b161c952c",
+      "research_subtree_sha": "fe2f51e8c7c7c6cff6a19bb1d325612bb4e02c23"
+    },
+    {
+      "branch": "research/olc20-regime-validation-20261102",
+      "commit": "6c387fac4c2e544bb9dc90f6622cd94faba6d7c2",
+      "research_subtree_sha": "36b47ea33ba9c31cb7b1dd2156fe6b4bc78df0e8"
+    },
+    {
+      "branch": "research/olc21-context-shrinkage-20261102",
+      "commit": "e0ce6920d3e9634afdcc27abf330d7209ffaa8a5",
+      "research_subtree_sha": "16072fa84125623c41bfd2c55ff6718fff204042"
+    },
+    {
+      "branch": "research/olc22-target-hysteresis-20261102",
+      "commit": "31630be990982847940c2863a32f3275c5376006",
+      "research_subtree_sha": "4ea3fb78253b2217c3e618b66acd2dd597f7bc5f"
+    },
+    {
+      "branch": "research/olc23-residual-switch-model-20261102",
+      "commit": "b8e33fae7f269f92fff8fb90b9adbffa04828a04",
+      "research_subtree_sha": "a549f0cc88bbd6033e18e8c1324f1fed2a885a9c"
+    },
+    {
+      "branch": "research/olc24-open2open-residual-20261102",
+      "commit": "8f21914edf35e07b3da7a51b0bb3d01533f87e27",
+      "research_subtree_sha": "7616f769c139a8c640e52c85470fa1e06298c20f"
+    },
+    {
+      "branch": "research/olc28-adaptive-ma-information-20261102",
+      "commit": "4d5736de6f4015eb9938f917b5566c8c88aaf111",
+      "research_subtree_sha": "a54b70e6ea07a868b8fbe88998e9d381596e2d19"
+    },
+    {
+      "branch": "research/olc29-kama-leader-gap-20261102",
+      "commit": "5054f5aaa9b91e697778b8484cdb2e6f9c2acfc4",
+      "research_subtree_sha": "6c730d0d42eff1f3dbf775f555d2887857cf312f"
+    },
+    {
+      "branch": "research/olc30-kama-geometry-ranker-20261102",
+      "commit": "939a751f314ed83f8c282e505d021ae7516da4d0",
+      "research_subtree_sha": "e45b4aebef9e89b34f25f03d12b3b022f782936c"
+    },
+    {
+      "branch": "research/olc31-economic-magnitude-20261102",
+      "commit": "b0eb7b6a4e257b64ec3a13fc068f5f4c3b91ccbe",
+      "research_subtree_sha": "73f7d840f792f056ce98768afa0ef00ab4aba1a4"
+    },
+    {
+      "branch": "research/olc32-quote-repair-economic-edge-20261103",
+      "commit": "8cf230bb2e09ea12a666851aef59057449524400",
+      "research_subtree_sha": "254622639d647ca16bc44ff235d6359f15dec98d"
+    },
+    {
+      "branch": "research/olc34-external-vix-20261103",
+      "commit": "cee1f339d68b18a65433d4efc9c84a28a9feca6e",
+      "research_subtree_sha": "98e3cd94480d68dc5da96f852c4a3d9ca809bbab"
+    },
+    {
+      "branch": "research/olc44-causal-score-gate-20261103",
+      "commit": "40b7833b6f2b2e3d2a44cb97cde51a1a93c8d68a",
+      "research_subtree_sha": "3fce1d20228bbbbd67c8773a32a57cc760cae09d"
+    },
+    {
+      "branch": "research/olc44-native-extension-20261104",
+      "commit": "b5e767952adf3d31818cc1eaeb95480407955bce",
+      "research_subtree_sha": "411aa5850fcffb2893d9a07d03c91621be0b87cf"
+    },
+    {
+      "branch": "research/olc45-opportunity-factor-audit-20261103",
+      "commit": "34fcafb881d9cb9277324fb2812920252f6805b8",
+      "research_subtree_sha": "53a7c6e324bf7af76f0292082e7fb48a5c1cf0a9"
+    },
+    {
+      "branch": "research/olc53-ecb-macro-20261105",
+      "commit": "187a22fc3f9cbbdf44a72c0b3feec4500f418b62",
+      "research_subtree_sha": "015c11a6c1e474df82dc6e55301d008a2877455e"
+    },
+    {
+      "branch": "research/olc54-ecb-curve-ecfin-readiness-20261105",
+      "commit": "e8a9815853f4d733de6622bd25e5c03f470f0e62",
+      "research_subtree_sha": "afd70193b286977d10e695aaeba8b267027536a5"
+    },
+    {
+      "branch": "research/olc55-ecfin-vintage-readiness-20261105",
+      "commit": "b2f113de31347f26d6b30e2a7496e550b709f84d",
+      "research_subtree_sha": "e5a9b39e10757d8f064ddcf995d10a37c3f12b68"
+    },
+    {
+      "branch": "research/olc56-robust-sizing-delay3-20261106",
+      "commit": "ec57515a604a40a2c1b01e9fd011343961087216",
+      "research_subtree_sha": "23eae99e8d47c0a88f45fa471b883bbbdc55066e"
+    },
+    {
+      "branch": "research/olc57-delay3-mechanism-20261106",
+      "commit": "671ba2113dd454c111eff6d0abe9851168b39e65",
+      "research_subtree_sha": "b473a610926041d9affe3ad7c8ceab8e1077094f"
+    },
+    {
+      "branch": "research/olc58-execution-qa-20261106",
+      "commit": "758c673cab698ea7a9458e38d7a8021a8d3fe98d",
+      "research_subtree_sha": "5c2f4a9ffa65175a63dcd4d909ff7e55f9a4b6ec"
+    },
+    {
+      "branch": "research/olc76-pit-economic-data-pilot-20261109",
+      "commit": "a25f278d3295284861ad859cd0cbe3e3ee7666a0",
+      "research_subtree_sha": "3aa2583c707dd1624cd70ea2a46677eefef56af5"
+    }
+  ]
+}

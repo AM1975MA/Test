@@ -1,0 +1,108 @@
+{
+  "status": "design_only_no_returns_or_fits_run_by_design_agent",
+  "date": "2026-11-16",
+  "authority": "Root investigator final pre-results protocol overrides this advisory contract",
+  "research_question": "Does option-implied volatility term-structure shape add daily net economic decision value beyond price state and legacy VIX level/change?",
+  "model_family": "Three regularized linear action-advantage heads with native net-log-wealth labels",
+  "information_arms": {
+    "MEAN": [],
+    "PRICE": "price_features_by_head",
+    "PRICE_LEGACY": ["price_features_by_head", "log_vix_prior_source_close", "vix_21_source_session_log_change"],
+    "PRICE_LEGACY_TERM": ["price_features_by_head", "log_vix_prior_source_close", "vix_21_source_session_log_change", "log_vix9d_over_vix", "log_vix_over_vix3m"]
+  },
+  "not_used": ["VVIX", "SKEW", "VIX threshold rules", "hyperparameter search", "new ETF reranker", "future-label clipping", "estimated cost offset"],
+  "decision_schedule": {
+    "frequency": "every eligible European close including monthly dates",
+    "first_account_initialization": "frozen baseline",
+    "before_model_readiness": "exact frozen baseline fallback",
+    "legal_after_readiness": ["HOLD", "CASH if invested", "FRESH if valid non-no-op target"],
+    "monthly_hold_semantics": "HOLD skips the same-date scheduled rebalance and preserves actual units/cash",
+    "pending_or_queued_orders": "no new discretionary intervention",
+    "candidate": "single deterministic fresh basket from frozen DEDUP_DUAL_TREND_OPP on as-of data",
+    "days_until_monthly_feature": "strictly next monthly event after decision date; on a monthly decision this is approximately one month, not zero"
+  },
+  "state_fields_required": ["decision_timestamp", "actual_cash", "actual_units_by_instrument", "native_nav", "actual_gross_exposure", "pending_orders", "queued_orders", "native_restrictions", "baseline_schedule_state", "feature_dependency_timestamps", "fresh_target", "stable_state_id"],
+  "anchor_training_bank": {
+    "states_per_eligible_date": ["frozen baseline actual snapshot before current instruction", "synthetic all-cash state with the same starting NAV"],
+    "all_actions": true,
+    "stop_trigger_selection": false,
+    "new_policy_actual_states_added_to_training": false,
+    "counterfactual_state_claim": "All-cash state is hypothetical admissible state, not a free historical liquidation"
+  },
+  "label_contract": {
+    "horizon_exchange_sessions": 21,
+    "common_terminal": "decision session plus21 exchange sessions",
+    "hold_initial": "issue_initial=False; skip any same-session monthly instruction",
+    "cash_or_fresh_initial": "native intervention at next accepted execution",
+    "continuation": "frozen baseline monthly/native continuation only at j greater than decision session; no subsequent learned interventions",
+    "target": "log(native_NAV_action_at_T / native_NAV_HOLD_at_T)",
+    "transaction_cost": "EUR1 plus0.0015 times executed order notional per order, native net orders",
+    "double_charge_fees": false,
+    "fictional_terminal_liquidation": false,
+    "mature": "all required outcome/dependency timestamps strictly earlier than fit cutoff",
+    "invalid_terminal_support": "censor whole matched action comparison; report count and adverse valuation sensitivity",
+    "known_native_nonfill": "retain as economic outcome, not silently censor",
+    "right_edge": "pending, excluded from fit and mature-score summaries"
+  },
+  "heads": ["CASH_MINUS_HOLD", "FRESH_MINUS_HOLD", "ENTRY_MINUS_STAY_CASH"],
+  "feature_definitions": {
+    "NM_L": "log_return_L / (daily_vol63 * sqrt(L)); training/native volatility floor documented",
+    "basket_history": "trailing descriptive history of current actual weights/exposures; cash return zero; not a reconstructed funded past account",
+    "breadth": "positive-m63 share on frozen deduplicated/group-weighted universe",
+    "legacy_change": "log(VIX_last_available_source_session / VIX_21_source_sessions_earlier)"
+  },
+  "price_features_by_head": {
+    "CASH_MINUS_HOLD": ["held_NM21", "held_NM63", "held_log_vol21_over_vol63", "dedup_breadth63", "sessions_to_strictly_next_monthly_over21", "actual_gross_exposure"],
+    "FRESH_MINUS_HOLD": ["fresh_minus_held_NM21", "fresh_minus_held_NM63", "log_vol63_fresh_over_held", "fresh_held_correlation63", "sessions_to_strictly_next_monthly_over21", "actual_gross_exposure"],
+    "ENTRY_MINUS_STAY_CASH": ["fresh_NM21", "fresh_NM63", "fresh_log_vol21_over_vol63", "dedup_breadth63", "sessions_to_strictly_next_monthly_over21"]
+  },
+  "external_alignment": {
+    "source": "official Cboe raw daily historical CSVs with hashes",
+    "source_date": "common date for VIX9D, VIX and VIX3M strictly earlier than European decision date",
+    "max_staleness_calendar_days": 7,
+    "same_day_final_US_close_allowed": false,
+    "training_support": "identical mature complete-label and external-source support across all nested arms",
+    "prediction_missing_block": "fall back to valid lower-information nested model, recorded explicitly"
+  },
+  "fit_contract": {
+    "refit_frequency": "monthly expanding window",
+    "minimum_mature_distinct_dates_per_head": 504,
+    "minimum_nonoverlapping_21_session_blocks": 24,
+    "loss": "mean date-weighted squared prediction error +1.0*sum(nonintercept_coefficients_squared)",
+    "ridge_lambda_mean_loss_scale": 1.0,
+    "intercept_penalized": false,
+    "scaler": "training-only per head",
+    "term_residualization": "training-only weighted OLS on price,state,legacy VIX and intercept; standardize resulting residuals",
+    "date_weight": "total1 per date per head, divided across its valid state rows",
+    "random_row_split": false,
+    "future_feature_fit": false,
+    "label_interval_purge": "only fully matured labels before current cutoff; no interval crossing validation forecast origin"
+  },
+  "uncertainty_buffer": {
+    "method": "coefficient prediction distribution from deterministic date-block bootstrap",
+    "block_sessions": 63,
+    "replicates": 100,
+    "paired_across_heads_and_information_arms": true,
+    "date_rows_kept_together": true,
+    "quantile": 0.10,
+    "interpretation": "conservative heuristic, not calibrated90percent confidence or discovery inference"
+  },
+  "predict_contract": {
+    "inputs": ["immutable fit artifact and cutoff", "actual current account snapshot", "as-of price/state features", "lagged source-aligned options features", "single frozen fresh target"],
+    "default": "HOLD or STAY_CASH",
+    "action_qualifies": "predicted native net advantage greater than0 and bootstrap10th-percentile conditional-mean prediction greater than0",
+    "winner": "largest qualifying lower bound; no-op/tie retains HOLD; stable action ordering thereafter",
+    "no_ready_head": "frozen baseline fallback before policy readiness, as specified in executable protocol",
+    "log_output_fields": ["fit_hash", "training_cutoff", "distinct_mature_dates", "nonoverlapping_blocks", "state_id", "source_dates", "support_flags", "forecast_by_action", "lower_bound_by_action", "chosen_action", "actual_net_orders", "fallback_reason", "matured_outcome_when_available"]
+  },
+  "frozen_diagnostic_matrix": {
+    "policies": ["BASE", "STATIC_75", "MEAN", "PRICE", "PRICE_LEGACY", "PRICE_LEGACY_TERM"],
+    "scenarios": ["NEXT_CLOSE_NORMAL_COST", "NEXT_CLOSE_DOUBLE_PROPORTIONAL_COST", "NEXT_OPEN_NORMAL_COST"],
+    "total_paths": 18,
+    "run_even_if_prediction_gate_fails": true,
+    "failure_consequence": "no promotion and no parameter/feature expansion",
+    "cost_stress_fit_semantics": "must be stated explicitly in root executable protocol; do not silently mix baseline-cost training with claimed optimal double-cost decisions"
+  },
+  "mandatory_evaluation": ["same-date post-warmup comparisons", "full window with exact baseline warmup", "per-head forecast MSE against mature mean and nested models", "conditional selected-action economic value after costs", "independent intervention episodes", "annual/regime contributions including2024", "account CAGR and MaxDD", "exposure and out-of-market days", "order counts and turnover", "known nonfills and censored tails", "holding ages beyond monthly anchor support", "uncertainty/extrapolation diagnostics", "entry risk-premium distinction", "no claim of learned2020-crash protection"],
+  "not_claimed": ["new untouched holdout", "formal statistical significance after OLC research reuse", "guaranteed30percent CAGR", "cash selection alpha from positive entry returns alone", "globally optimal sequential policy", "opening-auction executability from final daily volume"]
+}

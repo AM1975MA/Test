@@ -1,0 +1,25 @@
+Preparing unchanged daily candidates and monthly representative breadth
+  candidates through 2020-02-28
+  candidates through 2021-02-24
+  candidates through 2022-02-16
+  candidates through 2023-02-06
+  candidates through 2024-01-30
+  candidates through 2025-01-24
+  candidates through 2026-01-21
+  native comparison bank 100 dates through 2020-07-23
+  native comparison bank 200 dates through 2020-12-10
+  native comparison bank 300 dates through 2021-05-07
+  native comparison bank 400 dates through 2021-09-27
+  native comparison bank 500 dates through 2022-02-16
+  native comparison bank 600 dates through 2022-07-08
+  native comparison bank 700 dates through 2022-11-25
+  native comparison bank 800 dates through 2023-04-19
+  native comparison bank 900 dates through 2023-09-07
+  native comparison bank 1000 dates through 2024-01-30
+  native comparison bank 1100 dates through 2024-06-21
+  native comparison bank 1200 dates through 2024-11-08
+  native comparison bank 1300 dates through 2025-04-04
+  native comparison bank 1400 dates through 2025-08-27
+  native comparison bank 1500 dates through 2026-01-21
+  native comparison bank 1600 dates through 2026-06-15
+Bank complete {"dates": 1698, "rows": {"CASH": 1642, "FRESH": 1512, "ENTRY": 1642}, "event_status": {"EVALUATED": 1645, "SOURCE_UNAVAILABLE_COMMON_SUPPORT": 33, "RIGHT_EDGE": 20}, "comparison_status": {"OK": 3284}, "max_account_error": 1.4551915228366852e-11, "primary_execution": "NEXT_CLOSE", "normal_ticket": 1.0, "normal_impact": 0.0015, "source_unavailable_in_study": 33}

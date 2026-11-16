@@ -1,0 +1,21 @@
+{
+  "dates": 1698,
+  "rows": {
+    "CASH": 1642,
+    "FRESH": 1512,
+    "ENTRY": 1642
+  },
+  "event_status": {
+    "EVALUATED": 1645,
+    "SOURCE_UNAVAILABLE_COMMON_SUPPORT": 33,
+    "RIGHT_EDGE": 20
+  },
+  "comparison_status": {
+    "OK": 3284
+  },
+  "max_account_error": 1.4551915228366852e-11,
+  "primary_execution": "NEXT_CLOSE",
+  "normal_ticket": 1.0,
+  "normal_impact": 0.0015,
+  "source_unavailable_in_study": 33
+}

@@ -1,0 +1,9 @@
+{
+  "native_hold_vs_full_baseline_pairs": 1566,
+  "max_nav_difference": 2.1827872842550278e-11,
+  "matched_comparison_groups": 3284,
+  "exact_label_recomputations": 4796,
+  "max_label_difference": 0.0,
+  "cboe_asof_status": "PASS",
+  "status": "PASS"
+}

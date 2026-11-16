@@ -1,0 +1,58 @@
+{
+  "created_utc": "2026-11-16T19:28:28.002359+00:00",
+  "stage": "before_first_model_fit_and_18_paths",
+  "bank_freeze_sha256": "b4de421ca67d2175d610539e4df7d8db1c6e8cc8d01efc9925d3974bb6358081",
+  "code_hashes": {
+    "src/research_pipeline.py": "64a09ca31077b24696de6d3d95395f9825e045fdc16422dd476f8cf968b84e35",
+    "src/replay_engine.py": "ad4ebbb81620456e61bf0d833fd999c7a1a0026acb0a5f0370a0c51c33d39a1a",
+    "src/cboe_features.py": "094c278adb6363136a2ffc2528d56c765b9508b2fe593893748fcf66c90db62c",
+    "src/advantage_model.py": "153081fb3623fa1b9c12498f9c5c07c6845fd25cc7f27cc40a13f05ff52f1605",
+    "../olc110/src/cluster_selectors.py": "4105253f3332a5905d2fb4bc1960be887782f748efe033e9cca16ebcf9048e12",
+    "../olc110/src/dedup_selectors.py": "6643776c8ed11f3834211e2e10a269a8e7f11aeaac300ee1efd0712f20b043c2",
+    "../olc110/src/engine.py": "370958a6f250f60936b50147ae8787b2e590e81660b4d101e5bbdd9d9b0cba5f",
+    "../olc110/src/horizon_selectors.py": "94e5042b72f2ab1c9a39f2035036c84304347c1e824a4d1e7740f7ab98608f8e",
+    "../olc110/src/protection.py": "afdf4609d5eb5960ee21f281565f0f17ea8296a92db531130bb06abf88e4232a",
+    "../olc110/src/run_protection.py": "5590239304e2d6f72b0a0dcaadc76471d35f37a944a5e9c856c921dba8d92445",
+    "../olc110/src/signals.py": "e2846ed075f68553b31f985585cece67b6d520b5adac2b3bb7b927ac48829029",
+    "../olc110/source/src/core.py": "e49bd609bf9e65b6270b03fb9b706070edb3d2717765f37a856dff3d559551d9",
+    "src/run_olc111.py": "69d7d98b0ffffa6144f2ef517d3109177b53b57d2fc452ce1d6a011dd7d1b03e"
+  },
+  "input_hashes": {
+    "../olc110/source/data/XETRA_EUR_ETF.npz": "14b4ee4a5834e93407f5b7aac2c4857cf6f0b0403f38296daea2725fe4848b96",
+    "../olc110/data/LIQUIDITY.npz": "b95fa3d67837fa06c5705aa4aea09807d396464ab44ec1671031d797b57f4485",
+    "data/raw/VIX_History.csv": "d4e2b1199951501b7757814b6e1c2356394922a7ea8ef16d85c3a4596e6e2c2d",
+    "data/raw/VIX9D_History.csv": "c29cb0795e2ab676e5d1fdc42cb3f53d8e66c3daf36a492ec0192f033e690874",
+    "data/raw/VIX3M_History.csv": "6fa2ba5f8b85bf62a98ba14acf5e03c712298dffe534d3c73998e21db1248a4b",
+    "data/CAUSAL_SELECTIONS.npz": "9b910b344ead4ba0a19c4dc4b5423696fd2996f40d438c6f32dd48f4b753216d",
+    "data/BASELINE_STATES.npz": "fc8a3f446abaa156747780ba6e388992b0bcdc2954c1698e05a6b2b7849e4136",
+    "data/BANK_EVENTS.jsonl": "463035b4774bfe9fdd584277809fffa2acaff837eda615d1233d6f78f3b9ac6b",
+    "data/BANK_CACHE_PROVENANCE.json": "8e23487f644f3477da41c5f512b1e1dc7b43fdbf4ef674118a9c4d06ec833c06"
+  },
+  "protocol_sha256": "8c826bb50a67bcf9bbb723aa0eb85f34b788b21713d2c756f8d12ef55995df84",
+  "arms": [
+    "BASE",
+    "STATIC_75",
+    "MEAN",
+    "PRICE",
+    "VIX",
+    "TERM"
+  ],
+  "scenarios": [
+    "NEXT_CLOSE",
+    "DOUBLE_COST",
+    "NEXT_OPEN"
+  ],
+  "planned_paths": 18,
+  "fit_options": {
+    "min_dates": 504,
+    "min_blocks": 24,
+    "n_boot": 100,
+    "seed": 111,
+    "penalty": 1.0
+  },
+  "model_results_unseen": true,
+  "prior_research_results_seen": true,
+  "pristine_holdout": false,
+  "label_bank_already_computed": true,
+  "baseline_and_native_label_reconciliation_observed": true
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "NEXT_OPEN",
+  "discretionary_orders": 0,
+  "exact_baseline_parity": true,
+  "max_difference": 0.0,
+  "details": {
+    "nav_open": 0.0,
+    "nav_close": 0.0,
+    "cash": 0.0,
+    "gross": 0.0,
+    "positions": 0.0
+  }
+}

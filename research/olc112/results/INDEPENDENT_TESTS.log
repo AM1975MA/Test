@@ -1,0 +1,11 @@
+test_busy_monthly_account_does_not_replace_its_pending_order (test_rotation_overlay.RotationOverlayTest.test_busy_monthly_account_does_not_replace_its_pending_order) ... ok
+test_monthly_cash_book_can_reenter_on_the_unchanged_positive_signal (test_rotation_overlay.RotationOverlayTest.test_monthly_cash_book_can_reenter_on_the_unchanged_positive_signal) ... ok
+test_monthly_cash_book_is_not_forced_to_reenter (test_rotation_overlay.RotationOverlayTest.test_monthly_cash_book_is_not_forced_to_reenter) ... ok
+test_monthly_rotation_is_preserved_when_learned_switch_is_negative (test_rotation_overlay.RotationOverlayTest.test_monthly_rotation_is_preserved_when_learned_switch_is_negative) ... ok
+test_nonscheduled_decision_is_identical_to_olc111 (test_rotation_overlay.RotationOverlayTest.test_nonscheduled_decision_is_identical_to_olc111) ... ok
+test_original_monthly_band_does_not_force_small_rebalance (test_rotation_overlay.RotationOverlayTest.test_original_monthly_band_does_not_force_small_rebalance) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.175s
+
+OK

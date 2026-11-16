@@ -1,0 +1,137 @@
+{
+  "retrieved_utc": "2026-11-16T18:55:13.741288+00:00",
+  "sources": [
+    {
+      "symbol": "VIX",
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+      "bytes": 474859,
+      "sha256": "d4e2b1199951501b7757814b6e1c2356394922a7ea8ef16d85c3a4596e6e2c2d",
+      "columns": [
+        "DATE",
+        "OPEN",
+        "HIGH",
+        "LOW",
+        "CLOSE"
+      ],
+      "rows": 9316,
+      "last_rows": [
+        {
+          "DATE": "11/12/2026",
+          "OPEN": 18.36,
+          "HIGH": 19.34,
+          "LOW": 17.38,
+          "CLOSE": 18.7
+        },
+        {
+          "DATE": "11/13/2026",
+          "OPEN": 18.78,
+          "HIGH": 20.92,
+          "LOW": 17.64,
+          "CLOSE": 19.3
+        }
+      ]
+    },
+    {
+      "symbol": "VIX9D",
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX9D_History.csv",
+      "bytes": 202682,
+      "sha256": "c29cb0795e2ab676e5d1fdc42cb3f53d8e66c3daf36a492ec0192f033e690874",
+      "columns": [
+        "DATE",
+        "OPEN",
+        "HIGH",
+        "LOW",
+        "CLOSE"
+      ],
+      "rows": 3990,
+      "last_rows": [
+        {
+          "DATE": "11/12/2026",
+          "OPEN": 18.14,
+          "HIGH": 18.31,
+          "LOW": 15.86,
+          "CLOSE": 17.51
+        },
+        {
+          "DATE": "11/13/2026",
+          "OPEN": 16.97,
+          "HIGH": 20.91,
+          "LOW": 16.66,
+          "CLOSE": 17.82
+        }
+      ]
+    },
+    {
+      "symbol": "VIX3M",
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX3M_History.csv",
+      "bytes": 220141,
+      "sha256": "6fa2ba5f8b85bf62a98ba14acf5e03c712298dffe534d3c73998e21db1248a4b",
+      "columns": [
+        "DATE",
+        "OPEN",
+        "HIGH",
+        "LOW",
+        "CLOSE"
+      ],
+      "rows": 4316,
+      "last_rows": [
+        {
+          "DATE": "11/12/2026",
+          "OPEN": 20.12,
+          "HIGH": 20.25,
+          "LOW": 19.17,
+          "CLOSE": 20.06
+        },
+        {
+          "DATE": "11/13/2026",
+          "OPEN": 19.88,
+          "HIGH": 21.48,
+          "LOW": 19.77,
+          "CLOSE": 20.62
+        }
+      ]
+    },
+    {
+      "symbol": "VVIX",
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VVIX_History.csv",
+      "bytes": 109539,
+      "sha256": "0af1a215b4d82eb251b9880d4fc8e4545c6736252d7fd8c27346f40b51b893a6",
+      "columns": [
+        "DATE",
+        "VVIX"
+      ],
+      "rows": 5147,
+      "last_rows": [
+        {
+          "DATE": "11/12/2026",
+          "VVIX": 96.71
+        },
+        {
+          "DATE": "11/13/2026",
+          "VVIX": 101.53
+        }
+      ]
+    },
+    {
+      "symbol": "SKEW",
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/SKEW_History.csv",
+      "bytes": 203950,
+      "sha256": "519b6201895fd73e664bbedb55c152921b79ecccde24d007c3bb882dc6a32892",
+      "columns": [
+        "DATE",
+        "SKEW"
+      ],
+      "rows": 9270,
+      "last_rows": [
+        {
+          "DATE": "11/12/2026",
+          "SKEW": 150.16
+        },
+        {
+          "DATE": "11/13/2026",
+          "SKEW": 147.14
+        }
+      ]
+    }
+  ]
+}

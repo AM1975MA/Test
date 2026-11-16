@@ -1,0 +1,335 @@
+{
+  "repository": "AM1975MA/Test",
+  "commit_chain": {
+    "commit": "5752452e565037b790a4099c9d5f8de9d5788509",
+    "root_tree": "f23515d0468d1614935ac441da33bc82887b6faf",
+    "research_tree": "88a58c4b6126a6a08e8f035589bba99cbdb27052",
+    "olc110_subtree": "b0eb95446c629bcd46affd8d951817f81bff044b",
+    "verified": true
+  },
+  "remote_tree_url": "https://api.github.com/repos/AM1975MA/Test/git/trees/b0eb95446c629bcd46affd8d951817f81bff044b?recursive=1",
+  "tree_truncated": false,
+  "remote_total_blob_count": 727,
+  "restored_selection": [
+    {
+      "path": "DATA_ARTIFACT_MANIFEST.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca8cf4c438fef31d435d53820ff1716900c0b382",
+      "size": 3301,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/ca8cf4c438fef31d435d53820ff1716900c0b382"
+    },
+    {
+      "path": "RAPPORTO_OLC110_IT.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d3169b776c4bcfca8ba7d0dad1f3d3c70e133a7",
+      "size": 27209,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/5d3169b776c4bcfca8ba7d0dad1f3d3c70e133a7"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2bfaf6cc197fdd1667977fd663bf479dd029f3ec",
+      "size": 7005,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/2bfaf6cc197fdd1667977fd663bf479dd029f3ec"
+    },
+    {
+      "path": "REPOSITORY_MANIFEST.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be0652ac0faf9b9e8d0656b04cbe7b792fbe53f7",
+      "size": 195227,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/be0652ac0faf9b9e8d0656b04cbe7b792fbe53f7"
+    },
+    {
+      "path": "REPRODUCE_FROM_ARCHIVE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60204c206f4a2e0b80f4f2c1fc4d3bab389d2995",
+      "size": 5853,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/60204c206f4a2e0b80f4f2c1fc4d3bab389d2995"
+    },
+    {
+      "path": "data/LIQUIDITY_MANIFEST.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31fcdd2d4c9b565fbdd29cb50185e1e09a07e9f8",
+      "size": 425838,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/31fcdd2d4c9b565fbdd29cb50185e1e09a07e9f8"
+    },
+    {
+      "path": "data/PRODUCT_CLASSIFICATION_OVERRIDES.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a431999b0fa1225b38d83f1e4ca907661ad9625",
+      "size": 27261,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/9a431999b0fa1225b38d83f1e4ca907661ad9625"
+    },
+    {
+      "path": "data/SOURCE_BAR_QUARANTINE.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5171b972317eb95bc30051814806a9fce91d915",
+      "size": 269114,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/e5171b972317eb95bc30051814806a9fce91d915"
+    },
+    {
+      "path": "data/SOURCE_SERIES_QUARANTINE.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac77e4c273c9fba053bd24a734a39dce7bce383e",
+      "size": 3100,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/ac77e4c273c9fba053bd24a734a39dce7bce383e"
+    },
+    {
+      "path": "data/UNIVERSE_COVERAGE.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6431ef6043f036e6138912ce12e51b876595a52",
+      "size": 1524089,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/b6431ef6043f036e6138912ce12e51b876595a52"
+    },
+    {
+      "path": "docs/DESIGN_AND_PROTOCOL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0a4a498300dc83f51d25d1638f449856ff1adf2",
+      "size": 13372,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/d0a4a498300dc83f51d25d1638f449856ff1adf2"
+    },
+    {
+      "path": "docs/EXPERIMENT_FREEZE.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f65c42afd8fac4d0a7caef2d4b207ee5e6a5151a",
+      "size": 2112,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/f65c42afd8fac4d0a7caef2d4b207ee5e6a5151a"
+    },
+    {
+      "path": "docs/FINAL_LOCAL_QA.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08d91a439c0059f149edebe862cd15b43362db35",
+      "size": 1236,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/08d91a439c0059f149edebe862cd15b43362db35"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_PLAN.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e47a2cd885f3f2e2beb7f46ad6b8dbe31091c6b5",
+      "size": 5163,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/e47a2cd885f3f2e2beb7f46ad6b8dbe31091c6b5"
+    },
+    {
+      "path": "docs/PROGRESS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b8a02e3ae86d9b580c94ab8101a0d39c7dbab0a",
+      "size": 3416,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/2b8a02e3ae86d9b580c94ab8101a0d39c7dbab0a"
+    },
+    {
+      "path": "requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af3e26097096ce1194d5a1121e6fa4c2573dc86e",
+      "size": 81,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/af3e26097096ce1194d5a1121e6fa4c2573dc86e"
+    },
+    {
+      "path": "research/engine/olc108_engine_reference.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd427ebd406846d3d781ee38be012295c6d3347f",
+      "size": 10075,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/cd427ebd406846d3d781ee38be012295c6d3347f"
+    },
+    {
+      "path": "research/engine/olc109_engine_reference.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7f982bca699ffe81946dd11d68c9ceb85c44ac5",
+      "size": 12093,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/c7f982bca699ffe81946dd11d68c9ceb85c44ac5"
+    },
+    {
+      "path": "results/ANNUAL_RETURNS.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc7d968f2dd686392777f429c4e7768fbf39156a",
+      "size": 52647,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/fc7d968f2dd686392777f429c4e7768fbf39156a"
+    },
+    {
+      "path": "results/BASELINE_REPLICATION.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b23b06ec22cba27daeea874dda4e76f7126f1169",
+      "size": 4817,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/b23b06ec22cba27daeea874dda4e76f7126f1169"
+    },
+    {
+      "path": "results/DESCRIPTIVE_SEGMENTS.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2d0580ed1d37ce98adb85541e1559e5baec7db7",
+      "size": 67967,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/a2d0580ed1d37ce98adb85541e1559e5baec7db7"
+    },
+    {
+      "path": "results/RUN_MANIFEST.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab2e05270aeea150008440866935753e400f231f",
+      "size": 1522,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/ab2e05270aeea150008440866935753e400f231f"
+    },
+    {
+      "path": "results/SCORECARD.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "722f31fbb7dbe241a362cbb783f6d5bada61dddc",
+      "size": 32795,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/722f31fbb7dbe241a362cbb783f6d5bada61dddc"
+    },
+    {
+      "path": "source/src/core.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61e90c552e5941f9a43bcd319627a00561f02500",
+      "size": 12339,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/61e90c552e5941f9a43bcd319627a00561f02500"
+    },
+    {
+      "path": "src/cluster_selectors.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4265bc12fdde2a68bdfb7d23437f375b3934ea9",
+      "size": 9601,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/b4265bc12fdde2a68bdfb7d23437f375b3934ea9"
+    },
+    {
+      "path": "src/dedup_selectors.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d177176e0445f8dbaceff19df6529a1c75e83bb",
+      "size": 3505,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/2d177176e0445f8dbaceff19df6529a1c75e83bb"
+    },
+    {
+      "path": "src/engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07eca6aa9189c57fcb155ddbf8ce433aa9a89d72",
+      "size": 19922,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/07eca6aa9189c57fcb155ddbf8ce433aa9a89d72"
+    },
+    {
+      "path": "src/horizon_selectors.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ed0be92f5eb8c9064fd701cdebc0bf8729a3d23",
+      "size": 3261,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/6ed0be92f5eb8c9064fd701cdebc0bf8729a3d23"
+    },
+    {
+      "path": "src/protection.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f770c5540579665f4f849efb1eb264f45d8519d",
+      "size": 12759,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/3f770c5540579665f4f849efb1eb264f45d8519d"
+    },
+    {
+      "path": "src/run_protection.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1db1bed939bde55b16cfeadeb2a4dc598f247e5",
+      "size": 12328,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/c1db1bed939bde55b16cfeadeb2a4dc598f247e5"
+    },
+    {
+      "path": "src/signals.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab2cf1ceb68aa3c812a67119a3aa62322273da40",
+      "size": 4953,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/ab2cf1ceb68aa3c812a67119a3aa62322273da40"
+    },
+    {
+      "path": "tests/test_account_policy_engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd8265a2270f8462e260b5a7d193c8b24e478d87",
+      "size": 22515,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/cd8265a2270f8462e260b5a7d193c8b24e478d87"
+    },
+    {
+      "path": "tests/test_cluster_selectors.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20ad4c138e1fb18d5a637c50e26dbcff9fc90d82",
+      "size": 4691,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/20ad4c138e1fb18d5a637c50e26dbcff9fc90d82"
+    },
+    {
+      "path": "tests/test_dedup_selectors.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ef6235e4eb7086cf82074ce7f65ebe2cf4b1b82",
+      "size": 1540,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/9ef6235e4eb7086cf82074ce7f65ebe2cf4b1b82"
+    },
+    {
+      "path": "tests/test_engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b37a1f015240d016670281f834ee19288f80fa36",
+      "size": 12970,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/b37a1f015240d016670281f834ee19288f80fa36"
+    },
+    {
+      "path": "tests/test_guard_engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56125a526d8712585884bbbcd254d1e5066def95",
+      "size": 12514,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/56125a526d8712585884bbbcd254d1e5066def95"
+    },
+    {
+      "path": "tests/test_horizon_selectors.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05312bf2e0f7c1a476fd7c54070ab973de027ba0",
+      "size": 2375,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/05312bf2e0f7c1a476fd7c54070ab973de027ba0"
+    },
+    {
+      "path": "tests/test_protection.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ad6459d9aaba1469233733895f590b352bc3d0d",
+      "size": 11748,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/5ad6459d9aaba1469233733895f590b352bc3d0d"
+    },
+    {
+      "path": "tests/test_signals.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d717582ea89e92e099295be31b864c7b41a850b",
+      "size": 4882,
+      "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/6d717582ea89e92e099295be31b864c7b41a850b"
+    }
+  ],
+  "required_binary_fixture": {
+    "path": "source/data/TR29.npz",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "2d050d60f4a27573c282717c3e26ebe347cc4a16",
+    "size": 412807,
+    "url": "https://api.github.com/repos/AM1975MA/Test/git/blobs/2d050d60f4a27573c282717c3e26ebe347cc4a16"
+  }
+}
