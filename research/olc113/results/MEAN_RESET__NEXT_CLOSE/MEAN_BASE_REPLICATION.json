@@ -1,0 +1,10 @@
+{
+  "scenario": "NEXT_CLOSE",
+  "discretionary_orders": 0,
+  "exact_baseline_parity": true,
+  "exact_daily_parity": true,
+  "exact_order_ledger_parity": true,
+  "comparison": "all_daily_columns_and_entire_order_ledger_exact",
+  "control_daily_sha256": "89518c50d9d117d29c000f1894b80f854af43d63f458711ef584615716620a8d",
+  "control_orders_sha256": "d32c91f598b81a17ab130b63fedcef350e4ab8d449729850bb540b8d53cdf840"
+}

@@ -1,0 +1,12 @@
+{
+  "path_id": "PRICE_RESET__NEXT_CLOSE",
+  "artifacts": {
+    "DAILY.csv.gz": "8ecc5e8ae19643bd71b7b9527bf0b0beece96700ae9fd7ac5e4824273cb202ae",
+    "ORDERS.csv.gz": "ffea4c4b2a74755a511af9d221caa13f7425a5d73723c45767605ac4440be573",
+    "INSTRUCTIONS.csv.gz": "6a7a6e8572dcfcf09b8d0eb9622a01ca9acf37d6d6208897cb08e0e6c39e1d82",
+    "DECISIONS.npz": "805f1403238137a0ccca8b804fddaf897866d910b0f23cd0513863af65768289",
+    "DECISIONS_META.json.gz": "2afb28093652b4451d864873c4f99a7d2bce26efbb30ee71aa1b0948a04e5f6c",
+    "POLICY_TRACE.csv.gz": "0eb6c25ed8ebc49bf0e0eb48dad6fd8408c761f1c3dca680f36f546853cf609c"
+  },
+  "metrics_payload_sha256": "62e94eae702589a069fb9d1a8db4fc0359a395d7f1d3bd9e48fdf357e3dfec0a"
+}

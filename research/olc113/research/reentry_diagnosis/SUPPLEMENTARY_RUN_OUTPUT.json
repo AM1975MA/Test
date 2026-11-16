@@ -1,0 +1,191 @@
+{
+  "full_feature_support": [
+    {
+      "path_id": "PRICE_ROTATION__NEXT_CLOSE",
+      "rows": 215,
+      "all_representation_max_abs_z": {
+        "n": 215,
+        "mean": 1.5430350747576493,
+        "min": 0.6695460756500269,
+        "q10": 1.0551790925191384,
+        "median": 1.4646392303733522,
+        "q90": 2.194858444599068,
+        "max": 2.7565324411483676
+      },
+      "dates_above_3": 0,
+      "dates_above_5": 0,
+      "outside_any_representation_range": 6,
+      "options_max_abs_z": {
+        "n": 215,
+        "mean": 0.0,
+        "min": 0.0,
+        "q10": 0.0,
+        "median": 0.0,
+        "q90": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "path_id": "TERM_ROTATION__NEXT_CLOSE",
+      "rows": 194,
+      "all_representation_max_abs_z": {
+        "n": 194,
+        "mean": 1.6396665065868299,
+        "min": 0.8562711402871371,
+        "q10": 1.1950670894904711,
+        "median": 1.5934359527853625,
+        "q90": 2.21343631902352,
+        "max": 2.7565324411483676
+      },
+      "dates_above_3": 0,
+      "dates_above_5": 0,
+      "outside_any_representation_range": 6,
+      "options_max_abs_z": {
+        "n": 194,
+        "mean": 0.9101686968813517,
+        "min": 0.0,
+        "q10": 0.44926179783977094,
+        "median": 0.8479537092110347,
+        "q90": 1.5333122028307635,
+        "max": 2.0950847587927335
+      }
+    }
+  ],
+  "final_crossing": [
+    {
+      "arm": "PRICE",
+      "fit_cutoff": 1798,
+      "feature_idx": 1819,
+      "date": "2026-03-31",
+      "future_model_on_prior_state": false,
+      "mean": 0.0027312365618063243,
+      "lower": -0.0017894210212267816
+    },
+    {
+      "arm": "PRICE",
+      "fit_cutoff": 1798,
+      "feature_idx": 1820,
+      "date": "2026-04-01",
+      "future_model_on_prior_state": false,
+      "mean": 0.009318750864782836,
+      "lower": 0.0030020664096452577
+    },
+    {
+      "arm": "PRICE",
+      "fit_cutoff": 1820,
+      "feature_idx": 1819,
+      "date": "2026-03-31",
+      "future_model_on_prior_state": true,
+      "mean": 0.0032233487016199015,
+      "lower": -0.0016318194016298395
+    },
+    {
+      "arm": "PRICE",
+      "fit_cutoff": 1820,
+      "feature_idx": 1820,
+      "date": "2026-04-01",
+      "future_model_on_prior_state": false,
+      "mean": 0.010367677857858172,
+      "lower": 0.004144735333936367
+    },
+    {
+      "arm": "VIX",
+      "fit_cutoff": 1798,
+      "feature_idx": 1819,
+      "date": "2026-03-31",
+      "future_model_on_prior_state": false,
+      "mean": 0.0033640712850804676,
+      "lower": -0.0036193499202119583
+    },
+    {
+      "arm": "VIX",
+      "fit_cutoff": 1798,
+      "feature_idx": 1820,
+      "date": "2026-04-01",
+      "future_model_on_prior_state": false,
+      "mean": 0.010115806064654535,
+      "lower": 0.004197739177640659
+    },
+    {
+      "arm": "VIX",
+      "fit_cutoff": 1820,
+      "feature_idx": 1819,
+      "date": "2026-03-31",
+      "future_model_on_prior_state": true,
+      "mean": 0.004413282711274815,
+      "lower": -0.0029364191615235814
+    },
+    {
+      "arm": "VIX",
+      "fit_cutoff": 1820,
+      "feature_idx": 1820,
+      "date": "2026-04-01",
+      "future_model_on_prior_state": false,
+      "mean": 0.011297856567803638,
+      "lower": 0.004780372296416234
+    },
+    {
+      "arm": "TERM",
+      "fit_cutoff": 1798,
+      "feature_idx": 1819,
+      "date": "2026-03-31",
+      "future_model_on_prior_state": false,
+      "mean": 0.005170396997825147,
+      "lower": -0.0038793436800116624
+    },
+    {
+      "arm": "TERM",
+      "fit_cutoff": 1798,
+      "feature_idx": 1820,
+      "date": "2026-04-01",
+      "future_model_on_prior_state": false,
+      "mean": 0.01018381066814574,
+      "lower": 0.0029970905118189674
+    },
+    {
+      "arm": "TERM",
+      "fit_cutoff": 1820,
+      "feature_idx": 1819,
+      "date": "2026-03-31",
+      "future_model_on_prior_state": true,
+      "mean": 0.006203252624705424,
+      "lower": -0.0031633258351081283
+    },
+    {
+      "arm": "TERM",
+      "fit_cutoff": 1820,
+      "feature_idx": 1820,
+      "date": "2026-04-01",
+      "future_model_on_prior_state": false,
+      "mean": 0.011400264140865929,
+      "lower": 0.004154639499983266
+    }
+  ],
+  "candidate_change": [
+    {
+      "k": 1819,
+      "date": "2026-03-31",
+      "weights": {
+        "IE0003BJ2JS4": 0.5,
+        "IE00B53H0131": 0.5
+      }
+    },
+    {
+      "k": 1820,
+      "date": "2026-04-01",
+      "weights": {
+        "IE0003BJ2JS4": 0.5,
+        "LU2233156749": 0.5
+      }
+    }
+  ],
+  "candidate_change_l1": 1.0,
+  "unsupported_vix_dates": [
+    "2023-12-04",
+    "2023-12-05",
+    "2023-12-06"
+  ],
+  "unsupported_vix_mechanism": "breadth63 is missing on all three dates; fresh candidate gross remains 1 with two holdings",
+  "no_refit": true,
+  "no_policy_replay": true
+}

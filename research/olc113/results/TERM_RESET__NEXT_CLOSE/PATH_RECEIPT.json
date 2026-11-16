@@ -1,0 +1,12 @@
+{
+  "path_id": "TERM_RESET__NEXT_CLOSE",
+  "artifacts": {
+    "DAILY.csv.gz": "f381e4f595b9eba798a7002a69924bc11a5c3f246a3e5551476858dd06de1320",
+    "ORDERS.csv.gz": "e3818fd86974cc4ce6d7173e7d5d6cd0ddff599f3acb69cb162793a6d6cd2884",
+    "INSTRUCTIONS.csv.gz": "50e5d2d72dc3cb1c0a8a3e02d5a86bb35b9b0c834f960729ff422d84f4747de6",
+    "DECISIONS.npz": "d4771971a5e984876fc45a43e1095330af57f4283dc76849a40ff344d07eb170",
+    "DECISIONS_META.json.gz": "b502448635bf60eb7e321dff3a239a3212d5cd8e11e39b6415cc45b8f4497e34",
+    "POLICY_TRACE.csv.gz": "91ba5df7f46fd55ea2c2c77f0d4cdd469e7ceece5ae0af05531726474dd0ab50"
+  },
+  "metrics_payload_sha256": "aad4505f71bad7ab1d7ad075cd07a0c6a71d94d8580aeae0515725bd17018248"
+}

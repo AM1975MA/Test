@@ -1,0 +1,60 @@
+test_baseline_parity_checks_exact_daily_and_entire_order_ledger (test_monthly_reset.MonthlyResetTests.test_baseline_parity_checks_exact_daily_and_entire_order_ledger) ... ok
+test_freeze_is_required_before_bundle_or_financial_simulation (test_monthly_reset.MonthlyResetTests.test_freeze_is_required_before_bundle_or_financial_simulation) ... ok
+test_initial_and_partial_warmup_match_parent (test_monthly_reset.MonthlyResetTests.test_initial_and_partial_warmup_match_parent) ... ok
+test_invested_reset_suppresses_same_close_exit (test_monthly_reset.MonthlyResetTests.test_invested_reset_suppresses_same_close_exit) ... ok
+test_missing_saved_fit_never_calls_fit_head (test_monthly_reset.MonthlyResetTests.test_missing_saved_fit_never_calls_fit_head) ... ok
+test_negative_entry_cannot_veto_scheduled_cash_reset (test_monthly_reset.MonthlyResetTests.test_negative_entry_cannot_veto_scheduled_cash_reset) ... ok
+test_nonscheduled_predictions_and_targets_match_parent (test_monthly_reset.MonthlyResetTests.test_nonscheduled_predictions_and_targets_match_parent) ... ok
+test_original_three_percent_band_is_preserved (test_monthly_reset.MonthlyResetTests.test_original_three_percent_band_is_preserved) ... ok
+test_pending_and_queued_monthly_instructions_are_untouched (test_monthly_reset.MonthlyResetTests.test_pending_and_queued_monthly_instructions_are_untouched) ... ok
+test_receipts_precede_completion_marker_and_resume_rejects_corruption (test_monthly_reset.MonthlyResetTests.test_receipts_precede_completion_marker_and_resume_rejects_corruption) ... ok
+test_reset_waits_for_next_accepted_bar_and_reports_actual_fills (test_monthly_reset.MonthlyResetTests.test_reset_waits_for_next_accepted_bar_and_reports_actual_fills) ... ok
+test_resume_rejects_changed_metrics_even_when_data_are_intact (test_monthly_reset.MonthlyResetTests.test_resume_rejects_changed_metrics_even_when_data_are_intact) ... ok
+test_saved_fit_loader_preserves_real_models_without_refitting (test_monthly_reset.MonthlyResetTests.test_saved_fit_loader_preserves_real_models_without_refitting) ... ok
+test_synthetic_twelve_path_run_and_resume_do_not_refit_or_reexecute (test_monthly_reset.MonthlyResetTests.test_synthetic_twelve_path_run_and_resume_do_not_refit_or_reexecute) ... Using saved OLC111 fits; no model is retrained
+1/12 MEAN_RESET__NEXT_CLOSE: CAGR -0.010374, DD -0.001598
+2/12 MEAN_RESET__DOUBLE_COST: CAGR -0.020626, DD -0.003190
+3/12 MEAN_RESET__NEXT_OPEN: CAGR -0.010374, DD -0.001598
+4/12 PRICE_RESET__NEXT_CLOSE: CAGR -0.010374, DD -0.001598
+5/12 PRICE_RESET__DOUBLE_COST: CAGR -0.020626, DD -0.003190
+6/12 PRICE_RESET__NEXT_OPEN: CAGR -0.010374, DD -0.001598
+7/12 VIX_RESET__NEXT_CLOSE: CAGR -0.010374, DD -0.001598
+8/12 VIX_RESET__DOUBLE_COST: CAGR -0.020626, DD -0.003190
+9/12 VIX_RESET__NEXT_OPEN: CAGR -0.010374, DD -0.001598
+10/12 TERM_RESET__NEXT_CLOSE: CAGR -0.010374, DD -0.001598
+11/12 TERM_RESET__DOUBLE_COST: CAGR -0.020626, DD -0.003190
+12/12 TERM_RESET__NEXT_OPEN: CAGR -0.010374, DD -0.001598
+Using saved OLC111 fits; no model is retrained
+1/12 MEAN_RESET__NEXT_CLOSE: CAGR -0.010374, DD -0.001598
+2/12 MEAN_RESET__DOUBLE_COST: CAGR -0.020626, DD -0.003190
+3/12 MEAN_RESET__NEXT_OPEN: CAGR -0.010374, DD -0.001598
+4/12 PRICE_RESET__NEXT_CLOSE: CAGR -0.010374, DD -0.001598
+5/12 PRICE_RESET__DOUBLE_COST: CAGR -0.020626, DD -0.003190
+6/12 PRICE_RESET__NEXT_OPEN: CAGR -0.010374, DD -0.001598
+7/12 VIX_RESET__NEXT_CLOSE: CAGR -0.010374, DD -0.001598
+8/12 VIX_RESET__DOUBLE_COST: CAGR -0.020626, DD -0.003190
+9/12 VIX_RESET__NEXT_OPEN: CAGR -0.010374, DD -0.001598
+10/12 TERM_RESET__NEXT_CLOSE: CAGR -0.010374, DD -0.001598
+11/12 TERM_RESET__DOUBLE_COST: CAGR -0.020626, DD -0.003190
+12/12 TERM_RESET__NEXT_OPEN: CAGR -0.010374, DD -0.001598
+Using saved OLC111 fits; no model is retrained
+1/12 MEAN_RESET__NEXT_CLOSE: CAGR -0.010374, DD -0.001598
+2/12 MEAN_RESET__DOUBLE_COST: CAGR -0.020626, DD -0.003190
+3/12 MEAN_RESET__NEXT_OPEN: CAGR -0.010374, DD -0.001598
+ok
+test_unavailable_reset_is_not_counted_as_realized_entry (test_monthly_reset.MonthlyResetTests.test_unavailable_reset_is_not_counted_as_realized_entry) ... ok
+test_cost_formula_is_checked_independently_of_recorded_cost (test_result_audit.ResultAuditTests.test_cost_formula_is_checked_independently_of_recorded_cost) ... ok
+test_drawdown_sign_cannot_reward_a_deeper_loss (test_result_audit.ResultAuditTests.test_drawdown_sign_cannot_reward_a_deeper_loss) ... ok
+test_false_invested_trace_cannot_hide_a_cash_reset (test_result_audit.ResultAuditTests.test_false_invested_trace_cannot_hide_a_cash_reset) ... ok
+test_false_readiness_flag_cannot_hide_a_required_cash_reset (test_result_audit.ResultAuditTests.test_false_readiness_flag_cannot_hide_a_required_cash_reset) ... ok
+test_material_gate_requires_both_windows_and_separate_30_target (test_result_audit.ResultAuditTests.test_material_gate_requires_both_windows_and_separate_30_target) ... ok
+test_missing_idle_monthly_reset_cannot_pass_as_hold (test_result_audit.ResultAuditTests.test_missing_idle_monthly_reset_cannot_pass_as_hold) ... ok
+test_monthly_cash_reset_is_verified_against_executed_buy (test_result_audit.ResultAuditTests.test_monthly_cash_reset_is_verified_against_executed_buy) ... ok
+test_quote_deferred_cash_spell_may_exceed_21_sessions (test_result_audit.ResultAuditTests.test_quote_deferred_cash_spell_may_exceed_21_sessions) ... ok
+test_same_close_reset_fill_is_rejected (test_result_audit.ResultAuditTests.test_same_close_reset_fill_is_rejected) ... ok
+test_valid_receipt_cannot_be_relocated_under_another_arm (test_result_audit.ResultAuditTests.test_valid_receipt_cannot_be_relocated_under_another_arm) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.819s
+
+OK

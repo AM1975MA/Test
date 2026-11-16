@@ -1,0 +1,68 @@
+test_cost_formula_is_checked_independently_of_recorded_cost (test_result_audit.ResultAuditTests.test_cost_formula_is_checked_independently_of_recorded_cost) ... FAIL
+test_drawdown_sign_cannot_reward_a_deeper_loss (test_result_audit.ResultAuditTests.test_drawdown_sign_cannot_reward_a_deeper_loss) ... FAIL
+test_material_gate_requires_both_windows_and_separate_30_target (test_result_audit.ResultAuditTests.test_material_gate_requires_both_windows_and_separate_30_target) ... FAIL
+test_missing_idle_monthly_reset_cannot_pass_as_hold (test_result_audit.ResultAuditTests.test_missing_idle_monthly_reset_cannot_pass_as_hold) ... FAIL
+test_monthly_cash_reset_is_verified_against_executed_buy (test_result_audit.ResultAuditTests.test_monthly_cash_reset_is_verified_against_executed_buy) ... FAIL
+test_quote_deferred_cash_spell_may_exceed_21_sessions (test_result_audit.ResultAuditTests.test_quote_deferred_cash_spell_may_exceed_21_sessions) ... FAIL
+test_same_close_reset_fill_is_rejected (test_result_audit.ResultAuditTests.test_same_close_reset_fill_is_rejected) ... FAIL
+
+======================================================================
+FAIL: test_cost_formula_is_checked_independently_of_recorded_cost (test_result_audit.ResultAuditTests.test_cost_formula_is_checked_independently_of_recorded_cost)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc113/tests/test_result_audit.py", line 22, in setUp
+    self.assertTrue(SOURCE.exists(),'Independent auditor implementation is not yet present')
+AssertionError: False is not true : Independent auditor implementation is not yet present
+
+======================================================================
+FAIL: test_drawdown_sign_cannot_reward_a_deeper_loss (test_result_audit.ResultAuditTests.test_drawdown_sign_cannot_reward_a_deeper_loss)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc113/tests/test_result_audit.py", line 22, in setUp
+    self.assertTrue(SOURCE.exists(),'Independent auditor implementation is not yet present')
+AssertionError: False is not true : Independent auditor implementation is not yet present
+
+======================================================================
+FAIL: test_material_gate_requires_both_windows_and_separate_30_target (test_result_audit.ResultAuditTests.test_material_gate_requires_both_windows_and_separate_30_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc113/tests/test_result_audit.py", line 22, in setUp
+    self.assertTrue(SOURCE.exists(),'Independent auditor implementation is not yet present')
+AssertionError: False is not true : Independent auditor implementation is not yet present
+
+======================================================================
+FAIL: test_missing_idle_monthly_reset_cannot_pass_as_hold (test_result_audit.ResultAuditTests.test_missing_idle_monthly_reset_cannot_pass_as_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc113/tests/test_result_audit.py", line 22, in setUp
+    self.assertTrue(SOURCE.exists(),'Independent auditor implementation is not yet present')
+AssertionError: False is not true : Independent auditor implementation is not yet present
+
+======================================================================
+FAIL: test_monthly_cash_reset_is_verified_against_executed_buy (test_result_audit.ResultAuditTests.test_monthly_cash_reset_is_verified_against_executed_buy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc113/tests/test_result_audit.py", line 22, in setUp
+    self.assertTrue(SOURCE.exists(),'Independent auditor implementation is not yet present')
+AssertionError: False is not true : Independent auditor implementation is not yet present
+
+======================================================================
+FAIL: test_quote_deferred_cash_spell_may_exceed_21_sessions (test_result_audit.ResultAuditTests.test_quote_deferred_cash_spell_may_exceed_21_sessions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc113/tests/test_result_audit.py", line 22, in setUp
+    self.assertTrue(SOURCE.exists(),'Independent auditor implementation is not yet present')
+AssertionError: False is not true : Independent auditor implementation is not yet present
+
+======================================================================
+FAIL: test_same_close_reset_fill_is_rejected (test_result_audit.ResultAuditTests.test_same_close_reset_fill_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/23237d81ce2c/olc113/tests/test_result_audit.py", line 22, in setUp
+    self.assertTrue(SOURCE.exists(),'Independent auditor implementation is not yet present')
+AssertionError: False is not true : Independent auditor implementation is not yet present
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+FAILED (failures=7)

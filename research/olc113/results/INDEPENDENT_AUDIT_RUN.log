@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "complete12_new_paths_and6_existing_controls": true,
+    "all12_rotation_predecessors_compared": true,
+    "unchanged_protocol_code_data_and81_saved_fit_files": true,
+    "all12_path_receipts_valid": true,
+    "identical_complete_daily_and_trace_calendars": true,
+    "whole_post_metric_parity": true,
+    "exact_warmup_all12_paths": true,
+    "mean_exact_base_daily_and_orders_all_scenarios": true,
+    "account_reconstruction_all18_paths": true,
+    "held_quote_support_all18_paths": true,
+    "trace_account_state_reconciliation_all18_paths": true,
+    "fees_execution_prices_and_prefee_nav_all18_paths": true,
+    "monthly_cash_reset_contract_all12_paths": true,
+    "saved_forecast_hashes_all12_paths": true
+  },
+  "primary_material_criterion": {
+    "whole": {
+      "cagr_gain": 0.015913726844265202,
+      "sampled_maxdd_change": 1.6609069109385644e-05,
+      "cagr_gain_at_least_3pp": false,
+      "drawdown_nonworse": true,
+      "material": false
+    },
+    "post": {
+      "cagr_gain": 0.02408749661547474,
+      "sampled_maxdd_change": 1.6609069109385644e-05,
+      "cagr_gain_at_least_3pp": false,
+      "drawdown_nonworse": true,
+      "material": false
+    },
+    "material_both_windows": false,
+    "target30_whole": false,
+    "target30_post": false
+  },
+  "material_arms_primary_execution": [],
+  "target30_arms_primary_execution": [],
+  "audit_new_model_fits": 0,
+  "audit_new_financial_policies": 0
+}

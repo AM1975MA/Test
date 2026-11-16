@@ -1,0 +1,12 @@
+{
+  "path_id": "VIX_RESET__DOUBLE_COST",
+  "artifacts": {
+    "DAILY.csv.gz": "4cbc8d974e33cce74cceade7c89ca30ae6396073187529a35d2d5d92de2a9af4",
+    "ORDERS.csv.gz": "2dc433230fc31ca518e8de9fb09dfeb9c19a0fc5ea30b720bd3725863f3a369b",
+    "INSTRUCTIONS.csv.gz": "dc97b72c71e61e914fb38560a23cd6d432ebb3e8f52f247a3e0086d6688db11f",
+    "DECISIONS.npz": "4c84bfe8ba88d495981b5ce04434308d6ac124ecb40efc4b864ac1e616844a98",
+    "DECISIONS_META.json.gz": "d5390de7360180b5817dfbac3b17909f28d6337575647f0f3f54a2d7701c04a7",
+    "POLICY_TRACE.csv.gz": "412115e89fbe41396f11a262bb62ae24cb4e689d9af6b537ddb948831c4a2f11"
+  },
+  "metrics_payload_sha256": "a71f27ee24daa259825ebf587bb840a8d5ac6a66ca7205fc3e9cb92155b5bae6"
+}

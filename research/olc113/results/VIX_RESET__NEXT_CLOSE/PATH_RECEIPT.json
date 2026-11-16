@@ -1,0 +1,12 @@
+{
+  "path_id": "VIX_RESET__NEXT_CLOSE",
+  "artifacts": {
+    "DAILY.csv.gz": "2a0e3fde24bdbb6e91ac21570bd75e17f989cc7c847d5341433ae034d35b0d40",
+    "ORDERS.csv.gz": "cc737a8256d94564f957b7aed77ed103c690a10c3363fc4be27727bd4a03a47d",
+    "INSTRUCTIONS.csv.gz": "c6fbc87b5e8673c113c5f9047cb802f0c09925ac94fd3da6596ac275668617b5",
+    "DECISIONS.npz": "a04bb5355e16d4761f291fc57b401d5cd6ec6fe298acac821854d364aeaaef3d",
+    "DECISIONS_META.json.gz": "bf99bd5388d6cea3634946df9d2970e0ea685c0d6303179e137f920474612962",
+    "POLICY_TRACE.csv.gz": "2b7bdf2426b9185114200822f0db7e3a616ca3dce3d54c9775bd8fe093b4eca1"
+  },
+  "metrics_payload_sha256": "328613a720d768d9680a5641f38f505fb78ef12604ca1cf7656cf9a9da96e9c6"
+}

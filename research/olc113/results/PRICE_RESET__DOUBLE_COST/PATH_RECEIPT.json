@@ -1,0 +1,12 @@
+{
+  "path_id": "PRICE_RESET__DOUBLE_COST",
+  "artifacts": {
+    "DAILY.csv.gz": "979ef2991eb4cc919fda4779744ac0078de0109bb32139c135181987733f5129",
+    "ORDERS.csv.gz": "61eaa1b34776549b22883d48c8d9fedb5630c3bcf2651978e47676c8d1dc5cb1",
+    "INSTRUCTIONS.csv.gz": "3eb2c38e1abcac2731c237e2e39e0e7604f8af826e9a8303384d4a2dbdbd3afa",
+    "DECISIONS.npz": "79bb7bb282975f78c2f2a319152ed05b7dbb60ca3f806b28a13cc0006b49dec8",
+    "DECISIONS_META.json.gz": "435dce0c057c3eec370fe5e0f64bb7f2db975832711bd6c8f6a52505b22da9ef",
+    "POLICY_TRACE.csv.gz": "dfea1121e6aa5735d07d7823f679da699a796067ae005c47b553627ad790ca0d"
+  },
+  "metrics_payload_sha256": "05b855ce91dd3e2c01958a80d0a57856f7503e873df8dacb7686495a994755fd"
+}

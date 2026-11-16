@@ -1,0 +1,10 @@
+{
+  "scenario": "DOUBLE_COST",
+  "discretionary_orders": 0,
+  "exact_baseline_parity": true,
+  "exact_daily_parity": true,
+  "exact_order_ledger_parity": true,
+  "comparison": "all_daily_columns_and_entire_order_ledger_exact",
+  "control_daily_sha256": "5f45855452a4021d6afd8751827a446256ea8684f88cb802414ba55d2796f629",
+  "control_orders_sha256": "6283eebcdc471441422d70c26537ac30d61ca6ef991fdb4ca18b0a7348ffdeec"
+}

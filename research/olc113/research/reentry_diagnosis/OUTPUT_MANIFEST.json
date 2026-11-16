@@ -1,0 +1,61 @@
+{
+  "input_files_checked": 115,
+  "input_hash_mismatches": [],
+  "source_fit_files_loaded": 52,
+  "new_fits": 0,
+  "new_policy_replays": 0,
+  "outputs": {
+    "ALL_PATH_CASH_GATE_SUMMARY.csv": {
+      "bytes": 1596,
+      "sha256": "e10806b85a3dcd5ff5515513d7b3bce0102ac33f5472debd3c31f896e5cfbfa4"
+    },
+    "CASH_DECISION_DETAILS.csv": {
+      "bytes": 1221443,
+      "sha256": "79161e5c44e7450c27820bd17b3054d3f91823cd74fb93cf8cb2703b4c184789"
+    },
+    "DIAGNOSTICS.json": {
+      "bytes": 106373,
+      "sha256": "c1eaf78f11ac19ccd0ccbf439cebc605c754529813e22c6189aaf34aa00db677"
+    },
+    "MATCHED_BANK_LABELS.csv": {
+      "bytes": 176258,
+      "sha256": "775f1d475f261eb47631cde360034937dde590bdeab958d8a8fbd8e8d1d7159d"
+    },
+    "MATCHED_FRESH_HELD_PREDICTIONS.csv": {
+      "bytes": 650927,
+      "sha256": "af806b54cd99a42060907b1a980b617caa682ab7e9ddb02d7e58d7a1e71d8022"
+    },
+    "PRICE_ROTATION__NEXT_CLOSE_FULL_FEATURE_SUPPORT.csv": {
+      "bytes": 15019,
+      "sha256": "05ebce10a5220d31b8756856f937a731d1dc13cb2bd2cadfb9e3450ebaad82dd"
+    },
+    "REENTRY_DIAGNOSIS.md": {
+      "bytes": 14294,
+      "sha256": "829e7cf10e0afd376f45afd5fd7215b3bde5597b07bf37beb6147489674db89c"
+    },
+    "RUN_OUTPUT.json": {
+      "bytes": 17812,
+      "sha256": "ba817dd252454cb2bb9a7960245df5d8e1f8ae01292e9fedf0be1bbc4538b633"
+    },
+    "SUPPLEMENTARY_DIAGNOSTICS.json": {
+      "bytes": 4788,
+      "sha256": "88a1cc0371fe0a881f18184118e3e6aa304b27b085c9e21338c167eb5282b941"
+    },
+    "SUPPLEMENTARY_RUN_OUTPUT.json": {
+      "bytes": 4788,
+      "sha256": "88a1cc0371fe0a881f18184118e3e6aa304b27b085c9e21338c167eb5282b941"
+    },
+    "TERM_ROTATION__NEXT_CLOSE_FULL_FEATURE_SUPPORT.csv": {
+      "bytes": 16183,
+      "sha256": "4d7e032bec68f46e019b095897b671e6ae226f1f39e46a1923f8129572b96169"
+    },
+    "check_saved_feature_support.py": {
+      "bytes": 4486,
+      "sha256": "f4ff1d736202b7bce033728d73f076150da38dbfe099c1b641f38427c85f6825"
+    },
+    "diagnose_saved_reentry.py": {
+      "bytes": 21363,
+      "sha256": "095239476cc9b5c8d08ce5a1a1042fc31f22b9a3f565921e52b7550591de88a2"
+    }
+  }
+}

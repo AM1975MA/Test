@@ -1,0 +1,105 @@
+{
+  "study": "OLC113",
+  "audit_source_files_verified": 315,
+  "source_hash_mismatches": [],
+  "prior_reentry_outputs_unchanged": true,
+  "audit_checks_passed": 14,
+  "tests_passed": 25,
+  "audit_new_model_fits": 0,
+  "audit_new_financial_policies": 0,
+  "audit_new_financial_paths": 0,
+  "outputs": {
+    "research/design/INDEPENDENT_RESULT_AUDIT_REVIEW.md": {
+      "bytes": 4253,
+      "sha256": "3d5560211b46cea5bf4878b54d4d7d8af92e5628b622919c91c06a0f8fe36f82"
+    },
+    "research/design/RESULT_ANALYSIS_NOTES.md": {
+      "bytes": 7825,
+      "sha256": "d74fae1c96ffe4a98fdf9e8601f41fc6227da0cd5fcd936a605262b7b9266810"
+    },
+    "research/design/RESULT_AUDIT_REVIEW_RED.log": {
+      "bytes": 3643,
+      "sha256": "d78e053bf8c18854e87d2807bd64a63c860b3f818a30dd38a295f08ab9d3dc94"
+    },
+    "research/design/RESULT_AUDIT_TESTS_RED.log": {
+      "bytes": 5415,
+      "sha256": "5f2c6ee22f97eec3a2a92a6943adddd160c8e8b955dc917189f22f50db64e19a"
+    },
+    "results/INDEPENDENT_ANNUAL_COMPARISONS.csv": {
+      "bytes": 26661,
+      "sha256": "8ded1c5931fd88ddc958624f75fc0cfa9332b09960d6e0f9e3652a2b280c2368"
+    },
+    "results/INDEPENDENT_ANNUAL_RETURNS.csv": {
+      "bytes": 18330,
+      "sha256": "c6a3e54f871c9ef9924f646f4a5df75ced34672f128577e7d4be0d2ced62d438"
+    },
+    "results/INDEPENDENT_AUDIT_RUN.log": {
+      "bytes": 1442,
+      "sha256": "2deb6ffe3e762ab03ca634524fe18edc2072cf90f504be1ec1a654b8f1ea1f1e"
+    },
+    "results/INDEPENDENT_CASH_SPELLS.csv": {
+      "bytes": 20399,
+      "sha256": "00bc942d26664df979aa5358cae0230f0327474860e42a2510825aa14d228ab0"
+    },
+    "results/INDEPENDENT_COMPARISONS.csv": {
+      "bytes": 9793,
+      "sha256": "acbfb4163159ea98130eaf1757559cd2134b49f31e705c495703d20abc69f17e"
+    },
+    "results/INDEPENDENT_CRITERIA.csv": {
+      "bytes": 2411,
+      "sha256": "dfc699c75ba185e3c0bc5764e62e6f59b5e189aeca03ff333747a9a6ea943f91"
+    },
+    "results/INDEPENDENT_DIAGNOSTICS.json": {
+      "bytes": 367850,
+      "sha256": "a307f273174c4dfa14c90f54d6f9c004228df14fbcb7115bf1296e1ce1a6ca89"
+    },
+    "results/INDEPENDENT_EXECUTION_ATTEMPTS.csv": {
+      "bytes": 94213,
+      "sha256": "d1cb70f7c6e9e651e2b5b5162344e223d56d7beda5e3e73e9a3aa00f5493e30c"
+    },
+    "results/INDEPENDENT_HELD_MARK_VIOLATIONS.csv.gz": {
+      "bytes": 172,
+      "sha256": "c80227dbaadee3ba8e64d7742cccc2ebda95f33fc7da4bbdd2139749511ab2e0"
+    },
+    "results/INDEPENDENT_INTERVENTIONS.csv": {
+      "bytes": 12830,
+      "sha256": "101782df5514c820c5c70400fbe2c3cbc95efd94c671a9c3f9e9059355c1c453"
+    },
+    "results/INDEPENDENT_MONTHLY_CASH_RESETS.csv": {
+      "bytes": 8685,
+      "sha256": "06f1b9fe326c1f7db9ae80731a8fbf63d502c22a0732ad19d9f2ae3f6c44f5ea"
+    },
+    "results/INDEPENDENT_PRIMARY_FULL.png": {
+      "bytes": 514159,
+      "sha256": "5fd78f07b4240e5fe9418424f93489172abb7126aca38762e95c319f804af129"
+    },
+    "results/INDEPENDENT_PRIMARY_POSTWARMUP.png": {
+      "bytes": 521566,
+      "sha256": "c38e5ff8e0fc8bc69ae696136a713c5e7a75be030f1cd51588d8d740249cebd6"
+    },
+    "results/INDEPENDENT_SCORES.csv": {
+      "bytes": 7281,
+      "sha256": "bc02eaefae3cc1376bf4e33330864b94e7b0ff7b04fa428315ee8c367a36f33d"
+    },
+    "results/INDEPENDENT_SOURCE_MANIFEST.json": {
+      "bytes": 38760,
+      "sha256": "80021e11cd97cb6de3fa1b36167ae126be5a22423ec98afc5f7a0a775d3272d9"
+    },
+    "results/INDEPENDENT_TESTS.log": {
+      "bytes": 5738,
+      "sha256": "4355ec7f28cbbe3907ab23de185039af2d031d4375ebb6963fe66a3b85db5ac2"
+    },
+    "src/analyze_results.py": {
+      "bytes": 54449,
+      "sha256": "ee3f1554b0b9f072e54b591fab0dc686124633eea2b49a2d0dea62f927f1299b"
+    },
+    "src/audit_plot.py": {
+      "bytes": 7698,
+      "sha256": "53f8d8c384b48bdfb3d241802f5754dfaf5a8b64fa826ad1949ab8db0dcab5c1"
+    },
+    "tests/test_result_audit.py": {
+      "bytes": 9103,
+      "sha256": "fc39e9a474df3b0a1a4c82fb260dded875558e318c6aa35f67c6d38fd3f13e2f"
+    }
+  }
+}
