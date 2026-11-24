@@ -1,0 +1,297 @@
+{
+  "status": "PASS",
+  "original_pairs_matched": 57,
+  "tested_accounts": 36,
+  "original_ledger_metric_matches": 3,
+  "past_only_checks": 3,
+  "independent_order_replay": [
+    {
+      "mode": "U27",
+      "bps": 15,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 7.77503061932805e-15
+    },
+    {
+      "mode": "U27",
+      "bps": 30,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_30_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 2.886579864025407e-15
+    },
+    {
+      "mode": "U27",
+      "bps": 15,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 7.549516567451064e-15
+    },
+    {
+      "mode": "U27",
+      "bps": 30,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_30_L1",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 8.881784197001252e-15
+    },
+    {
+      "mode": "RIDGE05",
+      "bps": 15,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 9.769962616701378e-15
+    },
+    {
+      "mode": "RIDGE05",
+      "bps": 30,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_30_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 7.105427357601002e-15
+    },
+    {
+      "mode": "RIDGE05",
+      "bps": 15,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_15_L1",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 9.325873406851315e-15
+    },
+    {
+      "mode": "RIDGE05",
+      "bps": 30,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_30_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.1181654480683108e-15
+    },
+    {
+      "mode": "RIDGE10",
+      "bps": 15,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_15_L0",
+      "units_error": 6.938893903907228e-17,
+      "cash_error": 2.220446049250313e-15
+    },
+    {
+      "mode": "RIDGE10",
+      "bps": 30,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_30_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 1.887379141862766e-15
+    },
+    {
+      "mode": "RIDGE10",
+      "bps": 15,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_15_L1",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 2.6645352591003757e-15
+    },
+    {
+      "mode": "RIDGE10",
+      "bps": 30,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_30_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 4.218847493575595e-15
+    },
+    {
+      "mode": "RIDGE20",
+      "bps": 15,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_15_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.552713678800501e-15
+    },
+    {
+      "mode": "RIDGE20",
+      "bps": 30,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_30_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.3306690738754696e-15
+    },
+    {
+      "mode": "RIDGE20",
+      "bps": 15,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_15_L1",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 7.105427357601002e-15
+    },
+    {
+      "mode": "RIDGE20",
+      "bps": 30,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_30_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.552713678800501e-15
+    },
+    {
+      "mode": "MOM10",
+      "bps": 15,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 2.3037127760972e-15
+    },
+    {
+      "mode": "MOM10",
+      "bps": 30,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_30_L0",
+      "units_error": 2.0816681711721685e-17,
+      "cash_error": 2.4424906541753444e-15
+    },
+    {
+      "mode": "MOM10",
+      "bps": 15,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_15_L1",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.329070518200751e-15
+    },
+    {
+      "mode": "MOM10",
+      "bps": 30,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_30_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 2.886579864025407e-15
+    },
+    {
+      "mode": "RIDGE10_ORIGINAL",
+      "bps": 15,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 2.6645352591003757e-15
+    },
+    {
+      "mode": "RIDGE10_ORIGINAL",
+      "bps": 30,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_30_L0",
+      "units_error": 2.168404344971009e-17,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "mode": "RIDGE10_ORIGINAL",
+      "bps": 15,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_15_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 1.7763568394002505e-15
+    },
+    {
+      "mode": "RIDGE10_ORIGINAL",
+      "bps": 30,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_30_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 2.7755575615628914e-15
+    },
+    {
+      "mode": "RAW10",
+      "bps": 15,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 6.217248937900877e-15
+    },
+    {
+      "mode": "RAW10",
+      "bps": 30,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 5.329070518200751e-15
+    },
+    {
+      "mode": "RAW10",
+      "bps": 15,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 1.0658141036401503e-14
+    },
+    {
+      "mode": "RAW10",
+      "bps": 30,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_30_L1",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 6.217248937900877e-15
+    },
+    {
+      "mode": "RIDGE01",
+      "bps": 15,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 6.217248937900877e-15
+    },
+    {
+      "mode": "RIDGE01",
+      "bps": 30,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_30_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 4.007211229506424e-15
+    },
+    {
+      "mode": "RIDGE01",
+      "bps": 15,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_15_L1",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "mode": "RIDGE01",
+      "bps": 30,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_30_L1",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "mode": "RIDGE02",
+      "bps": 15,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 6.217248937900877e-15
+    },
+    {
+      "mode": "RIDGE02",
+      "bps": 30,
+      "lag": 0,
+      "account": "USA_PROFIT_RAMP_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 6.217248937900877e-15
+    },
+    {
+      "mode": "RIDGE02",
+      "bps": 15,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_15_L1",
+      "units_error": 1.6653345369377348e-16,
+      "cash_error": 2.6645352591003757e-15
+    },
+    {
+      "mode": "RIDGE02",
+      "bps": 30,
+      "lag": 1,
+      "account": "USA_PROFIT_RAMP_30_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 7.188694084447889e-15
+    }
+  ]
+}
