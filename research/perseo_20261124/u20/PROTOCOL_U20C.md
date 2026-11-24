@@ -1,0 +1,8 @@
+# U20C — prosecuzione dopo diagnosi della copertura
+Estensione registrata dopo U20B. Il trasferimento protetto migliora TR dal17,96% al23,58%CAGR, mentre peggiora EU. Copertura exante dei criteri di replica circa51%EU e75%TR: gas, petrolio e metalli spesso non hanno un proxy accettabile. Non vengono cambiate le soglie di replica.
+
+Un solo completamento economico: per ogni slot privo di proxy qualificato, utilizzare il corrispondente titolo del LOCAL U19 già noto a quella data; se coincide con l'altro slot, usare l'altra scelta LOCAL se diversa. Il calendario resta quello dei segnali mensili USA, e si legge soltanto la coppia LOCAL già attuabile in quella seduta. USA mantiene il selettore canonico nativo. Conservare anche il controllo CASH di U20B. Ricalcolare V6 sui nuovi titoli.
+
+Una sola nuova gestione rischio contestuale: isolare lo stop se la correlazione fra i due titoli primari, stimata sulle ultime63chiusure precedenti con almeno45coppie osservate, è inferiore a0,80; altrimenti mantenere prudenza globale BASE. Mancanza dati o stesso ticker=BASE. Soglie0,70 e0,90 esclusivamente come sensibilità, senza scegliere il vincitore. Tutti gli altri parametri BASE restano invariati.
+
+Applicare il controllo di correlazione anche a LOCAL e nativeEU/USA per distinguere il contributo del rischio da quello della nuova selezione. Confrontare tutto2020–giugno2026, stress30bp, ritardo1seduta della traduzione, attribuzione mensile, quote di replica/fallback, bootstrap appaiato12mesi. Nessun risultato positivo di questa estensione è una prova prospettica o un successo walk-forward del processo di ricerca. Il selettore annuale U20 ha rifiutato tutte le modifiche uniformi: tale risultato non viene cancellato.
