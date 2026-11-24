@@ -1,0 +1,9 @@
+# Estensione diagnostica — addestramento nativo
+
+Definita dopo aver letto il risultato dei due modelli condivisi e prima di valutare nuovi fit. Domanda: il risultato debole dei modelli comuni si deve alla mescolanza dei panieri?
+
+Si riutilizzano esattamente gli stessi cluster dinamici e storici, le feature, la loss e gli iperparametri. Ogni modello nativo usa solo esempi del proprio paniere e le etichette maturate entro il cutoff comune. Almeno 24 mesi maturati per ogni fit. Si confronta con i due momentum e il modello comune sulle stesse date. EU165 a gruppi economici è già nativo e non viene ripetuto. Si valuta quanto il risultato più forte del primo test, il momentum a 21 sedute nei cluster per correlazione, risulti distribuito fra sottoperiodi e se sopravviva al confronto con il rendimento medio dei cluster. Questa osservazione è successiva al primo test e rimane esplorativa. Nessun fit a livello di ticker.
+
+## Sensibilità ai buchi collettivi nelle quotazioni TR
+
+Il primo run lascia fuori gennaio–giugno 2024 su TR. Il 4, 5 e 6 dicembre 2023 risultano osservati rispettivamente 21, 13 e 23 ETF su un universo che normalmente ne osservava più di 1.200. La finestra a 126 sedute aveva quindi quasi zero storici completi. In un replay aggiuntivo si escludono dal solo calendario delle feature TR le sedute con numero di ticker osservati inferiore al 20% della mediana osservata delle 63 sedute precedenti, con almeno 30 osservazioni per stimare la mediana. Si allunga all'indietro la finestra per ottenere sempre 126 variazioni. Nessun prezzo viene aggiunto. Restano le aperture originali, le maschere d'esecuzione, i prezzi di valorizzazione, le appartenenze archiviate per la famiglia storica, i confronti e i modelli. Questa sensibilità conserva separati i file originali e tiene conto delle variazioni dei modelli aggregati al cambiare della copertura TR.

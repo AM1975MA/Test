@@ -1,0 +1,151 @@
+{
+  "status": "PASS",
+  "snapshots": 399,
+  "feature_prefix_checks": [
+    {
+      "market": "EU",
+      "family": "CORRELATION",
+      "cutoff": "2021-05-03",
+      "clusters": 28
+    },
+    {
+      "market": "EU",
+      "family": "CORRELATION",
+      "cutoff": "2023-02-01",
+      "clusters": 25
+    },
+    {
+      "market": "EU",
+      "family": "CORRELATION",
+      "cutoff": "2024-10-01",
+      "clusters": 26
+    },
+    {
+      "market": "EU",
+      "family": "LEGACY",
+      "cutoff": "2021-05-03",
+      "clusters": 8
+    },
+    {
+      "market": "EU",
+      "family": "LEGACY",
+      "cutoff": "2023-02-01",
+      "clusters": 8
+    },
+    {
+      "market": "EU",
+      "family": "LEGACY",
+      "cutoff": "2024-10-01",
+      "clusters": 8
+    },
+    {
+      "market": "EU",
+      "family": "ECONOMIC_EU",
+      "cutoff": "2021-05-03",
+      "clusters": 16
+    },
+    {
+      "market": "EU",
+      "family": "ECONOMIC_EU",
+      "cutoff": "2023-02-01",
+      "clusters": 16
+    },
+    {
+      "market": "EU",
+      "family": "ECONOMIC_EU",
+      "cutoff": "2024-10-01",
+      "clusters": 16
+    },
+    {
+      "market": "USA",
+      "family": "CORRELATION",
+      "cutoff": "2021-05-03",
+      "clusters": 26
+    },
+    {
+      "market": "USA",
+      "family": "CORRELATION",
+      "cutoff": "2023-02-01",
+      "clusters": 26
+    },
+    {
+      "market": "USA",
+      "family": "CORRELATION",
+      "cutoff": "2024-10-01",
+      "clusters": 25
+    },
+    {
+      "market": "USA",
+      "family": "LEGACY",
+      "cutoff": "2021-05-03",
+      "clusters": 8
+    },
+    {
+      "market": "USA",
+      "family": "LEGACY",
+      "cutoff": "2023-02-01",
+      "clusters": 8
+    },
+    {
+      "market": "USA",
+      "family": "LEGACY",
+      "cutoff": "2024-10-01",
+      "clusters": 8
+    },
+    {
+      "market": "TR",
+      "family": "CORRELATION",
+      "cutoff": "2021-05-03",
+      "clusters": 79
+    },
+    {
+      "market": "TR",
+      "family": "CORRELATION",
+      "cutoff": "2023-02-01",
+      "clusters": 67
+    },
+    {
+      "market": "TR",
+      "family": "CORRELATION",
+      "cutoff": "2024-10-01",
+      "clusters": 84
+    },
+    {
+      "market": "TR",
+      "family": "LEGACY",
+      "cutoff": "2021-05-03",
+      "clusters": 8
+    },
+    {
+      "market": "TR",
+      "family": "LEGACY",
+      "cutoff": "2023-02-01",
+      "clusters": 8
+    },
+    {
+      "market": "TR",
+      "family": "LEGACY",
+      "cutoff": "2024-10-01",
+      "clusters": 8
+    }
+  ],
+  "label_perturbation_checks": 9,
+  "portfolio_accounts": 56,
+  "observation_sources": {
+    "EU": "ARCHIVED_MASKS",
+    "USA": "FINITE_POSITIVE_FROZEN_PRICE",
+    "TR": "ARCHIVED_MASKS"
+  },
+  "dropped_tr_feature_sessions": [
+    "2023-12-04",
+    "2023-12-05",
+    "2023-12-06",
+    "2025-10-24"
+  ],
+  "input_sha256": {
+    "PERSEO_UNIFICATO_RICONCILIAZIONE_20261121.zip": "463720a0a81524b6d5707a8d03fcb8f6ee8941d80d4ab35946227a5741cb5784",
+    "PERSEO_U19_DATI_COMPLETI.zip": "1ec8de3950fe827050f4c22cb3909e6eb75e086beddd831761f2910e449cea91",
+    "OLC07_Calendario_Risultati_20261101.zip": "0e7494b173d769394900876ac1d3e6c45388294d1635dd63f8ccb4128322e2c8",
+    "EU165_ECONOMIC_TAXONOMY.csv": "d3065ad9ccc007b3e7a8ff3e62e4e762abf483a8925fc0b2231ab7afb5f2da1b"
+  }
+}
