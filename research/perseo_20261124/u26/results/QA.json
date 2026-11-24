@@ -1,0 +1,231 @@
+{
+  "status": "PASS",
+  "order_replays": [
+    {
+      "account": "EU_RETAIN_WAIT5_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 2.4667767828390197e-15
+    },
+    {
+      "account": "EU_RETAIN_WAIT5_30_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 2.886579864025407e-15
+    },
+    {
+      "account": "EU_RETAIN_WAIT5_15_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 1.7763568394002505e-15
+    },
+    {
+      "account": "EU_RETAIN_RECHECK5_15_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 1.9567680809018384e-15
+    },
+    {
+      "account": "EU_RETAIN_RECHECK5_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.3322676295501878e-15
+    },
+    {
+      "account": "EU_RETAIN_RECHECK5_15_L1",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 1.5543122344752192e-15
+    },
+    {
+      "account": "EU_RETAIN_HALF_15_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 2.55351295663786e-15
+    },
+    {
+      "account": "EU_RETAIN_HALF_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.9984014443252818e-15
+    },
+    {
+      "account": "EU_RETAIN_HALF_15_L1",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.5543122344752192e-15
+    },
+    {
+      "account": "EU_LOSS_BREAK_CASH_15_L0",
+      "units_error": 5.724587470723463e-17,
+      "cash_error": 2.4424906541753444e-15
+    },
+    {
+      "account": "EU_LOSS_BREAK_CASH_30_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 4.3298697960381105e-15
+    },
+    {
+      "account": "EU_LOSS_BREAK_CASH_15_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 1.887379141862766e-15
+    },
+    {
+      "account": "EU_LOSS_BREAK_HALF_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.7763568394002505e-15
+    },
+    {
+      "account": "EU_LOSS_BREAK_HALF_30_L0",
+      "units_error": 6.245004513516506e-17,
+      "cash_error": 1.366962099069724e-15
+    },
+    {
+      "account": "EU_LOSS_BREAK_HALF_15_L1",
+      "units_error": 3.122502256758253e-17,
+      "cash_error": 1.9984014443252818e-15
+    },
+    {
+      "account": "USA_RETAIN_WAIT5_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_RETAIN_WAIT5_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_RETAIN_WAIT5_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_RETAIN_RECHECK5_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_RETAIN_RECHECK5_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_RETAIN_RECHECK5_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_RETAIN_HALF_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_RETAIN_HALF_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_RETAIN_HALF_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_LOSS_BREAK_CASH_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_LOSS_BREAK_CASH_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_LOSS_BREAK_CASH_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_LOSS_BREAK_HALF_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_LOSS_BREAK_HALF_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_LOSS_BREAK_HALF_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "TR_RETAIN_WAIT5_15_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 3.3306690738754696e-15
+    },
+    {
+      "account": "TR_RETAIN_WAIT5_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "account": "TR_RETAIN_WAIT5_15_L1",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "TR_RETAIN_RECHECK5_15_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 2.6645352591003757e-15
+    },
+    {
+      "account": "TR_RETAIN_RECHECK5_30_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 1.7763568394002505e-15
+    },
+    {
+      "account": "TR_RETAIN_RECHECK5_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 4.218847493575595e-15
+    },
+    {
+      "account": "TR_RETAIN_HALF_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 1.949829186997931e-15
+    },
+    {
+      "account": "TR_RETAIN_HALF_30_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 2.55351295663786e-15
+    },
+    {
+      "account": "TR_RETAIN_HALF_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "account": "TR_LOSS_BREAK_CASH_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 3.1086244689504383e-15
+    },
+    {
+      "account": "TR_LOSS_BREAK_CASH_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.886579864025407e-15
+    },
+    {
+      "account": "TR_LOSS_BREAK_CASH_15_L1",
+      "units_error": 3.3306690738754696e-16,
+      "cash_error": 3.552713678800501e-15
+    },
+    {
+      "account": "TR_LOSS_BREAK_HALF_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.7763568394002505e-15
+    },
+    {
+      "account": "TR_LOSS_BREAK_HALF_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 1.2212453270876722e-15
+    },
+    {
+      "account": "TR_LOSS_BREAK_HALF_15_L1",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 1.7763568394002505e-15
+    }
+  ],
+  "causal_cutoffs_per_market": 3
+}

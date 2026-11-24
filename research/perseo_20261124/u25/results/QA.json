@@ -1,0 +1,413 @@
+{
+  "status": "PASS",
+  "original_ledgers_bitwise": 18,
+  "order_replays": [
+    {
+      "account": "EU_U20_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 1.3322676295501878e-15
+    },
+    {
+      "account": "EU_U20_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 3.552713678800501e-15
+    },
+    {
+      "account": "EU_U20_15_L1",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.6653345369377348e-15
+    },
+    {
+      "account": "EU_U24_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 3.1086244689504383e-15
+    },
+    {
+      "account": "EU_U24_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.3322676295501878e-15
+    },
+    {
+      "account": "EU_U24_15_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.9968028886505635e-15
+    },
+    {
+      "account": "EU_LOCAL_CONTROL_15_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "EU_LOCAL_CONTROL_30_L0",
+      "units_error": 4.85722573273506e-17,
+      "cash_error": 1.6653345369377348e-15
+    },
+    {
+      "account": "EU_LOCAL_CONTROL_15_L1",
+      "units_error": 6.245004513516506e-17,
+      "cash_error": 1.3322676295501878e-15
+    },
+    {
+      "account": "EU_FALLBACK_RELATIVE_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "account": "EU_FALLBACK_RELATIVE_30_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.3306690738754696e-15
+    },
+    {
+      "account": "EU_FALLBACK_RELATIVE_15_L1",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.9984014443252818e-15
+    },
+    {
+      "account": "EU_FALLBACK_RETAIN_15_L0",
+      "units_error": 4.85722573273506e-17,
+      "cash_error": 2.220446049250313e-15
+    },
+    {
+      "account": "EU_FALLBACK_RETAIN_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 2.6645352591003757e-15
+    },
+    {
+      "account": "EU_FALLBACK_RETAIN_15_L1",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 1.9984014443252818e-15
+    },
+    {
+      "account": "EU_FALLBACK_DEFEND_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 7.105427357601002e-15
+    },
+    {
+      "account": "EU_FALLBACK_DEFEND_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 2.1094237467877974e-15
+    },
+    {
+      "account": "EU_FALLBACK_DEFEND_15_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 1.9984014443252818e-15
+    },
+    {
+      "account": "EU_PAIR_SWITCH_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 3.1086244689504383e-15
+    },
+    {
+      "account": "EU_PAIR_SWITCH_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.3322676295501878e-15
+    },
+    {
+      "account": "EU_PAIR_SWITCH_15_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.9968028886505635e-15
+    },
+    {
+      "account": "EU_UNIVERSAL_SWITCH_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 3.1086244689504383e-15
+    },
+    {
+      "account": "EU_UNIVERSAL_SWITCH_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.3322676295501878e-15
+    },
+    {
+      "account": "EU_UNIVERSAL_SWITCH_15_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.9968028886505635e-15
+    },
+    {
+      "account": "USA_U20_15_L0",
+      "units_error": 5.898059818321144e-17,
+      "cash_error": 7.549516567451064e-15
+    },
+    {
+      "account": "USA_U20_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 6.661338147750939e-15
+    },
+    {
+      "account": "USA_U20_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_U24_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_U24_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_U24_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_LOCAL_CONTROL_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_LOCAL_CONTROL_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_LOCAL_CONTROL_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_FALLBACK_RELATIVE_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_FALLBACK_RELATIVE_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_FALLBACK_RELATIVE_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_FALLBACK_RETAIN_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_FALLBACK_RETAIN_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_FALLBACK_RETAIN_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_FALLBACK_DEFEND_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_FALLBACK_DEFEND_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_FALLBACK_DEFEND_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_PAIR_SWITCH_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_PAIR_SWITCH_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_PAIR_SWITCH_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "USA_UNIVERSAL_SWITCH_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.2434497875801753e-14
+    },
+    {
+      "account": "USA_UNIVERSAL_SWITCH_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.551115123125783e-15
+    },
+    {
+      "account": "USA_UNIVERSAL_SWITCH_15_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15
+    },
+    {
+      "account": "TR_U20_15_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 2.220446049250313e-15
+    },
+    {
+      "account": "TR_U20_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 1.6653345369377348e-15
+    },
+    {
+      "account": "TR_U20_15_L1",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 2.0842702563861337e-15
+    },
+    {
+      "account": "TR_U24_15_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "account": "TR_U24_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 3.774758283725532e-15
+    },
+    {
+      "account": "TR_U24_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.9004576518332215e-15
+    },
+    {
+      "account": "TR_LOCAL_CONTROL_15_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 1.3322676295501878e-15
+    },
+    {
+      "account": "TR_LOCAL_CONTROL_30_L0",
+      "units_error": 3.469446951953614e-17,
+      "cash_error": 1.7763568394002505e-15
+    },
+    {
+      "account": "TR_LOCAL_CONTROL_15_L1",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 1.8735013540549517e-15
+    },
+    {
+      "account": "TR_FALLBACK_RELATIVE_15_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "account": "TR_FALLBACK_RELATIVE_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 3.774758283725532e-15
+    },
+    {
+      "account": "TR_FALLBACK_RELATIVE_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.9004576518332215e-15
+    },
+    {
+      "account": "TR_FALLBACK_RETAIN_15_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 2.6645352591003757e-15
+    },
+    {
+      "account": "TR_FALLBACK_RETAIN_30_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 1.7763568394002505e-15
+    },
+    {
+      "account": "TR_FALLBACK_RETAIN_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 4.218847493575595e-15
+    },
+    {
+      "account": "TR_FALLBACK_DEFEND_15_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 3.1086244689504383e-15
+    },
+    {
+      "account": "TR_FALLBACK_DEFEND_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 1.9984014443252818e-15
+    },
+    {
+      "account": "TR_FALLBACK_DEFEND_15_L1",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 6.217248937900877e-15
+    },
+    {
+      "account": "TR_PAIR_SWITCH_15_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "account": "TR_PAIR_SWITCH_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 3.774758283725532e-15
+    },
+    {
+      "account": "TR_PAIR_SWITCH_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.9004576518332215e-15
+    },
+    {
+      "account": "TR_UNIVERSAL_SWITCH_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 3.552713678800501e-15
+    },
+    {
+      "account": "TR_UNIVERSAL_SWITCH_30_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 2.6645352591003757e-15
+    },
+    {
+      "account": "TR_UNIVERSAL_SWITCH_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.9976021664879227e-15
+    }
+  ],
+  "causal_checks": [
+    {
+      "market": "EU",
+      "index": 300,
+      "rules": 6
+    },
+    {
+      "market": "EU",
+      "index": 900,
+      "rules": 6
+    },
+    {
+      "market": "EU",
+      "index": 1400,
+      "rules": 6
+    },
+    {
+      "market": "USA",
+      "index": 300,
+      "rules": 6
+    },
+    {
+      "market": "USA",
+      "index": 900,
+      "rules": 6
+    },
+    {
+      "market": "USA",
+      "index": 1400,
+      "rules": 6
+    },
+    {
+      "market": "TR",
+      "index": 300,
+      "rules": 6
+    },
+    {
+      "market": "TR",
+      "index": 900,
+      "rules": 6
+    },
+    {
+      "market": "TR",
+      "index": 1400,
+      "rules": 6
+    }
+  ]
+}

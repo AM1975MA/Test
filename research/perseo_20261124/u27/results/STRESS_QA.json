@@ -1,0 +1,131 @@
+{
+  "status": "PASS",
+  "replays": [
+    {
+      "account": "EU_U24_STRESS_30_L1",
+      "units_error": 2.42861286636753e-17,
+      "cash_error": 2.6645352591003757e-15,
+      "scenario": "DELAY_AND_COST",
+      "stop_slippage_bps": 0
+    },
+    {
+      "account": "EU_CORR70_STRESS_30_L1",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 2.6645352591003757e-15,
+      "scenario": "DELAY_AND_COST",
+      "stop_slippage_bps": 0
+    },
+    {
+      "account": "EU_U24_STRESS_15_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.1086244689504383e-15,
+      "scenario": "STOP_SLIPPAGE_50",
+      "stop_slippage_bps": 50
+    },
+    {
+      "account": "EU_CORR70_STRESS_15_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.1086244689504383e-15,
+      "scenario": "STOP_SLIPPAGE_50",
+      "stop_slippage_bps": 50
+    },
+    {
+      "account": "EU_U24_STRESS_30_L1",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.9984014443252818e-15,
+      "scenario": "DELAY_COST_STOP_100",
+      "stop_slippage_bps": 100
+    },
+    {
+      "account": "EU_CORR70_STRESS_30_L1",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.887379141862766e-15,
+      "scenario": "DELAY_COST_STOP_100",
+      "stop_slippage_bps": 100
+    },
+    {
+      "account": "USA_U24_STRESS_30_L1",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 7.105427357601002e-15,
+      "scenario": "DELAY_AND_COST",
+      "stop_slippage_bps": 0
+    },
+    {
+      "account": "USA_CORR70_STRESS_30_L1",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 8.881784197001252e-15,
+      "scenario": "DELAY_AND_COST",
+      "stop_slippage_bps": 0
+    },
+    {
+      "account": "USA_U24_STRESS_15_L0",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 6.661338147750939e-15,
+      "scenario": "STOP_SLIPPAGE_50",
+      "stop_slippage_bps": 50
+    },
+    {
+      "account": "USA_CORR70_STRESS_15_L0",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 8.43769498715119e-15,
+      "scenario": "STOP_SLIPPAGE_50",
+      "stop_slippage_bps": 50
+    },
+    {
+      "account": "USA_U24_STRESS_30_L1",
+      "units_error": 6.938893903907228e-17,
+      "cash_error": 2.4424906541753444e-15,
+      "scenario": "DELAY_COST_STOP_100",
+      "stop_slippage_bps": 100
+    },
+    {
+      "account": "USA_CORR70_STRESS_30_L1",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 4.1772141301521515e-15,
+      "scenario": "DELAY_COST_STOP_100",
+      "stop_slippage_bps": 100
+    },
+    {
+      "account": "TR_U24_STRESS_30_L1",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 2.220446049250313e-15,
+      "scenario": "DELAY_AND_COST",
+      "stop_slippage_bps": 0
+    },
+    {
+      "account": "TR_CORR70_STRESS_30_L1",
+      "units_error": 1.3877787807814457e-16,
+      "cash_error": 3.1086244689504383e-15,
+      "scenario": "DELAY_AND_COST",
+      "stop_slippage_bps": 0
+    },
+    {
+      "account": "TR_U24_STRESS_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 4.6629367034256575e-15,
+      "scenario": "STOP_SLIPPAGE_50",
+      "stop_slippage_bps": 50
+    },
+    {
+      "account": "TR_CORR70_STRESS_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.6645352591003757e-15,
+      "scenario": "STOP_SLIPPAGE_50",
+      "stop_slippage_bps": 50
+    },
+    {
+      "account": "TR_U24_STRESS_30_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.6645352591003757e-15,
+      "scenario": "DELAY_COST_STOP_100",
+      "stop_slippage_bps": 100
+    },
+    {
+      "account": "TR_CORR70_STRESS_30_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 8.881784197001252e-16,
+      "scenario": "DELAY_COST_STOP_100",
+      "stop_slippage_bps": 100
+    }
+  ]
+}

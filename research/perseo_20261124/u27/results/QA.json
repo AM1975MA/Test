@@ -1,0 +1,231 @@
+{
+  "status": "PASS",
+  "order_replays": [
+    {
+      "account": "EU_LOCAL_STOP_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 6.6856242764146145e-15
+    },
+    {
+      "account": "EU_LOCAL_STOP_30_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 2.886579864025407e-15
+    },
+    {
+      "account": "EU_LOCAL_STOP_15_L1",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 2.4424906541753444e-15
+    },
+    {
+      "account": "EU_CORR70_15_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 3.1086244689504383e-15
+    },
+    {
+      "account": "EU_CORR70_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.3322676295501878e-15
+    },
+    {
+      "account": "EU_CORR70_15_L1",
+      "units_error": 3.469446951953614e-17,
+      "cash_error": 1.798908244587949e-15
+    },
+    {
+      "account": "EU_CORR80_15_L0",
+      "units_error": 4.163336342344337e-17,
+      "cash_error": 6.283168429987995e-15
+    },
+    {
+      "account": "EU_CORR80_30_L0",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 1.5543122344752192e-15
+    },
+    {
+      "account": "EU_CORR80_15_L1",
+      "units_error": 2.7755575615628914e-17,
+      "cash_error": 2.220446049250313e-15
+    },
+    {
+      "account": "EU_CORR90_15_L0",
+      "units_error": 5.204170427930421e-17,
+      "cash_error": 2.6645352591003757e-15
+    },
+    {
+      "account": "EU_CORR90_30_L0",
+      "units_error": 3.469446951953614e-17,
+      "cash_error": 4.6629367034256575e-15
+    },
+    {
+      "account": "EU_CORR90_15_L1",
+      "units_error": 3.469446951953614e-17,
+      "cash_error": 3.774758283725532e-15
+    },
+    {
+      "account": "EU_CORR80_BREADTH_15_L0",
+      "units_error": 5.724587470723463e-17,
+      "cash_error": 4.6629367034256575e-15
+    },
+    {
+      "account": "EU_CORR80_BREADTH_30_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 1.56472057533108e-15
+    },
+    {
+      "account": "EU_CORR80_BREADTH_15_L1",
+      "units_error": 9.71445146547012e-17,
+      "cash_error": 3.774758283725532e-15
+    },
+    {
+      "account": "USA_LOCAL_STOP_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 7.105427357601002e-15
+    },
+    {
+      "account": "USA_LOCAL_STOP_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "account": "USA_LOCAL_STOP_15_L1",
+      "units_error": 1.6653345369377348e-16,
+      "cash_error": 3.1086244689504383e-15
+    },
+    {
+      "account": "USA_CORR70_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 7.77503061932805e-15
+    },
+    {
+      "account": "USA_CORR70_30_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 2.886579864025407e-15
+    },
+    {
+      "account": "USA_CORR70_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 7.549516567451064e-15
+    },
+    {
+      "account": "USA_CORR80_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 5.773159728050814e-15
+    },
+    {
+      "account": "USA_CORR80_30_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 1.0658141036401503e-14
+    },
+    {
+      "account": "USA_CORR80_15_L1",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 9.492406860545088e-15
+    },
+    {
+      "account": "USA_CORR90_15_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 7.105427357601002e-15
+    },
+    {
+      "account": "USA_CORR90_30_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 1.9984014443252818e-15
+    },
+    {
+      "account": "USA_CORR90_15_L1",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 7.223388553967425e-15
+    },
+    {
+      "account": "USA_CORR80_BREADTH_15_L0",
+      "units_error": 5.898059818321144e-17,
+      "cash_error": 3.552713678800501e-15
+    },
+    {
+      "account": "USA_CORR80_BREADTH_30_L0",
+      "units_error": 6.245004513516506e-17,
+      "cash_error": 6.217248937900877e-15
+    },
+    {
+      "account": "USA_CORR80_BREADTH_15_L1",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 4.440892098500626e-15
+    },
+    {
+      "account": "TR_LOCAL_STOP_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.6645352591003757e-15
+    },
+    {
+      "account": "TR_LOCAL_STOP_30_L0",
+      "units_error": 5.551115123125783e-17,
+      "cash_error": 3.4416913763379853e-15
+    },
+    {
+      "account": "TR_LOCAL_STOP_15_L1",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 1.5126788710517758e-15
+    },
+    {
+      "account": "TR_CORR70_15_L0",
+      "units_error": 9.71445146547012e-17,
+      "cash_error": 3.9968028886505635e-15
+    },
+    {
+      "account": "TR_CORR70_30_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 1.6653345369377348e-15
+    },
+    {
+      "account": "TR_CORR70_15_L1",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 5.46828207714789e-15
+    },
+    {
+      "account": "TR_CORR80_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 1.3877787807814457e-15
+    },
+    {
+      "account": "TR_CORR80_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 1.4403625861469926e-15
+    },
+    {
+      "account": "TR_CORR80_15_L1",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 6.661338147750939e-15
+    },
+    {
+      "account": "TR_CORR90_15_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.1094237467877974e-15
+    },
+    {
+      "account": "TR_CORR90_30_L0",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 1.1102230246251565e-15
+    },
+    {
+      "account": "TR_CORR90_15_L1",
+      "units_error": 4.440892098500626e-16,
+      "cash_error": 4.036267847729036e-15
+    },
+    {
+      "account": "TR_CORR80_BREADTH_15_L0",
+      "units_error": 8.326672684688674e-17,
+      "cash_error": 2.4424906541753444e-15
+    },
+    {
+      "account": "TR_CORR80_BREADTH_30_L0",
+      "units_error": 1.1102230246251565e-16,
+      "cash_error": 2.491062911502695e-15
+    },
+    {
+      "account": "TR_CORR80_BREADTH_15_L1",
+      "units_error": 2.220446049250313e-16,
+      "cash_error": 6.661338147750939e-15
+    }
+  ],
+  "causal_cutoffs_per_market": 3
+}
