@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "accounts": 120,
+  "matched_rotations": 218,
+  "matched_windows": 2180,
+  "label_future_mutations": 10,
+  "original_controls": 9,
+  "prior_open3_controls": 18,
+  "source_sha256": {
+    "EU": "1613506c1b5bc16d1a9e85c68ceaf0e71c41733e87b53c3b99340df0e61084b6",
+    "USA": "8a1f06af00d376e8bc2aa8ea61ba224f429d8c83897c544aaf9c340c1d562426",
+    "TR": "e6a7ac256b42a67b3507037aeee14cf66472711239254f3c601c5271835eedbf"
+  }
+}
