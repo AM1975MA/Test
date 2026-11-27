@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "replays_including_controls": 184,
+  "past_only_fit_ledger": true,
+  "native_U19_decision_checks": 175,
+  "legacy_U20_proxy_checks": 120,
+  "controls_identical_between_runs": true,
+  "last_date": "2026-07-01"
+}
